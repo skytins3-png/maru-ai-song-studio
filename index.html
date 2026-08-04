@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#151126">
+  <title>MARU WORLD MUSIC MAKER</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="brand">MARU <span>WORLD MUSIC MAKER</span></div>
+    <div class="tag">음악을 몰라도, 느낌만 고르면 됩니다</div>
+  </header>
+  <main>
+    <section class="card hero">
+      <h1>오늘은 어떤 노래를 만들까요?</h1>
+      <label>노래 이야기</label>
+      <textarea id="story" placeholder="예: 비 오는 밤, 멀리 있는 사람을 그리워하는 노래"></textarea>
+      <div class="grid three">
+        <label>분위기<select id="mood"><option>따뜻한</option><option>신나는</option><option>웅장한</option><option>슬픈</option><option>신비로운</option><option>편안한</option></select></label>
+        <label>빠르기<select id="speed"><option value="slow">느리게</option><option value="medium" selected>보통</option><option value="fast">빠르게</option></select></label>
+        <label>노래 길이<select id="length"><option value="2">약 2분</option><option value="3" selected>약 3분</option><option value="4">약 4분</option></select></label>
+      </div>
+      <div class="grid three">
+        <label>장르<select id="genre"><option>팝</option><option>발라드</option><option>댄스</option><option>트로트</option><option>영화음악</option><option>전통 퓨전</option></select></label>
+        <label>보컬<select id="vocal"><option>남성</option><option>여성</option><option>남녀 듀엣</option><option>합창</option><option>연주곡</option></select></label>
+        <label>언어<select id="language"><option>한국어</option><option>영어</option><option>중국어</option><option>일본어</option><option>방글라데시어</option><option>다국어</option></select></label>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-title"><div><h2>1. 세계 악기 고르기</h2><p>나라를 고르면 잘 어울리는 악기를 추천합니다.</p></div><button id="autoPick" class="secondary">✨ 자동 추천</button></div>
+      <div id="regions" class="chips"></div>
+      <div id="instruments" class="instrument-grid"></div>
+      <div class="mix-row"><label>전통악기 비율 <strong id="blendValue">50%</strong></label><input id="blend" type="range" min="10" max="90" value="50"></div>
+    </section>
+
+    <section class="card">
+      <div class="section-title"><div><h2>2. 조합된 반주 듣기</h2><p id="musicInfo">자동으로 박자와 음계를 맞춥니다.</p></div></div>
+      <div class="player">
+        <button id="playMix" class="primary">▶ 반주 미리듣기</button>
+        <button id="stopMix" class="danger">■ 정지</button>
+        <div class="pulse" id="pulse"><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+      <small>첫 테스트판은 악기 음색을 모사한 반주입니다. 실제 악기 음원과 AI 보컬은 다음 개선에서 연결합니다.</small>
+    </section>
+
+    <section class="card">
+      <div class="section-title"><div><h2>3. 가사와 음악 설계 만들기</h2><p>바로 복사해 음악 제작에 사용할 수 있습니다.</p></div><button id="createSong" class="primary">노래 설계 만들기</button></div>
+      <label>제목</label><input id="title" placeholder="자동으로 만들어집니다">
+      <label>가사</label><textarea id="lyrics" class="output" placeholder="가사가 여기에 만들어집니다"></textarea>
+      <label>음악 스타일</label><textarea id="style" class="style-output" placeholder="악기·박자·편곡 설명이 만들어집니다"></textarea>
+      <div class="actions"><button data-copy="lyrics" class="secondary">가사 복사</button><button data-copy="style" class="secondary">스타일 복사</button><button id="saveSong" class="secondary">내 노래 저장</button></div>
+    </section>
+
+    <section class="card"><div class="section-title"><div><h2>저장한 노래</h2><p>이 기기에 안전하게 보관됩니다.</p></div></div><div id="savedSongs" class="saved"></div></section>
+  </main>
+  <div id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
