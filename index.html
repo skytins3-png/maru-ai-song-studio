@@ -12,17 +12,20 @@
 <body>
   <header>
     <div class="brand">MARU <span>WORLD MUSIC MAKER</span></div>
-    <div class="tag">이야기를 이해하고 가사·장르·박자·악기를 함께 설계합니다 · V0.2.1</div>
+    <div class="tag">긴 가사·핵심 단어·장르별 반주까지 함께 설계합니다 · V0.3.0</div>
   </header>
   <main>
     <section class="card hero">
       <h1>오늘은 어떤 노래를 만들까요?</h1>
       <label>노래 이야기</label>
       <textarea id="story" placeholder="예: 비 오는 밤, 멀리 있는 사람을 그리워하는 노래"></textarea>
+      <label>가사에 넣을 핵심 단어</label><div id="wordChoices" class="chips"></div>
+      <input id="customWords" placeholder="직접 입력: 첫 만남, 바닷가, 오래된 약속 (쉼표로 구분)">
+      <div class="grid three"><label>후렴 핵심 문구<input id="hookLine" placeholder="예: 자꾸자꾸 너만 보여"></label><label>가사 분량<select id="density"><option value="normal">보통</option><option value="rich" selected>풍부하게</option></select></label><label>후렴 반복<select id="chorusCount"><option value="2">2회</option><option value="3" selected>3회</option><option value="4">4회</option></select></label></div>
       <div class="grid three">
         <label>분위기<select id="mood"><option value="auto">✨ 이야기에서 자동 분석</option><option>따뜻한</option><option>신나는</option><option>웅장한</option><option>슬픈</option><option>신비로운</option><option>편안한</option></select></label>
         <label>빠르기<select id="speed"><option value="auto">✨ 자동 추천</option><option value="slow">느리게</option><option value="medium">보통</option><option value="fast">빠르게</option></select></label>
-        <label>노래 길이<select id="length"><option value="2">약 2분</option><option value="3" selected>약 3분</option><option value="4">약 4분</option></select></label>
+        <label>노래 길이<select id="length"><option value="2">약 2분</option><option value="3">약 3분</option><option value="4" selected>약 4분</option><option value="4.5">약 4분 30초</option></select></label>
       </div>
       <div class="grid three">
         <label>장르<select id="genre"><option value="auto">✨ 자동 추천</option><option>팝</option><option>팝 록</option><option>발라드</option><option>댄스 팝</option><option>트로트</option><option>영화음악</option><option>전통 퓨전</option></select></label>
@@ -47,7 +50,7 @@
         <button id="stopMix" class="danger">■ 정지</button>
         <div class="pulse" id="pulse"><i></i><i></i><i></i><i></i><i></i></div>
       </div>
-      <small>V0.2 테스트판은 악기 음색을 모사한 반주입니다. 실제 악기 음원과 AI 보컬은 다음 개선에서 연결합니다.</small>
+      <small>V0.3 테스트판은 장르별 리듬과 악기 음색을 모사한 반주입니다. 실제 악기 음원과 AI 보컬은 다음 개선에서 연결합니다.</small>
     </section>
 
     <section class="card">
@@ -61,6 +64,6 @@
     <section class="card"><div class="section-title"><div><h2>앱에 임시 저장한 노래</h2><p>현재 브라우저에만 보관됩니다. 오래 보관하려면 TXT 파일을 다운로드하세요.</p></div></div><div id="savedSongs" class="saved"></div></section>
   </main>
   <div id="toast"></div>
-  <script src="app.js?v=0.2.1"></script>
+  <script src="app.js?v=0.3.0"></script>
 </body>
 </html>

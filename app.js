@@ -23,8 +23,11 @@ const PROFILES={
 };
 
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
-let region='한국',selected=new Set(),ctx=null,timers=[],lastProfile=PROFILES.generic;
+let region='한국',selected=new Set(),chosenWords=new Set(),ctx=null,timers=[],lastProfile=PROFILES.generic;
 const speedBpm={slow:72,medium:98,fast:126};
+const WORDS=['첫 만남','눈빛','미소','기다림','설렘','약속','그리움','여행','내일','응원','새로운 시작','함께'];
+const WORD_LINES={'첫 만남':'처음 마주친 그날의 공기까지','눈빛':'말보다 먼저 다가온 너의 눈빛','미소':'지친 하루를 밝혀 주던 미소','기다림':'긴 기다림도 사랑이 되었고','설렘':'작은 설렘이 심장을 두드려','약속':'우리의 약속을 마음에 새겨','그리움':'그리움은 밤마다 노래가 되고','여행':'함께한 여행은 길이 되어 남아','내일':'내일은 오늘보다 환하게','응원':'언제나 네 편에서 응원할게','새로운 시작':'끝이 아닌 새로운 시작 앞에서','함께':'혼자가 아닌 우리 함께 걸어가'};
+function renderWordChoices(){$('#wordChoices').innerHTML=WORDS.map(w=>`<button class="chip ${chosenWords.has(w)?'active':''}" data-word="${w}">${w}</button>`).join('');$$('[data-word]').forEach(b=>b.onclick=()=>{const w=b.dataset.word;chosenWords.has(w)?chosenWords.delete(w):chosenWords.add(w);renderWordChoices()})}
 
 function renderRegions(){
  $('#regions').innerHTML=Object.keys(DATA).map(r=>`<button class="chip ${r===region?'active':''}" data-region="${r}">${r}</button>`).join('');
@@ -60,9 +63,8 @@ function tone(type,freq=440,when=0,dur=.55,vol=.1){
 function previewTone(type){audio().resume();const seq=type==='drum'?[110,90,130,90]:type==='bass'?[130.8,146.8,164.8,196]:[261.6,329.6,392,523.2];seq.forEach((f,i)=>tone(type,f,i*.18,.5,.09))}
 function stop(){timers.forEach(clearTimeout);timers=[];if(ctx){ctx.close();ctx=null}$('#pulse').classList.remove('playing')}
 function playMix(){
- stop();const p=activeProfile();audio().resume();const beat=60/p.bpm,chosen=[...selected];if(!chosen.length){autoPick();return playMix()}
- const scale=p.key.includes('Minor')?[220,246.9,261.6,329.6,370,440]:[261.6,293.7,329.6,392,440,523.2];let count=0;$('#pulse').classList.add('playing');
- const loop=()=>{chosen.slice(0,5).forEach((n,j)=>{const type=findInstrument(n)[2],note=scale[(count+j*2)%scale.length];tone(type,type==='drum'?100:note,j*.02,beat*.85,.045)});count++;if(count<32)timers.push(setTimeout(loop,beat*1000));else $('#pulse').classList.remove('playing')};loop();
+ stop();const p=activeProfile();audio().resume();const beat=60/p.bpm,chosen=[...selected];if(!chosen.length){autoPick();return playMix()}const roots=p.key.includes('Minor')?[220,174.6,196,164.8]:[261.6,196,220,174.6],mode=/댄스|EDM/.test(p.genre)?'dance':/발라드|뉴에이지/.test(p.genre)?'ballad':/트로트/.test(p.genre)?'trot':/록/.test(p.genre)?'rock':'fusion';let count=0;$('#pulse').classList.add('playing');
+ const loop=()=>{const root=roots[Math.floor(count/4)%4];chosen.slice(0,6).forEach((n,j)=>{const type=findInstrument(n)[2];let note=root*(type==='bass'?.5:1);if(mode==='ballad')note*=[1,1.25,1.5,2][count%4];if(mode==='dance'&&type==='synth')note*=count%2?1.5:2;if(mode==='trot')note*=count%2?1.25:1;if(mode==='rock'&&['guitar','pluck'].includes(type))note*=count%4<2?1:1.5;const hit=type!=='drum'||mode==='dance'||(mode==='rock'&&count%2===0)||(mode==='ballad'&&count%4===0)||(mode==='trot'&&count%2===0)||(mode==='fusion'&&count%3!==1);if(hit)tone(type,type==='drum'?90:note,j*.018,mode==='ballad'?beat*1.5:beat*.8,.045)});count++;if(count<40)timers.push(setTimeout(loop,beat*1000));else $('#pulse').classList.remove('playing')};loop();toast(`${mode} 장르 전용 반주를 재생합니다`)
 }
 function autoPick(){
  const p=activeProfile();selected.clear();DATA[region].slice(0,2).forEach(x=>selected.add(x[0]));p.modern.forEach(n=>selected.add(n));lastProfile=p;renderInstruments();updateInfo();toast(`${region} 전통악기와 현대악기를 조합했습니다`)
@@ -85,9 +87,9 @@ const LYRICS={
 function profileKey(p){return Object.keys(PROFILES).find(k=>PROFILES[k].title===p.title)||'generic'}
 function makeLyrics(){
  const story=$('#story').value.trim();if(!story){toast('노래 이야기를 먼저 입력해 주세요');$('#story').focus();return}
- const p=analyze();if(!p)return;autoPick();const l=LYRICS[profileKey(p)]||LYRICS.generic,mins=Number($('#length').value),inst=[...selected],intro=joinKorean(inst.slice(0,2)),outro=joinKorean(inst.slice(-2));
+ const p=analyze();if(!p)return;autoPick();const l=LYRICS[profileKey(p)]||LYRICS.generic,mins=Number($('#length').value),inst=[...selected],intro=joinKorean(inst.slice(0,2)),outro=joinKorean(inst.slice(-2));const custom=$('#customWords').value.split(',').map(x=>x.trim()).filter(Boolean),allWords=[...new Set([...chosenWords,...custom])],extra=allWords.slice(0,6).map(w=>WORD_LINES[w]||`${w}, 그 의미를 오늘의 노래에 담아`),hook=$('#hookLine').value.trim(),rich=$('#density').value==='rich',choruses=Number($('#chorusCount').value);
  const lines=[`[Intro]\n(${intro}${hasBatchim(intro)?'이':'가'} 곡의 분위기를 여는 연주)`,`[Verse 1]\n${l.v1.join('\n')}`,`[Pre-Chorus]\n${l.pre.join('\n')}`,`[Chorus]\n${l.chorus.join('\n')}`,`[Verse 2]\n${l.v2.join('\n')}`];
- if(mins>2)lines.push(`[Bridge]\n${l.bridge.join('\n')}`);lines.push(`[Final Chorus]\n${l.chorus.join('\n')}`);if(mins>=4)lines.push(`[Final Chorus Repeat]\n${l.chorus.slice(0,2).join('\n')}\n마지막까지 우리 함께 노래해`);lines.push(`[Outro]\n(${outro}의 짧고 선명한 여운)`);
+ if(extra.length)lines.push(`[Verse 3 · 핵심 단어]\n${extra.join('\n')}`);if(rich&&mins>=4)lines.push(`[Instrumental Interlude · 15초]\n(${intro}의 새로운 멜로디와 현대악기 리듬 변주)`);if(mins>2)lines.push(`[Bridge]\n${l.bridge.join('\n')}`);if(hook)lines.push(`[Hook]\n${hook}\n${hook}`);for(let i=1;i<=choruses;i++)lines.push(`[Final Chorus${i>1?' '+i:''}]\n${i===choruses&&hook?hook+'\n':''}${l.chorus.join('\n')}`);if(mins>=4.5)lines.push(`[Outro Chorus]\n${l.chorus.slice(0,2).join('\n')}\n우리의 이야기는 계속될 거야`);lines.push(`[Outro · 10초]\n(${outro}의 짧고 선명한 여운)`);
  $('#title').value=p.title;$('#lyrics').value=lines.join('\n\n');const blend=$('#blend').value,lang=$('#language').value;
  $('#style').value=`${p.genre}, ${p.bpm} BPM, ${p.meter} time, ${p.key}, 약 ${mins}분, ${p.mood}. ${p.vocal}, ${lang}. 악기: ${inst.join(', ')}. 전통악기 비율 ${blend}%. 편곡: ${p.arrange}. 벌스는 가사가 또렷하게 들리도록 악기를 절제하고, 후렴에서만 저역과 화음을 확장. 과도한 리버브·컴프레션·베이스 금지, 보컬을 전면에 배치.`;
  toast('이야기에 맞춘 가사와 음악 설계를 만들었습니다')
@@ -99,4 +101,4 @@ function renderSaved(){const songs=JSON.parse(localStorage.getItem('maruSongs')|
 
 $('#analyzeStory').onclick=analyze;$('#autoPick').onclick=autoPick;$('#playMix').onclick=playMix;$('#stopMix').onclick=stop;$('#createSong').onclick=makeLyrics;$('#saveSong').onclick=save;$('#downloadTxt').onclick=downloadTxt;$('#blend').oninput=e=>$('#blendValue').textContent=e.target.value+'%';
 ['speed','genre','mood','vocal'].forEach(id=>$('#'+id).onchange=updateInfo);$$('[data-copy]').forEach(b=>b.onclick=async()=>{const el=$('#'+b.dataset.copy);await navigator.clipboard.writeText(el.value);toast('복사했습니다')});
-renderRegions();renderInstruments();autoPick();renderSaved();if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js?v=0.2.1');
+renderWordChoices();renderRegions();renderInstruments();autoPick();renderSaved();if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js?v=0.3.0');
