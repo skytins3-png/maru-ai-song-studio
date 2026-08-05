@@ -6,14 +6,14 @@
   <meta name="theme-color" content="#151126">
   <title>MARU WORLD MUSIC MAKER</title>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=0.7.0">
-  <link rel="stylesheet" href="score.css?v=0.7.0">
+  <link rel="stylesheet" href="styles.css?v=0.7.1">
+  <link rel="stylesheet" href="score.css?v=0.7.1">
   <style>.wide{width:100%;margin-top:16px}.analysis-box{margin-top:12px;padding:14px;border-radius:14px;background:#100c1e;border:1px solid #4b3d68;color:#e9e2f8;line-height:1.65;white-space:pre-line}</style>
 </head>
 <body>
   <header>
     <div class="brand">MARU <span>WORLD MUSIC MAKER</span></div>
-    <div class="tag">가사 음절 맞춤·마디별 편집·전체 곡 재생 · V0.7.0</div>
+    <div class="tag">1/2·1/4·1/8 분수 음표와 마디별 편집 · V0.7.1</div>
   </header>
   <main>
     <section class="card hero">
@@ -70,13 +70,14 @@
         <label>박자표<select id="manualMeter"><option>4/4</option><option>3/4</option><option>6/8</option></select></label>
         <label>빠르기 BPM<input id="manualBpm" type="number" min="45" max="180" value="96"></label>
         <label>음의 세기<select id="dynamics"><option value="auto">자동 변화</option><option>pp</option><option>p</option><option>mp</option><option>mf</option><option>f</option><option>ff</option></select></label>
-        <label>음표 길이<select id="rhythmMode"><option value="auto">자동 리듬</option><option value="mixed">혼합 리듬</option><option value="quarter">4분음표</option><option value="eighth">8분음표</option><option value="half">2분음표</option><option value="whole">온음표</option></select></label>
+        <label>음표 길이<select id="rhythmMode"><option value="auto">자동 리듬</option><option value="mixed">분수 혼합</option><option value="whole">1/1 온음표</option><option value="half">1/2 2분음표</option><option value="quarter">1/4 4분음표</option><option value="eighth">1/8 8분음표</option></select></label>
       </div>
+      <div class="note-legend"><span>𝅝 <b>1/1</b> 온음표</span><span>𝅗𝅥 <b>1/2</b> 2분음표</span><span>𝅘𝅥 <b>1/4</b> 4분음표</span><span>𝅘𝅥𝅮 <b>1/8</b> 8분음표</span></div>
       <div class="bar-editor">
         <h3>마디별 수동 편집</h3>
         <div class="grid three">
           <label>수정할 마디<select id="barSelect"><option value="">악보를 먼저 만드세요</option></select></label>
-          <label>마디 음표<select id="barRhythm"><option value="auto">자동</option><option value="half">2분음표</option><option value="quarter">4분음표</option><option value="eighth">8분음표</option><option value="mixed">혼합</option></select></label>
+          <label>마디 음표<select id="barRhythm"><option value="auto">자동</option><option value="half">1/2 2분음표</option><option value="quarter">1/4 4분음표</option><option value="eighth">1/8 8분음표</option><option value="mixed">분수 혼합</option></select></label>
           <label>멜로디 흐름<select id="barPitch"><option value="auto">자동</option><option value="low">낮게</option><option value="middle">중간</option><option value="high">높게</option><option value="rise">올라가게</option><option value="fall">내려가게</option></select></label>
         </div>
         <label>이 마디의 가사 <span id="barCount">0글자</span><input id="barLyrics" placeholder="한 마디 권장: 보통 팝 4~8글자"></label>
@@ -92,6 +93,6 @@
     <section class="card"><div class="section-title"><div><h2>앱에 임시 저장한 노래</h2><p>현재 브라우저에만 보관됩니다. 오래 보관하려면 TXT 파일을 다운로드하세요.</p></div></div><div id="savedSongs" class="saved"></div></section>
   </main>
   <div id="toast"></div>
-  <script src="app.js?v=0.7.0"></script>
+  <script src="app.js?v=0.7.1"></script>
 </body>
 </html>
