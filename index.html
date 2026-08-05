@@ -6,14 +6,14 @@
   <meta name="theme-color" content="#151126">
   <title>MARU WORLD MUSIC MAKER</title>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=0.10.6">
-  <link rel="stylesheet" href="score.css?v=0.10.6">
+  <link rel="stylesheet" href="styles.css?v=0.11.0">
+  <link rel="stylesheet" href="score.css?v=0.11.0">
   <style>.wide{width:100%;margin-top:16px}.analysis-box{margin-top:12px;padding:14px;border-radius:14px;background:#100c1e;border:1px solid #4b3d68;color:#e9e2f8;line-height:1.65;white-space:pre-line}</style>
 </head>
 <body>
   <header>
     <div class="brand">MARU <span>WORLD MUSIC MAKER</span></div>
-    <div class="tag">가사 후보 3개·복사 붙여넣기·음표 자동 변화 · V0.10.6</div>
+    <div class="tag">멜로디 먼저 작곡·가사 음절 자동 배치·마디별 편집 · V0.11.0</div>
   </header>
   <main>
     <section class="card hero">
@@ -55,7 +55,7 @@
     </section>
 
     <section class="card">
-      <div class="section-title"><div><h2>3. 이야기로 가사·멜로디 함께 만들기</h2><p>입력한 이야기 문장을 마디별로 나누고, 공백을 뺀 한 글자마다 음표 하나를 정확히 만듭니다.</p></div><button id="createSong" class="primary">🎼 이야기로 작곡</button></div>
+      <div class="section-title"><div><h2>3. 멜로디를 먼저 만들고 가사 맞추기</h2><p>구간별 모티프와 음역을 먼저 만들고, 가사는 음표 수에 맞춰 자연스럽게 묶거나 늘입니다.</p></div><button id="createSong" class="primary">🎼 이야기로 작곡</button></div>
       <div id="lyricCandidates" class="lyric-candidates"><p>이야기로 작곡하면 가사 후보 3개가 여기에 표시됩니다.</p></div>
       <label>제목</label><input id="title" placeholder="자동으로 만들어집니다">
       <label>선택한 전체 가사 · 직접 수정과 복사·붙여넣기 가능</label><textarea id="lyrics" class="output" placeholder="가사가 여기에 만들어집니다"></textarea>
@@ -65,7 +65,7 @@
     </section>
 
     <section class="card score-card">
-      <div class="section-title"><div><h2>4. 가사를 따라 바뀌는 32마디 오선악보</h2><p>한 줄 4마디 × 8줄은 유지하고, 각 마디의 음표 수는 가사 글자 수를 따라 바뀝니다.</p></div><button id="createScore" class="primary">🎼 32마디 다시 작곡</button></div>
+      <div class="section-title"><div><h2>4. 한 줄 4마디 고정 오선악보</h2><p>마디의 박자는 고정하고, 가사는 음표 아래에 자동 배치됩니다. 마디와 음표를 각각 클릭해 수정할 수 있습니다.</p></div><button id="createScore" class="primary">🎼 악보 다시 작곡</button></div>
       <div class="grid three score-controls">
         <label>작곡 설정<select id="scoreMode"><option value="auto">✨ 자동</option><option value="manual">🎛 수동</option></select></label>
         <label>장조·단조<select id="manualKey"><option>C Major</option><option>D Major</option><option>E Major</option><option>F Major</option><option>F# Major</option><option selected>G Major</option><option>A Major</option><option>B Major</option><option>A Minor</option><option>B Minor</option><option>C# Minor</option><option>D Minor</option><option>E Minor</option><option>F# Minor</option><option>G# Minor</option></select></label>
@@ -84,7 +84,7 @@
           <label>이 마디 음의 세기<select id="barDynamic"><option value="auto">자동</option><option>pp</option><option>p</option><option>mp</option><option>mf</option><option>f</option><option>ff</option></select></label>
         </div>
         <label>이 마디의 가사 <span id="barCount">0글자</span><input id="barLyrics" placeholder="한 마디 권장: 보통 팝 4~8글자"></label>
-        <div id="barWarning" class="bar-warning">한 음표에 한 글자를 기본으로 맞춥니다.</div>
+        <div id="barWarning" class="bar-warning">긴 가사는 한 음표에 여러 음절을 묶고, 짧은 가사는 긴 음표와 여음을 사용합니다.</div>
         <button id="applyBar" class="primary">✓ 이 마디 수정 적용</button>
       </div>
       <div id="scoreMeta" class="score-meta">노래 설계를 만든 다음 악보 만들기를 누르세요.</div>
@@ -105,6 +105,6 @@
   </main>
   <div id="toast"></div>
   <script src="vendor/vexflow.js?v=5.0.0"></script>
-  <script src="app.js?v=0.10.6"></script>
+  <script src="app.js?v=0.11.0"></script>
 </body>
 </html>
