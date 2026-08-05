@@ -5,4 +5,5 @@
 .score-note.active{fill:#ff3d68;stroke:#ff3d68}
 .score-card small{display:block;margin-top:12px}
 .score-controls{margin-bottom:12px}.score-controls label{margin-top:4px}.score-controls select:disabled,.score-controls input:disabled{opacity:.45;cursor:not-allowed}.score-note{cursor:pointer}.score-note text{pointer-events:none}
+.bar-editor{margin:12px 0 16px;padding:14px;border:1px solid #514269;border-radius:14px;background:#100c1e}.bar-editor h3{margin:0 0 8px;font-size:16px}.bar-editor label span{float:right;color:var(--gold)}.bar-warning{font-size:13px;color:var(--muted);margin:8px 0 12px}.bar-warning.over{color:#ff8798;font-weight:800}
 @media print{body{background:#fff}.score-card{border:0;box-shadow:none;margin:0}.score-card .section-title button,.score-card .actions,.score-card small,header,main>.card:not(.score-card){display:none}.score-sheet{padding:0;overflow:visible}.score-sheet svg{min-width:0}.score-meta{color:#111}}
