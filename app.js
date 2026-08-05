@@ -69,6 +69,9 @@ function autoPick(){
 }
 function updateInfo(){const p=activeProfile();$('#musicInfo').textContent=`${p.bpm} BPM · ${p.meter}박자 · ${p.key} · ${[...selected].join(' + ')||'악기를 선택해 주세요'}`}
 
+function hasBatchim(text){const chars=[...text].filter(c=>/[가-힣]/.test(c));if(!chars.length)return false;return (chars.at(-1).charCodeAt(0)-0xAC00)%28!==0}
+function joinKorean(names){if(names.length<2)return names[0]||'악기';const head=names.slice(0,-1).join(', '),last=names.at(-1);return `${head}${hasBatchim(head)?'과':'와'} ${last}`}
+
 const LYRICS={
  vacation:{v1:['달력 끝에 접어 둔 짧은 여행','느리게 흐르던 하루가 참 좋았지','사진 속 웃음은 가방에 챙겨 두고','익숙한 거리로 다시 돌아갈 시간'],pre:['아쉬운 마음도 오늘까지만','새 아침이 문 앞에서 날 기다려'],chorus:['짧았던 휴가는 추억으로 남기고','내일이면 다시 길을 나서야 해','쉬어 간 만큼 더 가벼운 발걸음','새로운 하루를 힘차게 시작해'],v2:['잠시 멈춰 보니 알 것만 같아','평범한 하루도 소중했다는 걸','바쁜 시간 속 지칠 때가 오면','오늘의 바람을 다시 꺼내 볼게'],bridge:['끝은 또 다른 시작이 되니까','아쉬움 대신 설렘을 안고 가']},
  love:{v1:['처음 네 눈빛이 내게 머문 순간','익숙한 하루가 조금 달라졌어','말하지 않아도 번지는 미소','나도 모르게 너를 따라 웃었어'],pre:['한 걸음만 더 가까이','우리의 시간이 시작돼'],chorus:['자꾸자꾸 너만 보여','자꾸자꾸 네 생각 나','같은 리듬 같은 마음','오늘부터 우리 함께해'],v2:['서툰 인사도 특별해지는 밤','짧은 메시지도 오래 남아 있어','서로의 하루를 천천히 나누며','두 사람의 계절을 만들어 가'],bridge:['멀리 돌아온 날에도','내가 먼저 네 손을 잡을게']},
@@ -82,8 +85,8 @@ const LYRICS={
 function profileKey(p){return Object.keys(PROFILES).find(k=>PROFILES[k].title===p.title)||'generic'}
 function makeLyrics(){
  const story=$('#story').value.trim();if(!story){toast('노래 이야기를 먼저 입력해 주세요');$('#story').focus();return}
- const p=analyze();if(!p)return;autoPick();const l=LYRICS[profileKey(p)]||LYRICS.generic,mins=Number($('#length').value),inst=[...selected],intro=inst.slice(0,2).join('와 '),outro=inst.slice(-2).join('와 ');
- const lines=[`[Intro]\n(${intro}가 곡의 분위기를 여는 연주)`,`[Verse 1]\n${l.v1.join('\n')}`,`[Pre-Chorus]\n${l.pre.join('\n')}`,`[Chorus]\n${l.chorus.join('\n')}`,`[Verse 2]\n${l.v2.join('\n')}`];
+ const p=analyze();if(!p)return;autoPick();const l=LYRICS[profileKey(p)]||LYRICS.generic,mins=Number($('#length').value),inst=[...selected],intro=joinKorean(inst.slice(0,2)),outro=joinKorean(inst.slice(-2));
+ const lines=[`[Intro]\n(${intro}${hasBatchim(intro)?'이':'가'} 곡의 분위기를 여는 연주)`,`[Verse 1]\n${l.v1.join('\n')}`,`[Pre-Chorus]\n${l.pre.join('\n')}`,`[Chorus]\n${l.chorus.join('\n')}`,`[Verse 2]\n${l.v2.join('\n')}`];
  if(mins>2)lines.push(`[Bridge]\n${l.bridge.join('\n')}`);lines.push(`[Final Chorus]\n${l.chorus.join('\n')}`);if(mins>=4)lines.push(`[Final Chorus Repeat]\n${l.chorus.slice(0,2).join('\n')}\n마지막까지 우리 함께 노래해`);lines.push(`[Outro]\n(${outro}의 짧고 선명한 여운)`);
  $('#title').value=p.title;$('#lyrics').value=lines.join('\n\n');const blend=$('#blend').value,lang=$('#language').value;
  $('#style').value=`${p.genre}, ${p.bpm} BPM, ${p.meter} time, ${p.key}, 약 ${mins}분, ${p.mood}. ${p.vocal}, ${lang}. 악기: ${inst.join(', ')}. 전통악기 비율 ${blend}%. 편곡: ${p.arrange}. 벌스는 가사가 또렷하게 들리도록 악기를 절제하고, 후렴에서만 저역과 화음을 확장. 과도한 리버브·컴프레션·베이스 금지, 보컬을 전면에 배치.`;
@@ -96,4 +99,4 @@ function renderSaved(){const songs=JSON.parse(localStorage.getItem('maruSongs')|
 
 $('#analyzeStory').onclick=analyze;$('#autoPick').onclick=autoPick;$('#playMix').onclick=playMix;$('#stopMix').onclick=stop;$('#createSong').onclick=makeLyrics;$('#saveSong').onclick=save;$('#downloadTxt').onclick=downloadTxt;$('#blend').oninput=e=>$('#blendValue').textContent=e.target.value+'%';
 ['speed','genre','mood','vocal'].forEach(id=>$('#'+id).onchange=updateInfo);$$('[data-copy]').forEach(b=>b.onclick=async()=>{const el=$('#'+b.dataset.copy);await navigator.clipboard.writeText(el.value);toast('복사했습니다')});
-renderRegions();renderInstruments();autoPick();renderSaved();if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js');
+renderRegions();renderInstruments();autoPick();renderSaved();if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js?v=0.2.1');
