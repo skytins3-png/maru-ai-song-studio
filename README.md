@@ -1,4 +1,6 @@
-# MARU WORLD MUSIC MAKER V0.10.1 CONNECTED FOUR-BAR STAFF
+# MARU WORLD MUSIC MAKER V0.10.2 CLICKABLE MEASURE EDITOR
+
+V0.10.2는 악보 마디의 빈 공간을 클릭해 해당 마디를 바로 선택할 수 있습니다. 마디의 리듬·음높이·음세기·가사를 바꾸면 박자표에 맞는 총박을 자동 유지하고 1·2절 또는 반복 후렴의 대응 마디에도 같은 음표 설정을 적용합니다.
 
 V0.10.1은 한 줄의 4마디 사이 여백을 제거해 오선 5줄이 끊김 없이 이어지고, 세로 마디선으로만 구분되는 일반 가요 악보 형태로 개선했습니다.
 

@@ -6,14 +6,14 @@
   <meta name="theme-color" content="#151126">
   <title>MARU WORLD MUSIC MAKER</title>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=0.10.1">
-  <link rel="stylesheet" href="score.css?v=0.10.1">
+  <link rel="stylesheet" href="styles.css?v=0.10.2">
+  <link rel="stylesheet" href="score.css?v=0.10.2">
   <style>.wide{width:100%;margin-top:16px}.analysis-box{margin-top:12px;padding:14px;border-radius:14px;background:#100c1e;border:1px solid #4b3d68;color:#e9e2f8;line-height:1.65;white-space:pre-line}</style>
 </head>
 <body>
   <header>
     <div class="brand">MARU <span>WORLD MUSIC MAKER</span></div>
-    <div class="tag">한 줄 4마디 연결 오선·멜로디 먼저 작곡·자동 가사 · V0.10.1</div>
+    <div class="tag">마디 클릭 편집·정박 자동 맞춤·한 줄 4마디 연결 오선 · V0.10.2</div>
   </header>
   <main>
     <section class="card hero">
@@ -74,7 +74,7 @@
       </div>
       <div class="note-legend"><span>𝅝 <b>1/1</b> 온음표</span><span>𝅗𝅥 <b>1/2</b> 2분음표</span><span>𝅘𝅥 <b>1/4</b> 4분음표</span><span>𝅘𝅥𝅮 <b>1/8</b> 8분음표</span><span>𝅘𝅥𝅯 <b>1/16</b> 16분음표</span><span>𝅘𝅥𝅰 <b>1/32</b> 32분음표</span></div>
       <div class="bar-editor">
-        <h3>마디별 수동 편집</h3>
+        <h3>마디 클릭 수동 편집</h3><p>악보의 원하는 마디 빈 공간을 클릭해도 바로 선택됩니다.</p>
         <div class="grid three">
           <label>수정할 마디<select id="barSelect"><option value="">악보를 먼저 만드세요</option></select></label>
           <label>마디 음표<select id="barRhythm"><option value="auto">자동</option><option value="half">1/2 2분음표</option><option value="quarter">1/4 4분음표</option><option value="eighth">1/8 8분음표</option><option value="sixteenth">1/16 16분음표</option><option value="thirtysecond">1/32 32분음표</option><option value="mixed">분수 혼합</option></select></label>
@@ -102,6 +102,6 @@
   </main>
   <div id="toast"></div>
   <script src="vendor/vexflow.js?v=5.0.0"></script>
-  <script src="app.js?v=0.10.1"></script>
+  <script src="app.js?v=0.10.2"></script>
 </body>
 </html>
