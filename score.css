@@ -4,4 +4,5 @@
 .score-sheet svg{display:block;min-width:820px;width:100%;height:auto}
 .score-note.active{fill:#ff3d68;stroke:#ff3d68}
 .score-card small{display:block;margin-top:12px}
+.score-controls{margin-bottom:12px}.score-controls label{margin-top:4px}.score-controls select:disabled,.score-controls input:disabled{opacity:.45;cursor:not-allowed}.score-note{cursor:pointer}.score-note text{pointer-events:none}
 @media print{body{background:#fff}.score-card{border:0;box-shadow:none;margin:0}.score-card .section-title button,.score-card .actions,.score-card small,header,main>.card:not(.score-card){display:none}.score-sheet{padding:0;overflow:visible}.score-sheet svg{min-width:0}.score-meta{color:#111}}
