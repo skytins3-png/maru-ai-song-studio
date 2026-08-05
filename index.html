@@ -6,14 +6,14 @@
   <meta name="theme-color" content="#151126">
   <title>MARU WORLD MUSIC MAKER</title>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=0.7.1">
-  <link rel="stylesheet" href="score.css?v=0.7.1">
+  <link rel="stylesheet" href="styles.css?v=0.7.2">
+  <link rel="stylesheet" href="score.css?v=0.7.2">
   <style>.wide{width:100%;margin-top:16px}.analysis-box{margin-top:12px;padding:14px;border-radius:14px;background:#100c1e;border:1px solid #4b3d68;color:#e9e2f8;line-height:1.65;white-space:pre-line}</style>
 </head>
 <body>
   <header>
     <div class="brand">MARU <span>WORLD MUSIC MAKER</span></div>
-    <div class="tag">1/2·1/4·1/8 분수 음표와 마디별 편집 · V0.7.1</div>
+    <div class="tag">1/2·1/4·1/8·1/16·1/32 전체 분수 음표 · V0.7.2</div>
   </header>
   <main>
     <section class="card hero">
@@ -29,7 +29,7 @@
         <label>노래 길이<select id="length"><option value="2">약 2분</option><option value="3">약 3분</option><option value="4" selected>약 4분</option><option value="4.5">약 4분 30초</option></select></label>
       </div>
       <div class="grid three">
-        <label>장르<select id="genre"><option value="auto">✨ 자동 추천</option><option>팝</option><option>팝 록</option><option>발라드</option><option>댄스 팝</option><option>트로트</option><option>영화음악</option><option>전통 퓨전</option></select></label>
+        <label>장르<select id="genre"><option value="auto">✨ 이야기에서 자동 추천</option><optgroup label="팝·K-POP"><option>팝</option><option>모던 팝</option><option>K-POP</option><option>아이돌 팝</option><option>팝 발라드</option><option>모던 팝 발라드</option><option>어쿠스틱 팝</option><option>신스팝</option><option>시티팝</option><option>인디 팝</option></optgroup><optgroup label="댄스·전자음악"><option>댄스 팝</option><option>EDM</option><option>하우스</option><option>딥 하우스</option><option>퓨처 베이스</option><option>디스코</option><option>UK 개러지</option><option>테크노</option><option>트랜스</option></optgroup><optgroup label="록·밴드"><option>팝 록</option><option>인디 록</option><option>얼터너티브 록</option><option>하드 록</option><option>포크 록</option><option>펑크 록</option></optgroup><optgroup label="흑인음악·그루브"><option>R&amp;B</option><option>소울</option><option>힙합</option><option>팝 랩</option><option>트랩</option><option>펑크</option><option>가스펠</option></optgroup><optgroup label="재즈·어쿠스틱"><option>재즈</option><option>보사노바</option><option>스윙</option><option>블루스</option><option>포크</option><option>컨트리</option><option>로파이</option><option>뉴에이지</option><option>앰비언트</option></optgroup><optgroup label="세계·전통"><option>국악 퓨전</option><option>전통 퓨전</option><option>월드 뮤직</option><option>라틴 팝</option><option>레게</option><option>아프로비츠</option><option>플라멩코</option><option>중국풍 팝</option><option>일본풍 팝</option><option>인도 퓨전</option><option>중동 퓨전</option></optgroup><optgroup label="무대·영상·대중가요"><option>트로트</option><option>영화음악</option><option>오케스트라 팝</option><option>뮤지컬</option><option>합창</option><option>동요</option><option>왈츠</option></optgroup></select></label>
         <label>보컬<select id="vocal"><option value="auto">✨ 자동 추천</option><option>남성</option><option>여성</option><option>남녀 듀엣</option><option>합창</option><option>연주곡</option></select></label>
         <label>언어<select id="language"><option>한국어</option><option disabled>영어 · 다음 버전</option><option disabled>중국어 · 다음 버전</option><option disabled>일본어 · 다음 버전</option><option disabled>방글라데시어 · 다음 버전</option><option disabled>다국어 · 다음 버전</option></select></label>
       </div>
@@ -70,15 +70,16 @@
         <label>박자표<select id="manualMeter"><option>4/4</option><option>3/4</option><option>6/8</option></select></label>
         <label>빠르기 BPM<input id="manualBpm" type="number" min="45" max="180" value="96"></label>
         <label>음의 세기<select id="dynamics"><option value="auto">자동 변화</option><option>pp</option><option>p</option><option>mp</option><option>mf</option><option>f</option><option>ff</option></select></label>
-        <label>음표 길이<select id="rhythmMode"><option value="auto">자동 리듬</option><option value="mixed">분수 혼합</option><option value="whole">1/1 온음표</option><option value="half">1/2 2분음표</option><option value="quarter">1/4 4분음표</option><option value="eighth">1/8 8분음표</option></select></label>
+        <label>음표 길이<select id="rhythmMode"><option value="auto">자동 리듬</option><option value="mixed">분수 혼합</option><option value="whole">1/1 온음표</option><option value="half">1/2 2분음표</option><option value="quarter">1/4 4분음표</option><option value="eighth">1/8 8분음표</option><option value="sixteenth">1/16 16분음표</option><option value="thirtysecond">1/32 32분음표</option></select></label>
       </div>
-      <div class="note-legend"><span>𝅝 <b>1/1</b> 온음표</span><span>𝅗𝅥 <b>1/2</b> 2분음표</span><span>𝅘𝅥 <b>1/4</b> 4분음표</span><span>𝅘𝅥𝅮 <b>1/8</b> 8분음표</span></div>
+      <div class="note-legend"><span>𝅝 <b>1/1</b> 온음표</span><span>𝅗𝅥 <b>1/2</b> 2분음표</span><span>𝅘𝅥 <b>1/4</b> 4분음표</span><span>𝅘𝅥𝅮 <b>1/8</b> 8분음표</span><span>𝅘𝅥𝅯 <b>1/16</b> 16분음표</span><span>𝅘𝅥𝅰 <b>1/32</b> 32분음표</span></div>
       <div class="bar-editor">
         <h3>마디별 수동 편집</h3>
         <div class="grid three">
           <label>수정할 마디<select id="barSelect"><option value="">악보를 먼저 만드세요</option></select></label>
-          <label>마디 음표<select id="barRhythm"><option value="auto">자동</option><option value="half">1/2 2분음표</option><option value="quarter">1/4 4분음표</option><option value="eighth">1/8 8분음표</option><option value="mixed">분수 혼합</option></select></label>
+          <label>마디 음표<select id="barRhythm"><option value="auto">자동</option><option value="half">1/2 2분음표</option><option value="quarter">1/4 4분음표</option><option value="eighth">1/8 8분음표</option><option value="sixteenth">1/16 16분음표</option><option value="thirtysecond">1/32 32분음표</option><option value="mixed">분수 혼합</option></select></label>
           <label>멜로디 흐름<select id="barPitch"><option value="auto">자동</option><option value="low">낮게</option><option value="middle">중간</option><option value="high">높게</option><option value="rise">올라가게</option><option value="fall">내려가게</option></select></label>
+          <label>이 마디 음의 세기<select id="barDynamic"><option value="auto">자동</option><option>pp</option><option>p</option><option>mp</option><option>mf</option><option>f</option><option>ff</option></select></label>
         </div>
         <label>이 마디의 가사 <span id="barCount">0글자</span><input id="barLyrics" placeholder="한 마디 권장: 보통 팝 4~8글자"></label>
         <div id="barWarning" class="bar-warning">한 음표에 한 글자를 기본으로 맞춥니다.</div>
@@ -93,6 +94,6 @@
     <section class="card"><div class="section-title"><div><h2>앱에 임시 저장한 노래</h2><p>현재 브라우저에만 보관됩니다. 오래 보관하려면 TXT 파일을 다운로드하세요.</p></div></div><div id="savedSongs" class="saved"></div></section>
   </main>
   <div id="toast"></div>
-  <script src="app.js?v=0.7.1"></script>
+  <script src="app.js?v=0.7.2"></script>
 </body>
 </html>
