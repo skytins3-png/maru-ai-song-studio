@@ -1,4 +1,6 @@
-# MARU WORLD MUSIC MAKER V0.8.0 PROFESSIONAL ENGRAVING
+# MARU WORLD MUSIC MAKER V0.9.0 NOTE & VOCAL LAB
+
+V0.9.0은 오선악보의 음표를 하나씩 클릭해 음높이·길이·음세기·쉼표를 수정하고, 마이크 목소리의 음정을 분석해 악보 음정에 맞춘 시험용 보정 WAV를 만드는 기능을 추가했습니다.
 
 음악 이론을 몰라도 분위기, 지역, 악기를 골라 가사와 음악 설계를 만들 수 있는 설치형 웹앱(PWA)입니다.
 

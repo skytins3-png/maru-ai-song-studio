@@ -6,14 +6,14 @@
   <meta name="theme-color" content="#151126">
   <title>MARU WORLD MUSIC MAKER</title>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=0.8.0">
-  <link rel="stylesheet" href="score.css?v=0.8.0">
+  <link rel="stylesheet" href="styles.css?v=0.9.0">
+  <link rel="stylesheet" href="score.css?v=0.9.0">
   <style>.wide{width:100%;margin-top:16px}.analysis-box{margin-top:12px;padding:14px;border-radius:14px;background:#100c1e;border:1px solid #4b3d68;color:#e9e2f8;line-height:1.65;white-space:pre-line}</style>
 </head>
 <body>
   <header>
     <div class="brand">MARU <span>WORLD MUSIC MAKER</span></div>
-    <div class="tag">정식 악보 엔진·가사 음절 배치·음표 보 묶기 · V0.8.0</div>
+    <div class="tag">음표 하나씩 편집·목소리 음정 분석·보정 미리듣기 · V0.9.0</div>
   </header>
   <main>
     <section class="card hero">
@@ -87,14 +87,21 @@
       </div>
       <div id="scoreMeta" class="score-meta">노래 설계를 만든 다음 악보 만들기를 누르세요.</div>
       <div id="scoreSheet" class="score-sheet"><p>오선악보가 여기에 표시됩니다.</p></div>
+      <div id="noteEditor" class="note-editor" aria-live="polite">
+        <h3>음표 하나씩 편집</h3><p id="noteHint">악보에서 바꾸고 싶은 음표를 클릭하세요.</p>
+        <div class="grid three"><label>선택 음표<input id="notePosition" value="선택 안 됨" readonly></label><label>높이<select id="notePitch" disabled></select></label><label>길이<select id="noteDuration" disabled><option value="4">1/1 온음표</option><option value="2">1/2 2분음표</option><option value="1">1/4 4분음표</option><option value="0.5">1/8 8분음표</option><option value="0.25">1/16 16분음표</option><option value="0.125">1/32 32분음표</option></select></label><label>음의 세기<select id="noteDynamic" disabled><option>pp</option><option>p</option><option>mp</option><option>mf</option><option>f</option><option>ff</option></select></label><label class="check-label"><input id="noteRest" type="checkbox" disabled> 쉼표로 바꾸기</label></div>
+        <div class="actions"><button id="applyNote" class="primary" disabled>✓ 선택 음표 적용</button><button id="splitNote" class="secondary" disabled>＋ 음표 둘로 나누기</button></div><div id="noteWarning" class="bar-warning">마디의 전체 박자 길이는 자동으로 지킵니다.</div>
+      </div>
       <div class="actions"><button id="playScore" class="primary">▶ 전체 곡 듣기</button><button id="stopScore" class="danger">■ 정지</button><button id="printScore" class="secondary">🖨 악보 인쇄·PDF</button><button id="downloadScore" class="secondary">⬇ SVG 악보 저장</button></div>
       <small>현재 악보는 작곡 시작용 자동 멜로디입니다. 실제 보컬 음정과 최종 편곡에 맞춰 추가 조정할 수 있습니다.</small>
     </section>
+
+    <section class="card vocal-lab"><div class="section-title"><div><h2>목소리를 악보 음정에 맞추기</h2><p>이어폰을 끼고 녹음하면 목소리의 음정을 분석해 악보 음정으로 보정한 시험용 소리를 만듭니다.</p></div></div><div id="vocalMeter" class="vocal-meter"><b>대기 중</b><span>감지 음정 — · 목표 음정 —</span></div><div class="actions"><button id="startVocal" class="primary">🎤 녹음 시작</button><button id="stopVocal" class="danger" disabled>■ 녹음 끝</button><button id="playOriginal" class="secondary" disabled>▶ 원래 목소리</button><button id="makeCorrection" class="secondary" disabled>✨ 악보 음정으로 보정</button><button id="playCorrected" class="secondary" disabled>▶ 보정 목소리</button><button id="downloadCorrected" class="secondary" disabled>⬇ 보정 WAV 저장</button></div><small>브라우저에서 처리하는 실험 기능이라 스튜디오 AI 보컬보다 기계적인 소리가 날 수 있습니다. 마이크 허용과 HTTPS 주소가 필요합니다.</small></section>
 
     <section class="card"><div class="section-title"><div><h2>앱에 임시 저장한 노래</h2><p>현재 브라우저에만 보관됩니다. 오래 보관하려면 TXT 파일을 다운로드하세요.</p></div></div><div id="savedSongs" class="saved"></div></section>
   </main>
   <div id="toast"></div>
   <script src="vendor/vexflow.js?v=5.0.0"></script>
-  <script src="app.js?v=0.8.0"></script>
+  <script src="app.js?v=0.9.0"></script>
 </body>
 </html>
