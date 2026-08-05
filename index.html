@@ -6,14 +6,14 @@
   <meta name="theme-color" content="#151126">
   <title>MARU WORLD MUSIC MAKER</title>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=0.9.3">
-  <link rel="stylesheet" href="score.css?v=0.9.3">
+  <link rel="stylesheet" href="styles.css?v=0.10.0">
+  <link rel="stylesheet" href="score.css?v=0.10.0">
   <style>.wide{width:100%;margin-top:16px}.analysis-box{margin-top:12px;padding:14px;border-radius:14px;background:#100c1e;border:1px solid #4b3d68;color:#e9e2f8;line-height:1.65;white-space:pre-line}</style>
 </head>
 <body>
   <header>
     <div class="brand">MARU <span>WORLD MUSIC MAKER</span></div>
-    <div class="tag">한 줄 4마디·음표별 가사 음절 맞춤·음표 편집 · V0.9.3</div>
+    <div class="tag">멜로디 먼저 작곡·32마디 고정 악보·짧은 반복 가사 · V0.10.0</div>
   </header>
   <main>
     <section class="card hero">
@@ -55,7 +55,7 @@
     </section>
 
     <section class="card">
-      <div class="section-title"><div><h2>3. 가사와 음악 설계 만들기</h2><p>바로 복사해 음악 제작에 사용할 수 있습니다.</p></div><button id="createSong" class="primary">노래 설계 만들기</button></div>
+      <div class="section-title"><div><h2>3. 멜로디 먼저 작곡하고 가사 맞추기</h2><p>32마디 멜로디를 먼저 만든 뒤 음표 수에 맞는 짧은 가사를 넣습니다.</p></div><button id="createSong" class="primary">🎼 멜로디 먼저 작곡</button></div>
       <label>제목</label><input id="title" placeholder="자동으로 만들어집니다">
       <label>가사</label><textarea id="lyrics" class="output" placeholder="가사가 여기에 만들어집니다"></textarea>
       <label>음악 스타일</label><textarea id="style" class="style-output" placeholder="악기·박자·편곡 설명이 만들어집니다"></textarea>
@@ -63,7 +63,7 @@
     </section>
 
     <section class="card score-card">
-      <div class="section-title"><div><h2>4. 전체 곡 멜로디 오선악보</h2><p>전주부터 아웃트로까지 전체 가사·음표·코드를 만듭니다.</p></div><button id="createScore" class="primary">🎼 전체 악보 만들기</button></div>
+      <div class="section-title"><div><h2>4. 32마디 고정 오선악보</h2><p>한 줄 4마디 × 8줄. 2절과 후렴은 같은 박자·음표를 반복합니다.</p></div><button id="createScore" class="primary">🎼 32마디 다시 작곡</button></div>
       <div class="grid three score-controls">
         <label>작곡 설정<select id="scoreMode"><option value="auto">✨ 자동</option><option value="manual">🎛 수동</option></select></label>
         <label>장조·단조<select id="manualKey"><option>C Major</option><option>D Major</option><option>E Major</option><option>F Major</option><option>F# Major</option><option selected>G Major</option><option>A Major</option><option>B Major</option><option>A Minor</option><option>B Minor</option><option>C# Minor</option><option>D Minor</option><option>E Minor</option><option>F# Minor</option><option>G# Minor</option></select></label>
@@ -102,6 +102,6 @@
   </main>
   <div id="toast"></div>
   <script src="vendor/vexflow.js?v=5.0.0"></script>
-  <script src="app.js?v=0.9.3"></script>
+  <script src="app.js?v=0.10.0"></script>
 </body>
 </html>
