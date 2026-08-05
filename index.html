@@ -7,11 +7,12 @@
   <title>MARU WORLD MUSIC MAKER</title>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="stylesheet" href="styles.css">
+  <style>.wide{width:100%;margin-top:16px}.analysis-box{margin-top:12px;padding:14px;border-radius:14px;background:#100c1e;border:1px solid #4b3d68;color:#e9e2f8;line-height:1.65;white-space:pre-line}</style>
 </head>
 <body>
   <header>
     <div class="brand">MARU <span>WORLD MUSIC MAKER</span></div>
-    <div class="tag">음악을 몰라도, 느낌만 고르면 됩니다</div>
+    <div class="tag">이야기를 이해하고 가사·장르·박자·악기를 함께 설계합니다 · V0.2.0</div>
   </header>
   <main>
     <section class="card hero">
@@ -19,19 +20,21 @@
       <label>노래 이야기</label>
       <textarea id="story" placeholder="예: 비 오는 밤, 멀리 있는 사람을 그리워하는 노래"></textarea>
       <div class="grid three">
-        <label>분위기<select id="mood"><option>따뜻한</option><option>신나는</option><option>웅장한</option><option>슬픈</option><option>신비로운</option><option>편안한</option></select></label>
-        <label>빠르기<select id="speed"><option value="slow">느리게</option><option value="medium" selected>보통</option><option value="fast">빠르게</option></select></label>
+        <label>분위기<select id="mood"><option value="auto">✨ 이야기에서 자동 분석</option><option>따뜻한</option><option>신나는</option><option>웅장한</option><option>슬픈</option><option>신비로운</option><option>편안한</option></select></label>
+        <label>빠르기<select id="speed"><option value="auto">✨ 자동 추천</option><option value="slow">느리게</option><option value="medium">보통</option><option value="fast">빠르게</option></select></label>
         <label>노래 길이<select id="length"><option value="2">약 2분</option><option value="3" selected>약 3분</option><option value="4">약 4분</option></select></label>
       </div>
       <div class="grid three">
-        <label>장르<select id="genre"><option>팝</option><option>발라드</option><option>댄스</option><option>트로트</option><option>영화음악</option><option>전통 퓨전</option></select></label>
-        <label>보컬<select id="vocal"><option>남성</option><option>여성</option><option>남녀 듀엣</option><option>합창</option><option>연주곡</option></select></label>
-        <label>언어<select id="language"><option>한국어</option><option>영어</option><option>중국어</option><option>일본어</option><option>방글라데시어</option><option>다국어</option></select></label>
+        <label>장르<select id="genre"><option value="auto">✨ 자동 추천</option><option>팝</option><option>팝 록</option><option>발라드</option><option>댄스 팝</option><option>트로트</option><option>영화음악</option><option>전통 퓨전</option></select></label>
+        <label>보컬<select id="vocal"><option value="auto">✨ 자동 추천</option><option>남성</option><option>여성</option><option>남녀 듀엣</option><option>합창</option><option>연주곡</option></select></label>
+        <label>언어<select id="language"><option>한국어</option><option disabled>영어 · 다음 버전</option><option disabled>중국어 · 다음 버전</option><option disabled>일본어 · 다음 버전</option><option disabled>방글라데시어 · 다음 버전</option><option disabled>다국어 · 다음 버전</option></select></label>
       </div>
+      <button id="analyzeStory" class="primary wide">🧠 이야기와 음악 자동 분석</button>
+      <div id="analysisResult" class="analysis-box">이야기를 입력하면 장르·BPM·박자·조성·보컬·악기 구성을 추천합니다.</div>
     </section>
 
     <section class="card">
-      <div class="section-title"><div><h2>1. 세계 악기 고르기</h2><p>나라를 고르면 잘 어울리는 악기를 추천합니다.</p></div><button id="autoPick" class="secondary">✨ 자동 추천</button></div>
+      <div class="section-title"><div><h2>1. 전통악기와 현대악기 고르기</h2><p>이야기와 장르에 맞춰 전통·현대악기를 함께 조합합니다.</p></div><button id="autoPick" class="secondary">✨ 음악 맞춤 추천</button></div>
       <div id="regions" class="chips"></div>
       <div id="instruments" class="instrument-grid"></div>
       <div class="mix-row"><label>전통악기 비율 <strong id="blendValue">50%</strong></label><input id="blend" type="range" min="10" max="90" value="50"></div>
@@ -44,7 +47,7 @@
         <button id="stopMix" class="danger">■ 정지</button>
         <div class="pulse" id="pulse"><i></i><i></i><i></i><i></i><i></i></div>
       </div>
-      <small>첫 테스트판은 악기 음색을 모사한 반주입니다. 실제 악기 음원과 AI 보컬은 다음 개선에서 연결합니다.</small>
+      <small>V0.2 테스트판은 악기 음색을 모사한 반주입니다. 실제 악기 음원과 AI 보컬은 다음 개선에서 연결합니다.</small>
     </section>
 
     <section class="card">
@@ -52,10 +55,10 @@
       <label>제목</label><input id="title" placeholder="자동으로 만들어집니다">
       <label>가사</label><textarea id="lyrics" class="output" placeholder="가사가 여기에 만들어집니다"></textarea>
       <label>음악 스타일</label><textarea id="style" class="style-output" placeholder="악기·박자·편곡 설명이 만들어집니다"></textarea>
-      <div class="actions"><button data-copy="lyrics" class="secondary">가사 복사</button><button data-copy="style" class="secondary">스타일 복사</button><button id="saveSong" class="secondary">내 노래 저장</button></div>
+      <div class="actions"><button data-copy="lyrics" class="secondary">가사 복사</button><button data-copy="style" class="secondary">스타일 복사</button><button id="saveSong" class="secondary">앱에 임시 저장</button><button id="downloadTxt" class="primary">⬇ TXT 파일 다운로드</button></div>
     </section>
 
-    <section class="card"><div class="section-title"><div><h2>저장한 노래</h2><p>이 기기에 안전하게 보관됩니다.</p></div></div><div id="savedSongs" class="saved"></div></section>
+    <section class="card"><div class="section-title"><div><h2>앱에 임시 저장한 노래</h2><p>현재 브라우저에만 보관됩니다. 오래 보관하려면 TXT 파일을 다운로드하세요.</p></div></div><div id="savedSongs" class="saved"></div></section>
   </main>
   <div id="toast"></div>
   <script src="app.js"></script>
