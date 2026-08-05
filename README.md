@@ -1,4 +1,6 @@
-# MARU WORLD MUSIC MAKER V0.9.0 NOTE & VOCAL LAB
+# MARU WORLD MUSIC MAKER V0.9.1 MEASURE & VOCAL LAB
+
+V0.9.1은 모든 마디에 번호와 굵은 시작·끝 구분선을 표시해 마디 경계를 바로 알아볼 수 있게 개선했습니다.
 
 V0.9.0은 오선악보의 음표를 하나씩 클릭해 음높이·길이·음세기·쉼표를 수정하고, 마이크 목소리의 음정을 분석해 악보 음정에 맞춘 시험용 보정 WAV를 만드는 기능을 추가했습니다.
 
