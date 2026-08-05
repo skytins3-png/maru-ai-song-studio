@@ -6,14 +6,14 @@
   <meta name="theme-color" content="#151126">
   <title>MARU WORLD MUSIC MAKER</title>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=0.6.0">
-  <link rel="stylesheet" href="score.css?v=0.6.0">
+  <link rel="stylesheet" href="styles.css?v=0.6.1">
+  <link rel="stylesheet" href="score.css?v=0.6.1">
   <style>.wide{width:100%;margin-top:16px}.analysis-box{margin-top:12px;padding:14px;border-radius:14px;background:#100c1e;border:1px solid #4b3d68;color:#e9e2f8;line-height:1.65;white-space:pre-line}</style>
 </head>
 <body>
   <header>
     <div class="brand">MARU <span>WORLD MUSIC MAKER</span></div>
-    <div class="tag">자동·수동 작곡, 음표 길이·셈여림·전체 곡 재생 · V0.6.0</div>
+    <div class="tag">자동·수동 작곡과 Suno 제목·가사·스타일 복사 · V0.6.1</div>
   </header>
   <main>
     <section class="card hero">
@@ -59,7 +59,7 @@
       <label>제목</label><input id="title" placeholder="자동으로 만들어집니다">
       <label>가사</label><textarea id="lyrics" class="output" placeholder="가사가 여기에 만들어집니다"></textarea>
       <label>음악 스타일</label><textarea id="style" class="style-output" placeholder="악기·박자·편곡 설명이 만들어집니다"></textarea>
-      <div class="actions"><button data-copy="lyrics" class="secondary">가사 복사</button><button data-copy="style" class="secondary">스타일 복사</button><button id="saveSong" class="secondary">앱에 임시 저장</button><button id="downloadTxt" class="primary">⬇ TXT 파일 다운로드</button></div>
+      <div class="actions"><button data-copy="title" class="secondary">제목 복사</button><button data-copy="lyrics" class="secondary">전체 가사 복사</button><button data-copy="style" class="secondary">스타일 복사</button><button id="copySuno" class="primary">☀ Suno 전체 복사</button><button id="saveSong" class="secondary">앱에 임시 저장</button><button id="downloadTxt" class="secondary">⬇ TXT 파일 다운로드</button></div>
     </section>
 
     <section class="card score-card">
@@ -81,6 +81,6 @@
     <section class="card"><div class="section-title"><div><h2>앱에 임시 저장한 노래</h2><p>현재 브라우저에만 보관됩니다. 오래 보관하려면 TXT 파일을 다운로드하세요.</p></div></div><div id="savedSongs" class="saved"></div></section>
   </main>
   <div id="toast"></div>
-  <script src="app.js?v=0.6.0"></script>
+  <script src="app.js?v=0.6.1"></script>
 </body>
 </html>
