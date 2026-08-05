@@ -41,7 +41,8 @@ function renderInstruments(){
 function findInstrument(name){for(const list of Object.values(DATA)){const f=list.find(x=>x[0]===name);if(f)return f}return ['피아노','건반악기','piano']}
 function detectProfile(story){const s=story.toLowerCase();let best=PROFILES.generic,score=0;for(const p of Object.values(PROFILES)){const n=p.keywords.filter(k=>s.includes(k)).length;if(n>score){best=p;score=n}}return {...best}}
 function activeProfile(){
- const p=detectProfile($('#story').value.trim());
+ const custom=$('#customWords')?.value||'',hook=$('#hookLine')?.value||'',clues=[...chosenWords].join(' ');
+ const p=detectProfile(`${$('#story').value.trim()} ${clues} ${custom} ${hook}`);
  const mood=$('#mood').value,genre=$('#genre').value,vocal=$('#vocal').value,speed=$('#speed').value;
  if(mood!=='auto')p.mood=mood;if(genre!=='auto')p.genre=genre;if(vocal!=='auto')p.vocal=vocal;
  if(speed!=='auto'){p.bpm=speedBpm[speed];if(speed==='slow'&&p.meter==='4/4')p.meter='6/8'}
@@ -85,11 +86,20 @@ const LYRICS={
  generic:{v1:['오늘의 마음을 조용히 펼쳐','숨겨 둔 이야기를 노래에 담아','서툰 말 사이 진심을 모아서','나만의 멜로디로 천천히 걸어가'],pre:['누군가 이 노래를 듣는다면','내 마음을 조금은 알아주기를'],chorus:['오늘의 이야기를 노래해','꾸미지 않은 나의 목소리로','짧은 한 줄도 진심이 된다면','이 노래는 이미 충분하니까'],v2:['지나간 시간과 다가올 날들이','하나의 리듬으로 이어져 가고','평범했던 순간 하나하나가','세상에 하나뿐인 노래가 돼'],bridge:['마지막 음이 멈춘 뒤에도','따뜻한 마음은 남아 있기를']}
 };
 function profileKey(p){return Object.keys(PROFILES).find(k=>PROFILES[k].title===p.title)||'generic'}
+function cleanWord(w){return w.replace(/공원\s*(밴츠|밴치|벤취)/g,'공원 벤치').replace(/\s+/g,' ').trim()}
+function customWordLine(w){if(w.includes('공원 벤치'))return '공원 벤치에 나란히 앉아 웃던 오후';if(w.includes('바닷가'))return '바닷가에 나란히 남긴 두 사람의 발자국';if(w.includes('카페'))return '작은 카페 창가에 머물던 따뜻한 눈빛';return `${w}에 남겨 둔 우리만의 이야기를 기억해`}
+function completeHook(h){const s=cleanWord(h);const known={'눈 맞추기':'눈을 맞추면 마음이 가까워져','돌아선':'돌아선 마음도 다시 피어나','함께':'오늘부터 우리 함께 걸어가','사랑':'사랑아 내 마음에 오래 머물러'};if(known[s])return known[s];if(!s)return '';if(s.length<=5||s.endsWith('기'))return `${s}, 우리 마음에 오래 남아`;return s}
+const FINAL_GROWTH={
+ love:[['자꾸자꾸 너만 보여','자꾸자꾸 네 생각 나','같은 리듬 같은 마음','조금 더 가까이 우리 함께해'],['이제는 너만 바라볼게','내일도 네 곁을 걸어갈게','같은 리듬 같은 마음','마지막까지 우리 함께 노래해']],
+ generic:[['오늘의 이야기를 더 크게 노래해','꾸미지 않은 우리의 목소리로','짧은 한 줄도 서로에게 닿으면','이 노래는 새로운 시작이 되니까'],['마지막 이야기를 함께 노래해','따뜻한 마음을 하나로 모아서','오늘의 진심을 오래 기억하며','우리의 노래는 계속될 테니까']],
+ healing:[['바람아 내 마음을 더 씻어 줘','햇살아 지친 어깨를 감싸 줘','천천히 걸어가도 괜찮다고','푸른 하늘이 다시 말해 줘'],['이제는 내 마음이 다시 피어나','햇살을 따라서 한 걸음 나아가','오늘의 평온을 가슴에 품고','새로운 나에게로 돌아갈게']]
+};
+function finalChorus(base,key,index){if(index===0)return base;return FINAL_GROWTH[key]?.[index-1]||base.map((line,i)=>i===base.length-1?'이 마음을 끝까지 함께 노래해':line)}
 function makeLyrics(){
  const story=$('#story').value.trim();if(!story){toast('노래 이야기를 먼저 입력해 주세요');$('#story').focus();return}
- const p=analyze();if(!p)return;autoPick();const l=LYRICS[profileKey(p)]||LYRICS.generic,mins=Number($('#length').value),inst=[...selected],intro=joinKorean(inst.slice(0,2)),outro=joinKorean(inst.slice(-2));const custom=$('#customWords').value.split(',').map(x=>x.trim()).filter(Boolean),allWords=[...new Set([...chosenWords,...custom])],extra=allWords.slice(0,6).map(w=>WORD_LINES[w]||`${w}, 그 의미를 오늘의 노래에 담아`),hook=$('#hookLine').value.trim(),rich=$('#density').value==='rich',choruses=Number($('#chorusCount').value);
+ const p=analyze();if(!p)return;autoPick();const key=profileKey(p),l=LYRICS[key]||LYRICS.generic,mins=Number($('#length').value),inst=[...selected],intro=joinKorean(inst.slice(0,2)),outro=joinKorean(inst.slice(-2));const custom=$('#customWords').value.split(',').map(cleanWord).filter(Boolean),allWords=[...new Set([...custom,...chosenWords])],extra=allWords.slice(0,7).map(w=>WORD_LINES[w]||customWordLine(w)),hook=completeHook($('#hookLine').value),rich=$('#density').value==='rich',choruses=Number($('#chorusCount').value);
  const lines=[`[Intro]\n(${intro}${hasBatchim(intro)?'이':'가'} 곡의 분위기를 여는 연주)`,`[Verse 1]\n${l.v1.join('\n')}`,`[Pre-Chorus]\n${l.pre.join('\n')}`,`[Chorus]\n${l.chorus.join('\n')}`,`[Verse 2]\n${l.v2.join('\n')}`];
- if(extra.length)lines.push(`[Verse 3 · 핵심 단어]\n${extra.join('\n')}`);if(rich&&mins>=4)lines.push(`[Instrumental Interlude · 15초]\n(${intro}의 새로운 멜로디와 현대악기 리듬 변주)`);if(mins>2)lines.push(`[Bridge]\n${l.bridge.join('\n')}`);if(hook)lines.push(`[Hook]\n${hook}\n${hook}`);for(let i=1;i<=choruses;i++)lines.push(`[Final Chorus${i>1?' '+i:''}]\n${i===choruses&&hook?hook+'\n':''}${l.chorus.join('\n')}`);if(mins>=4.5)lines.push(`[Outro Chorus]\n${l.chorus.slice(0,2).join('\n')}\n우리의 이야기는 계속될 거야`);lines.push(`[Outro · 10초]\n(${outro}의 짧고 선명한 여운)`);
+ if(extra.length)lines.push(`[Verse 3 · 핵심 단어]\n${extra.join('\n')}`);if(rich&&mins>=4)lines.push(`[Instrumental Interlude · 15초]\n(${intro}의 새로운 멜로디와 현대악기 리듬 변주)`);if(mins>2)lines.push(`[Bridge]\n${l.bridge.join('\n')}`);if(hook)lines.push(`[Hook]\n${hook}\n${hook}`);for(let i=1;i<=choruses;i++){const evolved=finalChorus(l.chorus,key,i-1);lines.push(`[Final Chorus${i>1?' '+i:''}]\n${i===choruses&&hook?hook+'\n':''}${evolved.join('\n')}`)}if(mins>=4.5)lines.push(`[Outro Chorus]\n${finalChorus(l.chorus,key,2).slice(0,2).join('\n')}\n우리의 이야기는 계속될 거야`);lines.push(`[Outro · 10초]\n(${outro}의 짧고 선명한 여운)`);
  $('#title').value=p.title;$('#lyrics').value=lines.join('\n\n');const blend=$('#blend').value,lang=$('#language').value;
  $('#style').value=`${p.genre}, ${p.bpm} BPM, ${p.meter} time, ${p.key}, 약 ${mins}분, ${p.mood}. ${p.vocal}, ${lang}. 악기: ${inst.join(', ')}. 전통악기 비율 ${blend}%. 편곡: ${p.arrange}. 벌스는 가사가 또렷하게 들리도록 악기를 절제하고, 후렴에서만 저역과 화음을 확장. 과도한 리버브·컴프레션·베이스 금지, 보컬을 전면에 배치.`;
  createScore();toast('가사·음악 설계와 멜로디 악보를 만들었습니다')
@@ -112,4 +122,4 @@ function renderSaved(){const songs=JSON.parse(localStorage.getItem('maruSongs')|
 
 $('#analyzeStory').onclick=analyze;$('#autoPick').onclick=autoPick;$('#playMix').onclick=playMix;$('#stopMix').onclick=stop;$('#createSong').onclick=makeLyrics;$('#saveSong').onclick=save;$('#downloadTxt').onclick=downloadTxt;$('#createScore').onclick=createScore;$('#playScore').onclick=playScore;$('#stopScore').onclick=stop;$('#printScore').onclick=()=>{if(!$('#scoreSvg'))return toast('먼저 악보를 만들어 주세요');window.print()};$('#downloadScore').onclick=downloadScore;$('#blend').oninput=e=>$('#blendValue').textContent=e.target.value+'%';
 ['speed','genre','mood','vocal'].forEach(id=>$('#'+id).onchange=updateInfo);$$('[data-copy]').forEach(b=>b.onclick=async()=>{const el=$('#'+b.dataset.copy);await navigator.clipboard.writeText(el.value);toast('복사했습니다')});
-renderWordChoices();renderRegions();renderInstruments();autoPick();renderSaved();if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js?v=0.4.0');
+renderWordChoices();renderRegions();renderInstruments();autoPick();renderSaved();if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js?v=0.4.1');
