@@ -6,14 +6,14 @@
   <meta name="theme-color" content="#151126">
   <title>MARU WORLD MUSIC MAKER</title>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=0.10.2">
-  <link rel="stylesheet" href="score.css?v=0.10.2">
+  <link rel="stylesheet" href="styles.css?v=0.10.4">
+  <link rel="stylesheet" href="score.css?v=0.10.4">
   <style>.wide{width:100%;margin-top:16px}.analysis-box{margin-top:12px;padding:14px;border-radius:14px;background:#100c1e;border:1px solid #4b3d68;color:#e9e2f8;line-height:1.65;white-space:pre-line}</style>
 </head>
 <body>
   <header>
     <div class="brand">MARU <span>WORLD MUSIC MAKER</span></div>
-    <div class="tag">마디 클릭 편집·정박 자동 맞춤·한 줄 4마디 연결 오선 · V0.10.2</div>
+    <div class="tag">큰 음표·선명한 마디선·가사 음절 정렬 · V0.10.4</div>
   </header>
   <main>
     <section class="card hero">
@@ -86,6 +86,7 @@
         <button id="applyBar" class="primary">✓ 이 마디 수정 적용</button>
       </div>
       <div id="scoreMeta" class="score-meta">노래 설계를 만든 다음 악보 만들기를 누르세요.</div>
+      <div class="score-view-controls" aria-label="악보 보기 크기"><b>악보 크기</b><button id="scoreSmaller" class="secondary">화면 맞춤</button><button id="scoreNormal" class="primary">크게 보기</button><button id="scoreLarger" class="secondary">더 크게</button><span id="scoreZoomLabel">읽기 편한 크기</span></div>
       <div id="scoreSheet" class="score-sheet"><p>오선악보가 여기에 표시됩니다.</p></div>
       <div id="noteEditor" class="note-editor" aria-live="polite">
         <h3>음표 하나씩 편집</h3><p id="noteHint">악보에서 바꾸고 싶은 음표를 클릭하세요.</p>
@@ -98,10 +99,10 @@
 
     <section class="card vocal-lab"><div class="section-title"><div><h2>목소리를 악보 음정에 맞추기</h2><p>이어폰을 끼고 녹음하면 목소리의 음정을 분석해 악보 음정으로 보정한 시험용 소리를 만듭니다.</p></div></div><div id="vocalMeter" class="vocal-meter"><b>대기 중</b><span>감지 음정 — · 목표 음정 —</span></div><div class="actions"><button id="startVocal" class="primary">🎤 녹음 시작</button><button id="stopVocal" class="danger" disabled>■ 녹음 끝</button><button id="playOriginal" class="secondary" disabled>▶ 원래 목소리</button><button id="makeCorrection" class="secondary" disabled>✨ 악보 음정으로 보정</button><button id="playCorrected" class="secondary" disabled>▶ 보정 목소리</button><button id="downloadCorrected" class="secondary" disabled>⬇ 보정 WAV 저장</button></div><small>브라우저에서 처리하는 실험 기능이라 스튜디오 AI 보컬보다 기계적인 소리가 날 수 있습니다. 마이크 허용과 HTTPS 주소가 필요합니다.</small></section>
 
-    <section class="card"><div class="section-title"><div><h2>앱에 임시 저장한 노래</h2><p>현재 브라우저에만 보관됩니다. 오래 보관하려면 TXT 파일을 다운로드하세요.</p></div></div><div id="savedSongs" class="saved"></div></section>
+    <section class="card"><div class="section-title"><div><h2>앱에 임시 저장한 노래</h2><p>현재 브라우저에만 보관됩니다. 오래 보관하려면 TXT 파일을 다운로드하세요.</p></div><button id="clearSavedSongs" class="danger">기존 저장곡 전체 삭제</button></div><div id="savedSongs" class="saved"></div></section>
   </main>
   <div id="toast"></div>
   <script src="vendor/vexflow.js?v=5.0.0"></script>
-  <script src="app.js?v=0.10.2"></script>
+  <script src="app.js?v=0.10.4"></script>
 </body>
 </html>
