@@ -6,14 +6,14 @@
   <meta name="theme-color" content="#151126">
   <title>MARU WORLD MUSIC MAKER</title>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=0.4.1">
-  <link rel="stylesheet" href="score.css?v=0.4.1">
+  <link rel="stylesheet" href="styles.css?v=0.5.0">
+  <link rel="stylesheet" href="score.css?v=0.5.0">
   <style>.wide{width:100%;margin-top:16px}.analysis-box{margin-top:12px;padding:14px;border-radius:14px;background:#100c1e;border:1px solid #4b3d68;color:#e9e2f8;line-height:1.65;white-space:pre-line}</style>
 </head>
 <body>
   <header>
     <div class="brand">MARU <span>WORLD MUSIC MAKER</span></div>
-    <div class="tag">자연스러운 핵심 단어·발전형 후렴·멜로디 악보 · V0.4.1</div>
+    <div class="tag">전체 가사와 전 구간 멜로디 오선악보 · V0.5.0</div>
   </header>
   <main>
     <section class="card hero">
@@ -63,7 +63,7 @@
     </section>
 
     <section class="card score-card">
-      <div class="section-title"><div><h2>4. 멜로디 오선악보</h2><p>선택한 조성·박자·BPM에 맞춰 후렴 멜로디와 코드를 만듭니다.</p></div><button id="createScore" class="primary">🎼 악보 만들기</button></div>
+      <div class="section-title"><div><h2>4. 전체 곡 멜로디 오선악보</h2><p>전주부터 아웃트로까지 전체 가사·음표·코드를 만듭니다.</p></div><button id="createScore" class="primary">🎼 전체 악보 만들기</button></div>
       <div id="scoreMeta" class="score-meta">노래 설계를 만든 다음 악보 만들기를 누르세요.</div>
       <div id="scoreSheet" class="score-sheet"><p>오선악보가 여기에 표시됩니다.</p></div>
       <div class="actions"><button id="playScore" class="primary">▶ 멜로디 듣기</button><button id="stopScore" class="danger">■ 정지</button><button id="printScore" class="secondary">🖨 악보 인쇄·PDF</button><button id="downloadScore" class="secondary">⬇ SVG 악보 저장</button></div>
@@ -73,6 +73,6 @@
     <section class="card"><div class="section-title"><div><h2>앱에 임시 저장한 노래</h2><p>현재 브라우저에만 보관됩니다. 오래 보관하려면 TXT 파일을 다운로드하세요.</p></div></div><div id="savedSongs" class="saved"></div></section>
   </main>
   <div id="toast"></div>
-  <script src="app.js?v=0.4.1"></script>
+  <script src="app.js?v=0.5.0"></script>
 </body>
 </html>
