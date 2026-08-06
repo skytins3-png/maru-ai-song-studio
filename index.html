@@ -6,14 +6,14 @@
   <meta name="theme-color" content="#151126">
   <title>MARU WORLD MUSIC MAKER</title>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=0.12.0">
-  <link rel="stylesheet" href="score.css?v=0.12.0">
+  <link rel="stylesheet" href="styles.css?v=0.12.1">
+  <link rel="stylesheet" href="score.css?v=0.12.1">
   <style>.wide{width:100%;margin-top:16px}.analysis-box{margin-top:12px;padding:14px;border-radius:14px;background:#100c1e;border:1px solid #4b3d68;color:#e9e2f8;line-height:1.65;white-space:pre-line}</style>
 </head>
 <body>
   <header>
     <div class="brand">MARU <span>WORLD MUSIC MAKER</span></div>
-    <div class="tag">가사 길이별 1/1~1/64 자동 박자·선택 마디 재생·음표 수동 이동 · V0.12.0</div>
+    <div class="tag">/ 한 구절=한 마디·큰 오선지·고정 음표 편집창 · V0.12.1</div>
   </header>
   <main>
     <section class="card hero">
@@ -65,7 +65,7 @@
     </section>
 
     <section class="card score-card">
-      <div class="section-title"><div><h2>4. 한 줄 4마디 고정 오선악보</h2><p>가사 한 구절을 기본 2마디에 배치합니다. 4/4에서는 두 마디 8박 전체에 음절이 고르게 들어갑니다.</p></div><button id="createScore" class="primary">🎼 악보 다시 작곡</button></div>
+      <div class="section-title"><div><h2>4. 한 줄 4마디 고정 오선악보</h2><p>가사를 <b>/</b>로 나누면 한 구절이 한 마디가 됩니다. 예: 지워지지 않는 / 미안한 마음을 / 꿈속에서 / 만나</p></div><button id="createScore" class="primary">🎼 악보 다시 작곡</button></div>
       <div class="grid three score-controls">
         <label>작곡 설정<select id="scoreMode"><option value="auto">✨ 자동</option><option value="manual">🎛 수동</option></select></label>
         <label>장조·단조<select id="manualKey"><option>C Major</option><option>D Major</option><option>E Major</option><option>F Major</option><option>F# Major</option><option selected>G Major</option><option>A Major</option><option>B Major</option><option>A Minor</option><option>B Minor</option><option>C# Minor</option><option>D Minor</option><option>E Minor</option><option>F# Minor</option><option>G# Minor</option></select></label>
@@ -89,6 +89,7 @@
       </div>
       <div id="scoreMeta" class="score-meta">노래 설계를 만든 다음 악보 만들기를 누르세요.</div>
       <div class="score-view-controls" aria-label="악보 보기 크기"><b>악보 크기</b><button id="scoreSmaller" class="secondary">화면 맞춤</button><button id="scoreNormal" class="primary">크게 보기</button><button id="scoreLarger" class="secondary">더 크게</button><span id="scoreZoomLabel">읽기 편한 크기</span></div>
+      <div id="floatingNoteTools" class="floating-note-tools"><b id="floatingNotePosition">악보에서 음표를 클릭하세요</b><span id="floatingNoteDetail">선택한 음표와 마디가 진하게 표시됩니다.</span><div class="actions"><button id="floatingDown" class="secondary" disabled>↓ 반음</button><button id="floatingUp" class="secondary" disabled>↑ 반음</button><button id="floatingPlayBar" class="primary" disabled>▶ 이 마디 듣기</button></div></div>
       <div id="scoreSheet" class="score-sheet"><p>오선악보가 여기에 표시됩니다.</p></div>
       <div id="noteEditor" class="note-editor" aria-live="polite">
         <h3>음표 하나씩 편집</h3><p id="noteHint">악보에서 바꾸고 싶은 음표를 클릭하세요.</p>
@@ -106,6 +107,6 @@
   </main>
   <div id="toast"></div>
   <script src="vendor/vexflow.js?v=5.0.0"></script>
-  <script src="app.js?v=0.12.0"></script>
+  <script src="app.js?v=0.12.1"></script>
 </body>
 </html>
