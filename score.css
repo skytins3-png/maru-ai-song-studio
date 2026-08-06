@@ -11,4 +11,5 @@
 @media(max-width:680px){.score-view-controls b{width:100%}.score-sheet{padding:8px}.engraved-title{font-size:18px;text-align:left}.score-sheet #vexScore,.score-sheet #vexScore svg{min-width:1240px}}
 .system-background,.system-divider,.section-label,.measure-lyric,.measure-dynamic,.measure-divider{pointer-events:none}
 @media print{body{background:#fff}.score-card{border:0;box-shadow:none;margin:0}.score-card .section-title button,.score-card .actions,.score-card small,.score-view-controls,header,main>.card:not(.score-card){display:none}.score-sheet{padding:0;overflow:visible;box-shadow:none}.score-sheet #vexScore,.score-sheet #vexScore svg{min-width:0;width:100%}.score-meta{color:#111}}
+.score-sheet.fit #vexScore,.score-sheet.fit #vexScore svg{min-width:0!important;width:100%!important;max-width:100%!important}
 .score-sheet.large #vexScore,.score-sheet.large #vexScore svg{min-width:1900px}.score-note.selected{filter:drop-shadow(0 0 7px #ff315f)}
