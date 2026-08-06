@@ -6,14 +6,14 @@
   <meta name="theme-color" content="#151126">
   <title>MARU WORLD MUSIC MAKER</title>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=0.12.3">
-  <link rel="stylesheet" href="score.css?v=0.12.3">
+  <link rel="stylesheet" href="styles.css?v=0.13.1">
+  <link rel="stylesheet" href="score.css?v=0.13.1">
   <style>.wide{width:100%;margin-top:16px}.analysis-box{margin-top:12px;padding:14px;border-radius:14px;background:#100c1e;border:1px solid #4b3d68;color:#e9e2f8;line-height:1.65;white-space:pre-line}</style>
 </head>
 <body>
   <header>
     <div class="brand">MARU <span>WORLD MUSIC MAKER</span></div>
-    <div class="tag">한 줄 4마디 화면 맞춤·BPM별 한국어 자동 마디 · V0.12.3</div>
+    <div class="tag">한국어·영어 자동 가사·모든 언어 수동 입력·스타일 보호 · V0.13.1</div>
   </header>
   <main>
     <section class="card hero">
@@ -31,8 +31,10 @@
       <div class="grid three">
         <label>장르<select id="genre"><option value="auto">✨ 이야기에서 자동 추천</option><optgroup label="팝·K-POP"><option>팝</option><option>모던 팝</option><option>K-POP</option><option>아이돌 팝</option><option>팝 발라드</option><option>모던 팝 발라드</option><option>어쿠스틱 팝</option><option>신스팝</option><option>시티팝</option><option>인디 팝</option></optgroup><optgroup label="댄스·전자음악"><option>댄스 팝</option><option>EDM</option><option>하우스</option><option>딥 하우스</option><option>퓨처 베이스</option><option>디스코</option><option>UK 개러지</option><option>테크노</option><option>트랜스</option></optgroup><optgroup label="록·밴드"><option>팝 록</option><option>인디 록</option><option>얼터너티브 록</option><option>하드 록</option><option>포크 록</option><option>펑크 록</option></optgroup><optgroup label="흑인음악·그루브"><option>R&amp;B</option><option>소울</option><option>힙합</option><option>팝 랩</option><option>트랩</option><option>펑크</option><option>가스펠</option></optgroup><optgroup label="재즈·어쿠스틱"><option>재즈</option><option>보사노바</option><option>스윙</option><option>블루스</option><option>포크</option><option>컨트리</option><option>로파이</option><option>뉴에이지</option><option>앰비언트</option></optgroup><optgroup label="세계·전통"><option>국악 퓨전</option><option>전통 퓨전</option><option>월드 뮤직</option><option>라틴 팝</option><option>레게</option><option>아프로비츠</option><option>플라멩코</option><option>중국풍 팝</option><option>일본풍 팝</option><option>인도 퓨전</option><option>중동 퓨전</option></optgroup><optgroup label="무대·영상·대중가요"><option>트로트</option><option>영화음악</option><option>오케스트라 팝</option><option>뮤지컬</option><option>합창</option><option>동요</option><option>왈츠</option></optgroup></select></label>
         <label>보컬<select id="vocal"><option value="auto">✨ 자동 추천</option><option>남성</option><option>여성</option><option>남녀 듀엣</option><option>합창</option><option>연주곡</option></select></label>
-        <label>언어<select id="language"><option>한국어</option><option disabled>영어 · 다음 버전</option><option disabled>중국어 · 다음 버전</option><option disabled>일본어 · 다음 버전</option><option disabled>방글라데시어 · 다음 버전</option><option disabled>다국어 · 다음 버전</option></select></label>
+        <label>가사 언어<select id="language"><option value="한국어">한국어 · 자동 가사</option><option value="English">English · automatic lyrics</option><option value="中文">中文 · 수동 가사</option><option value="日本語">日本語 · 수동 가사</option><option value="Español">Español · 수동 가사</option><option value="Русский">Русский · 수동 가사</option><option value="বাংলা">বাংলা · 수동 가사</option><option value="custom">직접 입력 언어 · 수동 가사</option></select></label>
       </div>
+      <div id="customLanguageWrap" class="language-panel" hidden><label>직접 입력할 언어 이름<input id="customLanguage" placeholder="예: Français, Deutsch, ไทย, العربية"></label></div>
+      <div id="languageHint" class="language-hint">한국어 이야기를 분석해 한국어 가사 후보 3개를 자동으로 만듭니다.</div>
       <button id="analyzeStory" class="primary wide">🧠 이야기와 음악 자동 분석</button>
       <div id="analysisResult" class="analysis-box">이야기를 입력하면 장르·BPM·박자·조성·보컬·악기 구성을 추천합니다.</div>
     </section>
@@ -61,7 +63,8 @@
       <label>선택한 전체 가사 · 직접 수정과 복사·붙여넣기 가능</label><textarea id="lyrics" class="output" placeholder="자동: BPM에 맞춰 마디를 나눕니다. 수동: 오늘도 / 너를 / 기다려 처럼 /를 넣으세요."></textarea>
       <div class="bar-rule-guide"><b>가사 마디 규칙</b><span>느린 곡은 짧게, 빠른 곡은 길게 자동 배치합니다. 띄어 쓴 단어와 조사는 마디 중간에서 자르지 않습니다. 직접 넣은 /는 항상 고정됩니다.</span></div>
       <div class="lyric-edit-actions"><button id="applyEditedLyrics" class="primary">✓ 수정 가사를 악보에 반영</button><label class="check-label"><input id="autoLyricScore" type="checkbox" checked> 입력 후 기존 멜로디에 자동 배치</label><span id="lyricSyncStatus">가사를 수정해도 멜로디와 박자는 유지됩니다.</span></div>
-      <label>음악 스타일</label><textarea id="style" class="style-output" placeholder="악기·박자·편곡 설명이 만들어집니다"></textarea>
+      <div class="grid two style-settings"><label>스타일 작성 방식<select id="styleMode"><option value="auto">✨ 작곡할 때 자동 생성</option><option value="manual">✍ 내가 쓴 스타일 유지</option></select></label><label>스타일 언어 안내<input id="styleLanguage" value="한국어" readonly></label></div>
+      <label>음악 스타일 · 자동 생성 후에도 직접 수정 가능</label><textarea id="style" class="style-output" placeholder="자동 생성하거나 직접 입력하세요. 수동 유지로 바꾸면 다시 작곡해도 지워지지 않습니다."></textarea>
       <div class="actions"><button data-copy="title" class="secondary">제목 복사</button><button data-copy="lyrics" class="secondary">전체 가사 복사</button><button data-copy="style" class="secondary">스타일 복사</button><button id="copySuno" class="primary">☀ Suno 전체 복사</button><button id="saveSong" class="secondary">앱에 임시 저장</button><button id="downloadTxt" class="secondary">⬇ TXT 파일 다운로드</button></div>
     </section>
 
@@ -77,7 +80,7 @@
       </div>
       <div class="note-legend"><span>𝅝 <b>1/1</b> 온음표</span><span>𝅗𝅥 <b>1/2</b> 2분음표</span><span>𝅘𝅥 <b>1/4</b> 4분음표</span><span>𝅘𝅥𝅮 <b>1/8</b> 8분음표</span><span>𝅘𝅥𝅯 <b>1/16</b> 16분음표</span><span>𝅘𝅥𝅰 <b>1/32</b> 32분음표</span><span>𝅘𝅥𝅱 <b>1/64</b> 64분음표</span></div>
       <div class="bar-editor">
-        <h3>두 마디 구절 클릭 편집</h3><p>구절에 포함된 두 마디 중 어느 곳을 클릭해도 같은 가사 구절과 두 마디 음표를 함께 수정합니다.</p>
+        <h3>한 마디 가사·음표 클릭 편집</h3><p>선택한 한 마디의 자연스러운 가사 구절과 음표를 함께 수정합니다.</p>
         <div class="grid three">
           <label>수정할 마디<select id="barSelect"><option value="">악보를 먼저 만드세요</option></select></label>
           <label>마디 음표<select id="barRhythm"><option value="auto">가사 길이 자동 맞춤</option><option value="half">1/2 2분음표</option><option value="quarter">1/4 4분음표</option><option value="eighth">1/8 8분음표</option><option value="sixteenth">1/16 16분음표</option><option value="thirtysecond">1/32 32분음표</option><option value="sixtyfourth">1/64 64분음표</option><option value="mixed">분수 혼합</option></select></label>
@@ -108,6 +111,6 @@
   </main>
   <div id="toast"></div>
   <script src="vendor/vexflow.js?v=5.0.0"></script>
-  <script src="app.js?v=0.12.3"></script>
+  <script src="app.js?v=0.13.1"></script>
 </body>
 </html>
