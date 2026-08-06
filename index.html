@@ -6,14 +6,14 @@
   <meta name="theme-color" content="#151126">
   <title>MARU WORLD MUSIC MAKER</title>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=0.13.2">
-  <link rel="stylesheet" href="score.css?v=0.13.2">
+  <link rel="stylesheet" href="styles.css?v=0.14.0">
+  <link rel="stylesheet" href="score.css?v=0.14.0">
   <style>.wide{width:100%;margin-top:16px}.analysis-box{margin-top:12px;padding:14px;border-radius:14px;background:#100c1e;border:1px solid #4b3d68;color:#e9e2f8;line-height:1.65;white-space:pre-line}</style>
 </head>
 <body>
   <header>
     <div class="brand">MARU <span>WORLD MUSIC MAKER</span></div>
-    <div class="tag">다국어 가사·수동 스타일 저장과 복원 · V0.13.2</div>
+    <div class="tag">다국어 음절·멜리스마·영어 제목과 스타일 · V0.14.0</div>
   </header>
   <main>
     <section class="card hero">
@@ -61,9 +61,9 @@
       <div id="lyricCandidates" class="lyric-candidates"><p>이야기로 작곡하면 가사 후보 3개가 여기에 표시됩니다.</p></div>
       <label>제목</label><input id="title" placeholder="자동으로 만들어집니다">
       <label>선택한 전체 가사 · 직접 수정과 복사·붙여넣기 가능</label><textarea id="lyrics" class="output" placeholder="자동: BPM에 맞춰 마디를 나눕니다. 수동: 오늘도 / 너를 / 기다려 처럼 /를 넣으세요."></textarea>
-      <div class="bar-rule-guide"><b>가사 마디 규칙</b><span>느린 곡은 짧게, 빠른 곡은 길게 자동 배치합니다. 띄어 쓴 단어와 조사는 마디 중간에서 자르지 않습니다. 직접 넣은 /는 항상 고정됩니다.</span></div>
+      <div class="bar-rule-guide"><b>가사 마디 규칙</b><span>한국어는 한글 음절, 영어·라틴 문자는 노래 음절로 나눕니다. 한 음절을 여러 음표로 끌면 —로 표시하며, 직접 넣은 /는 항상 마디 경계로 고정됩니다.</span></div>
       <div class="lyric-edit-actions"><button id="applyEditedLyrics" class="primary">✓ 수정 가사를 악보에 반영</button><label class="check-label"><input id="autoLyricScore" type="checkbox" checked> 입력 후 기존 멜로디에 자동 배치</label><span id="lyricSyncStatus">가사를 수정해도 멜로디와 박자는 유지됩니다.</span></div>
-      <div class="grid two style-settings"><label>스타일 작성 방식<select id="styleMode"><option value="auto">✨ 작곡할 때 자동 생성</option><option value="manual">✍ 내가 쓴 스타일 유지</option></select></label><label>스타일 언어 안내<input id="styleLanguage" value="한국어" readonly></label></div>
+      <div class="grid two style-settings"><label>스타일 작성 방식<select id="styleMode"><option value="auto">✨ 작곡할 때 자동 생성</option><option value="manual">✍ 내가 쓴 스타일 유지</option></select></label><label>스타일 출력 언어<select id="styleLanguage"><option value="auto">가사 언어에 맞춤</option><option value="한국어">한국어</option><option value="English">English</option></select></label></div>
       <label>음악 스타일 · 자동 생성 후에도 직접 수정 가능</label><textarea id="style" class="style-output" placeholder="자동 생성하거나 직접 입력하세요. 수동 유지로 바꾸면 다시 작곡해도 지워지지 않습니다."></textarea>
       <div class="actions"><button data-copy="title" class="secondary">제목 복사</button><button data-copy="lyrics" class="secondary">전체 가사 복사</button><button data-copy="style" class="secondary">스타일 복사</button><button id="copySuno" class="primary">☀ Suno 전체 복사</button><button id="saveSong" class="secondary">앱에 임시 저장</button><button id="downloadTxt" class="secondary">⬇ TXT 파일 다운로드</button></div>
     </section>
@@ -111,6 +111,6 @@
   </main>
   <div id="toast"></div>
   <script src="vendor/vexflow.js?v=5.0.0"></script>
-  <script src="app.js?v=0.13.2"></script>
+  <script src="app.js?v=0.14.0"></script>
 </body>
 </html>
