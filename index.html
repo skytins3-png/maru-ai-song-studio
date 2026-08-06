@@ -6,14 +6,14 @@
   <meta name="theme-color" content="#151126">
   <title>MARU WORLD MUSIC MAKER</title>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=0.12.1">
-  <link rel="stylesheet" href="score.css?v=0.12.1">
+  <link rel="stylesheet" href="styles.css?v=0.12.2">
+  <link rel="stylesheet" href="score.css?v=0.12.2">
   <style>.wide{width:100%;margin-top:16px}.analysis-box{margin-top:12px;padding:14px;border-radius:14px;background:#100c1e;border:1px solid #4b3d68;color:#e9e2f8;line-height:1.65;white-space:pre-line}</style>
 </head>
 <body>
   <header>
     <div class="brand">MARU <span>WORLD MUSIC MAKER</span></div>
-    <div class="tag">/ 한 구절=한 마디·큰 오선지·고정 음표 편집창 · V0.12.1</div>
+    <div class="tag">BPM별 한국어 자동 마디·수동 / 고정·단어 보호 · V0.12.2</div>
   </header>
   <main>
     <section class="card hero">
@@ -58,14 +58,15 @@
       <div class="section-title"><div><h2>3. 지금 입력한 이야기로 새 노래 만들기</h2><p>버튼을 누를 때 이전 가사를 먼저 지우고, 현재 이야기와 선택한 핵심 단어만으로 가사 후보 3개를 새로 만듭니다.</p></div><button id="createSong" class="primary">🎼 새 이야기로 작곡</button></div>
       <div id="lyricCandidates" class="lyric-candidates"><p>이야기로 작곡하면 가사 후보 3개가 여기에 표시됩니다.</p></div>
       <label>제목</label><input id="title" placeholder="자동으로 만들어집니다">
-      <label>선택한 전체 가사 · 직접 수정과 복사·붙여넣기 가능</label><textarea id="lyrics" class="output" placeholder="가사가 여기에 만들어집니다"></textarea>
+      <label>선택한 전체 가사 · 직접 수정과 복사·붙여넣기 가능</label><textarea id="lyrics" class="output" placeholder="자동: BPM에 맞춰 마디를 나눕니다. 수동: 오늘도 / 너를 / 기다려 처럼 /를 넣으세요."></textarea>
+      <div class="bar-rule-guide"><b>가사 마디 규칙</b><span>느린 곡은 짧게, 빠른 곡은 길게 자동 배치합니다. 띄어 쓴 단어와 조사는 마디 중간에서 자르지 않습니다. 직접 넣은 /는 항상 고정됩니다.</span></div>
       <div class="lyric-edit-actions"><button id="applyEditedLyrics" class="primary">✓ 수정 가사를 악보에 반영</button><label class="check-label"><input id="autoLyricScore" type="checkbox" checked> 입력 후 기존 멜로디에 자동 배치</label><span id="lyricSyncStatus">가사를 수정해도 멜로디와 박자는 유지됩니다.</span></div>
       <label>음악 스타일</label><textarea id="style" class="style-output" placeholder="악기·박자·편곡 설명이 만들어집니다"></textarea>
       <div class="actions"><button data-copy="title" class="secondary">제목 복사</button><button data-copy="lyrics" class="secondary">전체 가사 복사</button><button data-copy="style" class="secondary">스타일 복사</button><button id="copySuno" class="primary">☀ Suno 전체 복사</button><button id="saveSong" class="secondary">앱에 임시 저장</button><button id="downloadTxt" class="secondary">⬇ TXT 파일 다운로드</button></div>
     </section>
 
     <section class="card score-card">
-      <div class="section-title"><div><h2>4. 한 줄 4마디 고정 오선악보</h2><p>가사를 <b>/</b>로 나누면 한 구절이 한 마디가 됩니다. 예: 지워지지 않는 / 미안한 마음을 / 꿈속에서 / 만나</p></div><button id="createScore" class="primary">🎼 악보 다시 작곡</button></div>
+      <div class="section-title"><div><h2>4. 한 줄 4마디 고정 오선악보</h2><p>자동은 BPM에 따라 가사 마디 길이가 달라집니다. 수동으로 넣은 <b>/</b>는 한 구절을 한 마디로 고정합니다.</p></div><button id="createScore" class="primary">🎼 악보 다시 작곡</button></div>
       <div class="grid three score-controls">
         <label>작곡 설정<select id="scoreMode"><option value="auto">✨ 자동</option><option value="manual">🎛 수동</option></select></label>
         <label>장조·단조<select id="manualKey"><option>C Major</option><option>D Major</option><option>E Major</option><option>F Major</option><option>F# Major</option><option selected>G Major</option><option>A Major</option><option>B Major</option><option>A Minor</option><option>B Minor</option><option>C# Minor</option><option>D Minor</option><option>E Minor</option><option>F# Minor</option><option>G# Minor</option></select></label>
@@ -107,6 +108,6 @@
   </main>
   <div id="toast"></div>
   <script src="vendor/vexflow.js?v=5.0.0"></script>
-  <script src="app.js?v=0.12.1"></script>
+  <script src="app.js?v=0.12.2"></script>
 </body>
 </html>
