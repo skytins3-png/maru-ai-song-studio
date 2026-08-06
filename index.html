@@ -6,14 +6,14 @@
   <meta name="theme-color" content="#151126">
   <title>MARU WORLD MUSIC MAKER</title>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=0.14.0">
-  <link rel="stylesheet" href="score.css?v=0.14.0">
+  <link rel="stylesheet" href="styles.css?v=0.15.0">
+  <link rel="stylesheet" href="score.css?v=0.15.0">
   <style>.wide{width:100%;margin-top:16px}.analysis-box{margin-top:12px;padding:14px;border-radius:14px;background:#100c1e;border:1px solid #4b3d68;color:#e9e2f8;line-height:1.65;white-space:pre-line}</style>
 </head>
 <body>
   <header>
     <div class="brand">MARU <span>WORLD MUSIC MAKER</span></div>
-    <div class="tag">다국어 음절·멜리스마·영어 제목과 스타일 · V0.14.0</div>
+    <div class="tag">점음표·이음줄·셋잇단음표 전문 악보 편집 · V0.15.0</div>
   </header>
   <main>
     <section class="card hero">
@@ -97,8 +97,8 @@
       <div id="scoreSheet" class="score-sheet"><p>오선악보가 여기에 표시됩니다.</p></div>
       <div id="noteEditor" class="note-editor" aria-live="polite">
         <h3>음표 하나씩 편집</h3><p id="noteHint">악보에서 바꾸고 싶은 음표를 클릭하세요.</p>
-        <div class="grid three"><label>선택 음표<input id="notePosition" value="선택 안 됨" readonly></label><label>높이<select id="notePitch" disabled></select></label><label>길이<select id="noteDuration" disabled><option value="4">1/1 온음표</option><option value="2">1/2 2분음표</option><option value="1">1/4 4분음표</option><option value="0.5">1/8 8분음표</option><option value="0.25">1/16 16분음표</option><option value="0.125">1/32 32분음표</option><option value="0.0625">1/64 64분음표</option></select></label><label>음의 세기<select id="noteDynamic" disabled><option>pp</option><option>p</option><option>mp</option><option>mf</option><option>f</option><option>ff</option></select></label><label class="check-label"><input id="noteRest" type="checkbox" disabled> 쉼표로 바꾸기</label></div>
-        <div class="actions"><button id="noteDown" class="secondary" disabled>↓ 반음 내리기</button><button id="noteUp" class="secondary" disabled>↑ 반음 올리기</button><button id="applyNote" class="primary" disabled>✓ 선택 음표 적용</button><button id="splitNote" class="secondary" disabled>＋ 음표 둘로 나누기</button></div><div id="noteWarning" class="bar-warning">마디의 전체 박자 길이는 자동으로 지킵니다.</div>
+        <div class="grid three"><label>선택 음표<input id="notePosition" value="선택 안 됨" readonly></label><label>높이<select id="notePitch" disabled></select></label><label>길이<select id="noteDuration" disabled><option value="4">1/1 온음표</option><option value="3">점2분음표 (3박)</option><option value="2">1/2 2분음표</option><option value="1.5">점4분음표 (1.5박)</option><option value="1">1/4 4분음표</option><option value="0.75">점8분음표</option><option value="0.5">1/8 8분음표</option><option value="0.375">점16분음표</option><option value="0.25">1/16 16분음표</option><option value="0.125">1/32 32분음표</option><option value="0.0625">1/64 64분음표</option></select></label><label>음의 세기<select id="noteDynamic" disabled><option>pp</option><option>p</option><option>mp</option><option>mf</option><option>f</option><option>ff</option></select></label><label class="check-label"><input id="noteRest" type="checkbox" disabled> 쉼표로 바꾸기</label><label class="check-label"><input id="noteTieNext" type="checkbox" disabled> 다음 음표까지 이음줄</label><label class="check-label"><input id="noteSlurNext" type="checkbox" disabled> 다음 음표까지 프레이즈선</label></div>
+        <div class="actions"><button id="noteDown" class="secondary" disabled>↓ 반음 내리기</button><button id="noteUp" class="secondary" disabled>↑ 반음 올리기</button><button id="applyNote" class="primary" disabled>✓ 선택 음표 적용</button><button id="splitNote" class="secondary" disabled>＋ 음표 둘로 나누기</button><button id="makeTriplet" class="secondary" disabled>3 셋잇단음표로 나누기</button></div><div id="noteWarning" class="bar-warning">마디의 전체 박자 길이는 자동으로 지킵니다. 이음줄은 다음 음표를 같은 높이로 맞춥니다.</div>
       </div>
       <div class="range-panel"><b id="rangeStatus">선택 구간: 전체 곡</b><span>악보의 마디를 클릭한 뒤 시작·끝을 정하세요.</span><div class="actions"><button id="setRangeStart" class="secondary">시작 마디 지정</button><button id="setRangeEnd" class="secondary">끝 마디 지정</button><button id="clearRange" class="secondary">전체 곡 선택</button><label class="check-label compact"><input id="repeatSelection" type="checkbox"> 선택 반복</label></div></div>
       <div class="actions"><button id="playSelection" class="primary">▶ 선택 마디 듣기</button><button id="playScore" class="secondary">▶ 전체 곡 듣기</button><button id="stopScore" class="danger">■ 정지</button><button id="printScore" class="secondary">🖨 악보 인쇄·PDF</button><button id="downloadScore" class="secondary">⬇ SVG 악보 저장</button></div>
@@ -111,6 +111,6 @@
   </main>
   <div id="toast"></div>
   <script src="vendor/vexflow.js?v=5.0.0"></script>
-  <script src="app.js?v=0.14.0"></script>
+  <script src="app.js?v=0.15.0"></script>
 </body>
 </html>
