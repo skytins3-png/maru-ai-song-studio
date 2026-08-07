@@ -6,14 +6,14 @@
   <meta name="theme-color" content="#151126">
   <title>MARU WORLD MUSIC MAKER</title>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=0.17.8">
-  <link rel="stylesheet" href="score.css?v=0.17.8">
+  <link rel="stylesheet" href="styles.css?v=0.17.9">
+  <link rel="stylesheet" href="score.css?v=0.17.9">
   <style>.wide{width:100%;margin-top:16px}.analysis-box{margin-top:12px;padding:14px;border-radius:14px;background:#100c1e;border:1px solid #4b3d68;color:#e9e2f8;line-height:1.65;white-space:pre-line}</style>
 </head>
 <body>
   <header>
     <div class="brand">MARU <span>WORLD MUSIC MAKER</span></div>
-    <div class="tag">실제 악기 샘플·전문 악보 편집 · V0.17.8</div>
+    <div class="tag">실제 악기 샘플·전문 악보 편집 · V0.17.9</div>
   </header>
   <main>
     <section class="card hero">
@@ -44,7 +44,7 @@
       <div id="regions" class="chips"></div>
       <div id="instruments" class="instrument-grid"></div>
       <div class="mix-row"><label>전통악기 비율 <strong id="blendValue">50%</strong></label><input id="blend" type="range" min="10" max="90" value="50"></div>
-      <div class="sound-panel"><div class="sound-status"><b>실제 샘플 상태</b><span id="sampleStatus" data-state="idle">🔊 원음 1음 또는 🎼 특징 연주를 누르면 30MB SoundFont를 한 번 불러옵니다.</span></div><label>전체 악기 음량 <strong id="masterSampleValue">160%</strong></label><input id="masterSampleVolume" type="range" min="70" max="220" value="160" step="5"><small><b>V0.17.8:</b> 52개 대표 샘플을 한 번의 RMS 평준화로 다시 맞춰 큰 악기는 낮추고 작은 악기는 올렸습니다. 가야금·고쟁은 Koto 계열로 재선정했고, 대체 음원에는 아주 약한 악기별 EQ/숨결·활·플럭 특성을 더해 구분감을 높였습니다. <b>대체 음원/전용 음원 필요</b> 표시는 실제 전용 녹음이 아니라는 뜻입니다.</small></div>
+      <div class="sound-panel"><div class="sound-status"><b>실제 샘플 상태</b><span id="sampleStatus" data-state="idle">🔊 원음 1음 또는 🎼 특징 연주를 누르면 30MB SoundFont를 한 번 불러옵니다.</span></div><label>전체 악기 음량 <strong id="masterSampleValue">160%</strong></label><input id="masterSampleVolume" type="range" min="70" max="220" value="160" step="5"><small><b>V0.17.9:</b> 실제 청음에서 작게 들린 30개 악기만 개별 보정했습니다. 직접 대응 SoundFont는 EQ 가공을 우회해 원본 음색을 더 그대로 들려주고, 대체 음원은 추가 노이즈를 줄여 SF2 원음을 중심으로 재생합니다. 프렌치 호른은 섹션 음색 대신 Solo French Horn으로 변경했고, 리미터와 velocity도 자연스러운 어택을 살리도록 조정했습니다. <b>대체 음원/전용 음원 필요</b> 표시는 실제 전용 녹음이 아니라는 뜻입니다.</small></div>
     </section>
 
     <section class="card">
@@ -117,7 +117,7 @@
   </main>
   <div id="toast"></div>
   <script src="vendor/vexflow.js?v=5.0.0"></script>
-  <script src="vendor/sfumato.js?v=0.17.8"></script>
-  <script src="app.js?v=0.17.8"></script>
+  <script src="vendor/sfumato.js?v=0.17.9"></script>
+  <script src="app.js?v=0.17.9"></script>
 </body>
 </html>
