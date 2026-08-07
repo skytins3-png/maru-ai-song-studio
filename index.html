@@ -6,14 +6,14 @@
   <meta name="theme-color" content="#151126">
   <title>MARU WORLD MUSIC MAKER</title>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=0.17.4">
-  <link rel="stylesheet" href="score.css?v=0.17.4">
+  <link rel="stylesheet" href="styles.css?v=0.17.5">
+  <link rel="stylesheet" href="score.css?v=0.17.5">
   <style>.wide{width:100%;margin-top:16px}.analysis-box{margin-top:12px;padding:14px;border-radius:14px;background:#100c1e;border:1px solid #4b3d68;color:#e9e2f8;line-height:1.65;white-space:pre-line}</style>
 </head>
 <body>
   <header>
     <div class="brand">MARU <span>WORLD MUSIC MAKER</span></div>
-    <div class="tag">실제 악기 샘플·전문 악보 편집 · V0.17.4</div>
+    <div class="tag">실제 악기 샘플·전문 악보 편집 · V0.17.5</div>
   </header>
   <main>
     <section class="card hero">
@@ -44,6 +44,7 @@
       <div id="regions" class="chips"></div>
       <div id="instruments" class="instrument-grid"></div>
       <div class="mix-row"><label>전통악기 비율 <strong id="blendValue">50%</strong></label><input id="blend" type="range" min="10" max="90" value="50"></div>
+      <div class="sound-panel"><div class="sound-status"><b>실제 샘플 상태</b><span id="sampleStatus" data-state="idle">▶ 소리를 누르면 30MB SoundFont를 한 번 불러옵니다.</span></div><label>전체 악기 음량 <strong id="masterSampleValue">115%</strong></label><input id="masterSampleVolume" type="range" min="50" max="180" value="115" step="5"><small>악기마다 원본 SoundFont 음량을 보정하고 마지막에 리미터로 과도한 피크를 잡습니다.</small></div>
     </section>
 
     <section class="card">
@@ -116,7 +117,7 @@
   </main>
   <div id="toast"></div>
   <script src="vendor/vexflow.js?v=5.0.0"></script>
-  <script src="vendor/sfumato.js?v=0.17.4"></script>
-  <script src="app.js?v=0.17.4"></script>
+  <script src="vendor/sfumato.js?v=0.17.5"></script>
+  <script src="app.js?v=0.17.5"></script>
 </body>
 </html>
