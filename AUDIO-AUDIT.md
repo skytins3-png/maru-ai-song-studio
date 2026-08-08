@@ -1,3 +1,12 @@
+# V0.18.4 편곡 재생 감사
+
+- 사용자 지정 모던 팝 96 BPM / 4/4 / G Major 조건을 실제 playback scheduling에 연결.
+- 구간별 진행: Verse/Chorus I-V-vi-IV, Pre ii-IV-I-V, Bridge vi-IV-I-V.
+- 피아노/기타/베이스/드럼/현악에 각각 다른 패턴 사용.
+- 드럼 MIDI 키를 직접 지정해 킥·스네어·하이햇·크래시·톰 역할 분리.
+- Final Chorus에서 현악 음역과 화음 확장.
+- 기존 52개 악기 샘플/청음/대표곡/보잉 기능 유지.
+
 # V0.18.3 ARRANGEMENT AUDIT
 
 Style-aware full arrangement playback added; prior V0.18.2 audio mappings retained.
