@@ -13,3 +13,10 @@
 @media print{body{background:#fff}.score-card{border:0;box-shadow:none;margin:0}.score-card .section-title button,.score-card .actions,.score-card small,.score-view-controls,header,main>.card:not(.score-card){display:none}.score-sheet{padding:0;overflow:visible;box-shadow:none}.score-sheet #vexScore,.score-sheet #vexScore svg{min-width:0;width:100%}.score-meta{color:#111}}
 .score-sheet.fit #vexScore,.score-sheet.fit #vexScore svg{min-width:0!important;width:100%!important;max-width:100%!important}
 .score-sheet.large #vexScore,.score-sheet.large #vexScore svg{min-width:1900px}.score-note.selected{filter:drop-shadow(0 0 7px #ff315f)}
+
+/* V0.20.0 — compact score: no forced horizontal sidebar, less vertical whitespace */
+.score-sheet{padding:8px;overflow-x:hidden;overflow-y:auto;max-height:72vh;min-height:140px}
+.score-sheet #vexScore,.score-sheet #vexScore svg,.score-sheet svg{min-width:0!important;width:100%!important;max-width:100%!important;height:auto!important}
+.score-sheet.large{overflow-x:auto}.score-sheet.large #vexScore,.score-sheet.large #vexScore svg{min-width:1320px!important;width:1320px!important;max-width:none!important}
+.engraved-title{font-size:17px;padding:4px 0 6px}.score-meta{font-size:13px;line-height:1.45;margin:4px 0 8px}
+@media(max-width:680px){.score-sheet{padding:4px;max-height:68vh}.score-sheet #vexScore,.score-sheet #vexScore svg{min-width:0!important;width:100%!important}.engraved-title{font-size:15px}.measure-number{font-size:10px}}
