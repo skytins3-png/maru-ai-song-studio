@@ -16,3 +16,6 @@
 
 /* V0.17.7 source transparency */
 .sample-source{opacity:.78;font-size:.78rem}.hear-one{white-space:nowrap}.instrument .q-close{background:#fff3cd;color:#6f5200}.instrument .q-replace{background:#ffe1e1;color:#8d1d1d}.instrument .q-exact{background:#e1f6e8;color:#176b36}
+
+/* V0.18.0 famous solo audition */
+.solo-title{display:inline-block!important;margin-top:3px;color:#aee8ff!important;font-size:11px!important}.hear-famous{margin-top:6px!important;background:#46345f!important;color:#ffe7a3!important}.instrument .hear-famous:hover{filter:brightness(1.12)}
