@@ -1,4 +1,8 @@
-# V0.18.2 보잉 표현 점검
+# V0.18.3 ARRANGEMENT AUDIT
+
+Style-aware full arrangement playback added; prior V0.18.2 audio mappings retained.
+
+# V0.18.3 보잉 표현 점검
 
 | 악기 | 보잉 표현 | 비브라토 | 비고 |
 |---|---:|---:|---|
