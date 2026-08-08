@@ -1,4 +1,15 @@
-# V0.19.4 분석 검증 변경
+# V0.19.5 분석/악보 동기화 수정
+
+## 확인된 V0.19.4 원인
+`applyImportedStyle()`이 분석값을 수동 BPM/박자/조성 칸에 넣은 뒤 `updateScoreMode()`를 호출했고, 그 함수가 다시 장르/속도 프리셋의 값을 써서 분석값을 덮어썼습니다. 따라서 화면의 분석 결과는 125 BPM / F Major인데 실제 악보는 126 BPM / G Major가 될 수 있었습니다.
+
+## V0.19.5 수정
+- `updateScoreMode(true)`는 이미 적용한 수동 값을 보존합니다.
+- 분석 스타일 적용과 텍스트 스타일 적용 모두 수동값을 보존합니다.
+- 자동 채보 직전과 렌더 직후 분석값을 다시 검증합니다.
+- 악보 메타에 `분석값 일치 ✓`를 표시합니다.
+- 분석 스타일을 textarea의 value/defaultValue/textContent와 별도 미리보기에 동시에 기록합니다.
+- 추천 악기는 `selected` Set 자체에 적용되며 상태창에 전체 목록을 표시합니다.
 
 - tempo: global + segment consensus, 최대 7개 구간
 - key: global + segment candidate voting, 대체 후보 표시
