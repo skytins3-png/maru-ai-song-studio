@@ -6,14 +6,14 @@
   <meta name="theme-color" content="#151126">
   <title>MARU WORLD MUSIC MAKER</title>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=0.18.0">
-  <link rel="stylesheet" href="score.css?v=0.18.0">
+  <link rel="stylesheet" href="styles.css?v=0.18.2">
+  <link rel="stylesheet" href="score.css?v=0.18.2">
   <style>.wide{width:100%;margin-top:16px}.analysis-box{margin-top:12px;padding:14px;border-radius:14px;background:#100c1e;border:1px solid #4b3d68;color:#e9e2f8;line-height:1.65;white-space:pre-line}</style>
 </head>
 <body>
   <header>
     <div class="brand">MARU <span>WORLD MUSIC MAKER</span></div>
-    <div class="tag">실제 악기 샘플·전문 악보 편집 · V0.18.0</div>
+    <div class="tag">실제 악기 샘플·전문 악보 편집 · V0.18.2</div>
   </header>
   <main>
     <section class="card hero">
@@ -44,7 +44,7 @@
       <div id="regions" class="chips"></div>
       <div id="instruments" class="instrument-grid"></div>
       <div class="mix-row"><label>전통악기 비율 <strong id="blendValue">50%</strong></label><input id="blend" type="range" min="10" max="90" value="50"></div>
-      <div class="sound-panel"><div class="sound-status"><b>실제 샘플 상태</b><span id="sampleStatus" data-state="idle">🔊 원음 1음, 🎼 특징 연주 또는 🎵 대표 독주곡을 누르면 30MB SoundFont를 한 번 불러옵니다.</span></div><label>전체 악기 음량 <strong id="masterSampleValue">160%</strong></label><input id="masterSampleVolume" type="range" min="70" max="220" value="160" step="5"><small><b>V0.18.0:</b> 52개 모든 악기에 <b>🎵 대표 독주곡</b> 청음 버튼을 추가했습니다. 전통곡·민요·퍼블릭도메인 클래식 중심의 짧은 대표 구절을 악기별 자연스러운 음역에서 단독 재생해, 음량과 고유 음색을 비교하기 쉽게 했습니다. 기존 실제 청음 보정과 원음 우선 재생도 그대로 유지합니다. <b>대표 독주곡은 음색 확인용 짧은 편곡이며 전체 원곡 재생이 아닙니다.</b></small></div>
+      <div class="sound-panel"><div class="sound-status"><b>실제 샘플 상태</b><span id="sampleStatus" data-state="idle">🔊 원음 1음, 🎼 특징 연주 또는 🎵 대표 독주곡을 누르면 30MB SoundFont를 한 번 불러옵니다.</span></div><label>전체 악기 음량 <strong id="masterSampleValue">160%</strong></label><input id="masterSampleVolume" type="range" min="70" max="220" value="160" step="5"><small><b>V0.18.2:</b> 해금·얼후·바이올린·첼로·비올라·바이올린 섹션·첼로 섹션·콘트라베이스에 <b>활을 미는 힘 → 중앙의 활 바꿈 → 당기는 힘</b>이 느껴지도록 보잉 다이내믹과 자연스러운 비브라토를 추가했습니다. 원음 1음은 활의 왕복 울림을 확인할 수 있도록 약 2.15초 유지합니다. 탄푸라·가야금·고쟁 등 활을 쓰지 않는 현악기에는 적용하지 않습니다.</small></div>
     </section>
 
     <section class="card">
@@ -117,7 +117,7 @@
   </main>
   <div id="toast"></div>
   <script src="vendor/vexflow.js?v=5.0.0"></script>
-  <script src="vendor/sfumato.js?v=0.18.0"></script>
-  <script src="app.js?v=0.18.0"></script>
+  <script src="vendor/sfumato.js?v=0.18.2"></script>
+  <script src="app.js?v=0.18.2"></script>
 </body>
 </html>
