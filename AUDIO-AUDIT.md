@@ -1,3 +1,11 @@
+# V0.19.4 분석 검증 변경
+
+- tempo: global + segment consensus, 최대 7개 구간
+- key: global + segment candidate voting, 대체 후보 표시
+- bars: 120 cap 제거, 전체 길이 ceil(duration/barSec)
+- apply analyzed style: 추천 악기 항상 동시 적용
+- confidence: 검증 일치 조건을 만족할 때만 100%
+
 # V0.19.3 자동 채보 재생 점검
 
 - 원인 1: V0.19.2 `buildAnalyzedMelody`는 한 마디를 두 구간으로만 샘플링해 형식적인 두 음표 악보가 생성될 수 있었습니다.
