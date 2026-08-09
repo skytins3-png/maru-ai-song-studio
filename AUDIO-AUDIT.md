@@ -1,3 +1,11 @@
+
+# V0.20.7 · 모바일 마이크 입력 레벨/녹음 호환성 복구
+
+- Android Chrome/Samsung 계열에서 마이크 스트림은 열렸지만 ScriptProcessor 콜백이 늦거나 멈출 때 입력 레벨이 0%로 고정될 수 있던 약점을 보완했습니다.
+- 입력 레벨은 이제 AnalyserNode가 실제 마이크 스트림의 파형을 직접 읽어 표시합니다.
+- PCM 수집이 실패하거나 무음이면 MediaRecorder 기반 호환 녹음을 자동으로 사용하고, 브라우저에서 다시 WAV로 변환해 기존 분석기로 전달합니다.
+- 실제 입력 자체가 0이면 권한/장치 문제를 명확한 문구로 표시합니다.
+- 기존 V0.20.6의 4/4·3/4·6/8 비교, 방송 음량 개선, 64밴드 자동 믹싱, 65곡 자동 마스터를 유지합니다.
 ## V0.20.6 — meter bias / loudness audit
 - Root cause found: `estimateMeterVerified()` initialized `meter='4/4'` and changed away from 4/4 only when `c3 > c4 * 1.10 && c3 > .35`, which strongly biased uncertain material toward 4/4.
 - Replaced with independent 4/4, 3/4 and 6/8 scores using beat-accent autocorrelation, 3/4/6 phase-contrast patterns and half-beat subdivision evidence.
