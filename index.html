@@ -6,21 +6,21 @@
   <meta name="theme-color" content="#151126">
   <title>MARU WORLD MUSIC MAKER</title>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=0.20.7">
-  <link rel="stylesheet" href="score.css?v=0.20.7">
+  <link rel="stylesheet" href="styles.css?v=0.20.9">
+  <link rel="stylesheet" href="score.css?v=0.20.9">
   <style>.wide{width:100%;margin-top:16px}.analysis-box{margin-top:12px;padding:14px;border-radius:14px;background:#100c1e;border:1px solid #4b3d68;color:#e9e2f8;line-height:1.65;white-space:pre-line}.audio-analyzer .audio-file{display:block;width:100%;padding:12px;border:1px dashed #6b5b89;border-radius:12px;background:#151126;color:#eee}.audio-analyzer audio{width:100%;margin-top:10px}.audio-analysis-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:12px 0}.audio-stat{padding:10px;border-radius:12px;background:#151126;border:1px solid #403653}.audio-stat b{display:block;font-size:12px;color:#bfb2da}.audio-stat strong{display:block;margin-top:4px;font-size:18px}.analyzed-style{min-height:150px}.analysis-note{display:block;margin-top:10px;line-height:1.55;color:#c9bfdc}.song-mic-level{margin-top:9px;display:flex;align-items:center;gap:10px}.song-mic-track{flex:1;height:12px;border-radius:999px;background:#211a31;overflow:hidden;border:1px solid #514269}.song-mic-fill{width:0;height:100%;background:linear-gradient(90deg,#5da9ff,#7de4a8,#ffd36a);transition:width .08s linear}.song-mic-level small{min-width:72px;color:#cfc5df}@media(max-width:760px){.audio-analysis-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}</style>
 </head>
 <body>
   <header>
     <div class="brand">MARU <span>WORLD MUSIC MAKER</span></div>
-    <div class="tag">실제 악기 샘플·전문 악보 편집 · V0.20.7 · 모바일 마이크 복구·박자 판별·방송 음량 개선 · 65곡 자동 마스터</div>
+    <div class="tag">실제 악기 샘플·전문 악보 편집 · V0.20.9 · 고음 쇠소리 완화·피아노 반주 정렬·모바일 마이크·65곡 자동 마스터</div>
   </header>
   <main>
     <section class="card audio-analyzer" id="audioAnalyzer">
       <div class="section-title"><div><h2>0. 🎧 노래 듣고 자동 편곡·악보</h2><p>MP3/WAV 또는 마이크로 들은 노래를 브라우저 안에서 분석해 BPM·박자·조성·주멜로디 윤곽과 1차 편곡 스타일을 만듭니다.</p></div></div>
       <label>분석할 노래 파일</label><input id="songAudioFile" class="audio-file" type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg">
       <div class="actions"><button id="startSongMic" class="secondary">🎤 마이크로 노래 듣기 시작</button><button id="stopSongMic" class="danger" disabled>■ 듣기 끝</button></div>
-      <div id="songMicStatus" class="analysis-box">파일을 선택하거나 마이크로 스피커의 노래를 들려줄 수 있습니다. 마이크 녹음은 끝내면 자동으로 분석합니다.</div><small>V0.20.7: 모바일에서는 입력 레벨을 녹음 콜백이 아니라 실제 마이크 스트림에서 직접 읽습니다. 기본 PCM 수집이 멈추는 기기에서는 브라우저 호환 녹음으로 자동 전환합니다.</small><div class="song-mic-level"><div class="song-mic-track" aria-label="마이크 입력 레벨"><div id="songMicLevelFill" class="song-mic-fill"></div></div><small id="songMicLevelText">대기</small></div>
+      <div id="songMicStatus" class="analysis-box">파일을 선택하거나 마이크로 스피커의 노래를 들려줄 수 있습니다. 마이크 녹음은 끝내면 자동으로 분석합니다.</div><small>V0.20.9: 모바일 마이크와 분석 진행률을 유지하면서, 전체 편곡의 고음 쇠소리를 자동 완화하고 피아노가 추출 멜로디를 그대로 따라가던 방식을 없앴습니다. 피아노는 분석 코드와 박자에 맞춘 반주 역할로 재생합니다.</small><div class="song-mic-level"><div class="song-mic-track" aria-label="마이크 입력 레벨"><div id="songMicLevelFill" class="song-mic-fill"></div></div><small id="songMicLevelText">대기</small></div><div id="analysisProgressCard" class="analysis-progress-card" aria-live="polite"><div class="analysis-progress-head"><b id="analysisProgressLabel">분석 대기</b><strong id="analysisProgressPct">0%</strong></div><div class="analysis-progress-track"><div id="analysisProgressFill"></div></div><small id="analysisProgressDetail">노래 파일을 고르거나 마이크 녹음을 끝내면 자동으로 시작합니다.</small></div>
       <audio id="sourceAudio" controls preload="metadata"></audio>
       <div class="quick-control-center">
         <div class="quick-control-title"><b>🎛 한곳에서 듣기·확인</b><span>분석 → 악보 → 편곡을 여기서 바로 확인합니다.</span></div>
@@ -34,7 +34,7 @@
           <div id="batchMasterSummary" class="batch-summary">여러 곡을 선택하세요. 최대 100곡까지 한 번에 고를 수 있습니다.</div>
           <div class="batch-progress"><div id="batchProgressFill"></div></div>
           <div id="batchQueue" class="batch-queue"></div>
-          <small>모바일 안전 모드: 동시에 처리하지 않고 <b>1곡씩 자동 처리</b>합니다. V0.20.7은 방송 체감 음량을 조금 더 올리되 피크는 안전하게 보호합니다. WAV는 용량이 크므로 약 320MB마다 ZIP 묶음으로 자동 분할합니다. 시작 버튼은 한 번만 누르면 되고, Android Chrome이 여러 파일 다운로드 허용을 물으면 한 번 허용해 주세요.</small>
+          <small>모바일 안전 모드: 동시에 처리하지 않고 <b>1곡씩 자동 처리</b>합니다. V0.20.9은 방송 체감 음량을 조금 더 올리되 피크는 안전하게 보호합니다. WAV는 용량이 크므로 약 320MB마다 ZIP 묶음으로 자동 분할합니다. 시작 버튼은 한 번만 누르면 되고, Android Chrome이 여러 파일 다운로드 허용을 물으면 한 번 허용해 주세요.</small>
         </div>
         <div class="quick-mix-options auto-managed-options"><label class="check-label compact"><input id="autoMixBalance" type="checkbox" checked> 자동 음량</label><label class="check-label compact"><input id="vocalClarityMode" type="checkbox" checked> 보컬 우선</label><label class="check-label compact"><input id="mixSourceVoice" type="checkbox" checked> 원곡 참고</label><label class="source-volume">편곡 속 원곡 참고 <strong id="sourceVoiceValue">45%</strong><input id="sourceVoiceVolume" type="range" min="20" max="100" value="45" step="5"></label><button id="toggleMixerEq" class="secondary mixer-toggle" type="button">⚙ 전문가용 수동 EQ 펼치기</button></div>
         <div id="mixerEqPanel" class="mixer-eq-panel">
@@ -68,7 +68,7 @@
       <label>분석한 음악 스타일</label><textarea id="analyzedStyle" class="style-output analyzed-style" readonly placeholder="분석 후 자동으로 만들어집니다."></textarea>
       <div class="actions"><button id="copyAnalyzedStyle" class="secondary" disabled>📋 분석 스타일 복사</button><button id="applyAnalyzedStyle" class="primary" disabled>✨ 분석 스타일 다시 적용</button></div>
       <div id="audioApplyStatus" class="analysis-box">분석 후 적용 상태가 표시됩니다.</div>
-      <small class="analysis-note"><b>V0.20.7:</b> 노래를 분석하면 <b>31Hz~16kHz 64개 대역</b>을 자동으로 검사해 보컬이 잘 들리는 공간을 만들고 새 반주를 자동으로 뒤로 정리합니다. 형은 EQ를 만질 필요가 없습니다. 전문가용 12밴드는 필요할 때만 펼쳐 추가 보정할 수 있습니다. 박자 분석은 4/4를 기본값으로 고정하지 않고 4/4·3/4·6/8 후보를 실제 강세 패턴으로 비교합니다.</small>
+      <small class="analysis-note"><b>V0.20.9:</b> 노래를 분석하면 <b>31Hz~16kHz 64개 대역</b>을 자동으로 검사하고, 특히 <b>4~10kHz의 날카로운 쇠소리</b>를 더 부드럽게 정리합니다. 자동 채보곡의 전체 편곡에서는 피아노가 보컬 멜로디를 복사하지 않고 분석 코드·박자에 맞춘 반주를 합니다. 형이 EQ를 만질 필요는 없습니다.</small>
     </section>
 
     <section class="card hero collapsible-card collapsed" id="storyCard">
@@ -174,7 +174,7 @@
   </main>
   <div id="toast"></div>
   <script src="vendor/vexflow.js?v=5.0.0"></script>
-  <script src="vendor/sfumato.js?v=0.20.7"></script>
-  <script src="app.js?v=0.20.7"></script>
+  <script src="vendor/sfumato.js?v=0.20.9"></script>
+  <script src="app.js?v=0.20.9"></script>
 </body>
 </html>
