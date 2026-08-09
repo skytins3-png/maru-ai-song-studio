@@ -1,3 +1,9 @@
+## V0.20.6 — meter bias / loudness audit
+- Root cause found: `estimateMeterVerified()` initialized `meter='4/4'` and changed away from 4/4 only when `c3 > c4 * 1.10 && c3 > .35`, which strongly biased uncertain material toward 4/4.
+- Replaced with independent 4/4, 3/4 and 6/8 scores using beat-accent autocorrelation, 3/4/6 phase-contrast patterns and half-beat subdivision evidence.
+- Added candidate score reporting so low-confidence meter analysis remains visibly uncertain instead of silently defaulting to 4/4.
+- Batch broadcast master loudness target raised from -16 dBFS RMS / -1 dBFS peak to roughly -14.5 dBFS RMS / -0.8 dBFS peak, with capped makeup gain before the limiter.
+
 
 ## V0.20.5 — 여러 곡 방송용 자동 마스터
 
