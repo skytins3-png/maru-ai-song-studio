@@ -1,16 +1,23 @@
-# V0.22.6 — 핵심 버튼 + 원곡 AI 음질개선 + 편곡 악보 재생
+# V0.22.7 UI/Broadcast audit
+
+- High-contrast buttons and file selector styling.
+- Search/favorites/recent queue view.
+- Pause is broadcast standby; resume keeps position.
+- Previous-track control added to dock and broadcast card.
+
+# V0.22.7 — 핵심 버튼 + 원곡 AI 음질개선 + 편곡 악보 재생
 
 - 첫 화면은 15개 핵심 버튼만 표시하고 기존 세부 기능은 해당 메뉴를 눌렀을 때만 표시합니다.
 - `AI 음질개선` 기본은 새 반주 0%입니다. 원곡을 유지한 채 64밴드 EQ/음량/고역/리미터 보정만 적용합니다.
 - A/B 비교의 A는 원곡 그대로, B는 새 반주 없는 AI 음질개선본입니다.
 - `편곡 악보 듣기`는 편곡 과정에서 만든 악보 음표를 별도로 다시 재생합니다. 원곡 음질개선과 편곡 악보 재생을 완전히 분리했습니다.
 
-# V0.22.6 AUDIT — 기존 스튜디오 보존
+# V0.22.7 AUDIT — 기존 스튜디오 보존
 
 - 기존 작곡/악보/분석/학습/악기 UI 삭제·숨김 없음.
 - 방송 고정 dock만 항상 클릭 가능.
 
-# V0.22.6 AUDIT
+# V0.22.7 AUDIT
 
 - Audience display is presentation-only: cover, current title, status, optional lyrics/message.
 - Operator controls remain on the main page and are hidden in `?mode=audience`.
@@ -18,18 +25,18 @@
 - No change to audio engine or SoundFont mapping from V0.22.2.
 
 
-## V0.22.6 · 분할화면 방송 하단 고정 버튼
+## V0.22.7 · 분할화면 방송 하단 고정 버튼
 - 화면 맨 아래에 `▶ 시작 / ⏸ 정지 / ⏭ 다음 / ■ 방송 종료` 4개 버튼을 고정했습니다.
 - 스크롤하거나 Android 분할화면으로 사용해도 하단 조작 버튼이 계속 보입니다.
 - `정지`는 현재 곡을 일시정지하고 위치를 유지하며, `시작`은 이어서 재생합니다.
 - `다음`은 안내를 건너뛰고 즉시 다음 곡으로 이동합니다.
 - `방송 종료`는 MARU의 음악·TTS 자동 이어재생을 종료합니다. 웹페이지에서 BIGO 앱 자체의 LIVE 종료 버튼을 직접 누르지는 않습니다.
 
-# V0.22.6 BROADCAST CHAIN AUDIT
+# V0.22.7 BROADCAST CHAIN AUDIT
 
 A/B controls reuse the existing original and analyzed-arrangement playback paths. Broadcast chain uses one HTMLAudioElement and explicit ended-event sequencing; speech synthesis resolves before the next track is started.
 
-# V0.22.6 LEARNING AI AUDIT
+# V0.22.7 LEARNING AI AUDIT
 
 - 개인화 학습은 오디오 원본 복제가 아니라 특징 벡터/선호도 메모리 방식입니다.
 - 학습 데이터는 localStorage에 최대 240개 항목으로 제한합니다.
