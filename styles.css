@@ -98,3 +98,11 @@ body.audience-mode{margin:0;background:#090711;overflow:auto}body.audience-mode>
 /* V0.22.5 — 기존 스튜디오 전체 유지 + 방송 하단 버튼만 추가/강화 */
 .broadcast-dock button{pointer-events:auto!important}
 .broadcast-dock button:disabled{opacity:1!important;filter:none!important}
+
+/* V0.22.6 core-button launcher */
+.core-launcher{margin:12px 0 16px;padding:14px;border:1px solid #514269;border-radius:16px;background:#151126;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.core-launcher-title{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:10px}.core-launcher-title b{font-size:18px}.core-launcher-title span,.core-launcher small{color:#cfc5df;font-size:12px}
+.core-launcher-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.core-launcher-grid button{min-height:48px;padding:9px 7px;border-radius:12px;font-weight:800}.core-launcher-grid button.primary{background:linear-gradient(135deg,#7b5cff,#d05cff);color:white}
+body.core-menu-mode main>.card{display:none}body.core-menu-mode main>.card.core-panel-open{display:block}.core-panel-open{scroll-margin-top:10px}
+@media(max-width:700px){.core-launcher-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.core-launcher-title span{display:none}.core-launcher-grid button{font-size:12px;min-height:46px;padding:7px 4px}}
+@media(max-width:420px){.core-launcher-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.core-launcher{padding:10px}.core-launcher-grid button{font-size:11px}}
