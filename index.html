@@ -6,14 +6,14 @@
   <meta name="theme-color" content="#151126">
   <title>MARU WORLD MUSIC MAKER</title>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=0.22.23">
-  <link rel="stylesheet" href="score.css?v=0.22.23">
+  <link rel="stylesheet" href="styles.css?v=0.22.25">
+  <link rel="stylesheet" href="score.css?v=0.22.25">
   <style>.wide{width:100%;margin-top:16px}.analysis-box{margin-top:12px;padding:14px;border-radius:14px;background:#100c1e;border:1px solid #4b3d68;color:#e9e2f8;line-height:1.65;white-space:pre-line}.audio-analyzer .audio-file{display:block;width:100%;padding:12px;border:1px dashed #6b5b89;border-radius:12px;background:#151126;color:#eee}.audio-analyzer audio{width:100%;margin-top:10px}.audio-analysis-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:12px 0}.audio-stat{padding:10px;border-radius:12px;background:#151126;border:1px solid #403653}.audio-stat b{display:block;font-size:12px;color:#bfb2da}.audio-stat strong{display:block;margin-top:4px;font-size:18px}.analyzed-style{min-height:150px}.analysis-note{display:block;margin-top:10px;line-height:1.55;color:#c9bfdc}.song-mic-level{margin-top:9px;display:flex;align-items:center;gap:10px}.song-mic-track{flex:1;height:12px;border-radius:999px;background:#211a31;overflow:hidden;border:1px solid #514269}.song-mic-fill{width:0;height:100%;background:linear-gradient(90deg,#5da9ff,#7de4a8,#ffd36a);transition:width .08s linear}.song-mic-level small{min-width:72px;color:#cfc5df}@media(max-width:760px){.audio-analysis-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}</style>
 </head>
 <body class="compact-ui core-menu-mode">
   <header>
     <div class="brand">MARU <span>WORLD MUSIC MAKER</span></div>
-    <div class="tag">V0.22.23 · MARU MUSIC LEARNING AI · 들려준 음악 특징을 기억해 다음 추천에 반영</div>
+    <div class="tag">V0.22.25 · MARU MUSIC LEARNING AI · 들려준 음악 특징을 기억해 다음 추천에 반영</div>
   </header>
   <main>
     <section id="coreLauncher" class="core-launcher" aria-label="핵심 기능">
@@ -41,7 +41,7 @@
       <div class="section-title"><div><h2>0. 🎧 노래 듣고 자동 편곡·악보</h2><p>필요한 버튼만 크게 보이도록 정리했습니다.</p></div></div>
       <label>분석할 노래 파일</label><input id="songAudioFile" class="audio-file" type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg">
       <div class="actions"><button id="startSongMic" class="secondary">🎤 마이크로 노래 듣기 시작</button><button id="stopSongMic" class="danger" disabled>■ 듣기 끝</button><button id="saveCurrentToBroadcast" class="primary" disabled>💾 현재 노래 방송목록 저장</button></div>
-      <div id="songMicStatus" class="analysis-box">파일을 선택하거나 마이크로 스피커의 노래를 들려줄 수 있습니다. 마이크 녹음은 끝내면 자동으로 분석합니다.</div><small>V0.22.23: 간편 화면을 적용했습니다. 가사·장르·분위기·빠르기·박자를 함께 보고 전통악기와 현대악기를 매번 다시 추천합니다. 같은 입력은 같은 조합을 유지하고, 다른 노래는 다른 조합이 나오도록 고정 악기 세트를 없앴습니다. AI 음질개선은 새 반주 없이 원곡만 보정하며 저역 풍성함과 고역 피로도를 자동 균형 조정하고, 편곡 악보 재생은 별도 버튼으로 분리했습니다.</small><div class="song-mic-level"><div class="song-mic-track" aria-label="마이크 입력 레벨"><div id="songMicLevelFill" class="song-mic-fill"></div></div><small id="songMicLevelText">대기</small></div><div id="analysisProgressCard" class="analysis-progress-card" aria-live="polite"><div class="analysis-progress-head"><b id="analysisProgressLabel">분석 대기</b><strong id="analysisProgressPct">0%</strong></div><div class="analysis-progress-track"><div id="analysisProgressFill"></div></div><small id="analysisProgressDetail">노래 파일을 고르거나 마이크 녹음을 끝내면 자동으로 시작합니다.</small></div>
+      <div id="songMicStatus" class="analysis-box">파일을 선택하거나 마이크로 스피커의 노래를 들려줄 수 있습니다. 마이크 녹음은 끝내면 자동으로 분석합니다.</div><small>V0.22.25: 간편 화면을 적용했습니다. 가사·장르·분위기·빠르기·박자를 함께 보고 전통악기와 현대악기를 매번 다시 추천합니다. 같은 입력은 같은 조합을 유지하고, 다른 노래는 다른 조합이 나오도록 고정 악기 세트를 없앴습니다. AI 음질개선은 새 반주 없이 원곡만 보정하며 저역 풍성함과 고역 피로도를 자동 균형 조정하고, 편곡 악보 재생은 별도 버튼으로 분리했습니다.</small><div class="song-mic-level"><div class="song-mic-track" aria-label="마이크 입력 레벨"><div id="songMicLevelFill" class="song-mic-fill"></div></div><small id="songMicLevelText">대기</small></div><div id="analysisProgressCard" class="analysis-progress-card" aria-live="polite"><div class="analysis-progress-head"><b id="analysisProgressLabel">분석 대기</b><strong id="analysisProgressPct">0%</strong></div><div class="analysis-progress-track"><div id="analysisProgressFill"></div></div><small id="analysisProgressDetail">노래 파일을 고르거나 마이크 녹음을 끝내면 자동으로 시작합니다.</small></div>
       <audio id="sourceAudio" controls preload="metadata"></audio>
       <div class="quick-control-center">
         <div class="quick-control-title"><b>🎛 한곳에서 듣기·확인</b><span>원곡 → AI 음질개선 → 편곡 악보를 필요할 때 확인합니다.</span></div>
@@ -57,7 +57,7 @@
           <div id="batchMasterSummary" class="batch-summary">여러 곡을 선택하세요. 최대 100곡까지 한 번에 고를 수 있습니다.</div>
           <div class="batch-progress"><div id="batchProgressFill"></div></div>
           <div id="batchQueue" class="batch-queue"></div>
-          <small>모바일 안전 모드: 동시에 처리하지 않고 <b>1곡씩 자동 처리</b>합니다. V0.22.23부터 완성 마스터는 <b>재압축 0</b>, 원곡의 공간감·저역 몸통·펀치를 우선 보존하고, 피크가 넘을 때만 전체 레벨을 살짝 내립니다. 원본 백업을 켜면 ZIP의 <b>01-ORIGINAL</b> 폴더에 원본 바이트를 그대로 보관하고, 처리본은 <b>02-MARU-PROCESSED</b> 폴더에 따로 저장합니다. V0.22.23는 녹음 WAV를 방송목록에 자동 저장하지 않습니다. 녹음 후 ‘💾 현재 노래 방송목록 저장’을 눌렀을 때만 저장하며, 한 번 저장한 방송목록은 다음 방송 때 자동 복원합니다. 편곡/구간별 악기 음량은 그대로 유지합니다. 원본 백업 ON일 때는 메모리 안전을 위해 약 180MB마다, OFF일 때는 약 320MB마다 ZIP 묶음으로 자동 분할합니다. 시작 버튼은 한 번만 누르면 되고, Android Chrome이 여러 파일 다운로드 허용을 물으면 한 번 허용해 주세요.</small>
+          <small>모바일 안전 모드: 동시에 처리하지 않고 <b>1곡씩 자동 처리</b>합니다. V0.22.25부터 완성 마스터는 <b>재압축 0</b>, 원곡의 공간감·저역 몸통·펀치를 우선 보존하고, 피크가 넘을 때만 전체 레벨을 살짝 내립니다. 원본 백업을 켜면 ZIP의 <b>01-ORIGINAL</b> 폴더에 원본 바이트를 그대로 보관하고, 처리본은 <b>02-MARU-PROCESSED</b> 폴더에 따로 저장합니다. V0.22.25는 녹음 WAV를 방송목록에 자동 저장하지 않습니다. 녹음 후 ‘💾 현재 노래 방송목록 저장’을 눌렀을 때만 저장하며, 한 번 저장한 방송목록은 다음 방송 때 자동 복원합니다. 편곡/구간별 악기 음량은 그대로 유지합니다. 원본 백업 ON일 때는 메모리 안전을 위해 약 180MB마다, OFF일 때는 약 320MB마다 ZIP 묶음으로 자동 분할합니다. 시작 버튼은 한 번만 누르면 되고, Android Chrome이 여러 파일 다운로드 허용을 물으면 한 번 허용해 주세요.</small>
         </div>
         <div class="broadcast-player-card compact-collapsible collapsed" id="broadcastPlayerCard">
           <div class="batch-master-head"><div><b>📡 방송 자동 이어재생</b><span>곡 끝 → 내 멘트 → 기존 다음곡 안내 → 다음 곡</span></div><div class="compact-head-actions"><strong id="broadcastBadge">대기</strong><button id="broadcastToggle" class="secondary mini-toggle" type="button">▾ 펼치기</button></div></div>
@@ -121,7 +121,7 @@
       <label>분석한 음악 스타일</label><textarea id="analyzedStyle" class="style-output analyzed-style" readonly placeholder="분석 후 자동으로 만들어집니다."></textarea>
       <div class="actions"><button id="copyAnalyzedStyle" class="secondary" disabled>📋 분석 스타일 복사</button><button id="applyAnalyzedStyle" class="primary" disabled>✨ 분석 스타일 다시 적용</button></div>
       <div id="audioApplyStatus" class="analysis-box">분석 후 적용 상태가 표시됩니다.</div>
-      <small class="analysis-note"><b>V0.22.23:</b> MARU 학습 AI가 형이 저장한 참고곡의 BPM·박자·장르·악기·음향 성향을 다음 추천에 반영합니다. 제목은 6개 후보 또는 직접 입력, 악기는 4개 조합 후보 또는 직접 선택할 수 있습니다. 가사·장르·분위기·박자에 맞춰 악기 조합을 다시 고르고, 31Hz~16kHz 64개 대역은 Dolby Atmos Music 스튜디오 목표곡선을 참고해 곡마다 자동 조정합니다. 80~200Hz는 부족할 때만 몸통을 보강하고, 1.6kHz부터 고역을 완만히 내려 3~16kHz의 쨍함과 귀 울림을 줄입니다. AI 음질개선은 원곡에 새 반주를 추가하지 않습니다. 피크 보호는 필요한 순간에만 약하게 작동해 원곡의 강약과 숨결을 최대한 유지합니다. 편곡에서 만든 악보는 별도 ‘편곡 악보 듣기’로 확인합니다. 형이 EQ나 박자를 직접 만질 필요는 없습니다.</small>
+      <small class="analysis-note"><b>V0.22.25:</b> MARU 학습 AI가 방송목록의 새 곡과 마이크 녹음을 자동으로 분석해 BPM·박자·장르·악기·음향 성향을 다음 추천에 반영합니다. 음원은 학습 저장소에 복사하지 않습니다. 제목은 6개 후보 또는 직접 입력, 악기는 4개 조합 후보 또는 직접 선택할 수 있습니다. 가사·장르·분위기·박자에 맞춰 악기 조합을 다시 고르고, 31Hz~16kHz 64개 대역은 Dolby Atmos Music 스튜디오 목표곡선을 참고해 곡마다 자동 조정합니다. 80~200Hz는 부족할 때만 몸통을 보강하고, 1.6kHz부터 고역을 완만히 내려 3~16kHz의 쨍함과 귀 울림을 줄입니다. AI 음질개선은 원곡에 새 반주를 추가하지 않습니다. 피크 보호는 필요한 순간에만 약하게 작동해 원곡의 강약과 숨결을 최대한 유지합니다. 편곡에서 만든 악보는 별도 ‘편곡 악보 듣기’로 확인합니다. 형이 EQ나 박자를 직접 만질 필요는 없습니다.</small>
     </section>
 
     <section class="card learning-ai-card collapsible-card collapsed" id="learningAiCard">
@@ -134,6 +134,17 @@
       <label class="check-label"><input id="learningEnabled" type="checkbox" checked> 학습 기억을 새 작곡·악기·믹싱 추천에 자동 반영</label>
       <div id="learningProgress" class="analysis-box">학습곡을 추가하면 BPM·박자·조성·장르 성향·악기 역할·저역/고역 특성을 저장합니다. 원본 음원 자체를 복제 학습하지 않고 음악 특징표를 기억합니다.</div>
       <div id="learningProfile" class="analysis-box">아직 학습한 곡이 없습니다.</div>
+      <div class="choice-panel">
+        <div class="choice-panel-head"><div><b>🔄 자동 학습 현황</b><span>방송목록과 마이크 녹음에서 음원 파일은 복사하지 않고 음악 특징값만 저장합니다.</span></div><button id="learnBroadcastNow" class="secondary" type="button">🧠 방송목록 새 곡 지금 학습</button></div>
+        <div class="grid three">
+          <div class="analysis-box"><b id="learningBroadcastCount">0곡</b><br><small>현재 방송목록</small></div>
+          <div class="analysis-box"><b id="learningFeatureCount">0곡</b><br><small>저장된 학습 특징</small></div>
+          <div class="analysis-box"><b id="learningMemorySize">0 KB</b><br><small>실제 학습기억 용량</small></div>
+        </div>
+        <label class="check-label"><input id="learningBroadcastAuto" type="checkbox" checked> 방송목록에 새 곡이 들어오면 자동 학습 · 이미 학습한 곡은 건너뜀</label>
+        <label class="check-label"><input id="learningMicAuto" type="checkbox" checked> 마이크 녹음 자동 분석이 끝나면 자동 학습</label>
+        <div id="learningAutoStatus" class="analysis-box">방송목록 0곡 · 방송 자동학습 ON · 마이크 자동학습 ON · 음원 복사 0 B</div>
+      </div>
       <div class="actions">
         <button id="exportLearning" class="secondary" type="button">⬇ 학습 기억 백업</button>
         <button id="importLearning" class="secondary" type="button">⬆ 학습 기억 불러오기</button>
@@ -141,7 +152,7 @@
         <button id="clearLearning" class="danger" type="button">학습 기억 전체 삭제</button>
       </div>
       <div id="learningItems" class="learning-items"></div>
-      <small>이 기능은 브라우저 안에서 거대한 AI 모델을 다시 훈련하는 방식이 아니라, 형이 들려준 곡의 분석 특징과 형의 선택을 누적해 다음 추천 점수를 바꾸는 개인화 학습 방식입니다. 브라우저 데이터를 지우면 없어질 수 있으니 백업 파일을 보관하세요.</small>
+      <small>이 기능은 음원 파일을 복제하거나 거대한 AI 모델을 다시 훈련하지 않습니다. 방송곡·마이크 녹음에서 추출한 BPM·박자·조성·장르·악기·저역/고역 특징 같은 작은 숫자와 글자 정보만 최대 240곡까지 저장합니다. 브라우저 데이터를 지우면 없어질 수 있으니 학습 기억 백업을 보관하세요.</small>
     </section>
 
     <section class="card hero collapsible-card collapsed" id="storyCard">
@@ -155,7 +166,7 @@
       <div class="grid three">
         <label>분위기<select id="mood"><option value="auto">✨ 이야기에서 자동 분석</option><option>따뜻한</option><option>신나는</option><option>웅장한</option><option>슬픈</option><option>신비로운</option><option>편안한</option></select></label>
         <label>빠르기<select id="speed"><option value="auto">✨ 자동 추천</option><option value="slow">느리게</option><option value="medium">보통</option><option value="fast">빠르게</option></select></label>
-        <label>노래 길이<select id="length"><option value="2">약 2분</option><option value="3">약 3분</option><option value="4" selected>약 4분</option><option value="4.5">약 4분 30초</option><option value="5">약 5분</option><option value="5.5">약 5분 30초</option><option value="6">약 6분</option></select></label>
+        <label>노래 길이<select id="length"><option value="2">약 2분</option><option value="2.5">약 2분 30초</option><option value="3">약 3분</option><option value="3.5">약 3분 30초</option><option value="4" selected>약 4분</option><option value="4.5">약 4분 30초</option><option value="5">약 5분</option><option value="5.5">약 5분 30초</option><option value="6">약 6분</option></select></label>
       </div>
       <div class="grid three">
         <label>장르<select id="genre"><option value="auto">✨ 이야기에서 자동 추천</option><optgroup label="팝·K-POP"><option>팝</option><option>모던 팝</option><option>K-POP</option><option>아이돌 팝</option><option>팝 발라드</option><option>모던 팝 발라드</option><option>어쿠스틱 팝</option><option>신스팝</option><option>시티팝</option><option>인디 팝</option></optgroup><optgroup label="댄스·전자음악"><option>댄스 팝</option><option>EDM</option><option>하우스</option><option>딥 하우스</option><option>퓨처 베이스</option><option>디스코</option><option>UK 개러지</option><option>테크노</option><option>트랜스</option></optgroup><optgroup label="록·밴드"><option>팝 록</option><option>인디 록</option><option>얼터너티브 록</option><option>하드 록</option><option>포크 록</option><option>펑크 록</option></optgroup><optgroup label="흑인음악·그루브"><option>R&amp;B</option><option>소울</option><option>힙합</option><option>팝 랩</option><option>트랩</option><option>펑크</option><option>가스펠</option></optgroup><optgroup label="재즈·어쿠스틱"><option>재즈</option><option>보사노바</option><option>스윙</option><option>블루스</option><option>포크</option><option>컨트리</option><option>로파이</option><option>뉴에이지</option><option>앰비언트</option></optgroup><optgroup label="세계·전통"><option>국악 퓨전</option><option>전통 퓨전</option><option>월드 뮤직</option><option>라틴 팝</option><option>레게</option><option>아프로비츠</option><option>플라멩코</option><option>중국풍 팝</option><option>일본풍 팝</option><option>인도 퓨전</option><option>중동 퓨전</option></optgroup><optgroup label="무대·영상·대중가요"><option>트로트</option><option>영화음악</option><option>오케스트라 팝</option><option>뮤지컬</option><option>합창</option><option>동요</option><option>왈츠</option></optgroup></select></label>
@@ -164,6 +175,10 @@
       </div>
       <div id="customLanguageWrap" class="language-panel" hidden><label>직접 입력할 언어 이름<input id="customLanguage" placeholder="예: Français, Deutsch, ไทย, العربية"></label></div>
       <div id="languageHint" class="language-hint">한국어 이야기를 분석해 한국어 가사 후보 3개를 자동으로 만듭니다.</div>
+      <div class="grid two">
+        <label>새 노래 가사 목표 길이<select id="newSongLyricTarget"><option value="150">2분 30초</option><option value="180" selected>3분</option><option value="210">3분 30초</option><option value="240">4분</option></select></label>
+        <label class="check-label"><input id="autoShortenNewSong" type="checkbox"> 새로 작곡할 때 긴 가사면 목표 길이에 맞춰 자동 축약</label>
+      </div>
       <button id="analyzeStory" class="primary wide">🧠 이야기와 음악 자동 분석</button>
       <div id="analysisResult" class="analysis-box">이야기를 입력하면 장르·BPM·박자·조성·보컬·악기 구성을 추천합니다.</div>
     </section>
@@ -202,6 +217,16 @@
       <label>선택한 전체 가사 · 직접 수정과 복사·붙여넣기 가능</label><textarea id="lyrics" class="output" placeholder="자동: BPM에 맞춰 마디를 나눕니다. 수동: 오늘도 / 너를 / 기다려 처럼 /를 넣으세요."></textarea>
       <div class="bar-rule-guide"><b>가사 마디 규칙</b><span>한국어는 한글 음절, 영어·라틴 문자는 노래 음절로 나눕니다. 한 음절을 여러 음표로 끌면 —로 표시하며, 직접 넣은 /는 항상 마디 경계로 고정됩니다.</span></div>
       <div class="lyric-edit-actions"><button id="applyEditedLyrics" class="primary">✓ 수정 가사를 악보에 반영</button><label class="check-label"><input id="autoLyricScore" type="checkbox" checked> 입력 후 기존 멜로디에 자동 배치</label><span id="lyricSyncStatus">가사를 수정해도 멜로디와 박자는 유지됩니다.</span></div>
+      <div class="choice-panel lyric-shorten-panel">
+        <div class="choice-panel-head"><div><b>✂️ 현재 가사 길이 줄이기</b><span>후렴 훅과 이야기 흐름은 살리고, 반복 후렴·긴 벌스·긴 간주부터 줄입니다. 미리본 뒤 적용하세요.</span></div></div>
+        <div class="grid two">
+          <label>목표 길이<select id="composeLyricShortenTarget"><option value="150">약 2분 30초</option><option value="180" selected>약 3분</option><option value="210">약 3분 30초</option><option value="240">약 4분</option><option value="custom">직접 입력</option></select></label>
+          <label>직접 입력 <small>분:초</small><input id="composeLyricShortenCustom" placeholder="예: 3:15" value="3:00"></label>
+        </div>
+        <div class="actions"><button id="previewShortLyrics" class="primary" type="button">✂️ 줄인 가사 미리보기</button><button id="applyShortLyrics" class="primary" type="button" disabled>✓ 줄인 가사 적용</button><button id="restoreBeforeShorten" class="secondary" type="button" disabled>↩ 줄이기 전 원본 복원</button></div>
+        <label>줄인 가사 미리보기<textarea id="composeLyricShortenPreview" rows="7" readonly placeholder="현재 가사를 분석한 축약본이 여기에 표시됩니다."></textarea></label>
+        <div id="composeLyricShortenStatus" class="analysis-box">원본 가사를 먼저 보관하고 축약본을 만든 뒤, ‘적용’을 눌렀을 때만 현재 가사를 바꿉니다.</div>
+      </div>
       <div class="grid two style-settings"><label>스타일 작성 방식<select id="styleMode"><option value="auto">✨ 작곡할 때 자동 생성</option><option value="manual">✍ 내가 쓴 스타일 유지</option></select></label><label>스타일 출력 언어<select id="styleLanguage"><option value="auto">가사 언어에 맞춤</option><option value="한국어">한국어</option><option value="English">English</option></select></label></div>
       <label>음악 스타일 · 자동 생성 후에도 직접 수정 가능</label><textarea id="style" class="style-output" placeholder="자동 생성하거나 직접 입력하세요. 수동 유지로 바꾸면 다시 작곡해도 지워지지 않습니다."></textarea>
       <div class="actions"><button data-copy="title" class="secondary">제목 복사</button><button data-copy="lyrics" class="secondary">전체 가사 복사</button><button data-copy="style" class="secondary">스타일 복사</button><button id="applyStyleText" class="secondary">✨ 스타일 설정에 적용</button><button id="copySuno" class="primary">☀ Suno 전체 복사</button><button id="saveSong" class="primary">💾 내 곡 저장함에 저장</button><button id="downloadTxt" class="secondary">⬇ TXT 파일 다운로드</button></div>
@@ -241,7 +266,7 @@
       </div>
       <div class="range-panel score-advanced"><b id="rangeStatus">선택 구간: 전체 곡</b><span>악보의 마디를 클릭한 뒤 시작·끝을 정하세요.</span><div class="actions"><button id="setRangeStart" class="secondary">시작 마디 지정</button><button id="setRangeEnd" class="secondary">끝 마디 지정</button><button id="clearRange" class="secondary">전체 곡 선택</button><label class="check-label compact"><input id="repeatSelection" type="checkbox"> 선택 반복</label></div></div>
       <div class="actions score-advanced"><button id="playSelection" class="primary">▶ 선택 마디 듣기</button><button id="playScore" class="secondary">▶ 편곡 악보 듣기</button><button id="stopScore" class="danger">■ 정지</button><button id="printScore" class="secondary">🖨 악보 인쇄·PDF</button><button id="downloadScore" class="secondary">⬇ SVG 악보 저장</button></div>
-      <small>V0.22.23: <b>AI 음질개선</b>과 <b>편곡 악보 듣기</b>를 분리했습니다. AI 음질개선에는 새 반주가 들어가지 않으며, 편곡 악보 듣기는 만들어진 악보 음표만 별도로 다시 확인합니다.</small>
+      <small>V0.22.25: <b>AI 음질개선</b>과 <b>편곡 악보 듣기</b>를 분리했습니다. AI 음질개선에는 새 반주가 들어가지 않으며, 편곡 악보 듣기는 만들어진 악보 음표만 별도로 다시 확인합니다.</small>
     </section>
 
     <section class="card vocal-lab collapsible-card collapsed" id="vocalCard"><div class="section-title"><div><h2>선택 마디 목소리를 악보 음정에 맞추기</h2><p>위에서 고른 한 마디·여러 마디·전체 곡 중 원하는 구간만 녹음하고 악보 음정에 맞춥니다.</p></div></div><div id="vocalMeter" class="vocal-meter"><b>대기 중</b><span>감지 음정 — · 목표 음정 —</span></div><div class="actions"><button id="startVocal" class="primary">🎤 선택 구간 녹음</button><button id="stopVocal" class="danger" disabled>■ 녹음 끝</button><button id="playOriginal" class="secondary" disabled>▶ 원래 목소리</button><button id="makeCorrection" class="secondary" disabled>✨ 악보 음정으로 보정</button><button id="playCorrected" class="secondary" disabled>▶ 보정 목소리</button><button id="downloadCorrected" class="secondary" disabled>⬇ 보정 WAV 저장</button></div><small>브라우저에서 처리하는 실험 기능이라 스튜디오 AI 보컬보다 기계적인 소리가 날 수 있습니다. 마이크 허용과 HTTPS 주소가 필요합니다.</small></section>
@@ -271,7 +296,7 @@
   </nav>
   <div id="toast"></div>
   <script src="vendor/vexflow.js?v=5.0.0"></script>
-  <script src="vendor/sfumato.js?v=0.22.23"></script>
-  <script src="app.js?v=0.22.23"></script>
+  <script src="vendor/sfumato.js?v=0.22.25"></script>
+  <script src="app.js?v=0.22.25"></script>
 </body>
 </html>
