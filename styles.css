@@ -145,3 +145,6 @@ input[type=file]::file-selector-button{background:#352653;color:#fff;border:1px 
 .broadcast-queue .qdel:active{background:#7c263b}
 @media(max-width:620px){.broadcast-save-actions{grid-template-columns:1fr 1fr!important}.broadcast-save-actions .danger{grid-column:auto!important}}
 @media(max-width:430px){.broadcast-queue .qrow{grid-template-columns:36px 24px 26px minmax(72px,1fr) 30px 36px 36px;gap:4px;padding:7px 5px}.broadcast-queue .qnum{min-width:0;font-size:12px}.broadcast-queue .qtitle{font-size:13px}.broadcast-queue .qplay,.broadcast-queue .qfav,.broadcast-queue .qdel{padding:4px;min-height:34px}}
+
+/* V0.22.27 — professional reference listening controls */
+.learning-item-actions{display:flex!important;gap:6px;flex-wrap:wrap;justify-content:flex-end;min-width:250px}.learning-item-actions button{padding:8px 10px;font-size:12px}.learning-item .preview-missing{opacity:.55}.learning-listen-active{border-color:#6e55b9!important;background:#21183a!important}@media(max-width:680px){.learning-item{align-items:flex-start;flex-direction:column}.learning-item-actions{min-width:0;width:100%;justify-content:flex-start}.learning-item-actions button{flex:1 1 calc(50% - 6px)}}
