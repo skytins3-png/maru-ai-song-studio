@@ -148,3 +148,22 @@ input[type=file]::file-selector-button{background:#352653;color:#fff;border:1px 
 
 /* V0.22.27 — professional reference listening controls */
 .learning-item-actions{display:flex!important;gap:6px;flex-wrap:wrap;justify-content:flex-end;min-width:250px}.learning-item-actions button{padding:8px 10px;font-size:12px}.learning-item .preview-missing{opacity:.55}.learning-listen-active{border-color:#6e55b9!important;background:#21183a!important}@media(max-width:680px){.learning-item{align-items:flex-start;flex-direction:column}.learning-item-actions{min-width:0;width:100%;justify-content:flex-start}.learning-item-actions button{flex:1 1 calc(50% - 6px)}}
+
+
+/* V0.22.32 — BIGO background-preserving floating audience popup */
+.audience-media-note{font-size:12px;line-height:1.45;color:#bfb5d4;margin:-2px 2px 10px}
+body.audience-mode{background:transparent!important;min-height:100dvh;overflow:hidden!important}
+body.audience-mode .audience-view{background:transparent!important;padding:10px!important;min-height:100dvh;align-items:flex-start!important;justify-content:center!important;pointer-events:none}
+body.audience-mode .audience-stage{width:min(460px,96vw)!important;min-height:0!important;height:auto!important;display:block!important;padding:0!important;margin-top:8px!important;pointer-events:auto}
+body.audience-mode .audience-cover-wrap{position:relative;width:100%!important;aspect-ratio:9/13!important;max-height:76dvh;border-radius:26px!important;overflow:hidden;background:#100b19;box-shadow:0 14px 44px #0009;border:1px solid #76579f}
+body.audience-mode .audience-cover-wrap img,body.audience-mode .audience-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none}
+body.audience-mode .audience-video{background:#000}
+body.audience-mode .audience-cover-placeholder{position:absolute;inset:0;font-size:42px}
+body.audience-mode .audience-media-shade{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 36%,rgba(4,2,8,.16) 52%,rgba(4,2,8,.78) 80%,rgba(4,2,8,.92) 100%);pointer-events:none}
+body.audience-mode .audience-overlay{position:absolute;left:0;right:0;bottom:0;padding:18px 18px 20px;text-align:left;z-index:3}
+body.audience-mode .audience-now{font-size:12px;letter-spacing:.34em;color:#e5d8ff;margin:0 0 8px}
+body.audience-mode .audience-overlay h1{margin:0;color:#fff;font-size:clamp(28px,7vw,48px);line-height:1.08;text-shadow:0 2px 12px #000;max-width:100%;word-break:keep-all}
+body.audience-mode .audience-lyrics{display:block!important;margin:12px 0 0!important;width:auto!important;max-height:22vh!important;overflow:auto;padding:10px 12px!important;border-radius:14px;background:rgba(0,0,0,.42);backdrop-filter:blur(4px);font-size:clamp(16px,4.5vw,23px)!important;line-height:1.42!important;color:#fff;text-shadow:0 1px 5px #000;white-space:pre-wrap}
+body.audience-mode .audience-lyrics.empty{display:none!important}
+body.audience-mode .audience-status{margin:8px 4px 0;color:#efe8fb;font-size:14px;text-align:center;background:rgba(18,12,30,.72);border:1px solid #594574;border-radius:999px;padding:8px 12px;backdrop-filter:blur(5px)}
+@media(max-width:620px){body.audience-mode .audience-view{padding:6px!important}body.audience-mode .audience-stage{width:min(430px,98vw)!important;margin-top:4px!important}body.audience-mode .audience-cover-wrap{aspect-ratio:9/12.2!important;max-height:72dvh!important;border-radius:22px!important}body.audience-mode .audience-overlay{padding:14px 14px 16px!important}}
