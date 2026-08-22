@@ -174,7 +174,7 @@ body.audience-mode .audience-status{margin:8px 4px 0;color:#efe8fb;font-size:14p
 .broadcast-queue .qmedia button.active{background:rgba(124,73,255,.28);border-color:rgba(201,170,255,.7);box-shadow:0 0 0 1px rgba(157,104,255,.18) inset}
 @media(max-width:680px){.broadcast-queue .qrow{grid-template-columns:auto auto auto minmax(80px,1fr);gap:5px}.broadcast-queue .qmedia{grid-column:4/-1;justify-self:start;margin-top:4px}.broadcast-queue .qmove,.broadcast-queue .qfav,.broadcast-queue .qdel{margin-top:4px}}
 
-/* V0.22.42 — per-song media controls stay visible inside each broadcast row. */
+/* V0.22.43 — per-song media controls stay visible inside each broadcast row. */
 .broadcast-queue .qrow{
   grid-template-columns:38px 26px 30px minmax(0,1fr) 34px 38px 38px;
   grid-template-areas:
@@ -232,7 +232,7 @@ body.audience-mode .audience-status{margin:8px 4px 0;color:#efe8fb;font-size:14p
   .broadcast-queue .qmedia button b{font-size:11px}
 }
 
-/* V0.22.42 — ultra-compact BIGO floating viewer: media + title only */
+/* V0.22.43 — ultra-compact BIGO floating viewer: media + title only */
 body.audience-mode{margin:0!important;padding:0!important;background:transparent!important;overflow:hidden!important;min-width:0!important;min-height:0!important}
 body.audience-mode .audience-view{display:block!important;margin:0!important;padding:0!important;min-height:100dvh!important;width:100vw!important;height:100dvh!important;background:transparent!important;overflow:hidden!important;pointer-events:none!important}
 body.audience-mode .audience-stage{display:block!important;margin:0!important;padding:0!important;width:100vw!important;height:100dvh!important;min-height:0!important;max-width:none!important;pointer-events:auto!important}
@@ -245,7 +245,7 @@ body.audience-mode .audience-overlay h1{margin:0!important;padding:0!important;c
 body.audience-mode .audience-now,body.audience-mode .audience-lyrics,body.audience-mode .audience-status{display:none!important}
 @media(max-width:620px){body.audience-mode .audience-view,body.audience-mode .audience-stage{margin:0!important;padding:0!important;width:100vw!important;height:100dvh!important}body.audience-mode .audience-cover-wrap{width:100vw!important;height:100dvh!important;max-height:none!important;aspect-ratio:auto!important;border-radius:0!important}body.audience-mode .audience-overlay{padding:7px 9px 9px!important}}
 
-/* V0.22.42 popup touch playback controls */
+/* V0.22.43 popup touch playback controls */
 .viewer-touch-controls{
   position:absolute;
   left:50%;
@@ -282,7 +282,7 @@ body.audience-mode .audience-now,body.audience-mode .audience-lyrics,body.audien
   transform:scale(.97);
 }
 
-/* V0.22.42 direct popup controls + no-crop media */
+/* V0.22.43 direct popup controls + no-crop media */
 body.audience-mode .audience-cover-wrap{
   touch-action:manipulation!important;
   background:#000!important;
@@ -362,7 +362,7 @@ body.audience-mode .audience-end-greeting{
   backdrop-filter:blur(6px)!important;
 }
 
-/* V0.22.42 installed PWA fullscreen audience mode */
+/* V0.22.43 installed PWA fullscreen audience mode */
 @media (display-mode: fullscreen), (display-mode: standalone) {
   body.audience-mode{margin:0!important;padding:0!important;background:#000!important;overflow:hidden!important;}
   body.audience-mode .audience-viewer{position:fixed!important;inset:0!important;width:100vw!important;height:100dvh!important;max-width:none!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;background:#000!important;}
@@ -374,7 +374,7 @@ body.audience-mode .audience-end-greeting{
 }
 body.pwa-installed #pwaInstallBtn{display:none!important;}
 
-/* V0.22.42 blur-fill audience media */
+/* V0.22.43 blur-fill audience media */
 body.audience-mode .audience-cover-wrap{background:#000!important;}
 body.audience-mode .audience-video-bg,
 body.audience-mode .audience-cover-bg{
@@ -404,7 +404,7 @@ body.audience-mode .audience-media-shade{z-index:2!important}
 body.audience-mode .audience-overlay{z-index:3!important}
 body.audience-mode .audience-touch-controls{z-index:4!important}
 
-/* V0.22.42 forced PWA install gate */
+/* V0.22.43 forced PWA install gate */
 .maru-install-gate{display:none}
 html.maru-browser body{
   margin:0!important;
