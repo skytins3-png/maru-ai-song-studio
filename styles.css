@@ -167,3 +167,67 @@ body.audience-mode .audience-lyrics{display:block!important;margin:12px 0 0!impo
 body.audience-mode .audience-lyrics.empty{display:none!important}
 body.audience-mode .audience-status{margin:8px 4px 0;color:#efe8fb;font-size:14px;text-align:center;background:rgba(18,12,30,.72);border:1px solid #594574;border-radius:999px;padding:8px 12px;backdrop-filter:blur(5px)}
 @media(max-width:620px){body.audience-mode .audience-view{padding:6px!important}body.audience-mode .audience-stage{width:min(430px,98vw)!important;margin-top:4px!important}body.audience-mode .audience-cover-wrap{aspect-ratio:9/12.2!important;max-height:72dvh!important;border-radius:22px!important}body.audience-mode .audience-overlay{padding:14px 14px 16px!important}}
+
+/* V0.22.33 per-song media controls */
+.broadcast-queue .qmedia{display:inline-flex;gap:3px;align-items:center;flex:0 0 auto}
+.broadcast-queue .qmedia button{min-width:30px;height:30px;padding:0 5px;border-radius:9px;font-size:14px;line-height:1;background:rgba(255,255,255,.06);border:1px solid rgba(170,130,255,.22)}
+.broadcast-queue .qmedia button.active{background:rgba(124,73,255,.28);border-color:rgba(201,170,255,.7);box-shadow:0 0 0 1px rgba(157,104,255,.18) inset}
+@media(max-width:680px){.broadcast-queue .qrow{grid-template-columns:auto auto auto minmax(80px,1fr);gap:5px}.broadcast-queue .qmedia{grid-column:4/-1;justify-self:start;margin-top:4px}.broadcast-queue .qmove,.broadcast-queue .qfav,.broadcast-queue .qdel{margin-top:4px}}
+
+/* V0.22.35 — per-song media controls stay visible inside each broadcast row. */
+.broadcast-queue .qrow{
+  grid-template-columns:38px 26px 30px minmax(0,1fr) 34px 38px 38px;
+  grid-template-areas:
+    "play select num title move fav del"
+    ". . . media media media media";
+  row-gap:6px;
+}
+.broadcast-queue .qplay{grid-area:play}
+.broadcast-queue .qselect{grid-area:select}
+.broadcast-queue .qnum{grid-area:num}
+.broadcast-queue .qtitle{grid-area:title}
+.broadcast-queue .qmove{grid-area:move}
+.broadcast-queue .qfav{grid-area:fav}
+.broadcast-queue .qdel{grid-area:del}
+.broadcast-queue .qmedia{
+  grid-area:media;
+  display:flex;
+  gap:6px;
+  align-items:center;
+  justify-content:flex-start;
+  min-width:0;
+  margin:0;
+}
+.broadcast-queue .qmedia button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  min-width:64px;
+  height:34px;
+  padding:0 9px;
+  border-radius:9px;
+  font-size:14px;
+  white-space:nowrap;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(170,130,255,.28);
+  color:#f7f2ff;
+}
+.broadcast-queue .qmedia button b{font-size:12px;font-weight:800}
+.broadcast-queue .qmedia button.active{background:rgba(124,73,255,.32);border-color:rgba(201,170,255,.85);box-shadow:0 0 0 1px rgba(157,104,255,.18) inset}
+.broadcast-queue .qmedia .media-clear{min-width:58px;color:#ffb8c2;border-color:rgba(255,100,130,.35)}
+@media(max-width:430px){
+  .broadcast-queue .qrow{
+    grid-template-columns:36px 24px 26px minmax(72px,1fr) 30px 36px 36px;
+    grid-template-areas:
+      "play select num title move fav del"
+      ". . . media media media media";
+    gap:4px;
+    row-gap:6px;
+    padding:7px 5px 9px;
+  }
+  .broadcast-queue .qmedia{overflow-x:auto;max-width:100%;padding-bottom:1px;scrollbar-width:none}
+  .broadcast-queue .qmedia::-webkit-scrollbar{display:none}
+  .broadcast-queue .qmedia button{min-width:58px;height:32px;padding:0 7px;gap:3px}
+  .broadcast-queue .qmedia button b{font-size:11px}
+}
