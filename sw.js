@@ -1,5 +1,5 @@
-const CACHE='maru-music-v0.22.46-clean';
-const FILES=['./','index.html','styles.css?v=0.22.46','score.css?v=0.22.46','vendor/vexflow.js?v=5.0.0','vendor/sfumato.js?v=0.22.46','samples/GENERALUSER-LICENSE.txt','vendor/SOUNDFONT2-ESM-LICENSE.txt','vendor/SFUMATO-LICENSE.txt','app.js?v=0.22.46','manifest.webmanifest','icons/icon.svg','icons/icon-192.png','icons/icon-512.png'];
+const CACHE='maru-music-v0.22.47-clean';
+const FILES=['./','index.html','styles.css?v=0.22.47','score.css?v=0.22.47','vendor/vexflow.js?v=5.0.0','vendor/sfumato.js?v=0.22.47','samples/GENERALUSER-LICENSE.txt','vendor/SOUNDFONT2-ESM-LICENSE.txt','vendor/SFUMATO-LICENSE.txt','app.js?v=0.22.47','manifest.webmanifest','icons/icon.svg','icons/icon-192.png','icons/icon-512.png'];
 self.addEventListener('install',e=>{self.skipWaiting();e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)))});
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('maru-music-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
 self.addEventListener('fetch',e=>{
