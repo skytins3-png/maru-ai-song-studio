@@ -174,7 +174,7 @@ body.audience-mode .audience-status{margin:8px 4px 0;color:#efe8fb;font-size:14p
 .broadcast-queue .qmedia button.active{background:rgba(124,73,255,.28);border-color:rgba(201,170,255,.7);box-shadow:0 0 0 1px rgba(157,104,255,.18) inset}
 @media(max-width:680px){.broadcast-queue .qrow{grid-template-columns:auto auto auto minmax(80px,1fr);gap:5px}.broadcast-queue .qmedia{grid-column:4/-1;justify-self:start;margin-top:4px}.broadcast-queue .qmove,.broadcast-queue .qfav,.broadcast-queue .qdel{margin-top:4px}}
 
-/* V0.22.69 — per-song media controls stay visible inside each broadcast row. */
+/* V0.22.70 — per-song media controls stay visible inside each broadcast row. */
 .broadcast-queue .qrow{
   grid-template-columns:38px 26px 30px minmax(0,1fr) 34px 38px 38px;
   grid-template-areas:
@@ -232,7 +232,7 @@ body.audience-mode .audience-status{margin:8px 4px 0;color:#efe8fb;font-size:14p
   .broadcast-queue .qmedia button b{font-size:11px}
 }
 
-/* V0.22.69 — ultra-compact BIGO floating viewer: media + title only */
+/* V0.22.70 — ultra-compact BIGO floating viewer: media + title only */
 body.audience-mode{margin:0!important;padding:0!important;background:transparent!important;overflow:hidden!important;min-width:0!important;min-height:0!important}
 body.audience-mode .audience-view{display:block!important;margin:0!important;padding:0!important;min-height:100dvh!important;width:100vw!important;height:100dvh!important;background:transparent!important;overflow:hidden!important;pointer-events:none!important}
 body.audience-mode .audience-stage{display:block!important;margin:0!important;padding:0!important;width:100vw!important;height:100dvh!important;min-height:0!important;max-width:none!important;pointer-events:auto!important}
@@ -245,7 +245,7 @@ body.audience-mode .audience-overlay h1{margin:0!important;padding:0!important;c
 body.audience-mode .audience-now,body.audience-mode .audience-lyrics,body.audience-mode .audience-status{display:none!important}
 @media(max-width:620px){body.audience-mode .audience-view,body.audience-mode .audience-stage{margin:0!important;padding:0!important;width:100vw!important;height:100dvh!important}body.audience-mode .audience-cover-wrap{width:100vw!important;height:100dvh!important;max-height:none!important;aspect-ratio:auto!important;border-radius:0!important}body.audience-mode .audience-overlay{padding:7px 9px 9px!important}}
 
-/* V0.22.69 popup touch playback controls */
+/* V0.22.70 popup touch playback controls */
 .viewer-touch-controls{
   position:absolute;
   left:50%;
@@ -282,7 +282,7 @@ body.audience-mode .audience-now,body.audience-mode .audience-lyrics,body.audien
   transform:scale(.97);
 }
 
-/* V0.22.69 direct popup controls + no-crop media */
+/* V0.22.70 direct popup controls + no-crop media */
 body.audience-mode .audience-cover-wrap{
   touch-action:manipulation!important;
   background:#000!important;
@@ -362,7 +362,7 @@ body.audience-mode .audience-end-greeting{
   backdrop-filter:blur(6px)!important;
 }
 
-/* V0.22.69 installed PWA fullscreen audience mode */
+/* V0.22.70 installed PWA fullscreen audience mode */
 @media (display-mode: fullscreen), (display-mode: standalone) {
   body.audience-mode{margin:0!important;padding:0!important;background:#000!important;overflow:hidden!important;}
   body.audience-mode .audience-viewer{position:fixed!important;inset:0!important;width:100vw!important;height:100dvh!important;max-width:none!important;margin:0!important;padding:0!important;border:0!important;border-radius:0!important;background:#000!important;}
@@ -374,7 +374,7 @@ body.audience-mode .audience-end-greeting{
 }
 body.pwa-installed #pwaInstallBtn{display:none!important;}
 
-/* V0.22.69 blur-fill audience media */
+/* V0.22.70 blur-fill audience media */
 body.audience-mode .audience-cover-wrap{background:#000!important;}
 body.audience-mode .audience-video-bg,
 body.audience-mode .audience-cover-bg{
@@ -404,7 +404,7 @@ body.audience-mode .audience-media-shade{z-index:2!important}
 body.audience-mode .audience-overlay{z-index:3!important}
 body.audience-mode .audience-touch-controls{z-index:4!important}
 
-/* V0.22.69 forced PWA install gate */
+/* V0.22.70 forced PWA install gate */
 .maru-install-gate{display:none}
 html.maru-browser body{
   margin:0!important;
@@ -437,13 +437,13 @@ html.maru-browser .maru-install-gate{
 #maruInstallGateStatus{display:block;margin-top:14px;color:#796e89;font-size:13px;line-height:1.45}
 html.maru-installed .maru-install-gate{display:none!important}
 
-/* V0.22.69 single-decoder MP4 playback */
+/* V0.22.70 single-decoder MP4 playback */
 body.audience-mode .audience-video-bg{display:none!important;}
 body.audience-mode .audience-cover-wrap{background-color:#2c1d45!important;background-repeat:no-repeat!important;background-size:cover!important;background-position:center!important;}
 body.audience-mode .audience-cover-bg{position:absolute!important;inset:-8%!important;width:116%!important;height:116%!important;object-fit:cover!important;filter:blur(24px) brightness(.55)!important;transform:scale(1.06)!important;z-index:0!important;pointer-events:none!important;}
 body.audience-mode #audienceVideo,body.audience-mode #audienceCover{z-index:1!important;background:transparent!important;object-fit:contain!important;}
 
-/* V0.22.69 live canvas sidebar fill */
+/* V0.22.70 live canvas sidebar fill */
 body.audience-mode .audience-cover-wrap{background:#160f22!important;}
 body.audience-mode .audience-backdrop-canvas{
  position:absolute!important;inset:-5%!important;width:110%!important;height:110%!important;
@@ -461,7 +461,7 @@ body.audience-mode .audience-overlay{z-index:3!important;}
 body.audience-mode .audience-touch-controls{z-index:4!important;}
 
 
-/* V0.22.69 — BIGO floating popup: remove LEFT/RIGHT black bars in the popup itself */
+/* V0.22.70 — BIGO floating popup: remove LEFT/RIGHT black bars in the popup itself */
 html:has(body.bigo-float-mode), body.audience-mode.bigo-float-mode{
   margin:0!important;
   padding:0!important;
@@ -517,7 +517,7 @@ body.audience-mode.bigo-float-mode .audience-overlay{z-index:3!important;}
 body.audience-mode.bigo-float-mode .audience-touch-controls{z-index:4!important;}
 
 
-/* V0.22.69 — FULL BLEED: fill audience/popup screen, cropping top/bottom if necessary */
+/* V0.22.70 — FULL BLEED: fill audience/popup screen, cropping top/bottom if necessary */
 body.audience-mode,
 body.audience-mode .audience-view,
 body.audience-mode .audience-stage,
@@ -564,13 +564,13 @@ body.audience-mode.bigo-float-mode #audienceCover{
   object-position:center center!important;
 }
 
-/* V0.22.69 unified broadcast library + smart sequencing + warm low-mid mic */
+/* V0.22.70 unified broadcast library + smart sequencing + warm low-mid mic */
 .broadcast-unified-import{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:8px 0 6px}.broadcast-unified-import .file-button{display:flex;align-items:center;justify-content:center;min-height:46px;text-align:center}.smart-broadcast-status{border-color:#665088!important;background:#151025!important}.qprofile{display:flex;gap:5px;align-items:center;font-size:10px;color:#cfc3df;white-space:nowrap}.qprofile em{font-style:normal;padding:2px 6px;border-radius:999px;background:#211930;border:1px solid #4f4164}#broadcastVideoPlayer{width:100%;max-height:48vh;margin-top:10px;border-radius:12px;background:#000;object-fit:contain}.broadcast-voice-box{margin:12px 0;padding:12px;border:1px solid #514269;border-radius:14px;background:#100c1e}.broadcast-voice-head{display:flex;flex-direction:column;gap:3px;margin-bottom:10px}.broadcast-voice-head span{font-size:12px;color:#c9bfdc;line-height:1.5}.broadcast-voice-box label{display:block;margin-top:9px}.broadcast-voice-box input[type=range]{width:100%}@media(max-width:760px){.broadcast-unified-import{grid-template-columns:1fr}.broadcast-library-tools{grid-template-columns:1fr!important}.qprofile{grid-column:4/-1;justify-self:start}}
 
-/* V0.22.69 automatic voice-detected low-mid mic */
+/* V0.22.70 automatic voice-detected low-mid mic */
 .broadcast-voice-box.voice-listening{border-color:#5d5570!important}.broadcast-voice-box.voice-active{border-color:#3f8f68!important;box-shadow:0 0 0 1px rgba(98,220,158,.16) inset}.broadcast-voice-box.voice-active #broadcastVoiceStatus{background:#0d2119!important;border-color:#3d815f!important;color:#bff2d5!important}.broadcast-voice-box.voice-listening #broadcastVoiceStatus{color:#d6cde4!important}
 
-/* V0.22.69 rotating announcement + BIGO keyboard/reply mode */
+/* V0.22.70 rotating announcement + BIGO keyboard/reply mode */
 body.audience-mode .audience-announcement{
   position:absolute;left:8px;right:8px;bottom:54px;z-index:6;
   padding:9px 11px;border-radius:11px;background:rgba(8,8,16,.82);
@@ -612,7 +612,7 @@ body.audience-mode.audience-comment-mode #audienceStopBtn,
 body.audience-mode.audience-comment-mode #audienceCommentBtn{display:none!important}
 body.audience-mode.audience-comment-mode #audienceRestoreBtn{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-width:92px!important}
 
-/* V0.22.69 comment mode: keep normal media visible at default popup size */
+/* V0.22.70 comment mode: keep normal media visible at default popup size */
 body.audience-mode.audience-comment-mode,
 body.audience-mode.audience-comment-mode .audience-view,
 body.audience-mode.audience-comment-mode .audience-stage,
@@ -642,7 +642,7 @@ body.audience-mode.audience-comment-mode #audienceRestoreBtn{
   display:inline-flex!important;align-items:center!important;justify-content:center!important;min-width:82px!important;height:30px!important;font-size:11px!important;
 }
 
-/* V0.22.69 subtitle overlay */
+/* V0.22.70 subtitle overlay */
 .subtitle-overlay-box{margin-top:10px;padding:10px;border:1px solid #594574;border-radius:12px;background:#0d0918}
 .subtitle-overlay-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
 .subtitle-overlay-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.subtitle-overlay-grid label{margin:0}
@@ -654,7 +654,7 @@ body.audience-mode .audience-subtitle-overlay[data-position="bottom"]{bottom:10%
 body.audience-mode.audience-comment-mode .audience-subtitle-overlay{left:4%!important;right:4%!important;bottom:15%!important}
 
 
-/* V0.22.69 comment popup: resize only; never hide/blur current media */
+/* V0.22.70 comment popup: resize only; never hide/blur current media */
 body.audience-mode.audience-comment-mode,
 body.audience-mode.audience-comment-mode .audience-view,
 body.audience-mode.audience-comment-mode .audience-stage,
@@ -706,10 +706,10 @@ body.audience-mode.audience-comment-mode #audienceRestoreBtn{
   font-size:11px!important;
 }
 
-/* V0.22.69 automatic subtitle fallback */
+/* V0.22.70 automatic subtitle fallback */
 .auto-caption-toggle{display:flex;align-items:center;gap:8px;margin-top:8px;font-weight:800}.auto-caption-status{margin-top:7px;padding:8px 10px;border-radius:10px;background:rgba(18,14,31,.72);border:1px solid #514367;color:#dcd3eb;font-size:12px;line-height:1.4}.auto-caption-status.live{border-color:#3fae82;color:#c9ffe8}.auto-caption-status.warn{border-color:#a67c37;color:#ffe1a6}
 
-/* V0.22.69 FINAL — karaoke subtitle + pronunciation */
+/* V0.22.70 FINAL — karaoke subtitle + pronunciation */
 .karaoke-option-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
 body.audience-mode .audience-subtitle-overlay{overflow:visible!important;max-height:42%!important}
 body.audience-mode .karaoke-line{display:block;line-height:1.32;letter-spacing:.01em}
@@ -721,7 +721,7 @@ body.audience-mode.audience-comment-mode .subtitle-pronunciation{font-size:.52em
 @media(max-width:420px){body.audience-mode .subtitle-pronunciation{font-size:.55em!important}}
 
 
-/* V0.22.69 FINAL override — comment mode must show opaque current media */
+/* V0.22.70 FINAL override — comment mode must show opaque current media */
 body.audience-mode.audience-comment-mode .audience-cover-wrap{
   background:#000!important;
   opacity:1!important;
@@ -752,7 +752,7 @@ body.audience-mode.audience-comment-mode .audience-touch-controls{
 body.audience-mode .audience-subtitle-overlay:not([hidden]){display:block!important;visibility:visible!important;opacity:1!important;}
 
 
-/* V0.22.69 lightweight title/subtitle sizing — protect video visibility and playback */
+/* V0.22.70 lightweight title/subtitle sizing — protect video visibility and playback */
 body.audience-mode #audienceTitle,
 body.audience-mode .audience-overlay h1{
   font-size:clamp(14px,3.8vw,22px)!important;
@@ -807,7 +807,7 @@ body.audience-mode .subtitle-pronunciation{
 }
 
 
-/* V0.22.69 comment restore control: never cover the video continuously */
+/* V0.22.70 comment restore control: never cover the video continuously */
 body.audience-mode.audience-comment-mode .audience-touch-controls{
   display:flex!important;
   opacity:0!important;
@@ -844,7 +844,7 @@ body.audience-mode .audience-subtitle-overlay{
   font-size:clamp(15px,3.6vw,20px)!important;
 }
 
-/* V0.22.69 per-track preloaded subtitle editor */
+/* V0.22.70 per-track preloaded subtitle editor */
 .subtitle-editor-2266{position:fixed;inset:0;z-index:1000000;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(7,5,14,.68)}
 .subtitle-editor-2266.show{display:flex}
 .subtitle-editor-card-2266{width:min(560px,96vw);max-height:88vh;overflow:auto;padding:16px;border:1px solid #76579f;border-radius:18px;background:#130d22;color:#fff;box-shadow:0 20px 60px #0009}
@@ -852,7 +852,7 @@ body.audience-mode .audience-subtitle-overlay{
 .subtitle-editor-card-2266 textarea{box-sizing:border-box;width:100%;min-height:220px;resize:vertical;padding:12px;border:1px solid #58466f;border-radius:12px;background:#0c0816;color:#fff;font-size:16px;line-height:1.45}
 .subtitle-editor-actions-2266{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.subtitle-editor-actions-2266 button{min-height:44px;padding:8px 12px;border-radius:10px}
 
-/* V0.22.69 broadcast stability: no live canvas mirroring / duplicate backdrop work */
+/* V0.22.70 broadcast stability: no live canvas mirroring / duplicate backdrop work */
 body.audience-mode #audienceBackdropCanvas,
 body.audience-mode .audience-backdrop-canvas,
 body.audience-mode #audienceVideoBg,
@@ -860,7 +860,7 @@ body.audience-mode .audience-video-bg{display:none!important;visibility:hidden!i
 body.audience-mode #audienceVideo{object-fit:cover!important;background:#000!important;}
 
 
-/* V0.22.69 방송 직전 안정화: 모바일 자막 버튼 항상 보임 */
+/* V0.22.70 방송 직전 안정화: 모바일 자막 버튼 항상 보임 */
 .broadcast-queue .qmedia button[data-broadcast-subtitle]{order:-20!important;min-width:76px!important;font-weight:900!important;border-color:rgba(116,231,167,.75)!important;background:rgba(54,147,98,.22)!important}
 @media(max-width:680px){
  .broadcast-queue .qmedia{display:flex!important;flex-wrap:wrap!important;overflow:visible!important;max-width:100%!important;gap:5px!important}
@@ -878,7 +878,7 @@ body:not(.audience-mode) #audienceVideo,body:not(.audience-mode) #audienceVideoB
 body.audience-mode #audienceVideoBg,body.audience-mode #audienceBackdropCanvas{display:none!important}
 
 
-/* V0.22.69 — single broadcast subtitle manager */
+/* V0.22.70 — single broadcast subtitle manager */
 .subtitle-manager-2269{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;padding:12px}
 .subtitle-manager-2269.show{display:flex}
 .subtitle-manager-card-2269{width:min(920px,96vw);max-height:92vh;background:#111827;border:1px solid rgba(255,255,255,.14);border-radius:16px;overflow:hidden;box-shadow:0 20px 70px rgba(0,0,0,.5)}
@@ -891,3 +891,39 @@ body.audience-mode #audienceVideoBg,body.audience-mode #audienceBackdropCanvas{d
 .subtitle-manager-song-2269{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.subtitle-manager-row-2269 strong{font-size:12px}.subtitle-manager-row-2269 strong.has{color:#86efac}.subtitle-manager-row-2269 strong.none{color:#cbd5e1}
 .subtitle-manager-editor-2269{padding:14px;display:flex;flex-direction:column;min-width:0}.subtitle-manager-title-2269{font-weight:700;margin-bottom:8px}.subtitle-manager-editor-2269 textarea{width:100%;box-sizing:border-box;min-height:220px;resize:vertical}.subtitle-manager-actions-2269{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 @media(max-width:720px){.subtitle-manager-2269{padding:6px}.subtitle-manager-card-2269{width:100%;max-height:96vh;border-radius:12px}.subtitle-manager-body-2269{grid-template-columns:1fr;grid-template-rows:minmax(170px,36vh) 1fr;max-height:86vh}.subtitle-manager-list-2269{border-right:0;border-bottom:1px solid rgba(255,255,255,.1)}.subtitle-manager-editor-2269{overflow:auto}.subtitle-manager-editor-2269 textarea{min-height:150px}.subtitle-manager-actions-2269 button{flex:1 1 130px}.subtitle-manager-row-2269{grid-template-columns:28px 1fr auto}.subtitle-manager-row-2269 strong{font-size:11px}}
+
+
+/* V0.22.70 subtitle manager mobile touch/contrast fix */
+.subtitle-manager-2269,
+.subtitle-manager-2269 *{pointer-events:auto}
+.subtitle-manager-card-2269{position:relative;z-index:100000;color:#f8fafc}
+.subtitle-manager-head-2269>button,
+.subtitle-manager-actions-2269>button{
+  position:relative;z-index:2;min-height:48px;min-width:48px;
+  padding:12px 14px;border:1px solid rgba(255,255,255,.22);
+  color:#fff!important;background:#334155!important;
+  opacity:1!important;visibility:visible!important;
+  -webkit-tap-highlight-color:rgba(255,255,255,.15);
+  touch-action:manipulation;pointer-events:auto!important;
+}
+#subtitleManagerAuto2269{background:#1d4ed8!important;color:#fff!important}
+#subtitleManagerSave2269{background:#7c3aed!important;color:#fff!important}
+#subtitleManagerDelete2269{background:#991b1b!important;color:#fff!important}
+#subtitleManagerClose2269{background:#334155!important;color:#fff!important}
+.subtitle-manager-actions-2269{position:relative;z-index:3}
+.subtitle-manager-actions-2269 button:active,
+.subtitle-manager-head-2269>button:active{transform:scale(.98)}
+@media(max-width:720px){
+  .subtitle-manager-card-2269{height:min(96vh,900px);display:flex;flex-direction:column}
+  .subtitle-manager-head-2269{flex:0 0 auto;background:#111827;position:sticky;top:0;z-index:6}
+  .subtitle-manager-body-2269{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+  .subtitle-manager-list-2269{flex:0 0 min(30vh,220px);min-height:130px;overflow:auto}
+  .subtitle-manager-editor-2269{flex:1 1 auto;min-height:0;overflow:auto;padding-bottom:8px}
+  .subtitle-manager-editor-2269 textarea{min-height:120px;max-height:30vh}
+  .subtitle-manager-actions-2269{
+    display:grid!important;grid-template-columns:1fr!important;gap:9px!important;
+    position:sticky;bottom:0;background:#111827;padding:10px 0 4px;margin-top:10px;
+    border-top:1px solid rgba(255,255,255,.12)
+  }
+  .subtitle-manager-actions-2269>button{width:100%!important;min-height:50px!important;font-size:15px!important}
+}
