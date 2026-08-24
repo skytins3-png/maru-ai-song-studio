@@ -1742,23 +1742,16 @@ function setBroadcastAutoCaptionStatus(text,cls=''){const el=$('#broadcastAutoSu
 function publishAutoCaptionText(text){broadcastAutoCaptionText=String(text||'').trim();clearTimeout(autoCaptionFallbackTimer2260);const enabledEl=$('#broadcastSubtitleEnabled');if(enabledEl&&broadcastAutoCaptionText)enabledEl.checked=true;const base=audienceSubtitleState();publishAudienceSubtitleOnly({ ...base,enabled:!!broadcastAutoCaptionText,text:broadcastAutoCaptionText,auto:true,captionAt:Date.now(),titleFallback:false})}
 function stopBroadcastAutoCaption({clear=false}={}){broadcastAutoCaptionActive=false;clearTimeout(broadcastAutoCaptionRestartTimer);try{broadcastAutoCaptionRecognition&&(broadcastAutoCaptionRecognition.onend=null,broadcastAutoCaptionRecognition.stop())}catch{}broadcastAutoCaptionRecognition=null;if(clear){broadcastAutoCaptionText='';if(!($('#broadcastSubtitleText')?.value||'').trim())publishAutoCaptionText('')}setBroadcastAutoCaptionStatus('🎤 자동 자막 대기')}
 function startBroadcastAutoCaption(){
+ // V0.22.73 safety: never start browser SpeechRecognition while music is playing.
+ // The full saved-lyric implementation is installed near the end of this file.
  stopBroadcastAutoCaption({clear:false});
- if(!broadcastAutoCaptionEnabled()){setBroadcastAutoCaptionStatus(($('#broadcastSubtitleText')?.value||'').trim()?'✍ 입력 자막 사용 중':'자동 자막 꺼짐');return false}
- const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
- if(!SR){setBroadcastAutoCaptionStatus('이 브라우저는 자동 음성 자막을 지원하지 않습니다. 직접 자막은 정상 사용됩니다.','warn');return false}
- try{
-  const rec=new SR();broadcastAutoCaptionRecognition=rec;broadcastAutoCaptionActive=true;rec.continuous=true;rec.interimResults=true;rec.maxAlternatives=1;rec.lang=broadcastAutoCaptionLang();
-  rec.onstart=()=>setBroadcastAutoCaptionStatus(`🟢 자동 자막 인식 중 · ${rec.lang}`,'live');
-  rec.onresult=e=>{let finalText='',interim='';for(let i=e.resultIndex;i<e.results.length;i++){const t=e.results[i][0]?.transcript||'';if(e.results[i].isFinal)finalText+=t+' ';else interim+=t}const next=(finalText||interim||broadcastAutoCaptionText).trim();if(next)publishAutoCaptionText(next)};
-  rec.onerror=e=>{const m=e?.error||'recognition error';if(m==='not-allowed'||m==='service-not-allowed'){broadcastAutoCaptionActive=false;setBroadcastAutoCaptionStatus('마이크 권한이 없어 자동 자막을 시작하지 못했습니다.','warn')}else setBroadcastAutoCaptionStatus(`자동 자막 재시도 중 · ${m}`,'warn')};
-  rec.onend=()=>{broadcastAutoCaptionRecognition=null;if(broadcastAutoCaptionActive&&broadcastRunning&&!broadcastPaused&&broadcastAutoCaptionEnabled())broadcastAutoCaptionRestartTimer=setTimeout(startBroadcastAutoCaption,450)};
-  rec.start();return true
- }catch(e){console.warn('auto subtitle start',e);setBroadcastAutoCaptionStatus('자동 자막을 시작하지 못했습니다. 직접 자막은 계속 사용할 수 있습니다.','warn');return false}
+ setBroadcastAutoCaptionStatus('📝 저장 가사 자동 자막 대기 · 마이크 사용 안 함');
+ return false;
 }
 function refreshBroadcastSubtitleMode(){saveBroadcastSettings();if(($('#broadcastSubtitleText')?.value||'').trim()){stopBroadcastAutoCaption({clear:false});publishSubtitleOverlay();setBroadcastAutoCaptionStatus('✍ 입력 자막 사용 중')}else if(broadcastRunning&&!broadcastPaused)startBroadcastAutoCaption();else{publishSubtitleOverlay();setBroadcastAutoCaptionStatus('🎤 자동 자막 대기')}}
 
 async function broadcastTransitionToNext(manual=false){if(!broadcastRunning||broadcastTransitioning||broadcastPaused)return;broadcastTransitioning=true;try{if(!manual){await playRotatingCoverIntro();if(!broadcastRunning||broadcastPaused)return;}let next=broadcastIndex+1;if(next>=broadcastFiles.length){if($('#broadcastLoop')?.checked)next=0;else{return broadcastStop(true)}}const nextTitle=broadcastSafeTitle(broadcastFiles[next].name);if(!manual){const custom=$('#broadcastCustomMessage')?.value?.trim();if($('#broadcastCustomEnabled')?.checked&&custom){$('#broadcastNow').textContent=`멘트 재생 중 · ${custom}`;publishAudienceState({status:'안내 중',message:custom});await speakBroadcast(custom)}const tpl=$('#broadcastNextTemplate')?.value||'다음 곡은 {title}입니다.';if($('#broadcastNextEnabled')?.checked){const text=tpl.replaceAll('{title}',nextTitle);$('#broadcastNow').textContent=`다음곡 안내 · ${text}`;publishAudienceState({title:nextTitle,status:'다음 곡 안내',message:text});await speakBroadcast(text)}}if(!broadcastRunning||broadcastPaused)return;await playBroadcastIndex(next)}finally{broadcastTransitioning=false;updateBroadcastDock()}}
-async function playBroadcastIndex(i){if(!broadcastRunning||broadcastPaused||!broadcastFiles[i])return;broadcastIndex=i;renderBroadcastQueue();const f=broadcastFiles[i],el=broadcastIsVideoFile(f)?$('#broadcastVideoPlayer'):$('#broadcastAudio');if(!el)return;stopOtherBroadcastPlayer(el);if(broadcastUrls[i])try{URL.revokeObjectURL(broadcastUrls[i])}catch{};broadcastUrls[i]=URL.createObjectURL(f);el.src=broadcastUrls[i];el.muted=false;el.volume=1;el.load();$('#broadcastAudio').style.display=broadcastIsVideoFile(f)?'none':'block';$('#broadcastVideoPlayer').style.display=broadcastIsVideoFile(f)?'block':'none';const title=broadcastSafeTitle(f.name);let hasPreloadedSubtitle=false;try{window.maruClearTimedLyric2265?.();hasPreloadedSubtitle=!!(await window.maruSetTimedLyric2265?.(f,title,el))}catch{};markBroadcastRecent(f.name);$('#broadcastNow').textContent=`▶ ${i+1}/${broadcastFiles.length} · ${title} · ${broadcastIsVideoFile(f)?'MP4/영상':'음원'}`;$('#broadcastBadge').textContent=`재생 ${i+1}/${broadcastFiles.length}`;broadcastAutoCaptionText='';clearTimeout(autoCaptionFallbackTimer2260);await applyBroadcastTrackMedia(i);const trackSubtitle=audienceSubtitleState();publishAudienceState({title,trackIndex:i,status:`재생 중 · ${i+1}/${broadcastFiles.length}`,message:audienceText(),subtitle:trackSubtitle});try{await el.play();if(!hasPreloadedSubtitle&&$('#broadcastAutoSubtitle')?.checked)startBroadcastAutoCaption();else stopBroadcastAutoCaption();}catch(e){console.warn('broadcast play',e);toast(broadcastIsVideoFile(f)?'MP4 재생 실패 · H.264 + AAC MP4를 권장합니다.':'재생을 시작하지 못했습니다')}}
+async function playBroadcastIndex(i){if(!broadcastRunning||broadcastPaused||!broadcastFiles[i])return;broadcastIndex=i;renderBroadcastQueue();const f=broadcastFiles[i],el=broadcastIsVideoFile(f)?$('#broadcastVideoPlayer'):$('#broadcastAudio');if(!el)return;stopOtherBroadcastPlayer(el);if(broadcastUrls[i])try{URL.revokeObjectURL(broadcastUrls[i])}catch{};broadcastUrls[i]=URL.createObjectURL(f);el.src=broadcastUrls[i];el.muted=false;el.volume=1;el.load();$('#broadcastAudio').style.display=broadcastIsVideoFile(f)?'none':'block';$('#broadcastVideoPlayer').style.display=broadcastIsVideoFile(f)?'block':'none';const title=broadcastSafeTitle(f.name);let hasPreloadedSubtitle=false;try{if($('#broadcastAutoSubtitle')?.checked)await autoAttachBroadcastSubtitle2266(i,{silent:true});window.maruClearTimedLyric2265?.();hasPreloadedSubtitle=!!(await window.maruSetTimedLyric2265?.(f,title,el))}catch(e){console.warn('subtitle preload',e)};markBroadcastRecent(f.name);$('#broadcastNow').textContent=`▶ ${i+1}/${broadcastFiles.length} · ${title} · ${broadcastIsVideoFile(f)?'MP4/영상':'음원'}`;$('#broadcastBadge').textContent=`재생 ${i+1}/${broadcastFiles.length}`;broadcastAutoCaptionText='';clearTimeout(autoCaptionFallbackTimer2260);await applyBroadcastTrackMedia(i);const trackSubtitle=audienceSubtitleState();publishAudienceState({title,trackIndex:i,status:`재생 중 · ${i+1}/${broadcastFiles.length}`,message:audienceText(),subtitle:trackSubtitle});try{await el.play();if(!hasPreloadedSubtitle&&$('#broadcastAutoSubtitle')?.checked)startBroadcastAutoCaption();else stopBroadcastAutoCaption();}catch(e){console.warn('broadcast play',e);toast(broadcastIsVideoFile(f)?'MP4 재생 실패 · H.264 + AAC MP4를 권장합니다.':'재생을 시작하지 못했습니다')}}
 async function broadcastJumpTo(i){if(!broadcastFiles[i])return;if(!broadcastRunning){broadcastRunning=true;broadcastPaused=false;$('#broadcastStop').disabled=false;$('#broadcastPauseBtn').disabled=false}else{broadcastPaused=false;try{broadcastCurrentPlayer()?.pause()}catch{}}await playBroadcastIndex(i);updateBroadcastDock()}
 async function broadcastPrevious(){if(!broadcastFiles.length)return pickBroadcastSongs();const was=broadcastIndex,prev=was>0?was-1:0;if(!broadcastRunning)return broadcastJumpTo(prev);broadcastPaused=false;try{broadcastCurrentPlayer()?.pause()}catch{};await playBroadcastIndex(prev);toast(was<=0?'첫 곡을 처음부터 다시 재생합니다':'이전 곡으로 돌아갑니다')}
 function resolveAudienceStartIndex2255(){
@@ -2516,38 +2509,41 @@ openBroadcastSubtitleEditor2266=async function(index){
  document.getElementById('subtitleClose2266').onclick=()=>dlg.classList.remove('show');
 };
 
-/* V0.22.72 AUTO SUBTITLE — keep playback alive while Android speech recognition starts/restarts */
+/* V0.22.73 AUTO SUBTITLE — NO MIC / NO AUDIO FOCUS
+   Android SpeechRecognition is intentionally disabled during music playback.
+   Auto subtitle now means: use the per-track saved lyric, or auto-attach a lyric
+   already stored in MARU by matching the song title. This never opens the mic,
+   never acquires audio focus, and therefore cannot add click/duck/pause artifacts. */
 let autoCaptionPlaybackGuard2272=0;
-function ensureAutoCaptionPlayback2272(expectedTime=null){
-  clearTimeout(autoCaptionPlaybackGuard2272);
-  autoCaptionPlaybackGuard2272=setTimeout(async()=>{
-    try{
-      if(!broadcastRunning||broadcastPaused)return;
-      const p=broadcastCurrentPlayer?.();if(!p||!p.src)return;
-      if(Number.isFinite(expectedTime)&&Math.abs((p.currentTime||0)-expectedTime)>1.2&&p.paused){try{p.currentTime=Math.max(0,expectedTime)}catch{}}
-      if(p.paused||p.ended){try{await p.play()}catch(e){console.warn('auto subtitle playback resume',e)}}
-    }catch(e){}
-  },180);
-}
 
-startBroadcastAutoCaption=function(){
+startBroadcastAutoCaption=async function(){
   stopBroadcastAutoCaption({clear:false});
-  if(!broadcastAutoCaptionEnabled()){setBroadcastAutoCaptionStatus(($('#broadcastSubtitleText')?.value||'').trim()?'✍ 입력 자막 사용 중':'자동 자막 꺼짐');return false}
-  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-  if(!SR){setBroadcastAutoCaptionStatus('이 브라우저는 자동 음성 자막을 지원하지 않습니다. 직접 자막은 정상 사용됩니다.','warn');return false}
-  const player=broadcastCurrentPlayer?.();
-  const keepTime=player&&Number.isFinite(player.currentTime)?player.currentTime:null;
+  if(!broadcastAutoCaptionEnabled()){
+    setBroadcastAutoCaptionStatus((($('#broadcastSubtitleText')?.value||'').trim())?'✍ 입력 자막 사용 중':'자동 자막 꺼짐');
+    return false;
+  }
+  const i=broadcastIndex;
+  if(!(i>=0&&broadcastFiles[i])){
+    setBroadcastAutoCaptionStatus('📝 저장 가사 자동 자막 대기');
+    return false;
+  }
   try{
-    const rec=new SR();broadcastAutoCaptionRecognition=rec;broadcastAutoCaptionActive=true;
-    rec.continuous=true;rec.interimResults=true;rec.maxAlternatives=1;rec.lang=broadcastAutoCaptionLang();
-    rec.onstart=()=>{setBroadcastAutoCaptionStatus(`🟢 자동 자막 인식 중 · ${rec.lang}`,'live');ensureAutoCaptionPlayback2272(keepTime)};
-    rec.onresult=e=>{let finalText='',interim='';for(let i=e.resultIndex;i<e.results.length;i++){const t=e.results[i][0]?.transcript||'';if(e.results[i].isFinal)finalText+=t+' ';else interim+=t}const next=(finalText||interim||broadcastAutoCaptionText).trim();if(next)publishAutoCaptionText(next);ensureAutoCaptionPlayback2272(null)};
-    rec.onerror=e=>{const m=e?.error||'recognition error';if(m==='not-allowed'||m==='service-not-allowed'){broadcastAutoCaptionActive=false;setBroadcastAutoCaptionStatus('마이크 권한이 없어 자동 자막을 시작하지 못했습니다.','warn')}else setBroadcastAutoCaptionStatus(`자동 자막 재시도 중 · ${m}`,'warn');ensureAutoCaptionPlayback2272(null)};
-    rec.onend=()=>{broadcastAutoCaptionRecognition=null;ensureAutoCaptionPlayback2272(null);if(broadcastAutoCaptionActive&&broadcastRunning&&!broadcastPaused&&broadcastAutoCaptionEnabled())broadcastAutoCaptionRestartTimer=setTimeout(startBroadcastAutoCaption,2200)};
-    rec.start();
-    // Some Android devices briefly pause/duck the media element when SpeechRecognition acquires audio focus.
-    // Re-check several times, without reloading src or resetting the track.
-    [260,700,1400].forEach(ms=>setTimeout(()=>ensureAutoCaptionPlayback2272(keepTime),ms));
-    return true;
-  }catch(e){console.warn('auto subtitle start',e);setBroadcastAutoCaptionStatus('자동 자막을 시작하지 못했습니다. 직접 자막은 계속 사용할 수 있습니다.','warn');ensureAutoCaptionPlayback2272(keepTime);return false}
+    // Search MARU saved lyrics and persist them as this track's subtitle when available.
+    await autoAttachBroadcastSubtitle2266(i,{silent:true});
+    const f=broadcastFiles[i], title=broadcastSafeTitle(f.name), media=broadcastCurrentPlayer?.();
+    window.maruClearTimedLyric2265?.();
+    const ok=!!(await window.maruSetTimedLyric2265?.(f,title,media));
+    if(ok){
+      setBroadcastAutoCaptionStatus('📝 저장 가사 자동 자막 사용 중 · 마이크 사용 안 함','live');
+      try{window.maruUpdateTimedLyric2265?.(media)}catch{}
+      return true;
+    }
+    setBroadcastAutoCaptionStatus('저장된 가사가 없습니다 · 💬 자막 관리에서 가사를 저장하면 끊김 없이 표시됩니다.','warn');
+    return false;
+  }catch(e){
+    console.warn('saved lyric auto subtitle',e);
+    setBroadcastAutoCaptionStatus('저장 가사 자동 자막을 불러오지 못했습니다.','warn');
+    return false;
+  }
 };
+
