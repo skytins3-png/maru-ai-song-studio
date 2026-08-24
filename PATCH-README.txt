@@ -1,21 +1,16 @@
-MARU MUSIC LIVE V0.22.73 자막 수정
+MARU MUSIC LIVE V0.22.74 — 가사 없는 곡 자동 자막
 
-수정 내용
-1. 음악 재생 중 브라우저 SpeechRecognition(마이크 자동 음성인식)을 사용하지 않습니다.
-2. 자동 자막 체크 시 Android 오디오 포커스를 건드리지 않아 클릭음/순간 끊김을 방지합니다.
-3. 곡별 저장 자막이 있으면 즉시 사용합니다.
-4. 곡별 자막이 없으면 MARU '내 곡 저장함'에서 같은 제목의 저장 가사를 자동으로 찾아 연결합니다.
-5. 저장 가사도 없으면 마이크를 켜지 않고 '자막 관리에서 가사를 저장' 안내만 표시합니다.
-6. V0.22.73 캐시 버전으로 변경해 이전 JS가 남지 않도록 했습니다.
+핵심 수정
+- 저장 가사가 있으면 기존처럼 저장 가사를 자막으로 사용
+- 저장 가사가 없으면 현재 재생 중인 오디오/영상의 MediaStream 오디오 트랙을 직접 SpeechRecognition에 전달
+- getUserMedia()를 호출하지 않음: 마이크를 열지 않음
+- SpeechRecognition.start()를 인자 없이 호출하지 않음: 마이크 폴백 금지
+- Android 마이크 오디오 포커스 전환에 따른 클릭음/순간 끊김 방지
+- 직접 오디오 트랙 인식 미지원 브라우저에서는 음악은 계속 재생하고 경고만 표시
 
-적용 파일
-- app.js
-- index.html
-- sw.js
+브라우저 조건
+- 최신 브라우저의 SpeechRecognition.start(audioTrack) + HTMLMediaElement.captureStream() 지원 필요
+- 지원 범위가 제한적인 API이므로 기기/브라우저에 따라 직접 음원 인식이 불가능할 수 있음
 
 기준 원본
-- github-pages (44).zip / V0.22.72
-
-주의
-이 ZIP은 25MB 제한을 피하기 위한 수정 패치입니다.
-기존 GitHub Pages 소스에서 위 3개 파일을 덮어쓰면 됩니다.
+- github-pages(6).zip / V0.22.73
