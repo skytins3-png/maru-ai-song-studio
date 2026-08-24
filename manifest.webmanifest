@@ -2,7 +2,7 @@
   "id": "./",
   "name": "MARU WORLD MUSIC MAKER",
   "short_name": "MARU MUSIC",
-  "start_url": "./?v=2265",
+  "start_url": "./?v=2266",
   "scope": "./",
   "display": "fullscreen",
   "display_override": [
