@@ -1880,7 +1880,7 @@ async function openBroadcastSubtitleManager2269(){const dlg=ensureBroadcastSubti
 
 prepareNoteEditor();renderLearningProfile();
 try{const b2269=document.getElementById('openBroadcastSubtitleManager');if(b2269)b2269.onclick=openBroadcastSubtitleManager2269}catch(e){console.warn('subtitle manager bind 2269',e)}
-refreshProPreviewIndex(true).catch(()=>{});renderProCompositionCoach();restoreMasterSampleVolume();restoreMixerEq();renderAuto64Status();setupCollapsibleCards();setupCoreLauncher();updateSourceVoiceValue();renderWordChoices();renderRegions();renderInstruments();autoPick();buildTitleCandidates(lastProfile,false);renderSaved();updateScoreMode();applyScoreView('fit');updateRangeUI();if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js?v=0.22.71-clean');
+refreshProPreviewIndex(true).catch(()=>{});renderProCompositionCoach();restoreMasterSampleVolume();restoreMixerEq();renderAuto64Status();setupCollapsibleCards();setupCoreLauncher();updateSourceVoiceValue();renderWordChoices();renderRegions();renderInstruments();autoPick();buildTitleCandidates(lastProfile,false);renderSaved();updateScoreMode();applyScoreView('fit');updateRangeUI();if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js?v=0.22.75-clean');
 $('#makeTriplet').onclick=makeSelectedTriplet;
 
 
@@ -2654,3 +2654,162 @@ stopBroadcastAutoCaption=function({clear=false}={}){
   setBroadcastAutoCaptionStatus('🎵 음원 직접 자동 자막 대기');
 };
 
+
+/* V0.22.75 PRE-GENERATED AI SUBTITLES — Whisper runs BEFORE broadcast, never during playback.
+   - No getUserMedia(), no SpeechRecognition, no captureStream().
+   - Missing subtitles are generated from the selected audio file itself with a browser-side Whisper model.
+   - The first run downloads and caches the small multilingual model. Subsequent runs reuse the cache.
+   - AI work is cancelled as soon as broadcast starts so playback audio remains untouched. */
+const MARU_ASR_MODEL_2275='Xenova/whisper-tiny';
+const MARU_ASR_CDN_2275='https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2/+esm';
+let maruAsrWorker2275=null,maruAsrSeq2275=0,maruAsrPending2275=new Map(),maruAsrQueue2275=[],maruAsrQueueBusy2275=false;
+
+function maruAsrStatus2275(text,cls=''){
+  try{setBroadcastAutoCaptionStatus(text,cls)}catch{}
+  const s=document.getElementById('subtitleManagerStatus2269');
+  if(s&&document.getElementById('broadcastSubtitleManager2269')?.classList.contains('show'))s.textContent=text;
+}
+function maruAsrWorkerCode2275(){return `
+import { pipeline, env } from '${MARU_ASR_CDN_2275}';
+env.allowLocalModels = false;
+let transcriber = null;
+async function getPipe(){
+  if(transcriber)return transcriber;
+  self.postMessage({type:'status',text:'AI 자막 모델 준비 중 · 첫 실행은 모델을 내려받습니다'});
+  transcriber = await pipeline('automatic-speech-recognition','${MARU_ASR_MODEL_2275}',{
+    quantized:true,
+    progress_callback:(p)=>{try{self.postMessage({type:'progress',data:p})}catch{}}
+  });
+  self.postMessage({type:'status',text:'AI 자막 모델 준비 완료'});
+  return transcriber;
+}
+self.onmessage=async(e)=>{
+  const {id,audio}=e.data||{};
+  if(!id||!audio)return;
+  try{
+    const pipe=await getPipe();
+    self.postMessage({type:'status',id,text:'음원에서 보컬 자막 분석 중…'});
+    const out=await pipe(audio,{chunk_length_s:25,stride_length_s:4,return_timestamps:true});
+    self.postMessage({type:'done',id,result:out});
+  }catch(err){self.postMessage({type:'error',id,error:String(err?.message||err)})}
+};`}
+function ensureMaruAsrWorker2275(){
+  if(maruAsrWorker2275)return maruAsrWorker2275;
+  const url=URL.createObjectURL(new Blob([maruAsrWorkerCode2275()],{type:'text/javascript'}));
+  const w=new Worker(url,{type:'module'});URL.revokeObjectURL(url);
+  w.onmessage=(e)=>{
+    const m=e.data||{};
+    if(m.type==='status'){maruAsrStatus2275(m.text,m.text?.includes('완료')?'live':'');return}
+    if(m.type==='progress'){
+      const p=m.data||{};let pct='';
+      if(Number.isFinite(p.progress))pct=` ${Math.max(0,Math.min(100,Math.round(p.progress)))}%`;
+      if(p.status==='progress'||p.status==='download')maruAsrStatus2275(`AI 자막 모델 내려받는 중${pct}`);
+      return;
+    }
+    const q=maruAsrPending2275.get(m.id);if(!q)return;
+    maruAsrPending2275.delete(m.id);
+    if(m.type==='done')q.resolve(m.result);else q.reject(new Error(m.error||'AI 자막 분석 실패'));
+  };
+  w.onerror=(e)=>{console.warn('ASR worker 2275',e);for(const q of maruAsrPending2275.values())q.reject(new Error('AI 자막 엔진을 불러오지 못했습니다'));maruAsrPending2275.clear()};
+  maruAsrWorker2275=w;return w;
+}
+function cancelMaruAsr2275(reason='방송 시작으로 AI 자막 분석을 중지했습니다.'){
+  try{maruAsrWorker2275?.terminate()}catch{}maruAsrWorker2275=null;
+  for(const q of maruAsrPending2275.values())q.reject(new Error(reason));maruAsrPending2275.clear();
+  maruAsrQueue2275=[];maruAsrQueueBusy2275=false;
+}
+async function decodeAudioMono16k2275(file){
+  const ab=await file.arrayBuffer();
+  const AC=window.AudioContext||window.webkitAudioContext;if(!AC)throw new Error('이 브라우저는 오디오 디코딩을 지원하지 않습니다');
+  const ctx=new AC({latencyHint:'playback'});let buf;
+  try{buf=await ctx.decodeAudioData(ab.slice(0))}finally{try{await ctx.close()}catch{}}
+  const rate=16000,len=Math.max(1,Math.ceil(buf.duration*rate));
+  const off=new OfflineAudioContext(1,len,rate),src=off.createBufferSource();src.buffer=buf;src.connect(off.destination);src.start();
+  const rendered=await off.startRendering();return new Float32Array(rendered.getChannelData(0));
+}
+function asrResultText2275(result){
+  const chunks=Array.isArray(result?.chunks)?result.chunks:[];
+  let pieces=chunks.map(c=>String(c?.text||'').trim()).filter(Boolean);
+  if(!pieces.length&&String(result?.text||'').trim())pieces=[String(result.text).trim()];
+  const out=[];
+  for(const piece of pieces){
+    const sentences=piece.split(/(?<=[.!?。！？])\s+|\s*\n+\s*/).filter(Boolean);
+    for(const sentence of sentences){
+      const s=sentence.replace(/\s+/g,' ').trim();if(!s)continue;
+      const max=/[가-힣一-龥ぁ-んァ-ン]/.test(s)?26:54;
+      if(s.length<=max){out.push(s);continue}
+      let rest=s;
+      while(rest.length>max){let cut=rest.lastIndexOf(' ',max);if(cut<Math.floor(max*.55))cut=max;out.push(rest.slice(0,cut).trim());rest=rest.slice(cut).trim()}
+      if(rest)out.push(rest);
+    }
+  }
+  return cleanBroadcastSubtitle2266(out.filter((x,i,a)=>x&&x!==a[i-1]).join('\n'));
+}
+async function transcribeBroadcastTrack2275(index,{silent=false}={}){
+  index=Number(index);const f=broadcastFiles[index];if(!f)throw new Error('곡을 찾지 못했습니다');
+  if(broadcastRunning&&!broadcastPaused)throw new Error('방송 중에는 AI 자막을 만들지 않습니다. 음악 재생 보호를 위해 방송 정지 후 처리합니다.');
+  const id=broadcastCurrentIds()[index];let r=null;try{r=id?await broadcastDbGet(id):null}catch{}
+  const existing=String(r?.subtitleText||subtitleBackupText2268(id,f.name)||'').trim();if(existing)return existing;
+  const saved=cleanBroadcastSubtitle2266(broadcastSavedLyrics2266(f.name||''));if(saved){await saveBroadcastTrackSubtitle2266(index,saved,{silent:true});return saved}
+  if(!/^audio\//i.test(f.type||'')&&!/\.(mp3|wav|m4a|aac|flac|ogg|webm)$/i.test(f.name||''))throw new Error('현재 자동 생성은 음원 파일부터 지원합니다');
+  maruAsrStatus2275(`🧠 ${broadcastSafeTitle(f.name)} · 음원 준비 중`);
+  const audio=await decodeAudioMono16k2275(f);
+  if(broadcastRunning&&!broadcastPaused)throw new Error('방송이 시작되어 AI 자막 분석을 취소했습니다');
+  const worker=ensureMaruAsrWorker2275(),job=++maruAsrSeq2275;
+  const result=await new Promise((resolve,reject)=>{maruAsrPending2275.set(job,{resolve,reject});worker.postMessage({id:job,audio},[audio.buffer])});
+  const text=asrResultText2275(result);if(!text)throw new Error('보컬 문장을 찾지 못했습니다. 반주가 너무 크거나 보컬이 약한 곡일 수 있습니다.');
+  const ok=await saveBroadcastTrackSubtitle2266(index,text,{silent:true});if(!ok)throw new Error('생성된 자막 저장에 실패했습니다');
+  if(!silent)toast(`✅ ${broadcastSafeTitle(f.name)} · AI 자막 생성 완료`);
+  maruAsrStatus2275(`✅ AI 사전 자막 생성 완료 · ${text.split(/\r?\n/).filter(Boolean).length}줄`,'live');
+  try{await renderBroadcastSubtitleManager2269(index)}catch{}
+  return text;
+}
+async function runMaruAsrQueue2275(){
+  if(maruAsrQueueBusy2275)return;maruAsrQueueBusy2275=true;
+  try{
+    while(maruAsrQueue2275.length){
+      if(broadcastRunning&&!broadcastPaused){maruAsrStatus2275('방송 중에는 AI 자막 생성을 멈춥니다. 재생은 건드리지 않습니다.','warn');break}
+      const id=maruAsrQueue2275.shift(),index=broadcastCurrentIds().indexOf(id);if(index<0)continue;
+      try{await transcribeBroadcastTrack2275(index,{silent:true})}catch(e){console.warn('AI subtitle queue 2275',e);maruAsrStatus2275(`⚠ ${broadcastSafeTitle(broadcastFiles[index]?.name)} · ${e.message||e}`,'warn')}
+    }
+  }finally{maruAsrQueueBusy2275=false}
+}
+function queueNewBroadcastSubtitles2275(files){
+  const ids=new Set((files||[]).map(f=>broadcastFileId(f,f?.name||'audio')));
+  for(const id of broadcastCurrentIds())if(ids.has(id)&&!maruAsrQueue2275.includes(id))maruAsrQueue2275.push(id);
+  setTimeout(runMaruAsrQueue2275,700);
+}
+
+// Registration hook: after the selected tracks are safely stored, generate only missing subtitles, one song at a time.
+const selectBroadcastFiles2275=selectBroadcastFiles;
+selectBroadcastFiles=async function(files){const copy=[...(files||[])];const out=await selectBroadcastFiles2275(files);queueNewBroadcastSubtitles2275(copy);return out};
+const addCurrentSourceToBroadcast2275=addCurrentSourceToBroadcast;
+addCurrentSourceToBroadcast=async function(opts={}){const src=importedAudioSource?.(),f=src?.blob?(src.blob instanceof File?src.blob:new File([src.blob],src.name||'방송곡.wav',{type:src.blob.type||'audio/wav'})):null;const out=await addCurrentSourceToBroadcast2275(opts);if(out&&f)queueNewBroadcastSubtitles2275([f]);return out};
+
+// Never use live SpeechRecognition/captureStream again. Playback only consumes pre-generated/saved subtitles.
+startBroadcastAutoCaption=async function(){
+  try{stopDirectCaption2274?.()}catch{};try{stopBroadcastAutoCaption({clear:false})}catch{}
+  if(!broadcastAutoCaptionEnabled()){setBroadcastAutoCaptionStatus((($('#broadcastSubtitleText')?.value||'').trim())?'✍ 입력 자막 사용 중':'자동 자막 꺼짐');return false}
+  const i=broadcastIndex;if(!(i>=0&&broadcastFiles[i])){setBroadcastAutoCaptionStatus('📝 AI 사전 자막 대기 · 마이크 사용 안 함');return false}
+  const f=broadcastFiles[i],media=broadcastCurrentPlayer?.(),title=broadcastSafeTitle(f.name);
+  try{await autoAttachBroadcastSubtitle2266(i,{silent:true});window.maruClearTimedLyric2265?.();const ok=!!(await window.maruSetTimedLyric2265?.(f,title,media));if(ok){setBroadcastAutoCaptionStatus('📝 사전 생성 자막 재생 중 · 마이크 OFF · 음원 분석 OFF','live');try{window.maruUpdateTimedLyric2265?.(media)}catch{};return true}}catch(e){console.warn('pre subtitle 2275',e)}
+  setBroadcastAutoCaptionStatus('자막이 아직 없습니다. 방송 정지 후 자막 관리의 🤖 AI 자동생성을 눌러 주세요.','warn');return false;
+};
+
+// Add a manual AI button to the central subtitle manager.
+const ensureBroadcastSubtitleManager2275=ensureBroadcastSubtitleManager2269;
+ensureBroadcastSubtitleManager2269=function(){
+  const dlg=ensureBroadcastSubtitleManager2275();
+  const actions=dlg?.querySelector('.subtitle-manager-actions-2269');
+  if(actions&&!document.getElementById('subtitleManagerAI2275')){
+    const b=document.createElement('button');b.type='button';b.id='subtitleManagerAI2275';b.textContent='🤖 음원에서 AI 자동생성';
+    actions.insertBefore(b,actions.firstChild);
+    b.onclick=async()=>{const i=broadcastSubtitleManagerSelected2269;if(i<0)return toast('먼저 곡을 선택하세요');b.disabled=true;try{await transcribeBroadcastTrack2275(i);const t=await broadcastSubtitleTextFresh2269(i);const ta=document.getElementById('subtitleManagerText2269');if(ta)ta.value=t}catch(e){toast(`AI 자막 생성 실패 · ${e.message||e}`);maruAsrStatus2275(`❌ ${e.message||e}`,'warn')}finally{b.disabled=false}}
+  }
+  return dlg;
+};
+
+// Starting/resuming broadcast immediately kills background AI work before any audio playback begins.
+document.getElementById('broadcastStart')?.addEventListener('click',()=>cancelMaruAsr2275('방송 시작으로 AI 자막 분석을 중지했습니다.'),{capture:true});
+document.getElementById('broadcastPauseBtn')?.addEventListener('click',()=>cancelMaruAsr2275('방송 재생 보호를 위해 AI 자막 분석을 중지했습니다.'),{capture:true});
+setBroadcastAutoCaptionStatus('📝 V0.22.75 · 가사 없는 곡은 등록 시 AI 사전 자막 생성 · 방송 중 분석 안 함');
