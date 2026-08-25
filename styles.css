@@ -927,3 +927,35 @@ body.audience-mode #audienceVideoBg,body.audience-mode #audienceBackdropCanvas{d
   }
   .subtitle-manager-actions-2269>button{width:100%!important;min-height:50px!important;font-size:15px!important}
 }
+
+
+/* V0.22.76 BROADCAST VIEW FIX — readable title at bottom, subtitles above it. */
+body.audience-mode .audience-overlay{
+  left:0!important;right:0!important;top:auto!important;bottom:0!important;
+  padding:0 18px max(14px,env(safe-area-inset-bottom))!important;
+  background:linear-gradient(transparent,rgba(0,0,0,.76))!important;
+  text-align:left!important;z-index:7!important;
+}
+body.audience-mode #audienceTitle,
+body.audience-mode .audience-overlay h1{
+  font-size:clamp(30px,8.2vw,58px)!important;
+  line-height:1.08!important;font-weight:950!important;max-width:96%!important;
+  display:block!important;white-space:normal!important;overflow:visible!important;
+  text-overflow:clip!important;-webkit-line-clamp:unset!important;
+  text-shadow:0 3px 12px #000,0 1px 3px #000!important;
+}
+body.audience-mode .audience-subtitle-overlay[data-position="bottom"]{
+  bottom:15%!important;left:5%!important;right:5%!important;
+}
+body.audience-mode .audience-announcement{
+  left:5%!important;right:5%!important;bottom:18%!important;z-index:10!important;
+  padding:10px 13px!important;border-radius:12px!important;
+  background:rgba(0,0,0,.72)!important;color:#fff!important;
+  font-size:clamp(17px,4.8vw,28px)!important;line-height:1.35!important;font-weight:900!important;
+  text-shadow:0 2px 6px #000!important;
+}
+@media(max-width:420px){
+ body.audience-mode #audienceTitle,body.audience-mode .audience-overlay h1{font-size:clamp(28px,8.5vw,42px)!important;}
+ body.audience-mode .audience-subtitle-overlay[data-position="bottom"]{bottom:14%!important;}
+ body.audience-mode .audience-announcement{bottom:18%!important;font-size:clamp(16px,4.8vw,22px)!important;}
+}
