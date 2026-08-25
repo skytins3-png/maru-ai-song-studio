@@ -972,3 +972,24 @@ body.audience-mode.audience-comment-mode #audienceCover{
   object-fit:cover!important;
   object-position:center top!important;
 }
+
+
+/* V0.22.78 — LARGER BROADCAST SONG TITLE
+   Make the current song title clearly readable in the floating BIGO/PWA window.
+   Media crop behavior from V0.22.77 remains unchanged. */
+body.audience-mode #audienceTitle,
+body.audience-mode .audience-overlay h1{
+  font-size:clamp(38px,10.5vw,72px)!important;
+  line-height:1.05!important;
+  font-weight:950!important;
+  letter-spacing:-.02em!important;
+  max-width:96%!important;
+  margin:0!important;
+  text-shadow:0 3px 14px #000,0 1px 4px #000!important;
+}
+@media(max-width:420px){
+  body.audience-mode #audienceTitle,
+  body.audience-mode .audience-overlay h1{
+    font-size:clamp(36px,10.5vw,58px)!important;
+  }
+}
