@@ -959,3 +959,16 @@ body.audience-mode .audience-announcement{
  body.audience-mode .audience-subtitle-overlay[data-position="bottom"]{bottom:14%!important;}
  body.audience-mode .audience-announcement{bottom:18%!important;font-size:clamp(16px,4.8vw,22px)!important;}
 }
+
+/* V0.22.77 — FLOATING VIEW RESIZE CROP ANCHOR
+   Keep the TOP of portrait cover/video visible when the PWA floating window becomes shorter.
+   Any unavoidable cover-crop is taken from the BOTTOM instead of equally from top/bottom. */
+body.audience-mode #audienceVideo,
+body.audience-mode #audienceCover,
+body.audience-mode.bigo-float-mode #audienceVideo,
+body.audience-mode.bigo-float-mode #audienceCover,
+body.audience-mode.audience-comment-mode #audienceVideo,
+body.audience-mode.audience-comment-mode #audienceCover{
+  object-fit:cover!important;
+  object-position:center top!important;
+}
