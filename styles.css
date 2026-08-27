@@ -1109,3 +1109,50 @@ body.audience-mode.screen-share-mode .audience-touch-controls:not(.show){
 .bigo-launch-status[data-state="error"]{border-color:rgba(255,103,103,.55);background:rgba(63,13,13,.72)}
 .bigo-launch-status[data-state="error"] b{color:#ff9d9d}
 #openAudienceView{font-weight:800;min-height:48px}
+
+
+/* V0.22.81 — BIGO + MARU TWO-SCREEN
+   Samsung split-screen target: MARU on top, BIGO on bottom.
+   The web app cannot force Android System UI into split-screen, so this stylesheet
+   guarantees that MARU stays usable and broadcast-clean after the viewport is halved. */
+body.audience-mode.dual-screen-mode,
+body.audience-mode.dual-screen-mode .audience-view,
+body.audience-mode.dual-screen-mode .audience-stage,
+body.audience-mode.dual-screen-mode .audience-cover-wrap{
+  width:100%!important;
+  height:100%!important;
+  min-height:0!important;
+  overflow:hidden!important;
+  background:#000!important;
+}
+body.audience-mode.dual-screen-mode #audienceVideo,
+body.audience-mode.dual-screen-mode #audienceCover{
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  object-position:center top!important;
+}
+body.audience-mode.dual-screen-mode .audience-overlay{
+  padding:20px 10px max(7px,env(safe-area-inset-bottom))!important;
+}
+body.audience-mode.dual-screen-mode #audienceTitle.audience-title-short{font-size:clamp(24px,min(8vw,8vh),40px)!important;}
+body.audience-mode.dual-screen-mode #audienceTitle.audience-title-medium{font-size:clamp(22px,min(7vw,7vh),35px)!important;}
+body.audience-mode.dual-screen-mode #audienceTitle.audience-title-long{font-size:clamp(19px,min(6vw,6vh),30px)!important;}
+body.audience-mode.dual-screen-mode #audienceTitle.audience-title-xlong{font-size:clamp(17px,min(5.2vw,5.2vh),26px)!important;}
+body.audience-mode.dual-screen-mode .audience-subtitle-overlay[data-position="bottom"]{
+  bottom:22%!important;left:3%!important;right:3%!important;max-height:30%!important;
+}
+body.audience-mode.dual-screen-mode .audience-announcement{
+  bottom:24%!important;left:3%!important;right:3%!important;max-height:30%!important;
+}
+@media (max-height:720px){
+  body.audience-mode.dual-screen-mode .audience-overlay{padding:14px 8px 6px!important;}
+  body.audience-mode.dual-screen-mode .audience-subtitle-overlay[data-position="bottom"]{bottom:24%!important;max-height:28%!important;}
+}
+@media (max-height:520px){
+  body.audience-mode.dual-screen-mode .audience-overlay{padding:10px 7px 5px!important;}
+  body.audience-mode.dual-screen-mode #audienceTitle.audience-title-short{font-size:clamp(21px,min(7vw,7vh),32px)!important;}
+  body.audience-mode.dual-screen-mode #audienceTitle.audience-title-medium{font-size:clamp(19px,min(6.3vw,6.3vh),29px)!important;}
+  body.audience-mode.dual-screen-mode #audienceTitle.audience-title-long{font-size:clamp(17px,min(5.5vw,5.5vh),26px)!important;}
+  body.audience-mode.dual-screen-mode #audienceTitle.audience-title-xlong{font-size:clamp(15px,min(4.8vw,4.8vh),23px)!important;}
+}

@@ -16,8 +16,8 @@
   })();
   </script>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=0.22.80">
-  <link rel="stylesheet" href="score.css?v=0.22.80">
+  <link rel="stylesheet" href="styles.css?v=0.22.81">
+  <link rel="stylesheet" href="score.css?v=0.22.81">
   <style>.wide{width:100%;margin-top:16px}.analysis-box{margin-top:12px;padding:14px;border-radius:14px;background:#100c1e;border:1px solid #4b3d68;color:#e9e2f8;line-height:1.65;white-space:pre-line}.audio-analyzer .audio-file{display:block;width:100%;padding:12px;border:1px dashed #6b5b89;border-radius:12px;background:#151126;color:#eee}.audio-analyzer audio{width:100%;margin-top:10px}.audio-analysis-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:12px 0}.audio-stat{padding:10px;border-radius:12px;background:#151126;border:1px solid #403653}.audio-stat b{display:block;font-size:12px;color:#bfb2da}.audio-stat strong{display:block;margin-top:4px;font-size:18px}.analyzed-style{min-height:150px}.analysis-note{display:block;margin-top:10px;line-height:1.55;color:#c9bfdc}.song-mic-level{margin-top:9px;display:flex;align-items:center;gap:10px}.song-mic-track{flex:1;height:12px;border-radius:999px;background:#211a31;overflow:hidden;border:1px solid #514269}.song-mic-fill{width:0;height:100%;background:linear-gradient(90deg,#5da9ff,#7de4a8,#ffd36a);transition:width .08s linear}.song-mic-level small{min-width:72px;color:#cfc5df}@media(max-width:760px){.audio-analysis-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}</style>
 
 <style id="song-studio-easy-style">
@@ -37,7 +37,7 @@
 
   <header>
     <div class="brand">MARU <span>WORLD MUSIC MAKER</span></div>
-    <div class="tag">V0.22.80 · BIGO ONE-TAP FLOW · PRO REFERENCE LEARNING AI · 전문 완성 음원을 기준으로 작곡·편곡·명료도 분석</div>
+    <div class="tag">V0.22.81 · BIGO + MARU TWO-SCREEN · PRO REFERENCE LEARNING AI · 전문 완성 음원을 기준으로 작곡·편곡·명료도 분석</div>
   </header>
   <main>
     <section id="coreLauncher" class="core-launcher" aria-label="핵심 기능">
@@ -111,8 +111,8 @@
             <div id="broadcastPersistStatus" class="analysis-box">💾 방송곡 자동 저장 준비 중…</div>
             <div id="broadcastSmartStatus" class="analysis-box smart-broadcast-status">🎚 자동편성 대기 · 신나는 곡 ↔ 조용한 곡을 번갈아 배치하고 한국·중국·영어·일본 곡을 가능한 범위에서 사이사이 섞습니다.</div>
             <div class="audience-control-box">
-              <div class="actions"><button id="openAudienceView" class="primary" type="button">🚀 BIGO 방송 준비</button><label class="file-button secondary" for="broadcastCoverFile">🖼 기본 사진</label><input id="broadcastCoverFile" type="file" accept="image/*" hidden><label class="file-button secondary" for="broadcastVideoFile">🎬 기본 영상</label><input id="broadcastVideoFile" type="file" accept="video/mp4,video/webm,video/*" hidden></div><div class="audience-media-note">BIGO 화면공유 원터치 준비 모드입니다. 버튼을 누르면 현재 곡/제목/자막 상태를 먼저 저장하고 BIGO 앱을 엽니다. BIGO에서 하단 LIVE → 게임 LIVE → 방송 시작만 직접 누르세요. 방송을 시작한 뒤 MARU로 돌아오면 미니 화면공유 모드로 자동 전환됩니다. 방송목록의 각 곡 옆 🖼/🎬 버튼으로 곡별 커버·영상을 연결하세요.</div>
-              <div id="bigoLaunchStatus" class="bigo-launch-status" data-state="ready"><b>준비</b><span>MARU에서 한 번 누른 뒤 BIGO에서 마지막 방송 시작만 누르면 됩니다.</span></div>
+              <div class="actions"><button id="openAudienceView" class="primary" type="button">📱 BIGO + MARU 2화면</button><label class="file-button secondary" for="broadcastCoverFile">🖼 기본 사진</label><input id="broadcastCoverFile" type="file" accept="image/*" hidden><label class="file-button secondary" for="broadcastVideoFile">🎬 기본 영상</label><input id="broadcastVideoFile" type="file" accept="video/mp4,video/webm,video/*" hidden></div><div class="audience-media-note">BIGO + MARU 2화면 방송 준비 모드입니다. 버튼을 누르면 현재 곡/제목/자막 상태를 저장하고 BIGO를 엽니다. BIGO에서 LIVE → 게임 LIVE → 방송 시작 후 MARU로 돌아오면 MARU가 2화면용 상단 레이아웃으로 자동 전환됩니다. 삼성 분할 화면에서 MARU를 위, BIGO를 아래에 두면 게임 LIVE 화면공유에 두 화면이 함께 보입니다. 방송목록의 각 곡 옆 🖼/🎬 버튼으로 곡별 커버·영상을 연결하세요.</div>
+              <div id="bigoLaunchStatus" class="bigo-launch-status" data-state="ready"><b>준비</b><span>MARU에서 한 번 누르고 BIGO 게임 LIVE를 시작하면 2화면용 MARU가 자동 준비됩니다.</span></div>
               <label>시청자 화면에 표시할 가사·안내 <small>비우면 곡 제목만 크게 표시합니다.</small></label><textarea id="broadcastAudienceText" rows="3" placeholder="가사나 방송 안내를 적어두면 시청자 화면에만 표시됩니다."></textarea>
               <div class="subtitle-overlay-box">
                 <div class="subtitle-overlay-head"><b>💬 자막 오버레이</b><label class="check-label compact"><input id="broadcastSubtitleEnabled" type="checkbox" checked> 사용</label></div>

@@ -1726,14 +1726,14 @@ async function applyAudienceState(state={}){
 }
 function publishAudienceState(partial={}){const prev=readAudienceState();const state={...prev,title:prev.title||'방송 대기',status:prev.status||'MARU MUSIC LIVE',message:audienceText()||prev.message||'',subtitle:prev.subtitle||audienceSubtitleState(),trackId:audienceTrackId||prev.trackId||'',cover:audienceTrackCoverUrl||audienceCoverData||prev.cover||'',video:audienceTrackVideoUrl||audienceVideoUrl||prev.video||'',...partial,updatedAt:Date.now()};try{localStorage.setItem(AUDIENCE_STATE_KEY,JSON.stringify({...state,cover:audienceCoverData||'',video:''}))}catch{}try{audienceChannel?.postMessage(state)}catch{}try{if(new URLSearchParams(location.search).get('mode')==='audience')applyAudienceState(state)}catch{}return state}
 window.addEventListener('beforeunload',()=>{revokeAudiencePopupMediaUrls()});
-function setupAudienceMode(){const q=new URLSearchParams(location.search),audience=q.get('mode')==='audience',bigoFloat=q.get('layout')==='bigo-float'||q.get('share')==='1';document.body.classList.toggle('audience-mode',audience);document.body.classList.toggle('bigo-float-mode',audience&&bigoFloat);document.body.classList.toggle('screen-share-mode',audience&&bigoFloat);applyAudienceState(readAudienceState());const sub=readAudienceSubtitlePacket();if(sub?.subtitle)applyAudienceSubtitle(sub);try{audienceChannel&&(audienceChannel.onmessage=e=>applyAudienceState(e.data||{}))}catch{}try{audienceSubtitleChannel&&(audienceSubtitleChannel.onmessage=e=>applyAudienceSubtitle(e.data||{}))}catch{}window.addEventListener('storage',e=>{if(e.key===AUDIENCE_STATE_KEY)applyAudienceState(readAudienceState());else if(e.key===AUDIENCE_SUBTITLE_KEY)applyAudienceSubtitle(readAudienceSubtitlePacket())})}
+function setupAudienceMode(){const q=new URLSearchParams(location.search),audience=q.get('mode')==='audience',layout=q.get('layout')||'',dual=layout==='bigo-dual'||q.get('dual')==='1',bigoFloat=layout==='bigo-float'||dual||q.get('share')==='1';document.body.classList.toggle('audience-mode',audience);document.body.classList.toggle('bigo-float-mode',audience&&bigoFloat);document.body.classList.toggle('screen-share-mode',audience&&bigoFloat);document.body.classList.toggle('dual-screen-mode',audience&&dual);applyAudienceState(readAudienceState());const sub=readAudienceSubtitlePacket();if(sub?.subtitle)applyAudienceSubtitle(sub);try{audienceChannel&&(audienceChannel.onmessage=e=>applyAudienceState(e.data||{}))}catch{}try{audienceSubtitleChannel&&(audienceSubtitleChannel.onmessage=e=>applyAudienceSubtitle(e.data||{}))}catch{}window.addEventListener('storage',e=>{if(e.key===AUDIENCE_STATE_KEY)applyAudienceState(readAudienceState());else if(e.key===AUDIENCE_SUBTITLE_KEY)applyAudienceSubtitle(readAudienceSubtitlePacket())})}
 function openAudienceView(){const installed=window.matchMedia?.('(display-mode: standalone)').matches||window.matchMedia?.('(display-mode: fullscreen)').matches||window.navigator.standalone===true;if(!installed){try{window.installMaruPwa?.()}catch(e){};return toast('주소창 없는 MARU 앱 설치 후 화면공유 모드를 사용해 주세요.');}publishAudienceState({message:audienceText()});const url=new URL(location.href);url.searchParams.set('mode','audience');url.searchParams.set('layout','bigo-float');url.searchParams.set('share','1');location.href=url.toString()}
 
-/* V0.22.80 — BIGO one-tap handoff
+/* V0.22.81 — BIGO + MARU two-screen handoff
    A web/PWA page cannot press BIGO's internal LIVE/Game LIVE/Go Live controls.
    This flow does the part Android allows: save MARU broadcast state -> open BIGO ->
    when BIGO hands control back to MARU, switch MARU into the prepared screen-share view. */
-const BIGO_FLOW_KEY2280='maru-bigo-screen-share-flow-v2280';
+const BIGO_FLOW_KEY2280='maru-bigo-two-screen-flow-v2281';
 function maruInstalled2280(){return window.matchMedia?.('(display-mode: standalone)').matches||window.matchMedia?.('(display-mode: fullscreen)').matches||window.navigator.standalone===true}
 function isAudienceMode2280(){return new URLSearchParams(location.search).get('mode')==='audience'}
 function setBigoLaunchStatus2280(state,msg){
@@ -1750,12 +1750,13 @@ function readBigoFlow2280(){try{return JSON.parse(localStorage.getItem(BIGO_FLOW
 function clearBigoFlow2280(){try{localStorage.removeItem(BIGO_FLOW_KEY2280)}catch(e){}}
 function enterPreparedAudience2280(){
   if(isAudienceMode2280())return;
-  setBigoLaunchStatus2280('returning','BIGO에서 돌아왔습니다. MARU 미니 화면으로 전환합니다.');
+  setBigoLaunchStatus2280('returning','BIGO에서 돌아왔습니다. MARU를 2화면용 상단 레이아웃으로 전환합니다.');
   publishAudienceState({message:audienceText()});
   const url=new URL(location.href);
   url.searchParams.set('mode','audience');
-  url.searchParams.set('layout','bigo-float');
+  url.searchParams.set('layout','bigo-dual');
   url.searchParams.set('share','1');
+  url.searchParams.set('dual','1');
   url.searchParams.set('from','bigo');
   clearBigoFlow2280();
   // Reload only at the final handoff so audience CSS/PWA bootstrap starts in a clean state.
@@ -1783,9 +1784,9 @@ function startBigoScreenShareFlow2280(){
   const now=Date.now();
   writeBigoFlow2280({startedAt:now,armedAt:now,stage:'waiting-bigo',expiresAt:now+30*60*1000});
   setBigoLaunchStatus2280('opening','현재 곡 상태를 저장했습니다. BIGO 앱을 엽니다.');
-  toast('BIGO가 열립니다 · LIVE → 게임 LIVE → 방송 시작만 눌러 주세요.');
+  toast('BIGO가 열립니다 · 게임 LIVE 시작 후 MARU로 돌아오세요.');
   setTimeout(()=>{
-    setBigoLaunchStatus2280('waiting','BIGO에서 방송 시작 후 MARU로 돌아오면 자동으로 미니 화면이 열립니다.');
+    setBigoLaunchStatus2280('waiting','BIGO 게임 LIVE 시작 후 MARU로 돌아오면 2화면용 상단 화면이 자동 준비됩니다.');
     launchBigoAndroid2280();
   },260);
 }
@@ -1803,10 +1804,10 @@ function maybeResumeBigoFlow2280(){
 (function setupBigoOneTapFlow2280(){
   const bind=()=>{
     const btn=document.getElementById('openAudienceView');
-    if(btn){btn.textContent='🚀 BIGO 방송 준비';btn.title='현재 MARU 화면을 준비한 뒤 BIGO 앱을 엽니다';}
+    if(btn){btn.textContent='📱 BIGO + MARU 2화면';btn.title='MARU를 위, BIGO를 아래에 두는 2화면 방송을 준비합니다';}
     const f=readBigoFlow2280();
-    if(f&&!isAudienceMode2280())setBigoLaunchStatus2280('waiting','BIGO에서 방송 시작 후 MARU로 돌아오면 자동으로 전환됩니다.');
-    if(isAudienceMode2280()&&new URLSearchParams(location.search).get('from')==='bigo')setTimeout(()=>toast('BIGO 화면공유용 MARU 미니 화면 준비 완료'),500);
+    if(f&&!isAudienceMode2280())setBigoLaunchStatus2280('waiting','BIGO 게임 LIVE 시작 후 MARU로 돌아오면 2화면용으로 자동 전환됩니다.');
+    if(isAudienceMode2280()&&new URLSearchParams(location.search).get('from')==='bigo')setTimeout(()=>toast('MARU 2화면 상단 준비 완료 · 분할화면에서 BIGO를 아래에 선택'),500);
   };
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bind,{once:true});else bind();
   document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')setTimeout(maybeResumeBigoFlow2280,450)});
