@@ -1111,7 +1111,7 @@ body.audience-mode.screen-share-mode .audience-touch-controls:not(.show){
 #openAudienceView{font-weight:800;min-height:48px}
 
 
-/* V0.22.81 — BIGO + MARU TWO-SCREEN
+/* V0.22.82 — BIGO + MARU TWO-SCREEN STABLE
    Samsung split-screen target: MARU on top, BIGO on bottom.
    The web app cannot force Android System UI into split-screen, so this stylesheet
    guarantees that MARU stays usable and broadcast-clean after the viewport is halved. */
@@ -1155,4 +1155,18 @@ body.audience-mode.dual-screen-mode .audience-announcement{
   body.audience-mode.dual-screen-mode #audienceTitle.audience-title-medium{font-size:clamp(19px,min(6.3vw,6.3vh),29px)!important;}
   body.audience-mode.dual-screen-mode #audienceTitle.audience-title-long{font-size:clamp(17px,min(5.5vw,5.5vh),26px)!important;}
   body.audience-mode.dual-screen-mode #audienceTitle.audience-title-xlong{font-size:clamp(15px,min(4.8vw,4.8vh),23px)!important;}
+}
+
+
+/* V0.22.82 — short-viewport stability for Samsung split screen.
+   Uses a JS-updated viewport unit as a fallback for browser UI/keyboard resizing. */
+body.audience-mode.dual-screen-mode .audience-view,
+body.audience-mode.dual-screen-mode .audience-stage{
+  height:calc(var(--maru-dual-vh, 1vh) * 100)!important;
+  max-height:100dvh!important;
+}
+@media (orientation:landscape) and (max-height:520px){
+  body.audience-mode.dual-screen-mode .audience-overlay{padding:7px 7px 4px!important;}
+  body.audience-mode.dual-screen-mode .audience-subtitle-overlay[data-position="bottom"]{bottom:19%!important;max-height:25%!important;}
+  body.audience-mode.dual-screen-mode .audience-announcement{bottom:21%!important;max-height:25%!important;}
 }

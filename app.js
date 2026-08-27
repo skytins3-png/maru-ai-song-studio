@@ -1729,11 +1729,11 @@ window.addEventListener('beforeunload',()=>{revokeAudiencePopupMediaUrls()});
 function setupAudienceMode(){const q=new URLSearchParams(location.search),audience=q.get('mode')==='audience',layout=q.get('layout')||'',dual=layout==='bigo-dual'||q.get('dual')==='1',bigoFloat=layout==='bigo-float'||dual||q.get('share')==='1';document.body.classList.toggle('audience-mode',audience);document.body.classList.toggle('bigo-float-mode',audience&&bigoFloat);document.body.classList.toggle('screen-share-mode',audience&&bigoFloat);document.body.classList.toggle('dual-screen-mode',audience&&dual);applyAudienceState(readAudienceState());const sub=readAudienceSubtitlePacket();if(sub?.subtitle)applyAudienceSubtitle(sub);try{audienceChannel&&(audienceChannel.onmessage=e=>applyAudienceState(e.data||{}))}catch{}try{audienceSubtitleChannel&&(audienceSubtitleChannel.onmessage=e=>applyAudienceSubtitle(e.data||{}))}catch{}window.addEventListener('storage',e=>{if(e.key===AUDIENCE_STATE_KEY)applyAudienceState(readAudienceState());else if(e.key===AUDIENCE_SUBTITLE_KEY)applyAudienceSubtitle(readAudienceSubtitlePacket())})}
 function openAudienceView(){const installed=window.matchMedia?.('(display-mode: standalone)').matches||window.matchMedia?.('(display-mode: fullscreen)').matches||window.navigator.standalone===true;if(!installed){try{window.installMaruPwa?.()}catch(e){};return toast('주소창 없는 MARU 앱 설치 후 화면공유 모드를 사용해 주세요.');}publishAudienceState({message:audienceText()});const url=new URL(location.href);url.searchParams.set('mode','audience');url.searchParams.set('layout','bigo-float');url.searchParams.set('share','1');location.href=url.toString()}
 
-/* V0.22.81 — BIGO + MARU two-screen handoff
+/* V0.22.82 — BIGO + MARU two-screen stable handoff
    A web/PWA page cannot press BIGO's internal LIVE/Game LIVE/Go Live controls.
    This flow does the part Android allows: save MARU broadcast state -> open BIGO ->
    when BIGO hands control back to MARU, switch MARU into the prepared screen-share view. */
-const BIGO_FLOW_KEY2280='maru-bigo-two-screen-flow-v2281';
+const BIGO_FLOW_KEY2280='maru-bigo-two-screen-flow-v2282';
 function maruInstalled2280(){return window.matchMedia?.('(display-mode: standalone)').matches||window.matchMedia?.('(display-mode: fullscreen)').matches||window.navigator.standalone===true}
 function isAudienceMode2280(){return new URLSearchParams(location.search).get('mode')==='audience'}
 function setBigoLaunchStatus2280(state,msg){
@@ -1813,6 +1813,10 @@ function maybeResumeBigoFlow2280(){
   document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')setTimeout(maybeResumeBigoFlow2280,450)});
   window.addEventListener('focus',()=>setTimeout(maybeResumeBigoFlow2280,500));
   window.addEventListener('pageshow',()=>setTimeout(maybeResumeBigoFlow2280,650));
+  const refreshDualViewport=()=>{try{if(isAudienceMode2280()&&new URLSearchParams(location.search).get('dual')==='1'){document.documentElement.style.setProperty('--maru-dual-vh',(window.innerHeight*.01)+'px')}}catch(e){}};
+  window.addEventListener('resize',refreshDualViewport,{passive:true});
+  window.addEventListener('orientationchange',()=>setTimeout(refreshDualViewport,180),{passive:true});
+  refreshDualViewport();
 })();
 
 function loadAudienceCover(file){if(!file)return;const r=new FileReader();r.onload=()=>{audienceCoverData=String(r.result||'');audienceTrackId='';publishAudienceState({trackId:'',cover:audienceCoverData,video:''});toast('시청자 화면 커버를 적용했습니다')};r.readAsDataURL(file)}
