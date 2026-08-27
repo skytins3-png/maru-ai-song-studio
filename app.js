@@ -1695,9 +1695,19 @@ function audienceMediaIdentity2264(state={}){
  if(directCover)return `cover:${directCover}`;
  return 'none';
 }
+function applyAudienceTitleClass2279(el,text){
+ if(!el)return;
+ const raw=String(text||'방송 대기').trim();
+ const compact=raw.replace(/\s+/g,'');
+ el.classList.remove('audience-title-short','audience-title-medium','audience-title-long','audience-title-xlong');
+ const n=Array.from(compact).length;
+ const cls=n<=9?'audience-title-short':n<=18?'audience-title-medium':n<=28?'audience-title-long':'audience-title-xlong';
+ el.classList.add(cls);
+ el.dataset.titleLength=String(n);
+}
 async function applyAudienceState(state={}){
  const title=$('#audienceTitle'),img=$('#audienceCover'),vid=$('#audienceVideo'),ph=$('#audienceCoverPlaceholder'),vidBg=$('#audienceVideoBg'),imgBg=$('#audienceCoverBg');
- if(title)title.textContent=state.title||'방송 대기';
+ if(title){const t=state.title||'방송 대기';title.textContent=t;applyAudienceTitleClass2279(title,t);}
  // V0.22.76: the old state carried message/custom-ment text but never painted it.
  // Render explicit transition announcement first, otherwise the persistent audience text.
  const ann=$('#audienceAnnouncement');
@@ -1716,8 +1726,94 @@ async function applyAudienceState(state={}){
 }
 function publishAudienceState(partial={}){const prev=readAudienceState();const state={...prev,title:prev.title||'방송 대기',status:prev.status||'MARU MUSIC LIVE',message:audienceText()||prev.message||'',subtitle:prev.subtitle||audienceSubtitleState(),trackId:audienceTrackId||prev.trackId||'',cover:audienceTrackCoverUrl||audienceCoverData||prev.cover||'',video:audienceTrackVideoUrl||audienceVideoUrl||prev.video||'',...partial,updatedAt:Date.now()};try{localStorage.setItem(AUDIENCE_STATE_KEY,JSON.stringify({...state,cover:audienceCoverData||'',video:''}))}catch{}try{audienceChannel?.postMessage(state)}catch{}try{if(new URLSearchParams(location.search).get('mode')==='audience')applyAudienceState(state)}catch{}return state}
 window.addEventListener('beforeunload',()=>{revokeAudiencePopupMediaUrls()});
-function setupAudienceMode(){const q=new URLSearchParams(location.search),audience=q.get('mode')==='audience',bigoFloat=q.get('layout')==='bigo-float';document.body.classList.toggle('audience-mode',audience);document.body.classList.toggle('bigo-float-mode',audience&&bigoFloat);applyAudienceState(readAudienceState());const sub=readAudienceSubtitlePacket();if(sub?.subtitle)applyAudienceSubtitle(sub);try{audienceChannel&&(audienceChannel.onmessage=e=>applyAudienceState(e.data||{}))}catch{}try{audienceSubtitleChannel&&(audienceSubtitleChannel.onmessage=e=>applyAudienceSubtitle(e.data||{}))}catch{}window.addEventListener('storage',e=>{if(e.key===AUDIENCE_STATE_KEY)applyAudienceState(readAudienceState());else if(e.key===AUDIENCE_SUBTITLE_KEY)applyAudienceSubtitle(readAudienceSubtitlePacket())})}
-function openAudienceView(){const installed=window.matchMedia?.('(display-mode: standalone)').matches||window.matchMedia?.('(display-mode: fullscreen)').matches||window.navigator.standalone===true;if(!installed){try{window.installMaruPwa?.()}catch(e){};return toast('주소창 없는 MARU 앱 설치 후 시청자 화면을 사용해 주세요.');}publishAudienceState({message:audienceText()});const url=new URL(location.href);url.searchParams.set('mode','audience');url.searchParams.set('layout','pwa');location.href=url.toString()}
+function setupAudienceMode(){const q=new URLSearchParams(location.search),audience=q.get('mode')==='audience',bigoFloat=q.get('layout')==='bigo-float'||q.get('share')==='1';document.body.classList.toggle('audience-mode',audience);document.body.classList.toggle('bigo-float-mode',audience&&bigoFloat);document.body.classList.toggle('screen-share-mode',audience&&bigoFloat);applyAudienceState(readAudienceState());const sub=readAudienceSubtitlePacket();if(sub?.subtitle)applyAudienceSubtitle(sub);try{audienceChannel&&(audienceChannel.onmessage=e=>applyAudienceState(e.data||{}))}catch{}try{audienceSubtitleChannel&&(audienceSubtitleChannel.onmessage=e=>applyAudienceSubtitle(e.data||{}))}catch{}window.addEventListener('storage',e=>{if(e.key===AUDIENCE_STATE_KEY)applyAudienceState(readAudienceState());else if(e.key===AUDIENCE_SUBTITLE_KEY)applyAudienceSubtitle(readAudienceSubtitlePacket())})}
+function openAudienceView(){const installed=window.matchMedia?.('(display-mode: standalone)').matches||window.matchMedia?.('(display-mode: fullscreen)').matches||window.navigator.standalone===true;if(!installed){try{window.installMaruPwa?.()}catch(e){};return toast('주소창 없는 MARU 앱 설치 후 화면공유 모드를 사용해 주세요.');}publishAudienceState({message:audienceText()});const url=new URL(location.href);url.searchParams.set('mode','audience');url.searchParams.set('layout','bigo-float');url.searchParams.set('share','1');location.href=url.toString()}
+
+/* V0.22.80 — BIGO one-tap handoff
+   A web/PWA page cannot press BIGO's internal LIVE/Game LIVE/Go Live controls.
+   This flow does the part Android allows: save MARU broadcast state -> open BIGO ->
+   when BIGO hands control back to MARU, switch MARU into the prepared screen-share view. */
+const BIGO_FLOW_KEY2280='maru-bigo-screen-share-flow-v2280';
+function maruInstalled2280(){return window.matchMedia?.('(display-mode: standalone)').matches||window.matchMedia?.('(display-mode: fullscreen)').matches||window.navigator.standalone===true}
+function isAudienceMode2280(){return new URLSearchParams(location.search).get('mode')==='audience'}
+function setBigoLaunchStatus2280(state,msg){
+  const box=document.getElementById('bigoLaunchStatus');
+  if(!box)return;
+  box.dataset.state=state||'ready';
+  const b=box.querySelector('b'),sp=box.querySelector('span');
+  const labels={ready:'준비',opening:'BIGO 여는 중',waiting:'BIGO 방송 시작 대기',returning:'MARU 전환 중',done:'화면공유 준비 완료',error:'확인 필요'};
+  if(b)b.textContent=labels[state]||labels.ready;
+  if(sp)sp.textContent=msg||'';
+}
+function writeBigoFlow2280(obj){try{localStorage.setItem(BIGO_FLOW_KEY2280,JSON.stringify(obj||{}))}catch(e){}}
+function readBigoFlow2280(){try{return JSON.parse(localStorage.getItem(BIGO_FLOW_KEY2280)||'null')}catch(e){return null}}
+function clearBigoFlow2280(){try{localStorage.removeItem(BIGO_FLOW_KEY2280)}catch(e){}}
+function enterPreparedAudience2280(){
+  if(isAudienceMode2280())return;
+  setBigoLaunchStatus2280('returning','BIGO에서 돌아왔습니다. MARU 미니 화면으로 전환합니다.');
+  publishAudienceState({message:audienceText()});
+  const url=new URL(location.href);
+  url.searchParams.set('mode','audience');
+  url.searchParams.set('layout','bigo-float');
+  url.searchParams.set('share','1');
+  url.searchParams.set('from','bigo');
+  clearBigoFlow2280();
+  // Reload only at the final handoff so audience CSS/PWA bootstrap starts in a clean state.
+  location.href=url.toString();
+}
+function launchBigoAndroid2280(){
+  const isAndroid=/Android/i.test(navigator.userAgent||'');
+  if(!isAndroid){setBigoLaunchStatus2280('error','Android에서 BIGO 앱을 열 수 있습니다.');toast('Android에서 BIGO 앱 열기를 사용해 주세요.');return false}
+  const fallback='https://www.bigo.tv/';
+  // BIGO Android package is sg.bigo.live. Explicit package launch avoids opening another app.
+  const intent='intent://www.bigo.tv/#Intent;scheme=https;package=sg.bigo.live;S.browser_fallback_url='+encodeURIComponent(fallback)+';end';
+  try{
+    const a=document.createElement('a');a.href=intent;a.style.display='none';document.body.appendChild(a);a.click();setTimeout(()=>a.remove(),1200);
+    return true;
+  }catch(e){
+    try{location.href=fallback;return true}catch(_){}
+  }
+  return false;
+}
+function startBigoScreenShareFlow2280(){
+  if(!maruInstalled2280()){try{window.installMaruPwa?.()}catch(e){};setBigoLaunchStatus2280('error','먼저 MARU를 홈 화면 앱으로 설치해 주세요.');return toast('먼저 MARU 앱을 설치한 뒤 다시 눌러 주세요.');}
+  if(isAudienceMode2280())return toast('이미 BIGO 화면공유용 MARU 미니 화면입니다.');
+  try{publishSubtitleOverlay?.()}catch(e){}
+  publishAudienceState({message:audienceText(),status:'BIGO 화면공유 준비'});
+  const now=Date.now();
+  writeBigoFlow2280({startedAt:now,armedAt:now,stage:'waiting-bigo',expiresAt:now+30*60*1000});
+  setBigoLaunchStatus2280('opening','현재 곡 상태를 저장했습니다. BIGO 앱을 엽니다.');
+  toast('BIGO가 열립니다 · LIVE → 게임 LIVE → 방송 시작만 눌러 주세요.');
+  setTimeout(()=>{
+    setBigoLaunchStatus2280('waiting','BIGO에서 방송 시작 후 MARU로 돌아오면 자동으로 미니 화면이 열립니다.');
+    launchBigoAndroid2280();
+  },260);
+}
+function maybeResumeBigoFlow2280(){
+  if(isAudienceMode2280())return;
+  const f=readBigoFlow2280();if(!f)return;
+  const now=Date.now();
+  if(!f.startedAt||now>(f.expiresAt||f.startedAt+30*60*1000)){clearBigoFlow2280();setBigoLaunchStatus2280('ready','이전 BIGO 준비가 만료되었습니다. 다시 눌러 주세요.');return;}
+  // Do not immediately consume the same click/focus event. BIGO must have had time to open.
+  if(now-f.startedAt<3500)return;
+  if(document.visibilityState&&document.visibilityState!=='visible')return;
+  setBigoLaunchStatus2280('returning','BIGO 방송 시작 뒤 MARU로 돌아온 것을 감지했습니다.');
+  setTimeout(enterPreparedAudience2280,320);
+}
+(function setupBigoOneTapFlow2280(){
+  const bind=()=>{
+    const btn=document.getElementById('openAudienceView');
+    if(btn){btn.textContent='🚀 BIGO 방송 준비';btn.title='현재 MARU 화면을 준비한 뒤 BIGO 앱을 엽니다';}
+    const f=readBigoFlow2280();
+    if(f&&!isAudienceMode2280())setBigoLaunchStatus2280('waiting','BIGO에서 방송 시작 후 MARU로 돌아오면 자동으로 전환됩니다.');
+    if(isAudienceMode2280()&&new URLSearchParams(location.search).get('from')==='bigo')setTimeout(()=>toast('BIGO 화면공유용 MARU 미니 화면 준비 완료'),500);
+  };
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bind,{once:true});else bind();
+  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')setTimeout(maybeResumeBigoFlow2280,450)});
+  window.addEventListener('focus',()=>setTimeout(maybeResumeBigoFlow2280,500));
+  window.addEventListener('pageshow',()=>setTimeout(maybeResumeBigoFlow2280,650));
+})();
+
 function loadAudienceCover(file){if(!file)return;const r=new FileReader();r.onload=()=>{audienceCoverData=String(r.result||'');audienceTrackId='';publishAudienceState({trackId:'',cover:audienceCoverData,video:''});toast('시청자 화면 커버를 적용했습니다')};r.readAsDataURL(file)}
 async function loadAudienceVideo(file){if(!file)return;const probe=document.createElement('video');const mime=file.type||'video/mp4';const support=probe.canPlayType(mime);if(!support&&/\.mp4$/i.test(file.name||''))toast('MP4 파일이지만 영상 코덱이 이 휴대폰 브라우저에서 지원되지 않을 수 있습니다. H.264 MP4를 권장합니다.');try{let r=await broadcastDbGet('__audience_global_video__')||{id:'__audience_global_video__',name:'MARU viewer video',blob:new Blob([]),type:'application/x-maru-media'};r.videoBlob=file;r.videoName=file.name||'video';r.mediaUpdatedAt=Date.now();await broadcastDbPut(r)}catch(e){console.warn('global audience video store',e)}if(audienceVideoUrl){try{URL.revokeObjectURL(audienceVideoUrl)}catch{}}audienceVideoUrl=URL.createObjectURL(file);audienceTrackId='__audience_global_video__';try{revokeAudiencePopupMediaUrls()}catch{};audienceRenderedTrackKey2261='';audienceRenderedDirectVideo2261='';audienceRenderedDirectCover2261='';audienceRenderedMediaIdentity2264='';try{localStorage.setItem('maru-default-video-enabled-v1','1')}catch{};publishAudienceState({trackId:audienceTrackId,video:audienceVideoUrl,cover:''});toast('기본 동영상을 저장했습니다')}
 function updateBroadcastDock(){const paused=broadcastRunning&&broadcastPaused;const start=$('#dockBroadcastStart'),pause=$('#dockBroadcastPause'),prev=$('#dockBroadcastPrev'),next=$('#dockBroadcastNext'),end=$('#dockBroadcastEnd'),mainStart=$('#broadcastStart'),mainPause=$('#broadcastPauseBtn'),mainPrev=$('#broadcastPrev');if(start){start.disabled=false;start.textContent=paused?'▶ 계속':'▶ 시작'}if(pause){pause.disabled=false;pause.textContent=paused?'⏸ 대기중':'⏸ 대기'}if(prev)prev.disabled=false;if(next)next.disabled=false;if(end)end.disabled=false;if(mainStart){mainStart.disabled=!broadcastFiles.length;mainStart.textContent=paused?'▶ 방송 계속':'▶ 방송 시작'}if(mainPause)mainPause.disabled=!broadcastRunning;if(mainPrev)mainPrev.disabled=!broadcastFiles.length}
@@ -1835,7 +1931,7 @@ function toggleScoreAdvanced(){const card=$('#scoreCard');if(!card)return;card.c
 function jumpToScore(){const card=$('#scoreCard');if(card){card.classList.remove('collapsed');const t=card.querySelector('.section-collapse-toggle');if(t)t.textContent='▾ 숨기기';card.scrollIntoView({behavior:'smooth',block:'start'})}}
 function updateSourceVoiceValue(){if($('#sourceVoiceValue'))$('#sourceVoiceValue').textContent=`${$('#sourceVoiceVolume').value}%`;const el=$('#sourceAudio');if(el&&!el.paused&&sourceReferenceEnabled())el.volume=Math.min(1,sourceReferenceGain())}
 $('#songAudioFile').onchange=e=>setImportedAudioFile(e.target.files?.[0]);$('#startSongMic').onclick=startSongMic;$('#stopSongMic').onclick=stopSongMic;$('#saveCurrentToBroadcast').onclick=()=>addCurrentSourceToBroadcast();$('#batchAudioFiles').onchange=e=>selectBatchFiles(e.target.files);$('#startBatchMaster').onclick=startBatchMaster;$('#stopBatchMaster').onclick=stopBatchMaster;
-$('#abOriginal').onclick=playABOriginal;$('#abAnalyzed').onclick=playABAnalyzed;$('#abStop').onclick=stopAB;$('#broadcastFiles').onchange=async e=>{await selectBroadcastFiles(e.target.files);e.target.value=''};$('#broadcastAudioAdd').onchange=async e=>{await selectBroadcastFiles(e.target.files);e.target.value=''};$('#broadcastVideoAdd').onchange=async e=>{await selectBroadcastFiles(e.target.files);e.target.value=''};$('#selectVisibleBroadcast').onclick=selectVisibleBroadcastTracks;$('#clearBroadcastSelection').onclick=clearBroadcastTrackSelection;$('#deleteSelectedBroadcast').onclick=deleteSelectedBroadcastTracks;$('#clearBroadcastSaved').onclick=clearSavedBroadcastPlaylist;$('#broadcastStart').onclick=broadcastStartOrResume;$('#broadcastPauseBtn').onclick=broadcastPause;$('#broadcastPrev').onclick=broadcastPrevious;$('#broadcastSkip').onclick=()=>broadcastTransitionToNext(true);$('#broadcastStop').onclick=()=>broadcastStop(true);$('#broadcastSearch').oninput=renderBroadcastQueue;$('#broadcastFavOnly').onchange=renderBroadcastQueue;$('#broadcastListSort').onchange=renderBroadcastQueue;$('#smartBroadcastOrder').onclick=applySmartBroadcastOrder;$('#broadcastVoiceStart').onclick=startBroadcastVoiceTone;$('#broadcastVoiceStop').onclick=stopBroadcastVoiceTone;$('#broadcastVoiceDepth').oninput=updateBroadcastVoiceTone;$('#broadcastVoiceVolume').oninput=updateBroadcastVoiceTone;if($('#broadcastVoiceAuto'))$('#broadcastVoiceAuto').onchange=()=>{if(broadcastVoiceNodes)setBroadcastVoiceSpeechActive(broadcastVoiceAutoEnabled()?broadcastVoiceSpeech:true,-120)};for(const el of [$('#broadcastAudio'),$('#broadcastVideoPlayer')])if(el){el.ontimeupdate=()=>{try{window.maruUpdateTimedLyric2265?.(el)}catch{}};el.onended=()=>broadcastTransitionToNext(false);el.onerror=()=>{if(broadcastRunning){toast(broadcastIsVideoFile(broadcastFiles[broadcastIndex])?'MP4를 재생하지 못했습니다. H.264/AAC인지 확인해 주세요.':'이 곡을 재생하지 못해 다음 곡으로 넘어갑니다');broadcastTransitionToNext(true)}}};$('#broadcastToggle').onclick=toggleBroadcastCard;$('#openAudienceView').onclick=openAudienceView;$('#broadcastCoverFile').onchange=e=>loadAudienceCover(e.target.files?.[0]);$('#broadcastVideoFile').onchange=e=>loadAudienceVideo(e.target.files?.[0]);$('#broadcastAudienceText').oninput=()=>{publishAudienceState({message:audienceText()});saveBroadcastSettings()};if($('#broadcastSubtitleText'))$('#broadcastSubtitleText').oninput=refreshBroadcastSubtitleMode;if($('#broadcastSubtitleEnabled'))$('#broadcastSubtitleEnabled').onchange=refreshBroadcastSubtitleMode;if($('#broadcastAutoSubtitle'))$('#broadcastAutoSubtitle').onchange=refreshBroadcastSubtitleMode;if($('#broadcastSubtitlePosition'))$('#broadcastSubtitlePosition').onchange=publishSubtitleOverlay;if($('#broadcastSubtitleSize'))$('#broadcastSubtitleSize').oninput=()=>{if($('#broadcastSubtitleSizeValue'))$('#broadcastSubtitleSizeValue').textContent=`${$('#broadcastSubtitleSize').value}px`;publishSubtitleOverlay()};['broadcastCustomMessage','broadcastNextTemplate'].forEach(id=>{const el=$('#'+id);if(el)el.oninput=saveBroadcastSettings});['broadcastCustomEnabled','broadcastNextEnabled','broadcastLoop'].forEach(id=>{const el=$('#'+id);if(el)el.onchange=saveBroadcastSettings});
+$('#abOriginal').onclick=playABOriginal;$('#abAnalyzed').onclick=playABAnalyzed;$('#abStop').onclick=stopAB;$('#broadcastFiles').onchange=async e=>{await selectBroadcastFiles(e.target.files);e.target.value=''};$('#broadcastAudioAdd').onchange=async e=>{await selectBroadcastFiles(e.target.files);e.target.value=''};$('#broadcastVideoAdd').onchange=async e=>{await selectBroadcastFiles(e.target.files);e.target.value=''};$('#selectVisibleBroadcast').onclick=selectVisibleBroadcastTracks;$('#clearBroadcastSelection').onclick=clearBroadcastTrackSelection;$('#deleteSelectedBroadcast').onclick=deleteSelectedBroadcastTracks;$('#clearBroadcastSaved').onclick=clearSavedBroadcastPlaylist;$('#broadcastStart').onclick=broadcastStartOrResume;$('#broadcastPauseBtn').onclick=broadcastPause;$('#broadcastPrev').onclick=broadcastPrevious;$('#broadcastSkip').onclick=()=>broadcastTransitionToNext(true);$('#broadcastStop').onclick=()=>broadcastStop(true);$('#broadcastSearch').oninput=renderBroadcastQueue;$('#broadcastFavOnly').onchange=renderBroadcastQueue;$('#broadcastListSort').onchange=renderBroadcastQueue;$('#smartBroadcastOrder').onclick=applySmartBroadcastOrder;$('#broadcastVoiceStart').onclick=startBroadcastVoiceTone;$('#broadcastVoiceStop').onclick=stopBroadcastVoiceTone;$('#broadcastVoiceDepth').oninput=updateBroadcastVoiceTone;$('#broadcastVoiceVolume').oninput=updateBroadcastVoiceTone;if($('#broadcastVoiceAuto'))$('#broadcastVoiceAuto').onchange=()=>{if(broadcastVoiceNodes)setBroadcastVoiceSpeechActive(broadcastVoiceAutoEnabled()?broadcastVoiceSpeech:true,-120)};for(const el of [$('#broadcastAudio'),$('#broadcastVideoPlayer')])if(el){el.ontimeupdate=()=>{try{window.maruUpdateTimedLyric2265?.(el)}catch{}};el.onended=()=>broadcastTransitionToNext(false);el.onerror=()=>{if(broadcastRunning){toast(broadcastIsVideoFile(broadcastFiles[broadcastIndex])?'MP4를 재생하지 못했습니다. H.264/AAC인지 확인해 주세요.':'이 곡을 재생하지 못해 다음 곡으로 넘어갑니다');broadcastTransitionToNext(true)}}};$('#broadcastToggle').onclick=toggleBroadcastCard;$('#openAudienceView').onclick=startBigoScreenShareFlow2280;$('#broadcastCoverFile').onchange=e=>loadAudienceCover(e.target.files?.[0]);$('#broadcastVideoFile').onchange=e=>loadAudienceVideo(e.target.files?.[0]);$('#broadcastAudienceText').oninput=()=>{publishAudienceState({message:audienceText()});saveBroadcastSettings()};if($('#broadcastSubtitleText'))$('#broadcastSubtitleText').oninput=refreshBroadcastSubtitleMode;if($('#broadcastSubtitleEnabled'))$('#broadcastSubtitleEnabled').onchange=refreshBroadcastSubtitleMode;if($('#broadcastAutoSubtitle'))$('#broadcastAutoSubtitle').onchange=refreshBroadcastSubtitleMode;if($('#broadcastSubtitlePosition'))$('#broadcastSubtitlePosition').onchange=publishSubtitleOverlay;if($('#broadcastSubtitleSize'))$('#broadcastSubtitleSize').oninput=()=>{if($('#broadcastSubtitleSizeValue'))$('#broadcastSubtitleSizeValue').textContent=`${$('#broadcastSubtitleSize').value}px`;publishSubtitleOverlay()};['broadcastCustomMessage','broadcastNextTemplate'].forEach(id=>{const el=$('#'+id);if(el)el.oninput=saveBroadcastSettings});['broadcastCustomEnabled','broadcastNextEnabled','broadcastLoop'].forEach(id=>{const el=$('#'+id);if(el)el.onchange=saveBroadcastSettings});
 function pickBroadcastSongs(){const input=$('#broadcastFiles');if(input)input.click()}
 function dockStart(){if(!broadcastFiles.length)return pickBroadcastSongs();return broadcastStartOrResume()}
 function dockPause(){if(!broadcastRunning)return toast('먼저 시작을 눌러 주세요');return broadcastPause()}
@@ -1891,7 +1987,7 @@ async function openBroadcastSubtitleManager2269(){const dlg=ensureBroadcastSubti
 
 prepareNoteEditor();renderLearningProfile();
 try{const b2269=document.getElementById('openBroadcastSubtitleManager');if(b2269)b2269.onclick=openBroadcastSubtitleManager2269}catch(e){console.warn('subtitle manager bind 2269',e)}
-refreshProPreviewIndex(true).catch(()=>{});renderProCompositionCoach();restoreMasterSampleVolume();restoreMixerEq();renderAuto64Status();setupCollapsibleCards();setupCoreLauncher();updateSourceVoiceValue();renderWordChoices();renderRegions();renderInstruments();autoPick();buildTitleCandidates(lastProfile,false);renderSaved();updateScoreMode();applyScoreView('fit');updateRangeUI();if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js?v=0.22.71-clean');
+refreshProPreviewIndex(true).catch(()=>{});renderProCompositionCoach();restoreMasterSampleVolume();restoreMixerEq();renderAuto64Status();setupCollapsibleCards();setupCoreLauncher();updateSourceVoiceValue();renderWordChoices();renderRegions();renderInstruments();autoPick();buildTitleCandidates(lastProfile,false);renderSaved();updateScoreMode();applyScoreView('fit');updateRangeUI();if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js?v=0.22.79-final');
 $('#makeTriplet').onclick=makeSelectedTriplet;
 
 

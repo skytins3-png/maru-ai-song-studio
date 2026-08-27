@@ -993,3 +993,119 @@ body.audience-mode .audience-overlay h1{
     font-size:clamp(36px,10.5vw,58px)!important;
   }
 }
+
+/* V0.22.79 — BIGO SCREEN SHARE FINAL
+   Final floating-window layout validated against Galaxy/Samsung freeform multi-window.
+   Goals: keep the top of portrait media, crop only from the bottom when needed,
+   keep the title readable without covering the face, and scale long EN/ZH/KR titles safely. */
+body.audience-mode.screen-share-mode,
+body.audience-mode.screen-share-mode .audience-view,
+body.audience-mode.screen-share-mode .audience-stage,
+body.audience-mode.screen-share-mode .audience-cover-wrap{
+  width:100vw!important;
+  height:100dvh!important;
+  min-width:0!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+  background:#000!important;
+}
+
+/* When the Samsung floating window is shortened, preserve the subject's head/top. */
+body.audience-mode.screen-share-mode #audienceVideo,
+body.audience-mode.screen-share-mode #audienceCover{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  object-position:center top!important;
+  background:#000!important;
+}
+
+/* Keep the MARU title at the bottom. It remains large, but viewport HEIGHT now limits it too. */
+body.audience-mode.screen-share-mode .audience-overlay{
+  position:absolute!important;
+  left:0!important;
+  right:0!important;
+  top:auto!important;
+  bottom:0!important;
+  z-index:12!important;
+  padding:34px 14px max(12px,env(safe-area-inset-bottom))!important;
+  background:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.20) 32%,rgba(0,0,0,.78) 100%)!important;
+  pointer-events:none!important;
+}
+body.audience-mode.screen-share-mode #audienceTitle{
+  margin:0!important;
+  max-width:96%!important;
+  color:#fff!important;
+  font-weight:950!important;
+  line-height:1.06!important;
+  letter-spacing:-.025em!important;
+  overflow:hidden!important;
+  display:-webkit-box!important;
+  -webkit-box-orient:vertical!important;
+  -webkit-line-clamp:2!important;
+  white-space:normal!important;
+  word-break:keep-all!important;
+  overflow-wrap:anywhere!important;
+  text-overflow:ellipsis!important;
+  text-shadow:0 3px 12px rgba(0,0,0,.98),0 1px 3px #000!important;
+}
+body.audience-mode.screen-share-mode #audienceTitle.audience-title-short{
+  font-size:clamp(30px,min(9vw,7.2vh),54px)!important;
+}
+body.audience-mode.screen-share-mode #audienceTitle.audience-title-medium{
+  font-size:clamp(27px,min(7.6vw,6.3vh),46px)!important;
+}
+body.audience-mode.screen-share-mode #audienceTitle.audience-title-long{
+  font-size:clamp(23px,min(6.3vw,5.5vh),38px)!important;
+}
+body.audience-mode.screen-share-mode #audienceTitle.audience-title-xlong{
+  font-size:clamp(20px,min(5.5vw,4.8vh),32px)!important;
+}
+
+/* In a very short floating window, reserve more picture and less title chrome. */
+@media (max-height:520px){
+  body.audience-mode.screen-share-mode .audience-overlay{padding:24px 10px 8px!important;}
+  body.audience-mode.screen-share-mode #audienceTitle.audience-title-short{font-size:clamp(26px,min(8vw,7vh),38px)!important;}
+  body.audience-mode.screen-share-mode #audienceTitle.audience-title-medium{font-size:clamp(23px,min(7vw,6.2vh),34px)!important;}
+  body.audience-mode.screen-share-mode #audienceTitle.audience-title-long{font-size:clamp(20px,min(6vw,5.4vh),30px)!important;}
+  body.audience-mode.screen-share-mode #audienceTitle.audience-title-xlong{font-size:clamp(18px,min(5vw,4.8vh),26px)!important;}
+}
+
+/* Subtitles/announcements stay above the title and do not force media reload. */
+body.audience-mode.screen-share-mode .audience-subtitle-overlay[data-position="bottom"]{
+  bottom:18%!important;
+  left:5%!important;
+  right:5%!important;
+  max-height:24%!important;
+}
+body.audience-mode.screen-share-mode .audience-announcement{
+  bottom:20%!important;
+  left:5%!important;
+  right:5%!important;
+  max-height:28%!important;
+  overflow:hidden!important;
+}
+
+/* Playback controls only appear after a tap, so shared video stays clean. */
+body.audience-mode.screen-share-mode .audience-touch-controls:not(.show){
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+}
+
+
+/* V0.22.80 — BIGO one-tap handoff status */
+.bigo-launch-status{margin:10px 0 12px;padding:11px 13px;border-radius:13px;border:1px solid rgba(96,226,218,.34);background:rgba(10,32,39,.78);display:flex;gap:10px;align-items:flex-start;line-height:1.45}
+.bigo-launch-status b{flex:0 0 auto;color:#77efe7;font-size:13px;padding:2px 7px;border-radius:999px;background:rgba(68,210,200,.12)}
+.bigo-launch-status span{font-size:13px;color:#dce9ea}
+.bigo-launch-status[data-state="opening"],.bigo-launch-status[data-state="returning"]{border-color:rgba(255,205,99,.5);background:rgba(55,39,9,.72)}
+.bigo-launch-status[data-state="opening"] b,.bigo-launch-status[data-state="returning"] b{color:#ffd978;background:rgba(255,205,99,.12)}
+.bigo-launch-status[data-state="done"]{border-color:rgba(91,225,135,.5);background:rgba(9,52,25,.7)}
+.bigo-launch-status[data-state="done"] b{color:#8cffac}
+.bigo-launch-status[data-state="error"]{border-color:rgba(255,103,103,.55);background:rgba(63,13,13,.72)}
+.bigo-launch-status[data-state="error"] b{color:#ff9d9d}
+#openAudienceView{font-weight:800;min-height:48px}
