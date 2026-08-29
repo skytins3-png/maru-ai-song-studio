@@ -1,0 +1,35 @@
+﻿MARU V0.22.89 · OBS 자동 방송 도우미
+
+처음 1회 준비
+1) OBS Studio 설치
+2) OBS → 도구 → WebSocket 서버 설정
+   - WebSocket 서버 사용: 켬
+   - 포트: 4455 (기본값)
+   - 인증 사용 시 표시된/설정한 비밀번호를 기억
+3) OBS → 설정 → 방송(Stream)에 BIGO에서 공식적으로 제공받은 송출 정보/지원 방식이 있다면 미리 설정
+   ※ BIGO 계정에 PC/RTMP 송출 권한 또는 스트림 키가 제공되지 않는 경우 MARU가 이를 우회해서 만들 수는 없습니다.
+4) 이 폴더의 START-MARU-OBS-HELPER.bat 실행
+5) MARU의 방송 설정에서 WebSocket 비밀번호 입력 → “OBS 자동 방송 시작”
+
+자동 시작 시 하는 일
+- OBS가 꺼져 있으면 OBS 실행
+- MARU의 16:9 MARU_OBS_LIVE 방송창 열기
+- OBS의 “MARU LIVE” 장면 생성/선택
+- “MARU_OBS_LIVE” 창 캡처 소스 생성/연결
+- 소스를 캔버스에 맞춤
+- OBS 스트리밍 시작 요청
+
+방송 중 다른 웹 작업
+- MARU의 “MARU 방송창만” 모드에서는 OBS가 MARU_OBS_LIVE 창만 캡처합니다.
+- Chrome, Suno, ChatGPT, 파일 탐색기 등 다른 창을 열어도 시청자에게 보이지 않습니다.
+- “PC 전체 화면”/디스플레이 캡처는 다른 작업까지 보일 수 있으므로 주의하세요.
+
+문제 해결
+- “도우미를 먼저 실행” → START-MARU-OBS-HELPER.bat 실행
+- “WebSocket 연결 불가” → OBS WebSocket 서버 사용/포트 4455 확인
+- “비밀번호 필요/인증 실패” → MARU에 OBS WebSocket 비밀번호 입력
+- “MARU_OBS_LIVE 창을 찾지 못함” → MARU의 OBS 방송 화면을 닫지 말고 다시 자동 시작
+- “장면은 준비됐지만 송출 시작 실패” → OBS 설정의 BIGO 송출 대상/스트림 키/권한 확인
+
+
+V0.22.89 원곡 방송: OBS 30.1+에서는 MARU_OBS_LIVE 창 캡처의 Capture Audio(오디오 캡처)를 자동으로 켭니다. MARU 방송 재생은 원본 MP3/MP4를 직접 재생하며 64밴드/AI 음질개선/자동 마스터를 거치지 않습니다. OBS의 데스크톱 오디오가 동시에 켜져 있으면 이중으로 들릴 수 있으므로 한 번만 들리는지 확인하세요.

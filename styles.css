@@ -1170,3 +1170,119 @@ body.audience-mode.dual-screen-mode .audience-stage{
   body.audience-mode.dual-screen-mode .audience-subtitle-overlay[data-position="bottom"]{bottom:19%!important;max-height:25%!important;}
   body.audience-mode.dual-screen-mode .audience-announcement{bottom:21%!important;max-height:25%!important;}
 }
+
+
+/* V0.22.84 — OBS / BIGO normal LIVE clean 16:9 output */
+html:has(body.obs-output-mode),body.audience-mode.obs-output-mode{
+  margin:0!important;padding:0!important;width:100%!important;height:100%!important;
+  background:#000!important;overflow:hidden!important;
+}
+body.audience-mode.obs-output-mode .audience-view,
+body.audience-mode.obs-output-mode .audience-stage,
+body.audience-mode.obs-output-mode .audience-cover-wrap{
+  position:fixed!important;inset:0!important;margin:0!important;padding:0!important;
+  width:100vw!important;height:100vh!important;max-width:none!important;max-height:none!important;
+  min-width:0!important;min-height:0!important;border:0!important;border-radius:0!important;
+  box-shadow:none!important;overflow:hidden!important;background:#100b19!important;
+}
+body.audience-mode.obs-output-mode #audienceBackdropCanvas{
+  display:block!important;position:absolute!important;inset:-5%!important;width:110%!important;height:110%!important;
+  filter:blur(26px) brightness(.50) saturate(1.08)!important;transform:scale(1.06)!important;z-index:0!important;
+}
+body.audience-mode.obs-output-mode #audienceVideo,
+body.audience-mode.obs-output-mode #audienceCover{
+  position:absolute!important;inset:0!important;width:100%!important;height:100%!important;
+  object-fit:contain!important;object-position:center center!important;background:transparent!important;z-index:1!important;
+}
+body.audience-mode.obs-output-mode .audience-media-shade{
+  display:block!important;position:absolute!important;inset:55% 0 0!important;z-index:2!important;
+  background:linear-gradient(to bottom,transparent,rgba(0,0,0,.18) 25%,rgba(0,0,0,.72) 100%)!important;
+}
+body.audience-mode.obs-output-mode .audience-overlay{
+  display:block!important;position:absolute!important;left:4%!important;right:4%!important;bottom:5%!important;
+  padding:0!important;text-align:left!important;z-index:3!important;background:transparent!important;
+}
+body.audience-mode.obs-output-mode #audienceTitle{
+  display:block!important;margin:0!important;color:#fff!important;font-size:clamp(34px,4.2vw,76px)!important;
+  line-height:1.05!important;font-weight:900!important;text-shadow:0 3px 18px rgba(0,0,0,.95)!important;
+  white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;
+}
+body.audience-mode.obs-output-mode .audience-subtitle-overlay{
+  left:7%!important;right:7%!important;max-height:28%!important;border-radius:16px!important;
+  padding:12px 18px!important;background:rgba(0,0,0,.46)!important;font-size:clamp(24px,2.3vw,44px)!important;
+  line-height:1.35!important;z-index:8!important;
+}
+body.audience-mode.obs-output-mode .audience-subtitle-overlay[data-position="bottom"]{bottom:16%!important;}
+body.audience-mode.obs-output-mode .audience-subtitle-overlay[data-position="middle"]{top:50%!important;}
+body.audience-mode.obs-output-mode .audience-subtitle-overlay[data-position="top"]{top:6%!important;}
+body.audience-mode.obs-output-mode .audience-announcement{
+  left:8%!important;right:8%!important;bottom:25%!important;font-size:clamp(24px,2.2vw,42px)!important;
+  z-index:9!important;background:rgba(0,0,0,.58)!important;border-radius:16px!important;
+}
+body.audience-mode.obs-output-mode .audience-touch-controls,
+body.audience-mode.obs-output-mode #broadcastDock{display:none!important;}
+body.audience-mode.obs-output-mode .audience-cover-placeholder{font-size:clamp(34px,5vw,82px)!important;z-index:1!important;}
+@media (aspect-ratio < 4/3){
+  body.audience-mode.obs-output-mode #audienceTitle{font-size:clamp(26px,7vw,52px)!important;}
+  body.audience-mode.obs-output-mode .audience-subtitle-overlay{font-size:clamp(20px,4.6vw,34px)!important;}
+}
+
+
+/* V0.22.85 PC broadcast + mobile management */
+.pc-mobile-panel{margin-top:12px;padding:14px;border:1px solid rgba(167,139,250,.35);border-radius:16px;background:rgba(17,12,34,.58);display:grid;gap:12px}
+.pc-mobile-head{display:grid;gap:3px}.pc-mobile-head b{font-size:15px}.pc-mobile-head span{font-size:12px;opacity:.78;line-height:1.45}
+.pc-capture-row label{display:grid;gap:6px;font-weight:700}.pc-capture-row select{width:100%;min-height:44px}
+.pc-capture-status{display:grid;gap:3px;padding:11px 12px;border-radius:12px;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.3)}
+.pc-capture-status[data-mode="display"]{background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.36)}
+.pc-capture-status b{font-size:13px}.pc-capture-status span{font-size:12px;line-height:1.45}
+.pc-mobile-steps{margin:0;padding-left:22px;font-size:12px;line-height:1.55;opacity:.9}
+@media (max-width:640px){.pc-mobile-panel{padding:12px}.pc-mobile-head b{font-size:14px}}
+
+/* V0.22.87 one-click OBS automation */
+.obs-auto-box{display:grid;gap:10px;padding:12px;border:1px solid rgba(255,255,255,.14);border-radius:14px;background:rgba(0,0,0,.16)}
+.obs-auto-head{display:grid;gap:3px}.obs-auto-head b{font-size:14px}.obs-auto-head span,.obs-auto-note{font-size:12px;line-height:1.45;opacity:.82}
+.obs-auto-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.obs-auto-grid label{display:grid;gap:5px;font-size:12px}.obs-auto-grid input{min-width:0;width:100%;box-sizing:border-box}
+.obs-auto-actions{gap:8px}.obs-auto-status{display:flex;gap:8px;align-items:flex-start;padding:10px 11px;border-radius:12px;background:rgba(255,255,255,.06);font-size:12px;line-height:1.45}.obs-auto-status b{white-space:nowrap}.obs-auto-status[data-state="live"]{outline:1px solid rgba(248,113,113,.55)}.obs-auto-status[data-state="ready"]{outline:1px solid rgba(74,222,128,.35)}.obs-auto-status[data-state="warn"],.obs-auto-status[data-state="error"]{outline:1px solid rgba(251,191,36,.42)}.obs-auto-status[data-state="working"]{outline:1px solid rgba(96,165,250,.42)}
+@media (max-width:720px){.obs-auto-grid{grid-template-columns:1fr}.obs-auto-status{display:grid}.obs-auto-actions button{flex:1 1 100%}}
+
+
+/* V0.22.88 — broadcast essentials only: only daily broadcast controls stay visible */
+.simple-hidden-advanced,.simple-hidden-control{display:none!important}
+.broadcast-player-card{border:1px solid rgba(144,102,255,.38)}
+.simple-broadcast-head{padding-bottom:4px}
+.simple-broadcast-head>div:first-child span{font-size:.88rem;opacity:.78}
+.simple-import{display:grid;grid-template-columns:1fr;gap:10px}
+.simple-add-button{width:100%;min-height:58px;display:flex;align-items:center;justify-content:center;font-size:1.08rem;font-weight:800}
+.simple-help{display:block;margin-top:8px;line-height:1.5}
+.simple-library-tools{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center}
+.simple-library-tools input[type="search"]{min-width:0;width:100%}
+.simple-optional-tools{margin:12px 0;border:1px solid rgba(139,92,246,.28);border-radius:16px;background:rgba(255,255,255,.025);overflow:hidden}
+.simple-optional-tools>summary{cursor:pointer;list-style:none;padding:14px 16px;font-weight:800;user-select:none}
+.simple-optional-tools>summary::-webkit-details-marker{display:none}
+.simple-optional-tools[open]>summary{border-bottom:1px solid rgba(139,92,246,.2)}
+.simple-optional-tools>*:not(summary){margin-left:14px;margin-right:14px}
+.simple-fixed-mode{display:block}
+.pc-capture-fixed{display:flex;gap:8px;flex-direction:column;padding:14px 16px;border-radius:14px;background:rgba(16,185,129,.09);border:1px solid rgba(16,185,129,.28)}
+.pc-capture-fixed b{font-size:1rem}
+.pc-capture-fixed span{font-size:.9rem;opacity:.86;line-height:1.45}
+.simple-obs-actions{display:grid!important;grid-template-columns:minmax(0,1.5fr) minmax(120px,.7fr);gap:10px}
+.simple-obs-actions button{min-height:54px;font-weight:800}
+.obs-settings-details .obs-auto-grid{margin-top:12px}
+@media(max-width:640px){.simple-library-tools{grid-template-columns:1fr}.simple-obs-actions{grid-template-columns:1fr}.simple-optional-tools>*:not(summary){margin-left:10px;margin-right:10px}}
+
+/* V0.22.88 — keep the only daily broadcast controls visible above the fold */
+.simple-broadcast-primary-note{display:grid;gap:5px;padding:14px 16px;margin:0 0 12px;border-radius:16px;background:rgba(16,185,129,.10);border:1px solid rgba(16,185,129,.32)}
+.simple-broadcast-primary-note b{font-size:1.05rem}.simple-broadcast-primary-note span{font-size:.9rem;line-height:1.45;opacity:.9}
+#pcMobilePanel{margin:0 0 14px}
+#pcMobilePanel .pc-capture-status,#pcMobilePanel .obs-auto-note{display:none}
+#pcMobilePanel .pc-capture-fixed{padding:10px 12px}
+#pcMobilePanel .obs-auto-box{padding:10px}
+#pcMobilePanel .obs-auto-head span{display:none}
+#pcMobilePanel .obs-auto-status{margin-top:2px}
+@media(max-width:640px){#pcMobilePanel .pc-mobile-head span{font-size:.82rem}.simple-broadcast-primary-note{padding:12px}}
+
+/* V0.22.89 — original playback broadcast indicator */
+.original-broadcast-mode{display:flex;gap:10px;align-items:flex-start;justify-content:space-between;margin:12px 0 14px;padding:14px 16px;border:1px solid rgba(77,231,175,.45);border-radius:18px;background:rgba(20,90,69,.20)}
+.original-broadcast-mode b{white-space:nowrap;color:#bfffe6;font-size:1.02rem}
+.original-broadcast-mode span{color:#e8fff6;line-height:1.55;font-size:.92rem}
+@media(max-width:560px){.original-broadcast-mode{display:block}.original-broadcast-mode b{display:block;margin-bottom:6px;white-space:normal}}
