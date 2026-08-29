@@ -1,14 +1,32 @@
 @echo off
 setlocal
 cd /d "%~dp0"
-title MARU OBS Helper Launcher V0.22.96
+title MARU OBS Helper V0.22.96 - USB LIVE
+
+echo ============================================================
+echo   MARU OBS Helper V0.22.96 - USB LIVE
+echo   THIS WINDOW MUST STAY OPEN WHILE USING MARU / OBS
+echo ============================================================
+echo.
+
 where powershell.exe >nul 2>nul
 if errorlevel 1 (
-  echo PowerShell was not found.
+  echo [ERROR] PowerShell was not found.
+  echo.
   pause
   exit /b 1
 )
-start "MARU OBS Helper V0.22.96" powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%~dp0MARU-OBS-Helper.ps1"
-timeout /t 2 /nobreak >nul
-start "" "http://127.0.0.1:8765/"
-exit /b 0
+
+echo Starting Helper...
+echo.
+powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%~dp0MARU-OBS-Helper.ps1"
+
+set "RC=%ERRORLEVEL%"
+echo.
+echo ============================================================
+echo   MARU Helper stopped. Exit code: %RC%
+echo   If you see an ERROR above, take a photo and send it.
+echo ============================================================
+echo.
+pause
+exit /b %RC%

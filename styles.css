@@ -1362,3 +1362,28 @@ html.maru-desktop-browser-ok-2297 body > main,
 html.maru-desktop-browser-ok-2297 body > #broadcastDock,
 html.maru-desktop-browser-ok-2297 body > #audienceView,
 html.maru-desktop-browser-ok-2297 body > #toast{display:revert!important}
+
+/* V0.22.98 — One-touch broadcast */
+.one-touch-broadcast-2298{
+  display:grid;gap:12px;padding:16px;margin:0 0 14px;
+  border:1px solid rgba(128,235,210,.45);
+  border-radius:20px;background:linear-gradient(135deg,rgba(22,76,69,.55),rgba(80,45,125,.45));
+  box-shadow:0 12px 36px rgba(0,0,0,.16)
+}
+.one-touch-copy-2298{display:grid;gap:5px}
+.one-touch-copy-2298 b{font-size:1.16rem;color:#caffef}
+.one-touch-copy-2298 span{line-height:1.55;color:#eefaf7}
+.one-touch-actions-2298{display:grid;grid-template-columns:2fr 1fr;gap:10px}
+.one-touch-start-2298{min-height:64px!important;font-size:1.12rem!important;font-weight:900!important}
+.one-touch-stop-2298{min-height:64px!important}
+.one-touch-status-2298{display:grid;gap:4px;padding:11px 13px;border-radius:14px;background:rgba(0,0,0,.18)}
+.one-touch-status-2298[data-state="working"]{outline:1px solid rgba(255,212,105,.65)}
+.one-touch-status-2298[data-state="live"]{outline:1px solid rgba(81,239,175,.75)}
+.one-touch-status-2298[data-state="error"]{outline:1px solid rgba(255,112,112,.8)}
+.one-touch-status-2298 b{font-weight:900}
+.one-touch-status-2298 span{line-height:1.5}
+.one-touch-dock-2298{min-width:150px!important;font-weight:900!important}
+@media(max-width:720px){
+  .one-touch-actions-2298{grid-template-columns:1fr}
+  .one-touch-start-2298,.one-touch-stop-2298{min-height:58px!important}
+}

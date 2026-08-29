@@ -1976,7 +1976,7 @@ function maybeResumeBigoFlow2280(){
 
 function loadAudienceCover(file){if(!file)return;const r=new FileReader();r.onload=()=>{audienceCoverData=String(r.result||'');audienceTrackId='';publishAudienceState({trackId:'',cover:audienceCoverData,video:''});toast('시청자 화면 커버를 적용했습니다')};r.readAsDataURL(file)}
 async function loadAudienceVideo(file){if(!file)return;const probe=document.createElement('video');const mime=file.type||'video/mp4';const support=probe.canPlayType(mime);if(!support&&/\.mp4$/i.test(file.name||''))toast('MP4 파일이지만 영상 코덱이 이 휴대폰 브라우저에서 지원되지 않을 수 있습니다. H.264 MP4를 권장합니다.');try{let r=await broadcastDbGet('__audience_global_video__')||{id:'__audience_global_video__',name:'MARU viewer video',blob:new Blob([]),type:'application/x-maru-media'};r.videoBlob=file;r.videoName=file.name||'video';r.mediaUpdatedAt=Date.now();await broadcastDbPut(r)}catch(e){console.warn('global audience video store',e)}if(audienceVideoUrl){try{URL.revokeObjectURL(audienceVideoUrl)}catch{}}audienceVideoUrl=URL.createObjectURL(file);audienceTrackId='__audience_global_video__';try{revokeAudiencePopupMediaUrls()}catch{};audienceRenderedTrackKey2261='';audienceRenderedDirectVideo2261='';audienceRenderedDirectCover2261='';audienceRenderedMediaIdentity2264='';try{localStorage.setItem('maru-default-video-enabled-v1','1')}catch{};publishAudienceState({trackId:audienceTrackId,video:audienceVideoUrl,cover:''});toast('기본 동영상을 저장했습니다')}
-function updateBroadcastDock(){const paused=broadcastRunning&&broadcastPaused;const start=$('#dockBroadcastStart'),pause=$('#dockBroadcastPause'),prev=$('#dockBroadcastPrev'),next=$('#dockBroadcastNext'),end=$('#dockBroadcastEnd'),mainStart=$('#broadcastStart'),mainPause=$('#broadcastPauseBtn'),mainPrev=$('#broadcastPrev');if(start){start.disabled=false;start.textContent=paused?'▶ 원곡 계속':'▶ 원곡 시작'}if(pause){pause.disabled=false;pause.textContent=paused?'⏸ 대기중':'⏸ 대기'}if(prev)prev.disabled=false;if(next)next.disabled=false;if(end)end.disabled=false;if(mainStart){mainStart.disabled=!broadcastFiles.length;mainStart.textContent=paused?'▶ 원곡 계속':'▶ 원곡 방송 시작'}if(mainPause)mainPause.disabled=!broadcastRunning;if(mainPrev)mainPrev.disabled=!broadcastFiles.length}
+function updateBroadcastDock(){const paused=broadcastRunning&&broadcastPaused;const start=$('#dockBroadcastStart'),pause=$('#dockBroadcastPause'),prev=$('#dockBroadcastPrev'),next=$('#dockBroadcastNext'),end=$('#dockBroadcastEnd'),mainStart=$('#broadcastStart'),mainPause=$('#broadcastPauseBtn'),mainPrev=$('#broadcastPrev');if(start){start.disabled=false;start.textContent=paused?'▶ 원곡 계속':(broadcastRunning?'● 방송 중':'🚀 원터치 방송')}if(pause){pause.disabled=false;pause.textContent=paused?'⏸ 대기중':'⏸ 대기'}if(prev)prev.disabled=false;if(next)next.disabled=false;if(end)end.disabled=false;if(mainStart){mainStart.disabled=!broadcastFiles.length;mainStart.textContent=paused?'▶ 원곡 계속':'▶ 원곡 방송 시작'}if(mainPause)mainPause.disabled=!broadcastRunning;if(mainPrev)mainPrev.disabled=!broadcastFiles.length}
 function renderBroadcastQueue(){const box=$('#broadcastQueue');if(!box){updateBroadcastSelectionActions();updateBroadcastDock();return}const rows=broadcastVisibleRows(),favs=readBroadcastFavs(),ids=broadcastCurrentIds();box.innerHTML=rows.length?rows.map(x=>{const selected=broadcastSelectedIds.has(x.id),canUp=x.i>0,canDown=x.i<broadcastFiles.length-1,media=broadcastMediaInfo(x.id),hasCover=!!media.coverName,hasVideo=!!media.videoName||broadcastIsVideoFile(x.f),pf=broadcastSmartProfile(x.f);return `<div class="qrow ${broadcastRunning&&x.i===broadcastIndex?'playing':''} ${selected?'selected':''}"><button class="qplay" type="button" data-broadcast-play="${x.i}">▶</button><input class="qselect" type="checkbox" data-broadcast-select="${x.i}" ${selected?'checked':''}><span class="qnum">${x.i+1}</span><span class="qtitle" title="${esc(x.title)}">${esc(x.title)}</span><span class="qprofile"><em>${pf.mood.icon} ${pf.mood.label}</em><em>${pf.language.icon} ${pf.language.label}</em><em>${broadcastIsVideoFile(x.f)?'🎬 MP4':'🎵 음원'}</em></span><span class="qmedia"><button class="${hasCover?'active':''}" type="button" data-broadcast-cover="${x.i}"><span>🖼</span><b>커버</b></button><button class="${hasVideo?'active':''}" type="button" data-broadcast-video="${x.i}"><span>🎬</span><b>영상</b></button><button type="button" data-broadcast-media-preview="${x.i}"><span>👁</span><b>보기</b></button>${hasCover||media.videoName?`<button class="media-clear" type="button" data-broadcast-media-clear="${x.i}"><span>×</span><b>해제</b></button>`:''}</span><span class="qmove"><button type="button" data-broadcast-up="${x.i}" ${canUp?'':'disabled'}>▲</button><button type="button" data-broadcast-down="${x.i}" ${canDown?'':'disabled'}>▼</button></span><button class="qfav ${favs.has(x.f.name)?'active':''}" type="button" data-broadcast-fav="${x.i}">${favs.has(x.f.name)?'★':'☆'}</button><button class="qdel" type="button" data-broadcast-delete="${x.i}">🗑</button></div>`}).join(''):`<div class="analysis-box">조건에 맞는 노래가 없습니다.</div>`;box.querySelectorAll('[data-broadcast-play]').forEach(b=>b.onclick=()=>broadcastJumpTo(Number(b.dataset.broadcastPlay)));box.querySelectorAll('[data-broadcast-select]').forEach(b=>b.onchange=()=>{const i=Number(b.dataset.broadcastSelect),id=ids[i];if(!id)return;if(b.checked)broadcastSelectedIds.add(id);else broadcastSelectedIds.delete(id);renderBroadcastQueue()});box.querySelectorAll('[data-broadcast-cover]').forEach(b=>b.onclick=()=>chooseBroadcastTrackMedia(Number(b.dataset.broadcastCover),'cover'));box.querySelectorAll('[data-broadcast-video]').forEach(b=>b.onclick=()=>chooseBroadcastTrackMedia(Number(b.dataset.broadcastVideo),'video'));box.querySelectorAll('[data-broadcast-media-preview]').forEach(b=>b.onclick=()=>previewBroadcastTrackMedia(Number(b.dataset.broadcastMediaPreview)));box.querySelectorAll('[data-broadcast-media-clear]').forEach(b=>b.onclick=()=>clearBroadcastTrackMedia(Number(b.dataset.broadcastMediaClear)));box.querySelectorAll('[data-broadcast-up]').forEach(b=>b.onclick=()=>moveBroadcastTrack(Number(b.dataset.broadcastUp),-1));box.querySelectorAll('[data-broadcast-down]').forEach(b=>b.onclick=()=>moveBroadcastTrack(Number(b.dataset.broadcastDown),1));box.querySelectorAll('[data-broadcast-delete]').forEach(b=>b.onclick=()=>deleteOneBroadcastTrack(Number(b.dataset.broadcastDelete)));box.querySelectorAll('[data-broadcast-fav]').forEach(b=>b.onclick=()=>{const i=Number(b.dataset.broadcastFav),f=broadcastFiles[i],set=readBroadcastFavs();if(set.has(f.name))set.delete(f.name);else set.add(f.name);saveBroadcastFavs(set);renderBroadcastQueue()});updateBroadcastSelectionActions();updateBroadcastDock()}
 async function selectBroadcastFiles(files){const incoming=[...(files||[])].filter(broadcastIsPlayableFile).slice(0,100);if(!incoming.length)return toast('MP3·WAV·M4A 또는 MP4·MOV 파일을 선택해 주세요');if(broadcastRunning)broadcastStop(false);const known=new Set(broadcastCurrentIds()),fresh=[];for(const f of incoming){const id=broadcastFileId(f,f.name);if(!known.has(id)){known.add(id);fresh.push(f)}}if(!fresh.length)return toast('이미 방송목록에 있는 파일입니다');try{await persistBroadcastPlaylist(fresh,{append:true});await restoreBroadcastPlaylist();await updateBroadcastPersistStatus(`${broadcastFiles.length}개 자동 저장 완료 · MP3/MP4 통합 목록`);queueBroadcastAutoLearning(fresh,{delay:400});toast(`${fresh.length}개를 같은 방송목록에 추가했습니다`)}catch(e){console.error('persist broadcast playlist',e);toast('방송목록 저장에 실패했습니다. 브라우저 저장공간을 확인해 주세요.')}}
 function applySmartBroadcastOrder(){if(broadcastFiles.length<2)return toast('자동편성하려면 방송곡이 2개 이상 필요합니다');if(broadcastRunning)broadcastStop(false);const ids=broadcastCurrentIds(),items=broadcastFiles.map((f,i)=>({f,id:ids[i],i,p:broadcastSmartProfile(f)})),remaining=[...items],out=[];const langOrder=['ko','zh','en','ja'].filter(code=>items.some(x=>x.p.language.code===code));if(items.some(x=>x.p.language.code==='other'))langOrder.push('other');let mood='up',li=0,lastLang='';while(remaining.length){const desiredLang=langOrder.length?langOrder[li%langOrder.length]:'other';let bi=0,bs=-1e9;for(let i=0;i<remaining.length;i++){const x=remaining[i];let s=x.p.mood.code===mood?12:x.p.mood.code==='auto'?6:-4;if(x.p.language.code===desiredLang)s+=8;if(lastLang&&x.p.language.code===lastLang&&remaining.some(y=>y.p.language.code!==lastLang))s-=7;s-=x.i/10000;if(s>bs){bs=s;bi=i}}const x=remaining.splice(bi,1)[0];out.push(x);lastLang=x.p.language.code;mood=mood==='up'?'calm':'up';li++}broadcastFiles=out.map(x=>x.f);broadcastTrackIds=out.map(x=>x.id);broadcastOrderWrite(broadcastTrackIds);const sort=$('#broadcastListSort');if(sort)sort.value='order';renderBroadcastQueue();updateBroadcastPersistStatus(`${broadcastFiles.length}개 저장됨 · 분위기·언어 자동편성 순서 저장`);const counts={up:0,calm:0,auto:0,ko:0,zh:0,en:0,ja:0,other:0};out.forEach(x=>{counts[x.p.mood.code]=(counts[x.p.mood.code]||0)+1;counts[x.p.language.code]=(counts[x.p.language.code]||0)+1});const st=$('#broadcastSmartStatus');if(st)st.textContent=`🎚 자동편성 완료 · 🔥신남 ${counts.up} · 🌙조용 ${counts.calm} · 자동 ${counts.auto} · 🇰🇷${counts.ko} 🇨🇳${counts.zh} 🇺🇸${counts.en} 🇯🇵${counts.ja}`;toast('방송 분위기·언어 자동편성을 완료했습니다')}
@@ -3227,3 +3227,137 @@ const maruUsbOrigApplyMedia2296=applyBroadcastTrackMedia;applyBroadcastTrackMedi
 const maruUsbOrigPlay2296=playBroadcastIndex;playBroadcastIndex=async function(i){const f=broadcastFiles[i];if(!f?.maruUsbRemote2296)return maruUsbOrigPlay2296(i);if(!broadcastRunning||broadcastPaused||!f)return;broadcastIndex=i;renderBroadcastQueue();const isVideo=broadcastIsVideoFile(f),el=isVideo?document.getElementById('broadcastVideoPlayer'):document.getElementById('broadcastAudio');if(!el)return;prepareOriginalBroadcastElement2289(el);stopOtherBroadcastPlayer(el);const title=broadcastSafeTitle(f.name);try{const r=await maruUsbRequestTrack2296(i);el.src=r.source;el.muted=false;el.volume=1;el.load();document.getElementById('broadcastAudio').style.display=isVideo?'none':'block';document.getElementById('broadcastVideoPlayer').style.display=isVideo?'block':'none';audienceTrackId=f.maruUsbTrackId2296||'';audienceTrackCoverUrl=r.cover||'';audienceTrackVideoUrl=r.video||(isVideo?r.source:'');const sub=String(f.maruUsbSubtitle2296||'').trim();if(sub){const tx=document.getElementById('broadcastSubtitleText'),en=document.getElementById('broadcastSubtitleEnabled');if(tx)tx.value=sub;if(en)en.checked=true}markBroadcastRecent(f.name);document.getElementById('broadcastNow').textContent=`🔌 USB 원곡 재생 · ${i+1}/${broadcastFiles.length} · ${title} · PC 저장 없음`;document.getElementById('broadcastBadge').textContent=`USB 재생 ${i+1}/${broadcastFiles.length}`;publishAudienceState({title,trackIndex:i,status:`USB 원곡 재생 · ${i+1}/${broadcastFiles.length}`,message:audienceText(),announcement:'',cover:audienceTrackCoverUrl,video:audienceTrackVideoUrl,subtitle:audienceSubtitleState()});await el.play()}catch(e){console.error(e);maruUsbStatus2296(`재생 실패 · ${e.message||e}`,'error');toast(`USB 원곡 재생 실패 · ${e.message||e}`)}};
 const maruUsbOrigStop2296=broadcastStop;broadcastStop=function(showToast=true){const r=maruUsbOrigStop2296(showToast);if(maruUsbRemoteActive2296)maruUsbRelease2296();return r};
 const maruUsbOrigChooseMedia2296=chooseBroadcastTrackMedia;chooseBroadcastTrackMedia=function(i,k){if(broadcastFiles[i]?.maruUsbRemote2296)return toast('USB 방송곡의 커버/영상은 휴대폰 MARU에서 수정해 주세요.');return maruUsbOrigChooseMedia2296(i,k)};
+
+
+/* =========================================================
+   V0.22.98 — ONE-TOUCH BROADCAST
+   One user click:
+   1) open/focus MARU_OBS_LIVE popup (popup permission covered by user gesture)
+   2) verify local Helper
+   3) start/connect OBS and begin OBS stream
+   4) use current local/USB broadcast list
+   5) start original track playback
+   ========================================================= */
+let maruOneTouchBusy2298=false;
+
+function maruOneTouchStatus2298(state,title,text){
+  const e=document.getElementById('maruOneTouchStatus2298');
+  if(!e)return;
+  e.dataset.state=state||'idle';
+  const b=e.querySelector('b'),s=e.querySelector('span');
+  if(b)b.textContent=title||'준비';
+  if(s)s.textContent=text||'';
+}
+function maruSleep2298(ms){return new Promise(r=>setTimeout(r,ms))}
+async function maruOneTouchWaitPlaylist2298(timeout=4500){
+  if(broadcastFiles?.length)return true;
+  const started=Date.now();
+  while(Date.now()-started<timeout){
+    try{
+      if(typeof maruUsbPcPoll2296==='function')await maruUsbPcPoll2296();
+    }catch{}
+    if(broadcastFiles?.length)return true;
+    await maruSleep2298(350);
+  }
+  return !!broadcastFiles?.length;
+}
+async function maruOneTouchStart2298(){
+  if(maruOneTouchBusy2298)return;
+  if(broadcastRunning&&!broadcastPaused){
+    toast('이미 원곡 방송이 진행 중입니다.');
+    maruOneTouchStatus2298('live','🔴 방송 중','OBS와 원곡 방송이 이미 진행 중입니다.');
+    return;
+  }
+  maruOneTouchBusy2298=true;
+  const buttons=[document.getElementById('maruOneTouchStart2298'),document.getElementById('dockBroadcastStart')];
+  buttons.forEach(b=>{if(b)b.disabled=true});
+  try{
+    // This must happen before the first await so Chrome treats it as a user-click popup.
+    setPcCaptureMode2285('window');
+    openObsView2284();
+
+    maruOneTouchStatus2298('working','1/4 방송창 준비','MARU_OBS_LIVE 방송창을 열고 있습니다…');
+    await maruSleep2298(650);
+
+    maruOneTouchStatus2298('working','2/4 Helper 확인','PC Helper와 OBS 연결을 확인하고 있습니다…');
+    const helperOk=await checkObsHelper2286({quiet:true});
+    if(!helperOk){
+      throw new Error('PC Helper가 꺼져 있습니다. PC-OBS-HELPER의 1-원터치-준비설정.bat를 한 번 실행해 주세요.');
+    }
+
+    const pref=saveObsAutoPrefs2286();
+    const password=String(document.getElementById('obsWsPassword')?.value||'');
+
+    maruOneTouchStatus2298('working','3/4 OBS 자동 시작','OBS 실행·MARU 창 연결·송출 시작을 한 번에 처리 중입니다…');
+    const obs=await obsHelperCall2286('/api/start',{
+      obsPort:pref.port,
+      obsPassword:password,
+      sceneName:pref.scene,
+      sourceName:'MARU_OBS_LIVE',
+      windowTitle:'MARU_OBS_LIVE',
+      startStream:true
+    },35000);
+
+    if(!obs.streamActive){
+      setObsAutoStatus2286('ready','OBS 장면 준비됨','OBS는 연결됐지만 실제 송출이 시작되지 않았습니다. OBS/BIGO 송출 설정을 확인해 주세요.');
+      throw new Error('OBS는 준비됐지만 송출이 시작되지 않았습니다. OBS의 BIGO 송출 설정을 확인해 주세요.');
+    }
+    setObsAutoStatus2286('live','🔴 OBS 방송 중',`송출 시작됨 · 장면 ${obs.sceneName||pref.scene} · MARU 방송창만 송출`);
+
+    maruOneTouchStatus2298('working','4/4 원곡 시작','방송목록을 확인하고 첫 곡을 준비하고 있습니다…');
+    const hasList=await maruOneTouchWaitPlaylist2298();
+    if(!hasList){
+      throw new Error('방송목록이 없습니다. 휴대폰 USB 목록을 먼저 연결하거나 방송곡을 추가해 주세요.');
+    }
+
+    if(broadcastPaused){
+      await broadcastStartOrResume();
+    }else if(!broadcastRunning){
+      await broadcastStart(resolveAudienceStartIndex2255());
+    }
+
+    maruOneTouchStatus2298('live','🔴 원터치 방송 중',`OBS 송출 + MARU 원곡 재생 시작 · ${broadcastFiles.length}곡 방송목록`);
+    toast('원터치 방송을 시작했습니다.');
+    updateBroadcastDock();
+  }catch(e){
+    const msg=String(e?.message||e||'원터치 방송 시작 실패');
+    maruOneTouchStatus2298('error','원터치 시작 실패',msg);
+    toast('원터치 방송 실패 · '+msg.slice(0,110));
+  }finally{
+    maruOneTouchBusy2298=false;
+    buttons.forEach(b=>{if(b)b.disabled=false});
+  }
+}
+async function maruOneTouchStop2298(){
+  if(maruOneTouchBusy2298)return;
+  maruOneTouchBusy2298=true;
+  const stop=document.getElementById('maruOneTouchStop2298');
+  if(stop)stop.disabled=true;
+  try{
+    maruOneTouchStatus2298('working','전체 방송 종료 중','원곡 재생과 OBS 송출을 순서대로 종료하고 있습니다…');
+    try{if(broadcastRunning)broadcastStop(false)}catch{}
+    try{await stopObsAutoBroadcast2286()}catch{}
+    maruOneTouchStatus2298('idle','방송 종료','원곡 재생과 OBS 송출을 종료했습니다. 다음 방송은 원터치 시작만 누르세요.');
+    toast('전체 방송을 종료했습니다.');
+    updateBroadcastDock();
+  }finally{
+    maruOneTouchBusy2298=false;
+    if(stop)stop.disabled=false;
+  }
+}
+function setupMaruOneTouch2298(){
+  const start=document.getElementById('maruOneTouchStart2298');
+  const stop=document.getElementById('maruOneTouchStop2298');
+  if(start)start.onclick=maruOneTouchStart2298;
+  if(stop)stop.onclick=maruOneTouchStop2298;
+
+  // Bottom fixed start button is now the same one-touch command.
+  const dock=document.getElementById('dockBroadcastStart');
+  if(dock)dock.onclick=()=>{
+    if(broadcastRunning&&broadcastPaused)return broadcastStartOrResume();
+    return maruOneTouchStart2298();
+  };
+  updateBroadcastDock();
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setupMaruOneTouch2298,{once:true});
+else setupMaruOneTouch2298();
