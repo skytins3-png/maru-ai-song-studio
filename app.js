@@ -2153,7 +2153,7 @@ async function openBroadcastSubtitleManager2269(){const dlg=ensureBroadcastSubti
 
 prepareNoteEditor();renderLearningProfile();
 try{const b2269=document.getElementById('openBroadcastSubtitleManager');if(b2269)b2269.onclick=openBroadcastSubtitleManager2269}catch(e){console.warn('subtitle manager bind 2269',e)}
-refreshProPreviewIndex(true).catch(()=>{});renderProCompositionCoach();restoreMasterSampleVolume();restoreMixerEq();renderAuto64Status();setupCollapsibleCards();setupCoreLauncher();updateSourceVoiceValue();renderWordChoices();renderRegions();renderInstruments();autoPick();buildTitleCandidates(lastProfile,false);renderSaved();updateScoreMode();applyScoreView('fit');updateRangeUI();if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js?v=0.22.94');
+refreshProPreviewIndex(true).catch(()=>{});renderProCompositionCoach();restoreMasterSampleVolume();restoreMixerEq();renderAuto64Status();setupCollapsibleCards();setupCoreLauncher();updateSourceVoiceValue();renderWordChoices();renderRegions();renderInstruments();autoPick();buildTitleCandidates(lastProfile,false);renderSaved();updateScoreMode();applyScoreView('fit');updateRangeUI();if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js?v=0.22.97');
 $('#makeTriplet').onclick=makeSelectedTriplet;
 
 
@@ -2530,10 +2530,13 @@ $('#makeTriplet').onclick=makeSelectedTriplet;
   const isInstalled=()=>window.matchMedia?.('(display-mode: standalone)').matches||window.matchMedia?.('(display-mode: fullscreen)').matches||window.navigator.standalone===true;
   function updatePwaClass(){
     const installed=!!isInstalled();
-    document.documentElement.classList.toggle('maru-installed',installed);
-    document.documentElement.classList.toggle('maru-browser',!installed);
+    const mobile=/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent||'');
+    const allowDesktop=!mobile;
+    document.documentElement.classList.toggle('maru-installed',installed||allowDesktop);
+    document.documentElement.classList.toggle('maru-browser',!installed&&!allowDesktop);
+    document.documentElement.classList.toggle('maru-desktop-browser-ok-2297',allowDesktop);
     document.body?.classList.toggle('pwa-installed',installed);
-    return installed;
+    return installed||allowDesktop;
   }
   function setGateStatus(msg){const s=document.getElementById('maruInstallGateStatus');if(s)s.textContent=msg;}
   window.addEventListener('beforeinstallprompt',e=>{
@@ -2549,7 +2552,13 @@ $('#makeTriplet').onclick=makeSelectedTriplet;
     try{toast?.('MARU 앱 설치가 완료됐습니다')}catch(e){}
   });
   async function installMaruPwa(){
+    const mobile=/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent||'');
     if(isInstalled()){try{toast?.('이미 MARU 앱으로 실행 중입니다')}catch(e){};return true;}
+    if(!mobile && !deferredPwaInstall){
+      setGateStatus('PC에서는 설치 없이 바로 사용할 수 있습니다. 설치는 브라우저 메뉴에서 선택할 수 있습니다.');
+      try{toast?.('PC에서는 MARU 설치 없이 바로 사용할 수 있습니다')}catch(e){}
+      return true;
+    }
     if(deferredPwaInstall){
       setGateStatus('설치창을 여는 중입니다…');
       const prompt=deferredPwaInstall;

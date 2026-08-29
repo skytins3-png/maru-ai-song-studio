@@ -1354,3 +1354,11 @@ body.audience-mode.obs-output-mode .audience-cover-placeholder{font-size:clamp(3
 .usb-step-2296>b{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#6ee7c7;color:#0e1a18;flex:0 0 auto}.usb-step-2296 span{line-height:1.55}
 .usb-mobile-note-2296{padding:12px 14px;border-radius:14px;background:rgba(104,80,180,.18);line-height:1.55}
 .usb-remote-2296 .qtitle:after{content:" · USB";font-size:.72em;color:#79e7cc;font-weight:800}
+
+/* V0.22.97 — PC PWA install gate bypass */
+html.maru-desktop-browser-ok-2297 .maru-install-gate{display:none!important}
+html.maru-desktop-browser-ok-2297 body > header,
+html.maru-desktop-browser-ok-2297 body > main,
+html.maru-desktop-browser-ok-2297 body > #broadcastDock,
+html.maru-desktop-browser-ok-2297 body > #audienceView,
+html.maru-desktop-browser-ok-2297 body > #toast{display:revert!important}

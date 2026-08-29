@@ -12,11 +12,15 @@
   <script>
   (function(){
     var installed=(window.matchMedia&&((window.matchMedia('(display-mode: standalone)').matches)||(window.matchMedia('(display-mode: fullscreen)').matches)))||window.navigator.standalone===true;
-    document.documentElement.classList.add(installed?'maru-installed':'maru-browser');
+    var mobile=/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent||'');
+    // V0.22.97: PC에서는 PWA 설치 여부와 관계없이 MARU 본 화면을 바로 엽니다.
+    // 설치 버튼은 선택 기능으로 남기고, 설치 프롬프트가 없어도 PC 사용을 막지 않습니다.
+    document.documentElement.classList.add((installed||!mobile)?'maru-installed':'maru-browser');
+    if(!mobile) document.documentElement.classList.add('maru-desktop-browser-ok-2297');
   })();
   </script>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=0.22.94">
+  <link rel="stylesheet" href="styles.css?v=0.22.97">
   <link rel="stylesheet" href="score.css?v=0.22.89">
   <style>.wide{width:100%;margin-top:16px}.analysis-box{margin-top:12px;padding:14px;border-radius:14px;background:#100c1e;border:1px solid #4b3d68;color:#e9e2f8;line-height:1.65;white-space:pre-line}.audio-analyzer .audio-file{display:block;width:100%;padding:12px;border:1px dashed #6b5b89;border-radius:12px;background:#151126;color:#eee}.audio-analyzer audio{width:100%;margin-top:10px}.audio-analysis-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:12px 0}.audio-stat{padding:10px;border-radius:12px;background:#151126;border:1px solid #403653}.audio-stat b{display:block;font-size:12px;color:#bfb2da}.audio-stat strong{display:block;margin-top:4px;font-size:18px}.analyzed-style{min-height:150px}.analysis-note{display:block;margin-top:10px;line-height:1.55;color:#c9bfdc}.song-mic-level{margin-top:9px;display:flex;align-items:center;gap:10px}.song-mic-track{flex:1;height:12px;border-radius:999px;background:#211a31;overflow:hidden;border:1px solid #514269}.song-mic-fill{width:0;height:100%;background:linear-gradient(90deg,#5da9ff,#7de4a8,#ffd36a);transition:width .08s linear}.song-mic-level small{min-width:72px;color:#cfc5df}@media(max-width:760px){.audio-analysis-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}</style>
 
@@ -37,7 +41,7 @@
 
   <header>
     <div class="brand">MARU <span>WORLD MUSIC MAKER</span></div>
-    <div class="tag">V0.22.96 · USB 실시간 원곡 방송 · PC 곡파일 저장 없음 · OBS</div>
+    <div class="tag">V0.22.97 · PC 설치 없이 바로 실행 · USB 실시간 원곡 방송 · OBS</div>
   </header>
   <main>
     <section id="coreLauncher" class="core-launcher" aria-label="핵심 기능">
@@ -467,7 +471,7 @@
   <script src="vendor/vexflow.js?v=5.0.0"></script>
   <script src="vendor/sfumato.js?v=0.22.89"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="app.js?v=0.22.96"></script>
+  <script src="app.js?v=0.22.97"></script>
 
   <script>
   (function(){

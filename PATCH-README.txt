@@ -1,18 +1,12 @@
-MARU V0.22.96 — USB 실시간 원곡 방송 / PC 곡파일 저장 없음
+MARU V0.22.97 — PC 설치 없이 바로 실행
 
-- Wi‑Fi 없이 USB 테더링으로 휴대폰 MARU와 PC Helper를 연결합니다.
-- PC에는 곡 제목/순서/자막 메타데이터만 메모리로 표시합니다.
-- PC에서 재생할 때 현재 곡의 원본 MP3/MP4와 필요한 커버/영상만 휴대폰에서 전송합니다.
-- Helper는 현재 곡을 RAM(MemoryStream)에만 보관하고 다음 곡/종료 때 폐기합니다.
-- PC 다운로드 폴더와 PC MARU IndexedDB에는 원곡 파일을 저장하지 않습니다.
-- OBS의 MARU_OBS_LIVE 창 캡처는 그대로 사용합니다.
+수정:
+- PC Chrome/Edge에서 PWA 설치창이 뜨지 않아도 MARU 본 화면을 바로 엽니다.
+- 'MARU 앱 설치' 화면이 PC 사용을 막지 않습니다.
+- PC 앱 설치는 선택 사항입니다.
+- 모바일 PWA 설치 흐름은 기존대로 유지합니다.
+- V0.22.96 USB 실시간 원곡 방송 / PC 곡파일 저장 없음 / OBS 기능은 그대로 유지합니다.
+- OBS Helper는 V0.22.96 USB/RAM Helper를 그대로 사용합니다.
 
-사용:
-1. PC에서 V0.22.96 START-MARU-OBS-HELPER.bat 실행
-2. 휴대폰 USB 케이블 연결
-3. 휴대폰 설정에서 USB 테더링 ON
-4. PC MARU에서 “USB 연결 QR 크게 보기”
-5. 모바일 MARU에서 “PC USB QR 찍고 연결”
-6. PC에 모바일 곡 제목 목록이 뜨면 ▶ 원곡 시작
-
-주의: 웹앱은 Android 시스템의 USB 테더링 스위치를 직접 켤 수 없으므로 사용자가 한 번 켜야 합니다.
+권장 주소:
+https://skytins3-png.github.io/maru-ai-song-studio/?v=2297
