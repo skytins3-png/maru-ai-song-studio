@@ -3101,7 +3101,7 @@ async function maruDirectRefreshPc2293(){
   try{const st=await maruDirectJson2293(MARU_DIRECT_HELPER_LOOPBACK_2293,'/api/status');if(!st.directSync)throw new Error('V0.22.93 이상 도우미가 필요합니다.');const urls=Array.isArray(st.lanUrls)?st.lanUrls:[];box.textContent=urls.length?`휴대폰에 입력할 PC 주소: ${urls.join(' 또는 ')}`:'PC의 Wi‑Fi/LAN 주소를 찾지 못했습니다.';maruDirectStatus2293(urls.length?'PC 자동 수신 준비 완료 · 휴대폰에 위 주소를 한 번 입력한 뒤 바로 보내기를 누르세요.':'PC 네트워크 주소를 확인해 주세요.',urls.length?'ready':'error')}
   catch(e){box.textContent='V0.22.93 이상 OBS 도우미를 먼저 실행해 주세요.';maruDirectStatus2293(`${e.message||e} · 새 도우미를 실행하면 PC 자동 수신이 켜집니다.`,'error')}
 }
-/* V0.22.94 — QR PAIRING ON TOP OF V0.22.93 DIRECT SYNC */
+/* V0.22.95 — QR CLICK RELIABILITY + V0.22.94 PAIRING */
 let maruQrStream2294=null,maruQrScanTimer2294=null,maruQrDetector2294=null,maruQrAutoSendUsed2294=false,maruQrLastPcUrl2294='';
 function maruQrBestLan2294(urls){
   const list=[...(urls||[])].filter(Boolean);const score=u=>{try{const h=new URL(u).hostname;if(/^192\.168\./.test(h))return 0;if(/^10\./.test(h))return 1;if(/^172\.(1[6-9]|2\d|3[01])\./.test(h))return 2;return 9}catch{return 99}};
@@ -3145,12 +3145,20 @@ async function maruQrStartScanner2294(){
 }
 async function maruQrShowPc2294(){
   const panel=document.getElementById('directSyncQrPanel2294'),box=document.getElementById('directSyncQrCode2294'),label=document.getElementById('directSyncQrAddress2294');if(!panel||!box)return;
+  panel.hidden=false;
+  box.innerHTML='<div class="qr-click-feedback-2295">QR 준비 중…<br><small>PC 주소 확인 중</small></div>';
+  if(label)label.textContent='PC 주소 확인 중…';
+  maruDirectStatus2293('QR 버튼 눌림 · PC 주소 확인 중…','busy');
   try{
-    const st=await maruDirectJson2293(MARU_DIRECT_HELPER_LOOPBACK_2293,'/api/status');const base=maruQrBestLan2294(st.lanUrls);if(!base)throw new Error('PC Wi‑Fi 주소를 찾지 못했습니다.');maruQrLastPcUrl2294=base;const pair=maruQrPairUrl2294(base);panel.hidden=false;box.innerHTML='';if(label)label.textContent=base;
+    const st=await maruDirectJson2293(MARU_DIRECT_HELPER_LOOPBACK_2293,'/api/status');const base=maruQrBestLan2294(st.lanUrls);if(!base)throw new Error('PC Wi‑Fi 주소를 찾지 못했습니다.');maruQrLastPcUrl2294=base;const pair=maruQrPairUrl2294(base);box.innerHTML='';if(label)label.textContent=base;
     if(typeof QRCode==='function')new QRCode(box,{text:pair,width:280,height:280,colorDark:'#000000',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});
-    else{box.innerHTML='<div style="color:#111;padding:20px;font-weight:800">QR 생성 모듈을 불러오지 못했습니다.<br>아래 PC 주소를 직접 입력해 주세요.</div>'}
+    else{box.innerHTML='<div class="qr-click-error-2295">QR 생성 모듈을 불러오지 못했습니다.<br><small>아래 PC 주소를 직접 입력해 주세요.</small></div>'}
     maruDirectStatus2293('QR 준비 완료 · 휴대폰 MARU의 “📷 PC QR 찍고 바로 연결”로 찍으세요.','ready');
-  }catch(e){panel.hidden=true;maruDirectStatus2293(`${e.message||e} · OBS 도우미가 켜져 있는지 확인하세요.`,'error')}
+  }catch(e){
+    if(label)label.textContent='OBS Helper 연결 필요';
+    box.innerHTML='<div class="qr-click-error-2295">QR 버튼은 정상입니다.<br><small>OBS Helper를 먼저 실행한 뒤 다시 눌러 주세요.</small></div>';
+    maruDirectStatus2293(`${e.message||e} · OBS 도우미가 켜져 있는지 확인하세요.`,'error');
+  }
 }
 async function maruQrHandleLaunch2294(){
   if(!maruDirectIsMobile2293())return;const u=new URL(location.href),pc=u.searchParams.get('maruPc');if(!pc)return;const auto=u.searchParams.get('maruAutoSend')==='1';u.searchParams.delete('maruPc');u.searchParams.delete('maruAutoSend');history.replaceState(null,'',u.pathname+(u.search?u.search:'')+(u.hash||''));

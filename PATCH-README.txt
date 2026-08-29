@@ -1,11 +1,10 @@
-MARU V0.22.94 — QR ONE-TAP MOBILE → PC DIRECT SYNC
+MARU V0.22.95 — QR BUTTON CLICK FIX
 
-1. PC MARU에서 “📱 휴대폰 연결 QR 크게 보기”를 누릅니다.
-2. 모바일 MARU에서 “📷 PC QR 찍고 바로 연결”을 누르고 PC QR을 찍습니다.
-3. PC 주소가 자동 저장되고 연결 확인 뒤 저장 방송목록 전송이 자동 시작됩니다.
-4. 원곡 MP3/MP4, 커버, 곡별 영상, 자막, 방송 순서를 V0.22.93 직접 LAN 동기화 엔진으로 그대로 전송합니다.
-5. PC 다운로드 폴더에 .marusync 파일을 만들지 않습니다. PC MARU IndexedDB에 자동 저장합니다.
-6. QR 자동 인식이 지원되지 않는 브라우저에서는 주소 직접 입력 방식이 그대로 남아 있습니다.
+- PC의 “휴대폰 연결 QR 크게 보기” 버튼을 누르면 즉시 QR 패널이 열리도록 수정.
+- OBS Helper가 꺼져 있어도 버튼이 무반응처럼 보이지 않고 오류 이유를 화면에 표시.
+- 모바일의 “PC QR 찍고 바로 연결” 버튼도 즉시 카메라 창을 열도록 클릭 경로를 이중화.
+- 버튼에 inline fallback handler + 기존 app.js handler를 함께 적용해 이벤트 바인딩 실패를 우회.
+- QR 버튼 pointer-events / touch-action / z-index를 강제해 모바일 터치 누락을 방지.
+- 기존 V0.22.94 QR 동기화, V0.22.93 직접 LAN 동기화, OBS 방송 기능은 유지.
 
-OBS Helper API는 V0.22.93과 동일하므로 현재 사용 중인 V0.22.93 이상 Helper를 그대로 사용합니다.
-PC와 모바일은 같은 Wi-Fi/LAN에 있어야 합니다.
+OBS Helper는 V0.22.93 이상을 그대로 사용할 수 있습니다.

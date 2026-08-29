@@ -1328,3 +1328,20 @@ body.audience-mode.obs-output-mode .audience-cover-placeholder{font-size:clamp(3
 .direct-qr-scan-frame-2294{position:absolute;left:18%;right:18%;top:25%;aspect-ratio:1;border:3px solid #fff;border-radius:16px;box-shadow:0 0 0 9999px rgba(0,0,0,.12);pointer-events:none}
 #directSyncQrScanStatus2294{display:block;margin:10px 0;min-height:1.4em}
 @media(max-width:600px){.direct-qr-code-2294{width:260px}.direct-qr-scanner-2294{padding:8px}.direct-qr-scanner-box-2294{width:100%}}
+
+/* V0.22.95 QR click reliability */
+.direct-qr-main-2294{
+  position:relative!important;
+  z-index:25!important;
+  pointer-events:auto!important;
+  touch-action:manipulation!important;
+  cursor:pointer!important;
+  user-select:none;
+}
+.direct-sync-card-2293,.direct-sync-panel-2293{position:relative}
+.qr-click-feedback-2295,.qr-click-error-2295{
+  width:100%;min-height:170px;display:grid;place-items:center;align-content:center;
+  padding:18px;color:#15111d;font-weight:900;text-align:center;line-height:1.5
+}
+.qr-click-feedback-2295 small,.qr-click-error-2295 small{display:block;margin-top:5px;font-weight:700}
+.qr-click-error-2295{color:#5a1022}

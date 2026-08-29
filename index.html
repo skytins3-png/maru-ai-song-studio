@@ -37,7 +37,7 @@
 
   <header>
     <div class="brand">MARU <span>WORLD MUSIC MAKER</span></div>
-    <div class="tag">V0.22.94 · QR 한 번으로 모바일 → PC 직접 동기화 · 원곡 방송 + OBS</div>
+    <div class="tag">V0.22.95 · QR 버튼 클릭 안정화 · QR 한 번으로 모바일 → PC 직접 동기화 · 원곡 방송 + OBS</div>
   </header>
   <main>
     <section id="coreLauncher" class="core-launcher" aria-label="핵심 기능">
@@ -112,10 +112,10 @@
             </div>
             <small class="broadcast-manage-help simple-help">음원과 동영상은 이 버튼으로 여러 번 추가해도 한 방송목록에 계속 합쳐집니다.</small>
             <div class="broadcast-sync-card-2292 direct-sync-card-2293" id="broadcastSyncCard2292">
-              <div class="broadcast-sync-head-2292"><div><b>📱 → 🖥 QR 바로 동기화</b><span>주소를 외울 필요 없이 PC의 QR을 휴대폰 MARU에서 한 번 찍으면 원곡·MP4·커버·자막·곡 순서를 PC MARU 내부 저장공간으로 바로 보냅니다.</span></div><strong>V0.22.94</strong></div>
+              <div class="broadcast-sync-head-2292"><div><b>📱 → 🖥 QR 바로 동기화</b><span>주소를 외울 필요 없이 PC의 QR을 휴대폰 MARU에서 한 번 찍으면 원곡·MP4·커버·자막·곡 순서를 PC MARU 내부 저장공간으로 바로 보냅니다.</span></div><strong>V0.22.95</strong></div>
 
               <div id="directSyncMobile2293" class="direct-sync-panel-2293" hidden>
-                <button id="directSyncScanQr2294" class="primary direct-qr-main-2294" type="button">📷 PC QR 찍고 바로 연결</button>
+                <button id="directSyncScanQr2294" class="primary direct-qr-main-2294" type="button" onclick="return window.maruQrDirectClick2295 && window.maruQrDirectClick2295('scan', event)">📷 PC QR 찍고 바로 연결</button>
                 <small class="direct-qr-help-2294">PC MARU에 뜬 QR을 이 버튼으로 찍으면 PC 주소가 자동 입력됩니다. 연결되면 저장 방송목록 전송을 바로 시작합니다.</small>
                 <details class="direct-address-fallback-2294">
                   <summary>주소 직접 입력 · 필요할 때만</summary>
@@ -131,7 +131,7 @@
 
               <div id="directSyncPc2293" class="direct-sync-panel-2293 direct-sync-pc-2293" hidden>
                 <div class="direct-pc-ready-2293"><b>🟢 PC 자동 수신</b><span>이 페이지를 열어두면 모바일 전송을 자동으로 받아 MARU 내부에 저장합니다.</span></div>
-                <button id="directSyncShowQr2294" class="primary direct-qr-main-2294" type="button">📱 휴대폰 연결 QR 크게 보기</button>
+                <button id="directSyncShowQr2294" class="primary direct-qr-main-2294" type="button" onclick="return window.maruQrDirectClick2295 && window.maruQrDirectClick2295('show', event)">📱 휴대폰 연결 QR 크게 보기</button>
                 <div id="directSyncQrPanel2294" class="direct-qr-panel-2294" hidden>
                   <div id="directSyncQrCode2294" class="direct-qr-code-2294" aria-label="휴대폰 연결 QR 코드"></div>
                   <b>휴대폰 MARU에서 ‘📷 PC QR 찍고 바로 연결’로 찍으세요.</b>
@@ -478,6 +478,72 @@
   <script src="vendor/vexflow.js?v=5.0.0"></script>
   <script src="vendor/sfumato.js?v=0.22.89"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="app.js?v=0.22.94"></script>
+  <script src="app.js?v=0.22.95"></script>
+
+  <script>
+  (function(){
+    function setQrStatus2295(text,state){
+      var el=document.getElementById('directSyncStatus2293');
+      if(!el)return;
+      el.dataset.state=state||'busy';
+      var b=el.querySelector('b'),s=el.querySelector('span');
+      if(b)b.textContent=state==='error'?'확인 필요':state==='ready'?'연결 준비':'QR 준비';
+      if(s)s.textContent=text;
+    }
+    window.maruQrDirectClick2295=function(kind,ev){
+      if(ev){ev.preventDefault();ev.stopPropagation();}
+      if(kind==='show'){
+        var panel=document.getElementById('directSyncQrPanel2294');
+        var box=document.getElementById('directSyncQrCode2294');
+        if(panel)panel.hidden=false;
+        if(box)box.innerHTML='<div class="qr-click-feedback-2295">QR 버튼 눌림<br><small>PC 주소 확인 중…</small></div>';
+        setQrStatus2295('QR 버튼 눌림 · PC 주소와 OBS Helper 상태를 확인하고 있습니다.','busy');
+        setTimeout(function(){
+          try{
+            if(typeof window.maruQrShowPc2294==='function'){
+              Promise.resolve(window.maruQrShowPc2294()).catch(function(err){
+                if(box)box.innerHTML='<div class="qr-click-error-2295">QR 준비 실패<br><small>'+String(err&&err.message||err)+'</small></div>';
+                setQrStatus2295('QR 준비 실패 · OBS Helper가 실행 중인지 확인하세요.','error');
+              });
+            }else{
+              if(box)box.innerHTML='<div class="qr-click-error-2295">QR 기능을 다시 불러와 주세요.</div>';
+              setQrStatus2295('QR 기능을 불러오지 못했습니다 · Ctrl+F5로 새로고침해 주세요.','error');
+            }
+          }catch(err){
+            if(box)box.innerHTML='<div class="qr-click-error-2295">QR 실행 오류</div>';
+            setQrStatus2295('QR 실행 오류 · '+String(err&&err.message||err),'error');
+          }
+        },20);
+        return false;
+      }
+      if(kind==='scan'){
+        var overlay=document.getElementById('directSyncQrScanner2294');
+        var status=document.getElementById('directSyncQrScanStatus2294');
+        if(overlay)overlay.hidden=false;
+        if(status)status.textContent='QR 버튼 눌림 · 카메라 준비 중…';
+        setQrStatus2295('QR 버튼 눌림 · 휴대폰 카메라를 준비하고 있습니다.','busy');
+        setTimeout(function(){
+          try{
+            if(typeof window.maruQrStartScanner2294==='function'){
+              Promise.resolve(window.maruQrStartScanner2294()).catch(function(err){
+                if(status)status.textContent='카메라 실행 실패 · '+String(err&&err.message||err);
+                setQrStatus2295('카메라 실행 실패 · 주소 직접 입력을 사용해도 됩니다.','error');
+              });
+            }else{
+              if(status)status.textContent='QR 카메라 기능을 불러오지 못했습니다.';
+              setQrStatus2295('QR 기능을 불러오지 못했습니다 · 페이지를 새로고침해 주세요.','error');
+            }
+          }catch(err){
+            if(status)status.textContent='QR 실행 오류 · '+String(err&&err.message||err);
+            setQrStatus2295('QR 실행 오류','error');
+          }
+        },20);
+        return false;
+      }
+      return false;
+    };
+  })();
+  </script>
+
 </body>
 </html>
