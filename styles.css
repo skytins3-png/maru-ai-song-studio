@@ -1345,3 +1345,12 @@ body.audience-mode.obs-output-mode .audience-cover-placeholder{font-size:clamp(3
 }
 .qr-click-feedback-2295 small,.qr-click-error-2295 small{display:block;margin-top:5px;font-weight:700}
 .qr-click-error-2295{color:#5a1022}
+
+/* V0.22.96 — USB live/no PC song storage */
+.usb-live-card-2296{border-color:rgba(82,231,194,.42)!important}
+.usb-no-save-banner-2296{display:grid;gap:6px;padding:14px 16px;margin:12px 0 14px;border-radius:18px;border:1px solid rgba(82,231,194,.38);background:rgba(8,53,45,.36)}
+.usb-no-save-banner-2296 b{font-size:1.02rem;color:#9ff6df}.usb-no-save-banner-2296 span{color:#d7eee8;line-height:1.55}
+.usb-live-panel-2296{display:grid;gap:12px}.usb-step-2296{display:flex;align-items:flex-start;gap:11px;padding:12px 14px;border-radius:16px;background:rgba(255,255,255,.045)}
+.usb-step-2296>b{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#6ee7c7;color:#0e1a18;flex:0 0 auto}.usb-step-2296 span{line-height:1.55}
+.usb-mobile-note-2296{padding:12px 14px;border-radius:14px;background:rgba(104,80,180,.18);line-height:1.55}
+.usb-remote-2296 .qtitle:after{content:" · USB";font-size:.72em;color:#79e7cc;font-weight:800}

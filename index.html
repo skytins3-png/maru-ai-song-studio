@@ -37,7 +37,7 @@
 
   <header>
     <div class="brand">MARU <span>WORLD MUSIC MAKER</span></div>
-    <div class="tag">V0.22.95 · QR 버튼 클릭 안정화 · QR 한 번으로 모바일 → PC 직접 동기화 · 원곡 방송 + OBS</div>
+    <div class="tag">V0.22.96 · USB 실시간 원곡 방송 · PC 곡파일 저장 없음 · OBS</div>
   </header>
   <main>
     <section id="coreLauncher" class="core-launcher" aria-label="핵심 기능">
@@ -111,53 +111,42 @@
               <input id="broadcastVideoAdd" type="file" multiple accept="video/*,.mp4,.m4v,.mov" hidden>
             </div>
             <small class="broadcast-manage-help simple-help">음원과 동영상은 이 버튼으로 여러 번 추가해도 한 방송목록에 계속 합쳐집니다.</small>
-            <div class="broadcast-sync-card-2292 direct-sync-card-2293" id="broadcastSyncCard2292">
-              <div class="broadcast-sync-head-2292"><div><b>📱 → 🖥 QR 바로 동기화</b><span>주소를 외울 필요 없이 PC의 QR을 휴대폰 MARU에서 한 번 찍으면 원곡·MP4·커버·자막·곡 순서를 PC MARU 내부 저장공간으로 바로 보냅니다.</span></div><strong>V0.22.95</strong></div>
+            <div class="broadcast-sync-card-2292 direct-sync-card-2293 usb-live-card-2296" id="broadcastSyncCard2292">
+              <div class="broadcast-sync-head-2292"><div><b>🔌 USB 실시간 원곡 방송</b><span>휴대폰에 저장된 방송곡을 PC에 복사하지 않습니다. USB 테더링 연결 후 곡 제목 목록만 PC에 표시하고, 재생할 현재 곡만 휴대폰에서 PC 메모리(RAM)로 보내 OBS에서 바로 재생합니다.</span></div><strong>V0.22.96</strong></div>
+              <div class="usb-no-save-banner-2296"><b>💾 PC 곡파일 저장 없음</b><span>다운로드 폴더·PC MARU IndexedDB에 원곡을 저장하지 않습니다. 현재 재생용 RAM 버퍼는 다음 곡으로 넘어가면 자동 폐기됩니다.</span></div>
 
-              <div id="directSyncMobile2293" class="direct-sync-panel-2293" hidden>
-                <button id="directSyncScanQr2294" class="primary direct-qr-main-2294" type="button" onclick="return window.maruQrDirectClick2295 && window.maruQrDirectClick2295('scan', event)">📷 PC QR 찍고 바로 연결</button>
-                <small class="direct-qr-help-2294">PC MARU에 뜬 QR을 이 버튼으로 찍으면 PC 주소가 자동 입력됩니다. 연결되면 저장 방송목록 전송을 바로 시작합니다.</small>
-                <details class="direct-address-fallback-2294">
-                  <summary>주소 직접 입력 · 필요할 때만</summary>
-                  <label class="direct-sync-address-label-2293">PC 주소
-                    <input id="directSyncPcAddress2293" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="예: 192.168.0.12">
-                  </label>
-                  <div class="direct-sync-actions-2293">
-                    <button id="directSyncCheck2293" class="secondary" type="button">🔗 PC 연결 확인</button>
-                    <button id="directSyncSend2293" class="primary direct-send-2293" type="button">📡 PC로 바로 보내기</button>
-                  </div>
+              <div id="usbLiveMobile2296" class="direct-sync-panel-2293 usb-live-panel-2296" hidden>
+                <div class="usb-step-2296"><b>1</b><span>휴대폰을 USB 케이블로 PC에 연결하고 Android의 <strong>USB 테더링</strong>을 켜세요.</span></div>
+                <button id="usbLiveScanQr2296" class="primary direct-qr-main-2294" type="button">📷 PC USB QR 찍고 연결</button>
+                <small>QR은 주소만 연결합니다. Wi‑Fi는 필요하지 않습니다. USB 테더링이 켜져 있어야 전송됩니다.</small>
+                <details class="direct-address-fallback-2294"><summary>USB 주소 직접 입력 · 필요할 때만</summary>
+                  <label class="direct-sync-address-label-2293">PC USB 주소<input id="usbLivePcAddress2296" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="예: 192.168.42.2"></label>
+                  <div class="direct-sync-actions-2293"><button id="usbLiveConnect2296" class="secondary" type="button">🔌 USB 연결</button></div>
                 </details>
+                <div class="usb-mobile-note-2296">연결 후에는 이 MARU 화면을 열어 두세요. PC에서 곡을 누르면 휴대폰이 그 곡만 자동 전송합니다.</div>
               </div>
 
-              <div id="directSyncPc2293" class="direct-sync-panel-2293 direct-sync-pc-2293" hidden>
-                <div class="direct-pc-ready-2293"><b>🟢 PC 자동 수신</b><span>이 페이지를 열어두면 모바일 전송을 자동으로 받아 MARU 내부에 저장합니다.</span></div>
-                <button id="directSyncShowQr2294" class="primary direct-qr-main-2294" type="button" onclick="return window.maruQrDirectClick2295 && window.maruQrDirectClick2295('show', event)">📱 휴대폰 연결 QR 크게 보기</button>
-                <div id="directSyncQrPanel2294" class="direct-qr-panel-2294" hidden>
-                  <div id="directSyncQrCode2294" class="direct-qr-code-2294" aria-label="휴대폰 연결 QR 코드"></div>
-                  <b>휴대폰 MARU에서 ‘📷 PC QR 찍고 바로 연결’로 찍으세요.</b>
-                  <span id="directSyncQrAddress2294">PC 주소 확인 중…</span>
-                  <small>QR을 찍으면 주소 입력 없이 연결되고 방송목록 전송이 자동 시작됩니다.</small>
+              <div id="usbLivePc2296" class="direct-sync-panel-2293 direct-sync-pc-2293 usb-live-panel-2296" hidden>
+                <div class="direct-pc-ready-2293"><b>🟢 PC USB 방송 수신</b><span>모바일 방송목록의 제목만 메모리로 받습니다. 원곡 파일은 PC에 보관하지 않습니다.</span></div>
+                <button id="usbLiveShowQr2296" class="primary direct-qr-main-2294" type="button">📱 USB 연결 QR 크게 보기</button>
+                <div id="usbLiveQrPanel2296" class="direct-qr-panel-2294" hidden>
+                  <div id="usbLiveQrCode2296" class="direct-qr-code-2294" aria-label="USB 연결 QR 코드"></div>
+                  <b>휴대폰 MARU에서 ‘📷 PC USB QR 찍고 연결’로 찍으세요.</b>
+                  <span id="usbLiveQrAddress2296">USB 주소 확인 중…</span>
+                  <small>USB 테더링이 켜진 상태에서 사용하세요. Wi‑Fi 연결은 필요하지 않습니다.</small>
                 </div>
-                <div id="directSyncPcLanAddress2293" class="direct-pc-address-2293">PC 주소 확인 중…</div>
-                <button id="directSyncPcRefresh2293" class="secondary" type="button">🧰 PC 주소 다시 확인</button>
+                <div id="usbLivePcLanAddress2296" class="direct-pc-address-2293">USB 주소 확인 중…</div>
+                <button id="usbLiveRefresh2296" class="secondary" type="button">🔄 USB 주소 다시 확인</button>
               </div>
 
-              <div id="directSyncStatus2293" class="broadcast-sync-status-2292 direct-sync-status-2293" data-state="idle"><b>대기</b><span>모바일과 PC를 같은 Wi‑Fi에 연결하고 PC에서 V0.22.93 이상 OBS 도우미를 켜두세요.</span></div>
+              <div id="usbLiveStatus2296" class="broadcast-sync-status-2292 direct-sync-status-2293" data-state="idle"><b>대기</b><span>PC에서 V0.22.96 OBS Helper를 실행한 뒤 USB 테더링으로 연결하세요.</span></div>
+              <div class="direct-sync-progress-2293"><i id="usbLiveProgress2296"></i></div>
 
-              <div id="directSyncQrScanner2294" class="direct-qr-scanner-2294" hidden>
-                <div class="direct-qr-scanner-box-2294">
-                  <b>PC QR을 화면 가운데에 맞춰 주세요</b>
-                  <video id="directSyncQrVideo2294" playsinline muted></video>
-                  <div class="direct-qr-scan-frame-2294" aria-hidden="true"></div>
-                  <span id="directSyncQrScanStatus2294">카메라 준비 중…</span>
-                  <button id="directSyncQrCancel2294" class="secondary" type="button">닫기</button>
-                </div>
+              <div id="usbLiveQrScanner2296" class="direct-qr-scanner-2294" hidden>
+                <div class="direct-qr-scanner-box-2294"><b>PC USB QR을 화면 가운데에 맞춰 주세요</b><video id="usbLiveQrVideo2296" playsinline muted></video><div class="direct-qr-scan-frame-2294" aria-hidden="true"></div><span id="usbLiveQrScanStatus2296">카메라 준비 중…</span><button id="usbLiveQrCancel2296" class="secondary" type="button">닫기</button></div>
               </div>
-              <div class="direct-sync-progress-2293"><i id="directSyncProgress2293"></i></div>
-              <small>PC의 다운로드 폴더에는 동기화 파일을 만들지 않습니다. 받은 원곡은 PC MARU의 브라우저 내부 저장공간(IndexedDB)에만 저장되어 방송에 사용됩니다.</small>
 
-              <details class="direct-sync-fallback-2293">
-                <summary>📦 수동 파일 방식 · 필요할 때만</summary>
+              <details class="direct-sync-fallback-2293"><summary>📦 기존 동기화/파일 방식 · 필요할 때만</summary>
                 <div class="broadcast-sync-actions-2292">
                   <button id="broadcastSyncExport2292" class="secondary" type="button">동기화 파일 만들기</button>
                   <button id="broadcastSyncShare2292" class="secondary" type="button" hidden>Quick Share / 공유</button>
@@ -165,7 +154,7 @@
                   <button id="broadcastSyncImportBtn2292" class="secondary sync-import-2292" type="button">PC에서 파일 받기</button>
                   <input id="broadcastSyncImport2292" type="file" accept=".marusync,application/x-maru-sync" hidden>
                 </div>
-                <div id="broadcastSyncStatus2292" class="broadcast-sync-status-2292" data-state="idle"><b>대기</b><span>직접 전송을 사용할 수 없을 때만 쓰는 예비 방식입니다.</span></div>
+                <div id="broadcastSyncStatus2292" class="broadcast-sync-status-2292" data-state="idle"><b>대기</b><span>USB 실시간 방송을 사용할 수 없을 때만 쓰는 예비 방식입니다.</span></div>
               </details>
             </div>
             <div class="broadcast-library-tools simple-library-tools">
@@ -478,7 +467,7 @@
   <script src="vendor/vexflow.js?v=5.0.0"></script>
   <script src="vendor/sfumato.js?v=0.22.89"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="app.js?v=0.22.95"></script>
+  <script src="app.js?v=0.22.96"></script>
 
   <script>
   (function(){
