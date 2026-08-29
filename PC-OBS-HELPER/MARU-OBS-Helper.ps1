@@ -2,7 +2,7 @@
 $Port = 8765
 $ActionScript = Join-Path $PSScriptRoot 'MARU-OBS-Action.ps1'
 $LogFile = Join-Path $PSScriptRoot 'MARU-OBS-Helper.log'
-$HelperVersion = 'V0.22.98'
+$HelperVersion = 'V0.22.99'
 
 $script:SyncState = @{
     sessionId = ''

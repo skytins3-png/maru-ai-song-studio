@@ -3272,31 +3272,40 @@ async function maruOneTouchStart2298(){
   const buttons=[document.getElementById('maruOneTouchStart2298'),document.getElementById('dockBroadcastStart')];
   buttons.forEach(b=>{if(b)b.disabled=true});
   try{
-    // This must happen before the first await so Chrome treats it as a user-click popup.
     setPcCaptureMode2285('window');
-    openObsView2284();
 
-    maruOneTouchStatus2298('working','1/4 방송창 준비','MARU_OBS_LIVE 방송창을 열고 있습니다…');
-    await maruSleep2298(650);
+    // V0.22.99: browser popup is no longer required.
+    // The local Helper launches a real Chrome app window for MARU_OBS_LIVE itself.
+    const obsUrl2299=new URL(location.href);
+    obsUrl2299.searchParams.set('mode','audience');
+    obsUrl2299.searchParams.set('layout','obs');
+    obsUrl2299.searchParams.set('obs','1');
+    obsUrl2299.searchParams.set('v','2299');
+    obsUrl2299.searchParams.delete('share');
+    obsUrl2299.searchParams.delete('dual');
+    obsUrl2299.searchParams.delete('from');
 
-    maruOneTouchStatus2298('working','2/4 Helper 확인','PC Helper와 OBS 연결을 확인하고 있습니다…');
+    maruOneTouchStatus2298('working','1/4 Helper 확인','PC Helper가 켜져 있는지 확인하고 있습니다…');
+
+    maruOneTouchStatus2298('working','2/4 방송창 자동 실행','Helper가 MARU_OBS_LIVE 창을 직접 실행하고 OBS가 잡도록 준비합니다…');
     const helperOk=await checkObsHelper2286({quiet:true});
     if(!helperOk){
-      throw new Error('PC Helper가 꺼져 있습니다. PC-OBS-HELPER의 1-원터치-준비설정.bat를 한 번 실행해 주세요.');
+      throw new Error('PC Helper가 꺼져 있습니다. PC-OBS-HELPER의 1-ONE-TOUCH-SETUP.bat를 처음 한 번 실행해 주세요.');
     }
 
     const pref=saveObsAutoPrefs2286();
     const password=String(document.getElementById('obsWsPassword')?.value||'');
 
-    maruOneTouchStatus2298('working','3/4 OBS 자동 시작','OBS 실행·MARU 창 연결·송출 시작을 한 번에 처리 중입니다…');
+    maruOneTouchStatus2298('working','3/4 OBS 자동 시작','OBS 실행·MARU_OBS_LIVE 창 연결·송출 시작을 한 번에 처리 중입니다…');
     const obs=await obsHelperCall2286('/api/start',{
       obsPort:pref.port,
       obsPassword:password,
       sceneName:pref.scene,
       sourceName:'MARU_OBS_LIVE',
       windowTitle:'MARU_OBS_LIVE',
+      obsUrl:obsUrl2299.toString(),
       startStream:true
-    },35000);
+    },45000);
 
     if(!obs.streamActive){
       setObsAutoStatus2286('ready','OBS 장면 준비됨','OBS는 연결됐지만 실제 송출이 시작되지 않았습니다. OBS/BIGO 송출 설정을 확인해 주세요.');

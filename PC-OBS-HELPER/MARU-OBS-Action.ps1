@@ -36,6 +36,63 @@ function Find-ObsPath {
     foreach ($p in $list) { if (Test-Path -LiteralPath $p) { return $p } }
     return $null
 }
+
+function Find-ChromiumPath {
+    $candidates = @()
+    if ($env:ProgramFiles) {
+        $candidates += (Join-Path $env:ProgramFiles 'Google\Chrome\Application\chrome.exe')
+        $candidates += (Join-Path $env:ProgramFiles 'Microsoft\Edge\Application\msedge.exe')
+    }
+    $pf86 = ${env:ProgramFiles(x86)}
+    if ($pf86) {
+        $candidates += (Join-Path $pf86 'Google\Chrome\Application\chrome.exe')
+        $candidates += (Join-Path $pf86 'Microsoft\Edge\Application\msedge.exe')
+    }
+    if ($env:LOCALAPPDATA) {
+        $candidates += (Join-Path $env:LOCALAPPDATA 'Google\Chrome\Application\chrome.exe')
+        $candidates += (Join-Path $env:LOCALAPPDATA 'Microsoft\Edge\Application\msedge.exe')
+    }
+    foreach ($p in $candidates) {
+        if (Test-Path -LiteralPath $p) { return $p }
+    }
+    return $null
+}
+function Test-MaruObsWindow {
+    try {
+        $p = Get-Process chrome,msedge -ErrorAction SilentlyContinue |
+            Where-Object { $_.MainWindowTitle -like '*MARU_OBS_LIVE*' } |
+            Select-Object -First 1
+        return [bool]$p
+    } catch { return $false }
+}
+function Ensure-MaruObsWindow([string]$ObsUrl) {
+    if (Test-MaruObsWindow) { return $true }
+    if ([string]::IsNullOrWhiteSpace($ObsUrl)) {
+        throw 'MARU_OBS_LIVE URL was not supplied by MARU.'
+    }
+    $browser = Find-ChromiumPath
+    if (-not $browser) { throw 'Chrome or Microsoft Edge was not found.' }
+
+    # Launch a dedicated app window, not a tab. This avoids popup blockers
+    # and guarantees a real top-level window for OBS Window Capture.
+    $args = @(
+        '--app=' + $ObsUrl,
+        '--window-size=1280,720',
+        '--window-position=40,40',
+        '--new-window',
+        '--disable-features=CalculateNativeWinOcclusion'
+    )
+    Start-Process -FilePath $browser -ArgumentList $args | Out-Null
+
+    for ($i=0; $i -lt 40; $i++) {
+        Start-Sleep -Milliseconds 250
+        if (Test-MaruObsWindow) { return $true }
+    }
+    # The process title can lag even when the page is already open.
+    # OBS's own window list gets the final say in Prepare-Scene.
+    return $false
+}
+
 function Ensure-ObsRunning {
     $p = Get-Process obs64 -ErrorAction SilentlyContinue | Select-Object -First 1
     if ($p) { return }
@@ -125,7 +182,7 @@ function Prepare-Scene($Ws, [string]$SceneName, [string]$SourceName, [string]$Wi
         else { $sceneItemId=(Req $Ws 'CreateSceneItem' @{ sceneName=$SceneName; sourceName=$SourceName; sceneItemEnabled=$true }).sceneItemId }
     }
     $props = $null
-    for ($a=0; $a -lt 10; $a++) {
+    for ($a=0; $a -lt 24; $a++) {
         $props = TryReq $Ws 'GetInputPropertiesListPropertyItems' @{ inputName=$SourceName; propertyName='window' }
         if ($props -and @($props.propertyItems).Count -gt 0) { break }
         Start-Sleep -Milliseconds 350
@@ -136,7 +193,7 @@ function Prepare-Scene($Ws, [string]$SceneName, [string]$SourceName, [string]$Wi
         if ([string]$it.itemName -like "*$WindowTitle*" -or [string]$it.itemValue -like "*$WindowTitle*") { $match=$it; break }
     }
     if (-not $match) { throw 'MARU_OBS_LIVE window was not found. Open the MARU broadcast window first.' }
-    Req $Ws 'SetInputSettings' @{ inputName=$SourceName; inputSettings=@{ window=[string]$match.itemValue; capture_cursor=$false; capture_audio=$true }; overlay=$true } | Out-Null
+    Req $Ws 'SetInputSettings' @{ inputName=$SourceName; inputSettings=@{ window=[string]$match.itemValue; capture_cursor=$false; capture_audio=$true; method=2 }; overlay=$true } | Out-Null
     Req $Ws 'SetCurrentProgramScene' @{ sceneName=$SceneName } | Out-Null
     $v = Req $Ws 'GetVideoSettings'
     $bw=[double]$v.baseWidth; $bh=[double]$v.baseHeight
@@ -158,6 +215,9 @@ try {
             $scene = [string]$payload.sceneName; if ([string]::IsNullOrWhiteSpace($scene)) { $scene='MARU LIVE' }
             $source = [string]$payload.sourceName; if ([string]::IsNullOrWhiteSpace($source)) { $source='MARU_OBS_LIVE' }
             $window = [string]$payload.windowTitle; if ([string]::IsNullOrWhiteSpace($window)) { $window='MARU_OBS_LIVE' }
+            $obsUrl = [string]$payload.obsUrl
+            Ensure-MaruObsWindow $obsUrl | Out-Null
+            Start-Sleep -Milliseconds 700
             Prepare-Scene $ws $scene $source $window
             $streamActive=$false
             if ($payload.startStream -ne $false) {
