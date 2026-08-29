@@ -16,7 +16,7 @@
   })();
   </script>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=0.22.89">
+  <link rel="stylesheet" href="styles.css?v=0.22.92">
   <link rel="stylesheet" href="score.css?v=0.22.89">
   <style>.wide{width:100%;margin-top:16px}.analysis-box{margin-top:12px;padding:14px;border-radius:14px;background:#100c1e;border:1px solid #4b3d68;color:#e9e2f8;line-height:1.65;white-space:pre-line}.audio-analyzer .audio-file{display:block;width:100%;padding:12px;border:1px dashed #6b5b89;border-radius:12px;background:#151126;color:#eee}.audio-analyzer audio{width:100%;margin-top:10px}.audio-analysis-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:12px 0}.audio-stat{padding:10px;border-radius:12px;background:#151126;border:1px solid #403653}.audio-stat b{display:block;font-size:12px;color:#bfb2da}.audio-stat strong{display:block;margin-top:4px;font-size:18px}.analyzed-style{min-height:150px}.analysis-note{display:block;margin-top:10px;line-height:1.55;color:#c9bfdc}.song-mic-level{margin-top:9px;display:flex;align-items:center;gap:10px}.song-mic-track{flex:1;height:12px;border-radius:999px;background:#211a31;overflow:hidden;border:1px solid #514269}.song-mic-fill{width:0;height:100%;background:linear-gradient(90deg,#5da9ff,#7de4a8,#ffd36a);transition:width .08s linear}.song-mic-level small{min-width:72px;color:#cfc5df}@media(max-width:760px){.audio-analysis-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}</style>
 
@@ -37,7 +37,7 @@
 
   <header>
     <div class="brand">MARU <span>WORLD MUSIC MAKER</span></div>
-    <div class="tag">V0.22.89 · BROADCAST ESSENTIALS ONLY · OBS 버튼 맨 위 · PC 방송 + 모바일 관리</div>
+    <div class="tag">V0.22.92 · 모바일 → PC 방송목록 동기화 · 원곡 방송 + OBS</div>
   </header>
   <main>
     <section id="coreLauncher" class="core-launcher" aria-label="핵심 기능">
@@ -111,6 +111,18 @@
               <input id="broadcastVideoAdd" type="file" multiple accept="video/*,.mp4,.m4v,.mov" hidden>
             </div>
             <small class="broadcast-manage-help simple-help">음원과 동영상은 이 버튼으로 여러 번 추가해도 한 방송목록에 계속 합쳐집니다.</small>
+            <div class="broadcast-sync-card-2292" id="broadcastSyncCard2292">
+              <div class="broadcast-sync-head-2292"><div><b>📱 → 🖥 방송목록 동기화</b><span>모바일에 저장된 원곡·MP4·커버·자막·곡 순서를 한 파일로 PC에 옮깁니다. 89곡을 다시 하나씩 선택할 필요가 없습니다.</span></div><strong>V0.22.92</strong></div>
+              <div class="broadcast-sync-actions-2292">
+                <button id="broadcastSyncExport2292" class="primary" type="button">📤 모바일에서 PC로 보내기</button>
+                <button id="broadcastSyncShare2292" class="secondary" type="button" hidden>📲 Quick Share / 공유</button>
+                <button id="broadcastSyncSave2292" class="secondary" type="button" hidden>💾 동기화 파일 저장</button>
+                <button id="broadcastSyncImportBtn2292" class="secondary sync-import-2292" type="button">📥 PC에서 동기화 파일 받기</button>
+                <input id="broadcastSyncImport2292" type="file" accept=".marusync,application/x-maru-sync" hidden>
+              </div>
+              <div id="broadcastSyncStatus2292" class="broadcast-sync-status-2292" data-state="idle"><b>대기</b><span>모바일에서 보내기 → Quick Share로 PC 전송 → PC에서 받기 순서입니다.</span></div>
+              <small>동기화 파일은 원곡을 재압축하지 않습니다. PC에 이미 있는 전용곡은 지우지 않고, 모바일 목록을 앞쪽 순서로 가져옵니다.</small>
+            </div>
             <div class="broadcast-library-tools simple-library-tools">
               <input id="broadcastSearch" type="search" placeholder="🔎 노래 제목 검색">
               <button id="openBroadcastSubtitleManager" class="secondary" type="button">💬 자막 관리</button>
@@ -420,6 +432,6 @@
   <div id="toast"></div>
   <script src="vendor/vexflow.js?v=5.0.0"></script>
   <script src="vendor/sfumato.js?v=0.22.89"></script>
-  <script src="app.js?v=0.22.89"></script>
+  <script src="app.js?v=0.22.92"></script>
 </body>
 </html>

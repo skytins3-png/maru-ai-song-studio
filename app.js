@@ -2849,3 +2849,98 @@ const ensureBroadcastSubtitleManagerStable2276=ensureBroadcastSubtitleManager226
 document.getElementById('broadcastStart')?.addEventListener('click',()=>cancelMaruAsr2276(),{capture:true});
 document.getElementById('dockBroadcastStart')?.addEventListener('click',()=>cancelMaruAsr2276(),{capture:true});
 setBroadcastAutoCaptionStatus('🧠 V0.22.76 · 가사 없는 곡은 방송 전에 AI 사전 생성 · 방송 중 마이크/분석 없음');
+
+/* V0.22.92 — MOBILE -> PC BROADCAST LIBRARY SYNC
+   One .marusync package carries the saved broadcast order plus original MP3/MP4,
+   per-track cover/video and subtitles. No recompression and no base64 expansion. */
+const MARU_SYNC_MAGIC_2292='MARUSYNC1\n';
+let maruSyncPackage2292=null;
+function maruSyncStatus2292(text,state='idle'){
+  const el=document.getElementById('broadcastSyncStatus2292');
+  if(!el)return;
+  el.dataset.state=state;
+  const b=el.querySelector('b'),s=el.querySelector('span');
+  if(b)b.textContent=state==='busy'?'동기화 준비 중':state==='ready'?'준비 완료':state==='ok'?'동기화 완료':state==='error'?'확인 필요':'대기';
+  if(s)s.textContent=String(text||'');
+}
+function maruSyncFormatBytes2292(n){n=Number(n||0);if(n>=1024**3)return`${(n/1024**3).toFixed(2)} GB`;if(n>=1024**2)return`${(n/1024**2).toFixed(1)} MB`;if(n>=1024)return`${(n/1024).toFixed(0)} KB`;return`${n} B`}
+function maruSyncSafeMeta2292(r){return{id:r.id,name:r.name||'방송곡',type:r.type||r.blob?.type||'application/octet-stream',size:Number(r.size||r.blob?.size||0),lastModified:Number(r.lastModified||Date.now()),addedAt:Number(r.addedAt||Date.now()),coverName:r.coverName||'',videoName:r.videoName||'',mediaUpdatedAt:Number(r.mediaUpdatedAt||0),subtitleText:String(r.subtitleText||''),subtitleUpdatedAt:Number(r.subtitleUpdatedAt||0)}}
+async function buildBroadcastSyncPackage2292(){
+  const ids=broadcastOrderRead();
+  if(!ids.length)throw new Error('모바일 방송목록에 저장된 곡이 없습니다.');
+  maruSyncStatus2292(`저장된 방송곡 ${ids.length}곡을 한 파일로 묶고 있습니다. 원곡은 재압축하지 않습니다.`,'busy');
+  const entries=[],parts=[];let payloadOffset=0,totalBytes=0;
+  for(let i=0;i<ids.length;i++){
+    const r=await broadcastDbGet(ids[i]);
+    if(!r?.blob)continue;
+    const meta=maruSyncSafeMeta2292(r),entry={...meta,segments:{}};
+    for(const [key,blob] of [['blob',r.blob],['coverBlob',r.coverBlob],['videoBlob',r.videoBlob]]){
+      if(!(blob instanceof Blob)||!blob.size)continue;
+      entry.segments[key]={offset:payloadOffset,length:blob.size,type:blob.type||'application/octet-stream'};
+      parts.push(blob);payloadOffset+=blob.size;totalBytes+=blob.size;
+    }
+    entries.push(entry);
+    maruSyncStatus2292(`${i+1}/${ids.length}곡 확인 중 · ${meta.name}`,'busy');
+    if((i+1)%8===0)await new Promise(r=>setTimeout(r,0));
+  }
+  if(!entries.length)throw new Error('저장된 원곡 파일을 읽지 못했습니다.');
+  const goodIds=entries.map(x=>x.id),manifest={format:'MARU-BROADCAST-SYNC',version:1,createdAt:new Date().toISOString(),appVersion:'0.22.92',count:entries.length,order:goodIds,entries};
+  const enc=new TextEncoder(),magic=enc.encode(MARU_SYNC_MAGIC_2292),manifestBytes=enc.encode(JSON.stringify(manifest));
+  const len=new Uint8Array(4),view=new DataView(len.buffer);view.setUint32(0,manifestBytes.byteLength,true);
+  const blob=new Blob([magic,len,manifestBytes,...parts],{type:'application/x-maru-sync'});
+  const d=new Date(),pad=n=>String(n).padStart(2,'0'),stamp=`${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}`;
+  const file=new File([blob],`MARU-모바일방송목록-${stamp}-${entries.length}곡.marusync`,{type:'application/x-maru-sync',lastModified:Date.now()});
+  maruSyncPackage2292=file;
+  const share=document.getElementById('broadcastSyncShare2292'),save=document.getElementById('broadcastSyncSave2292');
+  if(share)share.hidden=false;if(save)save.hidden=false;
+  maruSyncStatus2292(`${entries.length}곡 · ${maruSyncFormatBytes2292(file.size)} 준비 완료. 모바일에서는 ‘Quick Share/공유’, PC에서는 받은 파일을 ‘PC에서 받기’로 선택하세요.`,'ready');
+  return file;
+}
+function downloadBroadcastSyncPackage2292(){
+  const file=maruSyncPackage2292;if(!file)return toast('먼저 모바일 동기화 파일을 만들어 주세요.');
+  const u=URL.createObjectURL(file),a=document.createElement('a');a.href=u;a.download=file.name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),30000);
+  maruSyncStatus2292(`동기화 파일을 저장했습니다 · ${file.name}`,'ready');
+}
+async function shareBroadcastSyncPackage2292(){
+  const file=maruSyncPackage2292;if(!file)return toast('먼저 모바일 동기화 파일을 만들어 주세요.');
+  try{
+    if(navigator.share&&(!navigator.canShare||navigator.canShare({files:[file]}))){await navigator.share({title:'MARU 방송목록 PC 동기화',text:`MARU 방송목록 ${broadcastOrderRead().length}곡`,files:[file]});maruSyncStatus2292('공유를 열었습니다. Quick Share에서 방송용 PC를 선택하세요.','ready');return}
+  }catch(e){if(e?.name==='AbortError')return;console.warn('sync share',e)}
+  downloadBroadcastSyncPackage2292();toast('이 기기에서는 파일 공유를 바로 열 수 없어 동기화 파일을 저장했습니다.');
+}
+async function importBroadcastSyncPackage2292(file){
+  if(!file)return;
+  maruSyncStatus2292(`${file.name} 확인 중…`,'busy');
+  try{
+    const enc=new TextEncoder(),magicBytes=enc.encode(MARU_SYNC_MAGIC_2292),head=new Uint8Array(await file.slice(0,magicBytes.length+4).arrayBuffer());
+    if(head.length<magicBytes.length+4||!magicBytes.every((v,i)=>head[i]===v))throw new Error('MARU 동기화 파일이 아닙니다.');
+    const manifestLen=new DataView(head.buffer,head.byteOffset+magicBytes.length,4).getUint32(0,true);
+    if(!manifestLen||manifestLen>20*1024*1024)throw new Error('동기화 목록 정보가 손상되었습니다.');
+    const manifestStart=magicBytes.length+4,payloadBase=manifestStart+manifestLen,manifest=JSON.parse(await file.slice(manifestStart,payloadBase).text());
+    if(manifest?.format!=='MARU-BROADCAST-SYNC'||!Array.isArray(manifest.entries))throw new Error('지원하지 않는 동기화 파일입니다.');
+    await broadcastRequestPersistentStorage();
+    const incoming=[];let imported=0;
+    for(let i=0;i<manifest.entries.length;i++){
+      const e=manifest.entries[i],seg=e.segments||{},makeBlob=s=>s&&Number(s.length)>0?file.slice(payloadBase+Number(s.offset||0),payloadBase+Number(s.offset||0)+Number(s.length||0),s.type||'application/octet-stream'):null;
+      const blob=makeBlob(seg.blob);if(!blob)continue;
+      const r={id:String(e.id||broadcastFileId(new File([blob],e.name||'방송곡',{type:e.type||blob.type,lastModified:Number(e.lastModified||Date.now())}),e.name||'방송곡')),name:e.name||'방송곡',type:e.type||blob.type||'application/octet-stream',size:Number(e.size||blob.size),lastModified:Number(e.lastModified||Date.now()),addedAt:Number(e.addedAt||Date.now()),blob,coverBlob:makeBlob(seg.coverBlob),coverName:e.coverName||'',videoBlob:makeBlob(seg.videoBlob),videoName:e.videoName||'',mediaUpdatedAt:Number(e.mediaUpdatedAt||0),subtitleText:String(e.subtitleText||''),subtitleUpdatedAt:Number(e.subtitleUpdatedAt||0)};
+      await broadcastDbPut(r);incoming.push(r.id);imported++;
+      maruSyncStatus2292(`${i+1}/${manifest.entries.length}곡 PC에 저장 중 · ${r.name}`,'busy');
+      if((i+1)%6===0)await new Promise(r=>setTimeout(r,0));
+    }
+    if(!imported)throw new Error('가져올 원곡 파일이 없습니다.');
+    const old=broadcastOrderRead(),incomingOrder=(manifest.order||incoming).filter(id=>incoming.includes(id)),merged=[...incomingOrder,...old.filter(id=>!incomingOrder.includes(id))].slice(0,100);
+    broadcastOrderWrite(merged);await restoreBroadcastPlaylist();
+    maruSyncStatus2292(`모바일 방송목록 ${imported}곡을 PC에 가져왔습니다. 기존 PC 전용곡은 뒤에 그대로 유지했습니다.`,'ok');
+    toast(`📱→🖥 방송목록 ${imported}곡 동기화 완료`);
+  }catch(e){console.error('MARU sync import',e);maruSyncStatus2292(e.message||String(e),'error');toast(`동기화 실패 · ${e.message||e}`)}
+}
+function bindBroadcastSync2292(){
+  const make=document.getElementById('broadcastSyncExport2292'),share=document.getElementById('broadcastSyncShare2292'),save=document.getElementById('broadcastSyncSave2292'),pick=document.getElementById('broadcastSyncImportBtn2292'),input=document.getElementById('broadcastSyncImport2292');
+  if(!make)return;
+  make.onclick=async()=>{make.disabled=true;try{await buildBroadcastSyncPackage2292()}catch(e){console.error(e);maruSyncStatus2292(e.message||String(e),'error');toast(`동기화 파일 만들기 실패 · ${e.message||e}`)}finally{make.disabled=false}};
+  if(share)share.onclick=shareBroadcastSyncPackage2292;if(save)save.onclick=downloadBroadcastSyncPackage2292;if(pick)pick.onclick=()=>input?.click();if(input)input.onchange=async e=>{const f=e.target.files?.[0];e.target.value='';if(f)await importBroadcastSyncPackage2292(f)};
+  const isMobile=/Android|iPhone|iPad|Mobile/i.test(navigator.userAgent||'');
+  maruSyncStatus2292(isMobile?'이 휴대폰의 저장 방송목록을 한 파일로 만들어 Quick Share로 PC에 보낼 수 있습니다.':'모바일에서 받은 .marusync 파일을 선택하면 원곡·영상·커버·자막과 순서가 한 번에 들어옵니다.','idle');
+}
+setTimeout(bindBroadcastSync2292,0);
