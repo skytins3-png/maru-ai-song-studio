@@ -16,7 +16,7 @@
   })();
   </script>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=0.22.93">
+  <link rel="stylesheet" href="styles.css?v=0.22.94">
   <link rel="stylesheet" href="score.css?v=0.22.89">
   <style>.wide{width:100%;margin-top:16px}.analysis-box{margin-top:12px;padding:14px;border-radius:14px;background:#100c1e;border:1px solid #4b3d68;color:#e9e2f8;line-height:1.65;white-space:pre-line}.audio-analyzer .audio-file{display:block;width:100%;padding:12px;border:1px dashed #6b5b89;border-radius:12px;background:#151126;color:#eee}.audio-analyzer audio{width:100%;margin-top:10px}.audio-analysis-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:12px 0}.audio-stat{padding:10px;border-radius:12px;background:#151126;border:1px solid #403653}.audio-stat b{display:block;font-size:12px;color:#bfb2da}.audio-stat strong{display:block;margin-top:4px;font-size:18px}.analyzed-style{min-height:150px}.analysis-note{display:block;margin-top:10px;line-height:1.55;color:#c9bfdc}.song-mic-level{margin-top:9px;display:flex;align-items:center;gap:10px}.song-mic-track{flex:1;height:12px;border-radius:999px;background:#211a31;overflow:hidden;border:1px solid #514269}.song-mic-fill{width:0;height:100%;background:linear-gradient(90deg,#5da9ff,#7de4a8,#ffd36a);transition:width .08s linear}.song-mic-level small{min-width:72px;color:#cfc5df}@media(max-width:760px){.audio-analysis-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}</style>
 
@@ -37,7 +37,7 @@
 
   <header>
     <div class="brand">MARU <span>WORLD MUSIC MAKER</span></div>
-    <div class="tag">V0.22.93 · 모바일 → PC 직접 동기화 · 파일 저장 없이 원곡 방송 + OBS</div>
+    <div class="tag">V0.22.94 · QR 한 번으로 모바일 → PC 직접 동기화 · 원곡 방송 + OBS</div>
   </header>
   <main>
     <section id="coreLauncher" class="core-launcher" aria-label="핵심 기능">
@@ -112,26 +112,47 @@
             </div>
             <small class="broadcast-manage-help simple-help">음원과 동영상은 이 버튼으로 여러 번 추가해도 한 방송목록에 계속 합쳐집니다.</small>
             <div class="broadcast-sync-card-2292 direct-sync-card-2293" id="broadcastSyncCard2292">
-              <div class="broadcast-sync-head-2292"><div><b>📱 → 🖥 방송목록 바로 동기화</b><span>다운로드 파일을 만들거나 PC에서 파일을 찾지 않습니다. 같은 Wi‑Fi에서 모바일 원곡·MP4·커버·자막·곡 순서를 PC MARU 내부 저장공간으로 바로 보냅니다.</span></div><strong>V0.22.93</strong></div>
+              <div class="broadcast-sync-head-2292"><div><b>📱 → 🖥 QR 바로 동기화</b><span>주소를 외울 필요 없이 PC의 QR을 휴대폰 MARU에서 한 번 찍으면 원곡·MP4·커버·자막·곡 순서를 PC MARU 내부 저장공간으로 바로 보냅니다.</span></div><strong>V0.22.94</strong></div>
 
               <div id="directSyncMobile2293" class="direct-sync-panel-2293" hidden>
-                <label class="direct-sync-address-label-2293">PC 주소
-                  <input id="directSyncPcAddress2293" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="예: 192.168.0.12">
-                </label>
-                <div class="direct-sync-actions-2293">
-                  <button id="directSyncCheck2293" class="secondary" type="button">🔗 PC 연결 확인</button>
-                  <button id="directSyncSend2293" class="primary direct-send-2293" type="button">📡 PC로 바로 보내기</button>
-                </div>
-                <small>PC의 새 OBS 도우미 창에 표시되는 <b>PHONE DIRECT SYNC ADDRESS</b>의 숫자 주소를 한 번만 입력하세요. 휴대폰에서 ‘로컬 네트워크 허용’이 뜨면 허용합니다.</small>
+                <button id="directSyncScanQr2294" class="primary direct-qr-main-2294" type="button">📷 PC QR 찍고 바로 연결</button>
+                <small class="direct-qr-help-2294">PC MARU에 뜬 QR을 이 버튼으로 찍으면 PC 주소가 자동 입력됩니다. 연결되면 저장 방송목록 전송을 바로 시작합니다.</small>
+                <details class="direct-address-fallback-2294">
+                  <summary>주소 직접 입력 · 필요할 때만</summary>
+                  <label class="direct-sync-address-label-2293">PC 주소
+                    <input id="directSyncPcAddress2293" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="예: 192.168.0.12">
+                  </label>
+                  <div class="direct-sync-actions-2293">
+                    <button id="directSyncCheck2293" class="secondary" type="button">🔗 PC 연결 확인</button>
+                    <button id="directSyncSend2293" class="primary direct-send-2293" type="button">📡 PC로 바로 보내기</button>
+                  </div>
+                </details>
               </div>
 
               <div id="directSyncPc2293" class="direct-sync-panel-2293 direct-sync-pc-2293" hidden>
                 <div class="direct-pc-ready-2293"><b>🟢 PC 자동 수신</b><span>이 페이지를 열어두면 모바일 전송을 자동으로 받아 MARU 내부에 저장합니다.</span></div>
+                <button id="directSyncShowQr2294" class="primary direct-qr-main-2294" type="button">📱 휴대폰 연결 QR 크게 보기</button>
+                <div id="directSyncQrPanel2294" class="direct-qr-panel-2294" hidden>
+                  <div id="directSyncQrCode2294" class="direct-qr-code-2294" aria-label="휴대폰 연결 QR 코드"></div>
+                  <b>휴대폰 MARU에서 ‘📷 PC QR 찍고 바로 연결’로 찍으세요.</b>
+                  <span id="directSyncQrAddress2294">PC 주소 확인 중…</span>
+                  <small>QR을 찍으면 주소 입력 없이 연결되고 방송목록 전송이 자동 시작됩니다.</small>
+                </div>
                 <div id="directSyncPcLanAddress2293" class="direct-pc-address-2293">PC 주소 확인 중…</div>
                 <button id="directSyncPcRefresh2293" class="secondary" type="button">🧰 PC 주소 다시 확인</button>
               </div>
 
-              <div id="directSyncStatus2293" class="broadcast-sync-status-2292 direct-sync-status-2293" data-state="idle"><b>대기</b><span>모바일과 PC를 같은 Wi‑Fi에 연결하고 PC에서 V0.22.93 OBS 도우미를 켜두세요.</span></div>
+              <div id="directSyncStatus2293" class="broadcast-sync-status-2292 direct-sync-status-2293" data-state="idle"><b>대기</b><span>모바일과 PC를 같은 Wi‑Fi에 연결하고 PC에서 V0.22.93 이상 OBS 도우미를 켜두세요.</span></div>
+
+              <div id="directSyncQrScanner2294" class="direct-qr-scanner-2294" hidden>
+                <div class="direct-qr-scanner-box-2294">
+                  <b>PC QR을 화면 가운데에 맞춰 주세요</b>
+                  <video id="directSyncQrVideo2294" playsinline muted></video>
+                  <div class="direct-qr-scan-frame-2294" aria-hidden="true"></div>
+                  <span id="directSyncQrScanStatus2294">카메라 준비 중…</span>
+                  <button id="directSyncQrCancel2294" class="secondary" type="button">닫기</button>
+                </div>
+              </div>
               <div class="direct-sync-progress-2293"><i id="directSyncProgress2293"></i></div>
               <small>PC의 다운로드 폴더에는 동기화 파일을 만들지 않습니다. 받은 원곡은 PC MARU의 브라우저 내부 저장공간(IndexedDB)에만 저장되어 방송에 사용됩니다.</small>
 
@@ -456,6 +477,7 @@
   <div id="toast"></div>
   <script src="vendor/vexflow.js?v=5.0.0"></script>
   <script src="vendor/sfumato.js?v=0.22.89"></script>
-  <script src="app.js?v=0.22.93"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="app.js?v=0.22.94"></script>
 </body>
 </html>

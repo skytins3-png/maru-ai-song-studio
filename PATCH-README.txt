@@ -1,13 +1,11 @@
-MARU V0.22.93 — MOBILE → PC DIRECT LAN SYNC
+MARU V0.22.94 — QR ONE-TAP MOBILE → PC DIRECT SYNC
 
-핵심 변경
-1. 모바일에서 .marusync 파일을 저장하지 않고 PC로 바로 전송
-2. PC에서 파일 선택/다운로드 폴더 작업 없음
-3. 같은 Wi‑Fi/LAN의 V0.22.93 OBS Helper가 메모리 릴레이로 전송
-4. PC MARU는 자동 수신 후 브라우저 IndexedDB에 원곡/MP4/커버/자막/순서를 저장
-5. 전송은 작은 청크 단위로 진행되어 Helper가 전체 89곡을 메모리에 쌓지 않음
-6. 기존 수동 .marusync 방식은 접힌 예비 메뉴로 유지
-7. 원곡 재압축 없음, OBS 원곡 방송 기능 유지
+1. PC MARU에서 “📱 휴대폰 연결 QR 크게 보기”를 누릅니다.
+2. 모바일 MARU에서 “📷 PC QR 찍고 바로 연결”을 누르고 PC QR을 찍습니다.
+3. PC 주소가 자동 저장되고 연결 확인 뒤 저장 방송목록 전송이 자동 시작됩니다.
+4. 원곡 MP3/MP4, 커버, 곡별 영상, 자막, 방송 순서를 V0.22.93 직접 LAN 동기화 엔진으로 그대로 전송합니다.
+5. PC 다운로드 폴더에 .marusync 파일을 만들지 않습니다. PC MARU IndexedDB에 자동 저장합니다.
+6. QR 자동 인식이 지원되지 않는 브라우저에서는 주소 직접 입력 방식이 그대로 남아 있습니다.
 
-필수: PC의 OBS Helper도 V0.22.93으로 교체 후 실행해야 합니다.
-Windows 방화벽 질문이 나오면 개인 네트워크를 허용하세요.
+OBS Helper API는 V0.22.93과 동일하므로 현재 사용 중인 V0.22.93 이상 Helper를 그대로 사용합니다.
+PC와 모바일은 같은 Wi-Fi/LAN에 있어야 합니다.

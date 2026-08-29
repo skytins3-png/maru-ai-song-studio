@@ -2153,7 +2153,7 @@ async function openBroadcastSubtitleManager2269(){const dlg=ensureBroadcastSubti
 
 prepareNoteEditor();renderLearningProfile();
 try{const b2269=document.getElementById('openBroadcastSubtitleManager');if(b2269)b2269.onclick=openBroadcastSubtitleManager2269}catch(e){console.warn('subtitle manager bind 2269',e)}
-refreshProPreviewIndex(true).catch(()=>{});renderProCompositionCoach();restoreMasterSampleVolume();restoreMixerEq();renderAuto64Status();setupCollapsibleCards();setupCoreLauncher();updateSourceVoiceValue();renderWordChoices();renderRegions();renderInstruments();autoPick();buildTitleCandidates(lastProfile,false);renderSaved();updateScoreMode();applyScoreView('fit');updateRangeUI();if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js?v=0.22.89');
+refreshProPreviewIndex(true).catch(()=>{});renderProCompositionCoach();restoreMasterSampleVolume();restoreMixerEq();renderAuto64Status();setupCollapsibleCards();setupCoreLauncher();updateSourceVoiceValue();renderWordChoices();renderRegions();renderInstruments();autoPick();buildTitleCandidates(lastProfile,false);renderSaved();updateScoreMode();applyScoreView('fit');updateRangeUI();if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js?v=0.22.94');
 $('#makeTriplet').onclick=makeSelectedTriplet;
 
 
@@ -2996,7 +2996,7 @@ async function maruDirectCheckPc2293({quiet=false}={}){
   const input=document.getElementById('directSyncPcAddress2293');let base;
   try{base=maruDirectNormalizePc2293(input?.value||localStorage.getItem(MARU_DIRECT_PC_KEY_2293)||'');if(input)input.value=base.replace(/^http:\/\//,'').replace(/:8765$/,'');
     if(!quiet)maruDirectStatus2293('PC에 연결 중입니다. Chrome에서 로컬 네트워크 허용 창이 뜨면 허용하세요.','busy');
-    const st=await maruDirectJson2293(base,'/api/status');if(!st.directSync)throw new Error('PC OBS 도우미가 이전 버전입니다. V0.22.93 도우미로 교체해 주세요.');
+    const st=await maruDirectJson2293(base,'/api/status');if(!st.directSync)throw new Error('PC OBS 도우미가 이전 버전입니다. V0.22.93 이상 도우미로 교체해 주세요.');
     localStorage.setItem(MARU_DIRECT_PC_KEY_2293,base);if(!quiet)maruDirectStatus2293(`PC 연결 성공 · ${st.helper||'MARU Helper'} · 파일 저장 없이 바로 전송할 수 있습니다.`,'ready');return{base,status:st};
   }catch(e){if(!quiet)maruDirectStatus2293(`${e.message||e} · 휴대폰과 PC가 같은 Wi‑Fi인지, PC 도우미 창이 켜져 있는지 확인하세요.`,'error');throw e}
 }
@@ -3011,7 +3011,7 @@ async function maruDirectManifest2293(){
     entries.push({...meta,assets});records.push(r);
   }
   if(!entries.length)throw new Error('저장된 원곡 파일을 읽지 못했습니다.');
-  return{manifest:{format:'MARU-DIRECT-BROADCAST-SYNC',version:1,appVersion:'0.22.93',createdAt:new Date().toISOString(),count:entries.length,totalBytes,order:entries.map(e=>e.id),entries},records};
+  return{manifest:{format:'MARU-DIRECT-BROADCAST-SYNC',version:1,appVersion:'0.22.94',createdAt:new Date().toISOString(),count:entries.length,totalBytes,order:entries.map(e=>e.id),entries},records};
 }
 async function maruDirectWaitAck2293(base,sessionId,seq){
   const started=Date.now();let warned=false;
@@ -3019,7 +3019,7 @@ async function maruDirectWaitAck2293(base,sessionId,seq){
     const st=await maruDirectJson2293(base,'/api/direct/state');
     if(st.sessionId!==sessionId)throw new Error('PC 동기화 세션이 바뀌었습니다. 다시 시작해 주세요.');
     if(Number(st.ackSeq||0)>=seq)return;
-    if(Date.now()-started>8000&&!warned){warned=true;maruDirectStatus2293('PC MARU가 데이터를 받기를 기다리고 있습니다. PC에서 MARU V0.22.93 페이지를 열어 두세요.','busy')}
+    if(Date.now()-started>8000&&!warned){warned=true;maruDirectStatus2293('PC MARU가 데이터를 받기를 기다리고 있습니다. PC에서 MARU V0.22.94 페이지를 열어 두세요.','busy')}
     if(Date.now()-started>180000)throw new Error('PC MARU 수신 대기 시간이 너무 길어 중단했습니다. PC MARU 페이지를 열고 다시 보내세요.');
     await maruDirectSleep2293(260);
   }
@@ -3098,12 +3098,73 @@ async function maruDirectPollPc2293(){
 }
 async function maruDirectRefreshPc2293(){
   const box=document.getElementById('directSyncPcLanAddress2293');if(!box)return;
-  try{const st=await maruDirectJson2293(MARU_DIRECT_HELPER_LOOPBACK_2293,'/api/status');if(!st.directSync)throw new Error('V0.22.93 도우미가 필요합니다.');const urls=Array.isArray(st.lanUrls)?st.lanUrls:[];box.textContent=urls.length?`휴대폰에 입력할 PC 주소: ${urls.join(' 또는 ')}`:'PC의 Wi‑Fi/LAN 주소를 찾지 못했습니다.';maruDirectStatus2293(urls.length?'PC 자동 수신 준비 완료 · 휴대폰에 위 주소를 한 번 입력한 뒤 바로 보내기를 누르세요.':'PC 네트워크 주소를 확인해 주세요.',urls.length?'ready':'error')}
-  catch(e){box.textContent='V0.22.93 OBS 도우미를 먼저 실행해 주세요.';maruDirectStatus2293(`${e.message||e} · 새 도우미를 실행하면 PC 자동 수신이 켜집니다.`,'error')}
+  try{const st=await maruDirectJson2293(MARU_DIRECT_HELPER_LOOPBACK_2293,'/api/status');if(!st.directSync)throw new Error('V0.22.93 이상 도우미가 필요합니다.');const urls=Array.isArray(st.lanUrls)?st.lanUrls:[];box.textContent=urls.length?`휴대폰에 입력할 PC 주소: ${urls.join(' 또는 ')}`:'PC의 Wi‑Fi/LAN 주소를 찾지 못했습니다.';maruDirectStatus2293(urls.length?'PC 자동 수신 준비 완료 · 휴대폰에 위 주소를 한 번 입력한 뒤 바로 보내기를 누르세요.':'PC 네트워크 주소를 확인해 주세요.',urls.length?'ready':'error')}
+  catch(e){box.textContent='V0.22.93 이상 OBS 도우미를 먼저 실행해 주세요.';maruDirectStatus2293(`${e.message||e} · 새 도우미를 실행하면 PC 자동 수신이 켜집니다.`,'error')}
+}
+/* V0.22.94 — QR PAIRING ON TOP OF V0.22.93 DIRECT SYNC */
+let maruQrStream2294=null,maruQrScanTimer2294=null,maruQrDetector2294=null,maruQrAutoSendUsed2294=false,maruQrLastPcUrl2294='';
+function maruQrBestLan2294(urls){
+  const list=[...(urls||[])].filter(Boolean);const score=u=>{try{const h=new URL(u).hostname;if(/^192\.168\./.test(h))return 0;if(/^10\./.test(h))return 1;if(/^172\.(1[6-9]|2\d|3[01])\./.test(h))return 2;return 9}catch{return 99}};
+  return list.sort((a,b)=>score(a)-score(b))[0]||'';
+}
+function maruQrPairUrl2294(pcBase){
+  const here=new URL(location.origin+location.pathname);here.searchParams.set('maruPc',pcBase);here.searchParams.set('maruAutoSend','1');here.hash='broadcastSyncCard2292';return here.toString();
+}
+function maruQrStopScanner2294(){
+  if(maruQrScanTimer2294){clearTimeout(maruQrScanTimer2294);maruQrScanTimer2294=null}
+  if(maruQrStream2294){for(const t of maruQrStream2294.getTracks())try{t.stop()}catch{};maruQrStream2294=null}
+  const v=document.getElementById('directSyncQrVideo2294');if(v){try{v.pause()}catch{};v.srcObject=null}
+  const box=document.getElementById('directSyncQrScanner2294');if(box)box.hidden=true;
+}
+async function maruQrApplyPair2294(raw,{autoSend=true}={}){
+  let value=String(raw||'').trim(),pc='';
+  try{
+    if(/^https?:\/\//i.test(value)){
+      const u=new URL(value);pc=u.searchParams.get('maruPc')||((/\:8765$/.test(u.origin))?u.origin:'');
+    }else if(/^MARU-PC:/i.test(value))pc=value.replace(/^MARU-PC:/i,'').trim();
+    else pc=value;
+    const base=maruDirectNormalizePc2293(pc);localStorage.setItem(MARU_DIRECT_PC_KEY_2293,base);maruQrLastPcUrl2294=base;
+    const input=document.getElementById('directSyncPcAddress2293');if(input)input.value=base.replace(/^http:\/\//,'').replace(/:8765$/,'');
+    maruDirectStatus2293('QR에서 PC 주소를 찾았습니다. 연결 확인 중…','busy');
+    await maruDirectCheckPc2293({quiet:false});
+    maruDirectStatus2293('✅ QR 연결 완료 · 이 PC로 바로 보낼 준비가 됐습니다.','ready');
+    if(autoSend&&!maruQrAutoSendUsed2294){maruQrAutoSendUsed2294=true;await maruDirectSleep2293(450);await maruDirectSend2293()}
+    return true;
+  }catch(e){maruDirectStatus2293(`QR 연결 실패 · ${e.message||e}`,'error');toast(`QR 연결 실패 · ${e.message||e}`);throw e}
+}
+async function maruQrStartScanner2294(){
+  const overlay=document.getElementById('directSyncQrScanner2294'),video=document.getElementById('directSyncQrVideo2294'),status=document.getElementById('directSyncQrScanStatus2294');
+  if(!overlay||!video)return;overlay.hidden=false;if(status)status.textContent='카메라 준비 중…';
+  if(!navigator.mediaDevices?.getUserMedia){if(status)status.textContent='이 브라우저에서는 카메라를 열 수 없습니다. 아래 주소 직접 입력을 사용해 주세요.';return}
+  if(!('BarcodeDetector' in window)){if(status)status.textContent='이 브라우저는 QR 자동 인식을 지원하지 않습니다. 휴대폰 기본 카메라로 PC QR을 찍어 MARU 링크를 여세요.';return}
+  try{
+    maruQrDetector2294=new BarcodeDetector({formats:['qr_code']});
+    maruQrStream2294=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'},width:{ideal:1280},height:{ideal:720}},audio:false});video.srcObject=maruQrStream2294;await video.play();if(status)status.textContent='PC 화면의 QR을 네모 안에 맞춰 주세요.';
+    const scan=async()=>{if(overlay.hidden||!maruQrStream2294)return;try{const codes=await maruQrDetector2294.detect(video);const raw=codes?.[0]?.rawValue;if(raw){if(status)status.textContent='QR 확인 완료 · PC 연결 중…';maruQrStopScanner2294();await maruQrApplyPair2294(raw,{autoSend:true});return}}catch(e){console.warn('qr scan 2294',e)}maruQrScanTimer2294=setTimeout(scan,220)};scan();
+  }catch(e){console.warn('qr camera 2294',e);if(status)status.textContent=`카메라를 열지 못했습니다 · ${e.message||e}`}
+}
+async function maruQrShowPc2294(){
+  const panel=document.getElementById('directSyncQrPanel2294'),box=document.getElementById('directSyncQrCode2294'),label=document.getElementById('directSyncQrAddress2294');if(!panel||!box)return;
+  try{
+    const st=await maruDirectJson2293(MARU_DIRECT_HELPER_LOOPBACK_2293,'/api/status');const base=maruQrBestLan2294(st.lanUrls);if(!base)throw new Error('PC Wi‑Fi 주소를 찾지 못했습니다.');maruQrLastPcUrl2294=base;const pair=maruQrPairUrl2294(base);panel.hidden=false;box.innerHTML='';if(label)label.textContent=base;
+    if(typeof QRCode==='function')new QRCode(box,{text:pair,width:280,height:280,colorDark:'#000000',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});
+    else{box.innerHTML='<div style="color:#111;padding:20px;font-weight:800">QR 생성 모듈을 불러오지 못했습니다.<br>아래 PC 주소를 직접 입력해 주세요.</div>'}
+    maruDirectStatus2293('QR 준비 완료 · 휴대폰 MARU의 “📷 PC QR 찍고 바로 연결”로 찍으세요.','ready');
+  }catch(e){panel.hidden=true;maruDirectStatus2293(`${e.message||e} · OBS 도우미가 켜져 있는지 확인하세요.`,'error')}
+}
+async function maruQrHandleLaunch2294(){
+  if(!maruDirectIsMobile2293())return;const u=new URL(location.href),pc=u.searchParams.get('maruPc');if(!pc)return;const auto=u.searchParams.get('maruAutoSend')==='1';u.searchParams.delete('maruPc');u.searchParams.delete('maruAutoSend');history.replaceState(null,'',u.pathname+(u.search?u.search:'')+(u.hash||''));
+  setTimeout(()=>maruQrApplyPair2294(pc,{autoSend:auto}).catch(()=>{}),650);
 }
 function bindMaruDirectSync2293(){
   const mobile=maruDirectIsMobile2293(),m=document.getElementById('directSyncMobile2293'),p=document.getElementById('directSyncPc2293');if(m)m.hidden=!mobile;if(p)p.hidden=mobile;
-  if(mobile){const input=document.getElementById('directSyncPcAddress2293'),saved=localStorage.getItem(MARU_DIRECT_PC_KEY_2293)||'';if(input&&saved)input.value=saved.replace(/^http:\/\//,'').replace(/:8765$/,'');const check=document.getElementById('directSyncCheck2293'),send=document.getElementById('directSyncSend2293');if(check)check.onclick=()=>maruDirectCheckPc2293().catch(()=>{});if(send)send.onclick=maruDirectSend2293;maruDirectStatus2293('PC와 같은 Wi‑Fi에 연결 → PC 주소 한 번 입력 → PC로 바로 보내기. 다운로드 파일은 만들지 않습니다.','idle')}
-  else{const refresh=document.getElementById('directSyncPcRefresh2293');if(refresh)refresh.onclick=maruDirectRefreshPc2293;maruDirectRefreshPc2293();if(maruDirectPollTimer2293)clearInterval(maruDirectPollTimer2293);maruDirectPollTimer2293=setInterval(maruDirectPollPc2293,650);maruDirectPollPc2293()}
+  const cancelQr=document.getElementById('directSyncQrCancel2294');if(cancelQr)cancelQr.onclick=maruQrStopScanner2294;
+  if(mobile){
+    const input=document.getElementById('directSyncPcAddress2293'),saved=localStorage.getItem(MARU_DIRECT_PC_KEY_2293)||'';if(input&&saved)input.value=saved.replace(/^http:\/\//,'').replace(/:8765$/,'');
+    const check=document.getElementById('directSyncCheck2293'),send=document.getElementById('directSyncSend2293'),scan=document.getElementById('directSyncScanQr2294');if(check)check.onclick=()=>maruDirectCheckPc2293().catch(()=>{});if(send)send.onclick=maruDirectSend2293;if(scan)scan.onclick=maruQrStartScanner2294;
+    maruDirectStatus2293('PC MARU에서 QR을 띄운 뒤 “📷 PC QR 찍고 바로 연결”만 누르면 됩니다.','idle');maruQrHandleLaunch2294();
+  }else{
+    const refresh=document.getElementById('directSyncPcRefresh2293'),showQr=document.getElementById('directSyncShowQr2294');if(refresh)refresh.onclick=maruDirectRefreshPc2293;if(showQr)showQr.onclick=maruQrShowPc2294;maruDirectRefreshPc2293();if(maruDirectPollTimer2293)clearInterval(maruDirectPollTimer2293);maruDirectPollTimer2293=setInterval(maruDirectPollPc2293,650);maruDirectPollPc2293();
+  }
 }
 setTimeout(bindMaruDirectSync2293,50);

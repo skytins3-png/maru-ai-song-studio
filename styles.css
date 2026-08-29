@@ -1307,3 +1307,24 @@ body.audience-mode.obs-output-mode .audience-cover-placeholder{font-size:clamp(3
 .direct-sync-status-2293[data-state="ready"]{border-color:rgba(92,240,170,.55)}.direct-sync-status-2293[data-state="ready"] b{color:#8df0bd}
 .direct-sync-fallback-2293{margin-top:12px;border-top:1px solid rgba(255,255,255,.08);padding-top:9px}.direct-sync-fallback-2293 summary{cursor:pointer;color:#aaa3b9;font-weight:700}.direct-sync-fallback-2293 .broadcast-sync-actions-2292{margin-top:10px}
 @media(max-width:560px){.direct-sync-address-label-2293{grid-template-columns:1fr}.direct-sync-actions-2293{grid-template-columns:1fr}.direct-pc-ready-2293{display:block}.direct-pc-ready-2293 b{display:block;margin-bottom:4px}}
+
+
+/* V0.22.94 — QR ONE-TAP MOBILE -> PC SYNC */
+.direct-qr-main-2294{width:100%;min-height:52px;font-weight:900;font-size:1rem}
+.direct-qr-help-2294{display:block;margin-top:7px;line-height:1.5}
+.direct-address-fallback-2294{margin-top:10px;border-top:1px dashed rgba(255,255,255,.18);padding-top:8px}
+.direct-address-fallback-2294 summary{cursor:pointer;font-weight:800;color:var(--muted,#b9bdd0)}
+.direct-qr-panel-2294{margin-top:10px;padding:14px;border:1px solid rgba(255,255,255,.18);border-radius:16px;background:rgba(0,0,0,.22);text-align:center}
+.direct-qr-panel-2294[hidden]{display:none!important}
+.direct-qr-code-2294{width:300px;max-width:100%;aspect-ratio:1;margin:0 auto 10px;background:#fff;border-radius:12px;padding:10px;display:grid;place-items:center;overflow:hidden}
+.direct-qr-code-2294 img,.direct-qr-code-2294 canvas{max-width:100%;height:auto!important}
+.direct-qr-panel-2294 b,.direct-qr-panel-2294 span,.direct-qr-panel-2294 small{display:block;margin-top:5px;word-break:break-all}
+.direct-qr-panel-2294 span{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;color:#fff}
+.direct-qr-scanner-2294{position:fixed;inset:0;z-index:30000;background:rgba(0,0,0,.88);padding:20px;display:grid;place-items:center}
+.direct-qr-scanner-2294[hidden]{display:none!important}
+.direct-qr-scanner-box-2294{position:relative;width:min(92vw,520px);padding:16px;border-radius:18px;background:#111827;border:1px solid rgba(255,255,255,.18);text-align:center}
+.direct-qr-scanner-box-2294>b{display:block;margin-bottom:10px;font-size:1.05rem}
+#directSyncQrVideo2294{display:block;width:100%;max-height:62vh;object-fit:cover;background:#000;border-radius:14px}
+.direct-qr-scan-frame-2294{position:absolute;left:18%;right:18%;top:25%;aspect-ratio:1;border:3px solid #fff;border-radius:16px;box-shadow:0 0 0 9999px rgba(0,0,0,.12);pointer-events:none}
+#directSyncQrScanStatus2294{display:block;margin:10px 0;min-height:1.4em}
+@media(max-width:600px){.direct-qr-code-2294{width:260px}.direct-qr-scanner-2294{padding:8px}.direct-qr-scanner-box-2294{width:100%}}
