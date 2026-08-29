@@ -1,5 +1,3 @@
 @echo off
-chcp 65001 >nul
-for /f "tokens=2" %%P in ('tasklist /fi "imagename eq powershell.exe" /fo csv /nh ^| findstr /i "powershell.exe"') do rem Helper 창에서 Ctrl+C 또는 창 닫기를 권장합니다.
-echo MARU OBS Helper 창에서 Ctrl+C를 누르거나 창을 닫아 주세요.
-pause
+powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -Command "try { Invoke-WebRequest -UseBasicParsing -Uri 'http://127.0.0.1:8765/api/quit' -TimeoutSec 2 ^| Out-Null } catch {}"
+exit /b 0

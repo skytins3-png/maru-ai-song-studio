@@ -1292,3 +1292,18 @@ body.audience-mode.obs-output-mode .audience-cover-placeholder{font-size:clamp(3
 .broadcast-sync-actions-2292{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:13px}.broadcast-sync-actions-2292 button{min-height:48px}.broadcast-sync-actions-2292 .sync-import-2292{border-color:rgba(113,164,255,.5)}
 .broadcast-sync-status-2292{display:flex;gap:10px;align-items:flex-start;margin-top:11px;padding:11px 12px;border-radius:13px;background:rgba(4,9,19,.46);border:1px solid rgba(255,255,255,.09)}.broadcast-sync-status-2292 b{flex:0 0 auto;color:#aeead9}.broadcast-sync-status-2292 span{min-width:0;color:#e3dff0;line-height:1.45;font-size:13px}.broadcast-sync-status-2292[data-state="busy"]{border-color:rgba(255,210,89,.48)}.broadcast-sync-status-2292[data-state="busy"] b{color:#ffe58f}.broadcast-sync-status-2292[data-state="ok"]{border-color:rgba(92,240,170,.55)}.broadcast-sync-status-2292[data-state="error"]{border-color:rgba(255,107,128,.6)}.broadcast-sync-status-2292[data-state="error"] b{color:#ff9bab}.broadcast-sync-card-2292>small{display:block;margin-top:9px;color:#bdb4cf;line-height:1.45}
 @media(max-width:700px){.broadcast-sync-actions-2292{grid-template-columns:1fr}.broadcast-sync-head-2292{flex-direction:column}.broadcast-sync-head-2292 strong{align-self:flex-start}}
+
+/* V0.22.93 — phone -> PC direct LAN sync */
+.direct-sync-card-2293{border-color:rgba(100,231,202,.58);background:linear-gradient(145deg,rgba(11,43,39,.96),rgba(20,16,42,.97))}
+.direct-sync-panel-2293{margin-top:13px;padding:13px;border:1px solid rgba(123,225,206,.28);border-radius:15px;background:rgba(5,12,22,.42)}
+.direct-sync-address-label-2293{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:center;font-weight:800;color:#dffbf4}
+.direct-sync-address-label-2293 input{min-width:0;width:100%;font-size:16px;padding:11px 12px;border-radius:12px;border:1px solid rgba(135,218,207,.38);background:#0d1323;color:#fff}
+.direct-sync-actions-2293{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:9px;margin-top:10px}.direct-sync-actions-2293 button{min-height:48px}
+.direct-send-2293{font-weight:900;font-size:16px}
+.direct-sync-panel-2293>small{display:block;margin-top:9px;color:#c6becf;line-height:1.5}.direct-sync-panel-2293>small b{color:#9ef2df}
+.direct-pc-ready-2293{display:flex;gap:10px;align-items:flex-start}.direct-pc-ready-2293 b{color:#83f0bd;white-space:nowrap}.direct-pc-ready-2293 span{color:#ddd6ea;line-height:1.45}
+.direct-pc-address-2293{margin:10px 0;padding:10px 12px;border-radius:11px;background:#09101c;border:1px solid rgba(124,220,205,.28);font:700 14px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;color:#c5fff1;word-break:break-all}
+.direct-sync-progress-2293{height:6px;margin:10px 1px 2px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}.direct-sync-progress-2293 i{display:block;width:0;height:100%;border-radius:inherit;background:linear-gradient(90deg,#38d8b1,#b84cff);transition:width .2s ease}
+.direct-sync-status-2293[data-state="ready"]{border-color:rgba(92,240,170,.55)}.direct-sync-status-2293[data-state="ready"] b{color:#8df0bd}
+.direct-sync-fallback-2293{margin-top:12px;border-top:1px solid rgba(255,255,255,.08);padding-top:9px}.direct-sync-fallback-2293 summary{cursor:pointer;color:#aaa3b9;font-weight:700}.direct-sync-fallback-2293 .broadcast-sync-actions-2292{margin-top:10px}
+@media(max-width:560px){.direct-sync-address-label-2293{grid-template-columns:1fr}.direct-sync-actions-2293{grid-template-columns:1fr}.direct-pc-ready-2293{display:block}.direct-pc-ready-2293 b{display:block;margin-bottom:4px}}

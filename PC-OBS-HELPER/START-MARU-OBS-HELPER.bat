@@ -1,11 +1,14 @@
 @echo off
-chcp 65001 >nul
+setlocal
 cd /d "%~dp0"
-title MARU OBS Helper V0.22.87
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0MARU-OBS-Helper.ps1"
+title MARU OBS Helper Launcher V0.22.93
+where powershell.exe >nul 2>nul
 if errorlevel 1 (
-  echo.
-  echo MARU OBS Helper 실행 중 오류가 발생했습니다.
-  echo 위 오류 내용을 확인해 주세요.
+  echo PowerShell was not found.
   pause
+  exit /b 1
 )
+start "MARU OBS Helper V0.22.93" powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%~dp0MARU-OBS-Helper.ps1"
+timeout /t 2 /nobreak >nul
+start "" "http://127.0.0.1:8765/"
+exit /b 0

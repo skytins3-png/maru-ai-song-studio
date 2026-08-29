@@ -1,7 +1,13 @@
-﻿실행: START-MARU-OBS-HELPER.bat
-종료: Helper 창에서 Ctrl+C 또는 창 닫기
-로컬 제어 주소: http://127.0.0.1:8765
-외부 네트워크에는 열리지 않고 PC 내부 루프백에서만 동작합니다.
+MARU OBS PC HELPER V0.22.93
 
+1) Close any older MARU OBS Helper window first.
+2) Double-click START-MARU-OBS-HELPER.bat.
+3) Keep the black PowerShell window open.
+4) OBS control remains on http://127.0.0.1:8765.
+5) The helper also prints a PHONE DIRECT SYNC ADDRESS such as http://192.168.0.12:8765.
+6) Phone and PC must be on the same Wi-Fi/LAN.
+7) If Windows Firewall asks, allow Private networks.
+8) In mobile MARU, enter the PC address once and tap PC direct send.
+9) PC MARU receives automatically into its browser storage; no .marusync file needs to be saved or selected.
 
-V0.22.89 원곡 방송: OBS 30.1+에서는 MARU_OBS_LIVE 창 캡처의 Capture Audio(오디오 캡처)를 자동으로 켭니다. MARU 방송 재생은 원본 MP3/MP4를 직접 재생하며 64밴드/AI 음질개선/자동 마스터를 거치지 않습니다. OBS의 데스크톱 오디오가 동시에 켜져 있으면 이중으로 들릴 수 있으므로 한 번만 들리는지 확인하세요.
+Direct sync uses RAM relay chunks in the helper. The helper does not write the transferred music package to Downloads.

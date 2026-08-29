@@ -2944,3 +2944,166 @@ function bindBroadcastSync2292(){
   maruSyncStatus2292(isMobile?'이 휴대폰의 저장 방송목록을 한 파일로 만들어 Quick Share로 PC에 보낼 수 있습니다.':'모바일에서 받은 .marusync 파일을 선택하면 원곡·영상·커버·자막과 순서가 한 번에 들어옵니다.','idle');
 }
 setTimeout(bindBroadcastSync2292,0);
+
+/* V0.22.93 — MOBILE -> PC DIRECT LAN SYNC
+   No .marusync file is required for the normal path. The PC helper relays one small
+   base64 chunk at a time in RAM; PC MARU writes completed records to IndexedDB. */
+const MARU_DIRECT_HELPER_LOOPBACK_2293='http://127.0.0.1:8765';
+const MARU_DIRECT_CHUNK_BYTES_2293=96*1024;
+const MARU_DIRECT_PC_KEY_2293='maru.direct.pc.2293';
+let maruDirectPollTimer2293=null,maruDirectPollBusy2293=false,maruDirectSending2293=false;
+let maruDirectRecv2293={sessionId:'',manifest:null,entries:new Map(),records:new Map(),parts:new Map(),lastSeq:0,receivedBytes:0,importedIds:new Set(),finished:false};
+
+function maruDirectIsMobile2293(){return /Android|iPhone|iPad|Mobile/i.test(navigator.userAgent||'')}
+function maruDirectStatus2293(text,state='idle'){
+  const el=document.getElementById('directSyncStatus2293');if(!el)return;
+  el.dataset.state=state;const b=el.querySelector('b'),s=el.querySelector('span');
+  if(b)b.textContent=state==='busy'?'전송 중':state==='ready'?'연결 준비':state==='ok'?'완료':state==='error'?'확인 필요':'대기';
+  if(s)s.textContent=String(text||'');
+}
+function maruDirectProgress2293(p){const el=document.getElementById('directSyncProgress2293');if(el)el.style.width=`${Math.max(0,Math.min(100,Number(p)||0))}%`}
+function maruDirectSleep2293(ms){return new Promise(r=>setTimeout(r,ms))}
+function maruDirectNormalizePc2293(raw){
+  let v=String(raw||'').trim();if(!v)throw new Error('PC 주소를 입력해 주세요.');
+  if(!/^https?:\/\//i.test(v))v='http://'+v;
+  let u;try{u=new URL(v)}catch{throw new Error('PC 주소 형식이 맞지 않습니다. 예: 192.168.0.12')}
+  if(!u.port)u.port='8765';u.protocol='http:';u.pathname='';u.search='';u.hash='';
+  if(maruDirectIsMobile2293()&&/^(127\.|localhost$)/i.test(u.hostname))throw new Error('127.0.0.1은 휴대폰 자기 자신입니다. PC 도우미 창의 192.168… 주소를 입력하세요.');
+  return u.origin;
+}
+async function maruDirectFetch2293(base,path,options={}){
+  const url=String(base).replace(/\/$/,'')+path,opts={cache:'no-store',...options};
+  try{return await fetch(url,{...opts,targetAddressSpace:base.includes('127.0.0.1')?'loopback':'local'})}
+  catch(e){
+    // Browsers that do not yet expose Request.targetAddressSpace ignore/fail the option.
+    if(e instanceof TypeError)return fetch(url,opts);
+    throw e;
+  }
+}
+async function maruDirectJson2293(base,path,options={}){
+  const r=await maruDirectFetch2293(base,path,options);let data=null;
+  try{data=await r.json()}catch{}
+  if(!r.ok)throw new Error(data?.message||`PC 도우미 응답 오류 ${r.status}`);
+  return data||{};
+}
+async function maruDirectPost2293(base,path,obj){return maruDirectJson2293(base,path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(obj||{})})}
+function maruDirectBytesToB642293(bytes){let s='',step=0x8000;for(let i=0;i<bytes.length;i+=step)s+=String.fromCharCode.apply(null,bytes.subarray(i,Math.min(bytes.length,i+step)));return btoa(s)}
+function maruDirectB64ToBytes2293(s){const bin=atob(String(s||'')),u=new Uint8Array(bin.length),step=0x8000;for(let i=0;i<bin.length;i+=step){const end=Math.min(bin.length,i+step);for(let j=i;j<end;j++)u[j]=bin.charCodeAt(j)}return u}
+function maruDirectAssetMeta2293(blob){return blob instanceof Blob&&blob.size?{size:blob.size,type:blob.type||'application/octet-stream'}:null}
+function maruDirectSafeRecord2293(e){return{id:String(e.id||''),name:e.name||'방송곡',type:e.type||'application/octet-stream',size:Number(e.size||0),lastModified:Number(e.lastModified||Date.now()),addedAt:Number(e.addedAt||Date.now()),coverName:e.coverName||'',videoName:e.videoName||'',mediaUpdatedAt:Number(e.mediaUpdatedAt||0),subtitleText:String(e.subtitleText||''),subtitleUpdatedAt:Number(e.subtitleUpdatedAt||0),blob:null,coverBlob:null,videoBlob:null}}
+
+async function maruDirectCheckPc2293({quiet=false}={}){
+  const input=document.getElementById('directSyncPcAddress2293');let base;
+  try{base=maruDirectNormalizePc2293(input?.value||localStorage.getItem(MARU_DIRECT_PC_KEY_2293)||'');if(input)input.value=base.replace(/^http:\/\//,'').replace(/:8765$/,'');
+    if(!quiet)maruDirectStatus2293('PC에 연결 중입니다. Chrome에서 로컬 네트워크 허용 창이 뜨면 허용하세요.','busy');
+    const st=await maruDirectJson2293(base,'/api/status');if(!st.directSync)throw new Error('PC OBS 도우미가 이전 버전입니다. V0.22.93 도우미로 교체해 주세요.');
+    localStorage.setItem(MARU_DIRECT_PC_KEY_2293,base);if(!quiet)maruDirectStatus2293(`PC 연결 성공 · ${st.helper||'MARU Helper'} · 파일 저장 없이 바로 전송할 수 있습니다.`,'ready');return{base,status:st};
+  }catch(e){if(!quiet)maruDirectStatus2293(`${e.message||e} · 휴대폰과 PC가 같은 Wi‑Fi인지, PC 도우미 창이 켜져 있는지 확인하세요.`,'error');throw e}
+}
+
+async function maruDirectManifest2293(){
+  const ids=broadcastOrderRead();if(!ids.length)throw new Error('모바일 방송목록에 저장된 곡이 없습니다.');
+  const entries=[],records=[];let totalBytes=0;
+  for(let i=0;i<ids.length;i++){
+    const r=await broadcastDbGet(ids[i]);if(!r?.blob)continue;
+    const meta=maruSyncSafeMeta2292(r),assets={blob:maruDirectAssetMeta2293(r.blob),coverBlob:maruDirectAssetMeta2293(r.coverBlob),videoBlob:maruDirectAssetMeta2293(r.videoBlob)};
+    for(const a of Object.values(assets))if(a)totalBytes+=Number(a.size||0);
+    entries.push({...meta,assets});records.push(r);
+  }
+  if(!entries.length)throw new Error('저장된 원곡 파일을 읽지 못했습니다.');
+  return{manifest:{format:'MARU-DIRECT-BROADCAST-SYNC',version:1,appVersion:'0.22.93',createdAt:new Date().toISOString(),count:entries.length,totalBytes,order:entries.map(e=>e.id),entries},records};
+}
+async function maruDirectWaitAck2293(base,sessionId,seq){
+  const started=Date.now();let warned=false;
+  while(true){
+    const st=await maruDirectJson2293(base,'/api/direct/state');
+    if(st.sessionId!==sessionId)throw new Error('PC 동기화 세션이 바뀌었습니다. 다시 시작해 주세요.');
+    if(Number(st.ackSeq||0)>=seq)return;
+    if(Date.now()-started>8000&&!warned){warned=true;maruDirectStatus2293('PC MARU가 데이터를 받기를 기다리고 있습니다. PC에서 MARU V0.22.93 페이지를 열어 두세요.','busy')}
+    if(Date.now()-started>180000)throw new Error('PC MARU 수신 대기 시간이 너무 길어 중단했습니다. PC MARU 페이지를 열고 다시 보내세요.');
+    await maruDirectSleep2293(260);
+  }
+}
+async function maruDirectSendChunk2293(base,sessionId,packet){
+  while(true){const r=await maruDirectPost2293(base,'/api/direct/chunk',{sessionId,...packet});if(r.accepted||r.alreadyAcked)break;if(r.sessionMismatch)throw new Error('PC 동기화 세션이 바뀌었습니다.');await maruDirectSleep2293(220)}
+  await maruDirectWaitAck2293(base,sessionId,packet.seq);
+}
+async function maruDirectSendBlob2293(base,sessionId,trackId,asset,blob,seqRef,progress){
+  if(!(blob instanceof Blob)||!blob.size)return;
+  const totalChunks=Math.ceil(blob.size/MARU_DIRECT_CHUNK_BYTES_2293);
+  for(let i=0;i<totalChunks;i++){
+    const chunk=blob.slice(i*MARU_DIRECT_CHUNK_BYTES_2293,Math.min(blob.size,(i+1)*MARU_DIRECT_CHUNK_BYTES_2293));
+    const data=maruDirectBytesToB642293(new Uint8Array(await chunk.arrayBuffer())),seq=++seqRef.value;
+    await maruDirectSendChunk2293(base,sessionId,{seq,trackId,asset,chunkIndex:i,totalChunks,type:blob.type||'application/octet-stream',data});
+    progress.sent+=chunk.size;const pct=progress.total?progress.sent/progress.total*100:0;maruDirectProgress2293(pct);
+    maruDirectStatus2293(`${progress.track}/${progress.tracks}곡 전송 중 · ${maruSyncFormatBytes2292(progress.sent)} / ${maruSyncFormatBytes2292(progress.total)} · ${Math.round(pct)}%`,'busy');
+  }
+}
+async function maruDirectSend2293(){
+  if(maruDirectSending2293)return;const btn=document.getElementById('directSyncSend2293');maruDirectSending2293=true;if(btn)btn.disabled=true;maruDirectProgress2293(0);
+  let base='',sessionId='';
+  try{
+    ({base}=await maruDirectCheckPc2293({quiet:false}));
+    maruDirectStatus2293('모바일 저장 방송목록을 확인하고 있습니다. 원곡은 재압축하지 않습니다.','busy');
+    const {manifest,records}=await maruDirectManifest2293(),begin=await maruDirectPost2293(base,'/api/direct/begin',{manifest});sessionId=begin.sessionId;if(!sessionId)throw new Error('PC가 동기화 세션을 만들지 못했습니다.');
+    const seqRef={value:0},progress={sent:0,total:Number(manifest.totalBytes||0),track:0,tracks:records.length};
+    for(let i=0;i<records.length;i++){
+      const r=records[i],id=manifest.entries[i]?.id||r.id;progress.track=i+1;
+      await maruDirectSendBlob2293(base,sessionId,id,'blob',r.blob,seqRef,progress);
+      await maruDirectSendBlob2293(base,sessionId,id,'coverBlob',r.coverBlob,seqRef,progress);
+      await maruDirectSendBlob2293(base,sessionId,id,'videoBlob',r.videoBlob,seqRef,progress);
+    }
+    await maruDirectPost2293(base,'/api/direct/end',{sessionId});maruDirectStatus2293('모든 원곡 전송 완료 · PC MARU가 목록을 마무리하고 있습니다.','busy');
+    const started=Date.now();while(true){const st=await maruDirectJson2293(base,'/api/direct/state');if(st.sessionId!==sessionId)throw new Error('PC 동기화 세션이 바뀌었습니다.');if(st.completed)break;if(Date.now()-started>180000)throw new Error('PC 목록 저장 완료 확인 시간이 초과되었습니다.');await maruDirectSleep2293(400)}
+    maruDirectProgress2293(100);maruDirectStatus2293(`✅ ${manifest.count}곡을 PC MARU로 바로 보냈습니다. PC 다운로드 폴더에는 동기화 파일을 만들지 않았습니다.`,'ok');toast(`📱→🖥 ${manifest.count}곡 직접 동기화 완료`);
+  }catch(e){console.error('direct sync send 2293',e);if(base&&sessionId)try{await maruDirectPost2293(base,'/api/direct/cancel',{sessionId})}catch{}maruDirectStatus2293(e.message||String(e),'error');toast(`직접 동기화 실패 · ${e.message||e}`)}finally{maruDirectSending2293=false;if(btn)btn.disabled=false}
+}
+
+function maruDirectResetReceiver2293(sessionId,manifest){
+  const entries=new Map(),records=new Map();for(const e of manifest.entries||[]){entries.set(String(e.id),e);records.set(String(e.id),maruDirectSafeRecord2293(e))}
+  maruDirectRecv2293={sessionId,manifest,entries,records,parts:new Map(),lastSeq:0,receivedBytes:0,importedIds:new Set(),finished:false};
+  maruDirectProgress2293(0);maruDirectStatus2293(`모바일 ${manifest.count||entries.size}곡 수신 시작 · 파일 선택 없이 자동 저장합니다.`,'busy');
+}
+async function maruDirectProcessPacket2293(packet){
+  const st=maruDirectRecv2293,seq=Number(packet?.seq||0);if(!seq||seq<=st.lastSeq)return;
+  const trackId=String(packet.trackId||''),asset=String(packet.asset||''),entry=st.entries.get(trackId),record=st.records.get(trackId);if(!entry||!record||!['blob','coverBlob','videoBlob'].includes(asset))throw new Error('받은 곡 정보가 목록과 맞지 않습니다.');
+  const key=`${trackId}|${asset}`,chunkIndex=Number(packet.chunkIndex||0),totalChunks=Math.max(1,Number(packet.totalChunks||1));let part=st.parts.get(key);
+  if(!part){part={chunks:[],next:0,totalChunks,type:packet.type||entry.assets?.[asset]?.type||'application/octet-stream'};st.parts.set(key,part)}
+  if(chunkIndex!==part.next)throw new Error(`전송 순서 오류 · ${asset} ${chunkIndex+1}/${totalChunks}`);
+  const bytes=maruDirectB64ToBytes2293(packet.data);part.chunks.push(bytes);part.next++;st.receivedBytes+=bytes.byteLength;
+  if(part.next>=part.totalChunks){record[asset]=new Blob(part.chunks,{type:part.type});st.parts.delete(key);
+    const expected=Object.entries(entry.assets||{}).filter(([,v])=>v&&Number(v.size)>0).map(([k])=>k),ready=expected.every(k=>record[k] instanceof Blob&&record[k].size>0);
+    if(ready){await broadcastDbPut(record);st.importedIds.add(trackId)}
+  }
+  st.lastSeq=seq;const total=Number(st.manifest?.totalBytes||0),pct=total?st.receivedBytes/total*100:0;maruDirectProgress2293(pct);maruDirectStatus2293(`PC 자동 수신 중 · ${st.importedIds.size}/${st.entries.size}곡 · ${maruSyncFormatBytes2292(st.receivedBytes)} / ${maruSyncFormatBytes2292(total)} · ${Math.round(pct)}%`,'busy');
+}
+async function maruDirectFinalizeReceiver2293(){
+  const st=maruDirectRecv2293;if(st.finished||!st.sessionId||!st.manifest)return;const expected=(st.manifest.entries||[]).filter(e=>e.assets?.blob&&Number(e.assets.blob.size)>0).length;
+  if(st.importedIds.size<expected)throw new Error(`원곡 수신이 끝나지 않았습니다 · ${st.importedIds.size}/${expected}곡`);
+  const old=broadcastOrderRead(),incomingOrder=(st.manifest.order||[]).map(String).filter(id=>st.importedIds.has(id)),merged=[...incomingOrder,...old.filter(id=>!incomingOrder.includes(id))].slice(0,100);
+  broadcastOrderWrite(merged);await broadcastRequestPersistentStorage();await restoreBroadcastPlaylist();st.finished=true;maruDirectProgress2293(100);maruDirectStatus2293(`✅ 모바일 방송목록 ${st.importedIds.size}곡 자동 수신 완료 · PC 다운로드 파일 없음`,'ok');toast(`📱→🖥 방송목록 ${st.importedIds.size}곡 자동 수신 완료`);
+  await maruDirectPost2293(MARU_DIRECT_HELPER_LOOPBACK_2293,'/api/direct/complete',{sessionId:st.sessionId});
+}
+async function maruDirectPollPc2293(){
+  if(maruDirectPollBusy2293||maruDirectIsMobile2293())return;maruDirectPollBusy2293=true;
+  try{
+    const p=await maruDirectJson2293(MARU_DIRECT_HELPER_LOOPBACK_2293,'/api/direct/poll');
+    if(p.manifest&&p.sessionId&&p.sessionId!==maruDirectRecv2293.sessionId){maruDirectResetReceiver2293(p.sessionId,p.manifest);await maruDirectPost2293(MARU_DIRECT_HELPER_LOOPBACK_2293,'/api/direct/manifest-ack',{sessionId:p.sessionId})}
+    if(p.packet&&p.sessionId===maruDirectRecv2293.sessionId){const seq=Number(p.packet.seq||0);if(seq>maruDirectRecv2293.lastSeq)await maruDirectProcessPacket2293(p.packet);await maruDirectPost2293(MARU_DIRECT_HELPER_LOOPBACK_2293,'/api/direct/ack',{sessionId:p.sessionId,seq})}
+    if(p.ended&&p.sessionId===maruDirectRecv2293.sessionId&&!p.packetPending&&!maruDirectRecv2293.finished)await maruDirectFinalizeReceiver2293();
+  }catch(e){
+    // Old/offline helper is common before setup; do not spam toasts.
+    const text=String(e?.message||e);if(/404|Unsupported|fetch|Failed/i.test(text)){}else console.warn('direct sync receiver 2293',e)
+  }finally{maruDirectPollBusy2293=false}
+}
+async function maruDirectRefreshPc2293(){
+  const box=document.getElementById('directSyncPcLanAddress2293');if(!box)return;
+  try{const st=await maruDirectJson2293(MARU_DIRECT_HELPER_LOOPBACK_2293,'/api/status');if(!st.directSync)throw new Error('V0.22.93 도우미가 필요합니다.');const urls=Array.isArray(st.lanUrls)?st.lanUrls:[];box.textContent=urls.length?`휴대폰에 입력할 PC 주소: ${urls.join(' 또는 ')}`:'PC의 Wi‑Fi/LAN 주소를 찾지 못했습니다.';maruDirectStatus2293(urls.length?'PC 자동 수신 준비 완료 · 휴대폰에 위 주소를 한 번 입력한 뒤 바로 보내기를 누르세요.':'PC 네트워크 주소를 확인해 주세요.',urls.length?'ready':'error')}
+  catch(e){box.textContent='V0.22.93 OBS 도우미를 먼저 실행해 주세요.';maruDirectStatus2293(`${e.message||e} · 새 도우미를 실행하면 PC 자동 수신이 켜집니다.`,'error')}
+}
+function bindMaruDirectSync2293(){
+  const mobile=maruDirectIsMobile2293(),m=document.getElementById('directSyncMobile2293'),p=document.getElementById('directSyncPc2293');if(m)m.hidden=!mobile;if(p)p.hidden=mobile;
+  if(mobile){const input=document.getElementById('directSyncPcAddress2293'),saved=localStorage.getItem(MARU_DIRECT_PC_KEY_2293)||'';if(input&&saved)input.value=saved.replace(/^http:\/\//,'').replace(/:8765$/,'');const check=document.getElementById('directSyncCheck2293'),send=document.getElementById('directSyncSend2293');if(check)check.onclick=()=>maruDirectCheckPc2293().catch(()=>{});if(send)send.onclick=maruDirectSend2293;maruDirectStatus2293('PC와 같은 Wi‑Fi에 연결 → PC 주소 한 번 입력 → PC로 바로 보내기. 다운로드 파일은 만들지 않습니다.','idle')}
+  else{const refresh=document.getElementById('directSyncPcRefresh2293');if(refresh)refresh.onclick=maruDirectRefreshPc2293;maruDirectRefreshPc2293();if(maruDirectPollTimer2293)clearInterval(maruDirectPollTimer2293);maruDirectPollTimer2293=setInterval(maruDirectPollPc2293,650);maruDirectPollPc2293()}
+}
+setTimeout(bindMaruDirectSync2293,50);
