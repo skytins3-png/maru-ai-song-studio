@@ -3200,7 +3200,7 @@ function maruUsbBestUrl2296(st={}){const a=[...(st.usbUrls||[]),...(st.lanUrls||
 async function maruUsbJson2296(base,path,opt={}){const r=await maruDirectFetch2293(base,path,opt);let d=null;try{d=await r.json()}catch{}if(!r.ok||d?.ok===false)throw new Error(d?.message||`USB Helper 오류 ${r.status}`);return d||{}}
 function maruUsbPost2296(base,path,obj){return maruUsbJson2296(base,path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(obj||{})})}
 async function maruUsbManifest2296(){const ids=broadcastOrderRead();if(!ids.length)throw new Error('휴대폰 방송목록에 저장된 곡이 없습니다.');const entries=[],order=[];for(const id of ids){const r=await broadcastDbGet(id);if(!r?.blob)continue;const e=maruSyncSafeMeta2292(r);e.assets={blob:maruDirectAssetMeta2293(r.blob),coverBlob:maruDirectAssetMeta2293(r.coverBlob),videoBlob:maruDirectAssetMeta2293(r.videoBlob)};entries.push(e);order.push(String(id))}if(!entries.length)throw new Error('휴대폰 방송목록 원곡을 찾지 못했습니다.');return{version:2296,mode:'usb-live-no-pc-save',count:entries.length,order,entries,createdAt:Date.now()}}
-async function maruUsbConnectMobile2296(raw){const base=maruUsbNormalizePc2296(raw);maruUsbStatus2296('USB Helper 연결 확인 중…','busy');const st=await maruUsbJson2296(base,'/api/status');if(!st.usbStream)throw new Error('V0.22.96 USB Helper가 필요합니다.');const manifest=await maruUsbManifest2296(),reg=await maruUsbPost2296(base,'/api/usb/register',{manifest});maruUsbMobileBase2296=base;maruUsbMobileSession2296=String(reg.sessionId||'');if(!maruUsbMobileSession2296)throw new Error('USB 방송 세션을 만들지 못했습니다.');localStorage.setItem(MARU_USB_PC_KEY_2296,base);const i=document.getElementById('usbLivePcAddress2296');if(i)i.value=base.replace(/^http:\/\//,'').replace(/:8765$/,'');maruUsbStatus2296(`✅ USB 연결 · ${manifest.count}곡 제목 목록만 PC에 전달 · 원곡 저장 없음`,'ready');maruUsbStartMobilePoll2296();return true}
+async function maruUsbConnectMobile2296(raw){const base=maruUsbNormalizePc2296(raw);maruUsbStatus2296('USB Helper 연결 확인 중…','busy');const st=await maruUsbJson2296(base,'/api/status');if(!st.usbStream)throw new Error('V0.23.01 USB 자동 Helper가 필요합니다.');const manifest=await maruUsbManifest2296(),reg=await maruUsbPost2296(base,'/api/usb/register',{manifest});maruUsbMobileBase2296=base;maruUsbMobileSession2296=String(reg.sessionId||'');if(!maruUsbMobileSession2296)throw new Error('USB 방송 세션을 만들지 못했습니다.');localStorage.setItem(MARU_USB_PC_KEY_2296,base);const i=document.getElementById('usbLivePcAddress2296');if(i)i.value=base.replace(/^http:\/\//,'').replace(/:8765$/,'');maruUsbStatus2296(`✅ USB 연결 · ${manifest.count}곡 제목 목록만 PC에 전달 · 원곡 저장 없음`,'ready');maruUsbStartMobilePoll2296();return true}
 async function maruUsbUploadAsset2296(r,asset,cmd,p){const blob=r?.[asset];if(!(blob instanceof Blob)||!blob.size)return;const totalChunks=Math.ceil(blob.size/MARU_USB_CHUNK_BYTES_2296);for(let n=0;n<totalChunks;n++){const part=blob.slice(n*MARU_USB_CHUNK_BYTES_2296,Math.min(blob.size,(n+1)*MARU_USB_CHUNK_BYTES_2296)),data=maruDirectBytesToB642293(new Uint8Array(await part.arrayBuffer()));await maruUsbPost2296(maruUsbMobileBase2296,'/api/usb/chunk',{sessionId:maruUsbMobileSession2296,requestId:cmd.requestId,trackId:cmd.trackId,asset,chunkIndex:n,totalChunks,type:blob.type||'application/octet-stream',name:asset==='blob'?(r.name||'track'):asset==='coverBlob'?(r.coverName||'cover'):(r.videoName||'video'),data});p.sent+=part.size;maruUsbProgress2296(p.total?p.sent/p.total*100:0);maruUsbStatus2296(`현재 곡 USB 전송 중 · ${maruSyncFormatBytes2292(p.sent)} / ${maruSyncFormatBytes2292(p.total)}`,'busy')}await maruUsbPost2296(maruUsbMobileBase2296,'/api/usb/asset-end',{sessionId:maruUsbMobileSession2296,requestId:cmd.requestId,trackId:cmd.trackId,asset,type:blob.type||'application/octet-stream',size:blob.size})}
 async function maruUsbHandleCommand2296(cmd){if(!cmd?.requestId||!cmd?.trackId)return;const r=await broadcastDbGet(String(cmd.trackId));if(!r?.blob)throw new Error('요청한 원곡을 휴대폰에서 찾지 못했습니다.');const assets=Array.isArray(cmd.assets)?cmd.assets:['blob'],total=assets.reduce((n,a)=>n+Number(r?.[a]?.size||0),0),p={sent:0,total};maruUsbProgress2296(0);for(const a of assets)await maruUsbUploadAsset2296(r,a,cmd,p);await maruUsbPost2296(maruUsbMobileBase2296,'/api/usb/ready',{sessionId:maruUsbMobileSession2296,requestId:cmd.requestId,trackId:cmd.trackId});maruUsbProgress2296(100);maruUsbStatus2296(`✅ ${broadcastSafeTitle(r.name)} · 현재 곡 RAM 전송 완료 · 다음 요청 대기`,'ready')}
 async function maruUsbMobilePoll2296(){if(!maruUsbMobileSession2296||!maruUsbMobileBase2296||maruUsbMobileBusy2296)return;maruUsbMobileBusy2296=true;try{const x=await maruUsbJson2296(maruUsbMobileBase2296,`/api/usb/mobile-command?sessionId=${encodeURIComponent(maruUsbMobileSession2296)}`);if(x.command)await maruUsbHandleCommand2296(x.command)}catch(e){console.warn(e);maruUsbStatus2296(`USB 연결 확인 필요 · ${e.message||e}`,'error')}finally{maruUsbMobileBusy2296=false}}
@@ -3214,7 +3214,7 @@ function maruUsbPairUrl2296(base){const u=new URL(location.origin+location.pathn
 function maruUsbStopQr2296(){if(maruUsbQrTimer2296){clearTimeout(maruUsbQrTimer2296);maruUsbQrTimer2296=null}if(maruUsbQrStream2296){for(const t of maruUsbQrStream2296.getTracks())try{t.stop()}catch{}maruUsbQrStream2296=null}const v=document.getElementById('usbLiveQrVideo2296');if(v){try{v.pause()}catch{}v.srcObject=null}const o=document.getElementById('usbLiveQrScanner2296');if(o)o.hidden=true}
 async function maruUsbApplyQr2296(raw){let s=String(raw||'').trim(),pc='';if(/^https?:\/\//i.test(s)){const u=new URL(s);pc=u.searchParams.get('maruUsbPc')||((/:8765$/.test(u.origin))?u.origin:'')}else pc=s;if(!pc)throw new Error('USB QR에서 PC 주소를 찾지 못했습니다.');maruUsbStopQr2296();return maruUsbConnectMobile2296(pc)}
 async function maruUsbScanQr2296(){const o=document.getElementById('usbLiveQrScanner2296'),v=document.getElementById('usbLiveQrVideo2296'),st=document.getElementById('usbLiveQrScanStatus2296');if(!o||!v)return;o.hidden=false;if(st)st.textContent='카메라 준비 중…';if(!navigator.mediaDevices?.getUserMedia){if(st)st.textContent='카메라 사용 불가 · USB 주소 직접 입력을 사용하세요.';return}if(!('BarcodeDetector'in window)){if(st)st.textContent='QR 자동 인식 미지원 · 기본 카메라로 QR을 찍어 링크를 여세요.';return}try{maruUsbQrDetector2296=new BarcodeDetector({formats:['qr_code']});maruUsbQrStream2296=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'}},audio:false});v.srcObject=maruUsbQrStream2296;await v.play();if(st)st.textContent='PC USB QR을 네모 안에 맞춰 주세요.';const scan=async()=>{if(o.hidden||!maruUsbQrStream2296)return;try{const c=await maruUsbQrDetector2296.detect(v),raw=c?.[0]?.rawValue;if(raw){if(st)st.textContent='QR 확인 · USB 연결 중…';await maruUsbApplyQr2296(raw);return}}catch{}maruUsbQrTimer2296=setTimeout(scan,220)};scan()}catch(e){if(st)st.textContent=`카메라 실행 실패 · ${e.message||e}`}}
-async function maruUsbShowQr2296(){const p=document.getElementById('usbLiveQrPanel2296'),box=document.getElementById('usbLiveQrCode2296'),lab=document.getElementById('usbLiveQrAddress2296');if(!p||!box)return;p.hidden=false;box.innerHTML='<div class="qr-click-feedback-2295">USB 주소 확인 중…</div>';try{const st=await maruUsbJson2296('http://127.0.0.1:8765','/api/status');if(!st.usbStream)throw new Error('V0.22.96 USB Helper가 필요합니다.');const base=maruUsbBestUrl2296(st);if(!base)throw new Error('USB 테더링 주소를 찾지 못했습니다. 휴대폰 USB 테더링을 먼저 켜세요.');if(lab)lab.textContent=base;box.innerHTML='';const pair=maruUsbPairUrl2296(base);if(typeof QRCode==='function')new QRCode(box,{text:pair,width:280,height:280,colorDark:'#000',colorLight:'#fff',correctLevel:QRCode.CorrectLevel.M});else box.innerHTML='<div class="qr-click-error-2295">QR 모듈 없음<br><small>'+base+'</small></div>';maruUsbStatus2296('USB QR 준비 완료 · 휴대폰에서 찍으세요.','ready')}catch(e){box.innerHTML='<div class="qr-click-error-2295">USB QR 준비 실패<br><small>'+String(e.message||e)+'</small></div>';if(lab)lab.textContent='USB 테더링 확인 필요';maruUsbStatus2296(e.message||String(e),'error')}}
+async function maruUsbShowQr2296(){const p=document.getElementById('usbLiveQrPanel2296'),box=document.getElementById('usbLiveQrCode2296'),lab=document.getElementById('usbLiveQrAddress2296');if(!p||!box)return;p.hidden=false;box.innerHTML='<div class="qr-click-feedback-2295">USB 주소 확인 중…</div>';try{const st=await maruUsbJson2296('http://127.0.0.1:8765','/api/status');if(!st.usbStream)throw new Error('V0.23.01 USB 자동 Helper가 필요합니다.');const base=maruUsbBestUrl2296(st);if(!base)throw new Error('USB 테더링 주소를 찾지 못했습니다. 휴대폰 USB 테더링을 먼저 켜세요.');if(lab)lab.textContent=base;box.innerHTML='';const pair=maruUsbPairUrl2296(base);if(typeof QRCode==='function')new QRCode(box,{text:pair,width:280,height:280,colorDark:'#000',colorLight:'#fff',correctLevel:QRCode.CorrectLevel.M});else box.innerHTML='<div class="qr-click-error-2295">QR 모듈 없음<br><small>'+base+'</small></div>';maruUsbStatus2296('USB QR 준비 완료 · 휴대폰에서 찍으세요.','ready')}catch(e){box.innerHTML='<div class="qr-click-error-2295">USB QR 준비 실패<br><small>'+String(e.message||e)+'</small></div>';if(lab)lab.textContent='USB 테더링 확인 필요';maruUsbStatus2296(e.message||String(e),'error')}}
 async function maruUsbRefreshPc2296(){const e=document.getElementById('usbLivePcLanAddress2296');if(!e)return;try{const st=await maruUsbJson2296('http://127.0.0.1:8765','/api/status'),urls=[...(st.usbUrls||[]),...(st.lanUrls||[])];e.textContent=urls.length?`USB 연결 후보 주소: ${urls.join(' 또는 ')}`:'USB 테더링 주소를 찾지 못했습니다.';maruUsbStatus2296(urls.length?'USB Helper 준비 · USB 테더링 ON 후 QR 연결':'휴대폰 USB 테더링을 먼저 켜세요.',urls.length?'ready':'error')}catch(err){e.textContent='V0.22.96 OBS Helper를 먼저 실행해 주세요.';maruUsbStatus2296(err.message||String(err),'error')}}
 function maruUsbHandleLaunch2296(){if(!maruDirectIsMobile2293())return;const u=new URL(location.href),pc=u.searchParams.get('maruUsbPc');if(!pc)return;u.searchParams.delete('maruUsbPc');history.replaceState(null,'',u.pathname+(u.search?u.search:'')+(u.hash||''));setTimeout(()=>maruUsbConnectMobile2296(pc).catch(e=>maruUsbStatus2296(e.message||String(e),'error')),650)}
 function bindMaruUsb2296(){const mobile=maruDirectIsMobile2293(),m=document.getElementById('usbLiveMobile2296'),p=document.getElementById('usbLivePc2296');if(m)m.hidden=!mobile;if(p)p.hidden=mobile;if(mobile){const saved=localStorage.getItem(MARU_USB_PC_KEY_2296)||'',inp=document.getElementById('usbLivePcAddress2296');if(inp&&saved)inp.value=saved.replace(/^http:\/\//,'').replace(/:8765$/,'');document.getElementById('usbLiveScanQr2296')?.addEventListener('click',maruUsbScanQr2296);document.getElementById('usbLiveQrCancel2296')?.addEventListener('click',maruUsbStopQr2296);document.getElementById('usbLiveConnect2296')?.addEventListener('click',()=>maruUsbConnectMobile2296(inp?.value||'').catch(e=>maruUsbStatus2296(e.message||String(e),'error')));maruUsbStatus2296('USB 케이블 연결 → USB 테더링 ON → PC USB QR을 찍으세요.','idle');maruUsbHandleLaunch2296()}else{document.getElementById('usbLiveShowQr2296')?.addEventListener('click',maruUsbShowQr2296);document.getElementById('usbLiveRefresh2296')?.addEventListener('click',maruUsbRefreshPc2296);maruUsbRefreshPc2296();if(maruUsbPcPollTimer2296)clearInterval(maruUsbPcPollTimer2296);maruUsbPcPollTimer2296=setInterval(maruUsbPcPoll2296,700);maruUsbPcPoll2296()}}
@@ -3623,3 +3623,72 @@ setTimeout(()=>{
   const p=document.getElementById('broadcastPauseBtn');
   if(p)p.onclick=()=>broadcastPause();
 },250);
+
+
+/* =========================================================
+   V0.23.01 — ADB USB AUTO BRIDGE
+   After one-time Android USB debugging authorization:
+   phone MARU -> http://127.0.0.1:8765 -> adb reverse -> PC Helper
+   No USB tethering, no MTP/file-transfer mode, no QR, no address input.
+   ========================================================= */
+let maruUsbAutoRetry2301=null;
+let maruUsbAutoConnected2301=false;
+
+async function maruUsbAutoConnect2301(){
+  if(!maruDirectIsMobile2293()||maruUsbAutoConnected2301)return;
+  try{
+    maruUsbStatus2296('USB 케이블 자동 연결 확인 중…','busy');
+    await maruUsbConnectMobile2296('http://127.0.0.1:8765');
+    maruUsbAutoConnected2301=true;
+    maruUsbStatus2296('✅ USB 자동 연결 완료 · 테더링/QR/주소 입력 없음','ready');
+    if(maruUsbAutoRetry2301){clearInterval(maruUsbAutoRetry2301);maruUsbAutoRetry2301=null}
+  }catch(e){
+    const msg=String(e?.message||e||'');
+    if(/failed to fetch|network|load failed|fetch/i.test(msg)){
+      maruUsbStatus2296('USB 케이블을 연결하세요. 처음 사용이면 USB 디버깅 허용 창에서 허용을 한 번 눌러 주세요.','idle');
+    }else{
+      maruUsbStatus2296(`USB 자동 연결 대기 · ${msg}`,'idle');
+    }
+  }
+}
+function maruUsbOpenDevSettings2301(){
+  try{
+    location.href='intent:#Intent;action=android.settings.APPLICATION_DEVELOPMENT_SETTINGS;end';
+  }catch{
+    toast('설정 → 개발자 옵션 → USB 디버깅을 켜 주세요.');
+  }
+}
+async function maruUsbAutoPcState2301(){
+  if(maruDirectIsMobile2293())return;
+  const box=document.getElementById('usbAutoBridgeState2301');
+  try{
+    const x=await maruUsbJson2296('http://127.0.0.1:8765','/api/adb/status');
+    const state=String(x.state||'unknown');
+    const map={
+      ready:'✅ 휴대폰 USB 자동 연결 준비 완료',
+      unauthorized:'📱 휴대폰에서 “USB 디버깅 허용”을 한 번 눌러 주세요',
+      no_device:'🔌 휴대폰 USB 케이블을 연결하세요',
+      adb_missing:'⚙ 처음 한 번 1-ONE-TOUCH-SETUP.bat를 실행해 주세요',
+      starting:'USB 자동 연결 준비 중…',
+      error:'USB 자동 연결 확인 필요'
+    };
+    if(box)box.textContent=map[state]||`USB 상태: ${state}`;
+    maruUsbStatus2296(map[state]||`USB 상태: ${state}`,state==='ready'?'ready':state==='error'?'error':'idle');
+  }catch(e){
+    if(box)box.textContent='PC Helper를 먼저 실행해 주세요.';
+  }
+}
+function bindMaruUsbAuto2301(){
+  const mobile=maruDirectIsMobile2293();
+  if(mobile){
+    document.getElementById('usbAutoDevSettings2301')?.addEventListener('click',maruUsbOpenDevSettings2301);
+    maruUsbAutoConnect2301();
+    if(maruUsbAutoRetry2301)clearInterval(maruUsbAutoRetry2301);
+    maruUsbAutoRetry2301=setInterval(maruUsbAutoConnect2301,2200);
+  }else{
+    document.getElementById('usbAutoBridgeRefresh2301')?.addEventListener('click',maruUsbAutoPcState2301);
+    maruUsbAutoPcState2301();
+    setInterval(maruUsbAutoPcState2301,2500);
+  }
+}
+setTimeout(bindMaruUsbAuto2301,350);

@@ -20,7 +20,7 @@
   })();
   </script>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=0.23.00">
+  <link rel="stylesheet" href="styles.css?v=0.23.01">
   <link rel="stylesheet" href="score.css?v=0.22.89">
   <style>.wide{width:100%;margin-top:16px}.analysis-box{margin-top:12px;padding:14px;border-radius:14px;background:#100c1e;border:1px solid #4b3d68;color:#e9e2f8;line-height:1.65;white-space:pre-line}.audio-analyzer .audio-file{display:block;width:100%;padding:12px;border:1px dashed #6b5b89;border-radius:12px;background:#151126;color:#eee}.audio-analyzer audio{width:100%;margin-top:10px}.audio-analysis-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:12px 0}.audio-stat{padding:10px;border-radius:12px;background:#151126;border:1px solid #403653}.audio-stat b{display:block;font-size:12px;color:#bfb2da}.audio-stat strong{display:block;margin-top:4px;font-size:18px}.analyzed-style{min-height:150px}.analysis-note{display:block;margin-top:10px;line-height:1.55;color:#c9bfdc}.song-mic-level{margin-top:9px;display:flex;align-items:center;gap:10px}.song-mic-track{flex:1;height:12px;border-radius:999px;background:#211a31;overflow:hidden;border:1px solid #514269}.song-mic-fill{width:0;height:100%;background:linear-gradient(90deg,#5da9ff,#7de4a8,#ffd36a);transition:width .08s linear}.song-mic-level small{min-width:72px;color:#cfc5df}@media(max-width:760px){.audio-analysis-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}</style>
 
@@ -41,7 +41,7 @@
 
   <header>
     <div class="brand">MARU <span>WORLD MUSIC MAKER</span></div>
-    <div class="tag">V0.23.00 · 원터치 방송 · OBS 커버/영상/원곡 오디오 직접 출력</div>
+    <div class="tag">V0.23.01 · 케이블만 꽂으면 USB 자동 연결 · 원터치 방송</div>
   </header>
   <main>
     <section id="coreLauncher" class="core-launcher" aria-label="핵심 기능">
@@ -129,39 +129,30 @@
             </div>
             <small class="broadcast-manage-help simple-help">음원과 동영상은 이 버튼으로 여러 번 추가해도 한 방송목록에 계속 합쳐집니다.</small>
             <div class="broadcast-sync-card-2292 direct-sync-card-2293 usb-live-card-2296" id="broadcastSyncCard2292">
-              <div class="broadcast-sync-head-2292"><div><b>🔌 USB 실시간 원곡 방송</b><span>휴대폰에 저장된 방송곡을 PC에 복사하지 않습니다. USB 테더링 연결 후 곡 제목 목록만 PC에 표시하고, 재생할 현재 곡만 휴대폰에서 PC 메모리(RAM)로 보내 OBS에서 바로 재생합니다.</span></div><strong>V0.23.00</strong></div>
+              <div class="broadcast-sync-head-2292"><div><b>🔌 USB 실시간 원곡 방송</b><span>USB 테더링·파일 전송·QR·주소 입력 없이 자동 연결합니다. 최초 1회 USB 디버깅 허용 후에는 케이블만 꽂으면 휴대폰 MARU가 PC Helper에 자동 연결됩니다.</span></div><strong>V0.23.01</strong></div>
               <div class="usb-no-save-banner-2296"><b>💾 PC 곡파일 저장 없음</b><span>다운로드 폴더·PC MARU IndexedDB에 원곡을 저장하지 않습니다. 현재 재생용 RAM 버퍼는 다음 곡으로 넘어가면 자동 폐기됩니다.</span></div>
 
-              <div id="usbLiveMobile2296" class="direct-sync-panel-2293 usb-live-panel-2296" hidden>
-                <div class="usb-step-2296"><b>1</b><span>휴대폰을 USB 케이블로 PC에 연결하고 Android의 <strong>USB 테더링</strong>을 켜세요.</span></div>
-                <button id="usbLiveScanQr2296" class="primary direct-qr-main-2294" type="button">📷 PC USB QR 찍고 연결</button>
-                <small>QR은 주소만 연결합니다. Wi‑Fi는 필요하지 않습니다. USB 테더링이 켜져 있어야 전송됩니다.</small>
-                <details class="direct-address-fallback-2294"><summary>USB 주소 직접 입력 · 필요할 때만</summary>
-                  <label class="direct-sync-address-label-2293">PC USB 주소<input id="usbLivePcAddress2296" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" placeholder="예: 192.168.42.2"></label>
-                  <div class="direct-sync-actions-2293"><button id="usbLiveConnect2296" class="secondary" type="button">🔌 USB 연결</button></div>
-                </details>
-                <div class="usb-mobile-note-2296">연결 후에는 이 MARU 화면을 열어 두세요. PC에서 곡을 누르면 휴대폰이 그 곡만 자동 전송합니다.</div>
-              </div>
-
-              <div id="usbLivePc2296" class="direct-sync-panel-2293 direct-sync-pc-2293 usb-live-panel-2296" hidden>
-                <div class="direct-pc-ready-2293"><b>🟢 PC USB 방송 수신</b><span>모바일 방송목록의 제목만 메모리로 받습니다. 원곡 파일은 PC에 보관하지 않습니다.</span></div>
-                <button id="usbLiveShowQr2296" class="primary direct-qr-main-2294" type="button">📱 USB 연결 QR 크게 보기</button>
-                <div id="usbLiveQrPanel2296" class="direct-qr-panel-2294" hidden>
-                  <div id="usbLiveQrCode2296" class="direct-qr-code-2294" aria-label="USB 연결 QR 코드"></div>
-                  <b>휴대폰 MARU에서 ‘📷 PC USB QR 찍고 연결’로 찍으세요.</b>
-                  <span id="usbLiveQrAddress2296">USB 주소 확인 중…</span>
-                  <small>USB 테더링이 켜진 상태에서 사용하세요. Wi‑Fi 연결은 필요하지 않습니다.</small>
+              <div id="usbLiveMobile2296" class="direct-sync-panel-2293 usb-live-panel-2296 usb-auto-mobile-2301" hidden>
+                <div class="usb-auto-card-2301">
+                  <b>🔌 USB 자동 연결</b>
+                  <span>USB 테더링, 파일 전송, QR, 주소 입력은 필요 없습니다.</span>
+                  <span>처음 한 번만 휴대폰에서 <strong>USB 디버깅 허용</strong>을 승인하면 이후에는 케이블만 꽂으면 자동 연결됩니다.</span>
                 </div>
-                <div id="usbLivePcLanAddress2296" class="direct-pc-address-2293">USB 주소 확인 중…</div>
-                <button id="usbLiveRefresh2296" class="secondary" type="button">🔄 USB 주소 다시 확인</button>
+                <button id="usbAutoDevSettings2301" class="secondary" type="button">처음 1번 · USB 디버깅 설정 열기</button>
+                <div class="usb-mobile-note-2296">자동 연결되면 이 화면을 열어 둔 상태에서 PC의 🚀 원터치 방송만 누르면 됩니다.</div>
               </div>
 
-              <div id="usbLiveStatus2296" class="broadcast-sync-status-2292 direct-sync-status-2293" data-state="idle"><b>대기</b><span>PC에서 V0.22.96 OBS Helper를 실행한 뒤 USB 테더링으로 연결하세요.</span></div>
+              <div id="usbLivePc2296" class="direct-sync-panel-2293 direct-sync-pc-2293 usb-live-panel-2296 usb-auto-pc-2301" hidden>
+                <div class="direct-pc-ready-2293">
+                  <b>🟢 PC USB 자동 수신</b>
+                  <span>Helper가 휴대폰 USB 연결을 자동 감지합니다. QR이나 주소 입력은 없습니다.</span>
+                </div>
+                <div id="usbAutoBridgeState2301" class="direct-pc-address-2293">USB 자동 연결 확인 중…</div>
+                <button id="usbAutoBridgeRefresh2301" class="secondary" type="button">🔄 USB 자동 연결 다시 확인</button>
+              </div>
+
+              <div id="usbLiveStatus2296" class="broadcast-sync-status-2292 direct-sync-status-2293" data-state="idle"><b>자동 연결</b><span>USB 케이블만 연결하세요. USB 테더링/QR/주소 입력은 사용하지 않습니다.</span></div>
               <div class="direct-sync-progress-2293"><i id="usbLiveProgress2296"></i></div>
-
-              <div id="usbLiveQrScanner2296" class="direct-qr-scanner-2294" hidden>
-                <div class="direct-qr-scanner-box-2294"><b>PC USB QR을 화면 가운데에 맞춰 주세요</b><video id="usbLiveQrVideo2296" playsinline muted></video><div class="direct-qr-scan-frame-2294" aria-hidden="true"></div><span id="usbLiveQrScanStatus2296">카메라 준비 중…</span><button id="usbLiveQrCancel2296" class="secondary" type="button">닫기</button></div>
-              </div>
 
               <details class="direct-sync-fallback-2293"><summary>📦 기존 동기화/파일 방식 · 필요할 때만</summary>
                 <div class="broadcast-sync-actions-2292">
@@ -484,7 +475,7 @@
   <script src="vendor/vexflow.js?v=5.0.0"></script>
   <script src="vendor/sfumato.js?v=0.22.89"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="app.js?v=0.23.00"></script>
+  <script src="app.js?v=0.23.01"></script>
 
   <script>
   (function(){

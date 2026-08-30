@@ -1396,3 +1396,12 @@ body.obs-output-mode.obs-usb-relay-2300 #audienceCoverPlaceholder::after{
   font-size:.78em;
   opacity:.72;
 }
+
+/* V0.23.01 — USB ADB auto bridge, no tether/QR/address */
+.usb-auto-card-2301{
+  display:grid;gap:7px;padding:15px 16px;border-radius:18px;
+  background:rgba(15,78,68,.32);border:1px solid rgba(92,238,203,.36);
+}
+.usb-auto-card-2301 b{font-size:1.08rem;color:#baffec}
+.usb-auto-card-2301 span{line-height:1.55}
+.usb-auto-pc-2301,.usb-auto-mobile-2301{gap:12px}

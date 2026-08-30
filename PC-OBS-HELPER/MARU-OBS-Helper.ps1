@@ -2,7 +2,7 @@
 $Port = 8765
 $ActionScript = Join-Path $PSScriptRoot 'MARU-OBS-Action.ps1'
 $LogFile = Join-Path $PSScriptRoot 'MARU-OBS-Helper.log'
-$HelperVersion = 'V0.23.00'
+$HelperVersion = 'V0.23.01'
 
 $script:SyncState = @{
     sessionId = ''
@@ -449,6 +449,19 @@ try {
             }
             if($path -eq '/api/usb/media' -and $req.method -eq 'GET'){$rid=Get-QueryParam $uri 'requestId';$asset=Get-QueryParam $uri 'asset';if($rid -ne [string]$script:UsbState.requestId -or -not $script:UsbState.assets.ContainsKey($asset)){Send-Response $client 404 @{ok=$false;message='USB media request not found.'};continue};Send-BinaryResponse $client $req $script:UsbState.assets[$asset];continue}
             if($path -eq '/api/usb/release' -and $req.method -eq 'POST'){Reset-UsbTrack;Send-Response $client 200 @{ok=$true;message='USB RAM buffer released.'};continue}
+
+
+            if($path -eq '/api/adb/status' -and $req.method -eq 'GET'){
+                $stateFile=Join-Path $PSScriptRoot 'MARU-ADB-STATE.json'
+                $state=@{state='starting';message='ADB bridge starting.'}
+                try{
+                    if(Test-Path -LiteralPath $stateFile){
+                        $state=(Get-Content -Raw -LiteralPath $stateFile -Encoding UTF8 | ConvertFrom-Json)
+                    }
+                }catch{}
+                Send-Response $client 200 @{ok=$true;state=[string]$state.state;message=[string]$state.message;serial=[string]$state.serial;updatedAt=[string]$state.updatedAt}
+                continue
+            }
 
             if ($path -eq '/api/quit') {
                 Send-Response $client 200 @{ ok=$true; message='Helper is stopping.' }
