@@ -1,14 +1,16 @@
-MARU V0.23.04 STABLE KEEPER
+MARU V0.23.05
 
-평소:
-START-MARU.bat -> Stable Keeper -> Helper + USB ADB를 계속 유지
+사용:
+START-MARU.bat 더블클릭 하나만 사용합니다.
 
-방송 종료:
-'전체 방송 종료' -> 음악/OBS 송출만 종료, Helper/USB는 유지
+실행 순서:
+1. Stable Keeper / Helper 먼저 실행
+2. MARU 페이지 바로 열기
+3. Windows 자동시작 자동 확인
+4. ADB가 없으면 뒤에서 자동 설치
+5. USB 연결은 ADB 준비 후 자동
 
-프로그램 완전 종료:
-'MARU 완전 종료' -> Helper/USB/Keeper 모두 종료, 자동 재시작 안 함
+ADB 설치 실패가 Helper 시작을 막지 않습니다.
+정상 Helper는 계속 살아 있고 'MARU 완전 종료'에서만 함께 종료됩니다.
 
-비정상 상황:
-정상 프로세스는 절대 주기적으로 껐다 켜지 않습니다.
-연속 건강 확인 실패가 누적된 실제 비정상 상황에서만 복구합니다.
+검은 창이 오류 때문에 실패한 경우에만 창이 남아 오류와 로그 위치를 보여줍니다.

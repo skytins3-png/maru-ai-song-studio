@@ -1843,7 +1843,7 @@ async function checkObsHelper2286({quiet=false}={}){
   }
 }
 
-/* V0.23.04 — Helper self-heal wait.
+/* V0.23.05 — Helper self-heal wait.
    Windows supervisor restarts Helper when it dies. The web UI waits for that restart
    instead of immediately failing the one-touch button. */
 async function maruWaitHelper2303(timeoutMs=12000){
@@ -1861,7 +1861,7 @@ async function maruWaitHelper2303(timeoutMs=12000){
       await new Promise(r=>setTimeout(r,900));
     }
   }
-  setObsAutoStatus2286('warn','Helper 연결 확인 필요','START-MARU.bat를 한 번 실행하면 Helper가 백그라운드에서 계속 유지됩니다.');
+  setObsAutoStatus2286('warn','Helper 연결 확인 필요','START-MARU.bat를 실행하면 Helper를 먼저 켠 뒤 MARU가 열립니다.');
   return false;
 }
 
@@ -3718,7 +3718,7 @@ setTimeout(bindMaruUsbAuto2301,350);
 
 
 /* =========================================================
-   V0.23.04 — STABLE LIFETIME
+   V0.23.05 — STABLE LIFETIME
    - "전체 방송 종료": music + OBS stream only. Helper/ADB stay alive.
    - "MARU 완전 종료": music + OBS stream -> Helper/ADB/Supervisor intentional stop.
    ========================================================= */

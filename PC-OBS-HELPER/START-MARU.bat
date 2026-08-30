@@ -1,18 +1,19 @@
 @echo off
 setlocal
 cd /d "%~dp0"
-title MARU V0.23.04 STABLE AUTO
+title MARU V0.23.05 AUTO START
 
-powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -Command ^
-  "$here='%~dp0';" ^
-  "$flag=Join-Path $here '.maru-2304-ready';" ^
-  "$setup=Join-Path $here 'INSTALL-ONE-TOUCH-AUTOSTART.ps1';" ^
-  "$auto=Join-Path $here 'MARU-AUTO-START.ps1';" ^
-  "if(-not(Test-Path -LiteralPath $flag)){" ^
-  "  & powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $setup;" ^
-  "  if($LASTEXITCODE -eq 0){Set-Content -LiteralPath $flag -Value 'ready' -Encoding ASCII}" ^
-  "}else{" ^
-  "  & powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $auto;" ^
-  "  Start-Process 'https://skytins3-png.github.io/maru-ai-song-studio/?v=2304'" ^
-  "}"
+powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%~dp0MARU-BOOTSTRAP.ps1"
+set "RC=%ERRORLEVEL%"
+
+if not "%RC%"=="0" (
+  echo.
+  echo MARU start was blocked or failed.
+  echo Please take a picture of this window.
+  echo Log: %~dp0MARU-BOOTSTRAP.log
+  echo.
+  pause
+  exit /b %RC%
+)
+
 exit /b 0
