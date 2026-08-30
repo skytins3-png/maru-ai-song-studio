@@ -2,7 +2,7 @@
 $Port = 8765
 $ActionScript = Join-Path $PSScriptRoot 'MARU-OBS-Action.ps1'
 $LogFile = Join-Path $PSScriptRoot 'MARU-OBS-Helper.log'
-$HelperVersion = 'V0.23.02'
+$HelperVersion = 'V0.23.04'
 
 $script:SyncState = @{
     sessionId = ''
@@ -251,10 +251,10 @@ if ($lanIps.Count -gt 0) {
     foreach ($ip in $lanIps) { Write-Host ("  http://" + $ip + ":8765") -ForegroundColor Cyan }
     Write-Host 'If Windows Firewall asks, allow Private networks.' -ForegroundColor Yellow
 } else {
-    Write-Host 'No USB/LAN private IPv4 address was detected. Turn on Android USB tethering.' -ForegroundColor Yellow
+    Write-Host 'ADB USB auto mode is used. USB tethering is not required.' -ForegroundColor Yellow
 }
 Write-Host ''
-Write-Host 'Keep this window open while OBS or USB live streaming is in use.'
+Write-Host 'Helper stays alive in the background until MARU Complete Exit is used.'
 Write-Host 'Ctrl+C stops the helper.'
 Write-Host ''
 Log-Line ('READY on 0.0.0.0:' + $Port + '; LAN=' + ($lanIps -join ','))
@@ -463,8 +463,21 @@ try {
                 continue
             }
 
+
+            if ($path -eq '/api/maru/complete-stop' -and $req.method -eq 'POST') {
+                # Intentional full MARU shutdown. The stop flag prevents the keeper
+                # from treating this as a crash and starting Helper/ADB again.
+                $stopFlag = Join-Path $PSScriptRoot '.maru-stable-stop'
+                try { Set-Content -LiteralPath $stopFlag -Value 'user-complete-exit' -Encoding ASCII } catch {}
+                try { Reset-UsbTrack } catch {}
+                Send-Response $client 200 @{ ok=$true; intentional=$true; message='MARU Helper is stopping intentionally.' }
+                Log-Line 'Intentional MARU complete stop requested.'
+                $running = $false
+                continue
+            }
+
             if ($path -eq '/api/quit') {
-                Send-Response $client 200 @{ ok=$true; message='Helper is stopping.' }
+                Send-Response $client 200 @{ ok=$true; message='Helper maintenance stop requested.' }
                 $running = $false
                 continue
             }

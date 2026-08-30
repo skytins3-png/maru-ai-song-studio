@@ -1405,3 +1405,7 @@ body.obs-output-mode.obs-usb-relay-2300 #audienceCoverPlaceholder::after{
 .usb-auto-card-2301 b{font-size:1.08rem;color:#baffec}
 .usb-auto-card-2301 span{line-height:1.55}
 .usb-auto-pc-2301,.usb-auto-mobile-2301{gap:12px}
+
+/* V0.23.04 — stable keeper */
+.maru-complete-exit-2304{opacity:.9}
+.maru-complete-exit-2304:hover{opacity:1}

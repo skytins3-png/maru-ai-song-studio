@@ -1,16 +1,14 @@
-MARU V0.23.02 — 자동 준비 버전
+MARU V0.23.04 STABLE KEEPER
 
-이제 1-ONE-TOUCH-SETUP.bat를 따로 실행할 필요 없습니다.
+평소:
+START-MARU.bat -> Stable Keeper -> Helper + USB ADB를 계속 유지
 
-처음 한 번:
-- START-MARU.bat 더블클릭
-- 필요한 PC 설정/ADB 도구/자동실행 등록을 자동 처리
-- MARU V0.23.02 자동 실행
+방송 종료:
+'전체 방송 종료' -> 음악/OBS 송출만 종료, Helper/USB는 유지
 
-그 다음부터:
-- Windows 로그인 시 Helper/USB 브리지 자동 준비
-- USB 케이블 연결
-- MARU에서 원터치 방송
+프로그램 완전 종료:
+'MARU 완전 종료' -> Helper/USB/Keeper 모두 종료, 자동 재시작 안 함
 
-Android 보안상 최초 1회 'USB 디버깅 허용' 팝업의 허용 버튼만 사용자가 눌러야 합니다.
-브라우저나 Windows 보안 정책 때문에 다운로드한 로컬 프로그램을 사용자의 클릭 없이 최초 실행시키는 것은 불가능합니다.
+비정상 상황:
+정상 프로세스는 절대 주기적으로 껐다 켜지 않습니다.
+연속 건강 확인 실패가 누적된 실제 비정상 상황에서만 복구합니다.

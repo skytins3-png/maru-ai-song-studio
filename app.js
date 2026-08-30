@@ -1838,10 +1838,33 @@ async function checkObsHelper2286({quiet=false}={}){
     setObsAutoStatus2286('ready','도우미 연결됨',`${detail} · WebSocket ${data.obsConnected?'연결됨':'연결 대기'} · 자동 방송을 시작할 수 있습니다.`);
     if(!quiet)toast('OBS 자동 도우미가 연결되어 있습니다.');return true;
   }catch(e){
-    setObsAutoStatus2286('warn','도우미를 먼저 실행하세요','PC-OBS-HELPER 폴더의 START-MARU-OBS-HELPER.bat를 실행한 뒤 다시 눌러 주세요.');
-    if(!quiet)toast('PC OBS 도우미가 실행되지 않았습니다. START-MARU-OBS-HELPER.bat를 먼저 실행하세요.');return false;
+    setObsAutoStatus2286('warn','도우미를 먼저 실행하세요','Helper가 자동 복구됩니다. 계속 꺼져 있으면 START-MARU.bat를 한 번 실행해 주세요.');
+    if(!quiet)toast('Helper 자동 복구를 기다립니다. 계속 꺼져 있으면 START-MARU.bat를 한 번 실행해 주세요.');return false;
   }
 }
+
+/* V0.23.04 — Helper self-heal wait.
+   Windows supervisor restarts Helper when it dies. The web UI waits for that restart
+   instead of immediately failing the one-touch button. */
+async function maruWaitHelper2303(timeoutMs=12000){
+  const end=Date.now()+Math.max(3000,Number(timeoutMs)||12000);
+  let attempt=0;
+  while(Date.now()<end){
+    attempt++;
+    try{
+      const data=await obsHelperCall2286('/api/status',null,1500);
+      const detail=data.obsRunning?'OBS 실행 중':'OBS 대기';
+      setObsAutoStatus2286('ready','Helper 자동 연결됨',`${detail} · Helper가 살아 있습니다.`);
+      return true;
+    }catch(e){
+      setObsAutoStatus2286('working','Helper 자동 복구 중',`Helper 상태를 확인하고 있습니다… ${attempt}`);
+      await new Promise(r=>setTimeout(r,900));
+    }
+  }
+  setObsAutoStatus2286('warn','Helper 연결 확인 필요','START-MARU.bat를 한 번 실행하면 Helper가 백그라운드에서 계속 유지됩니다.');
+  return false;
+}
+
 async function startObsAutoBroadcast2286(){
   if(obsAutoBusy2286)return;obsAutoBusy2286=true;
   const start=document.getElementById('obsAutoStart');if(start)start.disabled=true;
@@ -1850,7 +1873,7 @@ async function startObsAutoBroadcast2286(){
     setObsAutoStatus2286('working','방송 준비 중','MARU 16:9 방송창을 열고 OBS를 자동 연결하고 있습니다…');
     openObsView2284();
     await new Promise(r=>setTimeout(r,900));
-    const ok=await checkObsHelper2286({quiet:true});if(!ok)throw new Error('PC OBS 도우미가 실행되지 않았습니다.');
+    const ok=await maruWaitHelper2303(12000);if(!ok)throw new Error('Helper 자동 복구가 되지 않았습니다. START-MARU.bat를 한 번 실행해 주세요.');
     const pref=saveObsAutoPrefs2286(),password=String(document.getElementById('obsWsPassword')?.value||'');
     const data=await obsHelperCall2286('/api/start',{obsPort:pref.port,obsPassword:password,sceneName:pref.scene,sourceName:'MARU_OBS_LIVE',windowTitle:'MARU_OBS_LIVE',startStream:true},35000);
     const stream=data.streamActive?'송출 시작됨':'OBS 장면 준비됨';
@@ -3280,7 +3303,7 @@ async function maruOneTouchStart2298(){
     obsUrl2299.searchParams.set('mode','audience');
     obsUrl2299.searchParams.set('layout','obs');
     obsUrl2299.searchParams.set('obs','1');
-    obsUrl2299.searchParams.set('v','2299');
+    obsUrl2299.searchParams.set('v','2303');
     obsUrl2299.searchParams.delete('share');
     obsUrl2299.searchParams.delete('dual');
     obsUrl2299.searchParams.delete('from');
@@ -3288,9 +3311,9 @@ async function maruOneTouchStart2298(){
     maruOneTouchStatus2298('working','1/4 Helper 확인','PC Helper가 켜져 있는지 확인하고 있습니다…');
 
     maruOneTouchStatus2298('working','2/4 방송창 자동 실행','Helper가 MARU_OBS_LIVE 창을 직접 실행하고 OBS가 잡도록 준비합니다…');
-    const helperOk=await checkObsHelper2286({quiet:true});
+    const helperOk=await maruWaitHelper2303(12000);
     if(!helperOk){
-      throw new Error('PC Helper가 꺼져 있습니다. PC-OBS-HELPER의 1-ONE-TOUCH-SETUP.bat를 처음 한 번 실행해 주세요.');
+      throw new Error('Helper 자동 재시작이 되지 않았습니다. PC-OBS-HELPER의 START-MARU.bat를 한 번 실행해 주세요.');
     }
 
     const pref=saveObsAutoPrefs2286();
@@ -3692,3 +3715,52 @@ function bindMaruUsbAuto2301(){
   }
 }
 setTimeout(bindMaruUsbAuto2301,350);
+
+
+/* =========================================================
+   V0.23.04 — STABLE LIFETIME
+   - "전체 방송 종료": music + OBS stream only. Helper/ADB stay alive.
+   - "MARU 완전 종료": music + OBS stream -> Helper/ADB/Supervisor intentional stop.
+   ========================================================= */
+let maruCompleteExitBusy2304=false;
+
+async function maruCompleteExit2304(){
+  if(maruCompleteExitBusy2304)return;
+  const btn=document.getElementById('maruCompleteExit2304');
+  const ok=confirm('MARU를 완전히 종료할까요?\n\n방송·OBS 송출을 종료하고 PC Helper와 USB 자동 연결도 종료합니다.');
+  if(!ok)return;
+  maruCompleteExitBusy2304=true;
+  if(btn)btn.disabled=true;
+  try{
+    maruOneTouchStatus2298('working','MARU 완전 종료 중','방송을 먼저 안전하게 끈 뒤 Helper와 USB 연결을 종료합니다…');
+
+    try{if(broadcastRunning)broadcastStop(false)}catch{}
+    try{await stopObsAutoBroadcast2286()}catch{}
+
+    try{
+      await obsHelperCall2286('/api/maru/complete-stop',{reason:'user-complete-exit'},7000);
+    }catch(e){
+      // If the helper stops immediately after sending the response, fetch can race the shutdown.
+      const m=String(e?.message||e||'');
+      if(!/fetch|network|failed|abort|closed/i.test(m))throw e;
+    }
+
+    maruOneTouchStatus2298('idle','MARU 완전 종료','방송·Helper·USB 자동 연결을 모두 종료했습니다. 다시 사용할 때 START-MARU.bat를 실행하세요.');
+    toast('MARU를 완전히 종료했습니다.');
+    setTimeout(()=>{try{window.close()}catch{}},900);
+  }catch(e){
+    const msg=String(e?.message||e||'완전 종료 실패');
+    maruOneTouchStatus2298('error','완전 종료 확인 필요',msg);
+    toast('MARU 완전 종료 확인 필요 · '+msg.slice(0,100));
+  }finally{
+    maruCompleteExitBusy2304=false;
+    if(btn)btn.disabled=false;
+  }
+}
+
+function bindMaruCompleteExit2304(){
+  document.getElementById('maruCompleteExit2304')?.addEventListener('click',maruCompleteExit2304);
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bindMaruCompleteExit2304,{once:true});
+else bindMaruCompleteExit2304();
+

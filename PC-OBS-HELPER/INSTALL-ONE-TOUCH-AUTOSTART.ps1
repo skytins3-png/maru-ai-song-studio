@@ -6,7 +6,7 @@ $Platform=Join-Path $Here 'platform-tools'
 $Adb=Join-Path $Platform 'adb.exe'
 
 Write-Host ''
-Write-Host 'MARU V0.23.02 USB AUTO SETUP' -ForegroundColor Cyan
+Write-Host 'MARU V0.23.04 USB AUTO SETUP' -ForegroundColor Cyan
 Write-Host 'USB tethering / file transfer / QR / address entry will not be used.'
 Write-Host ''
 
@@ -28,6 +28,15 @@ $cmd='powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -WindowStyle Hid
 New-Item -Path $runKey -Force | Out-Null
 Set-ItemProperty -Path $runKey -Name 'MARUOBSHelper' -Value $cmd -Type String
 
+
+# Extra no-admin fallback: Windows Startup folder also starts the same supervisor bootstrap.
+try{
+  $startup=[Environment]::GetFolderPath('Startup')
+  $cmdFile=Join-Path $startup 'MARU-Stable-Keeper-AutoStart.cmd'
+  $line='@start "" powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File "'+$Auto+'"'
+  Set-Content -LiteralPath $cmdFile -Value $line -Encoding ASCII
+}catch{}
+
 & powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File $Auto
 Start-Sleep -Seconds 2
 
@@ -35,12 +44,12 @@ try{
   $desktop=[Environment]::GetFolderPath('Desktop')
   @"
 [InternetShortcut]
-URL=https://skytins3-png.github.io/maru-ai-song-studio/?v=2302
+URL=https://skytins3-png.github.io/maru-ai-song-studio/?v=2304
 IconIndex=0
 "@ | Set-Content -LiteralPath (Join-Path $desktop 'MARU 원터치 방송.url') -Encoding Unicode
 }catch{}
 
-try { Set-Content -LiteralPath (Join-Path $Here '.maru-2302-ready') -Value 'ready' -Encoding ASCII } catch {}
+try { Set-Content -LiteralPath (Join-Path $Here '.maru-2304-ready') -Value 'ready' -Encoding ASCII } catch {}
 
 Write-Host ''
 Write-Host 'PC automatic setup is finished.' -ForegroundColor Green
@@ -48,4 +57,4 @@ Write-Host 'Android security requires ONE approval only:' -ForegroundColor Yello
 Write-Host 'Turn on USB debugging once, then tap Allow when the phone asks to trust this PC.'
 Write-Host 'After that: plug in USB cable -> MARU connects automatically.'
 Write-Host ''
-Start-Process 'https://skytins3-png.github.io/maru-ai-song-studio/?v=2302'
+Start-Process 'https://skytins3-png.github.io/maru-ai-song-studio/?v=2304'
