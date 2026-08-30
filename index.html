@@ -20,7 +20,7 @@
   })();
   </script>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=0.23.05">
+  <link rel="stylesheet" href="styles.css?v=0.23.06">
   <link rel="stylesheet" href="score.css?v=0.22.89">
   <style>.wide{width:100%;margin-top:16px}.analysis-box{margin-top:12px;padding:14px;border-radius:14px;background:#100c1e;border:1px solid #4b3d68;color:#e9e2f8;line-height:1.65;white-space:pre-line}.audio-analyzer .audio-file{display:block;width:100%;padding:12px;border:1px dashed #6b5b89;border-radius:12px;background:#151126;color:#eee}.audio-analyzer audio{width:100%;margin-top:10px}.audio-analysis-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:12px 0}.audio-stat{padding:10px;border-radius:12px;background:#151126;border:1px solid #403653}.audio-stat b{display:block;font-size:12px;color:#bfb2da}.audio-stat strong{display:block;margin-top:4px;font-size:18px}.analyzed-style{min-height:150px}.analysis-note{display:block;margin-top:10px;line-height:1.55;color:#c9bfdc}.song-mic-level{margin-top:9px;display:flex;align-items:center;gap:10px}.song-mic-track{flex:1;height:12px;border-radius:999px;background:#211a31;overflow:hidden;border:1px solid #514269}.song-mic-fill{width:0;height:100%;background:linear-gradient(90deg,#5da9ff,#7de4a8,#ffd36a);transition:width .08s linear}.song-mic-level small{min-width:72px;color:#cfc5df}@media(max-width:760px){.audio-analysis-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}</style>
 
@@ -41,7 +41,7 @@
 
   <header>
     <div class="brand">MARU <span>WORLD MUSIC MAKER</span></div>
-    <div class="tag">V0.23.05 · 케이블만 꽂으면 USB 자동 연결 · 원터치 방송</div>
+    <div class="tag">V0.23.06 · 케이블만 꽂으면 USB 자동 연결 · 원터치 방송</div>
   </header>
   <main>
     <section id="coreLauncher" class="core-launcher" aria-label="핵심 기능">
@@ -102,7 +102,7 @@
         <button id="maruCompleteExit2304" class="secondary maru-complete-exit-2304" type="button">⏻ MARU 완전 종료</button>
       </div>
       <div id="maruOneTouchStatus2298" class="one-touch-status-2298" data-state="idle">
-        <b>준비</b><span>Helper는 START-MARU 실행 즉시 먼저 켜지고 백그라운드에서 계속 유지됩니다. ‘전체 방송 종료’는 방송만 끄고 Helper는 유지하며, ‘MARU 완전 종료’에서만 Helper까지 종료합니다.</span>
+        <b>준비</b><span>Windows 숨김 Keeper가 Helper를 계속 유지합니다. 브라우저가 Helper를 직접 재실행하는 방식이 아닙니다. ‘전체 방송 종료’는 방송만 끄고 Helper는 유지하며, ‘MARU 완전 종료’에서만 Helper까지 종료합니다.</span>
       </div>
     </div>
     <div class="simple-broadcast-primary-note"><b>수동 조작은 필요할 때만</b><span>아래 OBS·파일·USB 버튼은 점검/수동 조작용입니다.</span></div>
@@ -130,7 +130,7 @@
             </div>
             <small class="broadcast-manage-help simple-help">음원과 동영상은 이 버튼으로 여러 번 추가해도 한 방송목록에 계속 합쳐집니다.</small>
             <div class="broadcast-sync-card-2292 direct-sync-card-2293 usb-live-card-2296" id="broadcastSyncCard2292">
-              <div class="broadcast-sync-head-2292"><div><b>🔌 USB 실시간 원곡 방송</b><span>USB 테더링·파일 전송·QR·주소 입력 없이 자동 연결합니다. 최초 1회 USB 디버깅 허용 후에는 케이블만 꽂으면 휴대폰 MARU가 PC Helper에 자동 연결됩니다.</span></div><strong>V0.23.05</strong></div>
+              <div class="broadcast-sync-head-2292"><div><b>🔌 USB 실시간 원곡 방송</b><span>USB 테더링·파일 전송·QR·주소 입력 없이 자동 연결합니다. 최초 1회 USB 디버깅 허용 후에는 케이블만 꽂으면 휴대폰 MARU가 PC Helper에 자동 연결됩니다.</span></div><strong>V0.23.06</strong></div>
               <div class="usb-no-save-banner-2296"><b>💾 PC 곡파일 저장 없음</b><span>다운로드 폴더·PC MARU IndexedDB에 원곡을 저장하지 않습니다. 현재 재생용 RAM 버퍼는 다음 곡으로 넘어가면 자동 폐기됩니다.</span></div>
 
               <div id="usbLiveMobile2296" class="direct-sync-panel-2293 usb-live-panel-2296 usb-auto-mobile-2301" hidden>
@@ -476,7 +476,7 @@
   <script src="vendor/vexflow.js?v=5.0.0"></script>
   <script src="vendor/sfumato.js?v=0.22.89"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="app.js?v=0.23.05"></script>
+  <script src="app.js?v=0.23.06"></script>
 
   <script>
   (function(){

@@ -1,16 +1,13 @@
-MARU V0.23.05
+MARU V0.23.06
 
-사용:
-START-MARU.bat 더블클릭 하나만 사용합니다.
+실행은 START-MARU.vbs 더블클릭 하나입니다.
+START-MARU.bat를 눌러도 같은 동작을 합니다.
 
-실행 순서:
-1. Stable Keeper / Helper 먼저 실행
-2. MARU 페이지 바로 열기
-3. Windows 자동시작 자동 확인
-4. ADB가 없으면 뒤에서 자동 설치
-5. USB 연결은 ADB 준비 후 자동
+정상:
+- 검은 CMD 창 없음
+- Native Keeper가 Helper 계속 유지
+- Helper가 정상일 때는 재시작하지 않음
+- 실제 무응답만 복구
+- MARU 완전 종료 때만 전부 종료
 
-ADB 설치 실패가 Helper 시작을 막지 않습니다.
-정상 Helper는 계속 살아 있고 'MARU 완전 종료'에서만 함께 종료됩니다.
-
-검은 창이 오류 때문에 실패한 경우에만 창이 남아 오류와 로그 위치를 보여줍니다.
+문제가 계속되면 MARU-KEEPER.log와 MARU-OBS-Helper.log를 보내 주세요.

@@ -2,7 +2,7 @@
 $Port = 8765
 $ActionScript = Join-Path $PSScriptRoot 'MARU-OBS-Action.ps1'
 $LogFile = Join-Path $PSScriptRoot 'MARU-OBS-Helper.log'
-$HelperVersion = 'V0.23.05'
+$HelperVersion = 'V0.23.06'
 
 $script:SyncState = @{
     sessionId = ''
@@ -237,8 +237,8 @@ try {
 } catch {
     Write-Host ('[ERROR] Port 8765 could not be opened: ' + $_.Exception.Message) -ForegroundColor Red
     Log-Line ('PORT ERROR: ' + $_.Exception.Message)
-    Write-Host 'Close any older MARU helper window, then run START-MARU-OBS-HELPER.bat again.'
-    Read-Host 'Press Enter to close'
+    Write-Host 'Port 8765 is already in use. Helper will exit so the Keeper can retry cleanly.'
+    Log-Line 'Port 8765 busy; clean exit for Keeper retry.'
     exit 2
 }
 

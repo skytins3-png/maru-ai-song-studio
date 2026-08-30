@@ -1,19 +1,18 @@
-MARU V0.23.05 — 검은창만 떴다 사라지는 시작 문제 수정
+MARU V0.23.06 — 실제 Windows Native Keeper
 
-핵심 수정:
-- START-MARU.bat의 복잡한 한 줄 PowerShell 명령 제거
-- START-MARU.bat -> MARU-BOOTSTRAP.ps1 한 파일만 호출
-- ADB 설치보다 Helper를 가장 먼저 실행
-- ADB 다운로드/설치가 실패해도 Helper와 MARU 웹은 계속 시작
-- Keeper에서 Helper 시작이 실패하면 Helper 직접 실행을 한 번 더 시도
-- MARU 웹페이지는 ADB 설치를 기다리지 않고 바로 열기
-- ADB 설치는 별도 숨김 프로세스로 진행
-- ADB 다운로드는 Invoke-WebRequest -> BITS -> curl.exe 순으로 자동 대체
-- Windows 자동실행 등록은 매번 안전하게 재확인
-- 정상 Helper는 계속 유지, MARU 완전 종료 때만 Helper/ADB/Keeper 종료
-- 시작 오류가 있으면 검은 창을 바로 닫지 않고 오류와 로그 위치를 표시
+수정 핵심:
+- 브라우저는 Windows 프로그램을 직접 실행할 수 없으므로, one-touch가 '자동 재시작'을 기다리기만 하던 구조 제거
+- Windows Script Host의 MARU-KEEPER.vbs가 브라우저와 독립적으로 Helper를 실제 유지
+- Helper 정상 시 절대 재시작하지 않음
+- Helper 3회 연속 무응답일 때만 실제 재시작
+- ADB watcher 실제 종료 시에만 복구
+- USB 케이블 분리는 watcher 종료로 취급하지 않음
+- START-MARU.vbs: 검은 CMD 창 없이 시작
+- START-MARU.bat도 START-MARU.vbs만 실행
+- Helper 8765 포트 오류에서 숨김 Read-Host 대기 제거
+- One-touch Helper 실패 문구를 화면에 계속 유지
+- 전체 방송 종료는 Helper 유지
+- MARU 완전 종료에서만 Helper/ADB/Keeper 종료
 
-로그:
-PC-OBS-HELPER/MARU-BOOTSTRAP.log
-PC-OBS-HELPER/MARU-STABLE-KEEPER.log
-PC-OBS-HELPER/MARU-OBS-Helper.log
+주소:
+https://skytins3-png.github.io/maru-ai-song-studio/?v=2306

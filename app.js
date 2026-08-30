@@ -1843,25 +1843,47 @@ async function checkObsHelper2286({quiet=false}={}){
   }
 }
 
-/* V0.23.05 — Helper self-heal wait.
+/* V0.23.06 — Helper self-heal wait.
    Windows supervisor restarts Helper when it dies. The web UI waits for that restart
    instead of immediately failing the one-touch button. */
-async function maruWaitHelper2303(timeoutMs=12000){
-  const end=Date.now()+Math.max(3000,Number(timeoutMs)||12000);
+async function maruWaitHelper2306(timeoutMs=22000){
+  const end=Date.now()+Math.max(5000,Number(timeoutMs)||22000);
   let attempt=0;
   while(Date.now()<end){
     attempt++;
     try{
-      const data=await obsHelperCall2286('/api/status',null,1500);
+      const data=await obsHelperCall2286('/api/status',null,1800);
       const detail=data.obsRunning?'OBS 실행 중':'OBS 대기';
-      setObsAutoStatus2286('ready','Helper 자동 연결됨',`${detail} · Helper가 살아 있습니다.`);
+      setObsAutoStatus2286('ready','✅ Helper 연결됨',`${detail} · ${data.helper||'Helper'} · 백그라운드 유지 중`);
+      const box=document.getElementById('maruOneTouchStatus2298');
+      if(box){
+        box.dataset.state='working';
+        const b=box.querySelector('b'),s=box.querySelector('span');
+        if(b)b.textContent='1/4 Helper 연결 완료';
+        if(s)s.textContent='Helper가 정상 동작 중입니다. 다음 단계를 진행합니다…';
+      }
       return true;
     }catch(e){
-      setObsAutoStatus2286('working','Helper 자동 복구 중',`Helper 상태를 확인하고 있습니다… ${attempt}`);
-      await new Promise(r=>setTimeout(r,900));
+      const remain=Math.max(0,Math.ceil((end-Date.now())/1000));
+      setObsAutoStatus2286('working','Helper 자동 유지 확인 중',`Windows Keeper가 Helper를 준비하고 있습니다 · 약 ${remain}초 남음`);
+      const box=document.getElementById('maruOneTouchStatus2298');
+      if(box){
+        box.dataset.state='working';
+        const b=box.querySelector('b'),s=box.querySelector('span');
+        if(b)b.textContent='1/4 Helper 자동 준비 중';
+        if(s)s.textContent=`Windows Keeper가 Helper를 켜는 중입니다 · ${remain}초`;
+      }
+      await new Promise(r=>setTimeout(r,1000));
     }
   }
-  setObsAutoStatus2286('warn','Helper 연결 확인 필요','START-MARU.bat를 실행하면 Helper를 먼저 켠 뒤 MARU가 열립니다.');
+  setObsAutoStatus2286('error','Helper가 실행되지 않음','Windows Keeper도 Helper를 시작하지 못했습니다. START-MARU.vbs를 한 번 실행해 주세요.');
+  const box=document.getElementById('maruOneTouchStatus2298');
+  if(box){
+    box.dataset.state='error';
+    const b=box.querySelector('b'),s=box.querySelector('span');
+    if(b)b.textContent='Helper 시작 실패';
+    if(s)s.textContent='START-MARU.vbs를 한 번 실행해 주세요. 이 오류 문구는 자동으로 사라지지 않습니다.';
+  }
   return false;
 }
 
@@ -1873,7 +1895,7 @@ async function startObsAutoBroadcast2286(){
     setObsAutoStatus2286('working','방송 준비 중','MARU 16:9 방송창을 열고 OBS를 자동 연결하고 있습니다…');
     openObsView2284();
     await new Promise(r=>setTimeout(r,900));
-    const ok=await maruWaitHelper2303(12000);if(!ok)throw new Error('Helper 자동 복구가 되지 않았습니다. START-MARU.bat를 한 번 실행해 주세요.');
+    const ok=await maruWaitHelper2306(22000);if(!ok)throw new Error('Helper가 실행되지 않았습니다. START-MARU.vbs를 한 번 실행해 주세요.');
     const pref=saveObsAutoPrefs2286(),password=String(document.getElementById('obsWsPassword')?.value||'');
     const data=await obsHelperCall2286('/api/start',{obsPort:pref.port,obsPassword:password,sceneName:pref.scene,sourceName:'MARU_OBS_LIVE',windowTitle:'MARU_OBS_LIVE',startStream:true},35000);
     const stream=data.streamActive?'송출 시작됨':'OBS 장면 준비됨';
@@ -3303,7 +3325,7 @@ async function maruOneTouchStart2298(){
     obsUrl2299.searchParams.set('mode','audience');
     obsUrl2299.searchParams.set('layout','obs');
     obsUrl2299.searchParams.set('obs','1');
-    obsUrl2299.searchParams.set('v','2303');
+    obsUrl2299.searchParams.set('v','2306');
     obsUrl2299.searchParams.delete('share');
     obsUrl2299.searchParams.delete('dual');
     obsUrl2299.searchParams.delete('from');
@@ -3311,9 +3333,9 @@ async function maruOneTouchStart2298(){
     maruOneTouchStatus2298('working','1/4 Helper 확인','PC Helper가 켜져 있는지 확인하고 있습니다…');
 
     maruOneTouchStatus2298('working','2/4 방송창 자동 실행','Helper가 MARU_OBS_LIVE 창을 직접 실행하고 OBS가 잡도록 준비합니다…');
-    const helperOk=await maruWaitHelper2303(12000);
+    const helperOk=await maruWaitHelper2306(22000);
     if(!helperOk){
-      throw new Error('Helper 자동 재시작이 되지 않았습니다. PC-OBS-HELPER의 START-MARU.bat를 한 번 실행해 주세요.');
+      throw new Error('Helper가 실행되지 않았습니다. PC-OBS-HELPER의 START-MARU.vbs를 한 번 실행해 주세요.');
     }
 
     const pref=saveObsAutoPrefs2286();
@@ -3718,7 +3740,7 @@ setTimeout(bindMaruUsbAuto2301,350);
 
 
 /* =========================================================
-   V0.23.05 — STABLE LIFETIME
+   V0.23.06 — STABLE LIFETIME
    - "전체 방송 종료": music + OBS stream only. Helper/ADB stay alive.
    - "MARU 완전 종료": music + OBS stream -> Helper/ADB/Supervisor intentional stop.
    ========================================================= */
