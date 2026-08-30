@@ -2,7 +2,7 @@
 
 cd /d "%~dp0"
 
-start "" "%SystemRoot%\System32\wscript.exe" "%~dp0START-MARU.vbs"
+call "%~dp0START-MARU.cmd"
 
 exit /b 0
 
