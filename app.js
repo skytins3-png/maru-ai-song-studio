@@ -1821,14 +1821,37 @@ function saveObsAutoPrefs2286(){
   const p=obsAutoPrefs2286();try{localStorage.setItem(OBS_AUTO_PREF_KEY2286,JSON.stringify(p))}catch(e){}return p;
 }
 async function obsHelperCall2286(path,payload=null,timeout=16000){
-  const ctrl=new AbortController(),timer=setTimeout(()=>ctrl.abort(),timeout);
+  const ctrl=typeof AbortController==='function'?new AbortController():null;
+  let timedOut=false;
+  const timer=setTimeout(()=>{
+    timedOut=true;
+    if(!ctrl)return;
+    try{
+      const reason=typeof DOMException==='function'
+        ?new DOMException('MARU Helper response timeout','TimeoutError')
+        :new Error('MARU Helper response timeout');
+      ctrl.abort(reason);
+    }catch(_){
+      try{ctrl.abort()}catch(__){}
+    }
+  },Math.max(1000,Number(timeout)||16000));
   try{
-    const opt={method:payload?'POST':'GET',cache:'no-store',signal:ctrl.signal};
+    const opt={method:payload?'POST':'GET',cache:'no-store'};
+    if(ctrl)opt.signal=ctrl.signal;
     if(payload){opt.headers={'Content-Type':'text/plain;charset=UTF-8'};opt.body=JSON.stringify(payload)}
     const r=await fetch(OBS_HELPER_URL2286+path,opt),txt=await r.text();let data={};
     try{data=txt?JSON.parse(txt):{}}catch(e){data={ok:r.ok,message:txt}}
     if(!r.ok||data.ok===false)throw new Error(data.message||data.error||`도우미 응답 ${r.status}`);
     return data;
+  }catch(e){
+    const msg=String(e?.message||e||'');
+    if(timedOut||ctrl?.signal?.aborted){
+      throw new Error(`Helper 응답 시간이 초과되었습니다. (${Math.ceil((Number(timeout)||16000)/1000)}초)`);
+    }
+    if(/signal is aborted|aborted without reason|aborterror/i.test(msg)){
+      throw new Error('Helper 연결이 잠시 끊겼습니다. 자동 복구 후 다시 시도해 주세요.');
+    }
+    throw e;
   }finally{clearTimeout(timer)}
 }
 async function checkObsHelper2286({quiet=false}={}){
@@ -1843,7 +1866,7 @@ async function checkObsHelper2286({quiet=false}={}){
   }
 }
 
-/* V0.23.07 — Helper self-heal wait.
+/* V0.23.08 — Helper timeout/abort normalization + self-heal wait.
    Windows supervisor restarts Helper when it dies. The web UI waits for that restart
    instead of immediately failing the one-touch button. */
 async function maruWaitHelper2306(timeoutMs=22000){
@@ -1897,7 +1920,7 @@ async function startObsAutoBroadcast2286(){
     await new Promise(r=>setTimeout(r,900));
     const ok=await maruWaitHelper2306(22000);if(!ok)throw new Error('Helper가 실행되지 않았습니다. START-MARU.cmd를 한 번 실행해 주세요.');
     const pref=saveObsAutoPrefs2286(),password=String(document.getElementById('obsWsPassword')?.value||'');
-    const data=await obsHelperCall2286('/api/start',{obsPort:pref.port,obsPassword:password,sceneName:pref.scene,sourceName:'MARU_OBS_LIVE',windowTitle:'MARU_OBS_LIVE',startStream:true},35000);
+    const data=await obsHelperCall2286('/api/start',{obsPort:pref.port,obsPassword:password,sceneName:pref.scene,sourceName:'MARU_OBS_LIVE',windowTitle:'MARU_OBS_LIVE',startStream:true},90000);
     const stream=data.streamActive?'송출 시작됨':'OBS 장면 준비됨';
     setObsAutoStatus2286(data.streamActive?'live':'ready',data.streamActive?'🔴 OBS 방송 중':'OBS 준비 완료',`${stream} · 장면 ${data.sceneName||pref.scene} · MARU 방송창만 시청자에게 보입니다.${data.message?' '+data.message:''}`);
     toast(data.streamActive?'OBS 자동 방송을 시작했습니다.':'OBS 장면은 준비됐지만 송출 시작 상태를 확인해 주세요.');
@@ -3325,7 +3348,7 @@ async function maruOneTouchStart2298(){
     obsUrl2299.searchParams.set('mode','audience');
     obsUrl2299.searchParams.set('layout','obs');
     obsUrl2299.searchParams.set('obs','1');
-    obsUrl2299.searchParams.set('v','2306');
+    obsUrl2299.searchParams.set('v','2308');
     obsUrl2299.searchParams.delete('share');
     obsUrl2299.searchParams.delete('dual');
     obsUrl2299.searchParams.delete('from');
@@ -3350,7 +3373,7 @@ async function maruOneTouchStart2298(){
       windowTitle:'MARU_OBS_LIVE',
       obsUrl:obsUrl2299.toString(),
       startStream:true
-    },45000);
+    },90000);
 
     if(!obs.streamActive){
       setObsAutoStatus2286('ready','OBS 장면 준비됨','OBS는 연결됐지만 실제 송출이 시작되지 않았습니다. OBS/BIGO 송출 설정을 확인해 주세요.');
