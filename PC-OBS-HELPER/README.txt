@@ -1,4 +1,4 @@
-MARU V0.23.08
+MARU V0.23.09
 
 실행:
 START-MARU.cmd 더블클릭

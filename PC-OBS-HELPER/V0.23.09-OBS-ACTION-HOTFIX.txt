@@ -1,0 +1,12 @@
+MARU Helper V0.23.09 OBS ACTION HOTFIX
+
+핵심 수정:
+1. exit code 1일 때 Action의 실제 JSON 오류를 읽어 화면에 표시
+2. 오류 단계(stage) 표시: WebSocket / MARU window / scene / source / capture settings 등
+3. MARU_OBS_LIVE와 같은 이름의 잘못된 OBS 소스를 자동 제거/재생성
+4. Window Capture 목록 대기시간 확대
+5. capture method=2 실패 시 method=0 자동 fallback
+6. 웹 V0.23.08은 그대로 사용 가능 — GitHub 5파일 재업로드 불필요
+
+교체:
+PC-OBS-HELPER 폴더를 이 버전으로 통째로 교체하고 START-MARU.cmd 실행

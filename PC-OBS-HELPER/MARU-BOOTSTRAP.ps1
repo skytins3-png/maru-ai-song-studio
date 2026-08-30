@@ -23,7 +23,7 @@ function KeeperRunning {
   }catch{return $false}
 }
 
-Log '===== MARU V0.23.08 bootstrap ====='
+Log '===== MARU V0.23.09 bootstrap ====='
 Remove-Item -LiteralPath $StopFlag -Force -ErrorAction SilentlyContinue
 
 # Remove Mark-of-the-Web from our own extracted script files when Windows permits it.

@@ -7,8 +7,10 @@ $ErrorActionPreference = 'Stop'
 function Out-Result($Object) {
     $Object | ConvertTo-Json -Depth 12 -Compress
 }
+$script:Stage = 'initializing'
 function Fail([string]$Message) {
-    Out-Result @{ ok=$false; message=$Message }
+    $stageText = if ([string]::IsNullOrWhiteSpace([string]$script:Stage)) { 'unknown stage' } else { [string]$script:Stage }
+    Out-Result @{ ok=$false; stage=$stageText; message=('OBS ' + $stageText + ': ' + $Message) }
     exit 1
 }
 function Decode-Payload([string]$B64) {
@@ -167,39 +169,134 @@ function TryReq($Ws, [string]$Type, $Data=$null) {
     try { return Req $Ws $Type $Data } catch { return $null }
 }
 function Prepare-Scene($Ws, [string]$SceneName, [string]$SourceName, [string]$WindowTitle) {
+    $script:Stage = 'scene preparation'
+
     $sc = Req $Ws 'GetSceneList'
     $exists = $false
-    foreach ($s in @($sc.scenes)) { if ([string]$s.sceneName -eq $SceneName) { $exists=$true; break } }
-    if (-not $exists) { Req $Ws 'CreateScene' @{ sceneName=$SceneName } | Out-Null }
+    foreach ($s in @($sc.scenes)) {
+        if ([string]$s.sceneName -eq $SceneName) { $exists=$true; break }
+    }
+    if (-not $exists) {
+        $script:Stage = 'scene creation'
+        Req $Ws 'CreateScene' @{ sceneName=$SceneName } | Out-Null
+    }
+
+    $script:Stage = 'source inspection'
     $ins = Req $Ws 'GetInputList'
     $inputExists = $false
-    foreach ($i in @($ins.inputs)) { if ([string]$i.inputName -eq $SourceName) { $inputExists=$true; break } }
+    $inputKind = ''
+    foreach ($i in @($ins.inputs)) {
+        if ([string]$i.inputName -eq $SourceName) {
+            $inputExists=$true
+            $inputKind=[string]$i.inputKind
+            break
+        }
+    }
+
+    # The source name is dedicated to MARU. If an old source with the same name
+    # is not a Window Capture source, remove it and rebuild it automatically.
+    if ($inputExists -and $inputKind -ne 'window_capture') {
+        $script:Stage = 'stale source repair'
+        try { Req $Ws 'RemoveInput' @{ inputName=$SourceName } | Out-Null } catch {}
+        $inputExists = $false
+        Start-Sleep -Milliseconds 250
+    }
+
     if (-not $inputExists) {
-        $made = Req $Ws 'CreateInput' @{ sceneName=$SceneName; inputName=$SourceName; inputKind='window_capture'; inputSettings=@{}; sceneItemEnabled=$true }
+        $script:Stage = 'window capture source creation'
+        $made = Req $Ws 'CreateInput' @{
+            sceneName=$SceneName
+            inputName=$SourceName
+            inputKind='window_capture'
+            inputSettings=@{}
+            sceneItemEnabled=$true
+        }
         $sceneItemId = $made.sceneItemId
     } else {
+        $script:Stage = 'scene item lookup'
         $item = TryReq $Ws 'GetSceneItemId' @{ sceneName=$SceneName; sourceName=$SourceName }
-        if ($item) { $sceneItemId=$item.sceneItemId }
-        else { $sceneItemId=(Req $Ws 'CreateSceneItem' @{ sceneName=$SceneName; sourceName=$SourceName; sceneItemEnabled=$true }).sceneItemId }
+        if ($item) {
+            $sceneItemId=$item.sceneItemId
+        } else {
+            $script:Stage = 'scene item creation'
+            $sceneItemId=(Req $Ws 'CreateSceneItem' @{
+                sceneName=$SceneName
+                sourceName=$SourceName
+                sceneItemEnabled=$true
+            }).sceneItemId
+        }
     }
+
+    $script:Stage = 'MARU window list'
     $props = $null
-    for ($a=0; $a -lt 24; $a++) {
-        $props = TryReq $Ws 'GetInputPropertiesListPropertyItems' @{ inputName=$SourceName; propertyName='window' }
+    for ($a=0; $a -lt 40; $a++) {
+        $props = TryReq $Ws 'GetInputPropertiesListPropertyItems' @{
+            inputName=$SourceName
+            propertyName='window'
+        }
         if ($props -and @($props.propertyItems).Count -gt 0) { break }
         Start-Sleep -Milliseconds 350
     }
-    if (-not $props) { throw 'OBS could not read the window list. Open MARU_OBS_LIVE first.' }
+    if (-not $props -or @($props.propertyItems).Count -eq 0) {
+        throw 'OBS could not read the Window Capture list. Keep the MARU_OBS_LIVE window open.'
+    }
+
     $match = $null
     foreach ($it in @($props.propertyItems)) {
-        if ([string]$it.itemName -like "*$WindowTitle*" -or [string]$it.itemValue -like "*$WindowTitle*") { $match=$it; break }
+        if ([string]$it.itemName -like "*$WindowTitle*" -or [string]$it.itemValue -like "*$WindowTitle*") {
+            $match=$it
+            break
+        }
     }
-    if (-not $match) { throw 'MARU_OBS_LIVE window was not found. Open the MARU broadcast window first.' }
-    Req $Ws 'SetInputSettings' @{ inputName=$SourceName; inputSettings=@{ window=[string]$match.itemValue; capture_cursor=$false; capture_audio=$true; method=2 }; overlay=$true } | Out-Null
+    if (-not $match) {
+        throw 'MARU_OBS_LIVE window was not found in the OBS Window Capture list.'
+    }
+
+    $script:Stage = 'window capture settings'
+    $settings = @{
+        window=[string]$match.itemValue
+        capture_cursor=$false
+        capture_audio=$true
+        method=2
+    }
+    try {
+        Req $Ws 'SetInputSettings' @{
+            inputName=$SourceName
+            inputSettings=$settings
+            overlay=$true
+        } | Out-Null
+    } catch {
+        # Compatibility fallback for machines where the preferred capture
+        # method is rejected. Let OBS choose the method automatically.
+        $settings.method=0
+        Req $Ws 'SetInputSettings' @{
+            inputName=$SourceName
+            inputSettings=$settings
+            overlay=$true
+        } | Out-Null
+    }
+
+    $script:Stage = 'program scene selection'
     Req $Ws 'SetCurrentProgramScene' @{ sceneName=$SceneName } | Out-Null
+
+    $script:Stage = 'scene scaling'
     $v = Req $Ws 'GetVideoSettings'
-    $bw=[double]$v.baseWidth; $bh=[double]$v.baseHeight
-    if ($bw -le 0) { $bw=1920 }; if ($bh -le 0) { $bh=1080 }
-    Req $Ws 'SetSceneItemTransform' @{ sceneName=$SceneName; sceneItemId=[int]$sceneItemId; sceneItemTransform=@{ positionX=0.0; positionY=0.0; boundsType='OBS_BOUNDS_SCALE_INNER'; boundsWidth=$bw; boundsHeight=$bh; alignment=5 } } | Out-Null
+    $bw=[double]$v.baseWidth
+    $bh=[double]$v.baseHeight
+    if ($bw -le 0) { $bw=1920 }
+    if ($bh -le 0) { $bh=1080 }
+    Req $Ws 'SetSceneItemTransform' @{
+        sceneName=$SceneName
+        sceneItemId=[int]$sceneItemId
+        sceneItemTransform=@{
+            positionX=0.0
+            positionY=0.0
+            boundsType='OBS_BOUNDS_SCALE_INNER'
+            boundsWidth=$bw
+            boundsHeight=$bh
+            alignment=5
+        }
+    } | Out-Null
 }
 
 try {
@@ -208,18 +305,23 @@ try {
     if ($payload.obsPort) { $port=[int]$payload.obsPort }
     $password = [string]$payload.obsPassword
     if ($Mode -eq 'start') {
+        $script:Stage = 'OBS launch'
         Ensure-ObsRunning
         for ($i=0; $i -lt 24; $i++) { if (Test-Port $port) { break }; Start-Sleep -Milliseconds 500 }
+        $script:Stage = 'WebSocket port check'
         if (-not (Test-Port $port)) { throw "OBS WebSocket port $port is not open. Enable WebSocket Server in OBS Tools menu." }
+        $script:Stage = 'WebSocket connection'
         $ws = Connect-Obs $port $password
         try {
             $scene = [string]$payload.sceneName; if ([string]::IsNullOrWhiteSpace($scene)) { $scene='MARU LIVE' }
             $source = [string]$payload.sourceName; if ([string]::IsNullOrWhiteSpace($source)) { $source='MARU_OBS_LIVE' }
             $window = [string]$payload.windowTitle; if ([string]::IsNullOrWhiteSpace($window)) { $window='MARU_OBS_LIVE' }
             $obsUrl = [string]$payload.obsUrl
+            $script:Stage = 'MARU_OBS_LIVE window launch'
             Ensure-MaruObsWindow $obsUrl | Out-Null
             Start-Sleep -Milliseconds 700
             Prepare-Scene $ws $scene $source $window
+            $script:Stage = 'stream status'
             $streamActive=$false
             if ($payload.startStream -ne $false) {
                 $st = Req $ws 'GetStreamStatus'; $streamActive=[bool]$st.outputActive

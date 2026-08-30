@@ -2,7 +2,7 @@
 $Port = 8765
 $ActionScript = Join-Path $PSScriptRoot 'MARU-OBS-Action.ps1'
 $LogFile = Join-Path $PSScriptRoot 'MARU-OBS-Helper.log'
-$HelperVersion = 'V0.23.08'
+$HelperVersion = 'V0.23.09'
 
 $script:SyncState = @{
     sessionId = ''
@@ -214,8 +214,26 @@ function Invoke-Action([string]$Mode, [string]$Body) {
         $err = ''
         if (Test-Path $errFile) { $err = (Get-Content -LiteralPath $errFile -Raw -ErrorAction SilentlyContinue) }
         if ($p.ExitCode -ne 0) {
-            if ([string]::IsNullOrWhiteSpace($err)) { $err = 'OBS action failed with exit code ' + $p.ExitCode }
-            throw $err.Trim()
+            # MARU-OBS-Action writes a compact JSON result to STDOUT even on failure.
+            # Older Helper versions ignored that output and replaced the real reason
+            # with the useless text "OBS action failed with exit code 1".
+            $realMessage = ''
+            if (-not [string]::IsNullOrWhiteSpace($out)) {
+                try {
+                    $oj = $out.Trim() | ConvertFrom-Json
+                    if ($oj -and -not [string]::IsNullOrWhiteSpace([string]$oj.message)) {
+                        $realMessage = [string]$oj.message
+                    }
+                } catch {}
+            }
+            if ([string]::IsNullOrWhiteSpace($realMessage) -and -not [string]::IsNullOrWhiteSpace($err)) {
+                $realMessage = $err.Trim()
+            }
+            if ([string]::IsNullOrWhiteSpace($realMessage)) {
+                $realMessage = 'OBS action failed with exit code ' + $p.ExitCode
+            }
+            Log-Line ('OBS ACTION FAIL exit=' + $p.ExitCode + ' message=' + $realMessage)
+            throw $realMessage
         }
         if ([string]::IsNullOrWhiteSpace($out)) { throw 'OBS action returned no data.' }
         return ($out.Trim() | ConvertFrom-Json)
