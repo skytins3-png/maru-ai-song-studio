@@ -4,7 +4,7 @@ $Here=Split-Path -Parent $MyInvocation.MyCommand.Path
 $Keeper=Join-Path $Here 'MARU-STABLE-KEEPER.ps1'
 $StopFlag=Join-Path $Here '.maru-stable-stop'
 $Log=Join-Path $Here 'MARU-BOOTSTRAP.log'
-$Url='https://skytins3-png.github.io/maru-ai-song-studio/?v=2307'
+$Url='https://skytins3-png.github.io/maru-ai-song-studio/?v=2308'
 
 function Log([string]$m){
   try{Add-Content -LiteralPath $Log -Value ((Get-Date -Format 'yyyy-MM-dd HH:mm:ss')+'  '+$m) -Encoding UTF8}catch{}
@@ -23,7 +23,7 @@ function KeeperRunning {
   }catch{return $false}
 }
 
-Log '===== MARU V0.23.07 bootstrap ====='
+Log '===== MARU V0.23.08 bootstrap ====='
 Remove-Item -LiteralPath $StopFlag -Force -ErrorAction SilentlyContinue
 
 # Remove Mark-of-the-Web from our own extracted script files when Windows permits it.

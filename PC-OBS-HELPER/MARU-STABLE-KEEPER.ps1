@@ -55,7 +55,7 @@ if(Test-Path -LiteralPath $StopFlag){
   exit 0
 }
 
-Log ('MARU V0.23.07 stable keeper started. PID '+$PID)
+Log ('MARU V0.23.08 stable keeper started. PID '+$PID)
 
 # Start Helper immediately once, not after several polling rounds.
 if(-not(HelperHealthy)){
