@@ -2,7 +2,7 @@
 $Port = 8765
 $ActionScript = Join-Path $PSScriptRoot 'MARU-OBS-Action.ps1'
 $LogFile = Join-Path $PSScriptRoot 'MARU-OBS-Helper.log'
-$HelperVersion = 'V0.22.99'
+$HelperVersion = 'V0.23.00'
 
 $script:SyncState = @{
     sessionId = ''
@@ -16,7 +16,7 @@ $script:SyncState = @{
     lastActivity = ''
 }
 
-$script:UsbState = @{sessionId='';manifest=$null;registeredAt='';lastMobilePoll='';command=$null;commandDispatched=$false;requestId='';trackId='';assets=@{};ready=$false;error=''}
+$script:UsbState = @{sessionId='';manifest=$null;registeredAt='';lastMobilePoll='';command=$null;commandDispatched=$false;requestId='';trackId='';assets=@{};ready=$false;error='';playState='idle';playUpdatedAt=''}
 
 function Log-Line([string]$Text) {
     try {
@@ -182,9 +182,19 @@ function Sync-Summary {
 
 function Get-QueryParam($Uri,[string]$Name){try{$q=[string]$Uri.Query;if($q.StartsWith('?')){$q=$q.Substring(1)};foreach($part in($q -split '&')){if([string]::IsNullOrWhiteSpace($part)){continue};$kv=$part -split '=',2;if([System.Uri]::UnescapeDataString($kv[0]) -eq $Name){if($kv.Count -gt 1){return [System.Uri]::UnescapeDataString($kv[1].Replace('+',' '))};return ''}}}catch{};return ''}
 function Dispose-UsbAssets{try{foreach($k in @($script:UsbState.assets.Keys)){$a=$script:UsbState.assets[$k];try{if($null -ne $a.stream){$a.stream.Dispose()}}catch{}}}catch{};$script:UsbState.assets=@{}}
-function Reset-UsbTrack{Dispose-UsbAssets;$script:UsbState.command=$null;$script:UsbState.commandDispatched=$false;$script:UsbState.requestId='';$script:UsbState.trackId='';$script:UsbState.ready=$false;$script:UsbState.error=''}
+function Reset-UsbTrack{Dispose-UsbAssets;$script:UsbState.command=$null;$script:UsbState.commandDispatched=$false;$script:UsbState.requestId='';$script:UsbState.trackId='';$script:UsbState.ready=$false;$script:UsbState.error='';$script:UsbState.playState='idle';$script:UsbState.playUpdatedAt=(Get-Date).ToString('o')}
 function Reset-UsbAll{Reset-UsbTrack;$script:UsbState.sessionId='';$script:UsbState.manifest=$null;$script:UsbState.registeredAt='';$script:UsbState.lastMobilePoll=''}
 function Usb-AssetSummary{$h=@{};foreach($k in @($script:UsbState.assets.Keys)){$a=$script:UsbState.assets[$k];$h[$k]=@{complete=[bool]$a.complete;received=[long]$a.received;size=[long]$a.size;type=[string]$a.type;name=[string]$a.name;nextChunk=[int]$a.nextChunk;totalChunks=[int]$a.totalChunks}};return $h}
+
+function Get-UsbCurrentEntry{
+    try{
+        if($null -eq $script:UsbState.manifest -or [string]::IsNullOrWhiteSpace([string]$script:UsbState.trackId)){return $null}
+        foreach($e in @($script:UsbState.manifest.entries)){
+            if([string]$e.id -eq [string]$script:UsbState.trackId){return $e}
+        }
+    }catch{}
+    return $null
+}
 function Usb-Progress{[double]$expected=0;[double]$received=0;foreach($k in @($script:UsbState.assets.Keys)){$a=$script:UsbState.assets[$k];$received+=[double]$a.received;if([long]$a.size -gt 0){$expected+=[double]$a.size}};if($expected -le 0){return 0};return [Math]::Min(99,[Math]::Round(($received/$expected)*100))}
 function Get-UsbPreferredIPv4{$preferred=New-Object System.Collections.Generic.List[string];$other=New-Object System.Collections.Generic.List[string];try{foreach($nic in [System.Net.NetworkInformation.NetworkInterface]::GetAllNetworkInterfaces()){if($nic.OperationalStatus -ne [System.Net.NetworkInformation.OperationalStatus]::Up){continue};if($nic.NetworkInterfaceType -eq [System.Net.NetworkInformation.NetworkInterfaceType]::Loopback){continue};$label=([string]$nic.Name+' '+[string]$nic.Description);foreach($u in $nic.GetIPProperties().UnicastAddresses){if($u.Address.AddressFamily -ne [System.Net.Sockets.AddressFamily]::InterNetwork){continue};$ip=$u.Address.ToString();if(-not(Test-PrivateIPv4 $ip)){continue};if($label -match '(?i)USB|RNDIS|Remote NDIS|Android|Samsung|Mobile|Tether'){if(-not $preferred.Contains($ip)){$preferred.Add($ip)}}elseif(-not $other.Contains($ip)){$other.Add($ip)}}}}catch{};foreach($ip in $other){if(-not $preferred.Contains($ip)){$preferred.Add($ip)}};return @($preferred)}
 function Send-BinaryResponse($Client,$Req,$Asset){if($null -eq $Asset -or -not [bool]$Asset.complete -or $null -eq $Asset.stream){Send-Response $Client 404 @{ok=$false;message='USB media is not ready.'};return};$net=$Client.GetStream();$len=[long]$Asset.stream.Length;$start=[long]0;$end=$len-1;$partial=$false;try{$range=[string]$Req.headers['range'];if($range -match '^bytes=(\d*)-(\d*)'){if(-not[string]::IsNullOrWhiteSpace($Matches[1])){$start=[long]$Matches[1]};if(-not[string]::IsNullOrWhiteSpace($Matches[2])){$end=[long]$Matches[2]};if($end -ge $len){$end=$len-1};if($start -lt 0){$start=0};if($start -le $end){$partial=$true}}}catch{};$count=[long]($end-$start+1);$code=if($partial){206}else{200};$text=if($partial){'Partial Content'}else{'OK'};$type=if([string]::IsNullOrWhiteSpace([string]$Asset.type)){'application/octet-stream'}else{[string]$Asset.type};$h="HTTP/1.1 $code $text`r`nContent-Type: $type`r`nContent-Length: $count`r`nAccept-Ranges: bytes`r`n"+$(if($partial){"Content-Range: bytes $start-$end/$len`r`n"}else{''})+"Access-Control-Allow-Origin: *`r`nAccess-Control-Allow-Private-Network: true`r`nCache-Control: no-store`r`nConnection: close`r`n`r`n";$hb=[System.Text.Encoding]::ASCII.GetBytes($h);$net.Write($hb,0,$hb.Length);$Asset.stream.Position=$start;$buf=New-Object byte[] 65536;[long]$remaining=$count;while($remaining -gt 0){$want=[int][Math]::Min([long]$buf.Length,$remaining);$n=$Asset.stream.Read($buf,0,$want);if($n -le 0){break};$net.Write($buf,0,$n);$remaining-=$n};$net.Flush()}
@@ -404,12 +414,39 @@ try {
 
             if($path -eq '/api/usb/register' -and $req.method -eq 'POST'){$j=Body-Json $req.body;if($null -eq $j -or $null -eq $j.manifest -or $null -eq $j.manifest.entries){throw 'USB manifest is missing.'};Reset-UsbAll;$script:UsbState.sessionId=[Guid]::NewGuid().ToString('N');$script:UsbState.manifest=$j.manifest;$script:UsbState.registeredAt=(Get-Date).ToString('o');$script:UsbState.lastMobilePoll=$script:UsbState.registeredAt;Log-Line('USB REGISTER session='+$script:UsbState.sessionId+' count='+@($j.manifest.entries).Count);Send-Response $client 200 @{ok=$true;sessionId=$script:UsbState.sessionId;message='USB mobile library registered in memory only.'};continue}
             if($path -eq '/api/usb/manifest' -and $req.method -eq 'GET'){Send-Response $client 200 @{ok=$true;sessionId=[string]$script:UsbState.sessionId;manifest=$script:UsbState.manifest;registeredAt=[string]$script:UsbState.registeredAt;ready=[bool](-not[string]::IsNullOrWhiteSpace([string]$script:UsbState.sessionId))};continue}
-            if($path -eq '/api/usb/request' -and $req.method -eq 'POST'){$j=Body-Json $req.body;if([string]::IsNullOrWhiteSpace([string]$script:UsbState.sessionId)){throw 'USB mobile is not connected.'};if([string]::IsNullOrWhiteSpace([string]$j.trackId)){throw 'USB trackId is missing.'};Reset-UsbTrack;$script:UsbState.requestId=[Guid]::NewGuid().ToString('N');$script:UsbState.trackId=[string]$j.trackId;$assets=@($j.assets);if($assets.Count -eq 0){$assets=@('blob')};$script:UsbState.command=@{requestId=$script:UsbState.requestId;trackId=$script:UsbState.trackId;assets=$assets};$script:UsbState.commandDispatched=$false;Send-Response $client 200 @{ok=$true;requestId=$script:UsbState.requestId};continue}
+            if($path -eq '/api/usb/request' -and $req.method -eq 'POST'){$j=Body-Json $req.body;if([string]::IsNullOrWhiteSpace([string]$script:UsbState.sessionId)){throw 'USB mobile is not connected.'};if([string]::IsNullOrWhiteSpace([string]$j.trackId)){throw 'USB trackId is missing.'};Reset-UsbTrack;$script:UsbState.requestId=[Guid]::NewGuid().ToString('N');$script:UsbState.trackId=[string]$j.trackId;$assets=@($j.assets);if($assets.Count -eq 0){$assets=@('blob')};$script:UsbState.command=@{requestId=$script:UsbState.requestId;trackId=$script:UsbState.trackId;assets=$assets};$script:UsbState.commandDispatched=$false;$script:UsbState.playState='loading';$script:UsbState.playUpdatedAt=(Get-Date).ToString('o');Send-Response $client 200 @{ok=$true;requestId=$script:UsbState.requestId};continue}
             if($path -eq '/api/usb/mobile-command' -and $req.method -eq 'GET'){$sid=Get-QueryParam $uri 'sessionId';if($sid -ne [string]$script:UsbState.sessionId){Send-Response $client 200 @{ok=$false;message='USB session mismatch.'};continue};$script:UsbState.lastMobilePoll=(Get-Date).ToString('o');$cmd=$null;if($null -ne $script:UsbState.command -and -not[bool]$script:UsbState.commandDispatched){$cmd=$script:UsbState.command;$script:UsbState.commandDispatched=$true};Send-Response $client 200 @{ok=$true;command=$cmd};continue}
             if($path -eq '/api/usb/chunk' -and $req.method -eq 'POST'){$j=Body-Json $req.body;if([string]$j.sessionId -ne [string]$script:UsbState.sessionId -or [string]$j.requestId -ne [string]$script:UsbState.requestId){Send-Response $client 409 @{ok=$false;message='USB request changed.'};continue};$asset=[string]$j.asset;if([string]::IsNullOrWhiteSpace($asset)){throw 'USB asset missing.'};if(-not $script:UsbState.assets.ContainsKey($asset)){$script:UsbState.assets[$asset]=@{stream=New-Object System.IO.MemoryStream;type=[string]$j.type;name=[string]$j.name;complete=$false;received=[long]0;size=[long]0;nextChunk=0;totalChunks=[int]$j.totalChunks}};$a=$script:UsbState.assets[$asset];$idx=[int]$j.chunkIndex;if($idx -lt [int]$a.nextChunk){Send-Response $client 200 @{ok=$true;accepted=$true;already=$true};continue};if($idx -ne [int]$a.nextChunk){Send-Response $client 409 @{ok=$false;message='USB chunk order mismatch.'};continue};$bytes=[Convert]::FromBase64String([string]$j.data);$a.stream.Write($bytes,0,$bytes.Length);$a.received=[long]$a.received+$bytes.Length;$a.nextChunk=[int]$a.nextChunk+1;Send-Response $client 200 @{ok=$true;accepted=$true;received=[long]$a.received};continue}
             if($path -eq '/api/usb/asset-end' -and $req.method -eq 'POST'){$j=Body-Json $req.body;if([string]$j.requestId -ne [string]$script:UsbState.requestId){Send-Response $client 409 @{ok=$false;message='USB request changed.'};continue};$asset=[string]$j.asset;if($script:UsbState.assets.ContainsKey($asset)){$a=$script:UsbState.assets[$asset];$a.complete=$true;$a.size=[long]$j.size;if(-not[string]::IsNullOrWhiteSpace([string]$j.type)){$a.type=[string]$j.type};$a.stream.Position=0};Send-Response $client 200 @{ok=$true;assets=(Usb-AssetSummary)};continue}
-            if($path -eq '/api/usb/ready' -and $req.method -eq 'POST'){$j=Body-Json $req.body;if([string]$j.requestId -ne [string]$script:UsbState.requestId){Send-Response $client 409 @{ok=$false;message='USB request changed.'};continue};$blob=$script:UsbState.assets['blob'];if($null -eq $blob -or -not[bool]$blob.complete){throw 'USB original media is incomplete.'};$script:UsbState.ready=$true;Log-Line('USB READY request='+$script:UsbState.requestId+' bytes='+[string]$blob.received);Send-Response $client 200 @{ok=$true;ready=$true;assets=(Usb-AssetSummary)};continue}
+            if($path -eq '/api/usb/ready' -and $req.method -eq 'POST'){$j=Body-Json $req.body;if([string]$j.requestId -ne [string]$script:UsbState.requestId){Send-Response $client 409 @{ok=$false;message='USB request changed.'};continue};$blob=$script:UsbState.assets['blob'];if($null -eq $blob -or -not[bool]$blob.complete){throw 'USB original media is incomplete.'};$script:UsbState.ready=$true;$script:UsbState.playState='ready';$script:UsbState.playUpdatedAt=(Get-Date).ToString('o');Log-Line('USB READY request='+$script:UsbState.requestId+' bytes='+[string]$blob.received);Send-Response $client 200 @{ok=$true;ready=$true;assets=(Usb-AssetSummary)};continue}
             if($path -eq '/api/usb/track-state' -and $req.method -eq 'GET'){$rid=Get-QueryParam $uri 'requestId';$same=($rid -eq [string]$script:UsbState.requestId);Send-Response $client 200 @{ok=$true;requestId=[string]$script:UsbState.requestId;trackId=[string]$script:UsbState.trackId;ready=([bool]$script:UsbState.ready -and $same);progress=(Usb-Progress);assets=(Usb-AssetSummary);error=[string]$script:UsbState.error};continue}
+
+            if($path -eq '/api/usb/play-state' -and $req.method -eq 'POST'){
+                $j=Body-Json $req.body
+                if(-not [string]::IsNullOrWhiteSpace([string]$j.requestId) -and [string]$j.requestId -ne [string]$script:UsbState.requestId){
+                    Send-Response $client 409 @{ok=$false;message='USB request changed.'};continue
+                }
+                $st=[string]$j.state
+                if($st -notin @('loading','ready','playing','paused','stopped')){$st='playing'}
+                $script:UsbState.playState=$st
+                $script:UsbState.playUpdatedAt=(Get-Date).ToString('o')
+                Send-Response $client 200 @{ok=$true;playState=$script:UsbState.playState};continue
+            }
+            if($path -eq '/api/usb/current' -and $req.method -eq 'GET'){
+                $entry=Get-UsbCurrentEntry
+                Send-Response $client 200 @{
+                    ok=$true
+                    sessionId=[string]$script:UsbState.sessionId
+                    requestId=[string]$script:UsbState.requestId
+                    trackId=[string]$script:UsbState.trackId
+                    ready=[bool]$script:UsbState.ready
+                    playState=[string]$script:UsbState.playState
+                    playUpdatedAt=[string]$script:UsbState.playUpdatedAt
+                    assets=(Usb-AssetSummary)
+                    entry=$entry
+                }
+                continue
+            }
             if($path -eq '/api/usb/media' -and $req.method -eq 'GET'){$rid=Get-QueryParam $uri 'requestId';$asset=Get-QueryParam $uri 'asset';if($rid -ne [string]$script:UsbState.requestId -or -not $script:UsbState.assets.ContainsKey($asset)){Send-Response $client 404 @{ok=$false;message='USB media request not found.'};continue};Send-BinaryResponse $client $req $script:UsbState.assets[$asset];continue}
             if($path -eq '/api/usb/release' -and $req.method -eq 'POST'){Reset-UsbTrack;Send-Response $client 200 @{ok=$true;message='USB RAM buffer released.'};continue}
 

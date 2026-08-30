@@ -20,7 +20,7 @@
   })();
   </script>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=0.22.99">
+  <link rel="stylesheet" href="styles.css?v=0.23.00">
   <link rel="stylesheet" href="score.css?v=0.22.89">
   <style>.wide{width:100%;margin-top:16px}.analysis-box{margin-top:12px;padding:14px;border-radius:14px;background:#100c1e;border:1px solid #4b3d68;color:#e9e2f8;line-height:1.65;white-space:pre-line}.audio-analyzer .audio-file{display:block;width:100%;padding:12px;border:1px dashed #6b5b89;border-radius:12px;background:#151126;color:#eee}.audio-analyzer audio{width:100%;margin-top:10px}.audio-analysis-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:12px 0}.audio-stat{padding:10px;border-radius:12px;background:#151126;border:1px solid #403653}.audio-stat b{display:block;font-size:12px;color:#bfb2da}.audio-stat strong{display:block;margin-top:4px;font-size:18px}.analyzed-style{min-height:150px}.analysis-note{display:block;margin-top:10px;line-height:1.55;color:#c9bfdc}.song-mic-level{margin-top:9px;display:flex;align-items:center;gap:10px}.song-mic-track{flex:1;height:12px;border-radius:999px;background:#211a31;overflow:hidden;border:1px solid #514269}.song-mic-fill{width:0;height:100%;background:linear-gradient(90deg,#5da9ff,#7de4a8,#ffd36a);transition:width .08s linear}.song-mic-level small{min-width:72px;color:#cfc5df}@media(max-width:760px){.audio-analysis-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}</style>
 
@@ -41,7 +41,7 @@
 
   <header>
     <div class="brand">MARU <span>WORLD MUSIC MAKER</span></div>
-    <div class="tag">V0.22.99 · 진짜 원터치 방송 · Helper가 OBS 방송창까지 자동 실행</div>
+    <div class="tag">V0.23.00 · 원터치 방송 · OBS 커버/영상/원곡 오디오 직접 출력</div>
   </header>
   <main>
     <section id="coreLauncher" class="core-launcher" aria-label="핵심 기능">
@@ -94,7 +94,7 @@
               <div class="one-touch-broadcast-2298">
       <div class="one-touch-copy-2298">
         <b>🚀 원터치 방송</b>
-        <span>한 번 누르면 Helper가 MARU_OBS_LIVE 방송창을 직접 실행 → OBS 자동 연결/송출 → 현재 방송목록 원곡 재생까지 순서대로 시작합니다.</span>
+        <span>한 번 누르면 Helper가 MARU_OBS_LIVE 방송창을 직접 실행하고, 커버/영상과 원곡 오디오를 그 방송창에서 직접 재생해 OBS가 그대로 잡습니다.</span>
       </div>
       <div class="one-touch-actions-2298">
         <button id="maruOneTouchStart2298" class="primary one-touch-start-2298" type="button">🚀 원터치 방송 시작</button>
@@ -129,7 +129,7 @@
             </div>
             <small class="broadcast-manage-help simple-help">음원과 동영상은 이 버튼으로 여러 번 추가해도 한 방송목록에 계속 합쳐집니다.</small>
             <div class="broadcast-sync-card-2292 direct-sync-card-2293 usb-live-card-2296" id="broadcastSyncCard2292">
-              <div class="broadcast-sync-head-2292"><div><b>🔌 USB 실시간 원곡 방송</b><span>휴대폰에 저장된 방송곡을 PC에 복사하지 않습니다. USB 테더링 연결 후 곡 제목 목록만 PC에 표시하고, 재생할 현재 곡만 휴대폰에서 PC 메모리(RAM)로 보내 OBS에서 바로 재생합니다.</span></div><strong>V0.22.99</strong></div>
+              <div class="broadcast-sync-head-2292"><div><b>🔌 USB 실시간 원곡 방송</b><span>휴대폰에 저장된 방송곡을 PC에 복사하지 않습니다. USB 테더링 연결 후 곡 제목 목록만 PC에 표시하고, 재생할 현재 곡만 휴대폰에서 PC 메모리(RAM)로 보내 OBS에서 바로 재생합니다.</span></div><strong>V0.23.00</strong></div>
               <div class="usb-no-save-banner-2296"><b>💾 PC 곡파일 저장 없음</b><span>다운로드 폴더·PC MARU IndexedDB에 원곡을 저장하지 않습니다. 현재 재생용 RAM 버퍼는 다음 곡으로 넘어가면 자동 폐기됩니다.</span></div>
 
               <div id="usbLiveMobile2296" class="direct-sync-panel-2293 usb-live-panel-2296" hidden>
@@ -484,7 +484,7 @@
   <script src="vendor/vexflow.js?v=5.0.0"></script>
   <script src="vendor/sfumato.js?v=0.22.89"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="app.js?v=0.22.99"></script>
+  <script src="app.js?v=0.23.00"></script>
 
   <script>
   (function(){

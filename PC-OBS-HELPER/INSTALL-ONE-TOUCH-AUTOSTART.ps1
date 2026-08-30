@@ -30,7 +30,7 @@ try {
   $urlFile = Join-Path $desktop 'MARU 원터치 방송.url'
   @"
 [InternetShortcut]
-URL=https://skytins3-png.github.io/maru-ai-song-studio/?v=2299
+URL=https://skytins3-png.github.io/maru-ai-song-studio/?v=2300
 IconIndex=0
 "@ | Set-Content -LiteralPath $urlFile -Encoding Unicode
 } catch {}
@@ -52,4 +52,4 @@ if ($ok) {
   Write-Host 'Run START-MARU-OBS-HELPER.bat once and check the error message.'
 }
 
-Start-Process 'https://skytins3-png.github.io/maru-ai-song-studio/?v=2299'
+Start-Process 'https://skytins3-png.github.io/maru-ai-song-studio/?v=2300'

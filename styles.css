@@ -1387,3 +1387,12 @@ html.maru-desktop-browser-ok-2297 body > #toast{display:revert!important}
   .one-touch-actions-2298{grid-template-columns:1fr}
   .one-touch-start-2298,.one-touch-stop-2298{min-height:58px!important}
 }
+
+/* V0.23.00 — OBS output window is the USB media/audio master */
+body.obs-output-mode.obs-usb-relay-2300 #audienceCoverPlaceholder::after{
+  content:"USB 원곡 준비 중";
+  display:block;
+  margin-top:10px;
+  font-size:.78em;
+  opacity:.72;
+}

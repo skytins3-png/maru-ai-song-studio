@@ -80,6 +80,7 @@ function Ensure-MaruObsWindow([string]$ObsUrl) {
         '--window-size=1280,720',
         '--window-position=40,40',
         '--new-window',
+        '--autoplay-policy=no-user-gesture-required',
         '--disable-features=CalculateNativeWinOcclusion'
     )
     Start-Process -FilePath $browser -ArgumentList $args | Out-Null

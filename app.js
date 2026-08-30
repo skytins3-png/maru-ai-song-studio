@@ -3370,3 +3370,256 @@ function setupMaruOneTouch2298(){
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setupMaruOneTouch2298,{once:true});
 else setupMaruOneTouch2298();
+
+
+/* =========================================================
+   V0.23.00 — OBS USB MEDIA/AUDIO RELAY
+   The dedicated MARU_OBS_LIVE window pulls the current RAM track
+   directly from Helper. This avoids BroadcastChannel/profile issues
+   and makes OBS capture the real cover/video AND original audio.
+   ========================================================= */
+let maruObsUsbRelayTimer2300=null;
+let maruObsUsbRelayRequest2300='';
+let maruObsUsbRelayAudio2300=null;
+let maruObsUsbRelayVisual2300='';
+let maruObsUsbRelayBusy2300=false;
+
+function maruObsIsOutput2300(){
+  const q=new URLSearchParams(location.search);
+  return q.get('mode')==='audience'&&(q.get('layout')==='obs'||q.get('obs')==='1');
+}
+function maruObsRelayUrl2300(requestId,asset){
+  return `http://127.0.0.1:8765/api/usb/media?requestId=${encodeURIComponent(requestId)}&asset=${encodeURIComponent(asset)}&relay=2300`;
+}
+function maruObsRelayAudioEl2300(){
+  if(maruObsUsbRelayAudio2300&&document.contains(maruObsUsbRelayAudio2300))return maruObsUsbRelayAudio2300;
+  let a=document.getElementById('maruObsUsbAudio2300');
+  if(!a){
+    a=document.createElement('audio');
+    a.id='maruObsUsbAudio2300';
+    a.preload='auto';
+    a.autoplay=true;
+    a.controls=false;
+    a.style.cssText='position:fixed;width:1px;height:1px;opacity:0;pointer-events:none;left:-10px;bottom:-10px';
+    document.body.appendChild(a);
+  }
+  maruObsUsbRelayAudio2300=a;
+  return a;
+}
+function maruObsRelayStop2300(clearVisual=false){
+  const a=maruObsRelayAudioEl2300();
+  try{a.pause();a.removeAttribute('src');a.load()}catch{}
+  const v=document.getElementById('audienceVideo');
+  if(v){try{v.pause()}catch{};if(clearVisual){try{v.removeAttribute('src');v.load()}catch{}}}
+  if(clearVisual)maruObsUsbRelayVisual2300='';
+}
+async function maruObsRelayPlaySafe2300(el){
+  if(!el)return false;
+  try{
+    const p=el.play();
+    if(p&&typeof p.then==='function')await p;
+    return true;
+  }catch(e){
+    console.warn('OBS relay autoplay',e);
+    return false;
+  }
+}
+function maruObsRelayEntryType2300(cur){
+  return String(cur?.entry?.type||cur?.assets?.blob?.type||'').toLowerCase();
+}
+async function maruObsRelayRender2300(cur){
+  if(!cur?.ready||!cur?.requestId)return;
+  const rid=String(cur.requestId);
+  const entry=cur.entry||{};
+  const assets=cur.assets||{};
+  const titleText=String(entry.name||cur.title||'MARU MUSIC').replace(/\.[^.]+$/,'');
+  const title=document.getElementById('audienceTitle');
+  if(title){title.textContent=titleText;try{applyAudienceTitleClass2279(title,titleText)}catch{}}
+  const ann=document.getElementById('audienceAnnouncement');
+  if(ann){ann.textContent='';ann.hidden=true}
+  if(entry.subtitleText){
+    try{applyAudienceSubtitle({subtitle:{enabled:true,text:String(entry.subtitleText)}})}catch{}
+  }
+
+  const v=document.getElementById('audienceVideo');
+  const img=document.getElementById('audienceCover');
+  const ph=document.getElementById('audienceCoverPlaceholder');
+  const imgBg=document.getElementById('audienceCoverBg');
+  const vidBg=document.getElementById('audienceVideoBg');
+  const wrap=document.querySelector('.audience-cover-wrap,.audience-media-wrap');
+  const audio=maruObsRelayAudioEl2300();
+  const originalType=maruObsRelayEntryType2300(cur);
+  const originalIsVideo=/^video\//.test(originalType)||/\.(mp4|m4v|mov|webm)$/i.test(String(entry.name||''));
+  const source=maruObsRelayUrl2300(rid,'blob');
+  const visualVideo=assets.videoBlob?.complete?maruObsRelayUrl2300(rid,'videoBlob'):'';
+  const cover=assets.coverBlob?.complete?maruObsRelayUrl2300(rid,'coverBlob'):'';
+
+  // Separate per-song visual video + original MP3/audio.
+  if(visualVideo&&v){
+    const key='visual:'+rid;
+    if(maruObsUsbRelayVisual2300!==key){
+      maruObsUsbRelayVisual2300=key;
+      try{v.pause()}catch{}
+      v.src=visualVideo;v.muted=true;v.defaultMuted=true;v.loop=true;v.playsInline=true;
+      v.style.display='block';v.style.visibility='visible';
+      if(img)img.style.display='none';if(ph)ph.style.display='none';
+      try{v.load()}catch{}
+      await maruObsRelayPlaySafe2300(v);
+    }
+    if(imgBg)imgBg.style.display='none';
+    if(wrap){wrap.style.backgroundImage='';wrap.style.backgroundColor='#000'}
+  }else if(originalIsVideo&&v){
+    // Original file itself is MP4: its video is also the audible source.
+    const key='original-video:'+rid;
+    if(maruObsUsbRelayVisual2300!==key){
+      maruObsUsbRelayVisual2300=key;
+      try{audio.pause();audio.removeAttribute('src');audio.load()}catch{}
+      try{v.pause()}catch{}
+      v.src=source;v.muted=false;v.defaultMuted=false;v.volume=1;v.loop=false;v.playsInline=true;
+      v.style.display='block';v.style.visibility='visible';
+      if(img)img.style.display='none';if(ph)ph.style.display='none';
+      try{v.load()}catch{}
+      await maruObsRelayPlaySafe2300(v);
+    }
+    if(imgBg)imgBg.style.display='none';
+    if(wrap){wrap.style.backgroundImage='';wrap.style.backgroundColor='#000'}
+  }else{
+    // MP3/audio: show cover (or MARU placeholder) and play original audio in this OBS window.
+    if(v){try{v.pause()}catch{};v.style.display='none'}
+    if(cover&&img){
+      img.src=cover;img.style.display='block';if(ph)ph.style.display='none';
+      if(imgBg){imgBg.src=cover;imgBg.style.display='block'}
+      if(wrap){wrap.style.backgroundImage=`url("${cover}")`;wrap.style.backgroundSize='cover';wrap.style.backgroundPosition='center'}
+    }else{
+      if(img)img.style.display='none';
+      if(imgBg)imgBg.style.display='none';
+      if(ph)ph.style.display='flex';
+      if(wrap){wrap.style.backgroundImage='';wrap.style.backgroundColor='#171126'}
+    }
+    const audioKey='audio:'+rid;
+    if(maruObsUsbRelayVisual2300!==audioKey){
+      maruObsUsbRelayVisual2300=audioKey;
+      try{audio.pause()}catch{}
+      audio.src=source;audio.muted=false;audio.defaultMuted=false;audio.volume=1;audio.preload='auto';
+      try{audio.load()}catch{}
+      if(String(cur.playState||'playing')!=='paused')await maruObsRelayPlaySafe2300(audio);
+    }
+  }
+
+  const state=String(cur.playState||'playing');
+  if(state==='paused'){
+    try{audio.pause()}catch{};try{v?.pause()}catch{}
+  }else if(state==='playing'||state==='ready'){
+    if(originalIsVideo&&!visualVideo)await maruObsRelayPlaySafe2300(v);
+    else{
+      await maruObsRelayPlaySafe2300(audio);
+      if(visualVideo)await maruObsRelayPlaySafe2300(v);
+    }
+  }
+}
+async function maruObsUsbRelayPoll2300(){
+  if(!maruObsIsOutput2300()||maruObsUsbRelayBusy2300)return;
+  maruObsUsbRelayBusy2300=true;
+  try{
+    const r=await fetch('http://127.0.0.1:8765/api/usb/current?relay=2300',{cache:'no-store'});
+    if(!r.ok)throw new Error(`Helper ${r.status}`);
+    const cur=await r.json();
+    if(!cur?.requestId){
+      if(maruObsUsbRelayRequest2300){maruObsUsbRelayRequest2300='';maruObsRelayStop2300(true)}
+      return;
+    }
+    if(cur.ready){
+      document.body.classList.add('obs-usb-relay-2300');
+      if(maruObsUsbRelayRequest2300!==String(cur.requestId)){
+        maruObsUsbRelayRequest2300=String(cur.requestId);
+        maruObsUsbRelayVisual2300='';
+      }
+      await maruObsRelayRender2300(cur);
+    }
+  }catch(e){
+    console.warn('OBS USB relay poll',e);
+  }finally{
+    maruObsUsbRelayBusy2300=false;
+  }
+}
+function maruObsUsbRelayStart2300(){
+  if(!maruObsIsOutput2300())return;
+  if(maruObsUsbRelayTimer2300)clearInterval(maruObsUsbRelayTimer2300);
+  maruObsUsbRelayTimer2300=setInterval(maruObsUsbRelayPoll2300,400);
+  maruObsUsbRelayPoll2300();
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(maruObsUsbRelayStart2300,250),{once:true});
+else setTimeout(maruObsUsbRelayStart2300,250);
+
+/* V0.23.00 remote USB playback:
+   The control page is muted (for reliable autoplay/timing).
+   The dedicated OBS window is the audible source. */
+async function maruUsbSetPlayState2300(state){
+  try{
+    await maruUsbPost2296('http://127.0.0.1:8765','/api/usb/play-state',{
+      requestId:maruUsbCurrentRequest2296||'',
+      trackId:maruUsbCurrentTrack2296||'',
+      state:String(state||'')
+    });
+  }catch(e){console.warn('usb play state',e)}
+}
+playBroadcastIndex=async function(i){
+  const f=broadcastFiles[i];
+  if(!f?.maruUsbRemote2296)return maruUsbOrigPlay2296(i);
+  if(!broadcastRunning||broadcastPaused||!f)return;
+  broadcastIndex=i;renderBroadcastQueue();
+  const isVideo=broadcastIsVideoFile(f);
+  const el=isVideo?document.getElementById('broadcastVideoPlayer'):document.getElementById('broadcastAudio');
+  if(!el)return;
+  prepareOriginalBroadcastElement2289(el);stopOtherBroadcastPlayer(el);
+  const title=broadcastSafeTitle(f.name);
+  try{
+    const r=await maruUsbRequestTrack2296(i);
+    el.src=r.source;
+    // Muted playback is allowed after long async one-touch setup and still gives us onended timing.
+    el.muted=true;el.defaultMuted=true;el.volume=0;
+    el.load();
+    document.getElementById('broadcastAudio').style.display=isVideo?'none':'block';
+    document.getElementById('broadcastVideoPlayer').style.display=isVideo?'block':'none';
+    audienceTrackId=f.maruUsbTrackId2296||'';
+    audienceTrackCoverUrl=r.cover||'';
+    audienceTrackVideoUrl=r.video||(isVideo?r.source:'');
+    const sub=String(f.maruUsbSubtitle2296||'').trim();
+    if(sub){
+      const tx=document.getElementById('broadcastSubtitleText'),en=document.getElementById('broadcastSubtitleEnabled');
+      if(tx)tx.value=sub;if(en)en.checked=true;
+    }
+    markBroadcastRecent(f.name);
+    document.getElementById('broadcastNow').textContent=`🔌 USB 원곡 방송 · ${i+1}/${broadcastFiles.length} · ${title} · OBS창에서 원곡 출력`;
+    document.getElementById('broadcastBadge').textContent=`USB 방송 ${i+1}/${broadcastFiles.length}`;
+    publishAudienceState({title,trackIndex:i,status:`USB 원곡 방송 · ${i+1}/${broadcastFiles.length}`,message:audienceText(),announcement:'',cover:audienceTrackCoverUrl,video:audienceTrackVideoUrl,subtitle:audienceSubtitleState()});
+    await el.play();
+    await maruUsbSetPlayState2300('playing');
+  }catch(e){
+    console.error(e);
+    maruUsbStatus2296(`재생 실패 · ${e.message||e}`,'error');
+    toast(`USB 원곡 방송 실패 · ${e.message||e}`);
+  }
+};
+
+const maruBroadcastPause2300=broadcastPause;
+broadcastPause=function(){
+  maruBroadcastPause2300();
+  if(maruUsbRemoteActive2296)maruUsbSetPlayState2300('paused');
+};
+const maruBroadcastResume2300=broadcastStartOrResume;
+broadcastStartOrResume=async function(){
+  const wasPaused=broadcastPaused;
+  const r=await maruBroadcastResume2300();
+  if(wasPaused&&maruUsbRemoteActive2296)maruUsbSetPlayState2300('playing');
+  return r;
+};
+const maruBroadcastStop2300=broadcastStop;
+broadcastStop=function(showToast=true){
+  if(maruUsbRemoteActive2296)maruUsbSetPlayState2300('stopped');
+  return maruBroadcastStop2300(showToast);
+};
+setTimeout(()=>{
+  const p=document.getElementById('broadcastPauseBtn');
+  if(p)p.onclick=()=>broadcastPause();
+},250);

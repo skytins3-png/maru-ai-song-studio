@@ -1,10 +1,10 @@
-MARU OBS Helper V0.22.99 — ONE-TOUCH
+MARU OBS Helper V0.23.00 — ONE-TOUCH
 
 처음 한 번:
 1) 1-ONE-TOUCH-SETUP.bat 실행
 2) Windows 로그인 자동실행 등록 + Helper 즉시 실행
 3) 바탕화면에 'MARU 원터치 방송' 바로가기 생성
-4) MARU V0.22.99 열림
+4) MARU V0.23.00 열림
 
 그 다음부터:
 - PC 로그인 후 Helper가 자동으로 켜집니다.
