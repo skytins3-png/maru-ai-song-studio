@@ -1557,6 +1557,18 @@ function moveBroadcastTrack(i,delta){i=Number(i);const j=i+Number(delta);if(!Num
 
 async function chooseBroadcastTrackMedia(index,kind){index=Number(index);if(!Number.isInteger(index)||index<0||index>=broadcastFiles.length)return;broadcastMediaTargetIndex=index;let input=document.querySelector(kind==='video'?'#broadcastTrackVideoPicker':'#broadcastTrackCoverPicker');if(!input){input=document.createElement('input');input.type='file';input.hidden=true;input.id=kind==='video'?'broadcastTrackVideoPicker':'broadcastTrackCoverPicker';input.accept=kind==='video'?'video/*':'image/*';input.onchange=async e=>{const file=e.target.files?.[0],target=broadcastMediaTargetIndex;e.target.value='';if(file)await saveBroadcastTrackMedia(target,kind,file)};document.body.appendChild(input)}input.click()}
 async function saveBroadcastTrackMedia(index,kind,file){const ids=broadcastCurrentIds(),id=ids[index];if(!id||!file)return;const max=kind==='video'?350*1024*1024:25*1024*1024;if(file.size>max)return toast(kind==='video'?'동영상은 곡당 350MB 이하를 권장합니다. 더 작은 영상을 선택해 주세요.':'커버 사진은 25MB 이하 파일을 선택해 주세요.');try{await broadcastRequestPersistentStorage();let r=await broadcastDbGet(id);if(!r?.blob)throw new Error('방송곡 저장 레코드를 찾지 못했습니다');if(kind==='video'){r.videoBlob=file;r.videoName=file.name||'video';}else{r.coverBlob=file;r.coverName=file.name||'cover';}r.mediaUpdatedAt=Date.now();await broadcastDbPut(r);setBroadcastMediaInfo(id,r);renderBroadcastQueue();if(index===broadcastIndex){try{revokeAudiencePopupMediaUrls()}catch{};audienceRenderedTrackKey2261='';audienceRenderedDirectVideo2261='';audienceRenderedDirectCover2261='';await applyBroadcastTrackMedia(index);publishAudienceState({title:broadcastSafeTitle(broadcastFiles[index]?.name),status:`재생 중 · ${index+1}/${broadcastFiles.length}`,message:audienceText()})}toast(`${broadcastSafeTitle(broadcastFiles[index]?.name)} · ${kind==='video'?'동영상':'커버 사진'} 연결 완료`)}catch(e){console.error('save track media',e);toast('곡별 사진/영상 저장에 실패했습니다. 브라우저 저장공간을 확인해 주세요.')}}
+window.maruBroadcastBulkMediaApi2313={
+ list:async()=>Promise.all(broadcastFiles.map(async(file,index)=>{
+  const id=broadcastCurrentIds()[index],record=id?await broadcastDbGet(id):null;
+  return{index,id,name:file?.name||'',hasVideo:!!record?.videoBlob?.size};
+ })),
+ save:async(index,file)=>{
+  await saveBroadcastTrackMedia(index,'video',file);
+  const id=broadcastCurrentIds()[index],record=id?await broadcastDbGet(id):null;
+  return !!record?.videoBlob?.size&&Number(record.videoBlob.size)===Number(file?.size)&&String(record.videoName||'')===String(file?.name||'');
+ },
+ refresh:()=>renderBroadcastQueue()
+};
 async function clearBroadcastTrackMedia(index){index=Number(index);const ids=broadcastCurrentIds(),id=ids[index];if(!id)return;if(!confirm(`“${broadcastSafeTitle(broadcastFiles[index]?.name)}”의 커버 사진과 동영상 연결을 모두 지울까요?\n음원은 삭제하지 않습니다.`))return;try{const r=await broadcastDbGet(id);if(!r)return;if(r.coverBlob)delete r.coverBlob;if(r.videoBlob)delete r.videoBlob;r.coverName='';r.videoName='';r.mediaUpdatedAt=Date.now();await broadcastDbPut(r);setBroadcastMediaInfo(id,r);if(index===broadcastIndex){revokeTrackAudienceUrls();publishAudienceState({cover:audienceCoverData||'',video:audienceVideoUrl||''})}renderBroadcastQueue();toast('이 곡의 커버/동영상 연결을 지웠습니다')}catch(e){console.warn(e);toast('미디어 연결을 지우지 못했습니다')}}
 async function applyBroadcastTrackMedia(index){
  revokeTrackAudienceUrls();const id=broadcastCurrentIds()[index];audienceTrackId='';if(!id)return {cover:'',video:''};
