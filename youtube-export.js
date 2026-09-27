@@ -1,4 +1,4 @@
-/* MARU V0.23.18 — mobile-safe YouTube handoff.
+/* MARU V0.23.19 — mobile-safe YouTube handoff.
    Builds one 9:16 WebM at a time from the saved original audio and per-track
    video/cover. Nothing is uploaded without the user's Android share action. */
 (function(){
@@ -26,7 +26,7 @@
   sel.innerHTML=files.length?files.map((f,i)=>`<option value="${i}">${i+1}. ${esc(titleOf(f?.name))}</option>`).join(''):'<option value="">방송목록에 곡을 먼저 넣어 주세요</option>';
   const current=typeof broadcastIndex!=='undefined'&&broadcastIndex>=0?broadcastIndex:old;
   if(files[current])sel.value=String(current);else if(files.length)sel.value='0';
-  const make=$('#youtubeMake2318');if(make)make.disabled=!files.length||!!running;
+  for(const make of [$('#youtubeMake2318'),$('#youtubeMakeAll2319')])if(make)make.disabled=!files.length||!!running;
  }
  async function getRecord(index){
   const files=typeof broadcastFiles!=='undefined'?broadcastFiles:[],f=files[index];
@@ -70,6 +70,46 @@
    status(`✅ 완성 · ${file.name} · ${(file.size/1024/1024).toFixed(1)}MB`,100);if(typeof toast==='function')toast('유튜브용 완성 영상이 만들어졌습니다. 유튜브 앱으로 보내기를 누르세요.')
   }catch(e){console.error('youtube export',e);status(`❌ ${e.message||e}`,0);if(typeof toast==='function')toast(`유튜브 영상 만들기 실패 · ${e.message||e}`)}finally{running=null;if(make)make.disabled=false;if(cancel)cancel.disabled=true;updateTracks()}
  }
+ async function createAllYoutubeVideo(){
+  if(running)return;
+  if(typeof MediaRecorder==='undefined'||!HTMLCanvasElement.prototype.captureStream)return status('이 브라우저는 전체 영상 만들기를 지원하지 않습니다.',0);
+  const files=typeof broadcastFiles!=='undefined'?broadcastFiles:[],count=files.length;
+  if(!count)return status('방송목록에 곡을 먼저 넣어 주세요.',0);
+  if(count>20&&!confirm(`${count}곡을 한 영상으로 만들면 오래 걸리고 파일이 매우 커집니다.\n충전기를 연결하고 화면을 켠 상태로 계속할까요?`))return;
+  const make=$('#youtubeMake2318'),makeAll=$('#youtubeMakeAll2319'),cancel=$('#youtubeCancel2318'),share=$('#youtubeShare2318');
+  let audioUrl='',visualUrl='',raf=0,wake=null,ac=null,stream=null,rec=null,cancelled=false,resolveTrack=null;
+  try{
+   if(lastUrl){URL.revokeObjectURL(lastUrl);lastUrl=''}lastFile=null;if(share)share.disabled=true;
+   const canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;const ctx=canvas.getContext('2d',{alpha:false});
+   const audio=document.createElement('audio'),video=document.createElement('video'),img=new Image();audio.preload='auto';video.preload='auto';video.muted=true;video.loop=true;video.playsInline=true;
+   ac=new(window.AudioContext||window.webkitAudioContext)();const src=ac.createMediaElementSource(audio),dest=ac.createMediaStreamDestination(),monitor=ac.createGain();monitor.gain.value=.82;src.connect(dest);src.connect(monitor).connect(ac.destination);await ac.resume();
+   stream=canvas.captureStream(FPS);for(const tr of dest.stream.getAudioTracks())stream.addTrack(tr);
+   const mime=recorderType();rec=mime?new MediaRecorder(stream,{mimeType:mime,videoBitsPerSecond:1500000,audioBitsPerSecond:160000}):new MediaRecorder(stream);const chunks=[];
+   let currentTitle='MARU 전체 노래',visual='none',track=0;
+   running={cancel:()=>{cancelled=true;try{audio.pause();video.pause();resolveTrack?.()}catch{}}};
+   for(const b of [make,makeAll])if(b)b.disabled=true;if(cancel)cancel.disabled=false;
+   try{wake=await navigator.wakeLock?.request?.('screen')}catch{}
+   const draw=()=>{drawBase(ctx,currentTitle);try{if(visual==='video'&&video.readyState>=2){const d=fit(ctx,video.videoWidth||W,video.videoHeight||H);ctx.drawImage(video,...d)}else if(visual==='image'&&img.naturalWidth){const d=fit(ctx,img.naturalWidth,img.naturalHeight);ctx.drawImage(img,...d)}}catch{};const part=audio.duration?audio.currentTime/audio.duration:0,p=(track+part)/count*100;status(`전체 영상 생성 중 · ${track+1}/${count}곡 · ${currentTitle}`,p);raf=requestAnimationFrame(draw)};
+   const done=new Promise((resolve,reject)=>{rec.ondataavailable=e=>{if(e.data?.size)chunks.push(e.data)};rec.onerror=e=>reject(e.error||new Error('전체 영상 저장 오류'));rec.onstop=resolve});
+   rec.start(1000);draw();
+   for(track=0;track<count&&!cancelled;track++){
+    const {r,title}=await getRecord(track);currentTitle=title;visual='none';video.pause();video.removeAttribute('src');img.removeAttribute('src');
+    if(audioUrl)URL.revokeObjectURL(audioUrl);if(visualUrl)URL.revokeObjectURL(visualUrl);audioUrl='';visualUrl='';
+    audioUrl=URL.createObjectURL(r.blob);audio.src=audioUrl;await waitMedia(audio);
+    const visualBlob=r.videoBlob?.size?r.videoBlob:(isVideo(r.blob,r.name)?r.blob:null),coverBlob=r.coverBlob?.size?r.coverBlob:null;
+    if(visualBlob){visualUrl=URL.createObjectURL(visualBlob);video.src=visualUrl;await waitMedia(video);visual='video';await video.play()}
+    else if(coverBlob){visualUrl=URL.createObjectURL(coverBlob);img.src=visualUrl;try{await img.decode()}catch{}visual='image'}
+    status(`전체 영상 생성 중 · ${track+1}/${count}곡 · ${title}`,track/count*100);
+    await new Promise((resolve,reject)=>{resolveTrack=resolve;audio.onended=resolve;audio.onerror=()=>reject(new Error(`${title} 원음을 재생하지 못했습니다`));audio.play().catch(reject)});resolveTrack=null;audio.pause();video.pause();
+   }
+   if(rec.state!=='inactive')rec.stop();await done;cancelAnimationFrame(raf);
+   if(cancelled){status('전체 영상 만들기를 취소했습니다.',0);return}
+   const blob=new Blob(chunks,{type:rec.mimeType||'video/webm'}),file=new File([blob],`MARU_${count}곡_전체_YOUTUBE.webm`,{type:blob.type,lastModified:Date.now()});lastFile=file;lastUrl=URL.createObjectURL(blob);if(share)share.disabled=false;
+   status(`✅ 전체 ${count}곡 완성 · ${(file.size/1024/1024).toFixed(1)}MB`,100);if(typeof toast==='function')toast(`전체 ${count}곡을 한 개의 유튜브 영상으로 만들었습니다.`)
+  }catch(e){console.error('youtube all export',e);status(`❌ ${e.message||e}`,0);if(typeof toast==='function')toast(`전체 영상 만들기 실패 · ${e.message||e}`)}finally{
+   resolveTrack?.();cancelAnimationFrame(raf);try{if(rec&&rec.state!=='inactive')rec.stop();stream?.getTracks().forEach(t=>t.stop());await ac?.close();await wake?.release?.()}catch{}if(audioUrl)URL.revokeObjectURL(audioUrl);if(visualUrl)URL.revokeObjectURL(visualUrl);running=null;if(cancel)cancel.disabled=true;updateTracks()
+  }
+ }
  async function shareYoutubeVideo(){
   if(!lastFile)return status('먼저 유튜브용 완성 영상을 만들어 주세요.',0);
   try{
@@ -79,9 +119,9 @@
  }
  function mount(){
   if($('#youtubeExportCard2318'))return;
-  const host=$('#broadcastCard')||$('#audioAnalyzer')||document.querySelector('main')||document.body,card=document.createElement('section');card.id='youtubeExportCard2318';card.className='card';
-  card.innerHTML=`<div class="section-title"><div><h2>▶ YouTube 완성영상</h2><p>곡별 영상과 원음을 하나로 만들어 BIGO 오디오 LIVE의 YouTube에서 재생합니다.</p></div><strong>V0.23.18</strong></div><label for="youtubeTrack2318">유튜브에 올릴 곡</label><select id="youtubeTrack2318"></select><div class="actions"><button id="youtubeMake2318" class="primary" type="button">🎬 유튜브용 영상 만들기</button><button id="youtubeCancel2318" class="danger" type="button" disabled>■ 취소</button><button id="youtubeShare2318" class="secondary" type="button" disabled>▶ 유튜브 앱으로 보내기</button></div><div class="batch-progress"><div id="youtubeExportProgress2318"></div></div><div id="youtubeExportStatus2318" class="analysis-box">방송목록의 곡을 선택하세요. 자막은 새로 넣지 않고 저장된 곡별 영상과 원음만 합칩니다.</div><small>모바일 안전 모드: 한 곡씩 실시간 길이만큼 처리합니다. 원곡과 곡별 영상은 수정하거나 삭제하지 않습니다. 업로드 화면에서는 <b>일부 공개</b>를 권장합니다.</small>`;
-  host.insertAdjacentElement('afterend',card);$('#youtubeMake2318').onclick=createYoutubeVideo;$('#youtubeCancel2318').onclick=()=>running?.cancel();$('#youtubeShare2318').onclick=shareYoutubeVideo;updateTracks();
+  const host=$('#broadcastPlayerCard')||$('#audioAnalyzer')||document.querySelector('main')||document.body,card=document.createElement('section');card.id='youtubeExportCard2318';card.className='card';
+  card.innerHTML=`<div class="section-title"><div><h2>▶ YouTube 완성영상</h2><p>곡별 영상과 원음을 하나로 만들어 BIGO 오디오 LIVE의 YouTube에서 재생합니다.</p></div><strong>V0.23.19</strong></div><label for="youtubeTrack2318">한 곡만 만들기</label><select id="youtubeTrack2318"></select><div class="actions"><button id="youtubeMake2318" class="secondary" type="button">🎬 선택한 한 곡 만들기</button><button id="youtubeMakeAll2319" class="primary" type="button">☑ 방송목록 전체를 한 영상으로 만들기</button><button id="youtubeCancel2318" class="danger" type="button" disabled>■ 취소</button><button id="youtubeShare2318" class="secondary" type="button" disabled>▶ 유튜브 앱으로 보내기</button></div><div class="batch-progress"><div id="youtubeExportProgress2318"></div></div><div id="youtubeExportStatus2318" class="analysis-box">전체 버튼을 누르면 방송목록의 모든 곡을 현재 순서대로 한 영상에 이어 붙입니다.</div><small>전체 영상은 모든 곡 길이만큼 실시간 처리되며 파일이 매우 커질 수 있습니다. 충전기를 연결하고 화면을 켜 두세요. 원곡과 곡별 영상은 수정하거나 삭제하지 않습니다.</small>`;
+  host.insertAdjacentElement('afterend',card);$('#youtubeMake2318').onclick=createYoutubeVideo;$('#youtubeMakeAll2319').onclick=createAllYoutubeVideo;$('#youtubeCancel2318').onclick=()=>running?.cancel();$('#youtubeShare2318').onclick=shareYoutubeVideo;updateTracks();
   const observer=new MutationObserver(()=>updateTracks());const q=$('#broadcastQueue');if(q)observer.observe(q,{childList:true,subtree:true});
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mount);else mount();
