@@ -1384,20 +1384,40 @@ function resetImportedAnalysis(){importedSongAnalysis=null;importedSongBuffer=nu
 function setImportedAudioBlob(blob,name){if(importedSongUrl)URL.revokeObjectURL(importedSongUrl);resetImportedAnalysis();const el=$('#sourceAudio'),saveBtn=$('#saveCurrentToBroadcast');if(!blob){el.removeAttribute('src');el.load?.();if(saveBtn)saveBtn.disabled=true;return}importedSongUrl=URL.createObjectURL(blob);el.muted=false;el.defaultMuted=false;el.volume=1;el.src=importedSongUrl;el.load?.();$('#playSourceSong').disabled=false;if($('#abOriginal'))$('#abOriginal').disabled=false;if(saveBtn)saveBtn.disabled=false;$('#audioAnalysisResult').textContent=`${name}\n입력이 준비됐습니다. ‘🧠 노래 자동 분석’을 눌러 주세요.`}
 function setImportedAudioFile(file){songMicBlob=null;if(!file)return setImportedAudioBlob(null,'');setImportedAudioBlob(file,file.name)}
 async function setImportedAudioFiles(fileList){
- const files=[...(fileList||[])].filter(f=>f&&(f.type?.startsWith('audio/')||f.type==='video/mp4'||/\.(mp3|wav|m4a|aac|ogg|flac|mp4|m4v|mov)$/i.test(f.name||'')));
+ const found=[...(fileList||[])].filter(f=>f&&(f.type?.startsWith('audio/')||f.type?.startsWith('video/')||/\.(mp3|wav|m4a|aac|ogg|flac|mp4|m4v|mov|webm)$/i.test(f.name||'')));
+ const files=found.slice(0,100),overflow=Math.max(0,found.length-files.length);
  if(!files.length){setImportedAudioFile(null);return toast('선택된 음악 파일이 없습니다')}
  setImportedAudioFile(files[0]);
  if(files.length===1)return;
  const status=$('#songMicStatus');
- if(status)status.textContent=`${files.length}곡 선택 · 첫 곡 자동 분석 중 · 전체 곡 방송목록 저장 중…`;
+ if(status)status.textContent=`${files.length}곡 전체 불러오기 · 첫 곡 자동 분석 중 · 방송목록 저장 중…${overflow?` · 초과 ${overflow}곡 제외`:''}`;
  try{
   const saved=await persistBroadcastPlaylist(files,{append:true}),restored=await restoreBroadcastPlaylist({removedBefore:saved?.removed||0}),removed=Number(restored?.removed||saved?.removed||0);
-  if(status)status.textContent=`${files.length}곡 선택 완료 · 첫 곡 분석 · 방송목록 ${broadcastFiles.length}곡 저장${removed?` · 중복 ${removed}곡 자동 제거`:''}`;
-  toast(`${files.length}곡을 모두 선택했습니다. 첫 곡은 분석하고 전체 곡은 방송목록에 저장했습니다${removed?` · 중복 ${removed}곡 제거`:''}.`)
+  if(status)status.textContent=`${files.length}곡 전체 불러오기 완료 · 첫 곡 분석 · 방송목록 ${broadcastFiles.length}곡 저장${removed?` · 중복 ${removed}곡 자동 제거`:''}${overflow?` · 100곡 초과 ${overflow}곡 제외`:''}`;
+  toast(`${files.length}곡을 한 번에 불러왔습니다. 전체 곡을 방송목록에 저장했습니다${removed?` · 중복 ${removed}곡 제거`:''}${overflow?` · 초과 ${overflow}곡 제외`:''}.`)
  }catch(e){
   console.error('multi song import',e);
   if(status)status.textContent=`${files.length}곡 선택 · 첫 곡 분석 중 · 방송목록 저장 실패`;
   toast('첫 곡 분석은 계속합니다. 전체 방송목록 저장공간이 부족하거나 브라우저 저장이 차단됐습니다.')
+ }
+}
+async function collectSongFolderFiles2320(handle,out=[]){
+ for await(const entry of handle.values()){
+  if(out.length>=100)break;
+  if(entry.kind==='file'){try{out.push(await entry.getFile())}catch(e){console.warn('folder file read',entry.name,e)}}
+  else if(entry.kind==='directory')await collectSongFolderFiles2320(entry,out);
+ }
+ return out;
+}
+async function pickSongFolderAll2320(){
+ const fallback=()=>$('#songFolderFiles')?.click();
+ if(typeof window.showDirectoryPicker!=='function')return fallback();
+ try{
+  const handle=await window.showDirectoryPicker({mode:'read'}),files=await collectSongFolderFiles2320(handle,[]);
+  await setImportedAudioFiles(files);
+ }catch(e){
+  if(e?.name==='AbortError')return;
+  console.warn('folder picker fallback',e);fallback();
  }
 }
 function mergeFloat32Chunks(chunks){const total=chunks.reduce((n,a)=>n+a.length,0),out=new Float32Array(total);let off=0;for(const a of chunks){out.set(a,off);off+=a.length}return out}
@@ -2242,7 +2262,7 @@ function setupCollapsibleCards(){$$('.collapsible-card').forEach(card=>{const ti
 function toggleScoreAdvanced(){const card=$('#scoreCard');if(!card)return;card.classList.toggle('advanced-open');$('#toggleScoreAdvanced').textContent=card.classList.contains('advanced-open')?'⚙ 세부 편집 숨기기':'⚙ 세부 편집 펼치기'}
 function jumpToScore(){const card=$('#scoreCard');if(card){card.classList.remove('collapsed');const t=card.querySelector('.section-collapse-toggle');if(t)t.textContent='▾ 숨기기';card.scrollIntoView({behavior:'smooth',block:'start'})}}
 function updateSourceVoiceValue(){if($('#sourceVoiceValue'))$('#sourceVoiceValue').textContent=`${$('#sourceVoiceVolume').value}%`;const el=$('#sourceAudio');if(el&&!el.paused&&sourceReferenceEnabled())el.volume=Math.min(1,sourceReferenceGain())}
-$('#songAudioFile').onchange=e=>setImportedAudioFiles(e.target.files);$('#startSongMic').onclick=startSongMic;$('#stopSongMic').onclick=stopSongMic;$('#saveCurrentToBroadcast').onclick=()=>addCurrentSourceToBroadcast();$('#batchAudioFiles').onchange=e=>selectBatchFiles(e.target.files);$('#startBatchMaster').onclick=startBatchMaster;$('#stopBatchMaster').onclick=stopBatchMaster;
+$('#songAudioFile').onchange=e=>setImportedAudioFiles(e.target.files);if($('#pickSongFolderAll'))$('#pickSongFolderAll').onclick=pickSongFolderAll2320;if($('#songFolderFiles'))$('#songFolderFiles').onchange=async e=>{await setImportedAudioFiles(e.target.files);e.target.value=''};$('#startSongMic').onclick=startSongMic;$('#stopSongMic').onclick=stopSongMic;$('#saveCurrentToBroadcast').onclick=()=>addCurrentSourceToBroadcast();$('#batchAudioFiles').onchange=e=>selectBatchFiles(e.target.files);$('#startBatchMaster').onclick=startBatchMaster;$('#stopBatchMaster').onclick=stopBatchMaster;
 $('#abOriginal').onclick=playABOriginal;$('#abAnalyzed').onclick=playABAnalyzed;$('#abStop').onclick=stopAB;$('#broadcastFiles').onchange=async e=>{await selectBroadcastFiles(e.target.files);e.target.value=''};$('#broadcastAudioAdd').onchange=async e=>{await selectBroadcastFiles(e.target.files);e.target.value=''};$('#broadcastVideoAdd').onchange=async e=>{await selectBroadcastFiles(e.target.files);e.target.value=''};$('#selectVisibleBroadcast').onclick=selectVisibleBroadcastTracks;$('#clearBroadcastSelection').onclick=clearBroadcastTrackSelection;$('#deleteSelectedBroadcast').onclick=deleteSelectedBroadcastTracks;$('#clearBroadcastSaved').onclick=clearSavedBroadcastPlaylist;$('#broadcastStart').onclick=broadcastStartOrResume;$('#broadcastPauseBtn').onclick=broadcastPause;$('#broadcastPrev').onclick=broadcastPrevious;$('#broadcastSkip').onclick=()=>broadcastTransitionToNext(true);$('#broadcastStop').onclick=()=>broadcastStop(true);$('#broadcastSearch').oninput=renderBroadcastQueue;$('#broadcastFavOnly').onchange=renderBroadcastQueue;$('#broadcastListSort').onchange=renderBroadcastQueue;$('#smartBroadcastOrder').onclick=applySmartBroadcastOrder;$('#broadcastVoiceStart').onclick=startBroadcastVoiceTone;$('#broadcastVoiceStop').onclick=stopBroadcastVoiceTone;$('#broadcastVoiceDepth').oninput=updateBroadcastVoiceTone;$('#broadcastVoiceVolume').oninput=updateBroadcastVoiceTone;if($('#broadcastVoiceAuto'))$('#broadcastVoiceAuto').onchange=()=>{if(broadcastVoiceNodes)setBroadcastVoiceSpeechActive(broadcastVoiceAutoEnabled()?broadcastVoiceSpeech:true,-120)};for(const el of [$('#broadcastAudio'),$('#broadcastVideoPlayer')])if(el){el.ontimeupdate=()=>{try{window.maruUpdateTimedLyric2265?.(el)}catch{}};el.onended=()=>broadcastTransitionToNext(false);el.onerror=()=>{if(broadcastRunning){toast(broadcastIsVideoFile(broadcastFiles[broadcastIndex])?'MP4를 재생하지 못했습니다. H.264/AAC인지 확인해 주세요.':'이 곡을 재생하지 못해 다음 곡으로 넘어갑니다');broadcastTransitionToNext(true)}}};$('#broadcastToggle').onclick=toggleBroadcastCard;if($('#openObsView'))$('#openObsView').onclick=openObsView2284;$('#openAudienceView').onclick=startBigoScreenShareFlow2280;$('#broadcastCoverFile').onchange=e=>loadAudienceCover(e.target.files?.[0]);$('#broadcastVideoFile').onchange=e=>loadAudienceVideo(e.target.files?.[0]);$('#broadcastAudienceText').oninput=()=>{publishAudienceState({message:audienceText()});saveBroadcastSettings()};if($('#broadcastSubtitleText'))$('#broadcastSubtitleText').oninput=refreshBroadcastSubtitleMode;if($('#broadcastSubtitleEnabled'))$('#broadcastSubtitleEnabled').onchange=refreshBroadcastSubtitleMode;if($('#broadcastAutoSubtitle'))$('#broadcastAutoSubtitle').onchange=refreshBroadcastSubtitleMode;if($('#broadcastSubtitlePosition'))$('#broadcastSubtitlePosition').onchange=publishSubtitleOverlay;if($('#broadcastSubtitleSize'))$('#broadcastSubtitleSize').oninput=()=>{if($('#broadcastSubtitleSizeValue'))$('#broadcastSubtitleSizeValue').textContent=`${$('#broadcastSubtitleSize').value}px`;publishSubtitleOverlay()};['broadcastCustomMessage','broadcastNextTemplate'].forEach(id=>{const el=$('#'+id);if(el)el.oninput=saveBroadcastSettings});['broadcastCustomEnabled','broadcastNextEnabled','broadcastLoop'].forEach(id=>{const el=$('#'+id);if(el)el.onchange=saveBroadcastSettings});
 function pickBroadcastSongs(){const input=$('#broadcastFiles');if(input)input.click()}
 function dockStart(){if(!broadcastFiles.length)return pickBroadcastSongs();return broadcastStartOrResume()}
