@@ -1609,7 +1609,7 @@ window.maruBroadcastBulkMediaApi2313={
 async function clearBroadcastTrackMedia(index){index=Number(index);const ids=broadcastCurrentIds(),id=ids[index];if(!id)return;if(!confirm(`“${broadcastSafeTitle(broadcastFiles[index]?.name)}”의 커버 사진과 동영상 연결을 모두 지울까요?\n음원은 삭제하지 않습니다.`))return;try{const r=await broadcastDbGet(id);if(!r)return;if(r.coverBlob)delete r.coverBlob;if(r.videoBlob)delete r.videoBlob;r.coverName='';r.videoName='';r.mediaUpdatedAt=Date.now();await broadcastDbPut(r);setBroadcastMediaInfo(id,r);if(index===broadcastIndex){revokeTrackAudienceUrls();publishAudienceState({cover:audienceCoverData||'',video:audienceVideoUrl||''})}renderBroadcastQueue();toast('이 곡의 커버/동영상 연결을 지웠습니다')}catch(e){console.warn(e);toast('미디어 연결을 지우지 못했습니다')}}
 async function applyBroadcastTrackMedia(index){
  revokeTrackAudienceUrls();const id=broadcastCurrentIds()[index];audienceTrackId='';if(!id)return {cover:'',video:''};
- try{const r=await broadcastDbGet(id);if(r){setBroadcastMediaInfo(id,r);if(r.videoBlob?.size)audienceTrackVideoUrl=URL.createObjectURL(r.videoBlob);if(r.coverBlob?.size)audienceTrackCoverUrl=URL.createObjectURL(r.coverBlob);if(r.videoBlob?.size||r.coverBlob?.size)audienceTrackId=id;if(!audienceTrackVideoUrl&&!audienceTrackCoverUrl&&r.blob?.size&&(String(r.type||'').startsWith('video/')||/\.(mp4|m4v|mov|webm)$/i.test(r.name||''))){audienceTrackId=id;audienceTrackVideoUrl=URL.createObjectURL(r.blob)}}if(!audienceTrackVideoUrl&&!audienceTrackCoverUrl){const g=await broadcastDbGet('__audience_global_video__');if(g?.videoBlob?.size){audienceTrackId='__audience_global_video__';audienceTrackVideoUrl=URL.createObjectURL(g.videoBlob)}}return {cover:audienceTrackCoverUrl,video:audienceTrackVideoUrl}}catch(e){console.warn('load track media',e);return {cover:'',video:''}}
+ try{const r=await broadcastDbGet(id);if(r){setBroadcastMediaInfo(id,r);if(r.videoBlob?.size)audienceTrackVideoUrl=URL.createObjectURL(r.videoBlob);if(r.coverBlob?.size)audienceTrackCoverUrl=URL.createObjectURL(r.coverBlob);if(r.videoBlob?.size||r.coverBlob?.size)audienceTrackId=id;if(!audienceTrackVideoUrl&&!audienceTrackCoverUrl&&r.blob?.size&&(String(r.type||'').startsWith('video/')||/\.(mp4|m4v|mov|webm)$/i.test(r.name||''))){audienceTrackId=id;audienceTrackVideoUrl=URL.createObjectURL(r.blob)}}return {cover:audienceTrackCoverUrl,video:audienceTrackVideoUrl}}catch(e){console.warn('load track media',e);return {cover:'',video:''}}
 }
 async function previewBroadcastTrackMedia(index){index=Number(index);if(!broadcastFiles[index])return;await applyBroadcastTrackMedia(index);const title=broadcastSafeTitle(broadcastFiles[index].name);publishAudienceState({title,status:'미리보기',message:audienceText()});openAudienceView();toast(`${title} · 곡별 커버/영상 미리보기`)}
 function saveBroadcastSettings(){const obj={custom:$('#broadcastCustomMessage')?.value||'',next:$('#broadcastNextTemplate')?.value||'다음 곡은 {title}입니다.',customEnabled:!!$('#broadcastCustomEnabled')?.checked,nextEnabled:!!$('#broadcastNextEnabled')?.checked,loop:!!$('#broadcastLoop')?.checked,audience:$('#broadcastAudienceText')?.value||'',subtitleEnabled:!!$('#broadcastSubtitleEnabled')?.checked,subtitleText:$('#broadcastSubtitleText')?.value||'',subtitlePosition:$('#broadcastSubtitlePosition')?.value||'bottom',subtitleSize:Number($('#broadcastSubtitleSize')?.value||22),autoSubtitle:$('#broadcastAutoSubtitle')?.checked!==false,karaokeEnabled:$('#broadcastKaraokeEnabled')?.checked!==false,pronunciationEnabled:$('#broadcastPronunciationEnabled')?.checked!==false};try{localStorage.setItem(BROADCAST_SETTINGS_KEY,JSON.stringify(obj))}catch{}}
@@ -1707,11 +1707,8 @@ async function audienceLoadTrackMedia(trackId,force=false){
  try{
   let r=requestedKey?await broadcastDbGet(requestedKey):null;
   let resolvedKey=requestedKey;
-  // no per-song media -> saved default video
-  if(!r?.coverBlob?.size&&!r?.videoBlob?.size){
-   const g=await broadcastDbGet('__audience_global_video__');
-   if(g?.videoBlob?.size){r=g;resolvedKey='__audience_global_video__';}
-  }
+  // V0.23.24: no per-song media -> built-in cover. Never resurrect an old
+  // saved global video from IndexedDB automatically.
   if(token!==audienceMediaLoadToken)return {cover:'',video:'',key:''};
   const stamp=Number(r?.mediaUpdatedAt||r?.updatedAt||0);
   if(!force&&resolvedKey&&audiencePopupMediaKey===resolvedKey&&audiencePopupMediaStamp===stamp&&(audiencePopupVideoUrl||audiencePopupCoverUrl)){
