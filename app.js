@@ -1628,7 +1628,11 @@ function broadcastSafeTitle(name=''){return String(name).replace(/\.[^.]+$/,'').
 // V0.22.71 — separate audience display from operator controls.
 const AUDIENCE_STATE_KEY='maru-audience-state-v1';
 const AUDIENCE_SUBTITLE_KEY='maru-audience-subtitle-v1';
-let audienceChannel=null,audienceSubtitleChannel=null,audienceCoverData='',audienceVideoUrl='';
+// V0.23.23: built-in broadcast fallback.  A saved per-song image/video or the
+// user's IndexedDB default video still has priority; only the empty state uses
+// this bundled image.  This does not modify or clear songs or saved settings.
+const BUILTIN_AUDIENCE_COVER_V02323='./default-broadcast-cover-v02323.jpg';
+let audienceChannel=null,audienceSubtitleChannel=null,audienceCoverData=BUILTIN_AUDIENCE_COVER_V02323,audienceVideoUrl='';
 try{audienceChannel='BroadcastChannel'in window?new BroadcastChannel('maru-audience-v1'):null}catch{}
 try{audienceSubtitleChannel='BroadcastChannel'in window?new BroadcastChannel('maru-audience-subtitle-v1'):null}catch{}
 function readAudienceState(){try{return JSON.parse(localStorage.getItem(AUDIENCE_STATE_KEY)||'{}')}catch{return {}}}
