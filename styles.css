@@ -1412,12 +1412,12 @@ body.obs-output-mode.obs-usb-relay-2300 #audienceCoverPlaceholder::after{
 
 /* V0.23.25: stable edge-to-edge media inside a mobile popup viewport. */
 @media (max-width: 760px) {
- html:has(body.audience-mode), body.audience-mode { margin:0!important; padding:0!important; width:100%!important; height:100%!important; overflow:hidden!important; }
- body.audience-mode .audience-view,
- body.audience-mode .audience-stage,
- body.audience-mode .audience-cover-wrap { position:fixed!important; inset:0!important; width:100%!important; height:100%!important; max-width:none!important; max-height:none!important; min-width:0!important; min-height:0!important; margin:0!important; padding:0!important; border:0!important; border-radius:0!important; overflow:hidden!important; }
- body.audience-mode #audienceVideo,
- body.audience-mode #audienceCover { position:absolute!important; inset:0!important; width:100%!important; height:100%!important; object-fit:cover!important; object-position:center center!important; transform:none!important; }
- body.audience-mode .audience-overlay { position:absolute!important; left:3%!important; right:3%!important; bottom:3%!important; width:auto!important; }
- body.audience-mode #audienceTitle { font-size:clamp(18px,6vw,36px)!important; }
+ html:has(body.audience-mode:is(.audience-mode):is(.audience-mode):is(.audience-mode)), body.audience-mode:is(.audience-mode):is(.audience-mode):is(.audience-mode) { margin:0!important; padding:0!important; width:100%!important; height:100%!important; overflow:hidden!important; }
+ body.audience-mode:is(.audience-mode):is(.audience-mode):is(.audience-mode) .audience-view,
+ body.audience-mode:is(.audience-mode):is(.audience-mode):is(.audience-mode) .audience-stage,
+ body.audience-mode:is(.audience-mode):is(.audience-mode):is(.audience-mode) .audience-cover-wrap { position:fixed!important; inset:0!important; width:100%!important; height:100%!important; max-width:none!important; max-height:none!important; min-width:0!important; min-height:0!important; margin:0!important; padding:0!important; border:0!important; border-radius:0!important; overflow:hidden!important; }
+ body.audience-mode:is(.audience-mode):is(.audience-mode):is(.audience-mode) #audienceVideo,
+ body.audience-mode:is(.audience-mode):is(.audience-mode):is(.audience-mode) #audienceCover { position:absolute!important; inset:0!important; width:100%!important; height:100%!important; object-fit:cover!important; object-position:center center!important; transform:none!important; }
+ body.audience-mode:is(.audience-mode):is(.audience-mode):is(.audience-mode) .audience-overlay { position:absolute!important; left:3%!important; right:3%!important; bottom:3%!important; width:auto!important; }
+ body.audience-mode:is(.audience-mode):is(.audience-mode):is(.audience-mode) #audienceTitle { font-size:clamp(18px,6vw,36px)!important; }
 }
