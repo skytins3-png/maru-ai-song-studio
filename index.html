@@ -41,14 +41,14 @@
 
   <header>
     <div class="brand">MARU <span>WORLD MUSIC MAKER</span></div>
-    <div class="tag">V0.23.25 · 모바일 팝업 영상 꽉 채움</div>
+    <div class="tag">V0.23.26 · Suno 원본 음질 보호</div>
   </header>
   <main>
     <section id="coreLauncher" class="core-launcher" aria-label="핵심 기능">
       <div class="core-launcher-title"><b>MARU 빠른 메뉴</b><span>평소에는 핵심 버튼만 표시 · 필요한 기능만 열기</span></div>
       <div class="core-launcher-grid">
         <button type="button" data-core-panel="audioAnalyzer" data-core-action="analysis">🎧 노래 분석</button>
-        <button type="button" class="primary" data-core-panel="audioAnalyzer" data-core-action="enhance">✨ AI 음질개선</button>
+        <button type="button" class="primary" data-core-panel="audioAnalyzer" data-core-action="enhance">🛡️ Suno 원본 듣기</button>
         <button type="button" class="primary" data-core-panel="scoreCard" data-core-action="score-play">🎼 편곡 악보 듣기</button>
         <button type="button" data-core-panel="storyCard" data-core-action="song-workflow">✍ 노래 만들기</button>
         <button type="button" data-core-panel="storyCard" data-core-action="compose">📝 제목·가사</button>
@@ -64,7 +64,7 @@
         <button type="button" data-core-panel="vocalCard">🎤 목소리 보정</button>
         <button type="button" data-core-panel="songLibrary">💾 저장함</button>
       </div>
-      <small>AI 음질개선 기본값: <b>새 반주 0%</b> · 원곡 유지 · 64밴드 음향 보정만 적용</small>
+      <small><b>Suno 원본 보호</b>: EQ 0 · 압축 0 · 리미터 0 · 음량 정규화 0 · 재마스터 0</small>
     </section>
     <section class="card audio-analyzer" id="audioAnalyzer">
       <div class="section-title"><div><h2>0. 🎧 노래 듣고 자동 편곡·악보</h2><p>필요한 버튼만 크게 보이도록 정리했습니다.</p></div></div>
@@ -76,8 +76,8 @@
       <div id="songMicStatus" class="analysis-box">파일을 선택하거나 마이크로 스피커의 노래를 들려줄 수 있습니다. 마이크 녹음은 끝내면 자동으로 분석합니다.</div><small>V0.22.78: 간편 화면을 적용했습니다. 가사·장르·분위기·빠르기·박자를 함께 보고 전통악기와 현대악기를 매번 다시 추천합니다. 같은 입력은 같은 조합을 유지하고, 다른 노래는 다른 조합이 나오도록 고정 악기 세트를 없앴습니다. AI 음질개선은 새 반주 없이 원곡만 보정하며 저역 풍성함과 고역 피로도를 자동 균형 조정하고, 편곡 악보 재생은 별도 버튼으로 분리했습니다.</small><div class="song-mic-level"><div class="song-mic-track" aria-label="마이크 입력 레벨"><div id="songMicLevelFill" class="song-mic-fill"></div></div><small id="songMicLevelText">대기</small></div><div id="analysisProgressCard" class="analysis-progress-card" aria-live="polite"><div class="analysis-progress-head"><b id="analysisProgressLabel">분석 대기</b><strong id="analysisProgressPct">0%</strong></div><div class="analysis-progress-track"><div id="analysisProgressFill"></div></div><small id="analysisProgressDetail">노래 파일을 고르거나 마이크 녹음을 끝내면 자동으로 시작합니다.</small></div>
       <audio id="sourceAudio" controls preload="metadata"></audio>
       <div class="quick-control-center">
-        <div class="quick-control-title"><b>🎛 한곳에서 듣기·확인</b><span>원곡 → AI 음질개선 → 편곡 악보를 필요할 때 확인합니다.</span></div>
-        <div class="quick-play-actions"><button id="playSourceSong" class="secondary" disabled>▶ 원곡</button><button id="playExtractedMelody" class="secondary" disabled>▶ 추출 멜로디</button><button id="playAnalyzedArrangement" class="primary" disabled>✨ AI 음질개선</button><button id="stopAnalyzedPlayback" class="danger">■ 정지</button><button id="jumpToScore" class="secondary">🎼 악보 보기</button></div>
+        <div class="quick-control-title"><b>🎛 Suno 원본 듣기</b><span>완성된 음질을 다시 보정하지 않고 파일을 그대로 재생합니다.</span></div>
+        <div class="quick-play-actions"><button id="playSourceSong" class="primary" disabled>▶ Suno 원본</button><button id="playExtractedMelody" class="secondary" disabled>▶ 추출 멜로디</button><button id="playAnalyzedArrangement" class="secondary" disabled>🛡️ 원본 보호 재생</button><button id="stopAnalyzedPlayback" class="danger">■ 정지</button><button id="jumpToScore" class="secondary">🎼 악보 보기</button></div>
         <div class="ab-compare-card"><div><b>🎧 원본 ↔ AI 분석 적용본 비교</b><span id="abCompareStatus">같은 곡을 A/B로 바로 비교합니다.</span></div><div class="ab-compare-actions"><button id="abOriginal" class="secondary" disabled>A · 원본 듣기</button><button id="abAnalyzed" class="primary" disabled>B · AI 음질개선본</button><button id="abStop" class="danger">■ 정지</button></div></div>
         <div class="auto64-mix-card simple-hidden-advanced"><div><b>✨ 64밴드 자동 믹싱</b><strong id="auto64MixBadge">항상 켜짐</strong></div><p id="auto64MixStatus">노래 분석 후 64밴드를 자동으로 맞춥니다.</p><small>형이 만질 것은 없습니다. 노래를 분석하면 보컬 자리 확보 · 저음 겹침 정리 · 원곡 보존 · 과한 고역 억제 · 리미터까지 자동으로 적용합니다.</small></div>
         <div class="batch-master-card compact-collapsible collapsed simple-hidden-advanced" id="batchMasterCard">
@@ -479,7 +479,7 @@
   <script src="vendor/vexflow.js?v=5.0.0"></script>
   <script src="vendor/sfumato.js?v=0.22.89"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="app.js?v=0.23.24"></script>
+  <script src="app.js?v=0.23.26"></script>
 
   <script>
   (function(){
