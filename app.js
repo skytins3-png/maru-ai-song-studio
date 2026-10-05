@@ -1513,6 +1513,39 @@ async function dedupeBroadcastPlaylist2311(ids=broadcastOrderRead()){
  if(removed||keptIds.length!==source.length)broadcastOrderWrite(keptIds);
  return{ids:keptIds,removed};
 }
+
+// V0.23.27 — recover the byte-exact Suno/original entry when an old MARU processed
+// copy was also added to the playlist. Nothing is deleted: the processed record stays
+// in IndexedDB as a fallback, while the visible playback order prefers the original.
+function originalRecoveryKey2327(name=''){
+ return String(name||'').replace(/\.[^.]+$/,'').toLowerCase()
+  .replace(/(?:[-_ ]*(?:maru[-_ ]*)?(?:preserve|processed|mastered|enhanced|ai[-_ ]*enhanced|음질개선|자동마스터|보정본))+$/gi,'')
+  .replace(/[\s_-]+/g,' ').trim();
+}
+function isProcessedBroadcastName2327(name=''){
+ return /(?:maru[-_ ]*(?:preserve|processed)|mastered|enhanced|ai[-_ ]*enhanced|음질개선|자동마스터|보정본)/i.test(String(name||''));
+}
+async function preferSavedOriginals2327(ids=[]){
+ const rows=[];
+ for(const id of ids){try{const r=await broadcastDbGet(id);if(r?.blob)rows.push({id,r})}catch(e){console.warn('original recovery scan',id,e)}}
+ const originals=new Map();
+ for(const x of rows)if(!isProcessedBroadcastName2327(x.r.name)){const key=originalRecoveryKey2327(x.r.name);if(key&&!originals.has(key))originals.set(key,x)}
+ let restored=0,missing=0;const out=[],seen=new Set();
+ for(const id of ids){
+  const x=rows.find(v=>v.id===id);if(!x){if(!seen.has(id)){out.push(id);seen.add(id)}continue}
+  if(isProcessedBroadcastName2327(x.r.name)){
+   const original=originals.get(originalRecoveryKey2327(x.r.name));
+   if(original&&original.id!==id){
+    try{if(mergeDuplicateBroadcastRecord2311(original.r,x.r))await broadcastDbPut(original.r)}catch(e){console.warn('original media merge',e)}
+    if(!seen.has(original.id)){out.push(original.id);seen.add(original.id)}restored++;continue;
+   }
+   missing++;
+  }
+  if(!seen.has(id)){out.push(id);seen.add(id)}
+ }
+ if(restored||out.length!==ids.length)broadcastOrderWrite(out);
+ return{ids:out,restored,missing,originals:out.length-missing};
+}
 async function updateBroadcastPersistStatus(prefix=''){const el=$('#broadcastPersistStatus');if(!el)return;let storage='';try{const est=await navigator.storage?.estimate?.();if(est?.usage!=null&&est?.quota)storage=` · 저장공간 ${(est.usage/1024/1024).toFixed(0)}MB / ${(est.quota/1024/1024/1024).toFixed(1)}GB`}catch{}el.textContent=`💾 ${prefix||`${broadcastFiles.length}곡 자동 저장됨 · 다음에 앱을 열어도 그대로 복원`}${storage}`}
 function refreshBroadcastListUi(message=''){broadcastIndex=-1;const start=$('#broadcastStart'),skip=$('#broadcastSkip'),stopb=$('#broadcastStop'),prev=$('#broadcastPrev'),pause=$('#broadcastPauseBtn');if(start)start.disabled=!broadcastFiles.length;if(skip)skip.disabled=!broadcastFiles.length;if(prev)prev.disabled=!broadcastFiles.length;if(pause)pause.disabled=true;if(stopb)stopb.disabled=true;if($('#broadcastBadge'))$('#broadcastBadge').textContent=broadcastFiles.length?`${broadcastFiles.length}곡`:'대기';if($('#broadcastNow'))$('#broadcastNow').textContent=message||(broadcastFiles.length?`${broadcastFiles.length}곡 준비 · 저장 목록을 자동 복원했습니다.`:'방송할 곡을 선택하세요.');renderBroadcastQueue();updateBroadcastPersistStatus()}
 
@@ -1576,7 +1609,7 @@ async function openBroadcastSubtitleEditor2266(index){
 async function autoAttachAllBroadcastSubtitles2266(){let count=0;for(let i=0;i<broadcastFiles.length;i++)if(await autoAttachBroadcastSubtitle2266(i,{silent:true}))count++;renderBroadcastQueue();return count}
 
 async function persistBroadcastPlaylist(files,{append=false}={}){const list=[...(files||[])].filter(broadcastIsPlayableFile).slice(0,100);if(!list.length)return false;await broadcastRequestPersistentStorage();const current=append?broadcastOrderRead():[],ids=[...current];for(const f of list){const id=broadcastFileId(f,f.name);let old=null;try{old=await broadcastDbGet(id)}catch{}const record={id,name:f.name||'방송곡',type:f.type||'audio/wav',size:f.size||0,lastModified:f.lastModified||Date.now(),addedAt:old?.addedAt||Date.now(),blob:f,coverBlob:old?.coverBlob||null,coverName:old?.coverName||'',videoBlob:old?.videoBlob||null,videoName:old?.videoName||'',mediaUpdatedAt:old?.mediaUpdatedAt||0,subtitleText:old?.subtitleText||cleanBroadcastSubtitle2266(broadcastSavedLyrics2266(f.name||'')),subtitleUpdatedAt:old?.subtitleUpdatedAt||0};await broadcastDbPut(record);setBroadcastMediaInfo(id,record);if(!ids.includes(id))ids.push(id)}broadcastOrderWrite(ids);const cleaned=await dedupeBroadcastPlaylist2311(ids),finalIds=cleaned.ids.slice(-100);broadcastOrderWrite(finalIds);return{saved:list.length,removed:cleaned.removed,total:finalIds.length}}
-async function restoreBroadcastPlaylist({removedBefore=0}={}){let cleanup={ids:broadcastOrderRead(),removed:0};try{cleanup=await dedupeBroadcastPlaylist2311(cleanup.ids)}catch(e){console.warn('broadcast duplicate cleanup',e)}const removed=Number(removedBefore||0)+Number(cleanup.removed||0),ids=cleanup.ids;broadcastTrackMedia.clear();if(!ids.length){broadcastTrackIds=[];const note=removed?` · 중복 ${removed}개 자동 제거`:'';refreshBroadcastListUi(`저장된 방송곡이 없습니다${note}. 한 번 선택하면 다음부터 자동 복원됩니다.`);renderLearningProfile();return{count:0,removed}}const files=[],good=[];for(const id of ids){try{const r=await broadcastDbGet(id);if(r?.blob){files.push(broadcastRecordToFile(r));good.push(id);setBroadcastMediaInfo(id,r)}}catch(e){console.warn('restore broadcast track',id,e)}}broadcastFiles=files;broadcastOrderWrite(good);const note=removed?` · 중복 ${removed}개 자동 제거`:'';refreshBroadcastListUi(files.length?`${files.length}곡 자동 복원 완료${note} · 곡별 커버/영상도 함께 복원됨`:`저장된 방송곡을 찾지 못했습니다${note}. 다시 한 번 선택해 주세요.`);renderLearningProfile();renderBroadcastQueue();if(files.length){toast(`방송목록 ${files.length}곡을 자동 복원했습니다${removed?` · 중복 ${removed}개 제거`:''}`);queueBroadcastAutoLearning(files,{delay:700});setTimeout(()=>autoAttachAllBroadcastSubtitles2266(),900)}return{count:files.length,removed}}
+async function restoreBroadcastPlaylist({removedBefore=0}={}){let cleanup={ids:broadcastOrderRead(),removed:0};try{cleanup=await dedupeBroadcastPlaylist2311(cleanup.ids)}catch(e){console.warn('broadcast duplicate cleanup',e)}let recovery={ids:cleanup.ids,restored:0,missing:0,originals:0};try{recovery=await preferSavedOriginals2327(cleanup.ids)}catch(e){console.warn('Suno original recovery',e)}const removed=Number(removedBefore||0)+Number(cleanup.removed||0),ids=recovery.ids;broadcastTrackMedia.clear();if(!ids.length){broadcastTrackIds=[];const note=removed?` · 중복 ${removed}개 자동 제거`:'';refreshBroadcastListUi(`저장된 방송곡이 없습니다${note}. Suno 원본 폴더를 한 번 선택해 주세요.`);renderLearningProfile();return{count:0,removed}}const files=[],good=[];for(const id of ids){try{const r=await broadcastDbGet(id);if(r?.blob){files.push(broadcastRecordToFile(r));good.push(id);setBroadcastMediaInfo(id,r)}}catch(e){console.warn('restore broadcast track',id,e)}}broadcastFiles=files;broadcastOrderWrite(good);const note=removed?` · 중복 ${removed}개 자동 제거`:'';const recoveryNote=recovery.restored?` · 처리본 ${recovery.restored}곡을 저장된 Suno 원본으로 복원`:recovery.missing?` · 원본을 못 찾은 처리본 ${recovery.missing}곡은 Suno 원본 재선택 필요`:` · 저장된 원본 ${files.length}곡 확인`;refreshBroadcastListUi(files.length?`${files.length}곡 자동 복원 완료${note}${recoveryNote} · 커버/영상 유지`:`저장된 방송곡을 찾지 못했습니다${note}. Suno 원본 폴더를 다시 선택해 주세요.`);renderLearningProfile();renderBroadcastQueue();if(files.length){toast(recovery.restored?`✅ ${recovery.restored}곡을 Suno 원본으로 복원했습니다`:`✅ 저장된 Suno 원본 ${files.length}곡을 그대로 불러왔습니다`);queueBroadcastAutoLearning(files,{delay:700});setTimeout(()=>autoAttachAllBroadcastSubtitles2266(),900)}return{count:files.length,removed,restored:recovery.restored,missing:recovery.missing}}
 async function addCurrentSourceToBroadcast({silent=false}={}){const src=importedAudioSource();if(!src?.blob)return toast('먼저 노래 파일을 선택하거나 녹음해 주세요');const name=src.name||`방송 녹음 ${new Date().toLocaleString('ko-KR')}.wav`,file=src.blob instanceof File?src.blob:new File([src.blob],name,{type:src.blob.type||'audio/wav',lastModified:Date.now()});try{const saved=await persistBroadcastPlaylist([file],{append:true}),restored=await restoreBroadcastPlaylist({removedBefore:saved?.removed||0});if(!silent)toast(restored?.removed?'동일한 노래가 이미 있어 중복 파일을 자동 제거하고 한 개만 유지했습니다.':'현재 노래를 방송목록에 저장했습니다. 다음 방송 때도 그대로 남습니다.');return true}catch(e){console.error('save current broadcast',e);toast('방송곡 저장공간이 부족하거나 브라우저 저장이 차단됐습니다.');return false}}
 async function clearSavedBroadcastPlaylist(){if(!broadcastFiles.length&&!broadcastOrderRead().length)return toast('비울 저장 방송목록이 없습니다');if(!confirm('저장된 방송곡 목록과 브라우저에 보관된 음원 파일을 모두 지울까요?'))return;broadcastStop(false);try{await broadcastDbClear()}catch(e){console.warn(e)}broadcastFiles=[];broadcastUrls=[];broadcastSelectedIds.clear();broadcastOrderWrite([]);refreshBroadcastListUi('저장 방송목록을 비웠습니다.');renderLearningProfile();toast('저장 방송목록을 모두 비웠습니다')}
 function broadcastCurrentIds(){
