@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0d0f14">
+  <title>MUSIC SHARE</title>
+  <link rel="stylesheet" href="styles.css?v=1">
+</head>
+<body>
+  <header class="top">
+    <div class="brand"><span class="disc">♪</span><div><b>MUSIC SHARE</b><small>LISTEN · DOWNLOAD</small></div></div>
+    <button id="shareSite" class="ghost" type="button">공유</button>
+  </header>
+  <main>
+    <section class="hero">
+      <p class="eyebrow">ORIGINAL MUSIC LIBRARY</p>
+      <h1>음악을 듣고<br>자유롭게 내려받으세요.</h1>
+      <p>공개 허용된 음악만 표시됩니다. 재생 후 마음에 들면 바로 저장할 수 있습니다.</p>
+      <div class="hero-meta"><span id="trackCount">0곡</span><span>무료 다운로드</span></div>
+    </section>
+    <section class="tools">
+      <input id="search" type="search" placeholder="곡 제목이나 아티스트 검색">
+      <select id="sort" aria-label="정렬">
+        <option value="newest">최신순</option>
+        <option value="title">제목순</option>
+        <option value="oldest">오래된순</option>
+      </select>
+    </section>
+    <section id="musicList" class="music-list" aria-live="polite"></section>
+    <div id="empty" class="empty" hidden>아직 공개된 음악이 없습니다.</div>
+  </main>
+  <footer>© MUSIC SHARE · 공개 다운로드 허용 곡만 제공</footer>
+  <div id="toast" class="toast" hidden></div>
+  <script src="app.js?v=1"></script>
+</body>
+</html>
