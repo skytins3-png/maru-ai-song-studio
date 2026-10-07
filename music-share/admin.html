@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0d0f14">
+  <title>MUSIC SHARE 관리자</title>
+  <link rel="stylesheet" href="styles.css?v=1">
+  <style>
+    .admin{max-width:720px;margin:auto;padding:24px 18px 60px}.admin h1{font-size:34px;margin:28px 0 8px}.admin .lead{color:var(--muted);line-height:1.65}.form{display:grid;gap:13px;margin-top:26px}.form label{display:grid;gap:7px;font-size:13px;font-weight:800;color:#cdd2dc}.form input,.form textarea{width:100%;border:1px solid var(--line);border-radius:13px;background:var(--panel);color:var(--text);padding:13px;font:inherit}.form textarea{min-height:100px;resize:vertical}.upload{min-height:52px;border:0;border-radius:14px;background:linear-gradient(135deg,#9f7cff,#5b43b5);color:#fff;font-size:16px;font-weight:900}.status{margin-top:14px;padding:14px;border-radius:13px;background:var(--panel);border:1px solid var(--line);color:#cbd1dc;line-height:1.6}.warn{margin-top:10px;color:#8f97a7;font-size:12px;line-height:1.6}.check{display:flex!important;grid-template-columns:auto 1fr!important;align-items:center;gap:9px!important}.check input{width:18px;height:18px}.admin-link{color:var(--accent2)}
+  </style>
+</head>
+<body>
+  <div class="admin">
+    <a class="admin-link" href="./">← 공개 음악 페이지</a>
+    <h1>음악 올리기</h1>
+    <p class="lead">이 화면은 관리자용입니다. 음악을 GitHub 저장소에 올리고 공개 목록에 자동 등록합니다.</p>
+    <div class="form">
+      <label>GitHub 관리자 토큰<input id="token" type="password" autocomplete="off" placeholder="이 탭에서만 사용 · 저장하지 않음"></label>
+      <label>곡 제목<input id="title" maxlength="120" placeholder="곡 제목"></label>
+      <label>아티스트 / 작곡가<input id="artist" maxlength="120" placeholder="예: 아환"></label>
+      <label>곡 설명<textarea id="description" maxlength="700" placeholder="곡 소개 또는 짧은 설명"></textarea></label>
+      <label>표지 이미지 · 선택<input id="cover" type="file" accept="image/*"></label>
+      <label>음악 파일<input id="audio" type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.flac"></label>
+      <label class="check"><input id="allow" type="checkbox"><span>이 곡을 다른 사람이 내려받을 수 있도록 공개합니다.</span></label>
+      <button id="upload" class="upload" type="button">⬆ 음악 공개 업로드</button>
+    </div>
+    <div id="status" class="status">대기 · 제목과 음악 파일을 선택하세요.</div>
+    <p class="warn">토큰은 이 페이지의 메모리에서만 사용하고 저장하지 않습니다. GitHub 저장소 Contents 쓰기 권한이 있는 토큰만 사용하세요. 음악 저작권 또는 배포 권한이 있는 파일만 공개하세요.</p>
+  </div>
+  <script src="admin.js?v=1"></script>
+</body>
+</html>
