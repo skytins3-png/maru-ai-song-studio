@@ -92,14 +92,23 @@
   }
 
   function prepareScreenLive() {
-    var start = $('broadcastStart');
     var message = $('bigoScreenLiveStatus');
-    if (start && !start.disabled) {
-      start.click();
-      if (message) message.textContent = '원곡 재생 준비됨 · BIGO에서 화면 LIVE/화면공유를 선택하고 시작을 직접 누르세요.';
-    } else if (message) {
-      message.textContent = '먼저 방송 파일을 추가하세요. 곡별 이미지·영상이 연결된 방송목록을 사용합니다.';
+    var start = $('broadcastStart');
+    if (!start || start.disabled) {
+      if (message) message.textContent = '먼저 아래에서 방송 파일을 추가하세요. 저장된 곡은 자동으로 불러옵니다.';
+      return;
     }
+    start.click();
+    if (message) message.textContent = '원곡 재생 시작 · BIGO를 열고 게임 LIVE/화면공유를 준비합니다.';
+    if (typeof window.startBigoScreenShareFlow2280 === 'function') window.startBigoScreenShareFlow2280();
+    else openBigoScreenLive();
+  }
+
+  function stopScreenLive() {
+    clickEnabled('broadcastStop');
+    try { localStorage.removeItem('maru-bigo-two-screen-flow-v2285'); } catch (_) {}
+    var message = $('bigoScreenLiveStatus');
+    if (message) message.textContent = '모바일 방송을 종료했습니다. OBS와 PC 방송 설정에는 영향을 주지 않습니다.';
   }
 
   function openBigoScreenLive() {
@@ -109,16 +118,18 @@
   }
 
   function mount() {
-    var anchor = $('originalBroadcastMode');
+    var anchor = document.querySelector('.broadcast-body');
     if (!anchor || $('bigoAudioLiveCard')) return;
     var screenCard = document.createElement('section');
     screenCard.id = 'bigoScreenLiveCard';
     screenCard.className = 'bigo-audio-live-card bigo-screen-live-card';
-    screenCard.innerHTML = '<div class="bigo-audio-live-title"><b>📱 1. 휴대폰 화면 LIVE</b><span>OBS 불필요 · 이미지/영상/자막 + 원곡</span></div>' +
-      '<p>곡마다 연결한 이미지·영상과 자막을 휴대폰 화면공유로 BIGO에 보냅니다. PC나 OBS를 실행하지 않습니다.</p>' +
-      '<div class="bigo-audio-live-actions"><button id="bigoScreenPrepare" class="primary" type="button">▶ 화면 LIVE 준비·재생</button><button id="bigoScreenOpen" class="secondary" type="button">BIGO 앱 열기</button></div>' +
-      '<div id="bigoScreenLiveStatus" class="bigo-audio-live-status" data-state="idle">대기 · BIGO에서 화면공유 권한과 최종 방송 시작은 직접 누릅니다.</div>';
-    anchor.insertAdjacentElement('afterend', screenCard);
+    screenCard.innerHTML = '<div class="bigo-audio-live-title"><b>📱 모바일 단독 방송</b><span>PC·OBS·Helper·USB 없이 휴대폰만 사용</span></div>' +
+      '<p>저장된 원곡과 곡별 이미지·영상·자막을 MARU 방송화면에 표시하고 BIGO의 게임 LIVE/화면공유로 보냅니다.</p>' +
+      '<div class="mobile-no-obs-badge">원곡 직접 재생 · 음질개선 재처리 없음</div>' +
+      '<div class="bigo-audio-live-actions"><button id="bigoScreenPrepare" class="primary mobile-live-start" type="button">🚀 모바일 방송 시작</button><button id="bigoScreenOpen" class="secondary" type="button">BIGO만 다시 열기</button><button id="bigoScreenStop" class="danger" type="button">■ 모바일 방송 종료</button></div>' +
+      '<div id="bigoScreenLiveStatus" class="bigo-audio-live-status" data-state="idle">사용법: 모바일 방송 시작 → BIGO 게임 LIVE/화면공유 시작 → MARU로 돌아오기</div>' +
+      '<small>BIGO의 보안상 최종 방송 시작과 화면공유 허용은 직접 눌러야 합니다. 그 외 준비와 화면 전환은 MARU가 자동으로 합니다.</small>';
+    anchor.insertAdjacentElement('afterbegin', screenCard);
     var card = document.createElement('section');
     card.id = 'bigoAudioLiveCard';
     card.className = 'bigo-audio-live-card';
@@ -137,6 +148,7 @@
     $('bigoAudioStopMode').addEventListener('click', stopMode);
     $('bigoScreenPrepare').addEventListener('click', prepareScreenLive);
     $('bigoScreenOpen').addEventListener('click', openBigoScreenLive);
+    $('bigoScreenStop').addEventListener('click', stopScreenLive);
     ['broadcastAudio', 'broadcastVideoPlayer'].forEach(function (id) {
       var media = $(id); if (media) media.addEventListener('play', updateMetadata);
     });
