@@ -1411,6 +1411,11 @@ body.obs-output-mode.obs-usb-relay-2300 #audienceCoverPlaceholder::after{
 .maru-complete-exit-2304:hover{opacity:1}
 
 /* V0.23.25: stable edge-to-edge media inside a mobile popup viewport. */
+.bigo-screen-live-card{border:2px solid rgba(72,245,204,.82)!important;background:linear-gradient(145deg,rgba(8,90,76,.72),rgba(64,31,112,.86))!important;box-shadow:0 16px 42px rgba(0,0,0,.28)}
+.mobile-no-obs-badge{margin:10px 0 12px;padding:10px 12px;border-radius:12px;background:rgba(55,238,190,.14);color:#aaffea;font-weight:900;text-align:center}
+.mobile-live-start{grid-column:1/-1;min-height:62px!important;font-size:1.12rem!important;font-weight:900!important}
+@media(max-width:560px){.bigo-screen-live-card{margin-top:0!important}.mobile-live-start{min-height:66px!important}}
+
 @media (max-width: 760px) {
  html:has(body.audience-mode:is(.audience-mode):is(.audience-mode):is(.audience-mode)), body.audience-mode:is(.audience-mode):is(.audience-mode):is(.audience-mode) { margin:0!important; padding:0!important; width:100%!important; height:100%!important; overflow:hidden!important; }
  body.audience-mode:is(.audience-mode):is(.audience-mode):is(.audience-mode) .audience-view,
