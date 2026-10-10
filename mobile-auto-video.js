@@ -3,7 +3,7 @@
 if(window.__MARU_AUTO_VIDEO_PLATFORM__) return;
 window.__MARU_AUTO_VIDEO_PLATFORM__=true;
 
-const VERSION='0.24.0';
+const VERSION='0.24.1';
 const state={images:[],imageUrls:[],audioFile:null,audioBuffer:null,scenes:[],previewIndex:0,recording:false};
 
 function qs(id){return document.getElementById(id);}
@@ -48,7 +48,14 @@ function injectUI(){
   const grid=document.querySelector('#coreLauncher .core-launcher-grid');
   if(grid && !qs('openAutoVideoPlatform')){
     const b=document.createElement('button'); b.type='button'; b.id='openAutoVideoPlatform'; b.className='primary'; b.textContent='🎬 자동 영상 만들기';
-    b.addEventListener('click',()=>{qs('autoVideoPlatform')?.scrollIntoView({behavior:'smooth',block:'start'});});
+    b.addEventListener('click',()=>{
+      const panel=qs('autoVideoPlatform');
+      if(!panel)return;
+      document.querySelectorAll('main>.card.core-panel-open').forEach(el=>el.classList.remove('core-panel-open'));
+      panel.classList.add('core-panel-open');
+      panel.classList.remove('collapsed');
+      panel.scrollIntoView({behavior:'smooth',block:'start'});
+    });
     grid.appendChild(b);
   }
   if(qs('autoVideoPlatform'))return;
