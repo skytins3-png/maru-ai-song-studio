@@ -4,6 +4,7 @@
   var MODE_KEY = 'maru-bigo-audio-live-prepared-v1';
   var wakeLock = null;
   var active = false;
+  var backgroundResumeTimer = 0;
 
   function $(id) { return document.getElementById(id); }
   function status(message, state) {
@@ -33,7 +34,25 @@
     var media = currentMedia();
     var source = media && (media.currentSrc || media.src) || '';
     var title = source ? decodeURIComponent(source.split('/').pop().split('?')[0]) : 'MARU 원곡 방송';
-    try { navigator.mediaSession.metadata = new MediaMetadata({ title: title, artist: 'MARU WORLD MUSIC MAKER', album: 'BIGO 오디오 LIVE' }); } catch (_) {}
+    try {
+      navigator.mediaSession.metadata = new MediaMetadata({ title: title, artist: 'MARU WORLD MUSIC MAKER', album: 'BIGO 오디오 LIVE' });
+      navigator.mediaSession.playbackState = media && !media.paused ? 'playing' : 'paused';
+    } catch (_) {}
+  }
+
+  function keepBackgroundPlaying() {
+    if (!active) return;
+    var media = currentMedia();
+    if (!media || !media.src || !media.paused) { updateMetadata(); return; }
+    media.muted = false; media.defaultMuted = false; media.volume = 1;
+    media.play().then(updateMetadata).catch(function () {});
+  }
+
+  function scheduleBackgroundResume() {
+    clearTimeout(backgroundResumeTimer);
+    backgroundResumeTimer = setTimeout(keepBackgroundPlaying, 120);
+    setTimeout(keepBackgroundPlaying, 700);
+    setTimeout(keepBackgroundPlaying, 1800);
   }
 
   function clickEnabled(id) {
@@ -98,6 +117,7 @@
       if (message) message.textContent = '먼저 아래에서 방송 파일을 추가하세요. 저장된 곡은 자동으로 불러옵니다.';
       return;
     }
+    prepare();
     start.click();
     if (message) message.textContent = '원곡 재생 시작 · BIGO를 열고 게임 LIVE/화면공유를 준비합니다.';
     if (typeof window.startBigoScreenShareFlow2280 === 'function') window.startBigoScreenShareFlow2280();
@@ -150,11 +170,27 @@
     $('bigoScreenOpen').addEventListener('click', openBigoScreenLive);
     $('bigoScreenStop').addEventListener('click', stopScreenLive);
     ['broadcastAudio', 'broadcastVideoPlayer'].forEach(function (id) {
-      var media = $(id); if (media) media.addEventListener('play', updateMetadata);
+      var media = $(id); if (!media) return;
+      media.setAttribute('preload', 'auto');
+      media.setAttribute('playsinline', '');
+      media.addEventListener('play', function () {
+        active = true;
+        try { localStorage.setItem(MODE_KEY, '1'); } catch (_) {}
+        installMediaControls(); updateMetadata();
+      });
+      media.addEventListener('pause', function () {
+        updateMetadata();
+        if (active && document.visibilityState === 'hidden') scheduleBackgroundResume();
+      });
     });
     try { if (localStorage.getItem(MODE_KEY) === '1') prepare(); } catch (_) {}
   }
 
-  document.addEventListener('visibilitychange', function () { if (active && document.visibilityState === 'visible') requestWakeLock(); });
+  document.addEventListener('visibilitychange', function () {
+    if (!active) return;
+    installMediaControls(); updateMetadata();
+    if (document.visibilityState === 'visible') requestWakeLock();
+    else scheduleBackgroundResume();
+  });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mount); else mount();
 })();
