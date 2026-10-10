@@ -3,7 +3,7 @@
 if(window.__MARU_AUTO_VIDEO_PLATFORM__) return;
 window.__MARU_AUTO_VIDEO_PLATFORM__=true;
 
-const VERSION='0.24.1';
+const VERSION='0.24.2';
 const state={images:[],imageUrls:[],audioFile:null,audioBuffer:null,scenes:[],previewIndex:0,recording:false};
 
 function qs(id){return document.getElementById(id);}
@@ -62,7 +62,7 @@ function injectUI(){
   const main=document.querySelector('main'); if(!main)return;
   const section=document.createElement('section'); section.className='card collapsible-card'; section.id='autoVideoPlatform';
   section.innerHTML=`
-    <div class="section-title"><div><h2>🎬 MARU 자동 영상 제작</h2><p>가사·설명·이미지·음원을 넣으면 장면/배경/상황을 자동 분리해 9:16 영상을 만듭니다.</p></div><strong>V${VERSION}</strong></div>
+    <div class="section-title"><div><h2>🎬 MARU 자동 영상 제작</h2><p>가사를 읽어 장면·배경·시간·분위기를 자동 구성하고 9:16 영상을 만듭니다.</p></div><strong>V${VERSION}</strong></div>
     <div class="auto-video-layout">
       <div class="auto-video-form">
         <label>영상 제목<input id="autoVideoTitle" type="text" placeholder="예: 가을이 좋다"></label>
@@ -72,11 +72,12 @@ function injectUI(){
           <label>장면 길이<select id="autoVideoSceneSeconds"><option value="4">빠르게 · 약 4초</option><option value="6" selected>보통 · 약 6초</option><option value="8">느리게 · 약 8초</option></select></label>
         </div>
         <div class="auto-video-actions">
-          <label class="auto-video-file-label" for="autoVideoImages">🖼 이미지 여러 장 선택</label><input id="autoVideoImages" class="auto-video-file" type="file" multiple accept="image/*">
+          <label class="auto-video-file-label" for="autoVideoImages">🖼 내 사진 추가 · 선택사항</label><input id="autoVideoImages" class="auto-video-file" type="file" multiple accept="image/*">
           <label class="auto-video-file-label" for="autoVideoAudio">🎵 노래 선택</label><input id="autoVideoAudio" class="auto-video-file" type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.flac">
         </div>
-        <div class="auto-video-actions"><button id="autoVideoAnalyze" type="button" class="primary">🧠 장면 자동 분석</button><button id="autoVideoPreview" type="button" class="secondary">▶ 미리보기</button><button id="autoVideoExport" type="button" class="primary">⬇ 영상 만들기</button></div>
-        <div id="autoVideoStatus" class="analysis-box" data-state="idle"><b>대기</b><span>가사/설명을 넣고 이미지를 선택한 뒤 장면 자동 분석을 누르세요.</span></div>
+        <button id="autoVideoOneTouch" type="button" class="primary" style="min-height:62px;font-size:17px">✨ 가사 읽고 자동 영상 만들기</button>
+        <div class="auto-video-actions"><button id="autoVideoAnalyze" type="button" class="secondary">🧠 장면 먼저 확인</button><button id="autoVideoPreview" type="button" class="secondary">▶ 미리보기</button><button id="autoVideoExport" type="button" class="primary">⬇ 영상 만들기</button></div>
+        <div id="autoVideoStatus" class="analysis-box" data-state="idle"><b>대기</b><span>가사와 노래를 넣고 한 번만 누르세요. 사진이 없어도 가사에 맞는 장면을 자동으로 만듭니다.</span></div>
         <div class="auto-video-progress"><i id="autoVideoProgress"></i></div>
         <div id="autoVideoScenes" class="auto-video-scenes"></div>
       </div>
@@ -227,6 +228,24 @@ function drawGradient(ctx,w,h,scene){
   ctx.fillStyle=g;ctx.fillRect(0,0,w,h);
 }
 
+function drawAutoSceneArt(ctx,w,h,scene,progress=0){
+  const p=clamp(progress,0,1),place=String(scene?.place||''),time=String(scene?.time||'');
+  const night=/야간|새벽|밤/.test(time+place),sunset=/노을|저녁/.test(time),sky=ctx.createLinearGradient(0,0,0,h);
+  if(night){sky.addColorStop(0,'#07152f');sky.addColorStop(.58,'#263054');sky.addColorStop(1,'#100b1c');}
+  else if(sunset){sky.addColorStop(0,'#432f68');sky.addColorStop(.52,'#e27868');sky.addColorStop(1,'#291529');}
+  else{sky.addColorStop(0,'#6ba9d6');sky.addColorStop(.62,'#d7b68b');sky.addColorStop(1,'#243145');}
+  ctx.fillStyle=sky;ctx.fillRect(0,0,w,h);
+  if(night){ctx.fillStyle='rgba(255,255,235,.88)';for(let i=0;i<38;i++){const x=(i*137)%w,y=(i*83)%(h*.58);ctx.fillRect(x,y,2+(i%2),2+(i%2));}ctx.beginPath();ctx.arc(w*.78,h*.16,w*.075,0,Math.PI*2);ctx.fill();}
+  const shift=(p-.5)*w*.035;
+  if(/바다|해변/.test(place)){ctx.fillStyle=night?'#101d3c':'#275d78';ctx.fillRect(0,h*.55,w,h*.45);for(let i=0;i<7;i++){ctx.strokeStyle=`rgba(255,255,255,${.12+i*.025})`;ctx.lineWidth=3;ctx.beginPath();for(let x=0;x<=w;x+=18)ctx.lineTo(x,h*(.61+i*.048)+Math.sin(x/42+p*5+i)*7);ctx.stroke();}}
+  else if(/산|고원|눈/.test(place)){ctx.fillStyle='#293449';ctx.beginPath();ctx.moveTo(-40,h*.76);ctx.lineTo(w*.26+shift,h*.30);ctx.lineTo(w*.49,h*.70);ctx.lineTo(w*.69-shift,h*.22);ctx.lineTo(w+40,h*.76);ctx.closePath();ctx.fill();ctx.fillStyle='rgba(238,244,255,.9)';ctx.beginPath();ctx.moveTo(w*.18,h*.44);ctx.lineTo(w*.26+shift,h*.30);ctx.lineTo(w*.34,h*.45);ctx.closePath();ctx.fill();ctx.beginPath();ctx.moveTo(w*.58,h*.37);ctx.lineTo(w*.69-shift,h*.22);ctx.lineTo(w*.80,h*.40);ctx.closePath();ctx.fill();ctx.fillStyle='#17202d';ctx.fillRect(0,h*.74,w,h*.26);}
+  else if(/도시|거리/.test(place)){ctx.fillStyle='#161727';for(let i=0;i<9;i++){const bw=w*(.08+(i%3)*.025),bh=h*(.17+(i%4)*.07),x=i*w*.12+shift;ctx.fillRect(x,h*.78-bh,bw,bh);ctx.fillStyle=sunset?'#ffd58a':'#8fc8e8';for(let yy=h*.8-bh;yy<h*.72;yy+=28)for(let xx=x+10;xx<x+bw-7;xx+=20)ctx.fillRect(xx,yy,6,10);ctx.fillStyle='#161727';}ctx.fillStyle='#232333';ctx.fillRect(0,h*.78,w,h*.22);}
+  else if(/기차|역/.test(place)){ctx.fillStyle='#26313e';ctx.fillRect(0,h*.68,w,h*.32);ctx.fillStyle='#57465b';ctx.fillRect(w*.08+shift,h*.48,w*.84,h*.25);ctx.fillStyle='#b8d8de';for(let i=0;i<6;i++)ctx.fillRect(w*(.14+i*.12)+shift,h*.52,w*.08,h*.09);ctx.fillStyle='#15151e';for(let i=0;i<5;i++){ctx.beginPath();ctx.arc(w*(.2+i*.15)+shift,h*.74,w*.035,0,Math.PI*2);ctx.fill();}}
+  else{ctx.fillStyle='#334033';ctx.fillRect(0,h*.66,w,h*.34);for(let i=0;i<14;i++){const x=(i*79+shift)%w;ctx.strokeStyle='#34251f';ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(x,h*.70);ctx.lineTo(x+8,h*(.42+(i%4)*.04));ctx.stroke();ctx.fillStyle=/가을/.test(place)?['#e49a3a','#c85a35','#f0bd51'][i%3]:'#3e6b48';ctx.beginPath();ctx.arc(x+8,h*(.42+(i%4)*.04),22+(i%3)*6,0,Math.PI*2);ctx.fill();}}
+  if(/눈/.test(place)){ctx.fillStyle='rgba(255,255,255,.9)';for(let i=0;i<55;i++){const x=(i*97+p*70)%w,y=(i*61+p*h*.25)%h;ctx.beginPath();ctx.arc(x,y,2+(i%4),0,Math.PI*2);ctx.fill();}}
+  if(/비/.test(place)){ctx.strokeStyle='rgba(190,220,255,.52)';ctx.lineWidth=2;for(let i=0;i<45;i++){const x=(i*73+p*100)%w,y=(i*47+p*200)%h;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x-9,y+28);ctx.stroke();}}
+}
+
 function drawScene(i,progress=0){
   const c=qs('autoVideoCanvas'); if(!c)return;
   fitCanvas(); const ctx=c.getContext('2d'); const w=c.width,h=c.height;
@@ -241,7 +260,7 @@ function drawScene(i,progress=0){
       ctx.drawImage(img,(w-dw)/2,(h-dh)/2,dw,dh);
       drawOverlay(ctx,w,h,scene,i);
     }; img.src=url;
-  }else drawOverlay(ctx,w,h,scene,i);
+  }else {drawAutoSceneArt(ctx,w,h,scene,progress);drawOverlay(ctx,w,h,scene,i);}
 }
 
 function drawOverlay(ctx,w,h,scene,i){
@@ -333,6 +352,7 @@ function bind(){
   });
   qs('autoVideoAudio')?.addEventListener('change',async e=>{state.audioFile=e.target.files?.[0]||null;await loadAudio(state.audioFile);if(state.scenes.length)analyze();});
   qs('autoVideoAnalyze')?.addEventListener('click',analyze);
+  qs('autoVideoOneTouch')?.addEventListener('click',async()=>{analyze();if(state.scenes.length)await exportVideo();});
   qs('autoVideoPreview')?.addEventListener('click',startPreview);
   qs('autoVideoExport')?.addEventListener('click',exportVideo);
   qs('autoVideoRatio')?.addEventListener('change',()=>drawScene(state.previewIndex,0));
