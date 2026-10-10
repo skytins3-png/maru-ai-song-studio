@@ -3,8 +3,8 @@
 if(window.__MARU_AUTO_VIDEO_PLATFORM__) return;
 window.__MARU_AUTO_VIDEO_PLATFORM__=true;
 
-const VERSION='0.24.2';
-const state={images:[],imageUrls:[],audioFile:null,audioBuffer:null,scenes:[],previewIndex:0,recording:false};
+const VERSION='0.24.3';
+const state={images:[],imageUrls:[],audioFile:null,audioBuffer:null,scenes:[],previewIndex:0,recording:false,preparing:false,preparedFile:null,lastAutoTitle:'',lastAutoLyrics:''};
 
 function qs(id){return document.getElementById(id);}
 function escapeHtml(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
@@ -65,19 +65,19 @@ function injectUI(){
     <div class="section-title"><div><h2>🎬 MARU 자동 영상 제작</h2><p>가사를 읽어 장면·배경·시간·분위기를 자동 구성하고 9:16 영상을 만듭니다.</p></div><strong>V${VERSION}</strong></div>
     <div class="auto-video-layout">
       <div class="auto-video-form">
-        <label>영상 제목<input id="autoVideoTitle" type="text" placeholder="예: 가을이 좋다"></label>
-        <label>가사 또는 장면 설명<textarea id="autoVideoLyrics" placeholder="[Verse 1] 가사...&#10;[Chorus] 후렴...&#10;&#10;가사가 없으면 만들고 싶은 영상 상황을 문장으로 적어도 됩니다."></textarea></label>
+        <label>영상 제목 · 노래 파일명에서 자동<input id="autoVideoTitle" type="text" placeholder="노래를 고르면 자동 입력됩니다"></label>
+        <label>가사 · 노래 음성에서 AI 자동 인식<textarea id="autoVideoLyrics" placeholder="노래를 고르면 가사가 자동으로 들어옵니다. 필요할 때만 직접 고치세요."></textarea></label>
         <div class="auto-video-mini">
           <label>화면 비율<select id="autoVideoRatio"><option value="9:16" selected>9:16 세로 · Shorts/BIGO</option><option value="1:1">1:1 정사각</option><option value="16:9">16:9 가로 · YouTube</option></select></label>
           <label>장면 길이<select id="autoVideoSceneSeconds"><option value="4">빠르게 · 약 4초</option><option value="6" selected>보통 · 약 6초</option><option value="8">느리게 · 약 8초</option></select></label>
         </div>
         <div class="auto-video-actions">
           <label class="auto-video-file-label" for="autoVideoImages">🖼 내 사진 추가 · 선택사항</label><input id="autoVideoImages" class="auto-video-file" type="file" multiple accept="image/*">
-          <label class="auto-video-file-label" for="autoVideoAudio">🎵 노래 선택</label><input id="autoVideoAudio" class="auto-video-file" type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.flac">
+          <label class="auto-video-file-label" for="autoVideoAudio">🎵 노래 하나 선택 · 제목/가사 자동</label><input id="autoVideoAudio" class="auto-video-file" type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.flac">
         </div>
-        <button id="autoVideoOneTouch" type="button" class="primary" style="min-height:62px;font-size:17px">✨ 가사 읽고 자동 영상 만들기</button>
+        <button id="autoVideoOneTouch" type="button" class="primary" style="min-height:62px;font-size:17px">✨ 준비된 노래로 자동 영상 만들기</button>
         <div class="auto-video-actions"><button id="autoVideoAnalyze" type="button" class="secondary">🧠 장면 먼저 확인</button><button id="autoVideoPreview" type="button" class="secondary">▶ 미리보기</button><button id="autoVideoExport" type="button" class="primary">⬇ 영상 만들기</button></div>
-        <div id="autoVideoStatus" class="analysis-box" data-state="idle"><b>대기</b><span>가사와 노래를 넣고 한 번만 누르세요. 사진이 없어도 가사에 맞는 장면을 자동으로 만듭니다.</span></div>
+        <div id="autoVideoStatus" class="analysis-box" data-state="idle"><b>대기</b><span>노래 하나만 선택하세요. 제목·가사·장면을 자동으로 준비합니다. 사진은 선택사항입니다.</span></div>
         <div class="auto-video-progress"><i id="autoVideoProgress"></i></div>
         <div id="autoVideoScenes" class="auto-video-scenes"></div>
       </div>
@@ -156,6 +156,38 @@ async function loadAudio(file){
     state.audioBuffer=null;
     setStatus('음원 길이를 읽지 못했습니다. 장면 기본 길이로 영상을 만듭니다.','error');
   }
+}
+
+function titleFromAudio(file){
+  return String(file?.name||'').replace(/\.[^.]+$/,'').replace(/[_-]+/g,' ').replace(/\s+/g,' ').trim()||'MARU MUSIC';
+}
+
+async function prepareSong(file){
+  if(!file||state.preparing)return false;
+  if(state.preparedFile===file&&state.scenes.length)return true;
+  state.preparing=true;
+  const titleEl=qs('autoVideoTitle'),lyricsEl=qs('autoVideoLyrics');
+  try{
+    const autoTitle=titleFromAudio(file);
+    if(titleEl&&(!titleEl.value.trim()||titleEl.value===state.lastAutoTitle))titleEl.value=autoTitle;
+    state.lastAutoTitle=autoTitle;
+    await loadAudio(file);
+    if(!lyricsEl)throw new Error('가사 입력 화면을 찾지 못했습니다');
+    if(!lyricsEl.value.trim()||lyricsEl.value===state.lastAutoLyrics){
+      if(typeof window.maruTranscribeAudioFile2276!=='function')throw new Error('AI 가사 엔진을 불러오지 못했습니다. 앱을 새로 열어 주세요');
+      const lyrics=await window.maruTranscribeAudioFile2276(file,msg=>setStatus(msg,'busy'));
+      lyricsEl.value=lyrics;
+      state.lastAutoLyrics=lyrics;
+    }
+    analyze();
+    state.preparedFile=file;
+    setStatus('제목·가사·'+state.scenes.length+'개 장면 자동 준비 완료 · 아래 영상 만들기 버튼을 누르세요.','ready');
+    return true;
+  }catch(err){
+    state.preparedFile=null;
+    setStatus('가사 자동 인식 실패 · '+(err?.message||String(err))+' · 가사 칸에 직접 붙여넣어도 됩니다.','error');
+    return false;
+  }finally{state.preparing=false;}
 }
 
 function analyze(){
@@ -350,9 +382,16 @@ function bind(){
     state.imageUrls.forEach(u=>URL.revokeObjectURL(u));state.images=[...(e.target.files||[])];state.imageUrls=state.images.map(f=>URL.createObjectURL(f));
     setStatus('이미지 '+state.images.length+'장을 불러왔습니다. 장면 순서대로 자동 반복 배치합니다.','ready');drawScene(state.previewIndex,0);
   });
-  qs('autoVideoAudio')?.addEventListener('change',async e=>{state.audioFile=e.target.files?.[0]||null;await loadAudio(state.audioFile);if(state.scenes.length)analyze();});
+  qs('autoVideoAudio')?.addEventListener('change',async e=>{
+    state.audioFile=e.target.files?.[0]||null;state.preparedFile=null;
+    if(state.audioFile)await prepareSong(state.audioFile);
+  });
   qs('autoVideoAnalyze')?.addEventListener('click',analyze);
-  qs('autoVideoOneTouch')?.addEventListener('click',async()=>{analyze();if(state.scenes.length)await exportVideo();});
+  qs('autoVideoOneTouch')?.addEventListener('click',async()=>{
+    if(!state.audioFile){setStatus('먼저 노래 하나를 선택하세요.','error');return;}
+    if(state.preparedFile!==state.audioFile||!state.scenes.length){const ok=await prepareSong(state.audioFile);if(!ok)return;}
+    await exportVideo();
+  });
   qs('autoVideoPreview')?.addEventListener('click',startPreview);
   qs('autoVideoExport')?.addEventListener('click',exportVideo);
   qs('autoVideoRatio')?.addEventListener('change',()=>drawScene(state.previewIndex,0));
