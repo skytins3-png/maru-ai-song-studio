@@ -3765,9 +3765,9 @@ function maruObsUsbRelayStart2300(){
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(maruObsUsbRelayStart2300,250),{once:true});
 else setTimeout(maruObsUsbRelayStart2300,250);
 
-/* V0.23.00 remote USB playback:
-   The control page is muted (for reliable autoplay/timing).
-   The dedicated OBS window is the audible source. */
+/* V0.23.31 remote USB/mobile playback:
+   Mobile broadcasting must keep every selected track audible without OBS.
+   The OBS relay still receives play-state updates when it is connected. */
 async function maruUsbSetPlayState2300(state){
   try{
     await maruUsbPost2296('http://127.0.0.1:8765','/api/usb/play-state',{
@@ -3790,8 +3790,8 @@ playBroadcastIndex=async function(i){
   try{
     const r=await maruUsbRequestTrack2296(i);
     el.src=r.source;
-    // Muted playback is allowed after long async one-touch setup and still gives us onended timing.
-    el.muted=true;el.defaultMuted=true;el.volume=0;
+    // Keep the phone player audible: BIGO mobile captures this app audio directly.
+    el.muted=false;el.defaultMuted=false;el.volume=1;
     el.load();
     document.getElementById('broadcastAudio').style.display=isVideo?'none':'block';
     document.getElementById('broadcastVideoPlayer').style.display=isVideo?'block':'none';
@@ -3804,10 +3804,13 @@ playBroadcastIndex=async function(i){
       if(tx)tx.value=sub;if(en)en.checked=true;
     }
     markBroadcastRecent(f.name);
-    document.getElementById('broadcastNow').textContent=`🔌 USB 원곡 방송 · ${i+1}/${broadcastFiles.length} · ${title} · OBS창에서 원곡 출력`;
+    document.getElementById('broadcastNow').textContent=`🔌 원곡 방송 · ${i+1}/${broadcastFiles.length} · ${title} · 휴대폰에서 연속 재생`;
     document.getElementById('broadcastBadge').textContent=`USB 방송 ${i+1}/${broadcastFiles.length}`;
     publishAudienceState({title,trackIndex:i,status:`USB 원곡 방송 · ${i+1}/${broadcastFiles.length}`,message:audienceText(),announcement:'',cover:audienceTrackCoverUrl,video:audienceTrackVideoUrl,subtitle:audienceSubtitleState()});
     await el.play();
+    // Some Android builds reapply a muted state while changing media sources.
+    // Restore original-volume playback after play() has attached the new track.
+    el.muted=false;el.defaultMuted=false;el.volume=1;
     await maruUsbSetPlayState2300('playing');
   }catch(e){
     console.error(e);
