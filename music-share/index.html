@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#0d0f14">
   <title>MUSIC SHARE</title>
-  <link rel="stylesheet" href="styles.css?v=1">
+  <link rel="stylesheet" href="styles.css?v=2">
 </head>
 <body>
   <header class="top">
@@ -20,7 +20,7 @@
       <div class="hero-meta"><span id="trackCount">0곡</span><span>무료 다운로드</span></div>
     </section>
     <section class="tools">
-      <input id="search" type="search" placeholder="곡 제목이나 아티스트 검색">
+      <input id="search" type="search" aria-label="곡 제목, 아티스트, 설명 검색" placeholder="곡 제목이나 아티스트 검색">
       <select id="sort" aria-label="정렬">
         <option value="newest">최신순</option>
         <option value="title">제목순</option>
@@ -31,7 +31,9 @@
     <div id="empty" class="empty" hidden>아직 공개된 음악이 없습니다.</div>
   </main>
   <footer>© MUSIC SHARE · 공개 다운로드 허용 곡만 제공</footer>
-  <div id="toast" class="toast" hidden></div>
-  <script src="app.js?v=1"></script>
+  <div id="shareFallback" class="share-fallback" hidden><label for="shareUrl">공유 링크 · 길게 눌러 복사</label><input id="shareUrl" readonly type="url"></div>
+  <div id="toast" role="status" class="toast" hidden></div>
+  <script src="common.js?v=2"></script>
+  <script src="app.js?v=2"></script>
 </body>
 </html>
