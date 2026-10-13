@@ -1895,7 +1895,16 @@ async function applyAudienceState(state={}){
 function publishAudienceState(partial={}){const prev=readAudienceState();const state={...prev,title:prev.title||'방송 대기',status:prev.status||'MARU MUSIC LIVE',message:audienceText()||prev.message||'',subtitle:prev.subtitle||audienceSubtitleState(),trackId:audienceTrackId||'',cover:audienceTrackCoverUrl||audienceCoverData||BUILTIN_AUDIENCE_COVER_V02323,video:audienceTrackVideoUrl||(audienceTrackId?'':audienceVideoUrl)||'',...partial,updatedAt:Date.now()};try{localStorage.setItem(AUDIENCE_STATE_KEY,JSON.stringify({...state,cover:audienceCoverData||BUILTIN_AUDIENCE_COVER_V02323,video:''}))}catch{}try{audienceChannel?.postMessage(state)}catch{}try{if(new URLSearchParams(location.search).get('mode')==='audience')applyAudienceState(state)}catch{}return state}
 window.addEventListener('beforeunload',()=>{revokeAudiencePopupMediaUrls()});
 function setupAudienceMode(){const q=new URLSearchParams(location.search),audience=q.get('mode')==='audience',layout=q.get('layout')||'',obs=layout==='obs'||q.get('obs')==='1',dual=layout==='bigo-dual'||q.get('dual')==='1',bigoFloat=layout==='bigo-float'||dual||q.get('share')==='1';if(audience&&obs){try{document.title='MARU_OBS_LIVE'}catch(e){}}document.body.classList.toggle('audience-mode',audience);document.body.classList.toggle('obs-output-mode',audience&&obs);document.body.classList.toggle('bigo-float-mode',audience&&bigoFloat);document.body.classList.toggle('screen-share-mode',audience&&bigoFloat);document.body.classList.toggle('dual-screen-mode',audience&&dual);applyAudienceState(readAudienceState());const sub=readAudienceSubtitlePacket();if(sub?.subtitle)applyAudienceSubtitle(sub);try{audienceChannel&&(audienceChannel.onmessage=e=>applyAudienceState(e.data||{}))}catch{}try{audienceSubtitleChannel&&(audienceSubtitleChannel.onmessage=e=>applyAudienceSubtitle(e.data||{}))}catch{}window.addEventListener('storage',e=>{if(e.key===AUDIENCE_STATE_KEY)applyAudienceState(readAudienceState());else if(e.key===AUDIENCE_SUBTITLE_KEY)applyAudienceSubtitle(readAudienceSubtitlePacket())})}
-function openAudienceView(){const installed=window.matchMedia?.('(display-mode: standalone)').matches||window.matchMedia?.('(display-mode: fullscreen)').matches||window.navigator.standalone===true;if(!installed){try{window.installMaruPwa?.()}catch(e){};return toast('주소창 없는 MARU 앱 설치 후 화면공유 모드를 사용해 주세요.');}publishAudienceState({message:audienceText()});const url=new URL(location.href);url.searchParams.set('mode','audience');url.searchParams.set('layout','bigo-float');url.searchParams.set('share','1');location.href=url.toString()}
+function openAudienceView(){
+ const installed=window.matchMedia?.('(display-mode: standalone)').matches||window.matchMedia?.('(display-mode: fullscreen)').matches||window.navigator.standalone===true;
+ if(!installed){try{window.installMaruPwa?.()}catch(e){};return toast('주소창 없는 MARU 앱 설치 후 화면공유 모드를 사용해 주세요.')}
+ publishAudienceState({message:audienceText()});
+ const url=new URL(location.href);url.searchParams.set('mode','audience');url.searchParams.set('layout','bigo-float');url.searchParams.set('share','1');
+ if(broadcastAndroidAudioEnabled()&&broadcastRunning){
+  try{history.replaceState(history.state,'',url.toString());setupAudienceMode();publishAudienceState({status:'BIGO 화면공유 · 음악 재생 유지'});return}catch(e){console.warn('audience mode handoff',e)}
+ }
+ location.href=url.toString();
+}
 
 /* V0.22.85 — clean 16:9 OBS output for BIGO normal LIVE on PC.
    This does not bypass BIGO's mobile capture rules; it provides a clean source window
@@ -2150,7 +2159,17 @@ function enterPreparedAudience2280(){
   url.searchParams.set('dual','1');
   url.searchParams.set('from','bigo');
   clearBigoFlow2280();
-  // Reload only at the final handoff so audience CSS/PWA bootstrap starts in a clean state.
+  // Android: a full location.href navigation destroys the live Audio() object,
+  // making every BIGO handoff stop the music. Switch the existing document's
+  // audience layout instead, preserving the playing sound and playlist cursor.
+  if(broadcastAndroidAudioEnabled()&&broadcastRunning){
+    try{
+      history.replaceState(history.state,'',url.toString());
+      setupAudienceMode();
+      publishAudienceState({status:'BIGO 화면공유 · 음악 재생 유지'});
+      return;
+    }catch(e){console.warn('BIGO in-place audience mode failed',e)}
+  }
   location.href=url.toString();
 }
 function launchBigoAndroid2280(){
