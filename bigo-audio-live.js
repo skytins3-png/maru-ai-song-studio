@@ -25,8 +25,21 @@
   }
 
   function currentMedia() {
-    return $('broadcastVideoPlayer') && !$('broadcastVideoPlayer').paused
-      ? $('broadcastVideoPlayer') : $('broadcastAudio');
+    // Android may pause the video element when the PWA goes into the background.
+    // Do not switch to an empty audio element merely because the active video paused.
+    var video = $('broadcastVideoPlayer');
+    var audio = $('broadcastAudio');
+    if (video && video.getAttribute('src') && video.style.display !== 'none') return video;
+    return audio && audio.getAttribute('src') ? audio : null;
+  }
+
+  function shouldResumePlayback() {
+    // Only resume if the MARU playlist is actually meant to be playing.
+    // A user-initiated pause must stay paused even when the app is hidden.
+    try {
+      return typeof broadcastRunning !== 'undefined' &&
+        typeof broadcastPaused !== 'undefined' && broadcastRunning && !broadcastPaused;
+    } catch (_) { return false; }
   }
 
   function updateMetadata() {
@@ -41,11 +54,17 @@
   }
 
   function keepBackgroundPlaying() {
-    if (!active) return;
+    if (!active || !shouldResumePlayback()) return;
     var media = currentMedia();
-    if (!media || !media.src || !media.paused) { updateMetadata(); return; }
-    media.muted = false; media.defaultMuted = false; media.volume = 1;
-    media.play().then(updateMetadata).catch(function () {});
+    if (!media || !media.getAttribute('src') || !media.paused || media.ended) {
+      updateMetadata(); return;
+    }
+    // Keep the user's audio level intact; don't force a fresh volume on resume.
+    media.play().then(updateMetadata).catch(function () {
+      // A mobile browser may reject playback after its page was suspended.
+      // It cannot be bypassed by a PWA timer; user interaction may be required.
+      updateMetadata();
+    });
   }
 
   function scheduleBackgroundResume() {
@@ -65,7 +84,13 @@
   function installMediaControls() {
     if (!('mediaSession' in navigator)) return;
     var actions = {
-      play: function () { var m = currentMedia(); if (m) m.play().catch(function () {}); },
+      play: function () {
+        if (typeof broadcastStartOrResume === 'function') {
+          Promise.resolve(broadcastStartOrResume()).then(updateMetadata).catch(function () {});
+        } else {
+          var m = currentMedia(); if (m) m.play().then(updateMetadata).catch(function () {});
+        }
+      },
       pause: function () { clickEnabled('broadcastPauseBtn'); },
       previoustrack: function () { clickEnabled('broadcastPrev'); },
       nexttrack: function () { clickEnabled('broadcastSkip'); },
@@ -180,7 +205,9 @@
       });
       media.addEventListener('pause', function () {
         updateMetadata();
-        if (active && document.visibilityState === 'hidden') scheduleBackgroundResume();
+        if (active && shouldResumePlayback() && document.visibilityState === 'hidden') {
+          scheduleBackgroundResume();
+        }
       });
     });
     try { if (localStorage.getItem(MODE_KEY) === '1') prepare(); } catch (_) {}
@@ -190,7 +217,7 @@
     if (!active) return;
     installMediaControls(); updateMetadata();
     if (document.visibilityState === 'visible') requestWakeLock();
-    else scheduleBackgroundResume();
+    else if (shouldResumePlayback()) scheduleBackgroundResume();
   });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mount); else mount();
 })();
