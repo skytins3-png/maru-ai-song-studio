@@ -21,6 +21,8 @@
       hidden: document.visibilityState === 'hidden',
       paused: media ? !!media.paused : true,
       ended: media ? !!media.ended : false,
+      muted: media ? !!media.muted : false,
+      elementVolume: media ? Number(media.volume) : null,
       seconds: media ? Math.round((Number(media.currentTime) || 0) * 10) / 10 : 0,
       error: extra || ''
     };
@@ -39,6 +41,10 @@
         : '수동 일시정지 또는 방송 대기 상태입니다.';
     if (s.cause === 'resume-failed') hint = '다른 앱 사용 중 자동 재생이 차단되었습니다. 돌아오면 재시도합니다.';
     if (s.cause === 'resume-ok') hint = '중단된 음악 재생을 다시 시작했습니다.';
+    if (s.cause === 'focus-session-pause') hint = '다른 앱으로 이동한 상태에서 재생 중단 신호가 왔습니다. 방송곡은 종료하지 않고 복구를 시도합니다.';
+    if (s.cause === 'sound-output-reconnected') hint = '소리 출력 연결을 다시 요청했습니다. 실제 미디어·통화 음량은 갤럭시가 제어합니다.';
+    if (s.cause === 'sound-recovery-failed') hint = '소리 복구가 거부되었습니다. 다른 앱의 오디오 사용이 끝나면 다시 시도하세요.';
+    if (s.muted && s.expected) hint = 'MARU 오디오 요소가 음소거 상태입니다. 🔊 소리 복구를 눌러주세요.';
     box.textContent = '🎵 다른 앱 재생 점검 · ' + hint;
     box.dataset.state = s.cause === 'resume-failed' ? 'warn' : 'ready';
   }
@@ -113,6 +119,43 @@
     }
   }
 
+  async function recoverSound() {
+    var media = currentMedia();
+    if (!media || !media.getAttribute('src')) {
+      status('먼저 MARU 원곡 방송을 재생하세요. 파일·목록은 그대로 유지됩니다.', 'warn');
+      return false;
+    }
+    var buttons = [$('broadcastSoundRestore'), $('bigoAudioRecover')];
+    buttons.forEach(function (b) { if (b) b.disabled = true; });
+    var at = Number.isFinite(media.currentTime) ? media.currentTime : 0;
+    try {
+      // Refresh this existing Android media session in a real user gesture.
+      // Do not reload the page, replace the Blob URL or decode/remaster audio.
+      media.muted = false;
+      media.defaultMuted = false;
+      try { media.volume = 1; } catch (_) {}
+      if (!shouldResumePlayback()) {
+        if (typeof broadcastStartOrResume !== 'function') throw new Error('재생 대기 상태');
+        await broadcastStartOrResume();
+      } else {
+        // If audio focus dropped output while paused=false, pause/play reissues
+        // a playback request without recreating the track or seeking to 0.
+        if (!media.paused) media.pause();
+        await media.play();
+      }
+      updateMetadata();
+      recordAudioState('sound-output-reconnected');
+      status('MARU 음악 출력 다시 연결 요청 완료 · 현재 곡 ' + Math.round(at) + '초 위치 유지. 소리가 없으면 BIGO의 오디오 경로/우선권을 확인해야 합니다.', 'ready');
+      return true;
+    } catch (err) {
+      var reason = err && err.name ? err.name : '재생 차단';
+      recordAudioState('sound-recovery-failed', reason);
+      status('소리 복구 실패 (' + reason + ') · BIGO가 오디오를 독점 사용 중일 수 있습니다. MARU로 돌아와 다시 눌러주세요.', 'warn');
+      return false;
+    } finally {
+      buttons.forEach(function (b) { if (b) b.disabled = false; });
+    }
+  }
   function scheduleBackgroundResume() {
     clearTimeout(backgroundResumeTimer);
     backgroundResumeTimers.forEach(clearTimeout);
@@ -146,7 +189,19 @@
           var m = currentMedia(); if (m) m.play().then(updateMetadata).catch(function () {});
         }
       },
-      pause: function () { recordAudioState('media-session-pause'); clickEnabled('broadcastPauseBtn'); },
+      pause: function () {
+        // Android/BIGO can suspend a background MediaSession. Previously this
+        // blindly clicked 'broadcastPauseBtn', converting a transient focus
+        // interruption into permanent user pause (broadcastPaused=true), so
+        // raising the hardware volume could never resume MARU automatically.
+        if (document.visibilityState === 'hidden' && shouldResumePlayback()) {
+          recordAudioState('focus-session-pause');
+          scheduleBackgroundResume();
+          return;
+        }
+        recordAudioState('media-session-pause');
+        clickEnabled('broadcastPauseBtn');
+      },
       previoustrack: function () { clickEnabled('broadcastPrev'); },
       nexttrack: function () { clickEnabled('broadcastSkip'); },
       stop: function () { clickEnabled('broadcastStop'); }
@@ -239,7 +294,7 @@
     card.className = 'bigo-audio-live-card';
     card.innerHTML = '<div class="bigo-audio-live-title"><b>🎙 2. BIGO 오디오 LIVE</b><span>OBS 불필요 · 소리 전용</span></div>' +
       '<p>원곡을 그대로 재생하고 BIGO 오디오 방으로 전환합니다. <strong>곡별 이미지·영상·자막은 오디오 LIVE에 표시되지 않습니다.</strong></p>' +
-      '<div class="bigo-audio-live-actions"><button id="bigoAudioPrepare" class="primary" type="button">🎙 오디오 LIVE 준비</button><button id="bigoAudioPlay" class="secondary" type="button">▶ 원곡 재생</button><button id="bigoAudioOpen" class="secondary" type="button">BIGO 앱 열기</button><button id="bigoAudioStopMode" class="danger" type="button" disabled>준비 모드 종료</button></div>' +
+      '<div class="bigo-audio-live-actions"><button id="bigoAudioPrepare" class="primary" type="button">🎙 오디오 LIVE 준비</button><button id="bigoAudioPlay" class="secondary" type="button">▶ 원곡 재생</button><button id="bigoAudioRecover" class="primary" type="button">🔊 소리 복구 · 현재곡 유지</button><button id="bigoAudioOpen" class="secondary" type="button">BIGO 앱 열기</button><button id="bigoAudioStopMode" class="danger" type="button" disabled>준비 모드 종료</button></div>' +
       '<div id="bigoAudioLiveStatus" class="bigo-audio-live-status" data-state="idle">대기 · BIGO의 믹서/내부 오디오 지원 여부에 따라 청취자에게 소리가 전달됩니다.</div>' +
       '<small>중요: BIGO에서 오디오 LIVE 시작은 직접 눌러야 합니다. BIGO가 다른 앱 소리를 받지 않는 기기·계정에서는 MARU 웹앱만으로 강제 송출할 수 없습니다.</small>' +
       '<div id="maruBackgroundAudioState" class="bigo-audio-live-status" role="status">🎵 다른 앱 음악 재생 상태를 기록합니다.</div>';
@@ -250,6 +305,9 @@
     $('bigoAudioPrepare').addEventListener('click', prepare);
     $('bigoAudioPlay').addEventListener('click', startOriginal);
     $('bigoAudioOpen').addEventListener('click', openBigo);
+    $('bigoAudioRecover').addEventListener('click', recoverSound);
+    var restoreMain = $('broadcastSoundRestore');
+    if (restoreMain) restoreMain.addEventListener('click', recoverSound);
     $('bigoAudioStopMode').addEventListener('click', stopMode);
     $('bigoScreenPrepare').addEventListener('click', prepareScreenLive);
     $('bigoScreenOpen').addEventListener('click', openBigoScreenLive);
@@ -279,6 +337,16 @@
       });
       media.addEventListener('stalled', function () {
         if (active && shouldResumePlayback()) recordAudioState('stalled');
+      });
+      media.addEventListener('volumechange', function () {
+        // HTMLMediaElement volume is distinct from Galaxy's hardware volume.
+        // Only repair an inadvertent element mute, not the phone's sound slider.
+        if (!active || !shouldResumePlayback()) return;
+        if (media.muted) {
+          recordAudioState('element-muted');
+          media.muted = false;
+          media.defaultMuted = false;
+        }
       });
     });
     try {
