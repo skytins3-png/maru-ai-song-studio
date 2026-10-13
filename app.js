@@ -1452,6 +1452,7 @@ function broadcastSmartProfile(file){return{language:broadcastLanguageProfile(fi
 // the visible broadcast/video controls (also the playback pattern used by FTF).
 // Keep original DOM players on desktop/OBS and for MP4 video tracks.
 let broadcastAndroidAudio=null;
+let broadcastBackgroundVisualIndex=-1;
 const broadcastAndroidAudioEnabled=()=>/Android/i.test(navigator.userAgent||'')&&typeof Audio==='function';
 function ensureBroadcastAndroidAudio(){
  if(!broadcastAndroidAudioEnabled())return null;
@@ -2279,7 +2280,75 @@ function prepareOriginalBroadcastElement2289(el){
  // no 64-band processing, no normalization/mastering, no remix.
  try{el.muted=false;el.defaultMuted=false;el.volume=1;el.playbackRate=1;el.preservesPitch=true;el.setAttribute('data-maru-broadcast-audio','original-direct')}catch(e){}
 }
-async function playBroadcastIndex(i){if(!broadcastRunning||broadcastPaused||!broadcastFiles[i])return;broadcastIndex=i;renderBroadcastQueue();const f=broadcastFiles[i],el=broadcastCurrentPlayer();if(!el)return;prepareOriginalBroadcastElement2289(el);stopOtherBroadcastPlayer(el);if(broadcastUrls[i])try{URL.revokeObjectURL(broadcastUrls[i])}catch{};broadcastUrls[i]=URL.createObjectURL(f);el.src=broadcastUrls[i];el.muted=false;el.volume=1;el.load();$('#broadcastAudio').style.display=(broadcastIsVideoFile(f)||el!==$('#broadcastAudio'))?'none':'block';$('#broadcastVideoPlayer').style.display=broadcastIsVideoFile(f)?'block':'none';const title=broadcastSafeTitle(f.name);let hasPreloadedSubtitle=false;try{if($('#broadcastAutoSubtitle')?.checked)await autoAttachBroadcastSubtitle2266(i,{silent:true});window.maruClearTimedLyric2265?.();hasPreloadedSubtitle=!!(await window.maruSetTimedLyric2265?.(f,title,el))}catch(e){console.warn('subtitle preload',e)};markBroadcastRecent(f.name);$('#broadcastNow').textContent=`▶ 원곡 재생 · ${i+1}/${broadcastFiles.length} · ${title} · ${broadcastIsVideoFile(f)?'MP4/영상':'MP3/음원'}`;$('#broadcastBadge').textContent=`재생 ${i+1}/${broadcastFiles.length}`;broadcastAutoCaptionText='';clearTimeout(autoCaptionFallbackTimer2260);await applyBroadcastTrackMedia(i);const trackSubtitle=audienceSubtitleState();publishAudienceState({title,trackIndex:i,status:`재생 중 · ${i+1}/${broadcastFiles.length}`,message:audienceText(),announcement:'',subtitle:trackSubtitle});try{await el.play();if(!hasPreloadedSubtitle&&$('#broadcastAutoSubtitle')?.checked)startBroadcastAutoCaption();else stopBroadcastAutoCaption();}catch(e){console.warn('broadcast play',e);toast(broadcastIsVideoFile(f)?'MP4 재생 실패 · H.264 + AAC MP4를 권장합니다.':'재생을 시작하지 못했습니다')}}
+async function playBroadcastIndex(i){
+ if(!broadcastRunning||broadcastPaused||!broadcastFiles[i])return;
+ broadcastIndex=i;
+ renderBroadcastQueue();
+ const f=broadcastFiles[i],el=broadcastCurrentPlayer();
+ if(!el)return;
+ prepareOriginalBroadcastElement2289(el);
+ stopOtherBroadcastPlayer(el);
+ if(broadcastUrls[i])try{URL.revokeObjectURL(broadcastUrls[i])}catch{}
+ broadcastUrls[i]=URL.createObjectURL(f);
+ el.src=broadcastUrls[i];el.muted=false;el.volume=1;el.load();
+ $('#broadcastAudio').style.display=(broadcastIsVideoFile(f)||el!==$('#broadcastAudio'))?'none':'block';
+ $('#broadcastVideoPlayer').style.display=broadcastIsVideoFile(f)?'block':'none';
+ const title=broadcastSafeTitle(f.name);
+ markBroadcastRecent(f.name);
+ $('#broadcastNow').textContent=`▶ 원곡 재생 · ${i+1}/${broadcastFiles.length} · ${title} · ${broadcastIsVideoFile(f)?'MP4/영상':'MP3/음원'}`;
+ $('#broadcastBadge').textContent=`재생 ${i+1}/${broadcastFiles.length}`;
+ broadcastAutoCaptionText='';
+ clearTimeout(autoCaptionFallbackTimer2260);
+ // Android throttles visual, speech and transcription work when the PWA is
+ // behind BIGO/ChatGPT. The previous implementation awaited those tasks BEFORE
+ // calling play(), leaving the next song silent until the app was reopened.
+ const backgroundAudioTrack=document.visibilityState==='hidden'&&!broadcastIsVideoFile(f);
+ if(backgroundAudioTrack){
+  broadcastBackgroundVisualIndex=i;
+  publishAudienceState({title,trackIndex:i,status:`재생 중 · ${i+1}/${broadcastFiles.length}`,message:audienceText(),announcement:''});
+  try{await el.play();stopBroadcastAutoCaption();}
+  catch(e){console.warn('background broadcast play',e);toast('다음 원곡의 백그라운드 재생에 실패했습니다')}
+  return;
+ }
+ broadcastBackgroundVisualIndex=-1;
+ let hasPreloadedSubtitle=false;
+ try{
+  if($('#broadcastAutoSubtitle')?.checked)await autoAttachBroadcastSubtitle2266(i,{silent:true});
+  window.maruClearTimedLyric2265?.();
+  hasPreloadedSubtitle=!!(await window.maruSetTimedLyric2265?.(f,title,el));
+ }catch(e){console.warn('subtitle preload',e)}
+ await applyBroadcastTrackMedia(i);
+ publishAudienceState({title,trackIndex:i,status:`재생 중 · ${i+1}/${broadcastFiles.length}`,message:audienceText(),announcement:'',subtitle:audienceSubtitleState()});
+ try{
+  await el.play();
+  if(!hasPreloadedSubtitle&&$('#broadcastAutoSubtitle')?.checked)startBroadcastAutoCaption();
+  else stopBroadcastAutoCaption();
+ }catch(e){
+  console.warn('broadcast play',e);
+  toast(broadcastIsVideoFile(f)?'MP4 재생 실패 · H.264 + AAC MP4를 권장합니다.':'재생을 시작하지 못했습니다');
+ }
+}
+async function maruRestoreBackgroundVisualsOnReturn(){
+ const i=broadcastBackgroundVisualIndex;
+ if(i<0||document.visibilityState==='hidden')return;
+ broadcastBackgroundVisualIndex=-1;
+ if(!broadcastRunning||broadcastPaused||i!==broadcastIndex||!broadcastFiles[i])return;
+ const f=broadcastFiles[i],el=broadcastCurrentPlayer(),title=broadcastSafeTitle(f.name);
+ try{
+  await applyBroadcastTrackMedia(i);
+  if(!broadcastRunning||broadcastPaused||i!==broadcastIndex)return;
+  window.maruClearTimedLyric2265?.();
+  if($('#broadcastAutoSubtitle')?.checked)
+   await autoAttachBroadcastSubtitle2266(i,{silent:true});
+  if(!broadcastRunning||broadcastPaused||i!==broadcastIndex)return;
+  await window.maruSetTimedLyric2265?.(f,title,el);
+  publishAudienceState({title,trackIndex:i,subtitle:audienceSubtitleState()});
+ }catch(e){console.warn('foreground visuals re-sync',e)}
+}
+document.addEventListener('visibilitychange',()=>{
+ if(document.visibilityState==='visible'&&broadcastBackgroundVisualIndex>=0)
+  maruRestoreBackgroundVisualsOnReturn();
+});
 async function broadcastJumpTo(i){if(!broadcastFiles[i])return;if(!broadcastRunning){broadcastRunning=true;broadcastPaused=false;$('#broadcastStop').disabled=false;$('#broadcastPauseBtn').disabled=false}else{broadcastPaused=false;try{broadcastCurrentPlayer()?.pause()}catch{}}await playBroadcastIndex(i);updateBroadcastDock()}
 async function broadcastPrevious(){if(!broadcastFiles.length)return pickBroadcastSongs();const was=broadcastIndex,prev=was>0?was-1:0;if(!broadcastRunning)return broadcastJumpTo(prev);broadcastPaused=false;try{broadcastCurrentPlayer()?.pause()}catch{};await playBroadcastIndex(prev);toast(was<=0?'첫 곡을 처음부터 다시 재생합니다':'이전 곡으로 돌아갑니다')}
 function resolveAudienceStartIndex2255(){
@@ -2317,15 +2386,24 @@ async function broadcastStart(startIndex=null){
 async function broadcastStartOrResume(){
  if(!broadcastFiles.length)return toast('방송할 노래를 먼저 선택해 주세요');
  if(!broadcastRunning)return broadcastStart(resolveAudienceStartIndex2255());
- if(!broadcastPaused)return;
+ // A MediaSession PLAY command can arrive after Android/BIGO paused the
+ // HTMLMediaElement without changing MARU's broadcastPaused flag.
+ if(!broadcastPaused){
+  const current=broadcastCurrentPlayer();
+  if(current?.src&&current.paused&&!current.ended){
+   try{await current.play();return true}
+   catch(e){console.warn('media session resume',e);return false}
+  }
+  return false;
+ }
  broadcastPaused=false;
  const el=broadcastCurrentPlayer();
- if(el?.src){try{await el.play()}catch{}}
+ if(el?.src){try{await el.play()}catch(e){console.warn('broadcast resume',e)}}
  else await playBroadcastIndex(resolveAudienceStartIndex2255());
  updateBroadcastDock();
 }
 function broadcastPause(){if(!broadcastRunning||broadcastPaused)return;broadcastPaused=true;try{broadcastCurrentPlayer()?.pause()}catch{};if($('#broadcastNow'))$('#broadcastNow').textContent=`⏸ 방송 대기 · ${broadcastIndex>=0?broadcastSafeTitle(broadcastFiles[broadcastIndex]?.name):''}`;if($('#broadcastBadge'))$('#broadcastBadge').textContent='방송 대기';publishAudienceState({status:'방송 대기'});updateBroadcastDock()}
-function broadcastStop(showToast=true){broadcastRunning=false;broadcastTransitioning=false;broadcastPaused=false;revokeTrackAudienceUrls();try{speechSynthesis?.cancel?.()}catch{};for(const el of [$('#broadcastAudio'),$('#broadcastVideoPlayer'),broadcastAndroidAudio])if(el){try{el.pause();el.removeAttribute('src');el.load()}catch{}}broadcastUrls.forEach(u=>{try{u&&URL.revokeObjectURL(u)}catch{}});broadcastUrls=[];broadcastIndex=-1;const start=$('#broadcastStart'),skip=$('#broadcastSkip'),stopb=$('#broadcastStop'),prev=$('#broadcastPrev'),pause=$('#broadcastPauseBtn');if(start)start.disabled=!broadcastFiles.length;if(skip)skip.disabled=!broadcastFiles.length;if(prev)prev.disabled=!broadcastFiles.length;if(pause)pause.disabled=true;if(stopb)stopb.disabled=true;if($('#broadcastBadge'))$('#broadcastBadge').textContent=broadcastFiles.length?`${broadcastFiles.length}곡`:'대기';renderBroadcastQueue();publishAudienceState({title:'방송 종료',status:'MARU MUSIC LIVE',message:''});if(showToast)toast('방송 이어재생을 정지했습니다')}
+function broadcastStop(showToast=true){broadcastBackgroundVisualIndex=-1;broadcastRunning=false;broadcastTransitioning=false;broadcastPaused=false;revokeTrackAudienceUrls();try{speechSynthesis?.cancel?.()}catch{};for(const el of [$('#broadcastAudio'),$('#broadcastVideoPlayer'),broadcastAndroidAudio])if(el){try{el.pause();el.removeAttribute('src');el.load()}catch{}}broadcastUrls.forEach(u=>{try{u&&URL.revokeObjectURL(u)}catch{}});broadcastUrls=[];broadcastIndex=-1;const start=$('#broadcastStart'),skip=$('#broadcastSkip'),stopb=$('#broadcastStop'),prev=$('#broadcastPrev'),pause=$('#broadcastPauseBtn');if(start)start.disabled=!broadcastFiles.length;if(skip)skip.disabled=!broadcastFiles.length;if(prev)prev.disabled=!broadcastFiles.length;if(pause)pause.disabled=true;if(stopb)stopb.disabled=true;if($('#broadcastBadge'))$('#broadcastBadge').textContent=broadcastFiles.length?`${broadcastFiles.length}곡`:'대기';renderBroadcastQueue();publishAudienceState({title:'방송 종료',status:'MARU MUSIC LIVE',message:''});if(showToast)toast('방송 이어재생을 정지했습니다')}
 function toggleBroadcastCard(){const card=$('#broadcastPlayerCard');if(!card)return;card.classList.toggle('collapsed');const b=$('#broadcastToggle');if(b)b.textContent=card.classList.contains('collapsed')?'▾ 펼치기':'▴ 숨기기'}
 
 function scrollSongStudio(target='story'){
