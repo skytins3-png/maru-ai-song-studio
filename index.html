@@ -41,7 +41,7 @@
 
   <header>
     <div class="brand">MARU <span>WORLD MUSIC MAKER</span></div>
-    <div class="tag">V0.24.7 · 다른 앱 오디오 중단 진단·복구</div>
+    <div class="tag">V0.24.8 · BIGO 소리 복구</div>
   </header>
   <main>
     <section id="coreLauncher" class="core-launcher" aria-label="핵심 기능">
@@ -210,7 +210,7 @@
             <details class="simple-optional-tools"><summary>🗣 다음 곡 안내 · 반복 설정</summary><label>곡이 끝난 뒤 먼저 나올 내 멘트</label><textarea id="broadcastCustomMessage" rows="2" placeholder="예: 지금까지 MARU MUSIC이었습니다. 잠시 후 다음 곡 이어집니다."></textarea>
             <label>기존 다음곡 안내 문구 <small>{title} 자리에 다음 곡 제목이 들어갑니다.</small></label><input id="broadcastNextTemplate" type="text" value="다음 곡은 {title}입니다.">
             <div class="quick-mix-options"><label class="check-label compact"><input id="broadcastCustomEnabled" type="checkbox" checked> 내 멘트 사용</label><label class="check-label compact"><input id="broadcastNextEnabled" type="checkbox" checked> 기존 다음곡 안내 사용</label><label class="check-label compact"><input id="broadcastLoop" type="checkbox"> 마지막 곡 후 처음부터</label></div></details>
-            <div class="actions broadcast-actions"><button id="broadcastStart" class="primary" disabled>▶ 원곡 방송 시작</button><button id="broadcastPauseBtn" class="secondary" disabled>⏸ 방송 대기</button><button id="broadcastPrev" class="secondary" disabled>⏮ 이전 곡</button><button id="broadcastSkip" class="secondary" disabled>⏭ 다음 곡</button><button id="broadcastStop" class="danger" disabled>■ 방송 종료</button></div>
+            <div class="actions broadcast-actions"><button id="broadcastStart" class="primary" disabled>▶ 원곡 방송 시작</button><button id="broadcastPauseBtn" class="secondary" disabled>⏸ 방송 대기</button><button id="broadcastSoundRestore" class="secondary" type="button">🔊 소리 복구</button><button id="broadcastPrev" class="secondary" disabled>⏮ 이전 곡</button><button id="broadcastSkip" class="secondary" disabled>⏭ 다음 곡</button><button id="broadcastStop" class="danger" disabled>■ 방송 종료</button></div>
             <audio id="broadcastAudio" controls preload="metadata"></audio>
             <video id="broadcastVideoPlayer" controls playsinline preload="metadata" style="display:none"></video>
             <details class="simple-optional-tools"><summary>🎙 방송 마이크 보정</summary><div class="broadcast-voice-box">
@@ -546,7 +546,7 @@
   })();
   </script>
 
-  <script src="bigo-audio-live.js?v=0.23.35"></script>
+  <script src="bigo-audio-live.js?v=0.23.36"></script>
   <script src="broadcast-bulk-video.js?v=0.23.13"></script>
   <script src="burned-subtitle-hide.js?v=0.23.14"></script>
   <script src="broadcast-lite-menu.js?v=0.23.15"></script>
