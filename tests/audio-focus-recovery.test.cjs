@@ -147,9 +147,9 @@ test('one-tap sound recovery reports denial instead of claiming it fixed Android
 test('service worker and UI versions activate the patched helper', () => {
   const index = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
   const sw = fs.readFileSync(path.join(__dirname, '..', 'sw.js'), 'utf8');
-  assert.match(index, /V0\.24\.8/);
+  assert.match(index, /V0\.24\.9/);
   assert.match(index, /id="broadcastSoundRestore"/);
   assert.match(index, /bigo-audio-live\.js\?v=0\.23\.36/);
   assert.match(sw, /bigo-audio-live\.js\?v=0\.23\.36/);
-  assert.match(sw, /maru-music-v0\.24\.8-bigo-audio-recovery/);
+  assert.match(sw, /maru-music-v0\.24\.9-background-continuity/);
 });
