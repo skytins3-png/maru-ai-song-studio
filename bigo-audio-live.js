@@ -5,6 +5,43 @@
   var wakeLock = null;
   var active = false;
   var backgroundResumeTimer = 0;
+  var backgroundResumeTimers = [];
+  var resumeInFlight = false;
+  var interruptionKey = 'maru-background-audio-status-v0247';
+  var lastAudioStatus = null;
+
+  // The web platform cannot observe Android's audio-focus owner directly.
+  // Record real HTMLMediaElement events to distinguish pause from Android mute.
+  function recordAudioState(cause, extra) {
+    var media = currentMedia();
+    var state = {
+      at: Date.now(),
+      cause: cause,
+      expected: shouldResumePlayback(),
+      hidden: document.visibilityState === 'hidden',
+      paused: media ? !!media.paused : true,
+      ended: media ? !!media.ended : false,
+      seconds: media ? Math.round((Number(media.currentTime) || 0) * 10) / 10 : 0,
+      error: extra || ''
+    };
+    lastAudioStatus = state;
+    try { localStorage.setItem(interruptionKey, JSON.stringify(state)); } catch (_) {}
+    showAudioState();
+  }
+  function showAudioState() {
+    var box = $('maruBackgroundAudioState');
+    if (!box || !lastAudioStatus) return;
+    var s = lastAudioStatus;
+    var hint = s.expected && s.paused
+      ? '방송 재생은 켜져 있지만 음악이 일시정지되었습니다. 복구를 시도합니다.'
+      : s.expected && !s.paused
+        ? '재생기는 작동 중입니다. 소리가 안 들리면 휴대폰의 오디오 우선권 충돌 가능성이 있습니다.'
+        : '수동 일시정지 또는 방송 대기 상태입니다.';
+    if (s.cause === 'resume-failed') hint = '다른 앱 사용 중 자동 재생이 차단되었습니다. 돌아오면 재시도합니다.';
+    if (s.cause === 'resume-ok') hint = '중단된 음악 재생을 다시 시작했습니다.';
+    box.textContent = '🎵 다른 앱 재생 점검 · ' + hint;
+    box.dataset.state = s.cause === 'resume-failed' ? 'warn' : 'ready';
+  }
 
   function $(id) { return document.getElementById(id); }
   function status(message, state) {
@@ -57,25 +94,39 @@
     } catch (_) {}
   }
 
-  function keepBackgroundPlaying() {
-    if (!active || !shouldResumePlayback()) return;
+  async function keepBackgroundPlaying() {
+    if (!active || !shouldResumePlayback() || resumeInFlight) return;
     var media = currentMedia();
-    if (!media || !media.getAttribute('src') || !media.paused || media.ended) {
-      updateMetadata(); return;
-    }
-    // Keep the user's audio level intact; don't force a fresh volume on resume.
-    media.play().then(updateMetadata).catch(function () {
-      // A mobile browser may reject playback after its page was suspended.
-      // It cannot be bypassed by a PWA timer; user interaction may be required.
+    if (!media || !media.getAttribute('src') || media.ended) { updateMetadata(); return; }
+    // A focus-induced mute can leave .paused=false. HTML has no API to override
+    // Android's enforced audio focus. Never restart a playing song from 0.
+    if (!media.paused) { updateMetadata(); return; }
+    resumeInFlight = true;
+    try {
+      await media.play();
+      recordAudioState('resume-ok');
+    } catch (err) {
+      recordAudioState('resume-failed', err && err.name ? err.name : 'play-rejected');
+    } finally {
+      resumeInFlight = false;
       updateMetadata();
-    });
+    }
   }
 
   function scheduleBackgroundResume() {
     clearTimeout(backgroundResumeTimer);
-    backgroundResumeTimer = setTimeout(keepBackgroundPlaying, 120);
-    setTimeout(keepBackgroundPlaying, 700);
-    setTimeout(keepBackgroundPlaying, 1800);
+    backgroundResumeTimers.forEach(clearTimeout);
+    // Capped recovery only: do not spin or repeatedly seize audio focus from
+    // an active call/voice session in another app.
+    backgroundResumeTimers = [300, 1600, 4500].map(function (delay) {
+      return setTimeout(keepBackgroundPlaying, delay);
+    });
+  }
+  function recoverOnReturn() {
+    if (!active || !shouldResumePlayback()) return;
+    updateMetadata();
+    recordAudioState('return-check');
+    scheduleBackgroundResume();
   }
 
   function clickEnabled(id) {
@@ -95,7 +146,7 @@
           var m = currentMedia(); if (m) m.play().then(updateMetadata).catch(function () {});
         }
       },
-      pause: function () { clickEnabled('broadcastPauseBtn'); },
+      pause: function () { recordAudioState('media-session-pause'); clickEnabled('broadcastPauseBtn'); },
       previoustrack: function () { clickEnabled('broadcastPrev'); },
       nexttrack: function () { clickEnabled('broadcastSkip'); },
       stop: function () { clickEnabled('broadcastStop'); }
@@ -112,12 +163,16 @@
     updateMetadata();
     await requestWakeLock();
     status('준비됨 · 원곡을 재생한 뒤 BIGO 앱에서 오디오 LIVE를 선택하고 방송 시작을 직접 누르세요.', 'ready');
+    showAudioState();
     $('bigoAudioPrepare').textContent = '✓ 오디오 LIVE 준비됨';
     $('bigoAudioStopMode').disabled = false;
   }
 
   async function stopMode() {
     active = false;
+    clearTimeout(backgroundResumeTimer);
+    backgroundResumeTimers.forEach(clearTimeout);
+    backgroundResumeTimers = [];
     try { localStorage.removeItem(MODE_KEY); } catch (_) {}
     if (wakeLock) { try { await wakeLock.release(); } catch (_) {} wakeLock = null; }
     status('오디오 LIVE 준비 모드가 종료됐습니다. 현재 곡은 기존 방송 버튼으로 제어하세요.', 'idle');
@@ -186,7 +241,8 @@
       '<p>원곡을 그대로 재생하고 BIGO 오디오 방으로 전환합니다. <strong>곡별 이미지·영상·자막은 오디오 LIVE에 표시되지 않습니다.</strong></p>' +
       '<div class="bigo-audio-live-actions"><button id="bigoAudioPrepare" class="primary" type="button">🎙 오디오 LIVE 준비</button><button id="bigoAudioPlay" class="secondary" type="button">▶ 원곡 재생</button><button id="bigoAudioOpen" class="secondary" type="button">BIGO 앱 열기</button><button id="bigoAudioStopMode" class="danger" type="button" disabled>준비 모드 종료</button></div>' +
       '<div id="bigoAudioLiveStatus" class="bigo-audio-live-status" data-state="idle">대기 · BIGO의 믹서/내부 오디오 지원 여부에 따라 청취자에게 소리가 전달됩니다.</div>' +
-      '<small>중요: BIGO에서 오디오 LIVE 시작은 직접 눌러야 합니다. BIGO가 다른 앱 소리를 받지 않는 기기·계정에서는 MARU 웹앱만으로 강제 송출할 수 없습니다.</small>';
+      '<small>중요: BIGO에서 오디오 LIVE 시작은 직접 눌러야 합니다. BIGO가 다른 앱 소리를 받지 않는 기기·계정에서는 MARU 웹앱만으로 강제 송출할 수 없습니다.</small>' +
+      '<div id="maruBackgroundAudioState" class="bigo-audio-live-status" role="status">🎵 다른 앱 음악 재생 상태를 기록합니다.</div>';
     screenCard.insertAdjacentElement('afterend', card);
     var style = document.createElement('style');
     style.textContent = '.bigo-audio-live-card{margin:14px 0;padding:16px;border:1px solid rgba(66,230,204,.55);border-radius:18px;background:linear-gradient(135deg,rgba(12,75,79,.55),rgba(35,25,62,.8))}.bigo-audio-live-title{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}.bigo-audio-live-title b{font-size:1.12rem}.bigo-audio-live-title span,.bigo-audio-live-card small{opacity:.82}.bigo-audio-live-card p{margin:10px 0}.bigo-audio-live-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.bigo-audio-live-actions button{min-height:48px}.bigo-audio-live-status{margin:11px 0 7px;padding:10px 12px;border-radius:12px;background:rgba(0,0,0,.24)}.bigo-audio-live-status[data-state=ready]{color:#7fffd9}.bigo-audio-live-status[data-state=warn]{color:#ffd37f}@media(max-width:560px){.bigo-audio-live-actions{grid-template-columns:1fr}}';
@@ -211,22 +267,42 @@
         active = true;
         try { localStorage.setItem(MODE_KEY, '1'); } catch (_) {}
         installMediaControls(); updateMetadata();
+        recordAudioState('play');
       });
+      media.addEventListener('playing', function () { recordAudioState('playing'); });
       media.addEventListener('pause', function () {
         updateMetadata();
-        if (active && shouldResumePlayback() && document.visibilityState === 'hidden') {
+        if (active && shouldResumePlayback()) {
+          recordAudioState('interrupted-pause');
           scheduleBackgroundResume();
-        }
+        } else recordAudioState('intentional-pause');
+      });
+      media.addEventListener('stalled', function () {
+        if (active && shouldResumePlayback()) recordAudioState('stalled');
       });
     });
+    try {
+      var last = JSON.parse(localStorage.getItem(interruptionKey) || 'null');
+      if (last && typeof last.cause === 'string') lastAudioStatus = last;
+    } catch (_) {}
+    showAudioState();
     try { if (localStorage.getItem(MODE_KEY) === '1') prepare(); } catch (_) {}
   }
 
   document.addEventListener('visibilitychange', function () {
     if (!active) return;
     installMediaControls(); updateMetadata();
-    if (document.visibilityState === 'visible') requestWakeLock();
-    else if (shouldResumePlayback()) scheduleBackgroundResume();
+    if (document.visibilityState === 'visible') {
+      requestWakeLock();
+      recoverOnReturn();
+    } else if (shouldResumePlayback()) {
+      recordAudioState('background-enter');
+      scheduleBackgroundResume();
+    }
   });
+  // ChatGPT (and other apps) can trigger transient Android audio-focus loss.
+  // Try recovery after foregrounding without changing the stored track/position.
+  window.addEventListener('focus', recoverOnReturn);
+  window.addEventListener('pageshow', recoverOnReturn);
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mount); else mount();
 })();
