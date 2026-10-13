@@ -98,3 +98,13 @@ test('BIGO Media Session follows the actual player, cache and HTML versions agre
   new Function(bigo);
   new Function(sw);
 });
+
+test('Android BIGO audience handoff does not navigate away from a playing page', () => {
+  const flowStart = app.indexOf('function enterPreparedAudience2280()');
+  const flowEnd = app.indexOf('function launchBigoAndroid2280()', flowStart);
+  const segment = app.slice(flowStart, flowEnd);
+  assert.match(segment, /history\.replaceState\(history\.state,'',url\.toString\(\)\)/);
+  assert.match(segment, /broadcastAndroidAudioEnabled\(\)\&\&broadcastRunning/);
+  assert.match(segment, /setupAudienceMode\(\)/);
+  assert.match(segment, /location\.href=url\.toString\(\)/);
+});
