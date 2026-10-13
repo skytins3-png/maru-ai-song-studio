@@ -25,8 +25,10 @@
   }
 
   function currentMedia() {
-    // Android may pause the video element when the PWA goes into the background.
-    // Do not switch to an empty audio element merely because the active video paused.
+    // Prefer the real playback engine, including Android's detached Audio object.
+    var activePlayer = typeof window.maruCurrentBroadcastMedia === 'function'
+      ? window.maruCurrentBroadcastMedia() : null;
+    if (activePlayer && activePlayer.getAttribute('src')) return activePlayer;
     var video = $('broadcastVideoPlayer');
     var audio = $('broadcastAudio');
     if (video && video.getAttribute('src') && video.style.display !== 'none') return video;
@@ -46,7 +48,9 @@
     if (!('mediaSession' in navigator) || typeof MediaMetadata === 'undefined') return;
     var media = currentMedia();
     var source = media && (media.currentSrc || media.src) || '';
-    var title = source ? decodeURIComponent(source.split('/').pop().split('?')[0]) : 'MARU 원곡 방송';
+    // Object URLs do not contain the song title; use MARU's actual playlist metadata.
+    var title = typeof window.maruBroadcastCurrentTrackTitle === 'function'
+      ? window.maruBroadcastCurrentTrackTitle() : (source ? decodeURIComponent(source.split('/').pop().split('?')[0]) : 'MARU 원곡 방송');
     try {
       navigator.mediaSession.metadata = new MediaMetadata({ title: title, artist: 'MARU WORLD MUSIC MAKER', album: 'BIGO 오디오 LIVE' });
       navigator.mediaSession.playbackState = media && !media.paused ? 'playing' : 'paused';
@@ -194,8 +198,13 @@
     $('bigoScreenPrepare').addEventListener('click', prepareScreenLive);
     $('bigoScreenOpen').addEventListener('click', openBigoScreenLive);
     $('bigoScreenStop').addEventListener('click', stopScreenLive);
-    ['broadcastAudio', 'broadcastVideoPlayer'].forEach(function (id) {
-      var media = $(id); if (!media) return;
+    var mediaPlayers = [$('broadcastAudio'), $('broadcastVideoPlayer')];
+    if (typeof window.maruGetStandaloneAudio === 'function') {
+      var standalone = window.maruGetStandaloneAudio();
+      if (standalone) mediaPlayers.push(standalone);
+    }
+    mediaPlayers.forEach(function (media) {
+      if (!media) return;
       media.setAttribute('preload', 'auto');
       media.setAttribute('playsinline', '');
       media.addEventListener('play', function () {
