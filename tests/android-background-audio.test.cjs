@@ -90,10 +90,12 @@ test('BIGO Media Session follows the actual player, cache and HTML versions agre
   assert.match(bigo, /window\.maruGetStandaloneAudio/);
   assert.match(bigo, /shouldResumePlayback\(\)/);
   assert.match(app, /const f=broadcastFiles\[i\],el=broadcastCurrentPlayer\(\)/);
-  assert.match(html, /app\.js\?v=0\.23\.34/);
-  assert.match(html, /bigo-audio-live\.js\?v=0\.23\.34/);
-  assert.match(sw, /app\.js\?v=0\.23\.34/);
-  assert.match(sw, /bigo-audio-live\.js\?v=0\.23\.34/);
+  const appVersion = html.match(/app\.js\?v=([\d.]+)/)?.[1];
+  const bigoVersion = html.match(/bigo-audio-live\.js\?v=([\d.]+)/)?.[1];
+  assert.ok(appVersion, 'HTML must select the app script version');
+  assert.ok(bigoVersion, 'HTML must select the BIGO audio script version');
+  assert.ok(sw.includes('app.js?v=' + appVersion), 'SW must cache the selected app script');
+  assert.ok(sw.includes('bigo-audio-live.js?v=' + bigoVersion), 'SW must cache the selected BIGO script');
   new Function(app);
   new Function(bigo);
   new Function(sw);
