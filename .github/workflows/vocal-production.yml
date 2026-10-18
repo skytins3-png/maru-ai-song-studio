@@ -5,6 +5,8 @@ on:
       - 'vocal-studio/**'
       - 'tests/vocal-audition.test.cjs'
       - 'tests/vocal-production-plans.test.cjs'
+      - 'tests/vocal-catalog-review.test.cjs'
+      - 'tests/vocal-catalog-review.test.cjs'
       - '.github/workflows/vocal-production.yml'
   push:
     branches: [main]
@@ -23,10 +25,12 @@ jobs:
         with:
           node-version: '22'
       - name: Validate 30 vocalist dossiers, two-track plans and honest approval status
-        run: node --test tests/vocal-audition.test.cjs tests/vocal-production-plans.test.cjs
+        run: node --test tests/vocal-audition.test.cjs tests/vocal-production-plans.test.cjs tests/vocal-catalog-review.test.cjs
       - name: Static JavaScript syntax
         run: |
           node --check vocal-studio/app.js
           node --check vocal-studio/make.js
           node --check vocal-studio/audition.js
           node --check vocal-studio/audio-qc.js
+          node --check vocal-studio/catalog-review.js
+          node --check vocal-studio/catalog-review-policy.js
