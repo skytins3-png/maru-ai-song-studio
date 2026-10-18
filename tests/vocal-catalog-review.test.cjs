@@ -1,9 +1,9 @@
 const test=require("node:test");
 const assert=require("node:assert/strict");
 const policy=require("../vocal-studio/catalog-review-policy.js");
-const make=(file,sha,lang)=>({filename:file,sha256:sha.repeat(64),durationSeconds:220,titleLanguageHint:lang,sampledAverageRmsDbfs:-14,sampledMaxPeakDbfs:-.2});
+const make=(file,sha,lang)=>({filename:file,sha256:sha,durationSeconds:220,titleLanguageHint:lang,sampledAverageRmsDbfs:-14,sampledMaxPeakDbfs:-.2});
 test("107 independent + 2 duplicate archives recognized as 105 unique when hashes match",()=>{
- let rows=Array.from({length:105},(_,i)=>make("song"+i+".mp3",i.toString(16).padStart(2,'0'),"한국어 제목"));
+ let rows=Array.from({length:105},(_,i)=>make("song"+i+".mp3",i.toString(16).padStart(64,'0'),"한국어 제목"));
  rows.push({...rows[0],filename:"copy-1.mp3"});
  rows.push({...rows[99],filename:"copy-2.mp3"});
  const good=policy.validate({tracks:rows});const x=policy.dedupe(good);
