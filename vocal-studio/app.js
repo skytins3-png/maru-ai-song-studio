@@ -84,13 +84,13 @@ document.addEventListener("DOMContentLoaded",async()=>{
   if(!response.ok)throw Error("명단 파일을 불러올 수 없습니다.");
   const roster=await response.json();ARTISTS=roster.artists;
   if(ARTISTS.length!==30)throw Error("가수 수가 30명이 아닙니다.");
-  E("count").textContent="여성 13명 · 남성 17명 · 총 "+ARTISTS.length+"명";
+  E("count").textContent="제작 완료한 AI 가수 0명 · 이름/스타일 후보 "+ARTISTS.length+"명 (여성 13명 · 남성 17명)";
   E("cards").addEventListener("click",async e=>{
     const button=e.target.closest("button[data-action]");if(!button)return;
     const a=ARTISTS.find(x=>x.id===button.dataset.id);if(!a)return;
     if(button.dataset.action==="select"){view(a);E("detail").scrollIntoView({behavior:"smooth",block:"start"});}
     if(button.dataset.action==="copy"){view(a);await copyText(a.stylePrompt);}
-    if(button.dataset.action==="queue"){queue.push(a.id);renderQueue();say(a.name+" · 방송 미리듣기 목록에 추가");}
+    if(button.dataset.action==="queue"){queue.push(a.id);renderQueue();say(a.name+" · 샘플 미리듣기 후보 목록에 추가 (방송 송출 아님)");}
   });
   E("query").addEventListener("input",render);E("group").addEventListener("change",render);
   E("copyCurrent").onclick=()=>selected&&copyText(E("prompt").value);
@@ -110,6 +110,6 @@ document.addEventListener("DOMContentLoaded",async()=>{
   E("queueClear").onclick=()=>{queue=[];queueIndex=-1;E("player").pause();cleanupUrl();E("player").removeAttribute("src");renderQueue();say("미리듣기 편성 목록 초기화");};
   E("player").addEventListener("ended",()=>{if(queueIndex>=0)playIndex(queueIndex+1).catch(e=>say(e.message));});
   E("export").onclick=()=>getFileDownload("maru-studio-30-vocals.json",JSON.stringify({studio:"MARU STUDIO",artists:ARTISTS,notice:"가수 보컬 설계. 실제 노래 음원 또는 법적 사용 허가를 포함하지 않음."},null,2),"application/json");
-  render();renderQueue();view(ARTISTS[0]);say("30명 보컬 설정 등록 완료 · 실제 노래 음원은 아직 업로드되지 않았습니다.");
+  render();renderQueue();view(ARTISTS[0]);say("가수 등록 0명 · 보컬 후보 30명 · 실제 노래 및 고유 음성 모델 미제작");
  }catch(err){say("초기화 실패: "+err.message);}
 });
