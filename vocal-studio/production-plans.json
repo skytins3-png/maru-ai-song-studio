@@ -1,0 +1,1030 @@
+{
+  "title": "MARU STUDIO 30 가수 제작용 표준 오디션 제작팩",
+  "status": "PROMPTS_ONLY_NO_AUDIO_GENERATED",
+  "date": "2026-10-18",
+  "note": "30명×2곡, 총 60개는 실제 생성된 곡이 아닌 Suno용 표준 테스트 제작 지시서입니다. 성우/보컬 얼굴·이름 권리는 검증되지 않았습니다. 동일 가사 표준 비교용이므로 실제 발매에 그대로 활용하기보다 별도 독창곡을 제작하세요.",
+  "officialSuno": "https://suno.com/create",
+  "songsPerSinger": 2,
+  "candidates": [
+    {
+      "id": "F3-01",
+      "name": "한나래",
+      "group": "F3",
+      "genre": "감성 발라드",
+      "tracks": [
+        {
+          "version": "A",
+          "title": "한 걸음 늦은 밤",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n골목 끝 불이 하나둘 꺼지고\n하루의 소음도 잠이 들면\n말하지 못한 마음 하나가\n내 발끝에 조용히 따라와\n\n[Verse 2]\n지나온 길이 길었다 해도\n잃어버린 날만 있는 건 아냐\n가끔은 아주 작은 온기 하나\n멀어진 나를 다시 데려와\n\n[Pre-Chorus]\n늦었다고 생각한 밤에도\n아직 꺼지지 않은 빛이 있어\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n창가에 놓인 빈 찻잔 옆에\n새벽이 조용히 자리를 잡고\n어제의 눈물 그 자리에도\n살아갈 이유가 조금씩 쌓여\n\n[Pre-Chorus]\n돌아갈 수 없는 날이 있어도\n앞으로 걸을 내일은 남아\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Bridge]\n멀리서 나를 부르는 목소리\n다시 시작해도 된다는 말\n\n[Final Chorus]\n한 걸음 늦어도 괜찮아\n이 길 위에 내가 살아 있잖아\n끝내 지켜 낸 작은 빛 하나\n먼 훗날의 나를 비춰 줄 거야\n\n[Outro - short instrumental]",
+          "style": "Original female Korean fictional vocalist; 감성 발라드. Distinct voice: crystalline warm mezzo-soprano with gently rounded low notes. Comfortable range G3-C5; performance: clear vowels, delicate straight-tone verses and narrow vibrato at phrase endings. Arrangement: piano, cello, soft acoustic guitar. Sung language: Korean, Mandarin. Part in three-member female vocal trio: lead melody. Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 75 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version A: intimate soft controlled storytelling in lower-mid register and precise pitch. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 75,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "중저음·호흡·감성·발음",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        },
+        {
+          "version": "B",
+          "title": "길 위의 아침",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n새 신발 끈을 다시 묶고\n아직 잠든 거리를 나서\n익숙한 풍경 속 작은 변화가\n오늘은 왠지 선명하게 보여\n\n[Verse 2]\n바람은 내게 길을 묻고\n햇살은 대답처럼 번져\n누군가 정해 둔 속도 말고\n나에게 맞는 걸음으로 가\n\n[Pre-Chorus]\n어디쯤 왔는지는 몰라도\n지금 이 순간을 놓치진 않아\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n높은 빌딩 사이로 펼쳐진\n작은 하늘 한 조각을 보고\n오래 미뤄 둔 꿈 한 페이지를\n주머니에서 꺼내 펼쳐 봐\n\n[Pre-Chorus]\n먼 길을 혼자 걷는다 해도\n나를 지켜 주는 리듬이 있어\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Bridge]\n빠른 날도 느린 날도\n모두 내 삶의 박자니까\n\n[Final Chorus]\n길 위의 아침이 나를 불러\n어제의 망설임도 웃으며 보내\n누구와도 바꾸지 않을\n나만의 이름으로 노래할 거야\n\n[Outro - short instrumental]",
+          "style": "Original female Korean fictional vocalist; 감성 발라드. Distinct voice: crystalline warm mezzo-soprano with gently rounded low notes. Comfortable range G3-C5; performance: clear vowels, delicate straight-tone verses and narrow vibrato at phrase endings. Arrangement: piano, cello, soft acoustic guitar. Sung language: Korean, Mandarin. Part in three-member female vocal trio: lead melody. Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 102 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version B: bright rhythmic articulation, agile transitions and confident moderate dynamic chorus. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 102,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "리듬·고음·지구력·동일 보컬 검증",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        }
+      ]
+    },
+    {
+      "id": "F3-02",
+      "name": "서하린",
+      "group": "F3",
+      "genre": "R&B·재즈",
+      "tracks": [
+        {
+          "version": "A",
+          "title": "한 걸음 늦은 밤",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n골목 끝 불이 하나둘 꺼지고\n하루의 소음도 잠이 들면\n말하지 못한 마음 하나가\n내 발끝에 조용히 따라와\n\n[Verse 2]\n지나온 길이 길었다 해도\n잃어버린 날만 있는 건 아냐\n가끔은 아주 작은 온기 하나\n멀어진 나를 다시 데려와\n\n[Pre-Chorus]\n늦었다고 생각한 밤에도\n아직 꺼지지 않은 빛이 있어\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n창가에 놓인 빈 찻잔 옆에\n새벽이 조용히 자리를 잡고\n어제의 눈물 그 자리에도\n살아갈 이유가 조금씩 쌓여\n\n[Pre-Chorus]\n돌아갈 수 없는 날이 있어도\n앞으로 걸을 내일은 남아\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Bridge]\n멀리서 나를 부르는 목소리\n다시 시작해도 된다는 말\n\n[Final Chorus]\n한 걸음 늦어도 괜찮아\n이 길 위에 내가 살아 있잖아\n끝내 지켜 낸 작은 빛 하나\n먼 훗날의 나를 비춰 줄 거야\n\n[Outro - short instrumental]",
+          "style": "Original female Korean fictional vocalist; R&B·재즈. Distinct voice: smoky low alto with velvet breathiness and dark resonance. Comfortable range F3-B4; performance: behind-the-beat phrasing, subtle scoops, restrained soulful runs. Arrangement: Rhodes, brushed snare, upright bass. Sung language: Korean, English. Part in three-member female vocal trio: low harmony. Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 74 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version A: intimate soft controlled storytelling in lower-mid register and precise pitch. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 74,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "중저음·호흡·감성·발음",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        },
+        {
+          "version": "B",
+          "title": "길 위의 아침",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n새 신발 끈을 다시 묶고\n아직 잠든 거리를 나서\n익숙한 풍경 속 작은 변화가\n오늘은 왠지 선명하게 보여\n\n[Verse 2]\n바람은 내게 길을 묻고\n햇살은 대답처럼 번져\n누군가 정해 둔 속도 말고\n나에게 맞는 걸음으로 가\n\n[Pre-Chorus]\n어디쯤 왔는지는 몰라도\n지금 이 순간을 놓치진 않아\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n높은 빌딩 사이로 펼쳐진\n작은 하늘 한 조각을 보고\n오래 미뤄 둔 꿈 한 페이지를\n주머니에서 꺼내 펼쳐 봐\n\n[Pre-Chorus]\n먼 길을 혼자 걷는다 해도\n나를 지켜 주는 리듬이 있어\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Bridge]\n빠른 날도 느린 날도\n모두 내 삶의 박자니까\n\n[Final Chorus]\n길 위의 아침이 나를 불러\n어제의 망설임도 웃으며 보내\n누구와도 바꾸지 않을\n나만의 이름으로 노래할 거야\n\n[Outro - short instrumental]",
+          "style": "Original female Korean fictional vocalist; R&B·재즈. Distinct voice: smoky low alto with velvet breathiness and dark resonance. Comfortable range F3-B4; performance: behind-the-beat phrasing, subtle scoops, restrained soulful runs. Arrangement: Rhodes, brushed snare, upright bass. Sung language: Korean, English. Part in three-member female vocal trio: low harmony. Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 94 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version B: bright rhythmic articulation, agile transitions and confident moderate dynamic chorus. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 94,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "리듬·고음·지구력·동일 보컬 검증",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        }
+      ]
+    },
+    {
+      "id": "F3-03",
+      "name": "윤소담",
+      "group": "F3",
+      "genre": "시네마틱 팝",
+      "tracks": [
+        {
+          "version": "A",
+          "title": "한 걸음 늦은 밤",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n골목 끝 불이 하나둘 꺼지고\n하루의 소음도 잠이 들면\n말하지 못한 마음 하나가\n내 발끝에 조용히 따라와\n\n[Verse 2]\n지나온 길이 길었다 해도\n잃어버린 날만 있는 건 아냐\n가끔은 아주 작은 온기 하나\n멀어진 나를 다시 데려와\n\n[Pre-Chorus]\n늦었다고 생각한 밤에도\n아직 꺼지지 않은 빛이 있어\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n창가에 놓인 빈 찻잔 옆에\n새벽이 조용히 자리를 잡고\n어제의 눈물 그 자리에도\n살아갈 이유가 조금씩 쌓여\n\n[Pre-Chorus]\n돌아갈 수 없는 날이 있어도\n앞으로 걸을 내일은 남아\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Bridge]\n멀리서 나를 부르는 목소리\n다시 시작해도 된다는 말\n\n[Final Chorus]\n한 걸음 늦어도 괜찮아\n이 길 위에 내가 살아 있잖아\n끝내 지켜 낸 작은 빛 하나\n먼 훗날의 나를 비춰 줄 거야\n\n[Outro - short instrumental]",
+          "style": "Original female Korean fictional vocalist; 시네마틱 팝. Distinct voice: pure airy middle-register mezzo with shimmering upper harmonics. Comfortable range A3-D5; performance: floating legato, featherlight entrances, sustained luminous endings. Arrangement: piano, string orchestra, warm pads. Sung language: Korean, Japanese. Part in three-member female vocal trio: high harmony. Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 72 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version A: intimate soft controlled storytelling in lower-mid register and precise pitch. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 72,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "중저음·호흡·감성·발음",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        },
+        {
+          "version": "B",
+          "title": "길 위의 아침",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n새 신발 끈을 다시 묶고\n아직 잠든 거리를 나서\n익숙한 풍경 속 작은 변화가\n오늘은 왠지 선명하게 보여\n\n[Verse 2]\n바람은 내게 길을 묻고\n햇살은 대답처럼 번져\n누군가 정해 둔 속도 말고\n나에게 맞는 걸음으로 가\n\n[Pre-Chorus]\n어디쯤 왔는지는 몰라도\n지금 이 순간을 놓치진 않아\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n높은 빌딩 사이로 펼쳐진\n작은 하늘 한 조각을 보고\n오래 미뤄 둔 꿈 한 페이지를\n주머니에서 꺼내 펼쳐 봐\n\n[Pre-Chorus]\n먼 길을 혼자 걷는다 해도\n나를 지켜 주는 리듬이 있어\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Bridge]\n빠른 날도 느린 날도\n모두 내 삶의 박자니까\n\n[Final Chorus]\n길 위의 아침이 나를 불러\n어제의 망설임도 웃으며 보내\n누구와도 바꾸지 않을\n나만의 이름으로 노래할 거야\n\n[Outro - short instrumental]",
+          "style": "Original female Korean fictional vocalist; 시네마틱 팝. Distinct voice: pure airy middle-register mezzo with shimmering upper harmonics. Comfortable range A3-D5; performance: floating legato, featherlight entrances, sustained luminous endings. Arrangement: piano, string orchestra, warm pads. Sung language: Korean, Japanese. Part in three-member female vocal trio: high harmony. Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 92 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version B: bright rhythmic articulation, agile transitions and confident moderate dynamic chorus. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 92,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "리듬·고음·지구력·동일 보컬 검증",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        }
+      ]
+    },
+    {
+      "id": "M7-01",
+      "name": "강태준",
+      "group": "M7",
+      "genre": "록 발라드",
+      "tracks": [
+        {
+          "version": "A",
+          "title": "한 걸음 늦은 밤",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n골목 끝 불이 하나둘 꺼지고\n하루의 소음도 잠이 들면\n말하지 못한 마음 하나가\n내 발끝에 조용히 따라와\n\n[Verse 2]\n지나온 길이 길었다 해도\n잃어버린 날만 있는 건 아냐\n가끔은 아주 작은 온기 하나\n멀어진 나를 다시 데려와\n\n[Pre-Chorus]\n늦었다고 생각한 밤에도\n아직 꺼지지 않은 빛이 있어\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n창가에 놓인 빈 찻잔 옆에\n새벽이 조용히 자리를 잡고\n어제의 눈물 그 자리에도\n살아갈 이유가 조금씩 쌓여\n\n[Pre-Chorus]\n돌아갈 수 없는 날이 있어도\n앞으로 걸을 내일은 남아\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Bridge]\n멀리서 나를 부르는 목소리\n다시 시작해도 된다는 말\n\n[Final Chorus]\n한 걸음 늦어도 괜찮아\n이 길 위에 내가 살아 있잖아\n끝내 지켜 낸 작은 빛 하나\n먼 훗날의 나를 비춰 줄 거야\n\n[Outro - short instrumental]",
+          "style": "Original male Korean fictional vocalist; 록 발라드. Distinct voice: solid chest-rich baritone with grainy edges. Comfortable range G2-E4; performance: deliberate verse delivery, controlled emotional belt without shouting. Arrangement: grand piano, electric guitar, acoustic drums. Sung language: Korean.  Part in seven-member male vocal ensemble: lead and chorus anchor.Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 78 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version A: intimate soft controlled storytelling in lower-mid register and precise pitch. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 78,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "중저음·호흡·감성·발음",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        },
+        {
+          "version": "B",
+          "title": "길 위의 아침",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n새 신발 끈을 다시 묶고\n아직 잠든 거리를 나서\n익숙한 풍경 속 작은 변화가\n오늘은 왠지 선명하게 보여\n\n[Verse 2]\n바람은 내게 길을 묻고\n햇살은 대답처럼 번져\n누군가 정해 둔 속도 말고\n나에게 맞는 걸음으로 가\n\n[Pre-Chorus]\n어디쯤 왔는지는 몰라도\n지금 이 순간을 놓치진 않아\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n높은 빌딩 사이로 펼쳐진\n작은 하늘 한 조각을 보고\n오래 미뤄 둔 꿈 한 페이지를\n주머니에서 꺼내 펼쳐 봐\n\n[Pre-Chorus]\n먼 길을 혼자 걷는다 해도\n나를 지켜 주는 리듬이 있어\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Bridge]\n빠른 날도 느린 날도\n모두 내 삶의 박자니까\n\n[Final Chorus]\n길 위의 아침이 나를 불러\n어제의 망설임도 웃으며 보내\n누구와도 바꾸지 않을\n나만의 이름으로 노래할 거야\n\n[Outro - short instrumental]",
+          "style": "Original male Korean fictional vocalist; 록 발라드. Distinct voice: solid chest-rich baritone with grainy edges. Comfortable range G2-E4; performance: deliberate verse delivery, controlled emotional belt without shouting. Arrangement: grand piano, electric guitar, acoustic drums. Sung language: Korean.  Part in seven-member male vocal ensemble: lead and chorus anchor.Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 104 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version B: bright rhythmic articulation, agile transitions and confident moderate dynamic chorus. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 104,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "리듬·고음·지구력·동일 보컬 검증",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        }
+      ]
+    },
+    {
+      "id": "M7-02",
+      "name": "문도윤",
+      "group": "M7",
+      "genre": "정통 트로트",
+      "tracks": [
+        {
+          "version": "A",
+          "title": "한 걸음 늦은 밤",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n골목 끝 불이 하나둘 꺼지고\n하루의 소음도 잠이 들면\n말하지 못한 마음 하나가\n내 발끝에 조용히 따라와\n\n[Verse 2]\n지나온 길이 길었다 해도\n잃어버린 날만 있는 건 아냐\n가끔은 아주 작은 온기 하나\n멀어진 나를 다시 데려와\n\n[Pre-Chorus]\n늦었다고 생각한 밤에도\n아직 꺼지지 않은 빛이 있어\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n창가에 놓인 빈 찻잔 옆에\n새벽이 조용히 자리를 잡고\n어제의 눈물 그 자리에도\n살아갈 이유가 조금씩 쌓여\n\n[Pre-Chorus]\n돌아갈 수 없는 날이 있어도\n앞으로 걸을 내일은 남아\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Bridge]\n멀리서 나를 부르는 목소리\n다시 시작해도 된다는 말\n\n[Final Chorus]\n한 걸음 늦어도 괜찮아\n이 길 위에 내가 살아 있잖아\n끝내 지켜 낸 작은 빛 하나\n먼 훗날의 나를 비춰 줄 거야\n\n[Outro - short instrumental]",
+          "style": "Original male Korean fictional vocalist; 정통 트로트. Distinct voice: earthy resonant baritone with rounded vowels. Comfortable range A2-D4; performance: authentic short Korean trot ornamentation and relaxed vibrato. Arrangement: accordion, nylon guitar, bass, trot percussion. Sung language: Korean.  Part in seven-member male vocal ensemble: trot ornament lead.Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 86 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version A: intimate soft controlled storytelling in lower-mid register and precise pitch. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 86,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "중저음·호흡·감성·발음",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        },
+        {
+          "version": "B",
+          "title": "길 위의 아침",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n새 신발 끈을 다시 묶고\n아직 잠든 거리를 나서\n익숙한 풍경 속 작은 변화가\n오늘은 왠지 선명하게 보여\n\n[Verse 2]\n바람은 내게 길을 묻고\n햇살은 대답처럼 번져\n누군가 정해 둔 속도 말고\n나에게 맞는 걸음으로 가\n\n[Pre-Chorus]\n어디쯤 왔는지는 몰라도\n지금 이 순간을 놓치진 않아\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n높은 빌딩 사이로 펼쳐진\n작은 하늘 한 조각을 보고\n오래 미뤄 둔 꿈 한 페이지를\n주머니에서 꺼내 펼쳐 봐\n\n[Pre-Chorus]\n먼 길을 혼자 걷는다 해도\n나를 지켜 주는 리듬이 있어\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Bridge]\n빠른 날도 느린 날도\n모두 내 삶의 박자니까\n\n[Final Chorus]\n길 위의 아침이 나를 불러\n어제의 망설임도 웃으며 보내\n누구와도 바꾸지 않을\n나만의 이름으로 노래할 거야\n\n[Outro - short instrumental]",
+          "style": "Original male Korean fictional vocalist; 정통 트로트. Distinct voice: earthy resonant baritone with rounded vowels. Comfortable range A2-D4; performance: authentic short Korean trot ornamentation and relaxed vibrato. Arrangement: accordion, nylon guitar, bass, trot percussion. Sung language: Korean.  Part in seven-member male vocal ensemble: trot ornament lead.Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 112 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version B: bright rhythmic articulation, agile transitions and confident moderate dynamic chorus. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 112,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "리듬·고음·지구력·동일 보컬 검증",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        }
+      ]
+    },
+    {
+      "id": "M7-03",
+      "name": "차승호",
+      "group": "M7",
+      "genre": "소울·R&B",
+      "tracks": [
+        {
+          "version": "A",
+          "title": "한 걸음 늦은 밤",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n골목 끝 불이 하나둘 꺼지고\n하루의 소음도 잠이 들면\n말하지 못한 마음 하나가\n내 발끝에 조용히 따라와\n\n[Verse 2]\n지나온 길이 길었다 해도\n잃어버린 날만 있는 건 아냐\n가끔은 아주 작은 온기 하나\n멀어진 나를 다시 데려와\n\n[Pre-Chorus]\n늦었다고 생각한 밤에도\n아직 꺼지지 않은 빛이 있어\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n창가에 놓인 빈 찻잔 옆에\n새벽이 조용히 자리를 잡고\n어제의 눈물 그 자리에도\n살아갈 이유가 조금씩 쌓여\n\n[Pre-Chorus]\n돌아갈 수 없는 날이 있어도\n앞으로 걸을 내일은 남아\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Bridge]\n멀리서 나를 부르는 목소리\n다시 시작해도 된다는 말\n\n[Final Chorus]\n한 걸음 늦어도 괜찮아\n이 길 위에 내가 살아 있잖아\n끝내 지켜 낸 작은 빛 하나\n먼 훗날의 나를 비춰 줄 거야\n\n[Outro - short instrumental]",
+          "style": "Original male Korean fictional vocalist; 소울·R&B. Distinct voice: raspy chest-led tenor with soft falsetto contrast. Comfortable range B2-F4; performance: laid-back grooves, gentle slides, expressive syncopation. Arrangement: Rhodes, electric bass, neo-soul guitar. Sung language: Korean, English.  Part in seven-member male vocal ensemble: soul ad-libs.Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 74 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version A: intimate soft controlled storytelling in lower-mid register and precise pitch. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 74,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "중저음·호흡·감성·발음",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        },
+        {
+          "version": "B",
+          "title": "길 위의 아침",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n새 신발 끈을 다시 묶고\n아직 잠든 거리를 나서\n익숙한 풍경 속 작은 변화가\n오늘은 왠지 선명하게 보여\n\n[Verse 2]\n바람은 내게 길을 묻고\n햇살은 대답처럼 번져\n누군가 정해 둔 속도 말고\n나에게 맞는 걸음으로 가\n\n[Pre-Chorus]\n어디쯤 왔는지는 몰라도\n지금 이 순간을 놓치진 않아\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n높은 빌딩 사이로 펼쳐진\n작은 하늘 한 조각을 보고\n오래 미뤄 둔 꿈 한 페이지를\n주머니에서 꺼내 펼쳐 봐\n\n[Pre-Chorus]\n먼 길을 혼자 걷는다 해도\n나를 지켜 주는 리듬이 있어\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Bridge]\n빠른 날도 느린 날도\n모두 내 삶의 박자니까\n\n[Final Chorus]\n길 위의 아침이 나를 불러\n어제의 망설임도 웃으며 보내\n누구와도 바꾸지 않을\n나만의 이름으로 노래할 거야\n\n[Outro - short instrumental]",
+          "style": "Original male Korean fictional vocalist; 소울·R&B. Distinct voice: raspy chest-led tenor with soft falsetto contrast. Comfortable range B2-F4; performance: laid-back grooves, gentle slides, expressive syncopation. Arrangement: Rhodes, electric bass, neo-soul guitar. Sung language: Korean, English.  Part in seven-member male vocal ensemble: soul ad-libs.Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 94 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version B: bright rhythmic articulation, agile transitions and confident moderate dynamic chorus. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 94,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "리듬·고음·지구력·동일 보컬 검증",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        }
+      ]
+    },
+    {
+      "id": "M7-04",
+      "name": "백지한",
+      "group": "M7",
+      "genre": "포크 팝",
+      "tracks": [
+        {
+          "version": "A",
+          "title": "한 걸음 늦은 밤",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n골목 끝 불이 하나둘 꺼지고\n하루의 소음도 잠이 들면\n말하지 못한 마음 하나가\n내 발끝에 조용히 따라와\n\n[Verse 2]\n지나온 길이 길었다 해도\n잃어버린 날만 있는 건 아냐\n가끔은 아주 작은 온기 하나\n멀어진 나를 다시 데려와\n\n[Pre-Chorus]\n늦었다고 생각한 밤에도\n아직 꺼지지 않은 빛이 있어\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n창가에 놓인 빈 찻잔 옆에\n새벽이 조용히 자리를 잡고\n어제의 눈물 그 자리에도\n살아갈 이유가 조금씩 쌓여\n\n[Pre-Chorus]\n돌아갈 수 없는 날이 있어도\n앞으로 걸을 내일은 남아\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Bridge]\n멀리서 나를 부르는 목소리\n다시 시작해도 된다는 말\n\n[Final Chorus]\n한 걸음 늦어도 괜찮아\n이 길 위에 내가 살아 있잖아\n끝내 지켜 낸 작은 빛 하나\n먼 훗날의 나를 비춰 줄 거야\n\n[Outro - short instrumental]",
+          "style": "Original male Korean fictional vocalist; 포크 팝. Distinct voice: clear honey-toned tenor with intimate acoustic grain. Comfortable range C3-G4; performance: conversational natural cadence, subtle breath releases. Arrangement: fingerstyle guitar, mandolin, upright bass. Sung language: Korean, Mandarin.  Part in seven-member male vocal ensemble: acoustic lead.Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 76 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version A: intimate soft controlled storytelling in lower-mid register and precise pitch. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 76,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "중저음·호흡·감성·발음",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        },
+        {
+          "version": "B",
+          "title": "길 위의 아침",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n새 신발 끈을 다시 묶고\n아직 잠든 거리를 나서\n익숙한 풍경 속 작은 변화가\n오늘은 왠지 선명하게 보여\n\n[Verse 2]\n바람은 내게 길을 묻고\n햇살은 대답처럼 번져\n누군가 정해 둔 속도 말고\n나에게 맞는 걸음으로 가\n\n[Pre-Chorus]\n어디쯤 왔는지는 몰라도\n지금 이 순간을 놓치진 않아\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n높은 빌딩 사이로 펼쳐진\n작은 하늘 한 조각을 보고\n오래 미뤄 둔 꿈 한 페이지를\n주머니에서 꺼내 펼쳐 봐\n\n[Pre-Chorus]\n먼 길을 혼자 걷는다 해도\n나를 지켜 주는 리듬이 있어\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Bridge]\n빠른 날도 느린 날도\n모두 내 삶의 박자니까\n\n[Final Chorus]\n길 위의 아침이 나를 불러\n어제의 망설임도 웃으며 보내\n누구와도 바꾸지 않을\n나만의 이름으로 노래할 거야\n\n[Outro - short instrumental]",
+          "style": "Original male Korean fictional vocalist; 포크 팝. Distinct voice: clear honey-toned tenor with intimate acoustic grain. Comfortable range C3-G4; performance: conversational natural cadence, subtle breath releases. Arrangement: fingerstyle guitar, mandolin, upright bass. Sung language: Korean, Mandarin.  Part in seven-member male vocal ensemble: acoustic lead.Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 98 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version B: bright rhythmic articulation, agile transitions and confident moderate dynamic chorus. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 98,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "리듬·고음·지구력·동일 보컬 검증",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        }
+      ]
+    },
+    {
+      "id": "M7-05",
+      "name": "오현준",
+      "group": "M7",
+      "genre": "팝 발라드",
+      "tracks": [
+        {
+          "version": "A",
+          "title": "한 걸음 늦은 밤",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n골목 끝 불이 하나둘 꺼지고\n하루의 소음도 잠이 들면\n말하지 못한 마음 하나가\n내 발끝에 조용히 따라와\n\n[Verse 2]\n지나온 길이 길었다 해도\n잃어버린 날만 있는 건 아냐\n가끔은 아주 작은 온기 하나\n멀어진 나를 다시 데려와\n\n[Pre-Chorus]\n늦었다고 생각한 밤에도\n아직 꺼지지 않은 빛이 있어\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n창가에 놓인 빈 찻잔 옆에\n새벽이 조용히 자리를 잡고\n어제의 눈물 그 자리에도\n살아갈 이유가 조금씩 쌓여\n\n[Pre-Chorus]\n돌아갈 수 없는 날이 있어도\n앞으로 걸을 내일은 남아\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Bridge]\n멀리서 나를 부르는 목소리\n다시 시작해도 된다는 말\n\n[Final Chorus]\n한 걸음 늦어도 괜찮아\n이 길 위에 내가 살아 있잖아\n끝내 지켜 낸 작은 빛 하나\n먼 훗날의 나를 비춰 줄 거야\n\n[Outro - short instrumental]",
+          "style": "Original male Korean fictional vocalist; 팝 발라드. Distinct voice: silky centered tenor with smooth chest-to-mix transition. Comfortable range B2-F4; performance: restrained storytelling, flowing legato, sparse delicate vibrato. Arrangement: piano, strings, mellow electric guitar. Sung language: Korean.  Part in seven-member male vocal ensemble: melodic bridge lead.Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 75 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version A: intimate soft controlled storytelling in lower-mid register and precise pitch. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 75,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "중저음·호흡·감성·발음",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        },
+        {
+          "version": "B",
+          "title": "길 위의 아침",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n새 신발 끈을 다시 묶고\n아직 잠든 거리를 나서\n익숙한 풍경 속 작은 변화가\n오늘은 왠지 선명하게 보여\n\n[Verse 2]\n바람은 내게 길을 묻고\n햇살은 대답처럼 번져\n누군가 정해 둔 속도 말고\n나에게 맞는 걸음으로 가\n\n[Pre-Chorus]\n어디쯤 왔는지는 몰라도\n지금 이 순간을 놓치진 않아\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n높은 빌딩 사이로 펼쳐진\n작은 하늘 한 조각을 보고\n오래 미뤄 둔 꿈 한 페이지를\n주머니에서 꺼내 펼쳐 봐\n\n[Pre-Chorus]\n먼 길을 혼자 걷는다 해도\n나를 지켜 주는 리듬이 있어\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Bridge]\n빠른 날도 느린 날도\n모두 내 삶의 박자니까\n\n[Final Chorus]\n길 위의 아침이 나를 불러\n어제의 망설임도 웃으며 보내\n누구와도 바꾸지 않을\n나만의 이름으로 노래할 거야\n\n[Outro - short instrumental]",
+          "style": "Original male Korean fictional vocalist; 팝 발라드. Distinct voice: silky centered tenor with smooth chest-to-mix transition. Comfortable range B2-F4; performance: restrained storytelling, flowing legato, sparse delicate vibrato. Arrangement: piano, strings, mellow electric guitar. Sung language: Korean.  Part in seven-member male vocal ensemble: melodic bridge lead.Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 102 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version B: bright rhythmic articulation, agile transitions and confident moderate dynamic chorus. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 102,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "리듬·고음·지구력·동일 보컬 검증",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        }
+      ]
+    },
+    {
+      "id": "M7-06",
+      "name": "서재민",
+      "group": "M7",
+      "genre": "블루스·재즈",
+      "tracks": [
+        {
+          "version": "A",
+          "title": "한 걸음 늦은 밤",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n골목 끝 불이 하나둘 꺼지고\n하루의 소음도 잠이 들면\n말하지 못한 마음 하나가\n내 발끝에 조용히 따라와\n\n[Verse 2]\n지나온 길이 길었다 해도\n잃어버린 날만 있는 건 아냐\n가끔은 아주 작은 온기 하나\n멀어진 나를 다시 데려와\n\n[Pre-Chorus]\n늦었다고 생각한 밤에도\n아직 꺼지지 않은 빛이 있어\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n창가에 놓인 빈 찻잔 옆에\n새벽이 조용히 자리를 잡고\n어제의 눈물 그 자리에도\n살아갈 이유가 조금씩 쌓여\n\n[Pre-Chorus]\n돌아갈 수 없는 날이 있어도\n앞으로 걸을 내일은 남아\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Bridge]\n멀리서 나를 부르는 목소리\n다시 시작해도 된다는 말\n\n[Final Chorus]\n한 걸음 늦어도 괜찮아\n이 길 위에 내가 살아 있잖아\n끝내 지켜 낸 작은 빛 하나\n먼 훗날의 나를 비춰 줄 거야\n\n[Outro - short instrumental]",
+          "style": "Original male Korean fictional vocalist; 블루스·재즈. Distinct voice: dark dry low baritone with smoky textured attacks. Comfortable range F2-D4; performance: swing-inflected timing, blues inflections without exaggerated growls. Arrangement: upright bass, blues guitar, brushed kit. Sung language: Korean, English.  Part in seven-member male vocal ensemble: bass harmony.Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 74 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version A: intimate soft controlled storytelling in lower-mid register and precise pitch. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 74,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "중저음·호흡·감성·발음",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        },
+        {
+          "version": "B",
+          "title": "길 위의 아침",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n새 신발 끈을 다시 묶고\n아직 잠든 거리를 나서\n익숙한 풍경 속 작은 변화가\n오늘은 왠지 선명하게 보여\n\n[Verse 2]\n바람은 내게 길을 묻고\n햇살은 대답처럼 번져\n누군가 정해 둔 속도 말고\n나에게 맞는 걸음으로 가\n\n[Pre-Chorus]\n어디쯤 왔는지는 몰라도\n지금 이 순간을 놓치진 않아\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n높은 빌딩 사이로 펼쳐진\n작은 하늘 한 조각을 보고\n오래 미뤄 둔 꿈 한 페이지를\n주머니에서 꺼내 펼쳐 봐\n\n[Pre-Chorus]\n먼 길을 혼자 걷는다 해도\n나를 지켜 주는 리듬이 있어\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Bridge]\n빠른 날도 느린 날도\n모두 내 삶의 박자니까\n\n[Final Chorus]\n길 위의 아침이 나를 불러\n어제의 망설임도 웃으며 보내\n누구와도 바꾸지 않을\n나만의 이름으로 노래할 거야\n\n[Outro - short instrumental]",
+          "style": "Original male Korean fictional vocalist; 블루스·재즈. Distinct voice: dark dry low baritone with smoky textured attacks. Comfortable range F2-D4; performance: swing-inflected timing, blues inflections without exaggerated growls. Arrangement: upright bass, blues guitar, brushed kit. Sung language: Korean, English.  Part in seven-member male vocal ensemble: bass harmony.Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 94 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version B: bright rhythmic articulation, agile transitions and confident moderate dynamic chorus. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 94,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "리듬·고음·지구력·동일 보컬 검증",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        }
+      ]
+    },
+    {
+      "id": "M7-07",
+      "name": "노태성",
+      "group": "M7",
+      "genre": "시네마틱 팝",
+      "tracks": [
+        {
+          "version": "A",
+          "title": "한 걸음 늦은 밤",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n골목 끝 불이 하나둘 꺼지고\n하루의 소음도 잠이 들면\n말하지 못한 마음 하나가\n내 발끝에 조용히 따라와\n\n[Verse 2]\n지나온 길이 길었다 해도\n잃어버린 날만 있는 건 아냐\n가끔은 아주 작은 온기 하나\n멀어진 나를 다시 데려와\n\n[Pre-Chorus]\n늦었다고 생각한 밤에도\n아직 꺼지지 않은 빛이 있어\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n창가에 놓인 빈 찻잔 옆에\n새벽이 조용히 자리를 잡고\n어제의 눈물 그 자리에도\n살아갈 이유가 조금씩 쌓여\n\n[Pre-Chorus]\n돌아갈 수 없는 날이 있어도\n앞으로 걸을 내일은 남아\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Bridge]\n멀리서 나를 부르는 목소리\n다시 시작해도 된다는 말\n\n[Final Chorus]\n한 걸음 늦어도 괜찮아\n이 길 위에 내가 살아 있잖아\n끝내 지켜 낸 작은 빛 하나\n먼 훗날의 나를 비춰 줄 거야\n\n[Outro - short instrumental]",
+          "style": "Original male Korean fictional vocalist; 시네마틱 팝. Distinct voice: wide resonant bass-baritone with warm sustained harmonics. Comfortable range F2-E4; performance: slow grounded phrases, cinematic sustained notes, steady vibrato. Arrangement: low strings, timpani, French horn, piano. Sung language: Korean.  Part in seven-member male vocal ensemble: low choir foundation.Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 72 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version A: intimate soft controlled storytelling in lower-mid register and precise pitch. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 72,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "중저음·호흡·감성·발음",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        },
+        {
+          "version": "B",
+          "title": "길 위의 아침",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n새 신발 끈을 다시 묶고\n아직 잠든 거리를 나서\n익숙한 풍경 속 작은 변화가\n오늘은 왠지 선명하게 보여\n\n[Verse 2]\n바람은 내게 길을 묻고\n햇살은 대답처럼 번져\n누군가 정해 둔 속도 말고\n나에게 맞는 걸음으로 가\n\n[Pre-Chorus]\n어디쯤 왔는지는 몰라도\n지금 이 순간을 놓치진 않아\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n높은 빌딩 사이로 펼쳐진\n작은 하늘 한 조각을 보고\n오래 미뤄 둔 꿈 한 페이지를\n주머니에서 꺼내 펼쳐 봐\n\n[Pre-Chorus]\n먼 길을 혼자 걷는다 해도\n나를 지켜 주는 리듬이 있어\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Bridge]\n빠른 날도 느린 날도\n모두 내 삶의 박자니까\n\n[Final Chorus]\n길 위의 아침이 나를 불러\n어제의 망설임도 웃으며 보내\n누구와도 바꾸지 않을\n나만의 이름으로 노래할 거야\n\n[Outro - short instrumental]",
+          "style": "Original male Korean fictional vocalist; 시네마틱 팝. Distinct voice: wide resonant bass-baritone with warm sustained harmonics. Comfortable range F2-E4; performance: slow grounded phrases, cinematic sustained notes, steady vibrato. Arrangement: low strings, timpani, French horn, piano. Sung language: Korean.  Part in seven-member male vocal ensemble: low choir foundation.Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 92 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version B: bright rhythmic articulation, agile transitions and confident moderate dynamic chorus. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 92,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "리듬·고음·지구력·동일 보컬 검증",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        }
+      ]
+    },
+    {
+      "id": "FS-01",
+      "name": "유가은",
+      "group": "FS",
+      "genre": "어쿠스틱 발라드",
+      "tracks": [
+        {
+          "version": "A",
+          "title": "한 걸음 늦은 밤",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n골목 끝 불이 하나둘 꺼지고\n하루의 소음도 잠이 들면\n말하지 못한 마음 하나가\n내 발끝에 조용히 따라와\n\n[Verse 2]\n지나온 길이 길었다 해도\n잃어버린 날만 있는 건 아냐\n가끔은 아주 작은 온기 하나\n멀어진 나를 다시 데려와\n\n[Pre-Chorus]\n늦었다고 생각한 밤에도\n아직 꺼지지 않은 빛이 있어\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n창가에 놓인 빈 찻잔 옆에\n새벽이 조용히 자리를 잡고\n어제의 눈물 그 자리에도\n살아갈 이유가 조금씩 쌓여\n\n[Pre-Chorus]\n돌아갈 수 없는 날이 있어도\n앞으로 걸을 내일은 남아\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Bridge]\n멀리서 나를 부르는 목소리\n다시 시작해도 된다는 말\n\n[Final Chorus]\n한 걸음 늦어도 괜찮아\n이 길 위에 내가 살아 있잖아\n끝내 지켜 낸 작은 빛 하나\n먼 훗날의 나를 비춰 줄 거야\n\n[Outro - short instrumental]",
+          "style": "Original female Korean fictional vocalist; 어쿠스틱 발라드. Distinct voice: soft cottony mezzo with intimate close-mic breath. Comfortable range G3-C5; performance: whisper-adjacent verses, tender legato, light delicate vibrato. Arrangement: nylon guitar, upright piano, soft cello. Sung language: Korean.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 76 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version A: intimate soft controlled storytelling in lower-mid register and precise pitch. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 76,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "중저음·호흡·감성·발음",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        },
+        {
+          "version": "B",
+          "title": "길 위의 아침",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n새 신발 끈을 다시 묶고\n아직 잠든 거리를 나서\n익숙한 풍경 속 작은 변화가\n오늘은 왠지 선명하게 보여\n\n[Verse 2]\n바람은 내게 길을 묻고\n햇살은 대답처럼 번져\n누군가 정해 둔 속도 말고\n나에게 맞는 걸음으로 가\n\n[Pre-Chorus]\n어디쯤 왔는지는 몰라도\n지금 이 순간을 놓치진 않아\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n높은 빌딩 사이로 펼쳐진\n작은 하늘 한 조각을 보고\n오래 미뤄 둔 꿈 한 페이지를\n주머니에서 꺼내 펼쳐 봐\n\n[Pre-Chorus]\n먼 길을 혼자 걷는다 해도\n나를 지켜 주는 리듬이 있어\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Bridge]\n빠른 날도 느린 날도\n모두 내 삶의 박자니까\n\n[Final Chorus]\n길 위의 아침이 나를 불러\n어제의 망설임도 웃으며 보내\n누구와도 바꾸지 않을\n나만의 이름으로 노래할 거야\n\n[Outro - short instrumental]",
+          "style": "Original female Korean fictional vocalist; 어쿠스틱 발라드. Distinct voice: soft cottony mezzo with intimate close-mic breath. Comfortable range G3-C5; performance: whisper-adjacent verses, tender legato, light delicate vibrato. Arrangement: nylon guitar, upright piano, soft cello. Sung language: Korean.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 98 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version B: bright rhythmic articulation, agile transitions and confident moderate dynamic chorus. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 98,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "리듬·고음·지구력·동일 보컬 검증",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        }
+      ]
+    },
+    {
+      "id": "FS-02",
+      "name": "정하늬",
+      "group": "FS",
+      "genre": "모던 트로트",
+      "tracks": [
+        {
+          "version": "A",
+          "title": "한 걸음 늦은 밤",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n골목 끝 불이 하나둘 꺼지고\n하루의 소음도 잠이 들면\n말하지 못한 마음 하나가\n내 발끝에 조용히 따라와\n\n[Verse 2]\n지나온 길이 길었다 해도\n잃어버린 날만 있는 건 아냐\n가끔은 아주 작은 온기 하나\n멀어진 나를 다시 데려와\n\n[Pre-Chorus]\n늦었다고 생각한 밤에도\n아직 꺼지지 않은 빛이 있어\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n창가에 놓인 빈 찻잔 옆에\n새벽이 조용히 자리를 잡고\n어제의 눈물 그 자리에도\n살아갈 이유가 조금씩 쌓여\n\n[Pre-Chorus]\n돌아갈 수 없는 날이 있어도\n앞으로 걸을 내일은 남아\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Bridge]\n멀리서 나를 부르는 목소리\n다시 시작해도 된다는 말\n\n[Final Chorus]\n한 걸음 늦어도 괜찮아\n이 길 위에 내가 살아 있잖아\n끝내 지켜 낸 작은 빛 하나\n먼 훗날의 나를 비춰 줄 거야\n\n[Outro - short instrumental]",
+          "style": "Original female Korean fictional vocalist; 모던 트로트. Distinct voice: sunny mid-register mezzo with clear forward placement. Comfortable range A3-D5; performance: bouncy syllabic swing, concise traditional trot turns. Arrangement: accordion, brass accents, rhythm guitar. Sung language: Korean.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 86 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version A: intimate soft controlled storytelling in lower-mid register and precise pitch. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 86,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "중저음·호흡·감성·발음",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        },
+        {
+          "version": "B",
+          "title": "길 위의 아침",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n새 신발 끈을 다시 묶고\n아직 잠든 거리를 나서\n익숙한 풍경 속 작은 변화가\n오늘은 왠지 선명하게 보여\n\n[Verse 2]\n바람은 내게 길을 묻고\n햇살은 대답처럼 번져\n누군가 정해 둔 속도 말고\n나에게 맞는 걸음으로 가\n\n[Pre-Chorus]\n어디쯤 왔는지는 몰라도\n지금 이 순간을 놓치진 않아\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n높은 빌딩 사이로 펼쳐진\n작은 하늘 한 조각을 보고\n오래 미뤄 둔 꿈 한 페이지를\n주머니에서 꺼내 펼쳐 봐\n\n[Pre-Chorus]\n먼 길을 혼자 걷는다 해도\n나를 지켜 주는 리듬이 있어\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Bridge]\n빠른 날도 느린 날도\n모두 내 삶의 박자니까\n\n[Final Chorus]\n길 위의 아침이 나를 불러\n어제의 망설임도 웃으며 보내\n누구와도 바꾸지 않을\n나만의 이름으로 노래할 거야\n\n[Outro - short instrumental]",
+          "style": "Original female Korean fictional vocalist; 모던 트로트. Distinct voice: sunny mid-register mezzo with clear forward placement. Comfortable range A3-D5; performance: bouncy syllabic swing, concise traditional trot turns. Arrangement: accordion, brass accents, rhythm guitar. Sung language: Korean.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 112 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version B: bright rhythmic articulation, agile transitions and confident moderate dynamic chorus. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 112,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "리듬·고음·지구력·동일 보컬 검증",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        }
+      ]
+    },
+    {
+      "id": "FS-03",
+      "name": "임새봄",
+      "group": "FS",
+      "genre": "얼터너티브 R&B",
+      "tracks": [
+        {
+          "version": "A",
+          "title": "한 걸음 늦은 밤",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n골목 끝 불이 하나둘 꺼지고\n하루의 소음도 잠이 들면\n말하지 못한 마음 하나가\n내 발끝에 조용히 따라와\n\n[Verse 2]\n지나온 길이 길었다 해도\n잃어버린 날만 있는 건 아냐\n가끔은 아주 작은 온기 하나\n멀어진 나를 다시 데려와\n\n[Pre-Chorus]\n늦었다고 생각한 밤에도\n아직 꺼지지 않은 빛이 있어\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n창가에 놓인 빈 찻잔 옆에\n새벽이 조용히 자리를 잡고\n어제의 눈물 그 자리에도\n살아갈 이유가 조금씩 쌓여\n\n[Pre-Chorus]\n돌아갈 수 없는 날이 있어도\n앞으로 걸을 내일은 남아\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Bridge]\n멀리서 나를 부르는 목소리\n다시 시작해도 된다는 말\n\n[Final Chorus]\n한 걸음 늦어도 괜찮아\n이 길 위에 내가 살아 있잖아\n끝내 지켜 낸 작은 빛 하나\n먼 훗날의 나를 비춰 줄 거야\n\n[Outro - short instrumental]",
+          "style": "Original female Korean fictional vocalist; 얼터너티브 R&B. Distinct voice: dark smoky alto with intimate nasal edge. Comfortable range F3-B4; performance: precise pocket rhythm, understated melisma, low-key hooks. Arrangement: sub bass, Rhodes, sparse tight drums. Sung language: Korean, English.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 74 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version A: intimate soft controlled storytelling in lower-mid register and precise pitch. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 74,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "중저음·호흡·감성·발음",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        },
+        {
+          "version": "B",
+          "title": "길 위의 아침",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n새 신발 끈을 다시 묶고\n아직 잠든 거리를 나서\n익숙한 풍경 속 작은 변화가\n오늘은 왠지 선명하게 보여\n\n[Verse 2]\n바람은 내게 길을 묻고\n햇살은 대답처럼 번져\n누군가 정해 둔 속도 말고\n나에게 맞는 걸음으로 가\n\n[Pre-Chorus]\n어디쯤 왔는지는 몰라도\n지금 이 순간을 놓치진 않아\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n높은 빌딩 사이로 펼쳐진\n작은 하늘 한 조각을 보고\n오래 미뤄 둔 꿈 한 페이지를\n주머니에서 꺼내 펼쳐 봐\n\n[Pre-Chorus]\n먼 길을 혼자 걷는다 해도\n나를 지켜 주는 리듬이 있어\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Bridge]\n빠른 날도 느린 날도\n모두 내 삶의 박자니까\n\n[Final Chorus]\n길 위의 아침이 나를 불러\n어제의 망설임도 웃으며 보내\n누구와도 바꾸지 않을\n나만의 이름으로 노래할 거야\n\n[Outro - short instrumental]",
+          "style": "Original female Korean fictional vocalist; 얼터너티브 R&B. Distinct voice: dark smoky alto with intimate nasal edge. Comfortable range F3-B4; performance: precise pocket rhythm, understated melisma, low-key hooks. Arrangement: sub bass, Rhodes, sparse tight drums. Sung language: Korean, English.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 94 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version B: bright rhythmic articulation, agile transitions and confident moderate dynamic chorus. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 94,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "리듬·고음·지구력·동일 보컬 검증",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        }
+      ]
+    },
+    {
+      "id": "FS-04",
+      "name": "송서아",
+      "group": "FS",
+      "genre": "중국풍 발라드",
+      "tracks": [
+        {
+          "version": "A",
+          "title": "한 걸음 늦은 밤",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n골목 끝 불이 하나둘 꺼지고\n하루의 소음도 잠이 들면\n말하지 못한 마음 하나가\n내 발끝에 조용히 따라와\n\n[Verse 2]\n지나온 길이 길었다 해도\n잃어버린 날만 있는 건 아냐\n가끔은 아주 작은 온기 하나\n멀어진 나를 다시 데려와\n\n[Pre-Chorus]\n늦었다고 생각한 밤에도\n아직 꺼지지 않은 빛이 있어\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n창가에 놓인 빈 찻잔 옆에\n새벽이 조용히 자리를 잡고\n어제의 눈물 그 자리에도\n살아갈 이유가 조금씩 쌓여\n\n[Pre-Chorus]\n돌아갈 수 없는 날이 있어도\n앞으로 걸을 내일은 남아\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Bridge]\n멀리서 나를 부르는 목소리\n다시 시작해도 된다는 말\n\n[Final Chorus]\n한 걸음 늦어도 괜찮아\n이 길 위에 내가 살아 있잖아\n끝내 지켜 낸 작은 빛 하나\n먼 훗날의 나를 비춰 줄 거야\n\n[Outro - short instrumental]",
+          "style": "Original female Korean fictional vocalist; 중국풍 발라드. Distinct voice: silvery lyrical mezzo with long smooth breath line. Comfortable range G3-D5; performance: flowing legato, airy endings, East Asian ballad ornamentation. Arrangement: guzheng, xiao, erhu, cello, piano. Sung language: Mandarin, Korean.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 75 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version A: intimate soft controlled storytelling in lower-mid register and precise pitch. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 75,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "중저음·호흡·감성·발음",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        },
+        {
+          "version": "B",
+          "title": "길 위의 아침",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n새 신발 끈을 다시 묶고\n아직 잠든 거리를 나서\n익숙한 풍경 속 작은 변화가\n오늘은 왠지 선명하게 보여\n\n[Verse 2]\n바람은 내게 길을 묻고\n햇살은 대답처럼 번져\n누군가 정해 둔 속도 말고\n나에게 맞는 걸음으로 가\n\n[Pre-Chorus]\n어디쯤 왔는지는 몰라도\n지금 이 순간을 놓치진 않아\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n높은 빌딩 사이로 펼쳐진\n작은 하늘 한 조각을 보고\n오래 미뤄 둔 꿈 한 페이지를\n주머니에서 꺼내 펼쳐 봐\n\n[Pre-Chorus]\n먼 길을 혼자 걷는다 해도\n나를 지켜 주는 리듬이 있어\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Bridge]\n빠른 날도 느린 날도\n모두 내 삶의 박자니까\n\n[Final Chorus]\n길 위의 아침이 나를 불러\n어제의 망설임도 웃으며 보내\n누구와도 바꾸지 않을\n나만의 이름으로 노래할 거야\n\n[Outro - short instrumental]",
+          "style": "Original female Korean fictional vocalist; 중국풍 발라드. Distinct voice: silvery lyrical mezzo with long smooth breath line. Comfortable range G3-D5; performance: flowing legato, airy endings, East Asian ballad ornamentation. Arrangement: guzheng, xiao, erhu, cello, piano. Sung language: Mandarin, Korean.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 102 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version B: bright rhythmic articulation, agile transitions and confident moderate dynamic chorus. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 102,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "리듬·고음·지구력·동일 보컬 검증",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        }
+      ]
+    },
+    {
+      "id": "FS-05",
+      "name": "도나연",
+      "group": "FS",
+      "genre": "팝 록",
+      "tracks": [
+        {
+          "version": "A",
+          "title": "한 걸음 늦은 밤",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n골목 끝 불이 하나둘 꺼지고\n하루의 소음도 잠이 들면\n말하지 못한 마음 하나가\n내 발끝에 조용히 따라와\n\n[Verse 2]\n지나온 길이 길었다 해도\n잃어버린 날만 있는 건 아냐\n가끔은 아주 작은 온기 하나\n멀어진 나를 다시 데려와\n\n[Pre-Chorus]\n늦었다고 생각한 밤에도\n아직 꺼지지 않은 빛이 있어\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n창가에 놓인 빈 찻잔 옆에\n새벽이 조용히 자리를 잡고\n어제의 눈물 그 자리에도\n살아갈 이유가 조금씩 쌓여\n\n[Pre-Chorus]\n돌아갈 수 없는 날이 있어도\n앞으로 걸을 내일은 남아\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Bridge]\n멀리서 나를 부르는 목소리\n다시 시작해도 된다는 말\n\n[Final Chorus]\n한 걸음 늦어도 괜찮아\n이 길 위에 내가 살아 있잖아\n끝내 지켜 낸 작은 빛 하나\n먼 훗날의 나를 비춰 줄 거야\n\n[Outro - short instrumental]",
+          "style": "Original female Korean fictional vocalist; 팝 록. Distinct voice: firm bright mezzo with clean focused projection. Comfortable range A3-D5; performance: energetic clean choruses, very light rasp and no screaming. Arrangement: clean guitars, warm bass, tight live drums. Sung language: Korean, English.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 78 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version A: intimate soft controlled storytelling in lower-mid register and precise pitch. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 78,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "중저음·호흡·감성·발음",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        },
+        {
+          "version": "B",
+          "title": "길 위의 아침",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n새 신발 끈을 다시 묶고\n아직 잠든 거리를 나서\n익숙한 풍경 속 작은 변화가\n오늘은 왠지 선명하게 보여\n\n[Verse 2]\n바람은 내게 길을 묻고\n햇살은 대답처럼 번져\n누군가 정해 둔 속도 말고\n나에게 맞는 걸음으로 가\n\n[Pre-Chorus]\n어디쯤 왔는지는 몰라도\n지금 이 순간을 놓치진 않아\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n높은 빌딩 사이로 펼쳐진\n작은 하늘 한 조각을 보고\n오래 미뤄 둔 꿈 한 페이지를\n주머니에서 꺼내 펼쳐 봐\n\n[Pre-Chorus]\n먼 길을 혼자 걷는다 해도\n나를 지켜 주는 리듬이 있어\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Bridge]\n빠른 날도 느린 날도\n모두 내 삶의 박자니까\n\n[Final Chorus]\n길 위의 아침이 나를 불러\n어제의 망설임도 웃으며 보내\n누구와도 바꾸지 않을\n나만의 이름으로 노래할 거야\n\n[Outro - short instrumental]",
+          "style": "Original female Korean fictional vocalist; 팝 록. Distinct voice: firm bright mezzo with clean focused projection. Comfortable range A3-D5; performance: energetic clean choruses, very light rasp and no screaming. Arrangement: clean guitars, warm bass, tight live drums. Sung language: Korean, English.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 104 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version B: bright rhythmic articulation, agile transitions and confident moderate dynamic chorus. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 104,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "리듬·고음·지구력·동일 보컬 검증",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        }
+      ]
+    },
+    {
+      "id": "FS-06",
+      "name": "배하영",
+      "group": "FS",
+      "genre": "재즈 발라드",
+      "tracks": [
+        {
+          "version": "A",
+          "title": "한 걸음 늦은 밤",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n골목 끝 불이 하나둘 꺼지고\n하루의 소음도 잠이 들면\n말하지 못한 마음 하나가\n내 발끝에 조용히 따라와\n\n[Verse 2]\n지나온 길이 길었다 해도\n잃어버린 날만 있는 건 아냐\n가끔은 아주 작은 온기 하나\n멀어진 나를 다시 데려와\n\n[Pre-Chorus]\n늦었다고 생각한 밤에도\n아직 꺼지지 않은 빛이 있어\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n창가에 놓인 빈 찻잔 옆에\n새벽이 조용히 자리를 잡고\n어제의 눈물 그 자리에도\n살아갈 이유가 조금씩 쌓여\n\n[Pre-Chorus]\n돌아갈 수 없는 날이 있어도\n앞으로 걸을 내일은 남아\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Bridge]\n멀리서 나를 부르는 목소리\n다시 시작해도 된다는 말\n\n[Final Chorus]\n한 걸음 늦어도 괜찮아\n이 길 위에 내가 살아 있잖아\n끝내 지켜 낸 작은 빛 하나\n먼 훗날의 나를 비춰 줄 거야\n\n[Outro - short instrumental]",
+          "style": "Original female Korean fictional vocalist; 재즈 발라드. Distinct voice: mature chesty alto with smoky dry texture. Comfortable range F3-C5; performance: rubato entrances, restrained glissandi, late vibrato. Arrangement: felt piano, upright bass, brushes, saxophone. Sung language: Korean, English.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 74 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version A: intimate soft controlled storytelling in lower-mid register and precise pitch. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 74,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "중저음·호흡·감성·발음",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        },
+        {
+          "version": "B",
+          "title": "길 위의 아침",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n새 신발 끈을 다시 묶고\n아직 잠든 거리를 나서\n익숙한 풍경 속 작은 변화가\n오늘은 왠지 선명하게 보여\n\n[Verse 2]\n바람은 내게 길을 묻고\n햇살은 대답처럼 번져\n누군가 정해 둔 속도 말고\n나에게 맞는 걸음으로 가\n\n[Pre-Chorus]\n어디쯤 왔는지는 몰라도\n지금 이 순간을 놓치진 않아\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n높은 빌딩 사이로 펼쳐진\n작은 하늘 한 조각을 보고\n오래 미뤄 둔 꿈 한 페이지를\n주머니에서 꺼내 펼쳐 봐\n\n[Pre-Chorus]\n먼 길을 혼자 걷는다 해도\n나를 지켜 주는 리듬이 있어\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Bridge]\n빠른 날도 느린 날도\n모두 내 삶의 박자니까\n\n[Final Chorus]\n길 위의 아침이 나를 불러\n어제의 망설임도 웃으며 보내\n누구와도 바꾸지 않을\n나만의 이름으로 노래할 거야\n\n[Outro - short instrumental]",
+          "style": "Original female Korean fictional vocalist; 재즈 발라드. Distinct voice: mature chesty alto with smoky dry texture. Comfortable range F3-C5; performance: rubato entrances, restrained glissandi, late vibrato. Arrangement: felt piano, upright bass, brushes, saxophone. Sung language: Korean, English.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 94 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version B: bright rhythmic articulation, agile transitions and confident moderate dynamic chorus. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 94,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "리듬·고음·지구력·동일 보컬 검증",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        }
+      ]
+    },
+    {
+      "id": "FS-07",
+      "name": "신아린",
+      "group": "FS",
+      "genre": "Afro swing·팝",
+      "tracks": [
+        {
+          "version": "A",
+          "title": "한 걸음 늦은 밤",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n골목 끝 불이 하나둘 꺼지고\n하루의 소음도 잠이 들면\n말하지 못한 마음 하나가\n내 발끝에 조용히 따라와\n\n[Verse 2]\n지나온 길이 길었다 해도\n잃어버린 날만 있는 건 아냐\n가끔은 아주 작은 온기 하나\n멀어진 나를 다시 데려와\n\n[Pre-Chorus]\n늦었다고 생각한 밤에도\n아직 꺼지지 않은 빛이 있어\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n창가에 놓인 빈 찻잔 옆에\n새벽이 조용히 자리를 잡고\n어제의 눈물 그 자리에도\n살아갈 이유가 조금씩 쌓여\n\n[Pre-Chorus]\n돌아갈 수 없는 날이 있어도\n앞으로 걸을 내일은 남아\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Bridge]\n멀리서 나를 부르는 목소리\n다시 시작해도 된다는 말\n\n[Final Chorus]\n한 걸음 늦어도 괜찮아\n이 길 위에 내가 살아 있잖아\n끝내 지켜 낸 작은 빛 하나\n먼 훗날의 나를 비춰 줄 거야\n\n[Outro - short instrumental]",
+          "style": "Original female Korean fictional vocalist; Afro swing·팝. Distinct voice: light rhythmic mezzo with playful springy consonants. Comfortable range A3-C5; performance: offbeat phrasing, buoyant midrange hooks, short melismas. Arrangement: afro guitar, shakers, warm kick and bass. Sung language: Korean, English.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 92 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version A: intimate soft controlled storytelling in lower-mid register and precise pitch. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 92,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "중저음·호흡·감성·발음",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        },
+        {
+          "version": "B",
+          "title": "길 위의 아침",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n새 신발 끈을 다시 묶고\n아직 잠든 거리를 나서\n익숙한 풍경 속 작은 변화가\n오늘은 왠지 선명하게 보여\n\n[Verse 2]\n바람은 내게 길을 묻고\n햇살은 대답처럼 번져\n누군가 정해 둔 속도 말고\n나에게 맞는 걸음으로 가\n\n[Pre-Chorus]\n어디쯤 왔는지는 몰라도\n지금 이 순간을 놓치진 않아\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n높은 빌딩 사이로 펼쳐진\n작은 하늘 한 조각을 보고\n오래 미뤄 둔 꿈 한 페이지를\n주머니에서 꺼내 펼쳐 봐\n\n[Pre-Chorus]\n먼 길을 혼자 걷는다 해도\n나를 지켜 주는 리듬이 있어\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Bridge]\n빠른 날도 느린 날도\n모두 내 삶의 박자니까\n\n[Final Chorus]\n길 위의 아침이 나를 불러\n어제의 망설임도 웃으며 보내\n누구와도 바꾸지 않을\n나만의 이름으로 노래할 거야\n\n[Outro - short instrumental]",
+          "style": "Original female Korean fictional vocalist; Afro swing·팝. Distinct voice: light rhythmic mezzo with playful springy consonants. Comfortable range A3-C5; performance: offbeat phrasing, buoyant midrange hooks, short melismas. Arrangement: afro guitar, shakers, warm kick and bass. Sung language: Korean, English.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 114 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version B: bright rhythmic articulation, agile transitions and confident moderate dynamic chorus. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 114,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "리듬·고음·지구력·동일 보컬 검증",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        }
+      ]
+    },
+    {
+      "id": "FS-08",
+      "name": "조보민",
+      "group": "FS",
+      "genre": "드라마 OST",
+      "tracks": [
+        {
+          "version": "A",
+          "title": "한 걸음 늦은 밤",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n골목 끝 불이 하나둘 꺼지고\n하루의 소음도 잠이 들면\n말하지 못한 마음 하나가\n내 발끝에 조용히 따라와\n\n[Verse 2]\n지나온 길이 길었다 해도\n잃어버린 날만 있는 건 아냐\n가끔은 아주 작은 온기 하나\n멀어진 나를 다시 데려와\n\n[Pre-Chorus]\n늦었다고 생각한 밤에도\n아직 꺼지지 않은 빛이 있어\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n창가에 놓인 빈 찻잔 옆에\n새벽이 조용히 자리를 잡고\n어제의 눈물 그 자리에도\n살아갈 이유가 조금씩 쌓여\n\n[Pre-Chorus]\n돌아갈 수 없는 날이 있어도\n앞으로 걸을 내일은 남아\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Bridge]\n멀리서 나를 부르는 목소리\n다시 시작해도 된다는 말\n\n[Final Chorus]\n한 걸음 늦어도 괜찮아\n이 길 위에 내가 살아 있잖아\n끝내 지켜 낸 작은 빛 하나\n먼 훗날의 나를 비춰 줄 거야\n\n[Outro - short instrumental]",
+          "style": "Original female Korean fictional vocalist; 드라마 OST. Distinct voice: warm full middle soprano with expressive clarity. Comfortable range G3-D5; performance: confessional verses, measured climaxes, gentle vibrato. Arrangement: grand piano, layered strings, cinematic percussion. Sung language: Korean.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 72 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version A: intimate soft controlled storytelling in lower-mid register and precise pitch. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 72,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "중저음·호흡·감성·발음",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        },
+        {
+          "version": "B",
+          "title": "길 위의 아침",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n새 신발 끈을 다시 묶고\n아직 잠든 거리를 나서\n익숙한 풍경 속 작은 변화가\n오늘은 왠지 선명하게 보여\n\n[Verse 2]\n바람은 내게 길을 묻고\n햇살은 대답처럼 번져\n누군가 정해 둔 속도 말고\n나에게 맞는 걸음으로 가\n\n[Pre-Chorus]\n어디쯤 왔는지는 몰라도\n지금 이 순간을 놓치진 않아\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n높은 빌딩 사이로 펼쳐진\n작은 하늘 한 조각을 보고\n오래 미뤄 둔 꿈 한 페이지를\n주머니에서 꺼내 펼쳐 봐\n\n[Pre-Chorus]\n먼 길을 혼자 걷는다 해도\n나를 지켜 주는 리듬이 있어\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Bridge]\n빠른 날도 느린 날도\n모두 내 삶의 박자니까\n\n[Final Chorus]\n길 위의 아침이 나를 불러\n어제의 망설임도 웃으며 보내\n누구와도 바꾸지 않을\n나만의 이름으로 노래할 거야\n\n[Outro - short instrumental]",
+          "style": "Original female Korean fictional vocalist; 드라마 OST. Distinct voice: warm full middle soprano with expressive clarity. Comfortable range G3-D5; performance: confessional verses, measured climaxes, gentle vibrato. Arrangement: grand piano, layered strings, cinematic percussion. Sung language: Korean.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 92 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version B: bright rhythmic articulation, agile transitions and confident moderate dynamic chorus. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 92,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "리듬·고음·지구력·동일 보컬 검증",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        }
+      ]
+    },
+    {
+      "id": "FS-09",
+      "name": "권시은",
+      "group": "FS",
+      "genre": "몽환 신스팝",
+      "tracks": [
+        {
+          "version": "A",
+          "title": "한 걸음 늦은 밤",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n골목 끝 불이 하나둘 꺼지고\n하루의 소음도 잠이 들면\n말하지 못한 마음 하나가\n내 발끝에 조용히 따라와\n\n[Verse 2]\n지나온 길이 길었다 해도\n잃어버린 날만 있는 건 아냐\n가끔은 아주 작은 온기 하나\n멀어진 나를 다시 데려와\n\n[Pre-Chorus]\n늦었다고 생각한 밤에도\n아직 꺼지지 않은 빛이 있어\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n창가에 놓인 빈 찻잔 옆에\n새벽이 조용히 자리를 잡고\n어제의 눈물 그 자리에도\n살아갈 이유가 조금씩 쌓여\n\n[Pre-Chorus]\n돌아갈 수 없는 날이 있어도\n앞으로 걸을 내일은 남아\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Bridge]\n멀리서 나를 부르는 목소리\n다시 시작해도 된다는 말\n\n[Final Chorus]\n한 걸음 늦어도 괜찮아\n이 길 위에 내가 살아 있잖아\n끝내 지켜 낸 작은 빛 하나\n먼 훗날의 나를 비춰 줄 거야\n\n[Outro - short instrumental]",
+          "style": "Original female Korean fictional vocalist; 몽환 신스팝. Distinct voice: misty airy mezzo with delicate fragile attack. Comfortable range A3-C5; performance: minimal vibrato, dreamlike intimate phrases. Arrangement: analog synth pads, muted plucks, soft electronic beat. Sung language: Korean, Japanese.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 75 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version A: intimate soft controlled storytelling in lower-mid register and precise pitch. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 75,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "중저음·호흡·감성·발음",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        },
+        {
+          "version": "B",
+          "title": "길 위의 아침",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n새 신발 끈을 다시 묶고\n아직 잠든 거리를 나서\n익숙한 풍경 속 작은 변화가\n오늘은 왠지 선명하게 보여\n\n[Verse 2]\n바람은 내게 길을 묻고\n햇살은 대답처럼 번져\n누군가 정해 둔 속도 말고\n나에게 맞는 걸음으로 가\n\n[Pre-Chorus]\n어디쯤 왔는지는 몰라도\n지금 이 순간을 놓치진 않아\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n높은 빌딩 사이로 펼쳐진\n작은 하늘 한 조각을 보고\n오래 미뤄 둔 꿈 한 페이지를\n주머니에서 꺼내 펼쳐 봐\n\n[Pre-Chorus]\n먼 길을 혼자 걷는다 해도\n나를 지켜 주는 리듬이 있어\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Bridge]\n빠른 날도 느린 날도\n모두 내 삶의 박자니까\n\n[Final Chorus]\n길 위의 아침이 나를 불러\n어제의 망설임도 웃으며 보내\n누구와도 바꾸지 않을\n나만의 이름으로 노래할 거야\n\n[Outro - short instrumental]",
+          "style": "Original female Korean fictional vocalist; 몽환 신스팝. Distinct voice: misty airy mezzo with delicate fragile attack. Comfortable range A3-C5; performance: minimal vibrato, dreamlike intimate phrases. Arrangement: analog synth pads, muted plucks, soft electronic beat. Sung language: Korean, Japanese.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 102 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version B: bright rhythmic articulation, agile transitions and confident moderate dynamic chorus. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 102,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "리듬·고음·지구력·동일 보컬 검증",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        }
+      ]
+    },
+    {
+      "id": "FS-10",
+      "name": "남다솔",
+      "group": "FS",
+      "genre": "클래식 크로스오버",
+      "tracks": [
+        {
+          "version": "A",
+          "title": "한 걸음 늦은 밤",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n골목 끝 불이 하나둘 꺼지고\n하루의 소음도 잠이 들면\n말하지 못한 마음 하나가\n내 발끝에 조용히 따라와\n\n[Verse 2]\n지나온 길이 길었다 해도\n잃어버린 날만 있는 건 아냐\n가끔은 아주 작은 온기 하나\n멀어진 나를 다시 데려와\n\n[Pre-Chorus]\n늦었다고 생각한 밤에도\n아직 꺼지지 않은 빛이 있어\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n창가에 놓인 빈 찻잔 옆에\n새벽이 조용히 자리를 잡고\n어제의 눈물 그 자리에도\n살아갈 이유가 조금씩 쌓여\n\n[Pre-Chorus]\n돌아갈 수 없는 날이 있어도\n앞으로 걸을 내일은 남아\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Bridge]\n멀리서 나를 부르는 목소리\n다시 시작해도 된다는 말\n\n[Final Chorus]\n한 걸음 늦어도 괜찮아\n이 길 위에 내가 살아 있잖아\n끝내 지켜 낸 작은 빛 하나\n먼 훗날의 나를 비춰 줄 거야\n\n[Outro - short instrumental]",
+          "style": "Original female Korean fictional vocalist; 클래식 크로스오버. Distinct voice: rounded lyric soprano with poised formal resonance. Comfortable range A3-E5; performance: controlled legato, elegant vowel shaping, tasteful sustained lines. Arrangement: chamber strings, harp, piano, woodwinds. Sung language: Korean, Italian-style vowels.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 72 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version A: intimate soft controlled storytelling in lower-mid register and precise pitch. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 72,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "중저음·호흡·감성·발음",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        },
+        {
+          "version": "B",
+          "title": "길 위의 아침",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n새 신발 끈을 다시 묶고\n아직 잠든 거리를 나서\n익숙한 풍경 속 작은 변화가\n오늘은 왠지 선명하게 보여\n\n[Verse 2]\n바람은 내게 길을 묻고\n햇살은 대답처럼 번져\n누군가 정해 둔 속도 말고\n나에게 맞는 걸음으로 가\n\n[Pre-Chorus]\n어디쯤 왔는지는 몰라도\n지금 이 순간을 놓치진 않아\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n높은 빌딩 사이로 펼쳐진\n작은 하늘 한 조각을 보고\n오래 미뤄 둔 꿈 한 페이지를\n주머니에서 꺼내 펼쳐 봐\n\n[Pre-Chorus]\n먼 길을 혼자 걷는다 해도\n나를 지켜 주는 리듬이 있어\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Bridge]\n빠른 날도 느린 날도\n모두 내 삶의 박자니까\n\n[Final Chorus]\n길 위의 아침이 나를 불러\n어제의 망설임도 웃으며 보내\n누구와도 바꾸지 않을\n나만의 이름으로 노래할 거야\n\n[Outro - short instrumental]",
+          "style": "Original female Korean fictional vocalist; 클래식 크로스오버. Distinct voice: rounded lyric soprano with poised formal resonance. Comfortable range A3-E5; performance: controlled legato, elegant vowel shaping, tasteful sustained lines. Arrangement: chamber strings, harp, piano, woodwinds. Sung language: Korean, Italian-style vowels.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 92 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version B: bright rhythmic articulation, agile transitions and confident moderate dynamic chorus. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 92,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "리듬·고음·지구력·동일 보컬 검증",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        }
+      ]
+    },
+    {
+      "id": "MS-01",
+      "name": "류강민",
+      "group": "MS",
+      "genre": "감성 트로트",
+      "tracks": [
+        {
+          "version": "A",
+          "title": "한 걸음 늦은 밤",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n골목 끝 불이 하나둘 꺼지고\n하루의 소음도 잠이 들면\n말하지 못한 마음 하나가\n내 발끝에 조용히 따라와\n\n[Verse 2]\n지나온 길이 길었다 해도\n잃어버린 날만 있는 건 아냐\n가끔은 아주 작은 온기 하나\n멀어진 나를 다시 데려와\n\n[Pre-Chorus]\n늦었다고 생각한 밤에도\n아직 꺼지지 않은 빛이 있어\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n창가에 놓인 빈 찻잔 옆에\n새벽이 조용히 자리를 잡고\n어제의 눈물 그 자리에도\n살아갈 이유가 조금씩 쌓여\n\n[Pre-Chorus]\n돌아갈 수 없는 날이 있어도\n앞으로 걸을 내일은 남아\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Bridge]\n멀리서 나를 부르는 목소리\n다시 시작해도 된다는 말\n\n[Final Chorus]\n한 걸음 늦어도 괜찮아\n이 길 위에 내가 살아 있잖아\n끝내 지켜 낸 작은 빛 하나\n먼 훗날의 나를 비춰 줄 거야\n\n[Outro - short instrumental]",
+          "style": "Original male Korean fictional vocalist; 감성 트로트. Distinct voice: deep clear chest baritone with robust warm nasal resonance. Comfortable range G2-D4; performance: traditional restrained 꺾기, mellow vibrato, dignified swing. Arrangement: accordion, strings, acoustic bass. Sung language: Korean.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 86 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version A: intimate soft controlled storytelling in lower-mid register and precise pitch. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 86,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "중저음·호흡·감성·발음",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        },
+        {
+          "version": "B",
+          "title": "길 위의 아침",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n새 신발 끈을 다시 묶고\n아직 잠든 거리를 나서\n익숙한 풍경 속 작은 변화가\n오늘은 왠지 선명하게 보여\n\n[Verse 2]\n바람은 내게 길을 묻고\n햇살은 대답처럼 번져\n누군가 정해 둔 속도 말고\n나에게 맞는 걸음으로 가\n\n[Pre-Chorus]\n어디쯤 왔는지는 몰라도\n지금 이 순간을 놓치진 않아\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n높은 빌딩 사이로 펼쳐진\n작은 하늘 한 조각을 보고\n오래 미뤄 둔 꿈 한 페이지를\n주머니에서 꺼내 펼쳐 봐\n\n[Pre-Chorus]\n먼 길을 혼자 걷는다 해도\n나를 지켜 주는 리듬이 있어\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Bridge]\n빠른 날도 느린 날도\n모두 내 삶의 박자니까\n\n[Final Chorus]\n길 위의 아침이 나를 불러\n어제의 망설임도 웃으며 보내\n누구와도 바꾸지 않을\n나만의 이름으로 노래할 거야\n\n[Outro - short instrumental]",
+          "style": "Original male Korean fictional vocalist; 감성 트로트. Distinct voice: deep clear chest baritone with robust warm nasal resonance. Comfortable range G2-D4; performance: traditional restrained 꺾기, mellow vibrato, dignified swing. Arrangement: accordion, strings, acoustic bass. Sung language: Korean.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 112 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version B: bright rhythmic articulation, agile transitions and confident moderate dynamic chorus. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 112,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "리듬·고음·지구력·동일 보컬 검증",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        }
+      ]
+    },
+    {
+      "id": "MS-02",
+      "name": "고하준",
+      "group": "MS",
+      "genre": "UK 트랩웨이브",
+      "tracks": [
+        {
+          "version": "A",
+          "title": "한 걸음 늦은 밤",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n골목 끝 불이 하나둘 꺼지고\n하루의 소음도 잠이 들면\n말하지 못한 마음 하나가\n내 발끝에 조용히 따라와\n\n[Verse 2]\n지나온 길이 길었다 해도\n잃어버린 날만 있는 건 아냐\n가끔은 아주 작은 온기 하나\n멀어진 나를 다시 데려와\n\n[Pre-Chorus]\n늦었다고 생각한 밤에도\n아직 꺼지지 않은 빛이 있어\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n창가에 놓인 빈 찻잔 옆에\n새벽이 조용히 자리를 잡고\n어제의 눈물 그 자리에도\n살아갈 이유가 조금씩 쌓여\n\n[Pre-Chorus]\n돌아갈 수 없는 날이 있어도\n앞으로 걸을 내일은 남아\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Bridge]\n멀리서 나를 부르는 목소리\n다시 시작해도 된다는 말\n\n[Final Chorus]\n한 걸음 늦어도 괜찮아\n이 길 위에 내가 살아 있잖아\n끝내 지켜 낸 작은 빛 하나\n먼 훗날의 나를 비춰 줄 거야\n\n[Outro - short instrumental]",
+          "style": "Original male Korean fictional vocalist; UK 트랩웨이브. Distinct voice: subtle breathy low male tenor with subdued metallic edge. Comfortable range A2-D4; performance: dark half-sung syncopation, sparse refrains, no aggressive rap. Arrangement: 808 sub, hazy synth, dark pads, restrained hats. Sung language: Korean, English.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 92 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version A: intimate soft controlled storytelling in lower-mid register and precise pitch. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 92,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "중저음·호흡·감성·발음",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        },
+        {
+          "version": "B",
+          "title": "길 위의 아침",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n새 신발 끈을 다시 묶고\n아직 잠든 거리를 나서\n익숙한 풍경 속 작은 변화가\n오늘은 왠지 선명하게 보여\n\n[Verse 2]\n바람은 내게 길을 묻고\n햇살은 대답처럼 번져\n누군가 정해 둔 속도 말고\n나에게 맞는 걸음으로 가\n\n[Pre-Chorus]\n어디쯤 왔는지는 몰라도\n지금 이 순간을 놓치진 않아\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n높은 빌딩 사이로 펼쳐진\n작은 하늘 한 조각을 보고\n오래 미뤄 둔 꿈 한 페이지를\n주머니에서 꺼내 펼쳐 봐\n\n[Pre-Chorus]\n먼 길을 혼자 걷는다 해도\n나를 지켜 주는 리듬이 있어\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Bridge]\n빠른 날도 느린 날도\n모두 내 삶의 박자니까\n\n[Final Chorus]\n길 위의 아침이 나를 불러\n어제의 망설임도 웃으며 보내\n누구와도 바꾸지 않을\n나만의 이름으로 노래할 거야\n\n[Outro - short instrumental]",
+          "style": "Original male Korean fictional vocalist; UK 트랩웨이브. Distinct voice: subtle breathy low male tenor with subdued metallic edge. Comfortable range A2-D4; performance: dark half-sung syncopation, sparse refrains, no aggressive rap. Arrangement: 808 sub, hazy synth, dark pads, restrained hats. Sung language: Korean, English.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 114 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version B: bright rhythmic articulation, agile transitions and confident moderate dynamic chorus. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 114,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "리듬·고음·지구력·동일 보컬 검증",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        }
+      ]
+    },
+    {
+      "id": "MS-03",
+      "name": "주도현",
+      "group": "MS",
+      "genre": "정통 발라드",
+      "tracks": [
+        {
+          "version": "A",
+          "title": "한 걸음 늦은 밤",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n골목 끝 불이 하나둘 꺼지고\n하루의 소음도 잠이 들면\n말하지 못한 마음 하나가\n내 발끝에 조용히 따라와\n\n[Verse 2]\n지나온 길이 길었다 해도\n잃어버린 날만 있는 건 아냐\n가끔은 아주 작은 온기 하나\n멀어진 나를 다시 데려와\n\n[Pre-Chorus]\n늦었다고 생각한 밤에도\n아직 꺼지지 않은 빛이 있어\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n창가에 놓인 빈 찻잔 옆에\n새벽이 조용히 자리를 잡고\n어제의 눈물 그 자리에도\n살아갈 이유가 조금씩 쌓여\n\n[Pre-Chorus]\n돌아갈 수 없는 날이 있어도\n앞으로 걸을 내일은 남아\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Bridge]\n멀리서 나를 부르는 목소리\n다시 시작해도 된다는 말\n\n[Final Chorus]\n한 걸음 늦어도 괜찮아\n이 길 위에 내가 살아 있잖아\n끝내 지켜 낸 작은 빛 하나\n먼 훗날의 나를 비춰 줄 거야\n\n[Outro - short instrumental]",
+          "style": "Original male Korean fictional vocalist; 정통 발라드. Distinct voice: husky broad mid-baritone with warm low register. Comfortable range G2-E4; performance: unhurried heartfelt vowels, expressive rise without high shouts. Arrangement: piano, cello, soft electric guitar. Sung language: Korean.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 75 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version A: intimate soft controlled storytelling in lower-mid register and precise pitch. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 75,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "중저음·호흡·감성·발음",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        },
+        {
+          "version": "B",
+          "title": "길 위의 아침",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n새 신발 끈을 다시 묶고\n아직 잠든 거리를 나서\n익숙한 풍경 속 작은 변화가\n오늘은 왠지 선명하게 보여\n\n[Verse 2]\n바람은 내게 길을 묻고\n햇살은 대답처럼 번져\n누군가 정해 둔 속도 말고\n나에게 맞는 걸음으로 가\n\n[Pre-Chorus]\n어디쯤 왔는지는 몰라도\n지금 이 순간을 놓치진 않아\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n높은 빌딩 사이로 펼쳐진\n작은 하늘 한 조각을 보고\n오래 미뤄 둔 꿈 한 페이지를\n주머니에서 꺼내 펼쳐 봐\n\n[Pre-Chorus]\n먼 길을 혼자 걷는다 해도\n나를 지켜 주는 리듬이 있어\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Bridge]\n빠른 날도 느린 날도\n모두 내 삶의 박자니까\n\n[Final Chorus]\n길 위의 아침이 나를 불러\n어제의 망설임도 웃으며 보내\n누구와도 바꾸지 않을\n나만의 이름으로 노래할 거야\n\n[Outro - short instrumental]",
+          "style": "Original male Korean fictional vocalist; 정통 발라드. Distinct voice: husky broad mid-baritone with warm low register. Comfortable range G2-E4; performance: unhurried heartfelt vowels, expressive rise without high shouts. Arrangement: piano, cello, soft electric guitar. Sung language: Korean.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 102 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version B: bright rhythmic articulation, agile transitions and confident moderate dynamic chorus. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 102,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "리듬·고음·지구력·동일 보컬 검증",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        }
+      ]
+    },
+    {
+      "id": "MS-04",
+      "name": "진태호",
+      "group": "MS",
+      "genre": "중국풍 포크",
+      "tracks": [
+        {
+          "version": "A",
+          "title": "한 걸음 늦은 밤",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n골목 끝 불이 하나둘 꺼지고\n하루의 소음도 잠이 들면\n말하지 못한 마음 하나가\n내 발끝에 조용히 따라와\n\n[Verse 2]\n지나온 길이 길었다 해도\n잃어버린 날만 있는 건 아냐\n가끔은 아주 작은 온기 하나\n멀어진 나를 다시 데려와\n\n[Pre-Chorus]\n늦었다고 생각한 밤에도\n아직 꺼지지 않은 빛이 있어\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n창가에 놓인 빈 찻잔 옆에\n새벽이 조용히 자리를 잡고\n어제의 눈물 그 자리에도\n살아갈 이유가 조금씩 쌓여\n\n[Pre-Chorus]\n돌아갈 수 없는 날이 있어도\n앞으로 걸을 내일은 남아\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Bridge]\n멀리서 나를 부르는 목소리\n다시 시작해도 된다는 말\n\n[Final Chorus]\n한 걸음 늦어도 괜찮아\n이 길 위에 내가 살아 있잖아\n끝내 지켜 낸 작은 빛 하나\n먼 훗날의 나를 비춰 줄 거야\n\n[Outro - short instrumental]",
+          "style": "Original male Korean fictional vocalist; 중국풍 포크. Distinct voice: clear warm lyric tenor with gently reedy resonance. Comfortable range B2-G4; performance: narrative verses, long smooth lines, subtle folk grace notes. Arrangement: erhu, dizi, acoustic guitar, strings. Sung language: Mandarin, Korean.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 76 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version A: intimate soft controlled storytelling in lower-mid register and precise pitch. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 76,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "중저음·호흡·감성·발음",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        },
+        {
+          "version": "B",
+          "title": "길 위의 아침",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n새 신발 끈을 다시 묶고\n아직 잠든 거리를 나서\n익숙한 풍경 속 작은 변화가\n오늘은 왠지 선명하게 보여\n\n[Verse 2]\n바람은 내게 길을 묻고\n햇살은 대답처럼 번져\n누군가 정해 둔 속도 말고\n나에게 맞는 걸음으로 가\n\n[Pre-Chorus]\n어디쯤 왔는지는 몰라도\n지금 이 순간을 놓치진 않아\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n높은 빌딩 사이로 펼쳐진\n작은 하늘 한 조각을 보고\n오래 미뤄 둔 꿈 한 페이지를\n주머니에서 꺼내 펼쳐 봐\n\n[Pre-Chorus]\n먼 길을 혼자 걷는다 해도\n나를 지켜 주는 리듬이 있어\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Bridge]\n빠른 날도 느린 날도\n모두 내 삶의 박자니까\n\n[Final Chorus]\n길 위의 아침이 나를 불러\n어제의 망설임도 웃으며 보내\n누구와도 바꾸지 않을\n나만의 이름으로 노래할 거야\n\n[Outro - short instrumental]",
+          "style": "Original male Korean fictional vocalist; 중국풍 포크. Distinct voice: clear warm lyric tenor with gently reedy resonance. Comfortable range B2-G4; performance: narrative verses, long smooth lines, subtle folk grace notes. Arrangement: erhu, dizi, acoustic guitar, strings. Sung language: Mandarin, Korean.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 98 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version B: bright rhythmic articulation, agile transitions and confident moderate dynamic chorus. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 98,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "리듬·고음·지구력·동일 보컬 검증",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        }
+      ]
+    },
+    {
+      "id": "MS-05",
+      "name": "한재원",
+      "group": "MS",
+      "genre": "블루스 록",
+      "tracks": [
+        {
+          "version": "A",
+          "title": "한 걸음 늦은 밤",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n골목 끝 불이 하나둘 꺼지고\n하루의 소음도 잠이 들면\n말하지 못한 마음 하나가\n내 발끝에 조용히 따라와\n\n[Verse 2]\n지나온 길이 길었다 해도\n잃어버린 날만 있는 건 아냐\n가끔은 아주 작은 온기 하나\n멀어진 나를 다시 데려와\n\n[Pre-Chorus]\n늦었다고 생각한 밤에도\n아직 꺼지지 않은 빛이 있어\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n창가에 놓인 빈 찻잔 옆에\n새벽이 조용히 자리를 잡고\n어제의 눈물 그 자리에도\n살아갈 이유가 조금씩 쌓여\n\n[Pre-Chorus]\n돌아갈 수 없는 날이 있어도\n앞으로 걸을 내일은 남아\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Bridge]\n멀리서 나를 부르는 목소리\n다시 시작해도 된다는 말\n\n[Final Chorus]\n한 걸음 늦어도 괜찮아\n이 길 위에 내가 살아 있잖아\n끝내 지켜 낸 작은 빛 하나\n먼 훗날의 나를 비춰 줄 거야\n\n[Outro - short instrumental]",
+          "style": "Original male Korean fictional vocalist; 블루스 록. Distinct voice: rough-edged low baritone with gravelly blues color. Comfortable range F2-D4; performance: unhurried blues bends, raspy but never screamed. Arrangement: electric blues guitar, organ, live kit. Sung language: Korean, English.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 78 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version A: intimate soft controlled storytelling in lower-mid register and precise pitch. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 78,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "중저음·호흡·감성·발음",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        },
+        {
+          "version": "B",
+          "title": "길 위의 아침",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n새 신발 끈을 다시 묶고\n아직 잠든 거리를 나서\n익숙한 풍경 속 작은 변화가\n오늘은 왠지 선명하게 보여\n\n[Verse 2]\n바람은 내게 길을 묻고\n햇살은 대답처럼 번져\n누군가 정해 둔 속도 말고\n나에게 맞는 걸음으로 가\n\n[Pre-Chorus]\n어디쯤 왔는지는 몰라도\n지금 이 순간을 놓치진 않아\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n높은 빌딩 사이로 펼쳐진\n작은 하늘 한 조각을 보고\n오래 미뤄 둔 꿈 한 페이지를\n주머니에서 꺼내 펼쳐 봐\n\n[Pre-Chorus]\n먼 길을 혼자 걷는다 해도\n나를 지켜 주는 리듬이 있어\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Bridge]\n빠른 날도 느린 날도\n모두 내 삶의 박자니까\n\n[Final Chorus]\n길 위의 아침이 나를 불러\n어제의 망설임도 웃으며 보내\n누구와도 바꾸지 않을\n나만의 이름으로 노래할 거야\n\n[Outro - short instrumental]",
+          "style": "Original male Korean fictional vocalist; 블루스 록. Distinct voice: rough-edged low baritone with gravelly blues color. Comfortable range F2-D4; performance: unhurried blues bends, raspy but never screamed. Arrangement: electric blues guitar, organ, live kit. Sung language: Korean, English.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 104 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version B: bright rhythmic articulation, agile transitions and confident moderate dynamic chorus. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 104,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "리듬·고음·지구력·동일 보컬 검증",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        }
+      ]
+    },
+    {
+      "id": "MS-06",
+      "name": "박세찬",
+      "group": "MS",
+      "genre": "테크노 팝",
+      "tracks": [
+        {
+          "version": "A",
+          "title": "한 걸음 늦은 밤",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n골목 끝 불이 하나둘 꺼지고\n하루의 소음도 잠이 들면\n말하지 못한 마음 하나가\n내 발끝에 조용히 따라와\n\n[Verse 2]\n지나온 길이 길었다 해도\n잃어버린 날만 있는 건 아냐\n가끔은 아주 작은 온기 하나\n멀어진 나를 다시 데려와\n\n[Pre-Chorus]\n늦었다고 생각한 밤에도\n아직 꺼지지 않은 빛이 있어\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n창가에 놓인 빈 찻잔 옆에\n새벽이 조용히 자리를 잡고\n어제의 눈물 그 자리에도\n살아갈 이유가 조금씩 쌓여\n\n[Pre-Chorus]\n돌아갈 수 없는 날이 있어도\n앞으로 걸을 내일은 남아\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Bridge]\n멀리서 나를 부르는 목소리\n다시 시작해도 된다는 말\n\n[Final Chorus]\n한 걸음 늦어도 괜찮아\n이 길 위에 내가 살아 있잖아\n끝내 지켜 낸 작은 빛 하나\n먼 훗날의 나를 비춰 줄 거야\n\n[Outro - short instrumental]",
+          "style": "Original male Korean fictional vocalist; 테크노 팝. Distinct voice: clean sleek low tenor with clipped precise attacks. Comfortable range A2-E4; performance: staccato rhythmic hook, controlled cool timbre. Arrangement: analog bass, synth arpeggio, house kick. Sung language: Korean, English.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 92 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version A: intimate soft controlled storytelling in lower-mid register and precise pitch. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 92,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "중저음·호흡·감성·발음",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        },
+        {
+          "version": "B",
+          "title": "길 위의 아침",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n새 신발 끈을 다시 묶고\n아직 잠든 거리를 나서\n익숙한 풍경 속 작은 변화가\n오늘은 왠지 선명하게 보여\n\n[Verse 2]\n바람은 내게 길을 묻고\n햇살은 대답처럼 번져\n누군가 정해 둔 속도 말고\n나에게 맞는 걸음으로 가\n\n[Pre-Chorus]\n어디쯤 왔는지는 몰라도\n지금 이 순간을 놓치진 않아\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n높은 빌딩 사이로 펼쳐진\n작은 하늘 한 조각을 보고\n오래 미뤄 둔 꿈 한 페이지를\n주머니에서 꺼내 펼쳐 봐\n\n[Pre-Chorus]\n먼 길을 혼자 걷는다 해도\n나를 지켜 주는 리듬이 있어\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Bridge]\n빠른 날도 느린 날도\n모두 내 삶의 박자니까\n\n[Final Chorus]\n길 위의 아침이 나를 불러\n어제의 망설임도 웃으며 보내\n누구와도 바꾸지 않을\n나만의 이름으로 노래할 거야\n\n[Outro - short instrumental]",
+          "style": "Original male Korean fictional vocalist; 테크노 팝. Distinct voice: clean sleek low tenor with clipped precise attacks. Comfortable range A2-E4; performance: staccato rhythmic hook, controlled cool timbre. Arrangement: analog bass, synth arpeggio, house kick. Sung language: Korean, English.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 114 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version B: bright rhythmic articulation, agile transitions and confident moderate dynamic chorus. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 114,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "리듬·고음·지구력·동일 보컬 검증",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        }
+      ]
+    },
+    {
+      "id": "MS-07",
+      "name": "서지환",
+      "group": "MS",
+      "genre": "어쿠스틱 포크",
+      "tracks": [
+        {
+          "version": "A",
+          "title": "한 걸음 늦은 밤",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n골목 끝 불이 하나둘 꺼지고\n하루의 소음도 잠이 들면\n말하지 못한 마음 하나가\n내 발끝에 조용히 따라와\n\n[Verse 2]\n지나온 길이 길었다 해도\n잃어버린 날만 있는 건 아냐\n가끔은 아주 작은 온기 하나\n멀어진 나를 다시 데려와\n\n[Pre-Chorus]\n늦었다고 생각한 밤에도\n아직 꺼지지 않은 빛이 있어\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n창가에 놓인 빈 찻잔 옆에\n새벽이 조용히 자리를 잡고\n어제의 눈물 그 자리에도\n살아갈 이유가 조금씩 쌓여\n\n[Pre-Chorus]\n돌아갈 수 없는 날이 있어도\n앞으로 걸을 내일은 남아\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Bridge]\n멀리서 나를 부르는 목소리\n다시 시작해도 된다는 말\n\n[Final Chorus]\n한 걸음 늦어도 괜찮아\n이 길 위에 내가 살아 있잖아\n끝내 지켜 낸 작은 빛 하나\n먼 훗날의 나를 비춰 줄 거야\n\n[Outro - short instrumental]",
+          "style": "Original male Korean fictional vocalist; 어쿠스틱 포크. Distinct voice: softly worn-in baritone with natural speech melody. Comfortable range G2-D4; performance: loose conversational verse, almost no ornaments. Arrangement: steel-string acoustic guitar, harmonica, upright bass. Sung language: Korean.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 76 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version A: intimate soft controlled storytelling in lower-mid register and precise pitch. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 76,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "중저음·호흡·감성·발음",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        },
+        {
+          "version": "B",
+          "title": "길 위의 아침",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n새 신발 끈을 다시 묶고\n아직 잠든 거리를 나서\n익숙한 풍경 속 작은 변화가\n오늘은 왠지 선명하게 보여\n\n[Verse 2]\n바람은 내게 길을 묻고\n햇살은 대답처럼 번져\n누군가 정해 둔 속도 말고\n나에게 맞는 걸음으로 가\n\n[Pre-Chorus]\n어디쯤 왔는지는 몰라도\n지금 이 순간을 놓치진 않아\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n높은 빌딩 사이로 펼쳐진\n작은 하늘 한 조각을 보고\n오래 미뤄 둔 꿈 한 페이지를\n주머니에서 꺼내 펼쳐 봐\n\n[Pre-Chorus]\n먼 길을 혼자 걷는다 해도\n나를 지켜 주는 리듬이 있어\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Bridge]\n빠른 날도 느린 날도\n모두 내 삶의 박자니까\n\n[Final Chorus]\n길 위의 아침이 나를 불러\n어제의 망설임도 웃으며 보내\n누구와도 바꾸지 않을\n나만의 이름으로 노래할 거야\n\n[Outro - short instrumental]",
+          "style": "Original male Korean fictional vocalist; 어쿠스틱 포크. Distinct voice: softly worn-in baritone with natural speech melody. Comfortable range G2-D4; performance: loose conversational verse, almost no ornaments. Arrangement: steel-string acoustic guitar, harmonica, upright bass. Sung language: Korean.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 98 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version B: bright rhythmic articulation, agile transitions and confident moderate dynamic chorus. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 98,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "리듬·고음·지구력·동일 보컬 검증",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        }
+      ]
+    },
+    {
+      "id": "MS-08",
+      "name": "문시후",
+      "group": "MS",
+      "genre": "시네마틱 발라드",
+      "tracks": [
+        {
+          "version": "A",
+          "title": "한 걸음 늦은 밤",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n골목 끝 불이 하나둘 꺼지고\n하루의 소음도 잠이 들면\n말하지 못한 마음 하나가\n내 발끝에 조용히 따라와\n\n[Verse 2]\n지나온 길이 길었다 해도\n잃어버린 날만 있는 건 아냐\n가끔은 아주 작은 온기 하나\n멀어진 나를 다시 데려와\n\n[Pre-Chorus]\n늦었다고 생각한 밤에도\n아직 꺼지지 않은 빛이 있어\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n창가에 놓인 빈 찻잔 옆에\n새벽이 조용히 자리를 잡고\n어제의 눈물 그 자리에도\n살아갈 이유가 조금씩 쌓여\n\n[Pre-Chorus]\n돌아갈 수 없는 날이 있어도\n앞으로 걸을 내일은 남아\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Bridge]\n멀리서 나를 부르는 목소리\n다시 시작해도 된다는 말\n\n[Final Chorus]\n한 걸음 늦어도 괜찮아\n이 길 위에 내가 살아 있잖아\n끝내 지켜 낸 작은 빛 하나\n먼 훗날의 나를 비춰 줄 거야\n\n[Outro - short instrumental]",
+          "style": "Original male Korean fictional vocalist; 시네마틱 발라드. Distinct voice: rounded dramatic baritone with deep resonant center. Comfortable range F2-E4; performance: slow tension arc, long stable sustains, restrained emotional peak. Arrangement: piano, full strings, cello, low drums. Sung language: Korean.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 72 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version A: intimate soft controlled storytelling in lower-mid register and precise pitch. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 72,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "중저음·호흡·감성·발음",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        },
+        {
+          "version": "B",
+          "title": "길 위의 아침",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n새 신발 끈을 다시 묶고\n아직 잠든 거리를 나서\n익숙한 풍경 속 작은 변화가\n오늘은 왠지 선명하게 보여\n\n[Verse 2]\n바람은 내게 길을 묻고\n햇살은 대답처럼 번져\n누군가 정해 둔 속도 말고\n나에게 맞는 걸음으로 가\n\n[Pre-Chorus]\n어디쯤 왔는지는 몰라도\n지금 이 순간을 놓치진 않아\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n높은 빌딩 사이로 펼쳐진\n작은 하늘 한 조각을 보고\n오래 미뤄 둔 꿈 한 페이지를\n주머니에서 꺼내 펼쳐 봐\n\n[Pre-Chorus]\n먼 길을 혼자 걷는다 해도\n나를 지켜 주는 리듬이 있어\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Bridge]\n빠른 날도 느린 날도\n모두 내 삶의 박자니까\n\n[Final Chorus]\n길 위의 아침이 나를 불러\n어제의 망설임도 웃으며 보내\n누구와도 바꾸지 않을\n나만의 이름으로 노래할 거야\n\n[Outro - short instrumental]",
+          "style": "Original male Korean fictional vocalist; 시네마틱 발라드. Distinct voice: rounded dramatic baritone with deep resonant center. Comfortable range F2-E4; performance: slow tension arc, long stable sustains, restrained emotional peak. Arrangement: piano, full strings, cello, low drums. Sung language: Korean.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 92 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version B: bright rhythmic articulation, agile transitions and confident moderate dynamic chorus. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 92,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "리듬·고음·지구력·동일 보컬 검증",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        }
+      ]
+    },
+    {
+      "id": "MS-09",
+      "name": "김태오",
+      "group": "MS",
+      "genre": "라틴 팝·발라드",
+      "tracks": [
+        {
+          "version": "A",
+          "title": "한 걸음 늦은 밤",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n골목 끝 불이 하나둘 꺼지고\n하루의 소음도 잠이 들면\n말하지 못한 마음 하나가\n내 발끝에 조용히 따라와\n\n[Verse 2]\n지나온 길이 길었다 해도\n잃어버린 날만 있는 건 아냐\n가끔은 아주 작은 온기 하나\n멀어진 나를 다시 데려와\n\n[Pre-Chorus]\n늦었다고 생각한 밤에도\n아직 꺼지지 않은 빛이 있어\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n창가에 놓인 빈 찻잔 옆에\n새벽이 조용히 자리를 잡고\n어제의 눈물 그 자리에도\n살아갈 이유가 조금씩 쌓여\n\n[Pre-Chorus]\n돌아갈 수 없는 날이 있어도\n앞으로 걸을 내일은 남아\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Bridge]\n멀리서 나를 부르는 목소리\n다시 시작해도 된다는 말\n\n[Final Chorus]\n한 걸음 늦어도 괜찮아\n이 길 위에 내가 살아 있잖아\n끝내 지켜 낸 작은 빛 하나\n먼 훗날의 나를 비춰 줄 거야\n\n[Outro - short instrumental]",
+          "style": "Original male Korean fictional vocalist; 라틴 팝·발라드. Distinct voice: sunlit lyric tenor with light chest resonance. Comfortable range C3-G4; performance: lilting syncopation, bright diction, graceful phrasing. Arrangement: nylon guitar, Latin percussion, warm brass. Sung language: Korean, Spanish.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 75 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version A: intimate soft controlled storytelling in lower-mid register and precise pitch. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 75,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "중저음·호흡·감성·발음",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        },
+        {
+          "version": "B",
+          "title": "길 위의 아침",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n새 신발 끈을 다시 묶고\n아직 잠든 거리를 나서\n익숙한 풍경 속 작은 변화가\n오늘은 왠지 선명하게 보여\n\n[Verse 2]\n바람은 내게 길을 묻고\n햇살은 대답처럼 번져\n누군가 정해 둔 속도 말고\n나에게 맞는 걸음으로 가\n\n[Pre-Chorus]\n어디쯤 왔는지는 몰라도\n지금 이 순간을 놓치진 않아\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n높은 빌딩 사이로 펼쳐진\n작은 하늘 한 조각을 보고\n오래 미뤄 둔 꿈 한 페이지를\n주머니에서 꺼내 펼쳐 봐\n\n[Pre-Chorus]\n먼 길을 혼자 걷는다 해도\n나를 지켜 주는 리듬이 있어\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Bridge]\n빠른 날도 느린 날도\n모두 내 삶의 박자니까\n\n[Final Chorus]\n길 위의 아침이 나를 불러\n어제의 망설임도 웃으며 보내\n누구와도 바꾸지 않을\n나만의 이름으로 노래할 거야\n\n[Outro - short instrumental]",
+          "style": "Original male Korean fictional vocalist; 라틴 팝·발라드. Distinct voice: sunlit lyric tenor with light chest resonance. Comfortable range C3-G4; performance: lilting syncopation, bright diction, graceful phrasing. Arrangement: nylon guitar, Latin percussion, warm brass. Sung language: Korean, Spanish.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 102 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version B: bright rhythmic articulation, agile transitions and confident moderate dynamic chorus. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 102,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "리듬·고음·지구력·동일 보컬 검증",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        }
+      ]
+    },
+    {
+      "id": "MS-10",
+      "name": "성민우",
+      "group": "MS",
+      "genre": "러시아어 발라드",
+      "tracks": [
+        {
+          "version": "A",
+          "title": "한 걸음 늦은 밤",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n골목 끝 불이 하나둘 꺼지고\n하루의 소음도 잠이 들면\n말하지 못한 마음 하나가\n내 발끝에 조용히 따라와\n\n[Verse 2]\n지나온 길이 길었다 해도\n잃어버린 날만 있는 건 아냐\n가끔은 아주 작은 온기 하나\n멀어진 나를 다시 데려와\n\n[Pre-Chorus]\n늦었다고 생각한 밤에도\n아직 꺼지지 않은 빛이 있어\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n창가에 놓인 빈 찻잔 옆에\n새벽이 조용히 자리를 잡고\n어제의 눈물 그 자리에도\n살아갈 이유가 조금씩 쌓여\n\n[Pre-Chorus]\n돌아갈 수 없는 날이 있어도\n앞으로 걸을 내일은 남아\n\n[Chorus]\n한 걸음 늦어도 괜찮아\n내 계절은 아직 끝나지 않아\n바람에 흔들린 모든 약속이\n오늘의 나를 여기 세워 두네\n한 번 더 나를 믿어 보려 해\n어둠 너머의 아침을 향해\n\n[Bridge]\n멀리서 나를 부르는 목소리\n다시 시작해도 된다는 말\n\n[Final Chorus]\n한 걸음 늦어도 괜찮아\n이 길 위에 내가 살아 있잖아\n끝내 지켜 낸 작은 빛 하나\n먼 훗날의 나를 비춰 줄 거야\n\n[Outro - short instrumental]",
+          "style": "Original male Korean fictional vocalist; 러시아어 발라드. Distinct voice: rich mature bass-baritone with spacious dark undertones. Comfortable range E2-C4; performance: slow narrative delivery, broad rounded vowels, gentle vibrato. Arrangement: accordion, piano, low cello, balalaika. Sung language: Russian, Korean.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 75 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version A: intimate soft controlled storytelling in lower-mid register and precise pitch. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 75,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "중저음·호흡·감성·발음",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        },
+        {
+          "version": "B",
+          "title": "길 위의 아침",
+          "lyrics": "[Intro - 10 seconds instrumental]\n[Verse 1]\n새 신발 끈을 다시 묶고\n아직 잠든 거리를 나서\n익숙한 풍경 속 작은 변화가\n오늘은 왠지 선명하게 보여\n\n[Verse 2]\n바람은 내게 길을 묻고\n햇살은 대답처럼 번져\n누군가 정해 둔 속도 말고\n나에게 맞는 걸음으로 가\n\n[Pre-Chorus]\n어디쯤 왔는지는 몰라도\n지금 이 순간을 놓치진 않아\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Instrumental break - 12 seconds]\n[Verse 3]\n높은 빌딩 사이로 펼쳐진\n작은 하늘 한 조각을 보고\n오래 미뤄 둔 꿈 한 페이지를\n주머니에서 꺼내 펼쳐 봐\n\n[Pre-Chorus]\n먼 길을 혼자 걷는다 해도\n나를 지켜 주는 리듬이 있어\n\n[Chorus]\n길 위의 아침이 나를 불러\n흔들리는 마음도 함께 데려가\n넘어졌던 자리마다\n새로운 발자국을 남겨\n어제보다 조금 더 멀리\n나만의 노래를 불러 보려 해\n\n[Bridge]\n빠른 날도 느린 날도\n모두 내 삶의 박자니까\n\n[Final Chorus]\n길 위의 아침이 나를 불러\n어제의 망설임도 웃으며 보내\n누구와도 바꾸지 않을\n나만의 이름으로 노래할 거야\n\n[Outro - short instrumental]",
+          "style": "Original male Korean fictional vocalist; 러시아어 발라드. Distinct voice: rich mature bass-baritone with spacious dark undertones. Comfortable range E2-C4; performance: slow narrative delivery, broad rounded vowels, gentle vibrato. Arrangement: accordion, piano, low cello, balalaika. Sung language: Russian, Korean.   Natural Korean diction where applicable, stable vocal identity, clean 24-bit studio sound, close clear lead, no imitation of any real artist or existing song. 102 BPM, 4/4 meter, about 4 minutes 20 seconds, 10-second instrumental intro, one 12-second mid-song instrumental break, professional studio mix. Version B: bright rhythmic articulation, agile transitions and confident moderate dynamic chorus. Focus on this vocalist's unique timbre and consistent formants. Keep lead vocal clearly forward.",
+          "bpm": 102,
+          "meter": "4/4",
+          "targetDurationSec": 260,
+          "testPurpose": "리듬·고음·지구력·동일 보컬 검증",
+          "generationState": "NOT_GENERATED",
+          "voiceModelId": null,
+          "audioMaster": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+name: MARU vocal production checks
+on:
+  pull_request:
+    paths:
+      - 'vocal-studio/**'
+      - 'tests/vocal-audition.test.cjs'
+      - 'tests/vocal-production-plans.test.cjs'
+      - '.github/workflows/vocal-production.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'vocal-studio/**'
+      - 'tests/vocal-audition.test.cjs'
+      - 'tests/vocal-production-plans.test.cjs'
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate 30 vocalist dossiers, two-track plans and honest approval status
+        run: node --test tests/vocal-audition.test.cjs tests/vocal-production-plans.test.cjs
+      - name: Static JavaScript syntax
+        run: |
+          node --check vocal-studio/app.js
+          node --check vocal-studio/make.js
+          node --check vocal-studio/audition.js
+          node --check vocal-studio/audio-qc.js

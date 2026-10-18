@@ -1,0 +1,18 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#211735">
+<title>MARU STUDIO · 60곡 보컬 제작실</title><style>
+*{box-sizing:border-box}body{margin:0;background:#141021;color:#fff;font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif;line-height:1.6}
+header{padding:20px;background:linear-gradient(135deg,#603e95,#261831)}main{max-width:1000px;margin:auto;padding:18px 15px 70px}
+h1{font-size:clamp(23px,5vw,36px);margin:5px 0}.card{background:#262035;border:1px solid #614a82;border-radius:15px;padding:16px;margin:15px 0}.warning{background:#332536;border-color:#8c6463}a{color:#eed4ff}
+label{display:block;margin-bottom:6px;font-weight:700}textarea,input,select,button{font:inherit;border-radius:10px;padding:11px;background:#1a1527;border:1px solid #715989;color:#fff}
+textarea{width:100%;min-height:160px;white-space:pre-wrap}input{width:100%}select{max-width:100%;min-width:160px}
+button{background:#7450a8;cursor:pointer;font-weight:700}button:hover{background:#825bc2}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.row button{flex:1 1 auto}
+.small{color:#cfc3db;font-size:13px}#lyrics{min-height:340px}#status{padding:15px;background:#171225;position:sticky;bottom:0;border-top:1px solid #9176c6;margin:0}
+</style></head><body><header><div style="max-width:1000px;margin:auto"><a href="./">← 보컬 후보 명단</a><h1>🎵 MARU STUDIO · 60곡 제작실</h1><p>30명 × 2곡. 가수별 Suno 스타일·보컬 특성·오디션 테스트 가사 자동 선택.</p></div></header>
+<main><section class="card warning"><strong>제작 설정만 준비되었습니다. 실제 노래 생성 완료 0곡.</strong>
+<p>이 페이지는 Suno 계정을 대신 로그인하거나 무인으로 생성하지 않습니다. 60개 카드에 준비된 가사·스타일을 <b>복사해 Suno에서 직접 생성</b>하고, 다운로드한 원곡을 <a href="./audition.html">전문 오디션</a>에서 검증해야 합니다. 각 가수의 목소리 고정은 Style Persona 등 별도 제작이 필요합니다.</p><p>두 테스트곡의 가사는 표준 비교를 위해 여러 후보가 공유합니다. 보컬의 독창성과 프로덕션에 집중해 심사한 뒤 실제 데뷔곡은 새로 제작하세요.</p></section>
+<section class="card"><h2>1. 가수·테스트곡 선택</h2><div class="row"><label for="person">후보</label><select id="person"></select><label for="version">테스트곡</label><select id="version"><option value="A">A — 낮은 음역·발음</option><option value="B">B — 리듬·후렴</option></select></div><p id="group"></p><p id="test"></p><p class="small" id="generation"></p></section>
+<section class="card"><h2>2. 제목 복사</h2><input id="title" readonly aria-label="Suno 곡 제목"><div class="row"><button id="copy-title">제목 복사</button></div></section>
+<section class="card"><h2>3. 스타일 복사</h2><textarea id="style" readonly aria-label="Suno Style of Music"></textarea><div class="row"><button id="copy-style">스타일 복사</button></div><p class="small">1000자 미만 · 가수별 음색, 음역, 장르, 리듬, 믹스 지시 포함.</p></section>
+<section class="card"><h2>4. 노래 가사 복사</h2><textarea id="lyrics" readonly aria-label="Suno Custom Lyrics"></textarea><div class="row"><button id="copy-lyrics">가사 복사</button></div></section>
+<section class="card"><h2>5. 노래 제작 → 검사</h2><div class="row"><button id="openSuno">Suno 제작 화면 열기 ↗</button><button id="openAudition">원곡 오디션 등록 →</button><button id="exportPack">30명×2곡 제작팩 저장</button></div><p>① Suno Custom 모드에서 제목/가사/스타일 순서로 입력 → ② 두 곡 생성 및 원곡 보존 → ③ Persona로 음색 재현 여부 평가 → ④ 전문 오디션에 두 곡 업로드 → ⑤ 품질·권리 심사 → ⑥ 필요시 다시 생성.</p></section>
+</main><p id="status" role="status" aria-live="polite">로딩 중</p><script src="./make.js?v=1"></script></body></html>
