@@ -11,6 +11,8 @@ function download(text,name){
 function render(){
  const frag=document.createDocumentFragment();
  const review=P.aggregate(selectedPayload,names);
+ const suspicious=selectedPayload.possibleContentDuplicates||[];
+ $("suspectedDupStatus").textContent=suspicious.length?("⚠ 서로 다른 파일이지만 같은 녹음으로 의심되는 조합 "+suspicious.length+"쌍: 독립 2곡 평가에서 제외"):"오디오 재인코딩 중복 후보가 제공되지 않았습니다. 중복 여부는 별도 청음 확인 필요.";
  $("count").textContent="Suno Persona 제작 테스트에 쓸 2곡 선별 완료 "+review.readyCount+"/30명 (가수 제작 완료 아님)";
  for(const r of review.rows){
   const c=create("article"),h=create("h3",r.name+" · "+r.id);
@@ -53,7 +55,7 @@ document.addEventListener("DOMContentLoaded",async()=>{
    if(!selectedPayload)return;
    const audit=P.aggregate(selectedPayload,names);
    const packed={kind:"MARU_PERSONA_TEST_PREP_ONLY",generatedAt:new Date().toISOString(),
-    readyCount:audit.readyCount,results:audit.rows,
+    readyCount:audit.readyCount,possibleContentDuplicates:selectedPayload.possibleContentDuplicates||[],results:audit.rows,
     warning:"사용자 선별 데이터. 정식 AI 가수 제작·저작권·법적 허가·BIGO 청취자 수신 인증 아님."};
    download(JSON.stringify(packed,null,2),"MARU_STUDIO_30가수_Persona_제작대기_요약.json");
  };
