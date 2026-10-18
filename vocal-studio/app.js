@@ -37,7 +37,7 @@ async function removeSample(id){
   t.objectStore("samples").delete(id);t.oncomplete=resolve;t.onerror=()=>reject(t.error);
  });
 }
-function card(a){return '<article class="artist"><div class="artist-head"><span class="tag">'+escapeHtml(a.groupLabel)+'</span><span class="tag alt">'+escapeHtml(a.range)+'</span></div><h3>'+escapeHtml(a.name)+'</h3><p>'+escapeHtml(a.genre)+'</p><small>'+escapeHtml(a.timbre)+'</small><div class="actions"><button data-action="select" data-id="'+a.id+'">가수 보기</button><button data-action="copy" data-id="'+a.id+'">Suno 스타일 복사</button><button data-action="queue" data-id="'+a.id+'">방송 목록에 추가</button></div></article>';}
+function card(a){return '<article class="artist"><div class="artist-head"><span class="tag">'+escapeHtml(a.groupLabel)+'</span><span class="tag alt">'+escapeHtml(a.range)+'</span></div><h3>'+escapeHtml(a.name)+'</h3><p>'+escapeHtml(a.genre)+'</p><small>'+escapeHtml(a.timbre)+'</small><div class="actions"><button data-action="select" data-id="'+a.id+'">후보 보기</button><button data-action="copy" data-id="'+a.id+'">Suno 스타일 복사</button><button data-action="queue" data-id="'+a.id+'">샘플 미리듣기 추가</button></div></article>';}
 function render(){
  const q=E("query").value.trim().toLowerCase(), group=E("group").value;
  E("cards").innerHTML=ARTISTS.filter(a=>(group==="ALL"||group===a.group)&&[a.name,a.genre,a.timbre].join(" ").toLowerCase().includes(q)).map(card).join("")||"<p>일치하는 가수가 없습니다.</p>";
