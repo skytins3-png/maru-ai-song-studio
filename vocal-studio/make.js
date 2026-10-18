@@ -39,7 +39,8 @@ document.addEventListener("DOMContentLoaded",async()=>{
    const link=document.createElement("a");link.href=url;link.download="MARU_STUDIO_60_SUNO_TEST_SONG_PROMPTS.json";
    document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),3000);
   };
-  $("person").value=roster[0].id;choose();note("제작 준비 60개 설정 완료 · 생성된 음원은 0개");
+  const requested=new URLSearchParams(window.location.search).get("artist");
+  $("person").value=roster.some(p=>p.id===requested)?requested:roster[0].id;choose();note("제작 준비 60개 설정 완료 · 생성된 음원은 0개");
  }catch(e){note("화면 초기화 실패: "+e.message);}
 });
 })();
