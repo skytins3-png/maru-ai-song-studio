@@ -32,7 +32,7 @@ function assess(channels,sampleRate){
  if(sampleRate<32000)flags.push("낮은 샘플 레이트 · 원본 확인");
  if(channels.length===1)flags.push("모노 음원 · 스테레오 필요 여부 확인");
  return {durationSec,sampleRate,channelCount:channels.length,rmsDb,peakDb,clipPct,dc,
-   integrityOk:rmsDb>=-50&&nonFinite===0&&durationSec>=45,
+   integrityOk:rmsDb>=-50&&clipPct<=1&&Math.abs(dc)<=0.04&&nonFinite===0&&durationSec>=45,
    flags,note:"PCM 기반 참고 지표. 마스터 음질·음정·보컬 동일성·저작권을 자동 증명하지 않습니다."};
 }
 async function fromFile(file){
