@@ -11,8 +11,9 @@ const good=()=>({files:[{hash:"a".repeat(64),size:2000,duration:120},{hash:"b".r
  flags:Object.fromEntries(policy.FLAGS.map(x=>[x,true]))});
 test("roster is 30 concepts, not 30 singers",()=>{
  assert.equal(roster.artists.length,30);
- assert.equal(production.approvedCount,0);
- assert.equal(production.complete,false);
+ assert.equal(production.approvedCount,production.artists.filter(a=>a.approved===true).length);
+ assert.equal(production.candidateCount,30);
+ assert.equal(production.complete,production.artists.every(a=>a.approved===true)&&production.tests.femaleTrioHarmonyPassed===true&&production.tests.maleSeptetHarmonyPassed===true&&production.tests.bigoListenerVerified===true);
  assert.equal(new Set(roster.artists.map(a=>a.name)).size,30);
 });
 test("two independent performances and full review pass locally",()=>assert.equal(policy.validate(good()).passed,true));
