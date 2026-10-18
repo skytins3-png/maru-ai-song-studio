@@ -6,7 +6,6 @@ on:
       - 'tests/vocal-audition.test.cjs'
       - 'tests/vocal-production-plans.test.cjs'
       - 'tests/vocal-catalog-review.test.cjs'
-      - 'tests/vocal-catalog-review.test.cjs'
       - '.github/workflows/vocal-production.yml'
   push:
     branches: [main]
@@ -14,6 +13,7 @@ on:
       - 'vocal-studio/**'
       - 'tests/vocal-audition.test.cjs'
       - 'tests/vocal-production-plans.test.cjs'
+      - 'tests/vocal-catalog-review.test.cjs'
 jobs:
   validate:
     runs-on: ubuntu-latest
