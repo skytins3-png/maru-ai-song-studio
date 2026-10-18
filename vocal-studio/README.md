@@ -28,3 +28,9 @@
 - Suno 공식 `https://suno.com/create` 열기 버튼이 있고 Suno가 실제 생성한 원본을 사용자가 다운받아 `audition.html`에 등록해야 합니다. **자동 로그인, 무단 API 호출, 음원 파일 자동 생성은 지원하지 않습니다.**
 - Style Persona는 본인이 생성한 원본 음원을 기반으로 만들고 다른 곡에서 보컬의 일관성을 비교합니다. Suno 공식 안내 참고: https://help.suno.com/en/articles/3484161
 - 현재 `production-status.json`의 실제 마스터 승인 0명/30명은 변하지 않습니다. 이름/텍스트 프롬프트만으로 합격 처리하지 않습니다.
+
+## 107곡 Suno 자작곡 비공개 분석 관리 기능
+- `/vocal-studio/catalog-review.html`: JSON을 로컬에서 불러오며 GitHub/서버로 음원을 자동 업로드하지 않습니다. SHA-256 기준 완전한 중복만 제거합니다. 
+- `MARU_107_audio_analysis.json`: 채팅에서 사용자에게 별도 제공되는 분석 JSON입니다. 공개 코드 저장소에 사용자 원본 음원·제목 목록은 자동 추가하지 않았습니다.
+- 곡별 원본을 휴대폰에서 선택할 때 브라우저 Object URL로만 재생합니다(파일 업로드 아님). 사용자 수동 청음 점수와 노트는 해당 기기의 localStorage로 관리하고 JSON으로 내보낼 수 있습니다.
+- 파일명 언어, 리듬 BPM 등은 추정 지표만 제공하며 30명 서로 다른 AI 보컬의 음성 모델이나 법적 사용 권리 검증이 아님.
