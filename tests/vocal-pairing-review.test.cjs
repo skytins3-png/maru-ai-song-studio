@@ -39,3 +39,21 @@ test("reject malformed or fake near-duplicate references",()=>{
  assert.throws(()=>p.validate(a));a.possibleContentDuplicates=[{a:"T001",b:"T002",correlationClipA:1.5}];
  assert.throws(()=>p.validate(a));
 });
+
+test("missing, invalid and out-of-range listening scores never pass",()=>{
+ for(const bad of [undefined,null,"", "not scored",6,Infinity,4.5,[],[5],{}]){
+  for(const key of ["timbre","diction","identity"]){
+   const a=root();a.pairings["F3-01"]={A:"T001",B:"T002",sameVoiceChecked:true};
+   a.reviews.T001={...review,[key]:bad};a.reviews.T002={...review};
+   assert.equal(p.assessPair(p.validate(a),"F3-01").ready,false,`${key}: ${String(bad)}`);
+  }
+ }
+});
+test("voice consistency requires a boolean confirmation",()=>{
+ for(const value of ["false","true",1,{},[]]){
+  const a=root();a.pairings["F3-01"]={A:"T001",B:"T002",sameVoiceChecked:value};
+  a.reviews.T001={...review};a.reviews.T002={...review};
+  const result=p.assessPair(p.validate(a),"F3-01");
+  assert.equal(result.ready,false);assert.equal(result.checked,false);
+ }
+});
