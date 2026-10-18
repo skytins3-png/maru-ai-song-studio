@@ -84,7 +84,18 @@ document.addEventListener("DOMContentLoaded",async()=>{
   if(!response.ok)throw Error("명단 파일을 불러올 수 없습니다.");
   const roster=await response.json();ARTISTS=roster.artists;
   if(ARTISTS.length!==30)throw Error("가수 수가 30명이 아닙니다.");
-  E("count").textContent="제작 완료한 AI 가수 0명 · 이름/스타일 후보 "+ARTISTS.length+"명 (여성 13명 · 남성 17명)";
+  E("count").textContent="정식 제작 승인 0/30명 · 가상 보컬 후보 "+ARTISTS.length+"명";
+  try {
+    const pr=await fetch("./production-status.json",{cache:"no-store"});
+    if(!pr.ok)throw new Error("상태 파일 응답 오류");
+    const prod=await pr.json();
+    const approved=prod.artists.filter(row=>row.approved===true).length;
+    if(prod.artists.length!==ARTISTS.length||approved!==prod.approvedCount)throw new Error("승인 숫자 불일치");
+    E("count").textContent="검증된 정식 가수 "+approved+"/"+prod.candidateCount+"명 · 후보 "+(prod.candidateCount-approved)+"명";
+    E("productionNote").textContent=prod.complete===true?"30명 전체 승인 기록 확인 — 실제 방송은 별도 확인":approved+"명 승인 · 실제 보컬·곡·초상권·상표권 검증 기준에 따라 심사 중";
+  } catch(error) {
+    E("productionNote").textContent="정식 제작 현황을 불러올 수 없습니다. 가수 승인 상태는 확인 전입니다.";
+  }
   E("cards").addEventListener("click",async e=>{
     const button=e.target.closest("button[data-action]");if(!button)return;
     const a=ARTISTS.find(x=>x.id===button.dataset.id);if(!a)return;
