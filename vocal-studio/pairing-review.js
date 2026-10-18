@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded",async()=>{
    if(!selectedPayload)return;
    const audit=P.aggregate(selectedPayload,names);
    const packed={kind:"MARU_PERSONA_TEST_PREP_ONLY",generatedAt:new Date().toISOString(),
-    readyCount:audit.readyCount,results:audit.rows,
+    readyCount:audit.readyCount,possibleContentDuplicates:selectedPayload.possibleContentDuplicates||[],results:audit.rows,
     warning:"사용자 선별 데이터. 정식 AI 가수 제작·저작권·법적 허가·BIGO 청취자 수신 인증 아님."};
    download(JSON.stringify(packed,null,2),"MARU_STUDIO_30가수_Persona_제작대기_요약.json");
  };
