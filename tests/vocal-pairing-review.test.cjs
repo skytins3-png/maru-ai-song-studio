@@ -21,3 +21,21 @@ test("pairing eligibility is not singer approval",()=>{
  assert.equal(group.readyCount,1);assert.match(group.rows[0].stage,/Persona/);
  assert.match(group.explanation,/가수 제작.*아님/);
 });
+test("re-encoded matching recording is blocked even when SHA hashes differ",()=>{
+ const a=root();a.pairings["F3-01"]={A:"T081",B:"T082",sameVoiceChecked:true};
+ a.reviews.T081={...review};a.reviews.T082={...review};
+ assert.equal(p.assessPair(p.validate(a),"F3-01").ready,true);
+ a.possibleContentDuplicates=[{a:"T081",b:"T082",correlationClipA:0.9773,correlationClipB:0.9769}];
+ const result=p.assessPair(p.validate(a),"F3-01");
+ assert.equal(result.ready,false);
+ assert.match(result.reasons.join(" "),/다른 인코딩/);
+});
+test("T000 is invalid even if all 105 IDs are supplied",()=>{
+ const a=root();delete a.sourceHashes.T001;a.sourceHashes.T000="0".repeat(64);
+ assert.throws(()=>p.validate(a));
+});
+test("reject malformed or fake near-duplicate references",()=>{
+ const a=root();a.possibleContentDuplicates=[{a:"T001",b:"T999"}];
+ assert.throws(()=>p.validate(a));a.possibleContentDuplicates=[{a:"T001",b:"T002",correlationClipA:1.5}];
+ assert.throws(()=>p.validate(a));
+});
