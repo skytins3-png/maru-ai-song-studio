@@ -11,6 +11,8 @@ function download(text,name){
 function render(){
  const frag=document.createDocumentFragment();
  const review=P.aggregate(selectedPayload,names);
+ const suspicious=selectedPayload.possibleContentDuplicates||[];
+ $("suspectedDupStatus").textContent=suspicious.length?("⚠ 서로 다른 파일이지만 같은 녹음으로 의심되는 조합 "+suspicious.length+"쌍: 독립 2곡 평가에서 제외"):"오디오 재인코딩 중복 후보가 제공되지 않았습니다. 중복 여부는 별도 청음 확인 필요.";
  $("count").textContent="Suno Persona 제작 테스트에 쓸 2곡 선별 완료 "+review.readyCount+"/30명 (가수 제작 완료 아님)";
  for(const r of review.rows){
   const c=create("article"),h=create("h3",r.name+" · "+r.id);
