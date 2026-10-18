@@ -37,17 +37,19 @@ function assessPair(rec,person){
  if(possibleDup)reasons.push("같은 녹음의 다른 인코딩이 의심되는 조합입니다. 독립된 두 곡으로 인정할 수 없습니다.");
 
  if(!two)reasons.push("서로 다른 두 곡을 연결해야 합니다.");
- if(!p.sameVoiceChecked)reasons.push("두 곡을 직접 듣고 같은 보컬인지 대조해야 합니다.");
+ if(p.sameVoiceChecked!==true)reasons.push("두 곡을 직접 듣고 같은 보컬인지 대조해야 합니다.");
  for(const slot of ["A","B"]){
    const id=p[slot],rev=id?rec.reviews[id]:null;
    if(!rev||rev.heard!==true)reasons.push(slot+"곡 청음 완료 표시가 없습니다.");
-   if(!rev||Number(rev.timbre)<4||Number(rev.diction)<4||Number(rev.identity)<4)
-      reasons.push(slot+"곡 음색·발음·개성 평가가 각각 4점 미만입니다.");
+   if(!rev||!["timbre","diction","identity"].every(key=>
+     (typeof rev[key]==="number"||typeof rev[key]==="string")&&
+     Number.isInteger(Number(rev[key]))&&Number(rev[key])>=4&&Number(rev[key])<=5))
+      reasons.push(slot+"곡 음색·발음·개성 평가가 각각 정수 4~5점으로 입력되어야 합니다.");
  }
  const ready=two&&!possibleDup&&reasons.length===0;
  return {ready,stage:ready?"원곡 두 곡 인간 청음 완료 · Persona 제작 테스트 대기":"보컬 원곡 선별 중",reasons,
   songA:p.A||null,songB:p.B||null,
-  checked:Boolean(p.sameVoiceChecked)};
+  checked:p.sameVoiceChecked===true};
 }
 function aggregate(rec,roster){
  const rows=roster.map(a=>({id:a.id,name:a.name,...assessPair(rec,a.id)}));
