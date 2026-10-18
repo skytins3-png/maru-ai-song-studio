@@ -1,4 +1,5 @@
-# MARU STUDIO · 30 fictional vocal artists
+# MARU STUDIO · 30 vocal concept candidates (NOT finished singers)
+- 가수 등록 완료는 0명. 현재 30개 이름과 스타일만 존재하며 고유 음성 모델/노래는 없음. 후보 명단을 완성 가수로 표기하지 않음.
 - 공개 진입점: `/vocal-studio/`. 기존 MARU 본 앱·MUSIC SHARE·MARU RADIO 코드와 격리.
 - `artists.json`: 한국어 예명 30개, 여성 3인조 3명 / 남성 7인조 7명 / 여성 솔로 10명 / 남성 솔로 10명.
 - 30명에게 서로 다른 음색, 음역, 창법, 반주 악기, 언어, 합창 파트와 Suno Styles(<1000자) 제공.
