@@ -68,7 +68,7 @@
    (await getAll()).forEach(t=>{takes[t.id]=t;});
    ["A","B"].forEach(tag=>{
      const t=takes[active+tag];
-     $(tag==="A"?"songAInfo":"songBInfo").textContent=t?t.name+" · "+Math.round(t.duration)+"초 · SHA-256 "+t.hash.slice(0,12):"음원 미등록";
+     $(tag==="A"?"songAInfo":"songBInfo").textContent=t?t.name+" · "+Math.round(t.duration)+"초 · RMS "+(t.qc?.rmsDb??"?")+" dBFS · Clip "+(t.qc?.clipPct??"?")+"% · SHA "+t.hash.slice(0,12)+(t.qc?.flags.length?" · 검토: "+t.qc.flags.join(", "):""):"음원 미등록";
    });
  }
  function form(){
@@ -114,11 +114,12 @@
      info("저장하기 전에 권리 및 타인 음성 무단모사 금지를 먼저 확인해야 해.");return;
    }
    info("파일의 길이와 중복 여부 검사 중…");
-   const [hash,length]=await Promise.all([sha(file),duration(file)]);
+   const [hash,length,quality]=await Promise.all([sha(file),duration(file),window.MaruAudioQC.fromFile(file)]);
+   if(!quality.integrityOk){info("음원 자동 품질 검사 미통과: "+(quality.flags.join(" / ")||"원본 확인 필요"));return;}
    if(length<45){info("최소 45초 이상 실제 노래를 녹음해 줘.");return;}
    const other=takes[active+(tag==="A"?"B":"A")];
    if(other&&other.hash===hash){info("같은 음원 파일입니다. 서로 다른 노래 2곡이 필요합니다.");return;}
-   await putTake({id:active+tag,name:file.name,size:file.size,hash,duration:length,blob:file});
+   await putTake({id:active+tag,name:file.name,size:file.size,hash,duration:length,qc:quality,blob:file});
    await refreshFiles();evaluate();info("원본 파일 등록 완료. 이 기기에서만 저장되고 GitHub에 공개되지 않아.");
  }
  let playUrl=null;

@@ -6,7 +6,7 @@ const policy=require("../vocal-studio/audition-policy.js");
 const root=path.resolve(__dirname,"..");
 const roster=JSON.parse(fs.readFileSync(path.join(root,"vocal-studio/artists.json"),"utf8"));
 const production=JSON.parse(fs.readFileSync(path.join(root,"vocal-studio/production-status.json"),"utf8"));
-const good=()=>({files:[{hash:"a".repeat(64),size:2000,duration:120},{hash:"b".repeat(64),size:3000,duration:115}],
+const good=()=>({files:[{hash:"a".repeat(64),size:2000,duration:120,qc:{integrityOk:true}},{hash:"b".repeat(64),size:3000,duration:115,qc:{integrityOk:true}}],
  scores:Object.fromEntries(policy.SCORE_KEYS.map(x=>[x,5])),
  flags:Object.fromEntries(policy.FLAGS.map(x=>[x,true]))});
 test("roster is 30 concepts, not 30 singers",()=>{
@@ -26,3 +26,6 @@ test("empty scores must NOT parse as zero completed scores",()=>{const v=good();
 test("any score under 4 fails even if total high",()=>{const v=good();v.scores.pitch=3;assert.equal(policy.validate(v).passed,false)});
 test("score under 26 fails",()=>{const v=good();v.scores.pitch=4;v.scores.diction=4;v.scores.expression=4;v.scores.identity=4;v.scores.consistency=4;v.scores.mix=4;assert.equal(policy.validate(v).passed,false)});
 test("missing manual listening fails",()=>{const v=good();v.flags.listened=false;assert.equal(policy.validate(v).passed,false)});
+
+test("quality check is required, not just a user quality score",()=>{const v=good();delete v.files[0].qc;assert.equal(policy.validate(v).passed,false)});
+test("bad decoded audio QC prevents local approval",()=>{const v=good();v.files[1].qc={integrityOk:false};assert.equal(policy.validate(v).passed,false)});
