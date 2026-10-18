@@ -6,5 +6,5 @@
 <section><h2>1. 비공개 선별 결과 가져오기</h2><p><a href="./catalog-review.html">개별 음원 청음 기록 화면</a> 또는 이전에 받은 105곡 오프라인 ZIP 청음 화면에서 <b>「청음·보컬 매칭 JSON 저장」</b>으로 만든 파일을 선택합니다.</p>
 <input id="file" type="file" accept=".json,application/json" aria-label="MARU STUDIO 개인 청음 결과 JSON">
 <p class="hint">JSON 파일은 이 브라우저에서만 읽으며 서버나 공개 GitHub로 업로드하지 않습니다.</p></section>
-<section><h2>2. 30명 제작 준비 현황</h2><p id="count">청음 JSON 미선택</p><button id="export" disabled>30명 Persona 제작 대기표 JSON 저장</button><p class="hint">동일 바이트 파일이 아니라도 MP3·M4A처럼 다른 인코딩으로 보이는 음원은 독립된 두 곡으로 인정하지 않습니다. 별도 원본 음원 청취와 검증이 필요합니다.</p><p class="hint">합격 표시가 뜨더라도 목소리 고정, 동일 가수 검증, 공연권·상표 확인 및 실제 송출까지 진행해야 정식 제작 완료입니다.</p></section>
+<section><h2>2. 30명 제작 준비 현황</h2><p id="count">청음 JSON 미선택</p><p id="suspectedDupStatus" class="hint"></p><button id="export" disabled>30명 Persona 제작 대기표 JSON 저장</button><p class="hint">동일 바이트 파일이 아니라도 MP3·M4A처럼 다른 인코딩으로 보이는 음원은 독립된 두 곡으로 인정하지 않습니다. 별도 원본 음원 청취와 검증이 필요합니다.</p><p class="hint">합격 표시가 뜨더라도 목소리 고정, 동일 가수 검증, 공연권·상표 확인 및 실제 송출까지 진행해야 정식 제작 완료입니다.</p></section>
 <div id="results" aria-live="polite"></div></main><p id="status" role="status">불러오는 중…</p><script src="./pairing-policy.js?v=2"></script><script src="./pairing-review.js?v=1"></script></body></html>
