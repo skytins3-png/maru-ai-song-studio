@@ -98,6 +98,7 @@ async function show(ticket){
 }
 function start(){
  if(running)return;
+ if(busy){status("곡 파일 가져오기가 끝나면 라디오를 시작할 수 있어요.");return;}
  if(!tracks.length){status("먼저 형의 Suno 자작곡을 선택해 주세요.");return;}
  if(!$("rights").checked){status("원본 재생·방송 사용 권한을 확인해 주세요.");return;}
  globalThis.speechSynthesis?.cancel();history.length=0;comments.length=0;genre=0;index=0;
