@@ -7,6 +7,7 @@ on:
       - 'tests/vocal-production-plans.test.cjs'
       - 'tests/vocal-catalog-review.test.cjs'
       - 'tests/vocal-pairing-review.test.cjs'
+      - 'tests/vocal-persona-evidence.test.cjs'
       - '.github/workflows/vocal-production.yml'
   push:
     branches: [main]
@@ -16,6 +17,7 @@ on:
       - 'tests/vocal-production-plans.test.cjs'
       - 'tests/vocal-catalog-review.test.cjs'
       - 'tests/vocal-pairing-review.test.cjs'
+      - 'tests/vocal-persona-evidence.test.cjs'
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -27,7 +29,7 @@ jobs:
         with:
           node-version: '22'
       - name: Validate 30 vocalist dossiers, two-track plans and honest approval status
-        run: node --test tests/vocal-audition.test.cjs tests/vocal-production-plans.test.cjs tests/vocal-catalog-review.test.cjs tests/vocal-pairing-review.test.cjs
+        run: node --test tests/vocal-audition.test.cjs tests/vocal-production-plans.test.cjs tests/vocal-catalog-review.test.cjs tests/vocal-pairing-review.test.cjs tests/vocal-persona-evidence.test.cjs
       - name: Static JavaScript syntax
         run: |
           node --check vocal-studio/app.js
@@ -38,3 +40,5 @@ jobs:
           node --check vocal-studio/catalog-review-policy.js
           node --check vocal-studio/pairing-review.js
           node --check vocal-studio/pairing-policy.js
+          node --check vocal-studio/persona-evidence-policy.js
+          node --check vocal-studio/persona-evidence.js
