@@ -7,6 +7,7 @@ function choose(){
  artist=roster.find(p=>p.id===$("person").value);
  if(!artist)return;
  $("group").textContent=artist.group+" · "+artist.genre;
+ const personaLink=$("personaLink");if(personaLink)personaLink.href="./persona-evidence.html?artist="+encodeURIComponent(artist.id);
  task=artist.tracks[0];$("version").value="A";display();
 }
 function display(){
