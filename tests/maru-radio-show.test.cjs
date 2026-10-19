@@ -27,7 +27,7 @@ test("browser preview never uploads original audio or claims BIGO streaming",()=
  const root=path.join(__dirname,"../vocal-studio");
  const html=fs.readFileSync(path.join(root,"radio-show.html"),"utf8");
  const js=fs.readFileSync(path.join(root,"radio-show.js"),"utf8");
- assert.match(html,/BIGO/);assert.match(html,/연결되지/);
+ assert.match(html,/BIGO/);assert.match(html,/송출되는 것은 아닙니다/);
  assert.match(js,/speechSynthesis/);assert.match(js,/createObjectURL/);
  assert.doesNotMatch(js,/fetch\s*\(|WebSocket|XMLHttpRequest/);
 });
