@@ -1,7 +1,7 @@
 "use strict";(function(){
 const E=window.MaruShow,$=id=>document.getElementById(id),audio=$("player");
 const tracks=[],history=[],comments=[];
-let epoch=0,running=false,genre=0,index=0,timer=0,deadline=0,activeUrl=null,stopTalking=null,stopSong=null;
+let epoch=0,running=false,busy=false,genre=0,index=0,timer=0,deadline=0,activeUrl=null,stopTalking=null,stopSong=null;
 function status(s){$("status").textContent=s;}
 function safeButtonText(s){return E.clean(s,100);}
 function render(){
@@ -21,12 +21,16 @@ async function hash(file){
  return [...arr].map(x=>x.toString(16).padStart(2,"0")).join("");
 }
 async function add(files){
- if(running){status("재생을 중지한 뒤 곡을 추가해 주세요.");return;}
+ if(running||busy){status("재생·다른 가져오기가 끝나면 음악을 추가할 수 있습니다.");return {added:0,duplicate:0,skipped:0};}
+ busy=true;
  let added=0,duplicate=0,skipped=0;
+ try {
  for(const file of Array.from(files||[]).slice(0,Math.max(0,200-tracks.length))){
   if(!/\.(mp3|wav|m4a|aac|ogg|flac)$/i.test(file.name)||file.size<1000||file.size>80*1024*1024){skipped++;continue;}
   try {
-    const fingerprint=await hash(file),id=fingerprint||file.name+"|"+file.size;
+    const fingerprint=await hash(file);
+    if(!fingerprint){skipped++;status("보안 연결에서만 중복 검증 가능한 SHA-256 기능이 동작합니다.");continue;}
+    const id=fingerprint;
     if(tracks.some(x=>x.id===id)){duplicate++;continue;}
     tracks.push({id,title:E.title(file.name),category:E.category(file.name),file});added++;
     status("로컬 곡 확인 중: "+(added+duplicate+skipped)+"개");
@@ -34,6 +38,8 @@ async function add(files){
  }
  render();$("files").value="";
  status("추가 "+added+"곡 · 중복 제외 "+duplicate+"곡 · 건너뜀 "+skipped+"곡. 서버 전송 없음.");
+ return {added,duplicate,skipped};
+ } finally {busy=false;}
 }
 function releaseAudio(){audio.pause();audio.removeAttribute("src");audio.load();if(activeUrl)URL.revokeObjectURL(activeUrl);activeUrl=null;}
 function shutdown(reason){
@@ -102,7 +108,23 @@ function start(){
  status("라디오 진행 시작: 가상 진행자 대화 → 원본 노래 (로컬 미리듣기)");
  void show(ticket).catch(e=>shutdown("라디오 진행 오류: "+e.message));
 }
-$("files").onchange=e=>{void add(e.target.files);};
+$("files").onchange=e=>{void add(e.target.files).catch(err=>status("파일 추가 실패: "+err.message));};
+$("importStudio").onclick=async()=>{
+ if(running||busy){status("재생을 중지한 뒤 로컬 보관함을 가져오세요.");return;}
+ if(!$("bridgeConsent").checked){status("기존 MARU STUDIO 로컬 파일을 읽는 데 먼저 동의해 주세요.");return;}
+ if(!window.MaruRadioBridge){status("STUDIO 로컬 파일 연결 모듈을 열 수 없습니다.");return;}
+ const button=$("importStudio");button.disabled=true;
+ try{
+  status("MARU STUDIO 로컬 보관함 조회 중 (서버 업로드 없음)");
+  const imported=await window.MaruRadioBridge.loadAll();
+  const files=imported.songs.map(s=>new File([s.blob],s.name,{type:s.blob.type||"audio/mpeg"}));
+  if(!files.length){status("STUDIO에 등록된 노래 파일이 없습니다. "+imported.failures.join(" / "));return;}
+  const result=await add(files);
+  status("MARU STUDIO 연결: "+result.added+"곡 추가 · "+result.duplicate+"곡 중복 건너뜀 · 전체 "+tracks.length+"곡. "+
+   (imported.failures.length?"일부 저장소 접근 불가: "+imported.failures.join(" / "):"이 기기에서만 복사해 읽음."));
+ }catch(err){status("로컬 보관함 연동 실패: "+err.message);}
+ finally{button.disabled=false;}
+};
 $("start").onclick=start;
 $("stop").onclick=()=>shutdown("미리듣기 중지 (BIGO 방송 자체는 제어하지 않습니다)");
 $("next").onclick=()=>{
