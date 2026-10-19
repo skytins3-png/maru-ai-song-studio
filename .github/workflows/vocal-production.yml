@@ -45,4 +45,5 @@ jobs:
           node --check vocal-studio/persona-evidence-policy.js
           node --check vocal-studio/persona-evidence.js
           node --check vocal-studio/radio-show-engine.js
+          node --check vocal-studio/radio-show-bridge.js
           node --check vocal-studio/radio-show.js
