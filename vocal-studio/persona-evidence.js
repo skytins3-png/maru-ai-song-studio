@@ -2,7 +2,8 @@
 (function(){
 const Policy=window.MaruPersonaEvidence,$=id=>document.getElementById(id);
 const LOCAL_KEY="maru-persona-audition-evidence-v1",MAX_BYTES=25*1024*1024;
-let roster=[],active="",saved={};
+let roster=[],active="",saved={},playback={};
+function releasePlayback(){for(const obj of Object.values(playback))URL.revokeObjectURL(obj.url);playback={};for(const k of Policy.FILES){const e=$("listen-"+k);if(e){e.pause();e.removeAttribute("src");e.load();}}}
 const LABELS={
  source:"원본 Suno 자작곡",newA:"Persona 사용 신곡 A",newB:"Persona 사용 신곡 B",
  pitch:"음정",diction:"한국어·중국어 발음",expression:"감정 표현",
@@ -49,6 +50,8 @@ function render(){
  for(const k of Policy.FILES){
    const item=r.files[k];$("file-"+k).value="";
    $("fileInfo-"+k).textContent=item?item.name+" · "+Math.round(item.durationSec)+"초 · RMS "+item.qc.rmsDb+" dBFS · SHA-256 "+item.sha256.slice(0,12):"검증된 음원 파일 없음";
+   const player=$("listen-"+k),fresh=playback[active+":"+k];
+   if(fresh)player.src=fresh.url;else{player.pause();player.removeAttribute("src");player.load();}
  }
  $("makeLink").href="./make.html?artist="+encodeURIComponent(active);
  recalc();
@@ -74,6 +77,8 @@ async function onFile(key){
    const other=Policy.FILES.filter(k=>k!==key).find(k=>saved[id].files[k]?.sha256===sha256);
    if(other)throw Error("이미 "+LABELS[other]+"로 등록된 같은 파일입니다.");
    saved[id].files[key]=evidence;saved[id].updatedAt=new Date().toISOString();
+   const slot=id+":"+key;if(playback[slot])URL.revokeObjectURL(playback[slot].url);
+   playback[slot]={url:URL.createObjectURL(file)};
    persist();if(id===active)render();
    say("음질 및 파일 무결성 확인 완료: "+file.name+" (음원 본문은 저장·전송하지 않음)");
  }catch(err){say("분석 실패: "+err.message);}finally{input.value="";}
@@ -100,7 +105,8 @@ document.addEventListener("DOMContentLoaded",async()=>{
    const label=elt("label",{htmlFor:"file-"+k},LABELS[k]);
    const input=elt("input",{type:"file",id:"file-"+k,accept:"audio/*,.mp3,.m4a,.wav,.aac,.ogg,.flac"});
    const info=elt("small",{id:"fileInfo-"+k},"검증된 음원 파일 없음");
-   card.append(label,input,info);group.append(card);
+   const listen=elt("audio",{id:"listen-"+k,controls:true,preload:"none"});
+   card.append(label,input,info,listen);group.append(card);
    input.onchange=()=>onFile(k);
   }
   for(const k of Policy.SCORES){
@@ -115,15 +121,16 @@ document.addEventListener("DOMContentLoaded",async()=>{
    $("checks").append(label);
    $("flag-"+k).onchange=onEdit;
   }
-  $("singer").onchange=()=>{active=$("singer").value;render();};
+  $("singer").onchange=()=>{releasePlayback();active=$("singer").value;render();};
   $("personaName").onchange=onEdit;
   $("save").onclick=()=>{onEdit();say("보컬 청음 자기평가 기록을 이 기기에 저장했습니다. 실제 가수 등록이 아님.");};
   $("export").onclick=exportData;
   $("clear").onclick=()=>{
    const name=roster.find(x=>x.id===active)?.name;
    if(!confirm(name+"의 로컬 Persona 검사 기록을 전부 초기화할까요?"))return;
-   delete saved[active];persist();render();say("선택 후보의 로컬 기록을 초기화했어.");
+   releasePlayback();delete saved[active];persist();render();say("선택 후보의 로컬 기록을 초기화했어.");
   };
+  window.addEventListener("pagehide",releasePlayback);
   const chosen=new URLSearchParams(location.search).get("artist");
   active=roster.some(x=>x.id===chosen)?chosen:"M7-01";
   $("singer").value=active;render();
