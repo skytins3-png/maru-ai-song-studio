@@ -2,7 +2,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0d0f14">
 <title>Batch Upload Originals · MARU MUSIC SHARE</title>
-<link rel="stylesheet" href="styles.css?v=5"><link rel="stylesheet" href="radio.css?v=1">
+<link rel="stylesheet" href="styles.css?v=6"><link rel="stylesheet" href="radio.css?v=1">
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https://api.github.com; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://github.com; frame-src 'none'; upgrade-insecure-requests">
 </head><body>
 <header class="top"><div class="brand"><span class="disc">♫</span><div><b>MARU MUSIC SHARE</b><small>ORIGINAL MUSIC · BATCH UPLOAD</small></div></div>
@@ -22,11 +22,18 @@
 <input id="audioFiles" type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.flac" multiple required>
 <p class="radio-note">Review categories below: this is a filename-based suggestion, not automatic listening-based genre detection.</p>
 <div id="genreReview" class="genre-review" aria-label="Review each track category"></div>
+<section class="local-audio-preview" aria-label="선택곡 미리듣기">
+<h3>선택곡 미리듣기 · 휴대폰 안에서만 재생</h3>
+<label for="localPreviewChoose">미리듣기할 노래 선택</label>
+<select id="localPreviewChoose" disabled><option value="">먼저 MP3 파일을 선택하세요</option></select>
+<audio id="localPreviewAudio" controls preload="metadata" aria-label="선택한 원곡 미리듣기"></audio>
+<p id="localPreviewStatus" class="story-note">미리듣기만으로 파일이 인터넷에 업로드되지 않습니다.</p>
+</section>
 <label class="story-consent"><input id="uploadConsent" type="checkbox" required><span>I own the rights or have permission to publicly distribute and allow downloads of ALL selected tracks. Files will be public and cannot be retracted from previously downloaded copies.</span></label>
 <button id="batchUpload" type="submit" class="story-send">Publish selected original tracks</button>
 </form>
 <p id="batchStatus" role="status" aria-live="polite" class="story-status">No files uploaded yet. The token is not saved in browser storage.</p>
 <p class="radio-note">This page cannot access your private Suno account or download a playlist behind a login. Download your own licensed tracks through Suno, then select them here. Batch duplicates are detected using each file's SHA-256; prior entries uploaded through the old single-file form may not have that fingerprint. Existing public songs are never overwritten.</p>
 </section></main><footer>© MARU MUSIC SHARE · Rights-cleared original music only</footer>
-<script src="common.js?v=2"></script><script src="safe-media.js?v=1"></script><script src="genre-core.js?v=1"></script><script src="batch-core.js?v=2"></script><script src="batch.js?v=2"></script>
+<script src="common.js?v=2"></script><script src="safe-media.js?v=1"></script><script src="genre-core.js?v=1"></script><script src="batch-core.js?v=2"></script><script src="local-preview.js?v=1"></script><script src="batch.js?v=2"></script>
 </body></html>

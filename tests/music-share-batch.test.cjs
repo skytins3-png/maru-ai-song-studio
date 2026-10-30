@@ -134,3 +134,15 @@ test('genre review selectors are present on the public batch page and public lib
  assert.match(index,/id="genreFilter"/);
  assert.match(radio,/id="radioGenre"/);
 });
+
+test('preview controls exist for single and batch forms without a token or upload action',()=>{
+ const batch=source('batch.html'),admin=source('admin.html'),script=source('local-preview.js');
+ for(const html of [batch,admin]){
+  assert.match(html,/id="localPreviewChoose"/);
+  assert.match(html,/id="localPreviewAudio"/);
+  assert.match(html,/local-preview.js/);
+ }
+ assert.match(script,/URL\.createObjectURL/);
+ assert.match(script,/URL\.revokeObjectURL/);
+ assert.doesNotMatch(script,/fetch\(|XMLHttpRequest|\/git\/blobs/);
+});
