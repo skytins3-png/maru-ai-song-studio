@@ -55,6 +55,7 @@ function harness(existing=[],mode='ok'){
  ctx.globalThis=ctx;
  vm.runInContext(source('common.js'),ctx);
  ctx.MaruSafeMedia={verify:async()=>true};
+ vm.runInContext(source('genre-core.js'),ctx);
  vm.runInContext(source('batch-core.js'),ctx);
  vm.runInContext(source('batch.js'),ctx);
  doc.getElementById('token').value='test-token';
@@ -107,4 +108,29 @@ test('queue publishes 16 distinct originals in two atomic batches and does not l
  assert.equal(h.calls.filter(x=>x.path==='/git/refs/heads/main').length,2);
  assert.equal(h.catalog().length,16);
  assert.match(h.els.batchStatus.textContent,/Published 16/);
+});
+
+test('genre guesses are clearly language-or-format categories with manual review support',()=>{
+ const ctx=vm.createContext({});
+ vm.runInContext(source('genre-core.js'),ctx);
+ const g=ctx.MaruGenres;
+ assert.equal(g.detect('가야금 독주.mp3'),'instrumental');
+ assert.equal(g.detect('다시 태어나면.mp3'),'korean');
+ assert.equal(g.detect('云南的清晨.mp3'),'chinese');
+ assert.equal(g.detect('Original Pop.mp3'),'western');
+ assert.equal(g.genreOf({genre:'chinese',title:'한국 노래'}),'chinese');
+ assert.equal(g.genreOf({genre:'invalid',title:'한국 노래'}),'korean');
+ assert.equal(g.label('instrumental'),'연주곡');
+ const tiny=Array.from({length:16},(_,i)=>({name:'Song'+i+'.mp3',size:2}));
+ const groups=g.splitBatches(tiny);
+ assert.equal(groups.length,2);assert.equal(groups[0].length,15);assert.equal(groups[1].length,1);
+ const bySize=g.splitBatches([{size:60*1024*1024},{size:45*1024*1024}]);
+ assert.equal(bySize.length,2);
+});
+test('genre review selectors are present on the public batch page and public library',()=>{
+ const batch=source('batch.html'),index=source('index.html'),radio=source('radio.html');
+ assert.match(batch,/id="genreReview"/);
+ assert.match(batch,/genre-core.js/);
+ assert.match(index,/id="genreFilter"/);
+ assert.match(radio,/id="radioGenre"/);
 });
