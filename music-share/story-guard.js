@@ -25,7 +25,7 @@ function assess(name,title,body){
     reasons.push('Potential scam, malware-distribution or solicitation language.');
  if(/(?:ignore\s+(?:all|previous)\s+instructions|system\s+prompt|developer\s+message|you\s+are\s+now\s+(?:chatgpt|an\s+ai)|override\s+the\s+safety|방송\s*안전\s*규칙\s*무시)/i.test(joined))
     reasons.push('Prompt-injection or fake administrative instruction.');
- if(/(?:.)\1{23,}/su.test(joined) || /(.)\1{12,}/u.test(joined))
+ if(/(.)\1{23,}/su.test(joined) || /(.)\1{12,}/u.test(joined))
     reasons.push('Repetitive spam-like text.');
  if(/\x60{3}|<[^>]{2,}>/.test(joined))reasons.push('Code or markup is not accepted in listener stories.');
  if(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/.test(joined))
