@@ -33,6 +33,8 @@ upload.addEventListener('click',async()=>{
   try{validateFiles(audio,cover)}catch(e){setStatus(e.message);return}
   busy=true;upload.disabled=true;
   try{
+    await MaruSafeMedia.verify(audio);
+    if(cover)await MaruSafeMedia.verify(cover);
     setStatus('1/3 · 기존 공개 목록 확인 중…');
     let base=await snapshot(token);
     const id=Date.now()+'-'+crypto.randomUUID(),name=id+'-'+slug(title);

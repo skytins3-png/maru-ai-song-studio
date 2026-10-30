@@ -1,0 +1,24 @@
+# MARU MUSIC SHARE — Security policy (October 2026)
+
+## Actual protection implemented
+- Listener story forms run `story-guard.js` **before opening the public GitHub Issue**. It rejects suspicious URLs, phone/email/account patterns, active HTML, code fences, fake system messages, repetitive spam and overlong content. This is rule-based screening, **not antivirus** and not a guarantee of catching every malicious story.
+- A **separate GitHub Actions job** listens for newly opened, edited, reopened, labeled, unlabeled and closed listener Issues. It reads the Issue using GitHub's API with a scoped token and revalidates the contents using trusted `main` code; it never executes the Issue body as JavaScript, shell, or a command. Untrusted text is not interpolated into Actions workflow commands.
+- A safe story receives `radio-screened`, otherwise `radio-quarantine`. **Only a producer may apply `radio-approved`** after reading it. The moderator then puts the approved, shortened text into `music-share/approved-stories.json` for the radio. This trusted snapshot is the **only story source used by the web radio**. If an Issue is edited, withdrawn, quarantined, or closed, approval is revoked and the snapshot is removed. On a failure, the radio refuses to load unreviewed stories.
+- An optional second-stage AI classification uses OpenAI's `omni-moderation-latest` via the official Moderations API, **only when a private `MARU_STORY_MODERATION_API_KEY` GitHub Actions secret is configured**. It is never embedded in HTML/JS or committed to the repository. If the configured API fails, screening **fails closed**. Without that secret, **only local rules + manual approval are active**; this is not described as active AI scanning.
+- Single-file and bulk-upload forms check actual MP3/WAV/M4A/FLAC/OGG/AAC and cover-art magic bytes *before* uploading. They also restrict extension and size and require creator rights confirmation. These are client-side screening gates, **not antivirus scans**; they can be bypassed by a user with direct repository write access and cannot guarantee files are harmless.
+- Browser Content Security Policy restricts scripts to this origin and blocks object/embed content, untrusted API connections and unauthorized iframes. A GitHub Pages `meta` policy is not the same as real HTTP security headers; e.g. anti-framing `frame-ancestors` must be configured by a supporting host/CDN. Real WAF, upload sandboxing, abuse throttling and private story intake require a separate backend.
+- GitHub Actions CodeQL checks the JavaScript code for security issues on PRs, main pushes and a weekly schedule. Passing CodeQL/CI does **not** prove no vulnerabilities.
+- In case of suspicious uploads, phishing or a vulnerable dependency: stop public distribution, revoke compromised tokens, remove malicious material, review GitHub audit logs, and open a private GitHub Security Advisory. Do not paste keys, passwords or private story data into this repository or public Issues.
+
+## Activating actual AI moderation (optional)
+In GitHub `skytins3-png/maru-ai-song-studio`: Settings → Secrets and variables → Actions → New repository secret. Name it **`MARU_STORY_MODERATION_API_KEY`** and paste a valid provider API key **there only**, not into a public file or this chat. Existing ChatGPT subscription does not itself supply an API key. This may incur API usage costs. Authors are notified on the story form that optional external AI screening may occur. No API key means the classifier is not active and all stories still require manual operator approval.
+
+## Manual broadcast approval
+1. Browse the public [STORY] Issues and read the full text yourself (avoid opening suspicious links).
+2. Confirm consent and that the story contains no private information. Automatic screening should have added `radio-screened`; quarantined Issues must not be approved.
+3. Apply the `radio-approved` label to the specific Issue.
+4. Check the GitHub Action succeeded and that `approved-stories.json` contains **only the approved excerpt**. Then the hosted radio will pick it up after its next refresh.
+5. Any later edit requires the producer to approve it again. Do not remove a quarantine label simply to force content onto the air.
+
+## Limitation of public GitHub Issues
+**Issues are public as soon as the author submits them.** Automated server scanning happens *after* publication; therefore it cannot reliably prevent initial exposure of secret data or abusive content. Do not use the public story form for confidential information. To block harmful data *before* publication, the project needs a server-side/private intake endpoint and moderation queue, with authenticated uploads, privacy policies, rate-limits, malware scanning and explicit author consent. This is not installed by a static GitHub Pages site.

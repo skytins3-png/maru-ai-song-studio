@@ -1,0 +1,30 @@
+name: MARU story and anti-phishing moderation
+on:
+  issues:
+    types: [opened, edited, reopened, labeled, unlabeled, closed]
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: radio-story-security-${{ github.event.issue.number }}
+  cancel-in-progress: false
+jobs:
+  scan:
+    if: github.event.issue.pull_request == null
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Checkout trusted default-branch security code only
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: false
+      - name: Node.js LTS
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Scan current Issue and publish only producer-approved safe snapshot
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          MARU_STORY_MODERATION_API_KEY: ${{ secrets.MARU_STORY_MODERATION_API_KEY }}
+        run: node scripts/radio-story-moderator.cjs

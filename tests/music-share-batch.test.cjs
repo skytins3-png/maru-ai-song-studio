@@ -54,6 +54,7 @@ function harness(existing=[],mode='ok'){
   URL,TextDecoder,Uint8Array,crypto:crypto.webcrypto,btoa,atob,fetch,Date,console});
  ctx.globalThis=ctx;
  vm.runInContext(source('common.js'),ctx);
+ ctx.MaruSafeMedia={verify:async()=>true};
  vm.runInContext(source('batch-core.js'),ctx);
  vm.runInContext(source('batch.js'),ctx);
  doc.getElementById('token').value='test-token';

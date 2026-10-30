@@ -111,6 +111,7 @@ $('batchForm').addEventListener('submit',async event=>{
  catch(error){show(error.message);return}
  busy=true;button.disabled=true;
  try{
+  for(const file of files)await MaruSafeMedia.verify(file);
   show('Checking existing catalog and duplicate fingerprints…');
   const base=await snapshot(token);
   const known=core.existingHashes(base.list);

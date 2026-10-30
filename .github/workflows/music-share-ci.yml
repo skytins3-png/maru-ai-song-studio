@@ -8,6 +8,8 @@ on:
       - 'tests/music-share-radio.test.cjs'
       - 'tests/music-share-radio-local.test.cjs'
       - 'tests/music-share-batch.test.cjs'
+      - 'tests/music-share-security.test.cjs'
+      - 'scripts/radio-story-moderator.cjs'
       - '.github/workflows/music-share-ci.yml'
   pull_request:
     paths:
@@ -17,6 +19,8 @@ on:
       - 'tests/music-share-radio.test.cjs'
       - 'tests/music-share-radio-local.test.cjs'
       - 'tests/music-share-batch.test.cjs'
+      - 'tests/music-share-security.test.cjs'
+      - 'scripts/radio-story-moderator.cjs'
       - '.github/workflows/music-share-ci.yml'
 jobs:
   test:
@@ -29,4 +33,4 @@ jobs:
         with:
           node-version: '22'
       - name: Test existing uploads, downloads, privacy filters and public stories
-        run: node --test tests/music-share.test.cjs tests/music-share-stories.test.cjs tests/music-share-radio.test.cjs tests/music-share-batch.test.cjs tests/music-share-radio-local.test.cjs
+        run: node --test tests/music-share.test.cjs tests/music-share-stories.test.cjs tests/music-share-radio.test.cjs tests/music-share-batch.test.cjs tests/music-share-radio-local.test.cjs tests/music-share-security.test.cjs

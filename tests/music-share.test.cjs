@@ -17,7 +17,9 @@ class Element{
 function context(fetch){
   const els={};const doc={getElementById:id=>els[id]??=new Element(),createElement:()=>new Element()};
   const c=vm.createContext({document:doc,window:{addEventListener(){}},fetch,URL,URLSearchParams,TextDecoder,Uint8Array,crypto:crypto.webcrypto,atob,btoa,console,location:{href:'https://example.test/music-share/?track=old'},navigator:{clipboard:{writeText:async()=>{}}},setTimeout:fn=>{fn();return 1},clearTimeout(){}});
-  vm.runInContext(read('common.js'),c);return {c,els,$:doc.getElementById};
+  vm.runInContext(read('common.js'),c);
+  c.MaruSafeMedia={verify:async()=>true};
+  return {c,els,$:doc.getElementById};
 }
 const file=(name,size=5)=>({name,size,arrayBuffer:async()=>new Uint8Array([1,2,3,4,5]).buffer});
 function admin(mode='ok',catalog=[]){

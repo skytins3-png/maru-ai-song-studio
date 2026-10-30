@@ -7,6 +7,7 @@
   <title>MARU RADIO · English Live-Style Radio</title>
   <link rel="stylesheet" href="styles.css?v=4">
   <link rel="stylesheet" href="radio.css?v=2">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https://api.github.com; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://github.com; frame-src 'none'; upgrade-insecure-requests">
 </head>
 <body>
   <header class="top">
@@ -47,11 +48,12 @@
         <h2>On-air conversation</h2>
         <p id="currentLine" aria-live="polite">Press Start radio to begin.</p>
       </div>
-      <p class="radio-note">Only tracks with the creator's public download permission appear. Stories are taken from publicly visible GitHub Issues only after the producer adds the <code>radio-approved</code> label and the author has explicitly consented to public radio reading. Requests can prioritize a published track without reading unreviewed user text aloud. Scripts are original, prewritten English TTS — not human recordings or live generative conversations.</p>
+      <p class="radio-note">Only tracks with the creator's public download permission appear. Stories are spoken only from a separate curated snapshot after automatic security screening, explicit author consent and the producer applying the <code>radio-approved</code> label. Unsafe or changed stories are withheld. Requests can prioritize a published track without reading unreviewed user text aloud. Scripts are original, prewritten English TTS — not human recordings or live generative conversations.</p>
     </section>
   </main>
   <footer>© MARU RADIO · Publicly approved originals · No automated BIGO broadcast</footer>
+  <script src="story-guard.js?v=1"></script>
   <script src="radio-core.js?v=2"></script>
-  <script src="radio.js?v=2"></script>
+  <script src="radio.js?v=3"></script>
 </body>
 </html>
