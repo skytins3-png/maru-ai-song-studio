@@ -6,6 +6,7 @@ const fs=require('node:fs');
 const code=fs.readFileSync(__dirname+'/../music-share/stories.js','utf8');
 function load(){
   const context=vm.createContext({URL,console});
+  vm.runInContext(fs.readFileSync(__dirname+'/../music-share/story-guard.js','utf8'),context);
   vm.runInContext(code,context);
   return context.MaruStories;
 }
@@ -30,9 +31,7 @@ test('issue URL uses the right GitHub repo and conveys public broadcast permissi
 test('unsafe control characters and excessively long content are sanitized',()=>{
   const s=load();
   assert.equal(s.clean(' Hello\nworld\t ',40),'Hello world');
-  const url=new URL(s.issueUrl('Sam','Test story', 'A'.repeat(5000),true));
-  const body=url.searchParams.get('body');
-  assert.equal(body.match(/A+/)?.[0].length,1200);
+  assert.throws(()=>s.issueUrl('Sam','Test story', 'A'.repeat(5000),true),/Safety check/);
 });
 test('English public page connects music upload, download and story intake',()=>{
   const index=fs.readFileSync(__dirname+'/../music-share/index.html','utf8');
@@ -45,4 +44,5 @@ test('English public page connects music upload, download and story intake',()=>
   }
   assert.match(form,/public GitHub Issue/);
   assert.match(form,/public on GitHub/i);
+  assert.match(form,/story-guard.js/);
 });
