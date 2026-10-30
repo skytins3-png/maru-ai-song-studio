@@ -43,6 +43,6 @@ test('English public page connects music upload, download and story intake',()=>
     assert.match(form,new RegExp('id="'+field+'"'));
   }
   assert.match(form,/public GitHub Issue/);
-  assert.match(form,/public on GitHub/i);
+  assert.match(form,/public immediately on GitHub/i);
   assert.match(form,/story-guard.js/);
 });
