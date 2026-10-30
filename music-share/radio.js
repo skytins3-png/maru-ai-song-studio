@@ -2,115 +2,197 @@
 'use strict';
 const core=globalThis.MaruRadioCore, $=id=>document.getElementById(id);
 const audio=$('radioAudio'),start=$('startRadio'),stop=$('stopRadio'),skip=$('skipRadio');
+const importFiles=$('localFiles'),clearFiles=$('clearLocal');
 const repo='https://api.github.com/repos/skytins3-png/maru-ai-song-studio';
-let tracks=[],approved=[],requestList=[],episode=0,active=false,revision=0;
-let usedStories=new Set(),usedRequests=new Set(),currentSongId='';
-let lastCatalogRefresh=0,lastIssueRefresh=0;
+let publicTracks=[],localTracks=[],approved=[],requestList=[],episode=0,active=false,revision=0;
+let usedStories=new Set(),usedRequests=new Set(),unplayable=new Set();
+let lastCatalogRefresh=0,lastIssueRefresh=0,dialogueTimer=null;
 const status=message=>{$('status').textContent=message};
-const info=()=>{$('radioCounts').textContent=tracks.length+' public tracks · '+approved.length+' approved stories · '+requestList.length+' requested tracks'};
-const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+const playable=()=>[...localTracks,...publicTracks].filter(x=>!unplayable.has(x.id));
+const info=()=>{
+ const all=playable();
+ $('radioCounts').textContent=localTracks.length+' private tracks on this device · '
+  +publicTracks.length+' public tracks · '+approved.length+' approved stories · '
+  +requestList.length+' song requests';
+ $('radioAudio').hidden=!all.length;
+ $('localHelp').textContent=localTracks.length
+   ?'Selected local music stays in this tab only. Nothing has been uploaded to the website.'
+   :'Choose your own downloaded Suno songs here to play immediately, without uploading, signing in or installing an APK.';
+};
 async function refreshCatalog(){
-  const response=await fetch('catalog.json?ts='+Date.now(),{cache:'no-store'});
-  if(!response.ok)throw Error('Music list unavailable: HTTP '+response.status);
-  const songs=core.publicSongs(await response.json());
-  tracks=songs;lastCatalogRefresh=Date.now();info();
+ const response=await fetch('catalog.json?ts='+Date.now(),{cache:'no-store'});
+ if(!response.ok)throw Error('Music list unavailable: HTTP '+response.status);
+ publicTracks=core.publicSongs(await response.json());
+ lastCatalogRefresh=Date.now();info();
 }
 async function refreshIssues(){
-  try{
-    const response=await fetch(repo+'/issues?state=open&per_page=100&sort=updated&direction=desc',{headers:{'Accept':'application/vnd.github+json'},cache:'no-store'});
-    if(!response.ok)throw Error('GitHub issues temporarily unavailable');
-    const issues=await response.json();
-    approved=core.approvedStories(issues);
-    requestList=core.requests(issues,tracks);
-    lastIssueRefresh=Date.now();info();
-  }catch(error){status('Music ready · public stories/requests temporarily unavailable. You can still listen.');}
+ try{
+  const response=await fetch(repo+'/issues?state=open&per_page=100&sort=updated&direction=desc',{
+   headers:{'Accept':'application/vnd.github+json'},cache:'no-store'
+  });
+  if(!response.ok)throw Error('GitHub issues temporarily unavailable');
+  const issues=await response.json();
+  approved=core.approvedStories(issues);
+  requestList=core.requests(issues,publicTracks);
+  lastIssueRefresh=Date.now();info();
+ }catch(e){
+  lastIssueRefresh=Date.now();
+  // A failed public stories lookup never blocks the local music station.
+  info();
+ }
 }
 async function refreshFeeds(){
-  if(Date.now()-lastCatalogRefresh>2*60*1000)await refreshCatalog();
-  if(Date.now()-lastIssueRefresh>10*60*1000)await refreshIssues();
+ if(Date.now()-lastCatalogRefresh>2*60*1000){
+  try{await refreshCatalog()}catch(e){lastCatalogRefresh=Date.now();info()}
+ }
+ if(Date.now()-lastIssueRefresh>10*60*1000)await refreshIssues();
 }
 function englishVoice(role){
-  if(!('speechSynthesis' in window))return null;
-  const all=window.speechSynthesis.getVoices().filter(v=>v.lang&&v.lang.toLowerCase().startsWith('en'));
-  const local=all.filter(v=>v.localService!==false),voices=local.length?local:all;
-  return role==='guest'&&voices.length>1?voices[1]:voices[0]||null;
+ if(!('speechSynthesis' in window))return null;
+ const all=window.speechSynthesis.getVoices().filter(v=>v.lang&&v.lang.toLowerCase().startsWith('en'));
+ const local=all.filter(v=>v.localService!==false),voices=local.length?local:all;
+ return role==='guest'&&voices.length>1?voices[1]:voices[0]||null;
 }
-function speak(line,myRevision){
-  return new Promise(resolve=>{
-    if(myRevision!==revision||!active){resolve();return}
-    if(!('speechSynthesis' in window)){resolve();return}
-    const utterance=new SpeechSynthesisUtterance(line.text);
-    utterance.lang='en-US';
-    utterance.rate=line.who==='guest'?1.02:0.95;
-    utterance.pitch=line.who==='guest'?1.08:0.92;
-    utterance.volume=0.95;
-    const voice=englishVoice(line.who);if(voice)utterance.voice=voice;
-    let completed=false;
-    const finish=()=>{if(completed)return;completed=true;clearTimeout(limit);resolve()};
-    const limit=setTimeout(()=>{try{window.speechSynthesis.cancel()}catch(e){}finish()},15000);
-    utterance.onend=finish;utterance.onerror=finish;
-    $('currentLine').textContent=(line.who==='host'?'Ahwan: ':'Alex: ')+line.text;
-    status('English radio conversation · '+(line.who==='host'?'Ahwan':'Alex'));
-    try{window.speechSynthesis.speak(utterance)}catch(e){finish()}
-  });
+function speak(line,session){
+ return new Promise(resolve=>{
+  if(session!==revision||!active){resolve();return}
+  if(!('speechSynthesis' in window)){resolve();return}
+  const speech=new SpeechSynthesisUtterance(line.text);
+  speech.lang='en-US';
+  speech.rate=line.who==='guest'?1.03:0.94;
+  speech.pitch=line.who==='guest'?1.09:0.9;
+  speech.volume=.95;
+  const voice=englishVoice(line.who);if(voice)speech.voice=voice;
+  let finished=false;
+  const finish=()=>{if(finished)return;finished=true;clearTimeout(watchdog);resolve()};
+  const watchdog=setTimeout(()=>{
+   try{window.speechSynthesis.cancel()}catch(e){}
+   finish();
+  },17000);
+  speech.onend=finish;speech.onerror=finish;
+  $('currentLine').textContent=(line.who==='host'?'Ahwan: ':'Alex: ')+line.text;
+  status('English radio · '+(line.who==='host'?'Ahwan':'Alex')+' speaking');
+  try{window.speechSynthesis.speak(speech)}catch(e){finish()}
+ });
 }
 function cancelSpeech(){try{if('speechSynthesis' in window)window.speechSynthesis.cancel()}catch(e){}}
-async function announce(track,isRequested,myRevision){
-  if(!$('talkEnabled').checked)return;
-  const story=$('storiesEnabled').checked?approved.find(x=>!usedStories.has(x.id)):null;
-  const lines=core.episodeScript(track,episode,Date.now(),story,isRequested);
-  for(const line of lines){
-    if(myRevision!==revision||!active)return;
-    await speak(line,myRevision);
-  }
-  if(story&&myRevision===revision)usedStories.add(story.id);
+function clearTimer(){if(dialogueTimer!==null){clearTimeout(dialogueTimer);dialogueTimer=null}}
+function setButtons(isActive){start.disabled=isActive;stop.disabled=!isActive;skip.disabled=!isActive}
+function nextStory(){
+ return $('storiesEnabled').checked?approved.find(x=>!usedStories.has(x.id)):null;
 }
-function setButtons(playing){
-  start.disabled=playing;stop.disabled=!playing;skip.disabled=!playing;
+async function announce(track,requested,session,onlyTalk){
+ if(!$('talkEnabled').checked)return;
+ const story=nextStory();
+ const lines=onlyTalk
+  ?core.talkEpisodeScript(episode,Date.now(),story)
+  :core.episodeScript(track,episode,Date.now(),story,requested);
+ for(const line of lines){
+  if(session!==revision||!active)return;
+  await speak(line,session);
+ }
+ if(story&&session===revision)usedStories.add(story.id);
 }
 async function nextEpisode(){
-  if(!active)return;
-  const myRevision=++revision;
-  cancelSpeech();audio.pause();audio.removeAttribute('src');audio.load();
-  try{await refreshFeeds()}catch(e){status('Cannot load published music. '+e.message);stopRadio();return}
-  if(!active||myRevision!==revision)return;
-  const choice=core.chooseTrack(tracks,episode,requestList,usedRequests);
-  if(!choice){
-    status('No creator-approved tracks yet. Upload a permitted original through MUSIC SHARE.');
-    $('nowPlaying').textContent='Playlist is empty';
-    stopRadio();return;
+ if(!active)return;
+ const session=++revision;
+ clearTimer();cancelSpeech();audio.pause();audio.removeAttribute('src');audio.load();
+ await refreshFeeds();
+ if(session!==revision||!active)return;
+ const list=playable();
+ const choice=core.chooseTrack(list,episode,requestList,usedRequests);
+ if(!choice){
+  episode++;
+  $('nowPlaying').textContent='English conversation · Ahwan & Alex';
+  $('radioAudio').hidden=true;
+  if(!$('talkEnabled').checked){
+   status('No music files yet. Select Suno MP3 files, or enable English talk.');
+   stopRadio();return;
   }
-  const track=choice.track;
-  currentSongId=track.id;episode++;
-  $('nowPlaying').textContent=(track.title||'Untitled')+' · '+(track.artist||'MARU');
-  await announce(track,choice.requested,myRevision);
-  if(!active||myRevision!==revision)return;
-  audio.src=track.audio;
-  status('Playing original music · '+(track.title||'Untitled'));
+  if(!('speechSynthesis' in window)){
+   status('Your browser does not offer speech synthesis. Choose songs to play music.');
+   stopRadio();return;
+  }
+  await announce(null,false,session,true);
+  if(session!==revision||!active)return;
+  status('Talk-only mode · no audio tracks uploaded or selected');
+  dialogueTimer=setTimeout(()=>{if(session===revision&&active)nextEpisode()},4000);
+  return;
+ }
+ const track=choice.track;
+ episode++;
+ $('nowPlaying').textContent=String(track.title||'Untitled')+' · '+String(track.artist||'MARU');
+ audio.hidden=false;
+ await announce(track,choice.requested,session,false);
+ if(session!==revision||!active)return;
+ audio.src=track.audio;
+ status('Now playing · '+String(track.title||'Untitled')
+  +(track.local?' · private local file':' · public original'));
+ try{
+  await audio.play();
   if(choice.requested)usedRequests.add(track.id);
-  try{await audio.play()}
-  catch(e){
-    if(!active||myRevision!==revision)return;
-    status('Playback needs a tap, or this file cannot play in the browser. Press the audio play button or Next song.');
-  }
+ }catch(e){
+  if(session!==revision||!active)return;
+  status('Playback may require pressing Play on the audio bar. If the file is broken, tap Next song.');
+ }
 }
 function stopRadio(){
-  active=false;revision++;cancelSpeech();audio.pause();audio.removeAttribute('src');audio.load();
-  setButtons(false);
-  $('currentLine').textContent='Radio stopped. Start again whenever you like.';
+ active=false;revision++;clearTimer();cancelSpeech();
+ audio.pause();audio.removeAttribute('src');audio.load();
+ setButtons(false);
+ $('currentLine').textContent='Stopped. Start again whenever you like.';
+ status('Radio stopped · ready to restart');
 }
+function releaseLocal(){
+ if(localTracks.length){
+  const nowPlaying=audio.src;
+  if(localTracks.some(x=>x.audio===nowPlaying))audio.pause();
+  for(const track of localTracks){try{URL.revokeObjectURL(track.audio)}catch(e){}}
+ }
+ localTracks=[];unplayable.clear();info();
+}
+importFiles.addEventListener('change',()=>{
+ const selected=core.localOriginals(importFiles.files,file=>URL.createObjectURL(file));
+ releaseLocal();
+ localTracks=selected;
+ importFiles.value='';
+ info();
+ if(selected.length){
+  status('Loaded '+selected.length+' local originals · tap Start radio. No upload or GitHub token needed.');
+ }else{status('No supported MP3/WAV/M4A audio files selected.')}
+ if(active)nextEpisode();
+});
+clearFiles.addEventListener('click',()=>{
+ if(active)stopRadio();
+ releaseLocal();status('Private local playlist cleared from this tab. No files were deleted.');
+});
 start.addEventListener('click',()=>{
-  if(active)return;active=true;setButtons(true);
-  nextEpisode();
+ if(active)return;
+ active=true;setButtons(true);
+ try{
+  // Resume the user-selected voice while still in the user gesture.
+  if('speechSynthesis' in window)window.speechSynthesis.resume();
+ }catch(e){}
+ nextEpisode();
 });
 skip.addEventListener('click',()=>{if(active)nextEpisode()});
 stop.addEventListener('click',stopRadio);
 audio.addEventListener('ended',()=>{if(active)nextEpisode()});
-audio.addEventListener('error',()=>{if(active)status('This audio file did not load. Check its published format, then press Next song.')});
-document.addEventListener('visibilitychange',()=>{
-  if(!document.hidden&&active){info()}
+audio.addEventListener('error',()=>{
+ if(!active||!audio.currentSrc)return;
+ const failed=playable().find(x=>x.audio===audio.currentSrc||x.audio===audio.src);
+ if(failed){
+  unplayable.add(failed.id);info();
+  status('Skipping an unreadable song. Other originals remain available.');
+  dialogueTimer=setTimeout(()=>{if(active)nextEpisode()},700);
+ }else status('Audio file could not be played. Press Next song to continue.');
 });
+window.addEventListener('pagehide',()=>{stopRadio();releaseLocal()});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden){info()}});
+info();
 refreshCatalog().then(refreshIssues).then(()=>{
-  status(tracks.length?'Ready · tap Start radio to begin':'No public tracks yet · upload original music first');
-}).catch(e=>status('Unable to load public library. '+e.message));
+ status(publicTracks.length
+  ?'Ready · start English radio or import your Suno original files'
+  :'Ready · talk-only English radio available now. Import your Suno MP3 files for songs.');
+}).catch(()=>status('Talk-only English radio ready. Select local MP3 files to listen without network access.'));
 })();

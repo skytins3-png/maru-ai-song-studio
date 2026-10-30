@@ -85,5 +85,29 @@ function episodeScript(track,episode,date,story,requested){
  lines.push({who:'host',text:(requested?"This one came in as a listener request. ":"Here's a track from our original music library. ")+trimmed(title,120)+", by "+trimmed(track.artist||'MARU',90)+"."});
  return lines;
 }
-root.MaruRadioCore={trimmed,publicSongs,storyOf,approvedStories,requests,chooseTrack,episodeScript};
+/** Honest on-air preview when no licensed audio has been published/imported. */
+function talkEpisodeScript(episode,date,story){
+ const lines=episodeScript({title:'',artist:''},episode,date,story,false);
+ lines.splice(-2,2,
+  {who:'guest',text:"That was lovely. We don't have a song file loaded yet, but there's always room for one more story."},
+  {who:'host',text:"We can keep the conversation going. Choose your own Suno MP3 files here to hear them between our talks."});
+ return lines;
+}
+function localOriginals(files,createURL){
+ if(!files||!createURL)return [];
+ const accepted=[],seen=new Set();
+ const pattern=/\.(mp3|wav|m4a|aac|ogg|flac)$/i;
+ for(const file of Array.from(files).slice(0,100)){
+  if(!file||!pattern.test(String(file.name||''))||file.size<=0||file.size>250*1024*1024)continue;
+  const key=[file.name,file.size,file.lastModified||0].join(':');
+  if(seen.has(key))continue;
+  seen.add(key);
+  accepted.push({
+   id:'local-'+key,title:trimmed(file.name.replace(pattern,''),120),
+   artist:'Private local original',audio:createURL(file),local:true
+  });
+ }
+ return accepted;
+}
+root.MaruRadioCore={trimmed,publicSongs,storyOf,approvedStories,requests,chooseTrack,episodeScript,talkEpisodeScript,localOriginals};
 })(typeof globalThis!=='undefined'?globalThis:this);
