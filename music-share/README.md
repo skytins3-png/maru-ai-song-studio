@@ -2,6 +2,7 @@
 
 **Open `radio.html` to start listening.** This web-first station avoids repeatedly changing Android package names and signatures. It runs in a mobile or desktop browser and does not need a new APK whenever songs or approved public stories change.
 
+- The producer can now use `batch.html` to select up to 15 downloaded, rights-cleared Suno originals (90 MiB combined), hash each with SHA-256, skip previously published exact duplicates and publish one atomic catalog commit using one authorized GitHub token. Existing `admin.html` handles individual cover artwork uploads.
 - The producer uses the existing `admin.html` upload page to publish a **rights-cleared original MP3/WAV**; the atomic upload commits the real audio and `catalog.json`. The radio automatically refreshes the same catalog and will include new approved songs without app updates.
 - The browser requires the listener to press **Start radio** once. Web audio autoplay and background execution can be blocked by Android/browser battery policies, so this **does not guarantee uninterrupted locked-screen playback or BIGO listener transmission**.
 - The English Ahwan/one-guest conversation is an original local script read by the browser's English TTS voices. It is *not* an autonomous cloud AI, a recording of real guests, or actual 32 AI singer MP3s.
