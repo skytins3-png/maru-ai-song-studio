@@ -26,20 +26,35 @@ async function refreshCatalog(){
  lastCatalogRefresh=Date.now();info();
 }
 async function refreshIssues(){
+ // Never read arbitrary public Issue bodies on air. Only a trusted server-side
+ // moderation workflow can write approved-stories.json after human approval.
+ // Even a compromised malformed snapshot is validated again in this browser.
+ approved=[];
+ try{
+  const verified=await fetch('approved-stories.json?ts='+Date.now(),{cache:'no-store'});
+  if(!verified.ok)throw Error('Approved story list unavailable');
+  const entries=await verified.json();
+  if(Array.isArray(entries)){
+   const seen=new Set();
+   approved=entries.filter(entry=>{
+    if(!entry||!Number.isSafeInteger(entry.id)||entry.id<1||seen.has(entry.id))return false;
+    if(typeof entry.name!=='string'||typeof entry.story!=='string')return false;
+    const check=globalThis.MaruStoryGuard.assess(entry.name,'Approved listener story',entry.story);
+    if(!check.safe)return false;
+    seen.add(entry.id);return true;
+   }).slice(0,25);
+  }
+ }catch(e){
+  approved=[]; // Fail closed; network outage never permits unreviewed stories.
+ }
  try{
   const response=await fetch(repo+'/issues?state=open&per_page=100&sort=updated&direction=desc',{
    headers:{'Accept':'application/vnd.github+json'},cache:'no-store'
   });
-  if(!response.ok)throw Error('GitHub issues temporarily unavailable');
-  const issues=await response.json();
-  approved=core.approvedStories(issues);
-  requestList=core.requests(issues,publicTracks);
-  lastIssueRefresh=Date.now();info();
- }catch(e){
-  lastIssueRefresh=Date.now();
-  // A failed public stories lookup never blocks the local music station.
-  info();
- }
+  if(!response.ok)throw Error('Song requests unavailable');
+  requestList=core.requests(await response.json(),publicTracks);
+ }catch(e){requestList=[]}
+ lastIssueRefresh=Date.now();info();
 }
 async function refreshFeeds(){
  if(Date.now()-lastCatalogRefresh>2*60*1000){
