@@ -27,3 +27,10 @@
 .genre-review-row span{font-size:13px;overflow-wrap:anywhere}
 .genre-review-row select,.radio-category{color:var(--text);background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:9px;font:inherit}
 @media(max-width:680px){.genre-review-row{grid-template-columns:1fr}}
+
+/* In-browser, prepublication music preview: no upload needed. */
+.local-audio-preview{display:grid;gap:10px;border:1px solid var(--line);border-radius:16px;padding:16px;background:var(--panel);min-width:0}
+.local-audio-preview h3{font-size:17px;margin:0}
+.local-audio-preview select{width:100%;min-height:46px;padding:10px;border:1px solid var(--line);border-radius:12px;background:var(--soft);color:var(--text);font:inherit}
+.local-audio-preview audio{width:100%;min-height:40px}
+.local-audio-preview .story-note{margin:0}
