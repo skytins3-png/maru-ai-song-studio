@@ -1,7 +1,7 @@
 (function(){
 'use strict';
 const $=id=>document.getElementById(id),list=$('musicList'),empty=$('empty'),count=$('trackCount'),search=$('search'),sort=$('sort'),toast=$('toast');
-const genres=globalThis.MaruGenres;
+const genres=globalThis.MaruGenres||{genreOf:()=> 'other',label:()=> '미분류'};
 let tracks=[];
 const cards=new Map();
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
@@ -19,7 +19,7 @@ function render(){
   let visible=0;
   arr.forEach((t,index)=>{const card=cards.get(t.id);card.hidden=(!!q&&![t.title,t.artist,t.description].some(v=>String(v||'').toLowerCase().includes(q)))||(selected!=='all'&&genres.genreOf(t)!==selected);card.style.order=index;if(!card.hidden)visible++});
   count.textContent=(q||selected!=='all')?visible+' / '+tracks.length+'곡':tracks.length+'곡';
-  empty.hidden=visible!==0;empty.textContent=(q||selected!=='all')?'선택한 장르에 맞는 곡이 없습니다.':'아직 공개된 음악이 없습니다.';
+  empty.hidden=visible!==0;empty.textContent=q?'검색 결과가 없습니다.':selected!=='all'?'선택한 장르에 맞는 곡이 없습니다.':'아직 공개된 음악이 없습니다.';
 }
 function makeCard(t){
   const card=document.createElement('article');card.className='track';card.id='track-'+t.id;

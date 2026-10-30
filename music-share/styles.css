@@ -21,3 +21,9 @@
 .tools{grid-template-columns:minmax(0,1fr) auto auto}
 .genre-tag{display:inline-block;margin:0 0 8px;padding:4px 9px;border:1px solid var(--line);border-radius:999px;color:var(--accent2);font-size:12px;font-weight:800}
 @media(max-width:680px){.tools{grid-template-columns:1fr}.tools select{width:100%}}
+
+.genre-review{display:grid;gap:8px;max-height:440px;overflow-y:auto;padding:8px 0}
+.genre-review-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(125px,180px);gap:12px;align-items:center;border:1px solid var(--line);padding:9px;border-radius:12px}
+.genre-review-row span{font-size:13px;overflow-wrap:anywhere}
+.genre-review-row select,.radio-category{color:var(--text);background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:9px;font:inherit}
+@media(max-width:680px){.genre-review-row{grid-template-columns:1fr}}

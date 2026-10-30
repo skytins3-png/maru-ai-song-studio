@@ -99,3 +99,12 @@ test('batch uploader is linked from public library and radio station',()=>{
  assert.match(batch,/multiple required/);
  assert.match(batch,/uploadConsent/);
 });
+test('queue publishes 16 distinct originals in two atomic batches and does not lose songs',async()=>{
+ const h=harness();
+ h.els.audioFiles.files=Array.from({length:16},(_,i)=>file('Song-'+i+'.mp3',[i,1,2,3,4]));
+ await h.submit();
+ assert.equal(h.calls.filter(x=>x.path==='/git/trees').length,2);
+ assert.equal(h.calls.filter(x=>x.path==='/git/refs/heads/main').length,2);
+ assert.equal(h.catalog().length,16);
+ assert.match(h.els.batchStatus.textContent,/Published 16/);
+});
