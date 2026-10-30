@@ -6,6 +6,7 @@ const read=name=>fs.readFileSync(__dirname+'/../music-share/'+name,'utf8');
 const context=vm.createContext({});
 vm.runInContext(read('story-guard.js'),context);
 vm.runInContext(read('radio-core.js'),context);
+vm.runInContext(read('radio-daily.js'),context);
 const core=context.MaruRadioCore;
 
 test('honest talk-only mode contains real dialogue but never promises nonexistent music',()=>{
@@ -84,7 +85,7 @@ function browser(){
    clearTimeout(id){clearTimeout(id);timerTokens.delete(id)},
    globalThis:null
  });
- ctx.globalThis=ctx;ctx.MaruRadioCore=core;ctx.MaruStoryGuard=context.MaruStoryGuard;
+ ctx.globalThis=ctx;ctx.MaruRadioCore=core;ctx.MaruStoryGuard=context.MaruStoryGuard;ctx.MaruDailyFacts=context.MaruDailyFacts;
  vm.runInContext(read('radio.js'),ctx);
  async function settle(){await new Promise(r=>setTimeout(r,80))}
  function close(){
