@@ -6,7 +6,7 @@ const importFiles=$('localFiles'),clearFiles=$('clearLocal');
 const repo='https://api.github.com/repos/skytins3-png/maru-ai-song-studio';
 let publicTracks=[],localTracks=[],approved=[],requestList=[],episode=0,active=false,revision=0;
 let usedStories=new Set(),usedRequests=new Set(),unplayable=new Set();
-let lastCatalogRefresh=0,lastIssueRefresh=0,dialogueTimer=null;
+let lastCatalogRefresh=0,lastIssueRefresh=0,lastDailyRefresh=0,dailyData=null,dialogueTimer=null;
 const status=message=>{$('status').textContent=message};
 const playable=()=>[...localTracks,...publicTracks].filter(x=>!unplayable.has(x.id));
 const info=()=>{
@@ -61,6 +61,23 @@ async function refreshFeeds(){
   try{await refreshCatalog()}catch(e){lastCatalogRefresh=Date.now();info()}
  }
  if(Date.now()-lastIssueRefresh>10*60*1000)await refreshIssues();
+ if(Date.now()-lastDailyRefresh>50*60*1000)await refreshDaily();
+}
+async function refreshDaily() {
+ try{
+  const response=await fetch('broadcast-daily.json?ts='+Date.now(),{cache:'no-store'});
+  if(!response.ok)throw Error('Daily weather/news unavailable');
+  const content=await response.json();
+  dailyData=content&&typeof content==='object'&&!Array.isArray(content)?content:null;
+ }catch(e){dailyData=null}
+ lastDailyRefresh=Date.now();
+ const city=$('weatherCity').value||'Seoul';
+ const facts=globalThis.MaruDailyFacts.facts(dailyData,city,episode,Date.now());
+ $('dailySummary').textContent=facts.label
+  +(facts.weather.length?' · '+city+' weather ready':' · Weather unavailable')
+  +(facts.news.length?' · Current headlines ready':' · News unavailable');
+ $('newsSource').href=facts.link||'https://www.bbc.com/news';
+ $('newsSource').hidden=!facts.link;
 }
 function englishVoice(role){
  if(!('speechSynthesis' in window))return null;
@@ -102,6 +119,15 @@ async function announce(track,requested,session,onlyTalk){
  const lines=onlyTalk
   ?core.talkEpisodeScript(episode,Date.now(),story)
   :core.episodeScript(track,episode,Date.now(),story,requested);
+ // Weather and news are independent sourced facts. We never improvise
+ // headlines or read stale feeds as today's breaking news.
+ if($('dailyEnabled').checked&&globalThis.MaruDailyFacts){
+  const city=$('weatherCity').value||'Seoul';
+  const facts=globalThis.MaruDailyFacts.facts(dailyData,city,episode,Date.now());
+  const at=Math.min(6,lines.length-2);
+  lines.splice(at,0,...facts.weather,...facts.news);
+  if(facts.link){$('newsSource').href=facts.link;$('newsSource').hidden=false}
+ }
  for(const line of lines){
   if(session!==revision||!active)return;
   await speak(line,session);
@@ -177,6 +203,9 @@ importFiles.addEventListener('change',()=>{
  }else{status('No supported MP3/WAV/M4A audio files selected.')}
  if(active)nextEpisode();
 });
+$('weatherCity').addEventListener('change',()=>{
+ refreshDaily();
+});
 clearFiles.addEventListener('click',()=>{
  if(active)stopRadio();
  releaseLocal();status('Private local playlist cleared from this tab. No files were deleted.');
@@ -205,7 +234,7 @@ audio.addEventListener('error',()=>{
 window.addEventListener('pagehide',()=>{stopRadio();releaseLocal()});
 document.addEventListener('visibilitychange',()=>{if(!document.hidden){info()}});
 info();
-refreshCatalog().then(refreshIssues).then(()=>{
+refreshCatalog().then(refreshIssues).then(refreshDaily).then(()=>{
  status(publicTracks.length
   ?'Ready · start English radio or import your Suno original files'
   :'Ready · talk-only English radio available now. Import your Suno MP3 files for songs.');

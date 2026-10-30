@@ -1,3 +1,13 @@
+# MARU RADIO — daily automatic English conversation with sourced weather and news
+
+## Available from the website
+- The web radio at `music-share/radio.html` performs a **different original English talk show each day and each episode**, reading **only producer-approved** user stories from `approved-stories.json`. It **never invents news** from a user story.
+- Weather and headlines are fetched automatically by `.github/workflows/radio-daily-update.yml` approximately every four hours (GitHub scheduled workflow execution is not punctual). Weather uses the Open-Meteo Forecast API, with selectable **Seoul, Daejeon, Busan, Incheon and Daegu**; not the listener's GPS location. News uses **BBC News RSS World and Technology feeds**; only short article headlines with original-source links, plus explicit attribution are presented.
+- Each news item includes its source and publication timestamp. Server rejects articles over 30 hours old or URLs outside verified BBC domains. The browser **does not read anything from the feed as recent unless the data snapshot was generated within nine hours**; if upstream APIs are unavailable or the schedule runs late, radio keeps playing original conversation and tracks, *without false current-weather/news claims*.
+- The browser refreshes its daily-news/weather snapshot around once an hour, and inserts source-identified weather and news segments into normal English DJ/guest conversation. Current data depends on upstream availability, the GitHub scheduled update and Pages publishing. Headlines are not article summaries; follow links to read complete sources. Using third-party feeds commercially may require permission.
+- Select local original MP3/WAV in browser to play; otherwise talk-only English radio runs. The browser requires **one user gesture to start** and Android may suspend it with screen lock/app switch. This is **not an official BIGO audio mixer**, and has no guarantee of 24/7 background broadcast.
+- `scripts/test_radio_daily.py` and `tests/music-share-daily.test.cjs` verify timestamps, source whitelists, invalid API data, stale feeds and display controls. No fake forecast or news is seeded in the repository.
+
 # MARU RADIO · Talk-only / private Suno playback (2026-10-30)
 
 - The previous radio page refused to start when `music-share/catalog.json` was empty. **Talk-only mode now starts** after the listener presses Start, so Ahwan and one fictional guest read English dialogue with the browser's available speech engine. The player accurately says no licensed songs have been loaded. It does not pretend to sing or fabricate MP3 music. With no music, the next discussion begins automatically after a short pause. The listener may stop or select the next subject.

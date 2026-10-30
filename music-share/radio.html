@@ -42,6 +42,20 @@
         <audio id="radioAudio" controls preload="none" aria-label="Original music playback" hidden></audio>
         <label class="radio-setting"><input type="checkbox" id="talkEnabled" checked> English host &amp; guest conversations between songs</label>
         <label class="radio-setting"><input type="checkbox" id="storiesEnabled" checked> Read producer-approved public listener stories</label>
+        <section class="daily-facts" aria-label="Weather and news">
+          <label for="weatherCity">Weather city</label>
+          <select id="weatherCity">
+            <option value="Seoul">Seoul</option>
+            <option value="Daejeon">Daejeon</option>
+            <option value="Busan">Busan</option>
+            <option value="Incheon">Incheon</option>
+            <option value="Daegu">Daegu</option>
+          </select>
+          <label class="radio-setting"><input id="dailyEnabled" type="checkbox" checked> Daily English weather and verified news chat</label>
+          <p id="dailySummary" class="radio-note">Checking weather and original news sources…</p>
+          <a id="newsSource" class="source-link" href="https://www.bbc.com/news" target="_blank" rel="noopener noreferrer" hidden>Read cited BBC News article</a>
+          <p class="radio-note">The weather city is manually selected, not inferred from your exact location. Weather: Open-Meteo. Headlines: BBC News RSS. Facts must be recent and verifiable. News discussion does not replace the original news report.</p>
+        </section>
         <p class="radio-note">Press Start once to begin. A private local playlist is forgotten when you close this tab. Android browsers may suspend speech or music when the phone locks or the browser goes into the background. This web radio does not inject sound into BIGO, automate BIGO, or stream the DJ to listeners by itself.</p>
       </div>
       <div class="radio-transcript">
@@ -54,6 +68,7 @@
   <footer>© MARU RADIO · Publicly approved originals · No automated BIGO broadcast</footer>
   <script src="story-guard.js?v=1"></script>
   <script src="radio-core.js?v=2"></script>
-  <script src="radio.js?v=3"></script>
+  <script src="radio-daily.js?v=1"></script>
+  <script src="radio.js?v=4"></script>
 </body>
 </html>
