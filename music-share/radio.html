@@ -39,6 +39,12 @@
           <button id="skipRadio" type="button" class="ghost" disabled>Next song</button>
           <button id="stopRadio" type="button" class="ghost" disabled>Stop</button>
         </div>
+        <label class="radio-setting" for="radioGenre">Music category</label>
+        <select id="radioGenre" class="radio-category" aria-label="Music category">
+          <option value="all">All music</option><option value="korean">Korean songs</option>
+          <option value="chinese">Chinese songs</option><option value="western">Western songs</option>
+          <option value="instrumental">Instrumental</option><option value="other">Unclassified</option>
+        </select>
         <audio id="radioAudio" controls preload="none" aria-label="Original music playback" hidden></audio>
         <label class="radio-setting"><input type="checkbox" id="talkEnabled" checked> English host &amp; guest conversations between songs</label>
         <label class="radio-setting"><input type="checkbox" id="storiesEnabled" checked> Read producer-approved public listener stories</label>
@@ -67,8 +73,9 @@
   </main>
   <footer>© MARU RADIO · Publicly approved originals · No automated BIGO broadcast</footer>
   <script src="story-guard.js?v=1"></script>
+  <script src="genre-core.js?v=1"></script>
   <script src="radio-core.js?v=2"></script>
   <script src="radio-daily.js?v=1"></script>
-  <script src="radio.js?v=4"></script>
+  <script src="radio.js?v=5"></script>
 </body>
 </html>

@@ -16,3 +16,8 @@
 .story-send{display:inline-flex;justify-content:center;align-items:center;text-decoration:none;border:0;border-radius:13px;padding:14px 20px;background:linear-gradient(135deg,#9f7cff,#5b43b5);color:#fff;font-size:15px;font-weight:800}
 .story-status,.story-note{font-size:13px}.story-links{display:flex;flex-wrap:wrap;gap:15px}.story-links a{color:var(--accent2)}
 @media(max-width:680px){.top-actions{gap:5px}.top-actions .ghost{padding:7px 9px;font-size:12px}.story-panel{padding:18px}}
+
+/* Music-share language / format category filter */
+.tools{grid-template-columns:minmax(0,1fr) auto auto}
+.genre-tag{display:inline-block;margin:0 0 8px;padding:4px 9px;border:1px solid var(--line);border-radius:999px;color:var(--accent2);font-size:12px;font-weight:800}
+@media(max-width:680px){.tools{grid-template-columns:1fr}.tools select{width:100%}}
