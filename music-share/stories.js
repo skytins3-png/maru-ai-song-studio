@@ -9,6 +9,9 @@ function issueUrl(name,topic,story,consent) {
   if(!consent)throw new Error('Please confirm public posting and radio-reading permission.');
   if(title.length<3)throw new Error('Please add a short title.');
   if(body.length<20)throw new Error('Please write at least 20 characters.');
+  const guard=root.MaruStoryGuard.assess(nick,title,story);
+  if(!guard.safe)throw new Error('Safety check: '+guard.reasons[0]);
+
   const issueTitle='[STORY] '+title;
   const issueBody=[
     '## Listener name',nick,'',
