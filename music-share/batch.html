@@ -1,0 +1,29 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0d0f14">
+<title>Batch Upload Originals · MARU MUSIC SHARE</title>
+<link rel="stylesheet" href="styles.css?v=5"><link rel="stylesheet" href="radio.css?v=1">
+</head><body>
+<header class="top"><div class="brand"><span class="disc">♫</span><div><b>MARU MUSIC SHARE</b><small>ORIGINAL MUSIC · BATCH UPLOAD</small></div></div>
+<nav class="top-actions"><a class="ghost action-link" href="./">Music library</a><a class="ghost action-link" href="radio.html">English radio</a></nav></header>
+<main><section class="hero"><p class="eyebrow">IMPORT YOUR OWN SUNO ORIGINALS</p><h1>Upload a whole batch.</h1>
+<p>Choose up to 15 MP3/WAV/M4A originals from your phone or computer. Titles are taken from filenames; the platform checks exact audio-file duplicates and publishes the audio plus public song list together. Newly published tracks enter the web radio automatically.</p></section>
+<section class="story-panel">
+<h2>Publish your original songs</h2>
+<form id="batchForm" class="story-form">
+<label for="token">GitHub token with Contents write access to this repository</label>
+<input id="token" type="password" autocomplete="off" placeholder="Token stays in this tab; never paste it into a chat" required>
+<label for="artist">Artist / songwriter</label>
+<input id="artist" maxlength="120" placeholder="Younghwan Park" required>
+<label for="description">Shared description (optional)</label>
+<textarea id="description" maxlength="400" rows="3" placeholder="Original songs composed by the artist"></textarea>
+<label for="audioFiles">Your original audio files (1–15 files, max 90 MiB combined)</label>
+<input id="audioFiles" type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.flac" multiple required>
+<label class="story-consent"><input id="uploadConsent" type="checkbox" required><span>I own the rights or have permission to publicly distribute and allow downloads of ALL selected tracks. Files will be public and cannot be retracted from previously downloaded copies.</span></label>
+<button id="batchUpload" type="submit" class="story-send">Publish selected original tracks</button>
+</form>
+<p id="batchStatus" role="status" aria-live="polite" class="story-status">No files uploaded yet. The token is not saved in browser storage.</p>
+<p class="radio-note">This page cannot access your private Suno account or download a playlist behind a login. Download your own licensed tracks through Suno, then select them here. Batch duplicates are detected using each file's SHA-256; prior entries uploaded through the old single-file form may not have that fingerprint. Existing public songs are never overwritten.</p>
+</section></main><footer>© MARU MUSIC SHARE · Rights-cleared original music only</footer>
+<script src="common.js?v=2"></script><script src="batch-core.js?v=1"></script><script src="batch.js?v=1"></script>
+</body></html>
