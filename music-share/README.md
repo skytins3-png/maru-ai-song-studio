@@ -1,3 +1,11 @@
+# MARU RADIO · Talk-only / private Suno playback (2026-10-30)
+
+- The previous radio page refused to start when `music-share/catalog.json` was empty. **Talk-only mode now starts** after the listener presses Start, so Ahwan and one fictional guest read English dialogue with the browser's available speech engine. The player accurately says no licensed songs have been loaded. It does not pretend to sing or fabricate MP3 music. With no music, the next discussion begins automatically after a short pause. The listener may stop or select the next subject.
+- The `radio.html` page now has **Play my Suno downloads (private, on this phone)**: select multiple local MP3/WAV/M4A/AAC/OGG/FLAC exports. The browser creates temporary `blob:` audio URLs and places the private songs in the local playlist; it does **not** upload the files, ask for a GitHub token, or access Suno's private account. Removing the selection or leaving the page releases those URLs. The user must grant the browser access by selecting files via Android's file picker.
+- A talk segment plays between local songs; published creator-approved originals continue to be automatically refreshed. With no phone music and no published music, only English talk is available.
+- These changes are web-only and require **no new APK installation**, so the previously installed Android MARU apps are not removed. Audio may still be interrupted by Android screen lock, battery optimization or other apps; BIGO's microphone mixer routing is **not implemented**. Browser speech may be unavailable on some devices.
+- Automated tests cover offline empty-catalog talk, original file picker playback without network POST, playlist cleanup, story consent and unchanged public upload/download workflows. Tests are not evidence of streaming to real BIGO listeners.
+
 # MARU RADIO WEB — automatically updated station (2026-10-30)
 
 **Open `radio.html` to start listening.** This web-first station avoids repeatedly changing Android package names and signatures. It runs in a mobile or desktop browser and does not need a new APK whenever songs or approved public stories change.
