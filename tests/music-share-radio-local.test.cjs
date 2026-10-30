@@ -4,6 +4,7 @@ const fs=require('node:fs');
 const vm=require('node:vm');
 const read=name=>fs.readFileSync(__dirname+'/../music-share/'+name,'utf8');
 const context=vm.createContext({});
+vm.runInContext(read('story-guard.js'),context);
 vm.runInContext(read('radio-core.js'),context);
 const core=context.MaruRadioCore;
 
@@ -20,7 +21,7 @@ test('honest talk-only mode contains real dialogue but never promises nonexisten
 });
 test('approved story can be read in talk-only broadcast, unapproved cannot',()=>{
  const msg={number:21,title:'[STORY] My friend',state:'open',
-  labels:[{name:'radio-approved'}],
+  labels:[{name:'radio-approved'},{name:'radio-screened'}],
   body:'## Listener name\nLee\n\n## Story\nAn old friend returned unexpectedly one sunny afternoon.\n\n## Permission\n- [x] I have permission to submit this story for public posting and radio reading.\n- [x] I understand this GitHub Issue is publicly visible.'};
  const story=core.approvedStories([msg])[0];
  assert.ok(core.talkEpisodeScript(0,Date.now(),story).some(x=>x.text.includes('old friend')));
@@ -83,7 +84,7 @@ function browser(){
    clearTimeout(id){clearTimeout(id);timerTokens.delete(id)},
    globalThis:null
  });
- ctx.globalThis=ctx;ctx.MaruRadioCore=core;
+ ctx.globalThis=ctx;ctx.MaruRadioCore=core;ctx.MaruStoryGuard=context.MaruStoryGuard;
  vm.runInContext(read('radio.js'),ctx);
  async function settle(){await new Promise(r=>setTimeout(r,80))}
  function close(){
