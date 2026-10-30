@@ -2,7 +2,7 @@
 'use strict';
 const REPO='https://github.com/skytins3-png/maru-ai-song-studio';
 function clean(value,max){
-  return String(value||'').replace(/[\\u0000-\\u001f\\u007f]/g,' ').replace(/\\s+/g,' ').trim().slice(0,max);
+  return String(value||'').replace(/[\u0000-\u001f\u007f]/g,' ').replace(/\s+/g,' ').trim().slice(0,max);
 }
 function issueUrl(name,topic,story,consent) {
   const title=clean(topic,100),body=clean(story,1200),nick=clean(name,40)||'Anonymous listener';
@@ -19,7 +19,7 @@ function issueUrl(name,topic,story,consent) {
     '',
     '---',
     'This is a listener-submitted account, not a verified news report. The MARU producer reviews each story before broadcasting.'
-  ].join('\\n');
+  ].join('\n');
   const u=new URL(REPO+'/issues/new');
   u.searchParams.set('title',issueTitle);
   u.searchParams.set('body',issueBody);
