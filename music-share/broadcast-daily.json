@@ -1,137 +1,137 @@
 {
-  "generatedAt": "2026-10-30T12:21:26+00:00",
+  "generatedAt": "2026-10-30T20:50:28+00:00",
   "timezone": "Asia/Seoul",
   "weather": {
     "Daejeon": {
       "city": "Daejeon",
-      "temperatureC": 10.3,
-      "windKmh": 7.9,
+      "temperatureC": 9.3,
+      "windKmh": 8.7,
       "weatherCode": 0,
-      "observedLocal": "2026-10-30T21:15",
+      "observedLocal": "2026-10-31T05:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Seoul": {
       "city": "Seoul",
-      "temperatureC": 12.4,
-      "windKmh": 4.8,
-      "weatherCode": 0,
-      "observedLocal": "2026-10-30T21:15",
+      "temperatureC": 10.2,
+      "windKmh": 6.1,
+      "weatherCode": 3,
+      "observedLocal": "2026-10-31T05:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Busan": {
       "city": "Busan",
-      "temperatureC": 14.5,
-      "windKmh": 7.9,
+      "temperatureC": 11.3,
+      "windKmh": 5.1,
       "weatherCode": 0,
-      "observedLocal": "2026-10-30T21:15",
+      "observedLocal": "2026-10-31T05:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Incheon": {
       "city": "Incheon",
-      "temperatureC": 15.0,
-      "windKmh": 16.4,
+      "temperatureC": 11.8,
+      "windKmh": 17.4,
       "weatherCode": 0,
-      "observedLocal": "2026-10-30T21:15",
+      "observedLocal": "2026-10-31T05:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Daegu": {
       "city": "Daegu",
-      "temperatureC": 12.9,
-      "windKmh": 5.4,
+      "temperatureC": 9.9,
+      "windKmh": 2.4,
       "weatherCode": 0,
-      "observedLocal": "2026-10-30T21:15",
+      "observedLocal": "2026-10-31T05:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     }
   },
   "news": [
     {
-      "title": "Google value plunges by $500bn as its own AI search hits ad sales",
-      "url": "https://www.bbc.co.uk/news/articles/cm9qzdqpxy48o?at_medium=RSS&at_campaign=rss",
+      "title": "They strangled us, says founder of Russian newspaper shut under pressure from authorities",
+      "url": "https://www.bbc.co.uk/news/articles/cmewepdr109do?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-10-30T12:04:02+00:00"
+      "publishedAt": "2026-10-30T20:41:51+00:00"
     },
     {
-      "title": "What we know so far about the Binance hack",
-      "url": "https://www.bbc.co.uk/news/articles/cm5yn8eqg3npo?at_medium=RSS&at_campaign=rss",
+      "title": "US tech stocks see sharp falls as AI spending nears $1tn",
+      "url": "https://www.bbc.co.uk/news/articles/cvwy72e0n72yo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
-      "category": "Technology",
-      "publishedAt": "2026-10-30T11:57:33+00:00"
+      "category": "World",
+      "publishedAt": "2026-10-30T20:34:46+00:00"
     },
     {
-      "title": "From Bitcoin to Binance: Crypto terms and what they mean",
-      "url": "https://www.bbc.co.uk/news/articles/cy5w2k5k5ylo?at_medium=RSS&at_campaign=rss",
+      "title": "Crypto giant Binance attempting to recover $6.3bn stolen in hack linked to North Korea",
+      "url": "https://www.bbc.co.uk/news/articles/cwe8lp7zy07zo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
-      "category": "Technology",
-      "publishedAt": "2026-10-30T11:35:51+00:00"
+      "category": "World",
+      "publishedAt": "2026-10-30T20:10:56+00:00"
     },
     {
-      "title": "Residents leave devastated Russian-occupied Oleshky as evacuation corridor opens",
+      "title": "Alaska Senate candidate denies knowing about alleged plot to put two Dan Sullivans on ballot",
+      "url": "https://www.bbc.co.uk/news/articles/cmwyq2gg1yzzo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-10-30T18:17:27+00:00"
+    },
+    {
+      "title": "G20 'family photo' cancelled after protests over presence of Russian minister",
+      "url": "https://www.bbc.co.uk/news/articles/cmd6dp2y576do?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-10-30T17:25:20+00:00"
+    },
+    {
+      "title": "US inmate Christa Pike says she woke up 'confused and in pain' after failed execution",
+      "url": "https://www.bbc.co.uk/news/articles/ck62ydn7dj9eo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-10-30T17:07:19+00:00"
+    },
+    {
+      "title": "Canada stops using 'avalanche dogs' for rescues in Rocky Mountains, stirring outrage",
+      "url": "https://www.bbc.co.uk/news/articles/cwdd8q8e9e9yo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-10-30T17:00:32+00:00"
+    },
+    {
+      "title": "Hundreds evacuated from Russian-occupied Oleshky during rare Ukraine ceasefire",
       "url": "https://www.bbc.co.uk/news/articles/c60me298k1yeo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-10-30T11:17:32+00:00"
+      "publishedAt": "2026-10-30T16:26:11+00:00"
     },
     {
-      "title": "Helicopter carrying six people crashes in northern Indian state",
+      "title": "Democratic senator blames Egypt press crackdown on US military aid decision",
+      "url": "https://www.bbc.co.uk/news/articles/c63r529wn2vzo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-10-30T15:17:11+00:00"
+    },
+    {
+      "title": "Israeli opposition accuses Netanyahu of trying to 'delegitimise' election",
+      "url": "https://www.bbc.co.uk/news/articles/ckdd8qdl9e0eo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-10-30T15:09:29+00:00"
+    },
+    {
+      "title": "Six dead after helicopter crashes in northern Indian state",
       "url": "https://www.bbc.co.uk/news/articles/cr93zxyn9eqeo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-10-30T10:07:58+00:00"
+      "publishedAt": "2026-10-30T15:06:05+00:00"
     },
     {
-      "title": "Crypto giant Binance hit by $6.3bn hack suspected to be largest in history",
-      "url": "https://www.bbc.co.uk/news/articles/cwg7xp8kx4v5o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "Technology",
-      "publishedAt": "2026-10-30T09:33:51+00:00"
-    },
-    {
-      "title": "How Kenyans got caught in $130m US ghost student scam",
-      "url": "https://www.bbc.co.uk/news/articles/cxvgdzpy7241o?at_medium=RSS&at_campaign=rss",
+      "title": "Spain transport minister says he won't resign over high-speed rail disaster",
+      "url": "https://www.bbc.co.uk/news/articles/c6zxj2e5qlxxo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-10-30T08:32:35+00:00"
-    },
-    {
-      "title": "What we know about Binance's $6.3bn hack",
-      "url": "https://www.bbc.co.uk/news/videos/cv2d62e34rw5o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-10-30T08:02:02+00:00"
-    },
-    {
-      "title": "Human rights lawyer couple sentenced to 10 years' prison in Pakistan",
-      "url": "https://www.bbc.co.uk/news/articles/crq5nplyvlg8o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-10-30T07:53:38+00:00"
-    },
-    {
-      "title": "How video game remakes tap the power of nostalgia",
-      "url": "https://www.bbc.co.uk/news/articles/cm9qz428nnljo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "Technology",
-      "publishedAt": "2026-10-30T07:45:00+00:00"
-    },
-    {
-      "title": "'I made the wrong decision,' Hyrox athlete who soiled herself in race tells BBC",
-      "url": "https://www.bbc.co.uk/news/videos/cwly4p6e9264o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-10-30T07:33:27+00:00"
-    },
-    {
-      "title": "Syrians struggle with soaring prices as crisis challenges post-Assad recovery",
-      "url": "https://www.bbc.co.uk/news/articles/cmn4egvez1yzo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-10-30T06:02:23+00:00"
+      "publishedAt": "2026-10-30T15:03:39+00:00"
     }
   ]
 }
