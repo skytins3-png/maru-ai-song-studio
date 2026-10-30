@@ -1,6 +1,137 @@
 {
-  "generatedAt": null,
+  "generatedAt": "2026-10-30T12:21:26+00:00",
   "timezone": "Asia/Seoul",
-  "weather": {},
-  "news": []
+  "weather": {
+    "Daejeon": {
+      "city": "Daejeon",
+      "temperatureC": 10.3,
+      "windKmh": 7.9,
+      "weatherCode": 0,
+      "observedLocal": "2026-10-30T21:15",
+      "source": "Open-Meteo",
+      "sourceUrl": "https://open-meteo.com/"
+    },
+    "Seoul": {
+      "city": "Seoul",
+      "temperatureC": 12.4,
+      "windKmh": 4.8,
+      "weatherCode": 0,
+      "observedLocal": "2026-10-30T21:15",
+      "source": "Open-Meteo",
+      "sourceUrl": "https://open-meteo.com/"
+    },
+    "Busan": {
+      "city": "Busan",
+      "temperatureC": 14.5,
+      "windKmh": 7.9,
+      "weatherCode": 0,
+      "observedLocal": "2026-10-30T21:15",
+      "source": "Open-Meteo",
+      "sourceUrl": "https://open-meteo.com/"
+    },
+    "Incheon": {
+      "city": "Incheon",
+      "temperatureC": 15.0,
+      "windKmh": 16.4,
+      "weatherCode": 0,
+      "observedLocal": "2026-10-30T21:15",
+      "source": "Open-Meteo",
+      "sourceUrl": "https://open-meteo.com/"
+    },
+    "Daegu": {
+      "city": "Daegu",
+      "temperatureC": 12.9,
+      "windKmh": 5.4,
+      "weatherCode": 0,
+      "observedLocal": "2026-10-30T21:15",
+      "source": "Open-Meteo",
+      "sourceUrl": "https://open-meteo.com/"
+    }
+  },
+  "news": [
+    {
+      "title": "Google value plunges by $500bn as its own AI search hits ad sales",
+      "url": "https://www.bbc.co.uk/news/articles/cm9qzdqpxy48o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-10-30T12:04:02+00:00"
+    },
+    {
+      "title": "What we know so far about the Binance hack",
+      "url": "https://www.bbc.co.uk/news/articles/cm5yn8eqg3npo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "Technology",
+      "publishedAt": "2026-10-30T11:57:33+00:00"
+    },
+    {
+      "title": "From Bitcoin to Binance: Crypto terms and what they mean",
+      "url": "https://www.bbc.co.uk/news/articles/cy5w2k5k5ylo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "Technology",
+      "publishedAt": "2026-10-30T11:35:51+00:00"
+    },
+    {
+      "title": "Residents leave devastated Russian-occupied Oleshky as evacuation corridor opens",
+      "url": "https://www.bbc.co.uk/news/articles/c60me298k1yeo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-10-30T11:17:32+00:00"
+    },
+    {
+      "title": "Helicopter carrying six people crashes in northern Indian state",
+      "url": "https://www.bbc.co.uk/news/articles/cr93zxyn9eqeo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-10-30T10:07:58+00:00"
+    },
+    {
+      "title": "Crypto giant Binance hit by $6.3bn hack suspected to be largest in history",
+      "url": "https://www.bbc.co.uk/news/articles/cwg7xp8kx4v5o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "Technology",
+      "publishedAt": "2026-10-30T09:33:51+00:00"
+    },
+    {
+      "title": "How Kenyans got caught in $130m US ghost student scam",
+      "url": "https://www.bbc.co.uk/news/articles/cxvgdzpy7241o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-10-30T08:32:35+00:00"
+    },
+    {
+      "title": "What we know about Binance's $6.3bn hack",
+      "url": "https://www.bbc.co.uk/news/videos/cv2d62e34rw5o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-10-30T08:02:02+00:00"
+    },
+    {
+      "title": "Human rights lawyer couple sentenced to 10 years' prison in Pakistan",
+      "url": "https://www.bbc.co.uk/news/articles/crq5nplyvlg8o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-10-30T07:53:38+00:00"
+    },
+    {
+      "title": "How video game remakes tap the power of nostalgia",
+      "url": "https://www.bbc.co.uk/news/articles/cm9qz428nnljo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "Technology",
+      "publishedAt": "2026-10-30T07:45:00+00:00"
+    },
+    {
+      "title": "'I made the wrong decision,' Hyrox athlete who soiled herself in race tells BBC",
+      "url": "https://www.bbc.co.uk/news/videos/cwly4p6e9264o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-10-30T07:33:27+00:00"
+    },
+    {
+      "title": "Syrians struggle with soaring prices as crisis challenges post-Assad recovery",
+      "url": "https://www.bbc.co.uk/news/articles/cmn4egvez1yzo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-10-30T06:02:23+00:00"
+    }
+  ]
 }
