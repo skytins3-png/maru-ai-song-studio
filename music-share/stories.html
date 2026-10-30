@@ -16,11 +16,11 @@
     <section class="hero">
       <p class="eyebrow">YOU BRING THE STORY, WE BRING THE MUSIC</p>
       <h1>Tell us your story.</h1>
-      <p>Love, family, old friends, funny everyday moments — send us a story that would sound good on the radio. The station host reviews submissions before reading any on air.</p>
+      <p>Love, family, old friends, funny everyday moments — send us a story that would sound good on the radio. Your story is screened for suspicious links, scams and private information, then requires producer approval before it can be read on air.</p>
     </section>
     <section class="story-panel">
       <h2>Submit a story</h2>
-      <p>For now this uses a <strong>public GitHub Issue</strong> instead of a private inbox. You will need to sign in to GitHub and confirm the submission there. <strong>Everyone can read a submitted story.</strong> Do not include addresses, phone numbers, private identities or sensitive information.</p>
+      <p>For now this uses a <strong>public GitHub Issue</strong> instead of a private inbox. You will need to sign in to GitHub and confirm the submission there. <strong>Everyone can read a submitted story before moderation.</strong> Do not include addresses, phone numbers, accounts, private identities, passwords, email addresses or external links. Browser checks are not antivirus. GitHub runs a second scan after submission; reviewed stories require manual producer approval.</p>
       <form id="storyForm" class="story-form">
         <label for="storyName">Name for radio (pen name or anonymous)</label>
         <input id="storyName" maxlength="40" autocomplete="off" placeholder="Anonymous listener">
@@ -28,7 +28,7 @@
         <input id="storyTopic" maxlength="100" required placeholder="The funniest thing that happened on a Monday">
         <label for="storyBody">Your story</label>
         <textarea id="storyBody" maxlength="1200" minlength="20" required rows="7" placeholder="Tell us what happened, in your own words..."></textarea>
-        <label class="story-consent"><input id="storyConsent" type="checkbox" required><span>I wrote this story or have permission to share it. I understand it will be public on GitHub and may be read or paraphrased on MARU RADIO after review.</span></label>
+        <label class="story-consent"><input id="storyConsent" type="checkbox" required><span>I wrote this story or have permission to share it. I understand it is public immediately on GitHub, will be screened by automatic safety checks (including optional external AI moderation when configured), and may be read on MARU RADIO only after the producer approves it.</span></label>
         <button class="story-send" type="submit">Continue to public story submission</button>
       </form>
       <p id="storyStatus" class="story-status" role="status">Your story is not sent until you review and submit it on GitHub.</p>
@@ -40,6 +40,7 @@
     </section>
   </main>
   <footer>© MARU MUSIC SHARE · Original music & listener stories</footer>
-  <script src="stories.js?v=1"></script>
+  <script src="story-guard.js?v=1"></script>
+  <script src="stories.js?v=2"></script>
 </body>
 </html>
