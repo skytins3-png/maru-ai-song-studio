@@ -4,7 +4,7 @@ const audioExtensions=/\.(mp3|wav|m4a|aac|ogg|flac)$/i;
 const imageExtensions=/\.(jpg|jpeg|png|webp|gif|avif)$/i;
 function mediaPath(value,folder){
   return typeof value==='string' && new RegExp('^'+folder+'/[^/\\\\?#%]+$').test(value) &&
-    !/[\u0000-\u001f]/.test(value) && (folder==='tracks'?audioExtensions:imageExtensions).test(value);
+    !/[\u0000-\u001f]/.test(value) && !value.includes('..') && !/%2e|%2f|%5c/i.test(value) && (folder==='tracks'?audioExtensions:imageExtensions).test(value);
 }
 function publicTracks(value){
   if(!Array.isArray(value))throw new Error('음악 목록 형식이 올바르지 않습니다.');
