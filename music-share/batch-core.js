@@ -20,6 +20,22 @@ function validateBatch(files,artist,consent){
  if(total>90*1024*1024)throw Error('This batch exceeds 90 MiB. Split into smaller batches.');
  return files.map(f=>titleFromFile(f.name));
 }
+// Public upload stays explicitly consent-based. Files are split into atomic
+// batches to cap each GitHub commit at 15 tracks / 90 MiB.
+function validateQueue(files,artist,consent){
+ if(!consent)throw Error('Confirm that every song is cleared for public downloads.');
+ if(!artist||!String(artist).trim())throw Error('Artist or songwriter is required.');
+ if(!Array.isArray(files)||!files.length)throw Error('Choose your original music files.');
+ if(files.length>150)throw Error('Select at most 150 files per queued upload.');
+ let total=0;
+ for(const f of files){
+  if(!f||!Number.isFinite(f.size)||f.size<=0||!EXT.test(String(f.name||'')))throw Error('Use non-empty MP3/WAV/M4A/AAC/OGG/FLAC files.');
+  if(f.size>90*1024*1024)throw Error('One file exceeds the 90 MiB batch limit.');
+  total+=f.size;
+ }
+ if(total>900*1024*1024)throw Error('Queue exceeds 900 MiB; select fewer songs.');
+ return files.map(f=>titleFromFile(f.name));
+}
 function existingHashes(catalog){
  const hash=new Set();
  if(Array.isArray(catalog))for(const row of catalog){
@@ -28,5 +44,5 @@ function existingHashes(catalog){
  return hash;
 }
 function hex(bytes){return Array.from(bytes,b=>b.toString(16).padStart(2,'0')).join('')}
-root.MaruBatchCore={titleFromFile,validateBatch,existingHashes,hex};
+root.MaruBatchCore={titleFromFile,validateBatch,validateQueue,existingHashes,hex};
 })(typeof globalThis!=='undefined'?globalThis:this);

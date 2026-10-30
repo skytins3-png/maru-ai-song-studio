@@ -4,6 +4,8 @@ const OWNER='skytins3-png',REPO='maru-ai-song-studio',BRANCH='main',ROOT='music-
 const $=id=>document.getElementById(id),status=$('batchStatus'),button=$('batchUpload');
 const core=globalThis.MaruBatchCore;
 let busy=false;
+let genreSelects=[];
+const genres=globalThis.MaruGenres;
 const show=message=>{status.textContent=message};
 function b64(buf){
  const bytes=new Uint8Array(buf);
@@ -48,7 +50,7 @@ async function uploadBlob(bytes,token){
  const sha=(await api('/git/blobs',token,'POST',{content:b64(bytes),encoding:'base64'})).sha;
  return sha;
 }
-async function prepare(files,token,knownHashes,artist,description){
+async function prepare(files,token,knownHashes,artist,description,genreMap){
  const records=[],already=new Set(knownHashes);
  for(let i=0;i<files.length;i++){
   const file=files[i];
@@ -64,6 +66,7 @@ async function prepare(files,token,knownHashes,artist,description){
   const path='tracks/'+id+'-'+MusicShare.slug(title)+'.'+MusicShare.extension(file.name);
   const track={id,title,artist:artist.slice(0,120),
    description:description.slice(0,400),
+   genre:genreMap.get(file)||genres.detect(file.name),
    audio:path,cover:'',createdAt:new Date().toISOString(),
    downloadAllowed:true,audioSha256:sha256};
   records.push({sha,track});
@@ -101,27 +104,58 @@ async function publish(records,token,initial){
  }
  throw Error('Another upload updated the catalog repeatedly. Please retry after checking the music list.');
 }
+// Keep every category user-reviewable instead of pretending audio-content AI analysis.
+function renderGenreReview(){
+ const root=$('genreReview');
+ genreSelects=[];
+ if(!root||typeof document.createElement!=='function'||typeof root.replaceChildren!=='function')return;
+ root.replaceChildren();
+ for(const file of Array.from($('audioFiles').files||[])){
+  const label=document.createElement('label');label.className='genre-review-row';
+  const title=document.createElement('span');title.textContent=file.name;
+  const select=document.createElement('select');select.setAttribute('aria-label','Category for '+file.name);
+  for(const id of ['korean','chinese','western','instrumental','other']){
+   const option=document.createElement('option');option.value=id;option.textContent=genres.label(id);select.appendChild(option);
+  }
+  select.value=genres.detect(file.name);label.appendChild(title);label.appendChild(select);
+  root.appendChild(label);genreSelects.push(select);
+ }
+}
+$('audioFiles').addEventListener('change',renderGenreReview);
 $('batchForm').addEventListener('submit',async event=>{
  event.preventDefault();if(busy)return;
  let token=$('token').value.trim();
  const files=Array.from($('audioFiles').files||[]);
  const artist=$('artist').value.trim(),description=$('description').value.trim();
  if(!token){show('Enter an authorized GitHub Contents-write token.');return}
- try{core.validateBatch(files,artist,$('uploadConsent').checked)}
+ try{core.validateQueue(files,artist,$('uploadConsent').checked)}
  catch(error){show(error.message);return}
  busy=true;button.disabled=true;
+ let publishedTotal=0;
  try{
   for(const file of files)await MaruSafeMedia.verify(file);
   show('Checking existing catalog and duplicate fingerprints…');
-  const base=await snapshot(token);
+  const groups=genres.splitBatches(files);
+  const selectedGenres=new Map(files.map((file,i)=>[file,genreSelects[i]&&genreSelects[i].value||genres.detect(file.name)]));
+  let base=await snapshot(token);
   const known=core.existingHashes(base.list);
-  const records=await prepare(files,token,known,artist,description);
-  if(!records.length){show('These exact original files are already in the public catalog. No duplicate upload.');return}
-  const published=await publish(records,token,base);
-  show('Published '+published+' original tracks. The radio will refresh its playlist automatically once Pages deployment completes.');
-  $('audioFiles').value='';$('uploadConsent').checked=false;
+  for(let i=0;i<groups.length;i++){
+   show('Preparing batch '+(i+1)+' / '+groups.length+' · '+publishedTotal+' published so far');
+   const records=await prepare(groups[i],token,known,artist,description,selectedGenres);
+   if(records.length){
+    const added=await publish(records,token,base);
+    publishedTotal+=added;
+    for(const entry of records)known.add(entry.track.audioSha256);
+   }
+   // Read the current head after every atomic commit to avoid dropping another update.
+   if(i<groups.length-1)base=await snapshot(token);
+  }
+  show(publishedTotal
+   ?'Published '+publishedTotal+' original tracks in '+groups.length+' batches. The radio updates after Pages deployment.'
+   :'These exact original files are already in the public catalog. No duplicate upload.');
+  $('audioFiles').value='';$('uploadConsent').checked=false;renderGenreReview();
  }catch(error){
-  show('Upload did not finish: '+error.message+'. Check the public list before retrying.');
+  show('Upload did not finish: '+error.message+'. '+publishedTotal+' track(s) confirmed published; check the public list before retrying.');
  }finally{
   token='';$('token').value='';busy=false;button.disabled=false;
  }
