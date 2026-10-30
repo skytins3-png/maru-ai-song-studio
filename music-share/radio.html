@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#0d0f14">
   <title>MARU RADIO · English Live-Style Radio</title>
   <link rel="stylesheet" href="styles.css?v=4">
-  <link rel="stylesheet" href="radio.css?v=1">
+  <link rel="stylesheet" href="radio.css?v=2">
 </head>
 <body>
   <header class="top">
@@ -22,8 +22,14 @@
     <section class="radio-hero">
       <p class="eyebrow">YOUR AUTOMATIC ENGLISH RADIO SHOW</p>
       <h1>Come for the music.<br>Stay for the conversation.</h1>
-      <p>Host Ahwan and one fictional guest share funny, warm radio conversations before each original track. Public music and approved listener stories refresh automatically.</p>
+      <p>Press Start for an English talk radio preview immediately, even when no music is published. Select your own Suno MP3/WAV files above for private local playback between conversations. Published original music and producer-approved stories refresh automatically.</p>
       <div class="radio-player">
+        <div class="local-import">
+          <label for="localFiles"><strong>Play my Suno downloads (private, on this phone)</strong></label>
+          <input id="localFiles" type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.flac" multiple>
+          <p id="localHelp" class="radio-note">Select downloaded original MP3/WAV files. They play locally in this browser — never uploaded.</p>
+          <button id="clearLocal" type="button" class="ghost">Clear local selection</button>
+        </div>
         <p id="status" class="radio-status" aria-live="polite">Loading the public music library…</p>
         <h2 id="nowPlaying">No track selected yet</h2>
         <p id="radioCounts" class="radio-counts">Checking the library and approved stories…</p>
@@ -32,10 +38,10 @@
           <button id="skipRadio" type="button" class="ghost" disabled>Next song</button>
           <button id="stopRadio" type="button" class="ghost" disabled>Stop</button>
         </div>
-        <audio id="radioAudio" controls preload="none" aria-label="Original music playback"></audio>
+        <audio id="radioAudio" controls preload="none" aria-label="Original music playback" hidden></audio>
         <label class="radio-setting"><input type="checkbox" id="talkEnabled" checked> English host &amp; guest conversations between songs</label>
         <label class="radio-setting"><input type="checkbox" id="storiesEnabled" checked> Read producer-approved public listener stories</label>
-        <p class="radio-note">One tap is required to start audio. Android browsers may suspend speech or music when the phone locks or the browser goes into the background. This web radio does not inject sound into BIGO, automate BIGO, or stream the DJ to listeners by itself.</p>
+        <p class="radio-note">Press Start once to begin. A private local playlist is forgotten when you close this tab. Android browsers may suspend speech or music when the phone locks or the browser goes into the background. This web radio does not inject sound into BIGO, automate BIGO, or stream the DJ to listeners by itself.</p>
       </div>
       <div class="radio-transcript">
         <h2>On-air conversation</h2>
@@ -45,7 +51,7 @@
     </section>
   </main>
   <footer>© MARU RADIO · Publicly approved originals · No automated BIGO broadcast</footer>
-  <script src="radio-core.js?v=1"></script>
-  <script src="radio.js?v=1"></script>
+  <script src="radio-core.js?v=2"></script>
+  <script src="radio.js?v=2"></script>
 </body>
 </html>
