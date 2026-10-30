@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0d0f14">
+  <title>Listener Stories · MARU MUSIC SHARE</title>
+  <link rel="stylesheet" href="styles.css?v=3">
+</head>
+<body>
+  <header class="top">
+    <div class="brand"><span class="disc">♪</span><div><b>MARU RADIO</b><small>LISTENER STORIES</small></div></div>
+    <a class="ghost action-link" href="./">Music library</a>
+  </header>
+  <main>
+    <section class="hero">
+      <p class="eyebrow">YOU BRING THE STORY, WE BRING THE MUSIC</p>
+      <h1>Tell us your story.</h1>
+      <p>Love, family, old friends, funny everyday moments — send us a story that would sound good on the radio. The station host reviews submissions before reading any on air.</p>
+    </section>
+    <section class="story-panel">
+      <h2>Submit a story</h2>
+      <p>For now this uses a <strong>public GitHub Issue</strong> instead of a private inbox. You will need to sign in to GitHub and confirm the submission there. <strong>Everyone can read a submitted story.</strong> Do not include addresses, phone numbers, private identities or sensitive information.</p>
+      <form id="storyForm" class="story-form">
+        <label for="storyName">Name for radio (pen name or anonymous)</label>
+        <input id="storyName" maxlength="40" autocomplete="off" placeholder="Anonymous listener">
+        <label for="storyTopic">Your story title</label>
+        <input id="storyTopic" maxlength="100" required placeholder="The funniest thing that happened on a Monday">
+        <label for="storyBody">Your story</label>
+        <textarea id="storyBody" maxlength="1200" minlength="20" required rows="7" placeholder="Tell us what happened, in your own words..."></textarea>
+        <label class="story-consent"><input id="storyConsent" type="checkbox" required><span>I wrote this story or have permission to share it. I understand it will be public on GitHub and may be read or paraphrased on MARU RADIO after review.</span></label>
+        <button class="story-send" type="submit">Continue to public story submission</button>
+      </form>
+      <p id="storyStatus" class="story-status" role="status">Your story is not sent until you review and submit it on GitHub.</p>
+      <p class="story-note">Want a private story inbox without a GitHub account? A separately hosted, secure submission service must be connected before private messages can be accepted. This public form is not a private mailbox.</p>
+      <div class="story-links">
+        <a href="https://github.com/skytins3-png/maru-ai-song-studio/issues?q=is%3Aissue+%5BSTORY%5D" target="_blank" rel="noopener noreferrer">View public stories</a>
+        <a href="./">Listen & download music</a>
+      </div>
+    </section>
+  </main>
+  <footer>© MARU MUSIC SHARE · Original music & listener stories</footer>
+  <script src="stories.js?v=1"></script>
+</body>
+</html>

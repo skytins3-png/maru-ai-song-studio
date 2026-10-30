@@ -1,3 +1,13 @@
+# MARU MUSIC SHARE · Public music and listener stories
+
+The site already has a static public music library and an administrator upload flow:
+- `index.html`: public creator-approved tracks, search, play, share and download.
+- `admin.html`: uploads creator-owned MP3/WAV and cover using a user-provided GitHub Contents-write token. This does not bypass copyright or upload permission; do not post the token in chat.
+- `stories.html`: **public listener submissions**. The writer enters a pen name, story title and message and explicitly consents to the text becoming public and eligible for on-air reading. A GitHub Issue form opens with the submitted text, and the listener must sign in and click Submit. The station producer can review issues and manually paste approved stories into MARU RADIO's local story inbox. There is no automatic import of unreviewed third-party stories.
+- This is **not a private story inbox**. A private, login-free intake service requires an approved backend with moderation, rate limiting and privacy safeguards.
+- Suno playlists are created and shared at Suno. This site cannot scrape or bulk download private Suno audio. Download your own licensed tracks through Suno's official service and then upload them to the music library.
+- `node --test tests/music-share.test.cjs tests/music-share-stories.test.cjs` tests the published catalog, upload validation and public story URL behavior; actual GitHub login, network uploads and live Pages deployment require separate checks.
+
 # MUSIC SHARE
 
 MARU와 분리된 공개 음악 배포 페이지. 공개 페이지는 `./`, 관리자 폼은 `admin.html`이다.
