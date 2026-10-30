@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -10,27 +10,32 @@
 <body>
   <header class="top">
     <div class="brand"><span class="disc">♪</span><div><b>MUSIC SHARE</b><small>LISTEN · DOWNLOAD</small></div></div>
-    <button id="shareSite" class="ghost" type="button">공유</button>
+    <nav class="top-actions">
+      <a href="stories.html" class="ghost action-link">Send a story</a>
+      <a href="admin.html" class="ghost action-link">Upload music</a>
+      <button id="shareSite" class="ghost" type="button">Share</button>
+    </nav>
   </header>
   <main>
     <section class="hero">
       <p class="eyebrow">ORIGINAL MUSIC LIBRARY</p>
-      <h1>음악을 듣고<br>자유롭게 내려받으세요.</h1>
-      <p>공개 허용된 음악만 표시됩니다. 재생 후 마음에 들면 바로 저장할 수 있습니다.</p>
-      <div class="hero-meta"><span id="trackCount">0곡</span><span>무료 다운로드</span></div>
+      <h1>Listen to real music.<br>Share your story.</h1>
+      <p>Enjoy original music, download tracks shared by their creators, and send a story for our radio show.</p>
+      <div class="hero-meta"><span id="trackCount">0곡</span><span>Creator-approved downloads</span></div>
     </section>
     <section class="tools">
-      <input id="search" type="search" aria-label="곡 제목, 아티스트, 설명 검색" placeholder="곡 제목이나 아티스트 검색">
-      <select id="sort" aria-label="정렬">
-        <option value="newest">최신순</option>
-        <option value="title">제목순</option>
-        <option value="oldest">오래된순</option>
+      <input id="search" type="search" aria-label="Search songs, artists, descriptions" placeholder="Search songs or artists">
+      <select id="sort" aria-label="Sort">
+        <option value="newest">Newest</option>
+        <option value="title">Title</option>
+        <option value="oldest">Oldest</option>
       </select>
     </section>
     <section id="musicList" class="music-list" aria-live="polite"></section>
-    <div id="empty" class="empty" hidden>아직 공개된 음악이 없습니다.</div>
+    <div id="empty" class="empty" hidden>No music published yet.</div>
+    <section class="story-invite"><h2>Have a story worth sharing?</h2><p>Funny, heartfelt, unexpected — the producer reviews listener submissions before they go on air.</p><a class="story-send action-link" href="stories.html">Send a story to MARU RADIO</a></section>
   </main>
-  <footer>© MUSIC SHARE · 공개 다운로드 허용 곡만 제공</footer>
+  <footer>© MUSIC SHARE · Songs shared for public download by their rights holders</footer>
   <div id="shareFallback" class="share-fallback" hidden><label for="shareUrl">공유 링크 · 길게 눌러 복사</label><input id="shareUrl" readonly type="url"></div>
   <div id="toast" role="status" class="toast" hidden></div>
   <script src="common.js?v=2"></script>
