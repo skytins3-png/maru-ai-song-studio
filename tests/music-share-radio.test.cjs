@@ -5,6 +5,7 @@ const vm=require('node:vm');
 const path=__dirname+'/../music-share/';
 function sandbox(file){
   const ctx=vm.createContext({URL});
+  vm.runInContext(fs.readFileSync(path+'story-guard.js','utf8'),ctx);
   vm.runInContext(fs.readFileSync(path+file,'utf8'),ctx);
   return ctx;
 }
@@ -15,7 +16,7 @@ const permitted=[
 ];
 function sampleStory(label=true,consent=true){
  return {number:15,title:'[STORY] Yesterday at the station',state:'open',
- labels:label?[{name:'radio-approved'}]:[],body:
+ labels:label?[{name:'radio-approved'},{name:'radio-screened'}]:[],body:
  '## Listener name\nEmily\n\n## Story\nThe bus was late and I found a friend I had not seen in decades.\n\n## Permission\n'
  +(consent?'- [x] I have permission to submit this story for public posting and radio reading.\n'
  +'- [x] I understand this GitHub Issue is publicly visible.':'- [ ] I have permission to submit this story for public posting and radio reading.')};
@@ -78,7 +79,7 @@ test('radio and request links exist and data is not automatically marked approve
  assert.match(index,/href="radio.html"/);
  assert.match(index,/href="requests.html"/);
  assert.match(radio,/id="startRadio"/);
- assert.match(radio,/approved.*public.*stories/i);
+ assert.match(radio,/producer-approved|approved.*public.*stories/i);
  assert.match(request,/id="requestConsent"/);
  assert.equal(fs.readFileSync(path+'catalog.json','utf8').trim(),'[]');
 });
