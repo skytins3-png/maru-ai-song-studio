@@ -29,6 +29,11 @@
     </section>
     <section class="tools">
       <input id="search" type="search" aria-label="Search songs, artists, descriptions" placeholder="Search songs or artists">
+      <select id="genreFilter" aria-label="Filter by music category">
+        <option value="all">전체 장르</option><option value="korean">한국곡</option>
+        <option value="chinese">중국곡</option><option value="western">서양곡</option>
+        <option value="instrumental">연주곡</option><option value="other">미분류</option>
+      </select>
       <select id="sort" aria-label="Sort">
         <option value="newest">Newest</option>
         <option value="title">Title</option>
@@ -48,6 +53,7 @@
   <div id="shareFallback" class="share-fallback" hidden><label for="shareUrl">공유 링크 · 길게 눌러 복사</label><input id="shareUrl" readonly type="url"></div>
   <div id="toast" role="status" class="toast" hidden></div>
   <script src="common.js?v=2"></script>
-  <script src="app.js?v=2"></script>
+  <script src="genre-core.js?v=1"></script>
+  <script src="app.js?v=3"></script>
 </body>
 </html>

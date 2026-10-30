@@ -38,7 +38,7 @@ upload.addEventListener('click',async()=>{
     setStatus('1/3 · 기존 공개 목록 확인 중…');
     let base=await snapshot(token);
     const id=Date.now()+'-'+crypto.randomUUID(),name=id+'-'+slug(title);
-    const track={id,title,artist:artist||'MUSIC SHARE',description,audio:'tracks/'+name+'.'+extension(audio.name),cover:cover?'covers/'+name+'.'+extension(cover.name):'',createdAt:new Date().toISOString(),downloadAllowed:true};
+    const track={id,title,artist:artist||'MUSIC SHARE',description,audio:'tracks/'+name+'.'+extension(audio.name),cover:cover?'covers/'+name+'.'+extension(cover.name):'',createdAt:new Date().toISOString(),downloadAllowed:true,genre:['korean','chinese','western','instrumental','other'].includes($('genre').value)?$('genre').value:(globalThis.MaruGenres?MaruGenres.detect(title):'other')};
     setStatus('2/3 · 음악과 표지 준비 중…');
     const audioSha=await blob(audio,token);
     const coverSha=cover?await blob(cover,token):null;
