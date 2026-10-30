@@ -1,0 +1,26 @@
+name: MUSIC SHARE website and story submission tests
+on:
+  push:
+    paths:
+      - 'music-share/**'
+      - 'tests/music-share.test.cjs'
+      - 'tests/music-share-stories.test.cjs'
+      - '.github/workflows/music-share-ci.yml'
+  pull_request:
+    paths:
+      - 'music-share/**'
+      - 'tests/music-share.test.cjs'
+      - 'tests/music-share-stories.test.cjs'
+      - '.github/workflows/music-share-ci.yml'
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test existing uploads, downloads, privacy filters and public stories
+        run: node --test tests/music-share.test.cjs tests/music-share-stories.test.cjs
