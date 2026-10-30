@@ -29,7 +29,9 @@ function publicSongs(catalog){
 function storyOf(issue){
  if(!issue||issue.pull_request||issue.state!=='open')return null;
  const labels=Array.isArray(issue.labels)?issue.labels.map(x=>(typeof x==='string'?x:x&&x.name)||''):[];
- if(!labels.includes('radio-approved'))return null;
+ if(!labels.includes('radio-approved')||!labels.includes('radio-screened')
+  ||labels.includes('radio-quarantine')||!root.MaruStoryGuard)return null;
+ if(!root.MaruStoryGuard.evaluateIssue(issue).safe)return null;
  if(!/^\[STORY\]\s/i.test(String(issue.title||'')))return null;
  const body=String(issue.body||'');
  if(!body.includes('- [x] I have permission to submit this story for public posting and radio reading.'))return null;
