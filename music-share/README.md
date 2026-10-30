@@ -1,3 +1,27 @@
+# MARU RADIO WEB — automatically updated station (2026-10-30)
+
+**Open `radio.html` to start listening.** This web-first station avoids repeatedly changing Android package names and signatures. It runs in a mobile or desktop browser and does not need a new APK whenever songs or approved public stories change.
+
+- The producer uses the existing `admin.html` upload page to publish a **rights-cleared original MP3/WAV**; the atomic upload commits the real audio and `catalog.json`. The radio automatically refreshes the same catalog and will include new approved songs without app updates.
+- The browser requires the listener to press **Start radio** once. Web audio autoplay and background execution can be blocked by Android/browser battery policies, so this **does not guarantee uninterrupted locked-screen playback or BIGO listener transmission**.
+- The English Ahwan/one-guest conversation is an original local script read by the browser's English TTS voices. It is *not* an autonomous cloud AI, a recording of real guests, or actual 32 AI singer MP3s.
+- Listener story submissions use public GitHub Issues and consent checkbox. Only issues with the explicit `radio-approved` label, required checked permission statements and valid `[STORY]` title can be read by the radio. Producer approval is manual; the next website refresh imports them automatically. Never publish real identities or private information in public Issues.
+- Visitors can request only already published originals at `requests.html`. An approved song ID is submitted as a public `[REQUEST]` GitHub Issue. The station automatically prioritizes matching public catalog tracks and never speaks unreviewed request body text. Issue submission requires the visitor to sign in to GitHub.
+- The site uses the public GitHub REST API for open Issues. The fetch may fail or be rate-limited; regular music playback continues independently. The site refreshes the public catalog every 2 minutes and issues every 10 minutes during the active show, or at the next song transition.
+- There is **no official automatic login or bulk downloader for the user's private Suno playlist** here. Publish only licensed MP3/WAV files retrieved through the Suno account holder's approved workflow. The platform does not silently access external accounts, upload private tracks or take action without consent.
+- An automated **private** anonymous story inbox, real-time BIGO connection, server-hosted 24/7 radio, and persistent Android background TTS require separately hosted services / authorized APIs and are not implemented by a static Pages site.
+
+## Online pages
+- Public music: `music-share/index.html`
+- English station: `music-share/radio.html`
+- Story submission: `music-share/stories.html`
+- Track request: `music-share/requests.html`
+- Admin original upload: `music-share/admin.html`
+
+## Automated tests
+`node --test tests/music-share.test.cjs tests/music-share-stories.test.cjs tests/music-share-radio.test.cjs`.
+GitHub Actions runs these automatically on relevant changes. CI tests logic and mocked browser state, but it does not prove real Android audio playback, GitHub login, private streaming, or BIGO microphone routing.
+
 # MARU MUSIC SHARE · Public music and listener stories
 
 The site already has a static public music library and an administrator upload flow:
