@@ -1,0 +1,27 @@
+name: Prepare MARU RADIO producer approval label
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/radio-moderation-label.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+jobs:
+  bootstrap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ensure radio-approved label exists; never approve stories automatically
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh api "repos/$GITHUB_REPOSITORY/labels/radio-approved" >/dev/null 2>&1; then
+            echo "MARU approval label already exists."
+          else
+            gh api --method POST "repos/$GITHUB_REPOSITORY/labels" \
+              -f name='radio-approved' \
+              -f color='58A6FF' \
+              -f description='Producer reviewed public story; permitted for on-air reading'
+            echo "Created producer moderation label. No issues were labeled automatically."
+          fi
