@@ -1,0 +1,32 @@
+name: MARU JavaScript CodeQL security scan
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'music-share/**'
+      - 'scripts/radio-story-moderator.cjs'
+      - '.github/workflows/maru-codeql-security.yml'
+  pull_request:
+    paths:
+      - 'music-share/**'
+      - 'scripts/radio-story-moderator.cjs'
+      - '.github/workflows/maru-codeql-security.yml'
+  schedule:
+    - cron: '21 2 * * 1'
+permissions:
+  contents: read
+  security-events: write
+  actions: read
+jobs:
+  analyze:
+    name: CodeQL JavaScript security analysis
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: github/codeql-action/init@v3
+        with:
+          languages: javascript-typescript
+          queries: security-extended
+      - uses: github/codeql-action/analyze@v3
