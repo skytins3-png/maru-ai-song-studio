@@ -12,9 +12,9 @@ const core=context.MaruRadioCore;
 test('honest talk-only mode contains real dialogue but never promises nonexistent music',()=>{
  const lines=core.talkEpisodeScript(0,Date.parse('2026-10-30T12:00:00Z'),null);
  const text=lines.map(x=>x.text).join(' ');
- assert.ok(lines.length>=9);
- assert.match(text,/We don't have a song file loaded yet/);
- assert.match(text,/Choose your own Suno MP3 files/);
+ assert.ok(lines.length<=5);
+ assert.match(text,/No song loaded yet/);
+ assert.match(text,/Add an MP3 whenever you like/);
  assert.doesNotMatch(text,/Here's a track from our original music library/);
  assert.ok(lines.every(x=>x.who==='host'||x.who==='guest'));
  const other=core.talkEpisodeScript(1,Date.parse('2026-10-30T12:00:00Z'),null);
@@ -102,7 +102,7 @@ test('Start speaks without any public songs, no fake song player audio starts',a
   app.component('startRadio').handlers.click();
   await app.settle();
   assert.match(app.component('nowPlaying').textContent,/English conversation/);
-  assert.ok(app.spoken.length>=6);
+  assert.ok(app.spoken.length>=4);
   assert.equal(app.played.length,0);
   assert.match(app.component('status').textContent,/Talk-only|English radio/);
  }finally{app.close()}

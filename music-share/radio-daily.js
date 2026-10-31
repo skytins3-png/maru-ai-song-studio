@@ -36,7 +36,7 @@ function facts(data,city,episode,now){
   &&typeof w.windKmh==='number'&&Number.isFinite(w.windKmh)&&w.windKmh>=0&&w.windKmh<300
   &&Number.isInteger(w.weatherCode)&&w.weatherCode>=0&&w.weatherCode<=99){
   out.weather=[
-   {who:'host',text:'A quick weather update from Open-Meteo for '+city+'. The latest reported temperature is '+w.temperatureC+' degrees Celsius, with '+summary(w.weatherCode)+'.'},
+   {who:'host',text:'From Open-Meteo: '+city+' is at '+w.temperatureC+' degrees Celsius, with '+summary(w.weatherCode)+'.'},
    {who:'guest',text:'And the wind is around '+w.windKmh+' kilometers per hour. Weather can change, of course. Check an updated forecast before heading outside.'}
   ];
  }
@@ -48,7 +48,7 @@ function facts(data,city,episode,now){
   const story=list[Math.abs(episode)%list.length];
   out.link=story.url;
   out.news=[
-   {who:'host',text:'Time for a headline from BBC News. A recently published report is titled: '+story.title.trim()+'.'},
+   {who:'host',text:'BBC News headline: '+story.title.trim()+'.'},
    {who:'guest',text:"That's the reported headline, not the whole story. We'll leave the details to the linked news source, and we hope everyone stays informed."}
   ];
  }

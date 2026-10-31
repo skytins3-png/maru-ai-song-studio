@@ -91,8 +91,8 @@ function speak(line,session){
   if(!('speechSynthesis' in window)){resolve();return}
   const speech=new SpeechSynthesisUtterance(line.text);
   speech.lang='en-US';
-  speech.rate=line.who==='guest'?1.03:0.94;
-  speech.pitch=line.who==='guest'?1.09:0.9;
+  speech.rate=line.who==='guest'?1.06:1.02;
+  speech.pitch=line.who==='guest'?1.05:0.96;
   speech.volume=.95;
   const voice=englishVoice(line.who);if(voice)speech.voice=voice;
   let finished=false;
@@ -124,8 +124,11 @@ async function announce(track,requested,session,onlyTalk){
  if($('dailyEnabled').checked&&globalThis.MaruDailyFacts){
   const city=$('weatherCity').value||'Seoul';
   const facts=globalThis.MaruDailyFacts.facts(dailyData,city,episode,Date.now());
-  const at=Math.min(6,lines.length-2);
-  lines.splice(at,0,...facts.weather,...facts.news);
+  // One sourced briefing at a time, not a news bulletin before every song.
+  // Episode is incremented before announce() is called.
+  const brief=episode%6===1?[...facts.weather.slice(0,1),...facts.news.slice(0,1)]
+    :episode%6===4?facts.news.slice(0,1):[];
+  if(brief.length)lines.splice(Math.max(0,lines.length-(onlyTalk?0:1)),0,...brief);
   if(facts.link){$('newsSource').href=facts.link;$('newsSource').hidden=false}
  }
  for(const line of lines){
@@ -157,7 +160,7 @@ async function nextEpisode(){
   await announce(null,false,session,true);
   if(session!==revision||!active)return;
   status('Talk-only mode · no audio tracks uploaded or selected');
-  dialogueTimer=setTimeout(()=>{if(session===revision&&active)nextEpisode()},4000);
+  dialogueTimer=setTimeout(()=>{if(session===revision&&active)nextEpisode()},14000);
   return;
  }
  const track=choice.track;
