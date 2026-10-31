@@ -20,7 +20,7 @@
   })();
   </script>
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="stylesheet" href="styles.css?v=0.23.28">
+  <link rel="stylesheet" href="styles.css?v=0.24.10">
   <link rel="stylesheet" href="score.css?v=0.22.89">
   <style>.wide{width:100%;margin-top:16px}.analysis-box{margin-top:12px;padding:14px;border-radius:14px;background:#100c1e;border:1px solid #4b3d68;color:#e9e2f8;line-height:1.65;white-space:pre-line}.audio-analyzer .audio-file{display:block;width:100%;padding:12px;border:1px dashed #6b5b89;border-radius:12px;background:#151126;color:#eee}.audio-analyzer audio{width:100%;margin-top:10px}.audio-analysis-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:12px 0}.audio-stat{padding:10px;border-radius:12px;background:#151126;border:1px solid #403653}.audio-stat b{display:block;font-size:12px;color:#bfb2da}.audio-stat strong{display:block;margin-top:4px;font-size:18px}.analyzed-style{min-height:150px}.analysis-note{display:block;margin-top:10px;line-height:1.55;color:#c9bfdc}.song-mic-level{margin-top:9px;display:flex;align-items:center;gap:10px}.song-mic-track{flex:1;height:12px;border-radius:999px;background:#211a31;overflow:hidden;border:1px solid #514269}.song-mic-fill{width:0;height:100%;background:linear-gradient(90deg,#5da9ff,#7de4a8,#ffd36a);transition:width .08s linear}.song-mic-level small{min-width:72px;color:#cfc5df}@media(max-width:760px){.audio-analysis-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}</style>
 
@@ -223,7 +223,27 @@
             </div>
             </details>
             <div id="broadcastNow" class="analysis-box">방송할 곡을 선택하세요. MP3와 MP4를 같은 목록에서 이어재생합니다.</div>
-            <div id="broadcastQueue" class="broadcast-queue"></div>
+            <div id="maruBroadcastWorkspace" class="maru-broadcast-workspace" aria-label="왼쪽 고정 목록과 곡별 영상">
+              <aside class="maru-broadcast-sidebar" aria-label="왼쪽 노래 목록">
+                <div class="maru-sidebar-heading"><strong>🎵 노래 목록</strong><span id="maruSidebarCount">0곡</span></div>
+                <div id="broadcastQueue" class="broadcast-queue" tabindex="0" aria-label="상하 스크롤 노래 목록"></div>
+              </aside>
+              <section class="maru-broadcast-media-stage" aria-label="선택한 노래의 커버 또는 영상">
+                <div class="maru-media-stage-frame">
+                  <img id="maruMediaStageImage" alt="선택한 곡의 커버 이미지" hidden>
+                  <video id="maruMediaStageVideo" playsinline muted autoplay loop preload="metadata" hidden></video>
+                  <div id="maruMediaStagePlaceholder" class="maru-media-stage-placeholder">
+                    <span aria-hidden="true">🎬</span><b>노래를 선택해 주세요</b>
+                    <small>곡별 커버나 영상이 있으면 화면을 꽉 채웁니다.</small>
+                  </div>
+                </div>
+                <div class="maru-media-stage-info">
+                  <strong id="maruMediaStageTitle">선택한 노래의 화면</strong>
+                  <span id="maruMediaStageStatus">사진·영상은 곡별로 따로 연결됩니다.</span>
+                </div>
+                <button id="maruMediaStageFullscreen" class="secondary" type="button">⛶ 선택 곡 전체 화면 보기</button>
+              </section>
+            </div>
           </div>
         </div>
         <div class="quick-mix-options auto-managed-options"><label class="check-label compact"><input id="autoMixBalance" type="checkbox" checked> 자동 음량</label><label class="check-label compact"><input id="vocalClarityMode" type="checkbox" checked> 보컬 우선</label><label class="check-label compact"><input id="mixSourceVoice" type="checkbox" checked> 원곡 참고</label><label class="source-volume">편곡 속 원곡 참고 <strong id="sourceVoiceValue">65%</strong><input id="sourceVoiceVolume" type="range" min="20" max="100" value="65" step="5"></label><button id="toggleMixerEq" class="secondary mixer-toggle" type="button">⚙ 전문가용 수동 EQ 펼치기</button></div>
@@ -479,7 +499,7 @@
   <script src="vendor/vexflow.js?v=5.0.0"></script>
   <script src="vendor/sfumato.js?v=0.22.89"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="app.js?v=0.23.37"></script>
+  <script src="app.js?v=0.24.10"></script>
 
   <script>
   (function(){
