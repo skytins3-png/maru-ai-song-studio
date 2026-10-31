@@ -1475,3 +1475,8 @@ body.obs-output-mode.obs-usb-relay-2300 #audienceCoverPlaceholder::after{
  #maruBroadcastWorkspace .maru-media-stage-info span{font-size:10px}
  #maruBroadcastWorkspace #maruMediaStageFullscreen{font-size:10px!important;padding:6px 2px!important}
 }
+
+/* V0.24.11: compact 3-step reorder control stays inside the fixed left column. */
+#maruBroadcastWorkspace #broadcastQueue .qmove{display:grid!important;grid-template-rows:repeat(3,minmax(19px,1fr))!important;align-content:center;gap:2px}
+#maruBroadcastWorkspace #broadcastQueue .qmove button{min-height:19px!important;font-size:11px!important;line-height:1!important;padding:0 2px!important}
+#maruBroadcastWorkspace #broadcastQueue .qmove button[data-broadcast-top]{color:#fff0c6!important;background:#43305f!important;font-weight:900!important}
