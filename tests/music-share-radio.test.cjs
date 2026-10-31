@@ -52,15 +52,29 @@ test('radio chooses known published requests without reading arbitrary issue tex
  played.add('track1');
  assert.equal(core.chooseTrack(permitted,1,requests,played).requested,false);
 });
-test('warm English radio script has only Ahwan and one guest, and varies by episode',()=>{
- const a=core.episodeScript(permitted[0],1,Date.parse('2026-10-30T00:00:00Z'),sampleStory()&&core.approvedStories([sampleStory()])[0],true);
- const b=core.episodeScript(permitted[0],2,Date.parse('2026-10-30T00:00:00Z'),null,false);
- assert.ok(a.length>=14);assert.deepEqual([...new Set(a.map(x=>x.who))],['host','guest']);
- assert.match(a.map(x=>x.text).join(' '),/Ha-ha!/);
- assert.match(a.map(x=>x.text).join(' '),/bus was late/);
- assert.ok(a.some(x=>x.text.includes('listener request')));
- assert.notEqual(a[2].text,b[2].text);
- assert.ok(!b.some(x=>x.text.includes('bus was late')));
+test('DJ talk is short, genuinely responsive, and goes straight to the song',()=>{
+ const now=Date.parse('2026-10-30T00:00:00Z');
+ const a=core.episodeScript(permitted[0],1,now,null,true);
+ const b=core.episodeScript(permitted[1],2,now,null,false);
+ assert.equal(a.length,5);
+ assert.deepEqual(a.map(x=>x.who),['host','guest','host','guest','host']);
+ assert.ok(a.slice(0,4).every(x=>x.text.split(/\\s+/).length<=22));
+ assert.ok(a.reduce((n,x)=>n+x.text.split(/\\s+/).length,0)<=100);
+ assert.match(a[4].text,/listener picked/i);
+ assert.notEqual(a[0].text,b[0].text);
+ assert.ok(!b.some(x=>x.text.includes('listener story')));
+});
+test('only approved story excerpt replaces banter; never make long news-length monologues',()=>{
+ const story=core.approvedStories([sampleStory()])[0];
+ const lines=core.episodeScript(permitted[0],1,Date.now(),story,true);
+ assert.equal(lines.length,5);
+ assert.match(lines.map(x=>x.text).join(' '),/bus was late/i);
+ assert.ok(lines.some(x=>x.text.includes('Emily')));
+ assert.ok(lines.every(x=>x.text.length<=260));
+ const longer={name:'Listener',story:'Something meaningful '.repeat(40)};
+ const brief=core.episodeScript(permitted[0],1,Date.now(),longer,false);
+ assert.ok(brief.some(x=>/short excerpt/.test(x.text)));
+ assert.equal(brief.length,5);
 });
 test('song request form creates public GitHub issue referencing exact published track',()=>{
  const req=sandbox('requests.js').MaruSongRequest;
