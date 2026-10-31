@@ -211,7 +211,7 @@ function talkEpisodeScript(episode,date,story){
    {who:'guest',text:'Thanks for sending that in.'}
   ];
  }else lines=sceneLines(episode,date);
- if(episode===1)lines.push({who:'host',text:'No song loaded yet. Add an MP3 whenever you like.'});
+ if(episode<=1)lines.push({who:'host',text:'No song loaded yet. Add an MP3 whenever you like.'});
  return lines;
 }
 function localOriginals(files,createURL){
