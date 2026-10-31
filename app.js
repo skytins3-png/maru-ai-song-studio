@@ -2233,6 +2233,72 @@ function maybeResumeBigoFlow2280(){
 function loadAudienceCover(file){if(!file)return;const r=new FileReader();r.onload=()=>{audienceCoverData=String(r.result||'');audienceTrackId='';publishAudienceState({trackId:'',cover:audienceCoverData,video:''});toast('시청자 화면 커버를 적용했습니다')};r.readAsDataURL(file)}
 async function loadAudienceVideo(file){if(!file)return;const probe=document.createElement('video');const mime=file.type||'video/mp4';const support=probe.canPlayType(mime);if(!support&&/\.mp4$/i.test(file.name||''))toast('MP4 파일이지만 영상 코덱이 이 휴대폰 브라우저에서 지원되지 않을 수 있습니다. H.264 MP4를 권장합니다.');try{let r=await broadcastDbGet('__audience_global_video__')||{id:'__audience_global_video__',name:'MARU viewer video',blob:new Blob([]),type:'application/x-maru-media'};r.videoBlob=file;r.videoName=file.name||'video';r.mediaUpdatedAt=Date.now();await broadcastDbPut(r)}catch(e){console.warn('global audience video store',e)}if(audienceVideoUrl){try{URL.revokeObjectURL(audienceVideoUrl)}catch{}}audienceVideoUrl=URL.createObjectURL(file);audienceTrackId='__audience_global_video__';try{revokeAudiencePopupMediaUrls()}catch{};audienceRenderedTrackKey2261='';audienceRenderedDirectVideo2261='';audienceRenderedDirectCover2261='';audienceRenderedMediaIdentity2264='';try{localStorage.setItem('maru-default-video-enabled-v1','1')}catch{};publishAudienceState({trackId:audienceTrackId,video:audienceVideoUrl,cover:''});toast('기본 동영상을 저장했습니다')}
 function updateBroadcastDock(){const paused=broadcastRunning&&broadcastPaused;const start=$('#dockBroadcastStart'),pause=$('#dockBroadcastPause'),prev=$('#dockBroadcastPrev'),next=$('#dockBroadcastNext'),end=$('#dockBroadcastEnd'),mainStart=$('#broadcastStart'),mainPause=$('#broadcastPauseBtn'),mainPrev=$('#broadcastPrev');if(start){start.disabled=false;start.textContent=paused?'▶ 원곡 계속':(broadcastRunning?'● 방송 중':'🚀 원터치 방송')}if(pause){pause.disabled=false;pause.textContent=paused?'⏸ 대기중':'⏸ 대기'}if(prev)prev.disabled=false;if(next)next.disabled=false;if(end)end.disabled=false;if(mainStart){mainStart.disabled=!broadcastFiles.length;mainStart.textContent=paused?'▶ 원곡 계속':'▶ 원곡 방송 시작'}if(mainPause)mainPause.disabled=!broadcastRunning;if(mainPrev)mainPrev.disabled=!broadcastFiles.length}
+// V0.24.10: LEFT fixed-height playlist + independent muted video/cover preview.
+// Its object URL is not shared with the audio player or public broadcast output.
+let maruPreviewTrackId='',maruPreviewObjectUrl='',maruPreviewSequence=0;
+function releaseMaruPreview(){
+ const video=$('#maruMediaStageVideo'),img=$('#maruMediaStageImage');
+ if(video){try{video.pause()}catch{};video.removeAttribute('src');video.hidden=true;try{video.load()}catch{}}
+ if(img){img.removeAttribute('src');img.hidden=true}
+ if(maruPreviewObjectUrl){try{URL.revokeObjectURL(maruPreviewObjectUrl)}catch{};maruPreviewObjectUrl=''}
+}
+function markMaruPreviewTrack(){
+ const ids=broadcastCurrentIds();
+ document.querySelectorAll('#broadcastQueue .qrow[data-broadcast-row]').forEach(row=>{
+  const active=ids[Number(row.dataset.broadcastRow)]===maruPreviewTrackId;
+  row.classList.toggle('preview-selected',active);
+  row.querySelector('[data-broadcast-preview]')?.setAttribute('aria-current',active?'true':'false');
+ });
+}
+async function showMaruTrackPreview(index,{force=false}={}){
+ index=Number(index);
+ const file=broadcastFiles[index],id=broadcastCurrentIds()[index],title=$('#maruMediaStageTitle'),status=$('#maruMediaStageStatus'),blank=$('#maruMediaStagePlaceholder');
+ if(!file||!id){
+  maruPreviewTrackId='';maruPreviewSequence++;releaseMaruPreview();
+  if(title)title.textContent='선택한 노래의 화면';
+  if(status)status.textContent='곡별 사진이나 영상이 없습니다.';
+  if(blank)blank.hidden=false;
+  markMaruPreviewTrack();return;
+ }
+ if(!force&&maruPreviewTrackId===id)return;
+ maruPreviewTrackId=id;const token=++maruPreviewSequence;
+ if(title)title.textContent=broadcastSafeTitle(file.name);
+ if(status)status.textContent='사진·영상 불러오는 중…';
+ if(blank)blank.hidden=true;
+ releaseMaruPreview();markMaruPreviewTrack();
+ let record=null;
+ try{record=await broadcastDbGet(id)}catch(error){console.warn('sidebar preview',error)}
+ if(token!==maruPreviewSequence)return;
+ const movie=record?.videoBlob?.size?record.videoBlob:(broadcastIsVideoFile(file)?file:null);
+ const photo=record?.coverBlob?.size?record.coverBlob:null;
+ const blob=movie||photo;
+ if(!blob){
+  if(blank)blank.hidden=false;
+  if(status)status.textContent='이 곡은 커버나 영상이 없습니다. 왼쪽 🖼·🎬 버튼으로 연결하세요.';
+  return;
+ }
+ const url=URL.createObjectURL(blob);
+ if(token!==maruPreviewSequence){URL.revokeObjectURL(url);return}
+ maruPreviewObjectUrl=url;
+ if(movie){
+  const video=$('#maruMediaStageVideo');
+  if(video){video.src=url;video.muted=true;video.hidden=false;video.load();
+   if(!document.hidden)video.play().catch(()=>{});
+  }
+  if(status)status.textContent='🎬 곡별 영상 · 화면 가득 (미리보기 음소거)';
+ }else{
+  const img=$('#maruMediaStageImage');
+  if(img){img.src=url;img.hidden=false}
+  if(status)status.textContent='🖼 곡별 커버 · 화면 가득';
+ }
+}
+document.addEventListener('visibilitychange',()=>{
+ const video=$('#maruMediaStageVideo');
+ if(!video||video.hidden)return;
+ if(document.hidden){try{video.pause()}catch{}}else video.play().catch(()=>{});
+});
+window.addEventListener('pagehide',()=>{maruPreviewSequence++;releaseMaruPreview();});
+
 function renderBroadcastQueue(){const box=$('#broadcastQueue');if(!box){updateBroadcastSelectionActions();updateBroadcastDock();return}const rows=broadcastVisibleRows(),favs=readBroadcastFavs(),ids=broadcastCurrentIds();if($('#maruSidebarCount'))$('#maruSidebarCount').textContent=`${broadcastFiles.length}곡`;box.innerHTML=rows.length?rows.map(x=>{const selected=broadcastSelectedIds.has(x.id),canUp=x.i>0,canDown=x.i<broadcastFiles.length-1,media=broadcastMediaInfo(x.id),hasCover=!!media.coverName,hasVideo=!!media.videoName||broadcastIsVideoFile(x.f),pf=broadcastSmartProfile(x.f);return `<div class="qrow ${broadcastRunning&&x.i===broadcastIndex?'playing':''} ${selected?'selected':''} ${maruPreviewTrackId===x.id?'preview-selected':''}" data-broadcast-row="${x.i}"><button class="qplay" type="button" data-broadcast-play="${x.i}">▶</button><input class="qselect" type="checkbox" data-broadcast-select="${x.i}" ${selected?'checked':''}><span class="qnum">${x.i+1}</span><button type="button" class="qtitle qtitle-pick" title="${esc(x.title)}" data-broadcast-preview="${x.i}" aria-current="${maruPreviewTrackId===x.id?'true':'false'}">${esc(x.title)}</button><span class="qprofile"><em>${pf.mood.icon} ${pf.mood.label}</em><em>${pf.language.icon} ${pf.language.label}</em><em>${broadcastIsVideoFile(x.f)?'🎬 MP4':'🎵 음원'}</em></span><span class="qmedia"><button class="${hasCover?'active':''}" type="button" data-broadcast-cover="${x.i}"><span>🖼</span><b>커버</b></button><button class="${hasVideo?'active':''}" type="button" data-broadcast-video="${x.i}"><span>🎬</span><b>영상</b></button><button type="button" data-broadcast-media-preview="${x.i}"><span>👁</span><b>보기</b></button>${hasCover||media.videoName?`<button class="media-clear" type="button" data-broadcast-media-clear="${x.i}"><span>×</span><b>해제</b></button>`:''}</span><span class="qmove"><button type="button" data-broadcast-up="${x.i}" ${canUp?'':'disabled'}>▲</button><button type="button" data-broadcast-down="${x.i}" ${canDown?'':'disabled'}>▼</button></span><button class="qfav ${favs.has(x.f.name)?'active':''}" type="button" data-broadcast-fav="${x.i}">${favs.has(x.f.name)?'★':'☆'}</button><button class="qdel" type="button" data-broadcast-delete="${x.i}">🗑</button></div>`}).join(''):`<div class="analysis-box">조건에 맞는 노래가 없습니다.</div>`;box.querySelectorAll('[data-broadcast-play]').forEach(b=>b.onclick=()=>{const i=Number(b.dataset.broadcastPlay);void showMaruTrackPreview(i);broadcastJumpTo(i)});box.querySelectorAll('[data-broadcast-preview]').forEach(b=>b.onclick=()=>{void showMaruTrackPreview(Number(b.dataset.broadcastPreview))});box.querySelectorAll('[data-broadcast-select]').forEach(b=>b.onchange=()=>{const i=Number(b.dataset.broadcastSelect),id=ids[i];if(!id)return;if(b.checked)broadcastSelectedIds.add(id);else broadcastSelectedIds.delete(id);renderBroadcastQueue()});box.querySelectorAll('[data-broadcast-cover]').forEach(b=>b.onclick=()=>chooseBroadcastTrackMedia(Number(b.dataset.broadcastCover),'cover'));box.querySelectorAll('[data-broadcast-video]').forEach(b=>b.onclick=()=>chooseBroadcastTrackMedia(Number(b.dataset.broadcastVideo),'video'));box.querySelectorAll('[data-broadcast-media-preview]').forEach(b=>b.onclick=()=>showMaruTrackPreview(Number(b.dataset.broadcastMediaPreview),{force:true}));box.querySelectorAll('[data-broadcast-media-clear]').forEach(b=>b.onclick=()=>clearBroadcastTrackMedia(Number(b.dataset.broadcastMediaClear)));box.querySelectorAll('[data-broadcast-up]').forEach(b=>b.onclick=()=>moveBroadcastTrack(Number(b.dataset.broadcastUp),-1));box.querySelectorAll('[data-broadcast-down]').forEach(b=>b.onclick=()=>moveBroadcastTrack(Number(b.dataset.broadcastDown),1));box.querySelectorAll('[data-broadcast-delete]').forEach(b=>b.onclick=()=>deleteOneBroadcastTrack(Number(b.dataset.broadcastDelete)));box.querySelectorAll('[data-broadcast-fav]').forEach(b=>b.onclick=()=>{const i=Number(b.dataset.broadcastFav),f=broadcastFiles[i],set=readBroadcastFavs();if(set.has(f.name))set.delete(f.name);else set.add(f.name);saveBroadcastFavs(set);renderBroadcastQueue()});updateBroadcastSelectionActions();updateBroadcastDock();const full=$('#maruMediaStageFullscreen');if(full)full.onclick=()=>{const i=broadcastCurrentIds().indexOf(maruPreviewTrackId);if(i>=0)previewBroadcastTrackMedia(i)};const list=broadcastCurrentIds();if(!list.includes(maruPreviewTrackId)){const i=broadcastIndex>=0&&broadcastFiles[broadcastIndex]?broadcastIndex:0;void showMaruTrackPreview(i)}}
 async function selectBroadcastFiles(files){const incoming=[...(files||[])].filter(broadcastIsPlayableFile).slice(0,100);if(!incoming.length)return toast('MP3·WAV·M4A 또는 MP4·MOV 파일을 선택해 주세요');if(broadcastRunning)broadcastStop(false);const known=new Set(broadcastCurrentIds()),fresh=[];let skipped=0;for(const f of incoming){const id=broadcastFileId(f,f.name);if(!known.has(id)){known.add(id);fresh.push(f)}else skipped++}if(!fresh.length)return toast(`동일한 노래 ${skipped}개는 추가하지 않고 기존 파일 한 개만 유지했습니다`);try{const saved=await persistBroadcastPlaylist(fresh,{append:true}),restored=await restoreBroadcastPlaylist({removedBefore:saved?.removed||0}),removed=skipped+Number(restored?.removed||0),liveIds=new Set(broadcastCurrentIds()),addedFiles=fresh.filter(f=>liveIds.has(broadcastFileId(f,f.name)));await updateBroadcastPersistStatus(`${broadcastFiles.length}개 자동 저장 완료${removed?` · 중복 ${removed}개 자동 제거`:''} · MP3/MP4 통합 목록`);queueBroadcastAutoLearning(addedFiles,{delay:400});toast(removed?`${addedFiles.length}개 추가 · 중복 ${removed}개 자동 제거 · 같은 노래는 한 개만 유지`:`${addedFiles.length}개를 같은 방송목록에 추가했습니다`)}catch(e){console.error('persist broadcast playlist',e);toast('방송목록 저장에 실패했습니다. 브라우저 저장공간을 확인해 주세요.')}}
 function applySmartBroadcastOrder(){if(broadcastFiles.length<2)return toast('자동편성하려면 방송곡이 2개 이상 필요합니다');if(broadcastRunning)broadcastStop(false);const ids=broadcastCurrentIds(),items=broadcastFiles.map((f,i)=>({f,id:ids[i],i,p:broadcastSmartProfile(f)})),remaining=[...items],out=[];const langOrder=['ko','zh','en','ja'].filter(code=>items.some(x=>x.p.language.code===code));if(items.some(x=>x.p.language.code==='other'))langOrder.push('other');let mood='up',li=0,lastLang='';while(remaining.length){const desiredLang=langOrder.length?langOrder[li%langOrder.length]:'other';let bi=0,bs=-1e9;for(let i=0;i<remaining.length;i++){const x=remaining[i];let s=x.p.mood.code===mood?12:x.p.mood.code==='auto'?6:-4;if(x.p.language.code===desiredLang)s+=8;if(lastLang&&x.p.language.code===lastLang&&remaining.some(y=>y.p.language.code!==lastLang))s-=7;s-=x.i/10000;if(s>bs){bs=s;bi=i}}const x=remaining.splice(bi,1)[0];out.push(x);lastLang=x.p.language.code;mood=mood==='up'?'calm':'up';li++}broadcastFiles=out.map(x=>x.f);broadcastTrackIds=out.map(x=>x.id);broadcastOrderWrite(broadcastTrackIds);const sort=$('#broadcastListSort');if(sort)sort.value='order';renderBroadcastQueue();updateBroadcastPersistStatus(`${broadcastFiles.length}개 저장됨 · 분위기·언어 자동편성 순서 저장`);const counts={up:0,calm:0,auto:0,ko:0,zh:0,en:0,ja:0,other:0};out.forEach(x=>{counts[x.p.mood.code]=(counts[x.p.mood.code]||0)+1;counts[x.p.language.code]=(counts[x.p.language.code]||0)+1});const st=$('#broadcastSmartStatus');if(st)st.textContent=`🎚 자동편성 완료 · 🔥신남 ${counts.up} · 🌙조용 ${counts.calm} · 자동 ${counts.auto} · 🇰🇷${counts.ko} 🇨🇳${counts.zh} 🇺🇸${counts.en} 🇯🇵${counts.ja}`;toast('방송 분위기·언어 자동편성을 완료했습니다')}
