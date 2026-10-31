@@ -57,7 +57,7 @@ test('DJ talk is short, genuinely responsive, and goes straight to the song',()=
  const a=core.episodeScript(permitted[0],1,now,null,true);
  const b=core.episodeScript(permitted[1],2,now,null,false);
  assert.equal(a.length,5);
- assert.deepEqual(a.map(x=>x.who),['host','guest','host','guest','host']);
+ assert.equal(a.map(x=>x.who).join(','),'host,guest,host,guest,host');
  assert.ok(a.slice(0,4).every(x=>x.text.split(/\\s+/).length<=22));
  assert.ok(a.reduce((n,x)=>n+x.text.split(/\\s+/).length,0)<=100);
  assert.match(a[4].text,/listener picked/i);
