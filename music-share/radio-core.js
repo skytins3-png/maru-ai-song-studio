@@ -162,6 +162,21 @@ function requests(issues,tracks){
   .map(x=>{const match=String(x.body||'').match(/(?:^|\n)Track ID:\s*([^\r\n]{1,200})/);return match?songMap.get(match[1].trim()):null})
   .filter(x=>{if(!x||ids.has(x.id))return false;ids.add(x.id);return true}).slice(0,20);
 }
+// Scheduled approved stories are eligible only inside a 30-minute window
+// after the requested KST moment. Never play early or replay missed slots.
+function dueStory(stories,played,now){
+ if(!Array.isArray(stories))return null;
+ const t=Number.isFinite(now)?now:Date.now();
+ const pending=stories.filter(x=>x&&Number.isSafeInteger(x.id)&&!played.has(x.id));
+ const due=pending.filter(x=>{
+  if(typeof x.scheduledAt!=='string'||!/^20\\d{2}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:00\\.000Z$/.test(x.scheduledAt))return false;
+  const at=Date.parse(x.scheduledAt);
+  return Number.isFinite(at)&&t>=at&&t-at<=30*60000;
+ }).sort((a,b)=>Date.parse(a.scheduledAt)-Date.parse(b.scheduledAt));
+ if(due.length)return due[0];
+ // Unscheduled stories can fill talk breaks, but malformed/outdated slots cannot.
+ return pending.find(x=>x.scheduledAt===''||x.scheduledAt===undefined)||null;
+}
 function chooseTrack(tracks,episode,requestsList,playedRequestIds){
  if(!tracks.length)return null;
  const request=requestsList.find(x=>!playedRequestIds.has(x.id));
@@ -230,5 +245,5 @@ function localOriginals(files,createURL){
  }
  return accepted;
 }
-root.MaruRadioCore={trimmed,publicSongs,storyOf,approvedStories,requests,chooseTrack,episodeScript,talkEpisodeScript,localOriginals};
+root.MaruRadioCore={trimmed,publicSongs,storyOf,approvedStories,requests,dueStory,chooseTrack,episodeScript,talkEpisodeScript,localOriginals};
 })(typeof globalThis!=='undefined'?globalThis:this);
