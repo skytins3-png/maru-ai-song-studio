@@ -63,3 +63,13 @@ footer{max-width:820px;text-align:center}
  .radio-controls button{font-size:14px;min-height:48px;padding:9px 4px}
 }
 @media(prefers-reduced-motion:reduce){.radio-stage *{transition:none;animation:none}}
+
+/* Two distinct, visible submission paths; neither adds clutter to the player. */
+.radio-submit-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0 16px}
+.radio-submit-action{display:flex;align-items:center;gap:11px;padding:13px 12px;min-height:78px;text-decoration:none;border:1px solid #58476b;border-radius:15px;color:#f5f2ff;background:#251f36}
+.radio-submit-action.owner{background:#172a2c;border-color:#396964}
+.radio-submit-action:focus-visible{outline:2px solid #74e8cb;outline-offset:3px}
+.radio-submit-action .submit-icon{display:grid;place-items:center;flex:none;width:36px;height:36px;border-radius:10px;background:#ffffff13;font-size:22px}
+.radio-submit-action strong{display:block;font-size:13px;line-height:1.4}
+.radio-submit-action small{display:block;margin-top:5px;font-size:11px;line-height:1.35;color:#c2c4d0}
+@media(max-width:520px){.radio-submit-actions{grid-template-columns:1fr;gap:8px}.radio-submit-action{min-height:63px;padding:11px 12px}.radio-submit-action strong{font-size:14px}}
