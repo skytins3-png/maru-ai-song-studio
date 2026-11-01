@@ -83,6 +83,7 @@ def inspect_probe(path,kind,binary):
     if not isinstance(streams,list) or not streams or len(streams)>12:
         raise ValueError("Missing or excessive media streams")
     found=False
+    found_video=False
     for stream in streams:
         if not isinstance(stream,dict):raise ValueError("Malformed media stream")
         codec=stream.get("codec_name","")
@@ -97,13 +98,15 @@ def inspect_probe(path,kind,binary):
         elif typ=="video" and kind=="video":
             if codec not in VIDEO_CODECS:raise ValueError("Unexpected video codec")
             found=True
+            found_video=True
         else:raise ValueError("Unsupported embedded data/subtitle/attachment stream")
         if typ=="video":
             width=int(stream.get("width") or 0)
             height=int(stream.get("height") or 0)
             if not 1<=width<=3840 or not 1<=height<=2160:
                 raise ValueError("Image/video dimensions exceed policy")
-    if not found:raise ValueError("Expected audio/video stream not found")
+    if not found or kind=="video" and not found_video:
+        raise ValueError("Expected audio/video stream not found")
     fmt=obj.get("format") or {}
     if kind!="image":
         try:duration=float(fmt.get("duration"))
