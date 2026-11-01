@@ -39,7 +39,7 @@ test('local music picker is visible and never uploads originals',()=>{
  assert.ok(html.indexOf('id="localFiles"')<firstDetails);
  assert.match(html,/id="localFiles"[^>]*multiple/);
  assert.match(html,/id="radioAudio"/);
- assert.match(html,/radio\.js\?v=6/);
+ assert.ok(html.includes('radio.js?v=7'));
 });
 
 test('listener and owner submission buttons stay visible outside collapsed settings',()=>{

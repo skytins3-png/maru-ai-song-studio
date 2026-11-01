@@ -68,7 +68,7 @@ async function prepare(files,token,knownHashes,artist,description,genreMap){
    description:description.slice(0,400),
    genre:genreMap.get(file)||genres.detect(file.name),
    audio:path,cover:'',createdAt:new Date().toISOString(),
-   downloadAllowed:true,audioSha256:sha256};
+   downloadAllowed:true,rightsAttested:true,source:"owner-original",style:genres.detectStyle(file.name),audioSha256:sha256};
   records.push({sha,track});
  }
  return records;
