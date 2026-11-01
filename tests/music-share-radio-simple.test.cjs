@@ -41,3 +41,16 @@ test('local music picker is visible and never uploads originals',()=>{
  assert.match(html,/id="radioAudio"/);
  assert.match(html,/radio\.js\?v=6/);
 });
+
+test('listener and owner submission buttons stay visible outside collapsed settings',()=>{
+ const pos=html.indexOf('<details class="radio-advanced"');
+ assert.ok(pos>0);
+ for(const label of ['시청자 사연 + 사진·영상·노래 보내기','형의 곡 + 표지 올리기']){
+  assert.ok(html.indexOf(label)>0 && html.indexOf(label)<pos,label);
+ }
+ assert.match(html,/<a class="radio-submit-action listener" href="stories\.html">/);
+ assert.match(html,/<a class="radio-submit-action owner" href="admin\.html">/);
+ const index=fs.readFileSync(root+'index.html','utf8');
+ assert.match(index,/href="stories\.html" class="submit-entry-link"/);
+ assert.match(index,/href="admin\.html" class="submit-entry-link owner"/);
+});
