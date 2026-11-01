@@ -15,10 +15,11 @@ async function copyLink(url){
 function render(){
   const q=search.value.trim().toLowerCase();
   const selected=$('genreFilter').value||'all';
+  const style=$('styleFilter').value||'all';
   const arr=[...tracks].sort((a,b)=>sort.value==='title'?String(a.title).localeCompare(String(b.title),'ko'):sort.value==='oldest'?new Date(a.createdAt)-new Date(b.createdAt):new Date(b.createdAt)-new Date(a.createdAt));
   let visible=0;
-  arr.forEach((t,index)=>{const card=cards.get(t.id);card.hidden=(!!q&&![t.title,t.artist,t.description].some(v=>String(v||'').toLowerCase().includes(q)))||(selected!=='all'&&genres.genreOf(t)!==selected);card.style.order=index;if(!card.hidden)visible++});
-  count.textContent=(q||selected!=='all')?visible+' / '+tracks.length+'곡':tracks.length+'곡';
+  arr.forEach((t,index)=>{const card=cards.get(t.id);card.hidden=(!!q&&![t.title,t.artist,t.description].some(v=>String(v||'').toLowerCase().includes(q)))||(selected!=='all'&&genres.genreOf(t)!==selected)||(style!=='all'&&genres.styleOf(t)!==style);card.style.order=index;if(!card.hidden)visible++});
+  count.textContent=(q||selected!=='all'||style!=='all')?visible+' / '+tracks.length+'곡':tracks.length+'곡';
   empty.hidden=visible!==0;empty.textContent=q?'검색 결과가 없습니다.':selected!=='all'?'선택한 장르에 맞는 곡이 없습니다.':'아직 공개된 음악이 없습니다.';
 }
 function makeCard(t){
@@ -39,7 +40,7 @@ async function load(){
     if(id){const card=cards.get(id);if(card)setTimeout(()=>card.scrollIntoView({behavior:'smooth',block:'center'}),50);else showToast('공개되지 않았거나 찾을 수 없는 곡입니다.');}
   }catch(e){empty.hidden=false;empty.textContent='음악 목록을 불러오지 못했습니다. 잠시 후 새로고침해 주세요.';}
 }
-search.addEventListener('input',render);sort.addEventListener('change',render);$('genreFilter').addEventListener('change',render);
+search.addEventListener('input',render);sort.addEventListener('change',render);$('genreFilter').addEventListener('change',render);$('styleFilter').addEventListener('change',render);
 $('shareSite').addEventListener('click',async()=>{const url=shareUrl();try{if(navigator.share)await navigator.share({title:'MUSIC SHARE',url});else await copyLink(url)}catch(e){if(e.name!=='AbortError')await copyLink(url)}});
 load();
 })();
