@@ -41,7 +41,7 @@ async function refreshIssues(){
     if(typeof entry.name!=='string'||typeof entry.story!=='string')return false;
     if(entry.scheduledAt!==undefined&&entry.scheduledAt!==''
        &&(typeof entry.scheduledAt!=='string'
-       ||!/^20\\d{2}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:00\\.000Z$/.test(entry.scheduledAt)))return false;
+       ||!/^20\d{2}-\d{2}-\d{2}T\d{2}:\d{2}:00\.000Z$/.test(entry.scheduledAt)))return false;
     const check=globalThis.MaruStoryGuard.assess(entry.name,'Approved listener story',entry.story);
     if(!check.safe)return false;
     seen.add(entry.id);return true;
