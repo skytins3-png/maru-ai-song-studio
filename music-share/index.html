@@ -41,6 +41,12 @@
         <option value="chinese">중국곡</option><option value="western">서양곡</option>
         <option value="instrumental">연주곡</option><option value="other">미분류</option>
       </select>
+      <select id="styleFilter" aria-label="Filter by music style">
+        <option value="all">모든 스타일</option><option value="trot">트로트 모음</option>
+        <option value="ballad">발라드 모음</option><option value="dance">댄스곡 모음</option>
+        <option value="rock">록 모음</option><option value="folk">포크 모음</option>
+        <option value="other">기타 장르</option>
+      </select>
       <select id="sort" aria-label="Sort">
         <option value="newest">Newest</option>
         <option value="title">Title</option>
@@ -60,8 +66,8 @@
   <div id="shareFallback" class="share-fallback" hidden><label for="shareUrl">공유 링크 · 길게 눌러 복사</label><input id="shareUrl" readonly type="url"></div>
   <div id="toast" role="status" class="toast" hidden></div>
   <script src="common.js?v=2"></script>
-  <script src="genre-core.js?v=1"></script>
-  <script src="app.js?v=3"></script>
+  <script src="genre-core.js?v=2"></script>
+  <script src="app.js?v=4"></script>
   <script src="guest-intake-link.js?v=1"></script>
 </body>
 </html>
