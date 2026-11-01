@@ -1,80 +1,96 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#0d0f14">
-  <title>MARU RADIO · English Live-Style Radio</title>
+  <title>MARU RADIO · 아환 음악·토크</title>
+  <meta name="description" content="아환과 함께 듣는 음악·토크 라디오. 재생 버튼 하나로 시작합니다.">
   <link rel="stylesheet" href="styles.css?v=4">
-  <link rel="stylesheet" href="radio.css?v=2">
+  <link rel="stylesheet" href="radio.css?v=3">
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https://api.github.com; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://github.com; frame-src 'none'; upgrade-insecure-requests">
 </head>
 <body>
-  <header class="top">
-    <div class="brand"><span class="disc">♫</span><div><b>MARU RADIO</b><small>ENGLISH TALK · ORIGINAL MUSIC</small></div></div>
-    <nav class="top-actions">
-      <a class="ghost action-link" href="help.html">Listener guide</a>
-      <a class="ghost action-link" href="broadcast-center.html">운영 센터</a>
-      <a class="ghost action-link" href="./">Music library</a>
-      <a class="ghost action-link" href="batch.html">Add my originals</a>
-      <a class="ghost action-link" href="requests.html">Request a song</a>
-      <a class="ghost action-link" href="stories.html">Send a story</a>
-      <a class="ghost action-link" href="media-proposal.html">Media requests</a>
+  <header class="top radio-header">
+    <div class="brand"><span class="disc">♫</span><div><b>MARU RADIO</b><small>아환 음악 · 토크</small></div></div>
+    <nav class="top-actions" aria-label="방송 관련 메뉴">
+      <a class="ghost action-link" href="./">음악 목록</a>
+      <a class="ghost action-link" href="stories.html">사연 보내기</a>
     </nav>
   </header>
-  <main>
+  <main class="radio-simple">
     <section class="radio-hero">
-      <p class="eyebrow">YOUR AUTOMATIC ENGLISH RADIO SHOW</p>
-      <h1>Come for the music.<br>Stay for the conversation.</h1>
-      <p>Press Start for an English talk radio preview immediately, even when no music is published. Select your own Suno MP3/WAV files above for private local playback between conversations. Published original music and producer-approved stories refresh automatically.</p>
       <div class="radio-player">
-        <div class="local-import">
-          <label for="localFiles"><strong>Play my Suno downloads (private, on this phone)</strong></label>
+        <div class="radio-stage" role="group" aria-label="MARU 라디오 오디오 미리듣기 화면">
+          <div class="radio-stage-art" aria-hidden="true">
+            <div class="radio-stage-glow"></div>
+            <div class="radio-stage-disc"><span>♫</span></div>
+          </div>
+          <div class="radio-stage-copy">
+            <span class="radio-stage-label">AHWAN · MARU RADIO</span>
+            <h1>음악과 이야기</h1>
+            <p>라디오 오디오 미리듣기</p>
+          </div>
+          <div class="radio-stage-bottom">
+            <h2 id="nowPlaying">방송 준비 중</h2>
+          </div>
+        </div>
+        <div class="radio-controls" aria-label="방송 재생 조작">
+          <button id="startRadio" type="button" class="story-send">▶ 재생</button>
+          <button id="stopRadio" type="button" class="ghost" disabled>■ 정지</button>
+          <button id="skipRadio" type="button" class="ghost" disabled>다음 곡</button>
+        </div>
+        <label class="radio-quick-add" for="localFiles">
+          <span>＋ 내 노래 불러오기</span>
           <input id="localFiles" type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.flac" multiple>
-          <p id="localHelp" class="radio-note">Select downloaded original MP3/WAV files. They play locally in this browser — never uploaded.</p>
-          <button id="clearLocal" type="button" class="ghost">Clear local selection</button>
-        </div>
-        <p id="status" class="radio-status" aria-live="polite">Loading the public music library…</p>
-        <h2 id="nowPlaying">No track selected yet</h2>
-        <p id="radioCounts" class="radio-counts">Checking the library and approved stories…</p>
-        <div class="radio-controls">
-          <button id="startRadio" type="button" class="story-send">▶ Start radio</button>
-          <button id="skipRadio" type="button" class="ghost" disabled>Next song</button>
-          <button id="stopRadio" type="button" class="ghost" disabled>Stop</button>
-        </div>
-        <label class="radio-setting" for="radioGenre">Music category</label>
-        <select id="radioGenre" class="radio-category" aria-label="Music category">
-          <option value="all">All music</option><option value="korean">Korean songs</option>
-          <option value="chinese">Chinese songs</option><option value="western">Western songs</option>
-          <option value="instrumental">Instrumental</option><option value="other">Unclassified</option>
-        </select>
-        <audio id="radioAudio" controls preload="none" aria-label="Original music playback" hidden></audio>
-        <label class="radio-setting"><input type="checkbox" id="talkEnabled" checked> Short, natural English DJ chats between songs</label>
-        <label class="radio-setting"><input type="checkbox" id="storiesEnabled" checked> Read producer-approved public listener stories</label>
-        <section class="daily-facts" aria-label="Weather and news">
-          <label for="weatherCity">Weather city</label>
-          <select id="weatherCity">
-            <option value="Seoul">Seoul</option>
-            <option value="Daejeon">Daejeon</option>
-            <option value="Busan">Busan</option>
-            <option value="Incheon">Incheon</option>
-            <option value="Daegu">Daegu</option>
-          </select>
-          <label class="radio-setting"><input id="dailyEnabled" type="checkbox" checked> Daily English weather and verified news chat</label>
-          <p id="dailySummary" class="radio-note">Checking weather and original news sources…</p>
-          <a id="newsSource" class="source-link" href="https://www.bbc.com/news" target="_blank" rel="noopener noreferrer" hidden>Read cited BBC News article</a>
-          <p class="radio-note">The weather city is manually selected, not inferred from your exact location. Weather: Open-Meteo. Headlines: BBC News RSS. Facts must be recent and verifiable. News discussion does not replace the original news report.</p>
-        </section>
-        <p class="radio-note">Press Start once to begin. A private local playlist is forgotten when you close this tab. Android browsers may suspend speech or music when the phone locks or the browser goes into the background. This web radio does not inject sound into BIGO, automate BIGO, or stream the DJ to listeners by itself.</p>
+        </label>
+        <p id="status" class="radio-status" aria-live="polite">라디오 준비 중…</p>
+        <p id="currentLine" class="radio-current-line" aria-live="polite">재생을 누르면 아환이 인사합니다.</p>
+        <audio id="radioAudio" controls preload="none" aria-label="원곡 오디오 재생" hidden></audio>
+
+        <details class="radio-advanced" id="radioSettings">
+          <summary>⚙ 방송 설정</summary>
+          <div class="radio-advanced-content">
+            <label class="radio-setting" for="radioGenre">노래 장르</label>
+            <select id="radioGenre" class="radio-category" aria-label="노래 장르">
+              <option value="all">전체 음악</option>
+              <option value="korean">한국곡</option><option value="chinese">중국곡</option>
+              <option value="western">서양곡</option><option value="instrumental">연주곡</option>
+              <option value="other">미분류</option>
+            </select>
+            <label class="radio-setting"><input type="checkbox" id="talkEnabled" checked> 아환과 DJ 토크</label>
+            <label class="radio-setting"><input type="checkbox" id="storiesEnabled" checked> 승인된 사연 읽기</label>
+            <label class="radio-setting"><input id="dailyEnabled" type="checkbox" checked> 날씨·뉴스 토크</label>
+            <label class="radio-setting" for="weatherCity">날씨 지역</label>
+            <select id="weatherCity" class="radio-category" aria-label="날씨 지역">
+              <option value="Seoul">서울</option><option value="Daejeon">대전</option>
+              <option value="Busan">부산</option><option value="Incheon">인천</option>
+              <option value="Daegu">대구</option>
+            </select>
+            <div class="radio-settings-meta">
+              <p id="radioCounts" class="radio-counts">노래와 사연 목록 확인 중…</p>
+              <p id="localHelp" class="radio-note">Select your own Suno MP3 files on this device. Files stay on the phone and are never uploaded.</p>
+              <button id="clearLocal" type="button" class="ghost">불러온 노래 비우기</button>
+              <p id="dailySummary" class="radio-note">날씨·뉴스 정보 확인 중…</p>
+              <a id="newsSource" class="source-link" href="https://www.bbc.com/news" target="_blank" rel="noopener noreferrer" hidden>BBC 뉴스 원문 보기</a>
+            </div>
+          </div>
+        </details>
+
+        <details class="radio-advanced radio-guide">
+          <summary>이용 안내 · 주의사항</summary>
+          <div class="radio-advanced-content">
+            <p>이 페이지는 웹 라디오 <strong>오디오 미리듣기</strong>입니다. 화면의 MARU 그림은 디자인 배경이며 실제 아환 영상이나 BIGO 송출 화면은 아닙니다.</p>
+            <p>내 노래 불러오기는 다운로드한 원곡을 이 브라우저에서만 읽습니다. 탭을 닫으면 선택한 파일은 해제되며 사이트에 업로드되지 않습니다.</p>
+            <p>공개 음악과 producer-approved listener stories만 방송 후보가 됩니다. 사연은 운영자의 별도 수동 승인 후 읽으며, 신청한 시간에 정확히 방송된다는 보장은 없습니다.</p>
+            <p>날씨: Open-Meteo · 뉴스: BBC RSS. 최신 확인 자료만 토크에 사용하며, BIGO 자동 방송·잠금 화면 지속 재생은 아직 제공하지 않습니다.</p>
+            <p><a href="help.html">청취자 사용법</a> · <a href="broadcast-center.html">방송 운영 센터</a> · <a href="media-proposal.html">사진·영상·노래 신청</a> · <a href="batch.html">관리자 여러 곡 등록</a></p>
+          </div>
+        </details>
       </div>
-      <div class="radio-transcript">
-        <h2>On-air conversation</h2>
-        <p id="currentLine" aria-live="polite">Press Start radio to begin.</p>
-      </div>
-      <p class="radio-note">Only tracks with the creator's public download permission appear. Scheduled story requests are considered only within 30 minutes after their approved KST times while this browser radio is actually running. Stories are spoken only from a separate curated snapshot after automatic security screening, explicit author consent and the producer applying the <code>radio-approved</code> label. Unsafe or changed stories are withheld. Requests can prioritize a published track without reading unreviewed user text aloud. Short dialogue scripts are prerecorded as text and spoken by your browser (TTS), not live human conversation.</p>
     </section>
   </main>
-  <footer>© MARU RADIO · Publicly approved originals · No automated BIGO broadcast</footer>
+  <footer>MARU RADIO · 내 음악과 승인된 사연으로 듣는 웹 미리듣기</footer>
   <script src="story-guard.js?v=1"></script>
   <script src="genre-core.js?v=1"></script>
   <script src="radio-core.js?v=3"></script>
