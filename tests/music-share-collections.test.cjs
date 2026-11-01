@@ -35,5 +35,5 @@ test('music library and radio expose style filters without cluttering player',()
  assert.match(client,/styleFilter/);
  assert.match(client,/genres.styleOf/);
  assert.match(fs.readFileSync(root+'admin.js','utf8'),/source:'owner-original'/);
- assert.match(fs.readFileSync(root+'radio.js','utf8'),/MaruGenres.matches/);
+ assert.match(fs.readFileSync(root+'radio.js','utf8'),/g.matches/);
 });
