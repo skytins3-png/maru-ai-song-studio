@@ -8,7 +8,10 @@ let publicTracks=[],localTracks=[],approved=[],requestList=[],episode=0,active=f
 let usedStories=new Set(),usedRequests=new Set(),unplayable=new Set();
 let lastCatalogRefresh=0,lastIssueRefresh=0,lastDailyRefresh=0,dailyData=null,dialogueTimer=null;
 const status=message=>{$('status').textContent=message};
-const playable=()=>[...localTracks,...publicTracks].filter(x=>!unplayable.has(x.id)).filter(x=>{const g=$('radioGenre').value||'all';return g==='all'||globalThis.MaruGenres.genreOf(x)===g});
+const playable=()=>[...localTracks,...publicTracks].filter(x=>!unplayable.has(x.id)).filter(x=>{
+ const region=$('radioGenre').value||'all',style=$('radioStyle').value||'all';
+ return globalThis.MaruGenres.matches(x,region,style);
+});
 const info=()=>{
  const all=playable();
  $('radioCounts').textContent=localTracks.length+' private tracks on this device · '
