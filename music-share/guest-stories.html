@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#101522">
+<title>MARU RADIO · 로그인 없는 사연 접수</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https:; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<link rel="stylesheet" href="styles.css?v=4">
+<style>.guest-main{max-width:680px;margin:auto;padding:22px 16px 60px}.guest-main h1{font-size:clamp(26px,6vw,42px)}.guest-main p{line-height:1.7;color:#c3cbd8}.guest-form{display:grid;gap:13px;border:1px solid #41485a;background:#1a1e2b;border-radius:18px;padding:20px;margin:18px 0}.guest-form label{display:grid;gap:7px;font-size:15px;font-weight:750}.guest-form input,.guest-form textarea{font:inherit;width:100%;padding:13px;color:#f3f6fc;border-radius:10px;background:#252b3b;border:1px solid #596176}.guest-form textarea{min-height:150px}.guest-form label.agree{display:flex;align-items:flex-start;font-size:13px;line-height:1.6;font-weight:450}.guest-form label.agree input{margin-top:3px;width:18px;min-width:18px}.guest-form button{border:0;background:#7560cc;color:#fff;font:inherit;font-weight:900;border-radius:14px;padding:16px}.guest-form button:disabled{opacity:.5}.guest-status{padding:14px;border:1px solid #675e7a;border-radius:12px;background:#27233d}.guest-optional{padding:15px;border:1px solid #364159;border-radius:12px;background:#171e2d}.guest-optional p{font-size:13px;margin:4px 0}.guest-main a{color:#8ce1d0}</style></head>
+<body><header class="top"><div class="brand"><span class="disc">♫</span><div><b>MARU RADIO</b><small>청취자 사연 · 로그인 없는 접수</small></div></div><nav class="top-actions"><a class="ghost action-link" href="radio.html">라디오</a><a class="ghost action-link" href="help.html">이용 안내</a></nav></header>
+<main class="guest-main">
+<h1>시청자 사연 보내기</h1>
+<p>별명과 사연만으로 신청할 수 있도록 준비한 화면이야. <strong>시청자는 GitHub 계정이 필요 없어.</strong> 자료는 공개 게시판이 아닌 비공개 접수 서버로 보내고, 형의 승인을 받기 전에는 절대 방송에 사용하지 않아.</p>
+<p id="guestServiceStatus" class="guest-status" role="status">비공개 접수 서버 연결 여부 확인 중…</p>
+<form id="guestStoryForm" class="guest-form" enctype="multipart/form-data">
+<label for="guestName">방송용 별명<input id="guestName" name="nickname" maxlength="40" autocomplete="off" placeholder="익명 청취자"></label>
+<label for="guestTitle">사연 제목<input id="guestTitle" name="title" minlength="3" maxlength="100" required placeholder="오늘 있었던 이야기"></label>
+<label for="guestStory">사연 내용<textarea id="guestStory" name="story" minlength="20" maxlength="1200" required placeholder="마음에 남는 사연을 적어주세요. 연락처·주소는 입력하지 마세요."></textarea></label>
+<label for="guestTime">희망 방송 시각 · 한국시간(KST, 선택)<input id="guestTime" name="airtime" type="datetime-local" step="60"></label>
+<div class="guest-optional">
+<label for="guestMedia">사진·영상·노래 첨부 · 선택<input id="guestMedia" name="media" type="file" accept=".jpg,.jpeg,.png,.webp,.mp4,.mp3,.wav"></label>
+<p>1개, 최대 8MB. 비공개 격리 보관하며 보안 검사·권리 확인 전에는 공개·재생되지 않습니다. 긴 영상/대용량 음악은 별도 업로드 기능이 필요합니다.</p>
+<label class="agree"><input type="checkbox" id="guestMediaRights" name="mediaRights" value="yes"><span>첨부 파일을 방송에 사용할 권리가 있다고 신고합니다. 실제 권리 허가는 운영자가 별도 확인합니다.</span></label>
+</div>
+<label class="agree"><input id="guestConsent" name="consent" type="checkbox" value="yes" required><span>사연을 비공개로 접수·검토하고, 승인 시 MARU 라디오에서 낭독할 수 있음에 동의합니다. 공개 방송 전 내용 수정·취소 요청이 가능하며, 승인 전에는 방송되지 않습니다.</span></label>
+<div id="guestTurnstile" aria-label="자동 접수 방지 확인"></div>
+<button id="guestSend" type="submit" disabled>사연 보내기</button>
+<p id="guestResult" role="status">접수 서버가 연결되기 전에는 사연을 전송하지 않습니다.</p>
+</form>
+<details><summary>현재 임시 GitHub 공개 접수 방식</summary>
+<p>비공개 접수 서버가 준비되기 전에는 <a href="stories.html">기존 GitHub 공개 접수</a>만 작동합니다. 이 방법은 GitHub 로그인과 공개 게시가 필요하므로 개인정보나 비공개 파일을 올리면 안 됩니다.</p></details>
+</main><footer>MARU RADIO · 운영자 승인 전 자동 방송 금지</footer>
+<script src="guest-stories.js?v=1"></script></body></html>
