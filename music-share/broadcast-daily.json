@@ -1,54 +1,89 @@
 {
-  "generatedAt": "2026-10-31T23:25:41+00:00",
+  "generatedAt": "2026-11-01T06:12:58+00:00",
   "timezone": "Asia/Seoul",
   "weather": {
     "Daejeon": {
       "city": "Daejeon",
-      "temperatureC": 6.5,
-      "windKmh": 5.8,
+      "temperatureC": 11.0,
+      "windKmh": 0.7,
       "weatherCode": 3,
-      "observedLocal": "2026-11-01T08:15",
+      "observedLocal": "2026-11-01T15:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Seoul": {
       "city": "Seoul",
-      "temperatureC": 6.2,
-      "windKmh": 3.0,
-      "weatherCode": 53,
-      "observedLocal": "2026-11-01T08:15",
+      "temperatureC": 10.1,
+      "windKmh": 3.3,
+      "weatherCode": 3,
+      "observedLocal": "2026-11-01T15:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Busan": {
       "city": "Busan",
-      "temperatureC": 11.2,
-      "windKmh": 2.6,
+      "temperatureC": 17.4,
+      "windKmh": 3.5,
       "weatherCode": 2,
-      "observedLocal": "2026-11-01T08:15",
+      "observedLocal": "2026-11-01T15:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Incheon": {
       "city": "Incheon",
-      "temperatureC": 5.9,
-      "windKmh": 9.4,
+      "temperatureC": 10.0,
+      "windKmh": 12.1,
       "weatherCode": 51,
-      "observedLocal": "2026-11-01T08:15",
+      "observedLocal": "2026-11-01T15:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Daegu": {
       "city": "Daegu",
-      "temperatureC": 10.1,
-      "windKmh": 0.8,
-      "weatherCode": 2,
-      "observedLocal": "2026-11-01T08:15",
+      "temperatureC": 12.6,
+      "windKmh": 1.9,
+      "weatherCode": 3,
+      "observedLocal": "2026-11-01T15:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     }
   },
   "news": [
+    {
+      "title": "Democrats are used to heartbreak in Texas - could Talarico turn the tide?",
+      "url": "https://www.bbc.co.uk/news/articles/cmy0r2y6zeddo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-01T06:03:57+00:00"
+    },
+    {
+      "title": "Shops looted as German cost of living protests turn violent",
+      "url": "https://www.bbc.co.uk/news/articles/cqj34gnd3n30o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-01T01:59:57+00:00"
+    },
+    {
+      "title": "These firms you've never heard of are feeding fears the AI bubble could burst",
+      "url": "https://www.bbc.co.uk/news/articles/cje36degrgv5o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-01T01:37:26+00:00"
+    },
+    {
+      "title": "How the downfall of Serbia's Vučiċ mirrored that of Hungary's Orbán",
+      "url": "https://www.bbc.co.uk/news/articles/c893z699q401o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-01T00:55:06+00:00"
+    },
+    {
+      "title": "India's opposition set to hold mega rally seeking election chief's resignation",
+      "url": "https://www.bbc.co.uk/news/articles/c60qk92dvlwgo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-01T00:12:07+00:00"
+    },
     {
       "title": "I've been stuck on a tiny Pacific island for years and can't get a transit visa to fly home",
       "url": "https://www.bbc.co.uk/news/articles/cmq5npz5l5geo?at_medium=RSS&at_campaign=rss",
@@ -97,41 +132,6 @@
       "source": "BBC News",
       "category": "World",
       "publishedAt": "2026-10-31T15:16:20+00:00"
-    },
-    {
-      "title": "Ethiopian PM puts ministers through military training",
-      "url": "https://www.bbc.co.uk/news/articles/cmwyv2y7g9l8o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-10-31T14:28:15+00:00"
-    },
-    {
-      "title": "Watch: Blood donors get a Halloween fright in Thailand",
-      "url": "https://www.bbc.co.uk/news/videos/cmze42el49d9o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-10-31T12:50:45+00:00"
-    },
-    {
-      "title": "CCTV and zip ties: How US mail-in votes are secured and counted",
-      "url": "https://www.bbc.co.uk/news/videos/cw4g1vlj4v2jo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-10-31T09:16:14+00:00"
-    },
-    {
-      "title": "Spain train disaster clouds Sánchez chances of re-election",
-      "url": "https://www.bbc.co.uk/news/articles/cmeweppr990qo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-10-31T05:44:21+00:00"
-    },
-    {
-      "title": "Suited and booted: How Joseph Kabila went from president to rebel leader",
-      "url": "https://www.bbc.co.uk/news/articles/cr3wv311dwnlo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-10-31T04:32:07+00:00"
     }
   ]
 }
