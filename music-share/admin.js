@@ -29,6 +29,7 @@ upload.addEventListener('click',async()=>{
   const title=$('title').value.trim(),artist=$('artist').value.trim(),description=$('description').value.trim(),audio=$('audio').files[0],cover=$('cover').files[0];
   if(!token){setStatus('GitHub 관리자 토큰을 입력하세요.');return}
   if(!title||!audio){setStatus('곡 제목과 음악 파일이 필요합니다.');return}
+  if(!$('rights').checked){setStatus('음원·표지의 저작권 및 방송·공개 배포 권한을 확인해 주세요.');return}
   if(!$('allow').checked){setStatus('공개 다운로드 허용 체크가 필요합니다.');return}
   try{validateFiles(audio,cover)}catch(e){setStatus(e.message);return}
   busy=true;upload.disabled=true;
@@ -38,7 +39,7 @@ upload.addEventListener('click',async()=>{
     setStatus('1/3 · 기존 공개 목록 확인 중…');
     let base=await snapshot(token);
     const id=Date.now()+'-'+crypto.randomUUID(),name=id+'-'+slug(title);
-    const track={id,title,artist:artist||'MUSIC SHARE',description,audio:'tracks/'+name+'.'+extension(audio.name),cover:cover?'covers/'+name+'.'+extension(cover.name):'',createdAt:new Date().toISOString(),downloadAllowed:true,genre:['korean','chinese','western','instrumental','other'].includes($('genre').value)?$('genre').value:(globalThis.MaruGenres?MaruGenres.detect(title):'other')};
+    const track={id,title,artist:artist||'MUSIC SHARE',description,audio:'tracks/'+name+'.'+extension(audio.name),cover:cover?'covers/'+name+'.'+extension(cover.name):'',createdAt:new Date().toISOString(),downloadAllowed:true,rightsAttested:true,genre:['korean','chinese','western','instrumental','other'].includes($('genre').value)?$('genre').value:(globalThis.MaruGenres?MaruGenres.detect(title):'other')};
     setStatus('2/3 · 음악과 표지 준비 중…');
     const audioSha=await blob(audio,token);
     const coverSha=cover?await blob(cover,token):null;
@@ -60,7 +61,7 @@ upload.addEventListener('click',async()=>{
       }
     }
     setStatus('완료 · 음악과 공개 목록을 함께 등록했습니다. 배포가 끝나면 공개 페이지를 새로고침해 주세요.');
-    $('title').value='';$('description').value='';$('audio').value='';$('cover').value='';$('allow').checked=false;
+    $('title').value='';$('description').value='';$('audio').value='';$('cover').value='';$('allow').checked=false;$('rights').checked=false;
   }catch(e){setStatus('업로드를 완료하지 못했습니다 · '+e.message+' 다시 시도하기 전에 공개 목록을 확인하세요.');}
   finally{token='';$('token').value='';busy=false;upload.disabled=false}
 });

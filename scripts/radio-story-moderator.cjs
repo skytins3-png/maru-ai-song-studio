@@ -66,6 +66,7 @@ async function optionalAiScan(parsed){
 }
 function safeSnapshot(issue,checked){
  return {id:issue.number,name:checked.name,story:checked.story,
+  scheduledAt:checked.scheduledAt||'',
   source:'GitHub Issue #'+issue.number};
 }
 function decodeContents(data){

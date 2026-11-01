@@ -13,7 +13,7 @@
 </head>
 <body>
   <div class="admin">
-    <a class="admin-link" href="./">← Public music catalog</a> · <a class="admin-link" href="radio.html">▶ English radio</a> · <a class="admin-link" href="requests.html">Song requests</a>
+    <a class="admin-link" href="./">← Public music catalog</a> · <a class="admin-link" href="broadcast-center.html">방송 운영 센터</a> · <a class="admin-link" href="radio.html">▶ English radio</a> · <a class="admin-link" href="requests.html">Song requests</a>
     <h1>음악 올리기</h1>
     <p class="lead">저장소 쓰기 권한이 있는 관리자만 업로드할 수 있습니다. 음악을 GitHub 저장소에 올리고 공개 목록에 자동 등록합니다.</p>
     <p class="lead"><strong>Suno playlist workflow:</strong> <a class="admin-link" href="https://suno.com/library" target="_blank" rel="noopener noreferrer">Create a playlist in Suno</a>, download your own permitted tracks through Suno, then upload MP3/WAV originals here. A share link alone does not give this static site permission to download private audio.</p>
@@ -34,6 +34,7 @@
 <audio id="localPreviewAudio" controls preload="metadata" aria-label="선택한 원곡 미리듣기"></audio>
 <p id="localPreviewStatus" class="story-note">미리듣기만으로 공개되지 않습니다.</p>
 </section>
+      <label class="check"><input id="rights" type="checkbox"><span>작사·작곡·음원·표지에 필요한 권리를 보유하거나 공개 다운로드 및 라디오 방송 허락을 받았습니다. (자기 신고이며 독립 저작권 확인을 대신하지 않습니다.)</span></label>
       <label class="check"><input id="allow" type="checkbox"><span>이 곡을 다른 사람이 내려받을 수 있도록 공개합니다.</span></label>
       <button id="upload" class="upload" type="button">⬆ 음악 공개 업로드</button>
     </div>

@@ -43,7 +43,7 @@ function admin(mode='ok',catalog=[]){
    }else throw new Error('Unexpected request '+path);
    return {ok:status===200,status,json:async()=>data};
  });
- h.$('token').value='test-token';h.$('title').value='가을';h.$('artist').value='아환';h.$('description').value='Autumn42';h.$('audio').files=[file('song.mp3')];h.$('cover').files=[file('cover.png')];h.$('allow').checked=true;
+ h.$('token').value='test-token';h.$('title').value='가을';h.$('artist').value='아환';h.$('description').value='Autumn42';h.$('audio').files=[file('song.mp3')];h.$('cover').files=[file('cover.png')];h.$('allow').checked=true;h.$('rights').checked=true;
  vm.runInContext(read('admin.js'),h.c);return {...h,calls,run:()=>h.$('upload').events.click()};
 }
 test('only explicit allowed local audio is public; reject missing/false/string flags and unsafe URLs',()=>{
@@ -54,7 +54,7 @@ test('only explicit allowed local audio is public; reject missing/false/string f
  assert.equal(c.MusicShare.slug('가을 바다'),'가을-바다');
 });
 test('size and extension validation happens before any network request',async()=>{
- for(const variant of ['large-cover','large-audio','empty','bad-cover','bad-audio','no-token','no-title','no-consent']){
+ for(const variant of ['large-cover','large-audio','empty','bad-cover','bad-audio','no-token','no-title','no-consent','no-rights']){
   const h=admin();
   if(variant==='large-cover')h.$('cover').files=[file('cover.png',10*1024*1024+1)];
   if(variant==='large-audio')h.$('audio').files=[file('song.mp3',95*1024*1024+1)];
@@ -64,6 +64,7 @@ test('size and extension validation happens before any network request',async()=
   if(variant==='no-token')h.$('token').value='';
   if(variant==='no-title')h.$('title').value='';
   if(variant==='no-consent')h.$('allow').checked=false;
+  if(variant==='no-rights')h.$('rights').checked=false;
   await h.run();assert.equal(h.calls.length,0,variant);
  }
 });
@@ -71,7 +72,7 @@ test('publish audio, cover and catalog together; preserve existing entries; clea
  const h=admin('ok',[{id:'old',title:'existing'}]);await h.run();
  const tree=h.calls.find(c=>c.path==='/git/trees').body;
  assert.equal(tree.base_tree,'tree-h1');assert.equal(tree.tree.length,3);
- const entries=JSON.parse(tree.tree.at(-1).content);assert.equal(entries.length,2);assert.equal(entries[1].id,'old');assert.equal(entries[0].downloadAllowed,true);assert.match(entries[0].audio,/가을\.mp3$/);
+ const entries=JSON.parse(tree.tree.at(-1).content);assert.equal(entries.length,2);assert.equal(entries[1].id,'old');assert.equal(entries[0].downloadAllowed,true);assert.equal(entries[0].rightsAttested,true);assert.match(entries[0].audio,/가을\.mp3$/);
  const updates=h.calls.filter(c=>c.path==='/git/refs/heads/main');assert.equal(updates.length,1);assert.equal(updates[0].body.force,false);
  assert.equal(h.calls.some(c=>c.method==='PUT'),false);assert.equal(h.$('token').value,'');assert.equal(h.$('allow').checked,false);assert.match(h.$('status').textContent,/완료/);
 });

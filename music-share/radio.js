@@ -39,6 +39,9 @@ async function refreshIssues(){
    approved=entries.filter(entry=>{
     if(!entry||!Number.isSafeInteger(entry.id)||entry.id<1||seen.has(entry.id))return false;
     if(typeof entry.name!=='string'||typeof entry.story!=='string')return false;
+    if(entry.scheduledAt!==undefined&&entry.scheduledAt!==''
+       &&(typeof entry.scheduledAt!=='string'
+       ||!/^20\d{2}-\d{2}-\d{2}T\d{2}:\d{2}:00\.000Z$/.test(entry.scheduledAt)))return false;
     const check=globalThis.MaruStoryGuard.assess(entry.name,'Approved listener story',entry.story);
     if(!check.safe)return false;
     seen.add(entry.id);return true;
@@ -111,7 +114,7 @@ function cancelSpeech(){try{if('speechSynthesis' in window)window.speechSynthesi
 function clearTimer(){if(dialogueTimer!==null){clearTimeout(dialogueTimer);dialogueTimer=null}}
 function setButtons(isActive){start.disabled=isActive;stop.disabled=!isActive;skip.disabled=!isActive}
 function nextStory(){
- return $('storiesEnabled').checked?approved.find(x=>!usedStories.has(x.id)):null;
+ return $('storiesEnabled').checked?core.dueStory(approved,usedStories,Date.now()):null;
 }
 async function announce(track,requested,session,onlyTalk){
  if(!$('talkEnabled').checked)return;

@@ -29,6 +29,9 @@
         <input id="storyTopic" maxlength="100" required placeholder="The funniest thing that happened on a Monday">
         <label for="storyBody">Your story</label>
         <textarea id="storyBody" maxlength="1200" minlength="20" required rows="7" placeholder="Tell us what happened, in your own words..."></textarea>
+        <label for="storyAirTime">희망 방송 시각 (한국시간 KST · 선택 사항)</label>
+        <input id="storyAirTime" type="datetime-local" step="60" aria-describedby="storyTimeHelp">
+        <p id="storyTimeHelp" class="story-note">희망 시각은 사연 접수 요청이며 방송 확정이 아닙니다. 검토 및 승인 후, 방송이 실제로 재생 중일 때만 그 시각 이후 대화 순서에 반영됩니다. 정확한 시각·BIGO 자동 송출은 아직 지원하지 않습니다.</p>
         <label class="story-consent"><input id="storyConsent" type="checkbox" required><span>I wrote this story or have permission to share it. I understand it is public immediately on GitHub, will be screened by automatic safety checks (including optional external AI moderation when configured), and may be read on MARU RADIO only after the producer approves it.</span></label>
         <button class="story-send" type="submit">Continue to public story submission</button>
       </form>
