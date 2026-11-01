@@ -7,6 +7,7 @@
   <title>MUSIC SHARE</title>
   <link rel="stylesheet" href="styles.css?v=2">
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https://api.github.com; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://github.com; frame-src 'none'; upgrade-insecure-requests">
+  <style>.submit-entry-buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:23px 0 6px;max-width:720px}.submit-entry-link{display:flex;align-items:center;justify-content:center;text-align:center;padding:15px;min-height:62px;border:1px solid #69518f;border-radius:15px;background:#291d3d;color:#f4eaff;font-weight:800;text-decoration:none}.submit-entry-link.owner{background:#163331;border-color:#357369;color:#dafcf1}@media(max-width:640px){.submit-entry-buttons{grid-template-columns:1fr}.submit-entry-link{min-height:52px}}</style>
 </head>
 <body>
   <header class="top">
@@ -27,6 +28,10 @@
       <p class="eyebrow">ORIGINAL MUSIC LIBRARY</p>
       <h1>Listen to real music.<br>Share your story.</h1>
       <p>Enjoy original music, download tracks shared by their creators, and send a story for our radio show. <a href="media-proposal.html">사진·영상·외부 노래 방송 신청</a>은 검토 요청만 접수하며 파일 자체를 업로드하지 않습니다.</p>
+      <nav class="submit-entry-buttons" aria-label="시청자 접수 및 관리자 음악 등록">
+        <a href="stories.html" class="submit-entry-link">✉ 시청자 사연 + 사진·영상·노래 보내기</a>
+        <a href="admin.html" class="submit-entry-link owner">⬆ 형의 곡 + 표지 올리기</a>
+      </nav>
       <div class="hero-meta"><span id="trackCount">0곡</span><span>Creator-approved downloads</span></div>
     </section>
     <section class="tools">

@@ -46,3 +46,26 @@ test('English public page connects music upload, download and story intake',()=>
   assert.match(form,/public immediately on GitHub/i);
   assert.match(form,/story-guard.js/);
 });
+
+test('public story form shows GitHub attachment steps with no false private scanning promise',()=>{
+ const html=fs.readFileSync(__dirname+'/../music-share/stories.html','utf8');
+ assert.match(html,/📎 Attach files/);
+ assert.match(html,/JPG\/PNG/);
+ assert.match(html,/MP3\/WAV/);
+ assert.match(html,/파일이 즉시 공개/);
+ assert.match(html,/악성코드 검사/);
+ assert.doesNotMatch(html,/<input[^>]*type="file"/);
+});
+test('attached files remain outside on-air text and are never auto-broadcast',()=>{
+ const s=load();
+ const guard=require('../music-share/story-guard.js');
+ const url=new URL(s.issueUrl('Emily','An autumn afternoon',
+  'A friend visited the town today and we had a lovely warm conversation.',true));
+ const body=url.searchParams.get('body');
+ assert.match(body,/## Optional public attachments \(NOT approved for broadcast\)/);
+ assert.match(body,/MARU has NOT virus-scanned or copyright-cleared/);
+ const attached=body.replace('---','[Photo](https://github.com/user-attachments/assets/sample-photo)\n\n---');
+ const result=guard.evaluateIssue({title:url.searchParams.get('title'),body:attached,state:'open',labels:[]});
+ assert.equal(result.safe,true);
+ assert.doesNotMatch(result.story,/user-attachments|https:|paperclip|copyright-cleared/);
+});

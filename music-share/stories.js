@@ -23,6 +23,11 @@ function issueUrl(name,topic,story,consent,requestedKst='') {
     '- [x] I have permission to submit this story for public posting and radio reading.',
     '- [x] I understand this GitHub Issue is publicly visible.',
     '',
+    '## Optional public attachments (NOT approved for broadcast)',
+    'Attach JPG/PNG, MP4 or MP3/WAV using GitHub paperclip below, if you have permission.',
+    'Files become publicly accessible. MARU has NOT virus-scanned or copyright-cleared these files.',
+    'Never attach private content, executable files, or unlicensed media.',
+    '',
     '---',
     'This is a listener-submitted account, not a verified news report. The MARU producer reviews each story before broadcasting.'
   ].join('\n');
@@ -39,7 +44,7 @@ $('storyForm').addEventListener('submit',event=>{
   try{
     const url=issueUrl($('storyName').value,$('storyTopic').value,
       $('storyBody').value,$('storyConsent').checked,$('storyAirTime').value);
-    $('storyStatus').textContent='Opening GitHub. Sign in and click Submit new issue to actually send your story.';
+    $('storyStatus').textContent='GitHub에서 로그인 → 📎 Attach files로 파일 선택 → Submit new issue를 눌러 접수를 완료하세요. 파일은 공개됩니다.';
     // Submit only from a direct click; never auto-post user content.
     window.location.assign(url);
   }catch(err){$('storyStatus').textContent=err.message;}

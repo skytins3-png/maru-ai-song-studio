@@ -44,6 +44,16 @@
           <span>＋ 내 노래 불러오기</span>
           <input id="localFiles" type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.flac" multiple>
         </label>
+        <nav class="radio-submit-actions" aria-label="청취자 및 관리자 접수">
+          <a class="radio-submit-action listener" href="stories.html">
+            <span class="submit-icon" aria-hidden="true">✉</span>
+            <span><strong>시청자 사연 + 사진·영상·노래 보내기</strong><small>공개 GitHub 첨부 · 운영자 검토 후 방송</small></span>
+          </a>
+          <a class="radio-submit-action owner" href="admin.html">
+            <span class="submit-icon" aria-hidden="true">⬆</span>
+            <span><strong>형의 곡 + 표지 올리기</strong><small>관리자 전용 · 공개 음악 목록에 등록</small></span>
+          </a>
+        </nav>
         <p id="status" class="radio-status" aria-live="polite">라디오 준비 중…</p>
         <p id="currentLine" class="radio-current-line" aria-live="polite">재생을 누르면 아환이 인사합니다.</p>
         <audio id="radioAudio" controls preload="none" aria-label="원곡 오디오 재생" hidden></audio>
