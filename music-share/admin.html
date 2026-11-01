@@ -24,6 +24,7 @@
       <label>곡 제목<input id="title" maxlength="120" placeholder="곡 제목"></label>
       <label>아티스트 / 작곡가<input id="artist" maxlength="120" placeholder="예: 아환"></label>
       <label>음악 분류<select id="genre"><option value="auto" selected>자동 제안 (제목 기준)</option><option value="korean">한국곡</option><option value="chinese">중국곡</option><option value="western">서양곡</option><option value="instrumental">연주곡</option><option value="other">미분류</option></select></label>
+      <label>노래 스타일<select id="style"><option value="auto" selected>자동 제안 (제목 기준)</option><option value="trot">트로트</option><option value="ballad">발라드</option><option value="dance">댄스</option><option value="rock">록</option><option value="folk">포크</option><option value="other">기타</option></select></label>
       <label>곡 설명<textarea id="description" maxlength="700" placeholder="곡 소개 또는 짧은 설명"></textarea></label>
       <label>표지 이미지 · 선택<input id="cover" type="file" accept=".jpg,.jpeg,.png,.webp,.gif,.avif"></label>
       <label>음악 파일<input id="audio" type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.flac"></label>
@@ -43,8 +44,8 @@
   </div>
   <script src="common.js?v=2"></script>
   <script src="safe-media.js?v=1"></script>
-  <script src="genre-core.js?v=1"></script>
+  <script src="genre-core.js?v=2"></script>
   <script src="local-preview.js?v=1"></script>
-  <script src="admin.js?v=4"></script>
+  <script src="admin.js?v=5"></script>
 </body>
 </html>
