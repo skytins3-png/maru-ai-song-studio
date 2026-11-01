@@ -11,7 +11,7 @@ function assessMedia(issue){
   return {safe:false};
  const body=issue.body.replace(/\r\n/g,'\n').trim();
  const headings=Array.from(body.matchAll(/^## ([^\n]+)\n/gm));
- if(headings.length!==FIELDS.length||headings.some((m,i)=>m[1]!==FIELDS[i]))return {safe:false};
+ if(headings.length!==FIELDS.length||headings[0].index!==0||headings.some((m,i)=>m[1]!==FIELDS[i]))return {safe:false};
  const blocks=headings.map((h,i)=>body.slice(h.index+h[0].length,
    i+1<headings.length?headings[i+1].index:body.length).trim());
  const [type,name,title,creator,description,rights,airtime,consent]=blocks;
