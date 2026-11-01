@@ -68,6 +68,12 @@
               <option value="western">서양곡</option><option value="instrumental">연주곡</option>
               <option value="other">미분류</option>
             </select>
+            <label class="radio-setting" for="radioStyle">노래 스타일</label>
+            <select id="radioStyle" class="radio-category" aria-label="노래 스타일">
+              <option value="all">모든 스타일</option><option value="trot">트로트 모음</option>
+              <option value="ballad">발라드 모음</option><option value="dance">댄스곡 모음</option>
+              <option value="rock">록 모음</option><option value="folk">포크 모음</option>
+            </select>
             <label class="radio-setting"><input type="checkbox" id="talkEnabled" checked> 아환과 DJ 토크</label>
             <label class="radio-setting"><input type="checkbox" id="storiesEnabled" checked> 승인된 사연 읽기</label>
             <label class="radio-setting"><input id="dailyEnabled" type="checkbox" checked> 날씨·뉴스 토크</label>
@@ -102,10 +108,10 @@
   </main>
   <footer>MARU RADIO · 내 음악과 승인된 사연으로 듣는 웹 미리듣기</footer>
   <script src="story-guard.js?v=1"></script>
-  <script src="genre-core.js?v=1"></script>
+  <script src="genre-core.js?v=2"></script>
   <script src="radio-core.js?v=3"></script>
   <script src="radio-daily.js?v=2"></script>
-  <script src="radio.js?v=6"></script>
+  <script src="radio.js?v=7"></script>
   <script src="guest-intake-link.js?v=1"></script>
 </body>
 </html>
