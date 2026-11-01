@@ -1,54 +1,75 @@
 {
-  "generatedAt": "2026-11-01T06:12:58+00:00",
+  "generatedAt": "2026-11-01T15:14:15+00:00",
   "timezone": "Asia/Seoul",
   "weather": {
     "Daejeon": {
       "city": "Daejeon",
-      "temperatureC": 11.0,
-      "windKmh": 0.7,
-      "weatherCode": 3,
-      "observedLocal": "2026-11-01T15:00",
+      "temperatureC": 9.3,
+      "windKmh": 3.7,
+      "weatherCode": 2,
+      "observedLocal": "2026-11-02T00:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Seoul": {
       "city": "Seoul",
-      "temperatureC": 10.1,
-      "windKmh": 3.3,
-      "weatherCode": 3,
-      "observedLocal": "2026-11-01T15:00",
+      "temperatureC": 8.4,
+      "windKmh": 2.5,
+      "weatherCode": 1,
+      "observedLocal": "2026-11-02T00:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Busan": {
       "city": "Busan",
-      "temperatureC": 17.4,
-      "windKmh": 3.5,
-      "weatherCode": 2,
-      "observedLocal": "2026-11-01T15:00",
+      "temperatureC": 13.6,
+      "windKmh": 8.9,
+      "weatherCode": 61,
+      "observedLocal": "2026-11-02T00:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Incheon": {
       "city": "Incheon",
-      "temperatureC": 10.0,
-      "windKmh": 12.1,
-      "weatherCode": 51,
-      "observedLocal": "2026-11-01T15:00",
+      "temperatureC": 7.8,
+      "windKmh": 7.3,
+      "weatherCode": 1,
+      "observedLocal": "2026-11-02T00:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Daegu": {
       "city": "Daegu",
-      "temperatureC": 12.6,
-      "windKmh": 1.9,
-      "weatherCode": 3,
-      "observedLocal": "2026-11-01T15:00",
+      "temperatureC": 10.0,
+      "windKmh": 4.3,
+      "weatherCode": 55,
+      "observedLocal": "2026-11-02T00:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     }
   },
   "news": [
+    {
+      "title": "Crypto firm Binance covers 90% of losses after $6.3bn hack",
+      "url": "https://www.bbc.co.uk/news/articles/ckpdg3ql4169o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-01T13:11:37+00:00"
+    },
+    {
+      "title": "Shops looted as German cost-of-living protests turn violent",
+      "url": "https://www.bbc.co.uk/news/articles/cqj34gnd3n30o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-01T11:57:48+00:00"
+    },
+    {
+      "title": "India's opposition holds mega rally seeking election chief's resignation",
+      "url": "https://www.bbc.co.uk/news/articles/c60qk92dvlwgo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-01T07:00:55+00:00"
+    },
     {
       "title": "Democrats are used to heartbreak in Texas - could Talarico turn the tide?",
       "url": "https://www.bbc.co.uk/news/articles/cmy0r2y6zeddo?at_medium=RSS&at_campaign=rss",
@@ -57,11 +78,11 @@
       "publishedAt": "2026-11-01T06:03:57+00:00"
     },
     {
-      "title": "Shops looted as German cost of living protests turn violent",
-      "url": "https://www.bbc.co.uk/news/articles/cqj34gnd3n30o?at_medium=RSS&at_campaign=rss",
+      "title": "Watch: Heidi Klum as giant severed hand for Halloween bash",
+      "url": "https://www.bbc.co.uk/news/videos/cj040yd1xdrlo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-01T01:59:57+00:00"
+      "publishedAt": "2026-11-01T05:26:02+00:00"
     },
     {
       "title": "These firms you've never heard of are feeding fears the AI bubble could burst",
@@ -78,11 +99,25 @@
       "publishedAt": "2026-11-01T00:55:06+00:00"
     },
     {
-      "title": "India's opposition set to hold mega rally seeking election chief's resignation",
-      "url": "https://www.bbc.co.uk/news/articles/c60qk92dvlwgo?at_medium=RSS&at_campaign=rss",
+      "title": "Alaska Senate candidate denies knowing about alleged plot to put two Dan Sullivans on ballot",
+      "url": "https://www.bbc.co.uk/news/articles/cmwyq2gg1yzzo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-01T00:12:07+00:00"
+      "publishedAt": "2026-11-01T00:46:12+00:00"
+    },
+    {
+      "title": "Judge dismisses Trump's lawsuit against Wall Street Journal over Epstein birthday book",
+      "url": "https://www.bbc.co.uk/news/articles/cwr5yj2lj9myo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-01T00:41:24+00:00"
+    },
+    {
+      "title": "Judge orders Trump administration to stop threatening US election officials",
+      "url": "https://www.bbc.co.uk/news/articles/c8qln1539y37o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-01T00:27:33+00:00"
     },
     {
       "title": "I've been stuck on a tiny Pacific island for years and can't get a transit visa to fly home",
@@ -92,46 +127,11 @@
       "publishedAt": "2026-10-31T23:06:13+00:00"
     },
     {
-      "title": "Crypto firm Binance covers 90% of losses after $6.3bn hack",
-      "url": "https://www.bbc.co.uk/news/articles/ckpdg3ql4169o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-10-31T22:11:45+00:00"
-    },
-    {
       "title": "Thousands demonstrate in Paris as protests spread across Europe",
       "url": "https://www.bbc.co.uk/news/videos/ck0j0y87j303o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
       "publishedAt": "2026-10-31T21:29:01+00:00"
-    },
-    {
-      "title": "'We came back from hell', say Ukrainians after years in Russia-occupied front-line city",
-      "url": "https://www.bbc.co.uk/news/articles/cqglw3k7djp1o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-10-31T19:22:26+00:00"
-    },
-    {
-      "title": "Ukrainian evacuees reunite with family after years trapped in Russia-occupied city",
-      "url": "https://www.bbc.co.uk/news/articles/cqx2818elrnzo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-10-31T17:53:35+00:00"
-    },
-    {
-      "title": "Emotional reunions with loved ones for Oleshky evacuees",
-      "url": "https://www.bbc.co.uk/news/videos/cmy83w0jwznpo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-10-31T16:55:47+00:00"
-    },
-    {
-      "title": "More than 5,000 die from Ebola in DR Congo's deadliest outbreak",
-      "url": "https://www.bbc.co.uk/news/articles/cj5ynryyep2yo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-10-31T15:16:20+00:00"
     }
   ]
 }
