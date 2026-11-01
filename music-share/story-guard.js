@@ -34,26 +34,41 @@ function assess(name,title,body){
    name:clean(name,40)||'Anonymous listener',
    title:clean(title,100),story:clean(body,1200)};
 }
+// A requested time is a proposal, never permission to bypass producer review.
+// KST is explicit to prevent ambiguous local-time interpretations.
+function parseKstSlot(value){
+ const v=String(value||'').trim();
+ if(!v)return '';
+ if(!/^20\d{2}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\d|3[01])T(?:[01]\d|2[0-3]):[0-5]\d$/.test(v))return null;
+ const [y,mo,d,h,mi]=v.match(/\d+/g).map(Number);
+ const utc=Date.UTC(y,mo-1,d,h-9,mi);
+ if(!Number.isFinite(utc)||new Date(utc+9*3600000).toISOString().slice(0,16)!==v)return null;
+ return new Date(utc).toISOString();
+}
 function parseStoryIssue(issue){
  if(!issue||issue.pull_request||typeof issue.title!=='string'||!/^\[STORY\]\s/.test(issue.title)||typeof issue.body!=='string')
   return null;
  const body=issue.body;
  const nameMatch=body.match(/^## Listener name\s*\r?\n([^\r\n]*)/m);
- const storyMatch=body.match(/^## Story\s*\r?\n([\s\S]*?)(?:\r?\n## Permission|$)/m);
+ const storyMatch=body.match(/^## Story\s*\r?\n([\s\S]*?)(?:\r?\n## Requested airtime KST|\r?\n## Permission|$)/m);
  if(!storyMatch)return null;
  const consentA=body.includes('- [x] I have permission to submit this story for public posting and radio reading.');
  const consentB=body.includes('- [x] I understand this GitHub Issue is publicly visible.');
+ const airMatch=body.match(/^## Requested airtime KST\s*\r?\n([^\r\n]*)/m);
  return {name:nameMatch?.[1]||'Anonymous listener',
   title:issue.title.slice('[STORY] '.length),story:storyMatch[1].trim(),
+  requestedKst:airMatch?airMatch[1].trim():'',
   consent:consentA&&consentB};
 }
 function evaluateIssue(issue){
  const parsed=parseStoryIssue(issue);
  if(!parsed)return {safe:false,reasons:['Not a valid MARU listener story.']};
  if(!parsed.consent)return {safe:false,reasons:['Public reading and publication consent are required.']};
- return assess(parsed.name,parsed.title,parsed.story);
+ const slot=parseKstSlot(parsed.requestedKst);
+ if(slot===null)return {safe:false,reasons:['Invalid KST broadcast request.']};
+ return {...assess(parsed.name,parsed.title,parsed.story),scheduledAt:slot};
 }
-const guard={assess,parseStoryIssue,evaluateIssue,clean};
+const guard={assess,parseStoryIssue,evaluateIssue,parseKstSlot,clean};
 root.MaruStoryGuard=guard;
 if(typeof module!=='undefined'&&module.exports)module.exports=guard;
 })(typeof globalThis!=='undefined'?globalThis:this);
