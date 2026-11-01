@@ -1,0 +1,22 @@
+# Copy to wrangler.toml and replace database_id with your real D1 ID.
+name = "maru-guest-intake"
+main = "src/worker.mjs"
+compatibility_date = "2026-11-01"
+workers_dev = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "maru-stories-private"
+database_id = "REPLACE_WITH_REAL_D1_DATABASE_ID"
+
+[[r2_buckets]]
+binding = "QUARANTINE"
+bucket_name = "maru-story-quarantine-private"
+
+[[ratelimits]]
+name = "RATE_LIMITER"
+namespace_id = "1001"
+
+  [ratelimits.simple]
+  limit = 5
+  period = 60
