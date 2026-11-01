@@ -169,7 +169,7 @@ function dueStory(stories,played,now){
  const t=Number.isFinite(now)?now:Date.now();
  const pending=stories.filter(x=>x&&Number.isSafeInteger(x.id)&&!played.has(x.id));
  const due=pending.filter(x=>{
-  if(typeof x.scheduledAt!=='string'||!/^20\\d{2}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:00\\.000Z$/.test(x.scheduledAt))return false;
+  if(typeof x.scheduledAt!=='string'||!/^20\d{2}-\d{2}-\d{2}T\d{2}:\d{2}:00\.000Z$/.test(x.scheduledAt))return false;
   const at=Date.parse(x.scheduledAt);
   return Number.isFinite(at)&&t>=at&&t-at<=30*60000;
  }).sort((a,b)=>Date.parse(a.scheduledAt)-Date.parse(b.scheduledAt));
