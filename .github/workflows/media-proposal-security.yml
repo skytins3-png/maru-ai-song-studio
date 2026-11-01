@@ -22,6 +22,27 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Prepare media TEXT review labels (not antivirus or rights approval)
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          for name in media-screened media-quarantine; do
+            if gh api "repos/$GITHUB_REPOSITORY/labels/$name" >/dev/null 2>&1; then
+              continue
+            fi
+            if [ "$name" = "media-screened" ]; then
+              color='4B83A8'
+              note='Public form text screened only; NOT file antivirus or copyright approval'
+            else
+              color='B85454'
+              note='Media request unsafe or malformed; NOT for broadcast'
+            fi
+            gh api --method POST "repos/$GITHUB_REPOSITORY/labels" \
+              -f name="$name" -f color="$color" -f description="$note" >/dev/null \
+              || gh api "repos/$GITHUB_REPOSITORY/labels/$name" >/dev/null
+          done
       - name: Screen public proposal metadata only
         env:
           GITHUB_TOKEN: ${{ github.token }}
