@@ -149,7 +149,7 @@ export default {
     "vary":"Origin"}});
   }
   if(req.method==="GET"&&url.pathname==="/health")
-    return json({ready:!!(env.DB&&env.QUARANTINE&&env.TURNSTILE_SECRET&&env.RATE_LIMITER)});
+    return json({ready:!!(env.DB&&env.QUARANTINE&&env.TURNSTILE_SECRET&&env.RATE_LIMITER)},200,origin);
   if(req.method!=="POST"||url.pathname!=="/api/stories")return json({error:"Not found"},404);
   if(origin!==ORIGIN)return json({error:"허용되지 않은 출처입니다."},403);
   try{return json(await submit(req,env),201,origin)}
