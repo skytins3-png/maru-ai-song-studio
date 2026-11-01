@@ -10,7 +10,10 @@ let lastCatalogRefresh=0,lastIssueRefresh=0,lastDailyRefresh=0,dailyData=null,di
 const status=message=>{$('status').textContent=message};
 const playable=()=>[...localTracks,...publicTracks].filter(x=>!unplayable.has(x.id)).filter(x=>{
  const region=$('radioGenre').value||'all',style=$('radioStyle').value||'all';
- return globalThis.MaruGenres.matches(x,region,style);
+ const g=globalThis.MaruGenres;
+ if(g&&typeof g.matches==='function')return g.matches(x,region,style);
+ // Keep old isolated radio clients/tests safe when the genre helper is absent.
+ return region==='all'&&style==='all';
 });
 const info=()=>{
  const all=playable();
