@@ -9,6 +9,7 @@ on:
       - 'tests/music-share-radio.test.cjs'
       - 'tests/music-share-radio-local.test.cjs'
       - 'tests/music-share-radio-simple.test.cjs'
+      - 'tests/music-share-collections.test.cjs'
       - 'tests/music-share-batch.test.cjs'
       - 'tests/music-share-security.test.cjs'
       - 'tests/music-share-daily.test.cjs'
@@ -32,6 +33,7 @@ on:
       - 'tests/music-share-radio.test.cjs'
       - 'tests/music-share-radio-local.test.cjs'
       - 'tests/music-share-radio-simple.test.cjs'
+      - 'tests/music-share-collections.test.cjs'
       - 'tests/music-share-batch.test.cjs'
       - 'tests/music-share-security.test.cjs'
       - 'tests/music-share-daily.test.cjs'
@@ -59,7 +61,7 @@ jobs:
       - name: Test private anonymous intake and fail-closed media quarantine
         run: node --test guest-intake/tests/worker.test.mjs
       - name: Test existing uploads, downloads, privacy filters and public stories
-        run: node --test tests/music-share.test.cjs tests/music-share-stories.test.cjs tests/music-share-radio.test.cjs tests/music-share-batch.test.cjs tests/music-share-radio-local.test.cjs tests/music-share-radio-simple.test.cjs tests/music-share-security.test.cjs tests/music-share-daily.test.cjs tests/music-share-scheduling.test.cjs tests/music-share-listener-guide.test.cjs
+        run: node --test tests/music-share.test.cjs tests/music-share-stories.test.cjs tests/music-share-radio.test.cjs tests/music-share-batch.test.cjs tests/music-share-radio-local.test.cjs tests/music-share-radio-simple.test.cjs tests/music-share-collections.test.cjs tests/music-share-security.test.cjs tests/music-share-daily.test.cjs tests/music-share-scheduling.test.cjs tests/music-share-listener-guide.test.cjs
       - name: Fail-closed quarantine policy tests (no scanner server needed)
         run: python3 -m unittest discover -s tests -p 'test_scan_quarantined_media.py'
       - name: Verify Open-Meteo and BBC feed parsing with offline fixtures
