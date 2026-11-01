@@ -30,8 +30,9 @@ async function processEvent(event){
  const num=Number(event?.issue?.number);
  if(!Number.isSafeInteger(num)||num<1)return;
  const issue=await api('/issues/'+num);
- if(!issue||issue.pull_request||!String(issue.title||'').startsWith('[MEDIA-REVIEW] '))return;
+ if(!issue||issue.pull_request)return;
  const existing=new Set((issue.labels||[]).map(x=>typeof x==='string'?x:x.name));
+ if(!String(issue.title||'').startsWith('[MEDIA-REVIEW] ')&& !existing.has('media-screened')&&!existing.has('media-quarantine'))return;
  if(issue.state==='open'&&guard.assessMedia(issue).safe){
   await remove(num,'media-quarantine',existing);
   await add(num,'media-screened',existing);
