@@ -21,6 +21,14 @@ class MediaGateTests(unittest.TestCase):
    with self.assertRaisesRegex(ValueError,"Disallowed"):scan.source_file(root,root/"bad.exe")
    (root/"alias.mp3").symlink_to(root/"legit.mp3")
    with self.assertRaisesRegex(ValueError,"Symlink"):scan.source_file(root,root/"alias.mp3")
+ def test_audio_only_video_container_is_rejected(self):
+  from unittest.mock import patch
+  class Result:
+   returncode=0
+   stdout='{"streams":[{"codec_type":"audio","codec_name":"aac"}],"format":{"duration":"20"}}'
+  with patch.object(scan,"run_checked",return_value=Result()):
+   with self.assertRaisesRegex(ValueError,"Expected audio/video stream"):
+    scan.inspect_probe(Path("/tmp/fake.mp4"),"video","ffprobe")
  def test_scanner_failure_defaults_closed(self):
   with tempfile.TemporaryDirectory() as d:
    path=Path(d)/"track.mp3";path.write_bytes(b"ID3"+b"\0"*40)
