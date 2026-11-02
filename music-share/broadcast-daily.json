@@ -1,67 +1,95 @@
 {
-  "generatedAt": "2026-11-01T20:32:07+00:00",
+  "generatedAt": "2026-11-02T06:13:57+00:00",
   "timezone": "Asia/Seoul",
   "weather": {
     "Daejeon": {
       "city": "Daejeon",
-      "temperatureC": 8.4,
-      "windKmh": 0.4,
-      "weatherCode": 3,
-      "observedLocal": "2026-11-02T05:30",
+      "temperatureC": 15.0,
+      "windKmh": 20.2,
+      "weatherCode": 0,
+      "observedLocal": "2026-11-02T15:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Seoul": {
       "city": "Seoul",
-      "temperatureC": 8.4,
-      "windKmh": 2.5,
-      "weatherCode": 3,
-      "observedLocal": "2026-11-02T05:30",
+      "temperatureC": 13.4,
+      "windKmh": 9.3,
+      "weatherCode": 0,
+      "observedLocal": "2026-11-02T15:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Busan": {
       "city": "Busan",
-      "temperatureC": 11.7,
-      "windKmh": 6.6,
-      "weatherCode": 1,
-      "observedLocal": "2026-11-02T05:30",
+      "temperatureC": 18.4,
+      "windKmh": 10.6,
+      "weatherCode": 0,
+      "observedLocal": "2026-11-02T15:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Incheon": {
       "city": "Incheon",
-      "temperatureC": 8.2,
-      "windKmh": 10.8,
-      "weatherCode": 2,
-      "observedLocal": "2026-11-02T05:30",
+      "temperatureC": 13.1,
+      "windKmh": 19.3,
+      "weatherCode": 0,
+      "observedLocal": "2026-11-02T15:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Daegu": {
       "city": "Daegu",
-      "temperatureC": 9.1,
-      "windKmh": 6.4,
-      "weatherCode": 1,
-      "observedLocal": "2026-11-02T05:30",
+      "temperatureC": 16.4,
+      "windKmh": 13.4,
+      "weatherCode": 0,
+      "observedLocal": "2026-11-02T15:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     }
   },
   "news": [
     {
-      "title": "Democrat endorses Republican candidate in key Michigan Senate race as party spat escalates",
+      "title": "Binance users withdraw $3.6bn after record crypto hack",
+      "url": "https://www.bbc.co.uk/news/articles/cwj34gdmnly4o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "Technology",
+      "publishedAt": "2026-11-02T03:32:14+00:00"
+    },
+    {
+      "title": "Democrat endorses Republican candidate in key Michigan Senate race as party spat erupts",
       "url": "https://www.bbc.co.uk/news/articles/c95ynzv88n68o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-01T20:11:26+00:00"
+      "publishedAt": "2026-11-02T01:45:42+00:00"
     },
     {
-      "title": "Russian strikes cut power to thousands in Ukraine as Kherson ceasefire to end",
+      "title": "Ukraine air raid app apparently hacked as users receive false radiation threat, Air Force says",
+      "url": "https://www.bbc.co.uk/news/articles/c51kdy1ew7zvo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-02T01:18:27+00:00"
+    },
+    {
+      "title": "Democrats have high hopes for midterms, but polls have let them down before",
+      "url": "https://www.bbc.co.uk/news/articles/cmg47p3edv4do?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-02T00:25:12+00:00"
+    },
+    {
+      "title": "France launches attempted murder investigation after petrol bomb thrown at police",
+      "url": "https://www.bbc.co.uk/news/articles/cwvg05z184j0o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-02T00:15:30+00:00"
+    },
+    {
+      "title": "Russian strikes cut power to thousands in Ukraine as Kherson ceasefire ends",
       "url": "https://www.bbc.co.uk/news/articles/c64g1y90p71eo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-01T19:48:17+00:00"
+      "publishedAt": "2026-11-01T21:55:01+00:00"
     },
     {
       "title": "Peaceful protests in Germany spiral into violence and looting",
@@ -104,34 +132,6 @@
       "source": "BBC News",
       "category": "World",
       "publishedAt": "2026-11-01T13:11:37+00:00"
-    },
-    {
-      "title": "Shops looted as German cost-of-living protests turn violent",
-      "url": "https://www.bbc.co.uk/news/articles/cqj34gnd3n30o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-01T11:57:48+00:00"
-    },
-    {
-      "title": "India's opposition holds mega rally seeking election chief's resignation",
-      "url": "https://www.bbc.co.uk/news/articles/c60qk92dvlwgo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-01T07:00:55+00:00"
-    },
-    {
-      "title": "Democrats are used to heartbreak in Texas - could Talarico turn the tide?",
-      "url": "https://www.bbc.co.uk/news/articles/cmy0r2y6zeddo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-01T06:03:57+00:00"
-    },
-    {
-      "title": "Watch: Heidi Klum as giant severed hand for Halloween bash",
-      "url": "https://www.bbc.co.uk/news/videos/cj040yd1xdrlo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-01T05:26:02+00:00"
     }
   ]
 }
