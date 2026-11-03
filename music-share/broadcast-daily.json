@@ -1,137 +1,137 @@
 {
-  "generatedAt": "2026-11-02T18:26:44+00:00",
+  "generatedAt": "2026-11-03T02:23:10+00:00",
   "timezone": "Asia/Seoul",
   "weather": {
     "Daejeon": {
       "city": "Daejeon",
-      "temperatureC": 4.4,
-      "windKmh": 6.0,
+      "temperatureC": 13.6,
+      "windKmh": 4.0,
       "weatherCode": 0,
-      "observedLocal": "2026-11-03T03:15",
+      "observedLocal": "2026-11-03T11:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Seoul": {
       "city": "Seoul",
-      "temperatureC": 6.0,
-      "windKmh": 4.6,
-      "weatherCode": 0,
-      "observedLocal": "2026-11-03T03:15",
+      "temperatureC": 10.5,
+      "windKmh": 6.1,
+      "weatherCode": 1,
+      "observedLocal": "2026-11-03T11:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Busan": {
       "city": "Busan",
-      "temperatureC": 9.1,
-      "windKmh": 8.3,
+      "temperatureC": 16.5,
+      "windKmh": 8.0,
       "weatherCode": 0,
-      "observedLocal": "2026-11-03T03:15",
+      "observedLocal": "2026-11-03T11:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Incheon": {
       "city": "Incheon",
-      "temperatureC": 5.2,
-      "windKmh": 10.6,
+      "temperatureC": 11.6,
+      "windKmh": 16.9,
       "weatherCode": 0,
-      "observedLocal": "2026-11-03T03:15",
+      "observedLocal": "2026-11-03T11:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Daegu": {
       "city": "Daegu",
-      "temperatureC": 7.6,
-      "windKmh": 5.2,
+      "temperatureC": 13.4,
+      "windKmh": 4.0,
       "weatherCode": 0,
-      "observedLocal": "2026-11-03T03:15",
+      "observedLocal": "2026-11-03T11:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     }
   },
   "news": [
     {
-      "title": "If hackers can take control of a supermarket freezer, how vulnerable is other tech?",
-      "url": "https://www.bbc.co.uk/news/articles/ckpqg8lve73go?at_medium=RSS&at_campaign=rss",
+      "title": "Man and boy arrested after allegedly attacking One Nation volunteer with baseball bat in Australia",
+      "url": "https://www.bbc.co.uk/news/articles/cwly3jd27m9xo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
-      "category": "Technology",
-      "publishedAt": "2026-11-02T18:25:01+00:00"
+      "category": "World",
+      "publishedAt": "2026-11-03T01:57:46+00:00"
     },
     {
-      "title": "Russian bombing kills 18 people at Ukraine aid centre, Kyiv says",
+      "title": "Russian bombing kills 26 people at Ukraine aid centre, Kyiv says",
       "url": "https://www.bbc.co.uk/news/articles/cjy56dndlyz0o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-02T18:01:13+00:00"
+      "publishedAt": "2026-11-03T01:56:27+00:00"
     },
     {
-      "title": "Shop freezers in seven European countries hit by cyber-attack",
-      "url": "https://www.bbc.co.uk/news/articles/cq1kd1nee80eo?at_medium=RSS&at_campaign=rss",
+      "title": "North Korea denies being behind record $6.3bn Binance hack",
+      "url": "https://www.bbc.co.uk/news/articles/c6rey4v53exgo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-02T17:38:11+00:00"
+      "publishedAt": "2026-11-03T01:23:03+00:00"
     },
     {
-      "title": "'All this food is now useless': Piles of rubbish after shop freezers hit by cyber-attack",
-      "url": "https://www.bbc.co.uk/news/videos/cmwyvrgk9p0ro?at_medium=RSS&at_campaign=rss",
+      "title": "Apple unsure when more foldable iPhones will be available after selling out",
+      "url": "https://www.bbc.co.uk/news/articles/c6n8dn457ypko?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-02T17:34:58+00:00"
+      "category": "Technology",
+      "publishedAt": "2026-11-03T00:29:00+00:00"
     },
     {
-      "title": "Fighting returns to Kherson region after longest Ukraine war ceasefire",
-      "url": "https://www.bbc.co.uk/news/articles/ckg5jlyp66jzo?at_medium=RSS&at_campaign=rss",
+      "title": "Indian film star Ranbir Kapoor on AI, movies and fatherhood",
+      "url": "https://www.bbc.co.uk/news/videos/cmvg9w5w2p1no?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-02T17:33:19+00:00"
+      "publishedAt": "2026-11-03T00:09:13+00:00"
     },
     {
-      "title": "Dutch police offer record €2m reward in hunt for drug lord",
-      "url": "https://www.bbc.co.uk/news/articles/ckly0v2q2yxlo?at_medium=RSS&at_campaign=rss",
+      "title": "Plane may have broken apart ahead of deadly Florida jet crash, say investigators",
+      "url": "https://www.bbc.co.uk/news/articles/cm369yy7lw73o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-02T17:29:49+00:00"
+      "publishedAt": "2026-11-03T00:08:14+00:00"
     },
     {
-      "title": "Wizz Air flight from Luton in emergency landing after bomb threat",
-      "url": "https://www.bbc.co.uk/news/articles/c6rryvwre0p5o?at_medium=RSS&at_campaign=rss",
+      "title": "Thousands of European troops to rehearse Ukraine deployment in event of peace",
+      "url": "https://www.bbc.co.uk/news/articles/cm3wv085ne6po?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-02T14:35:38+00:00"
+      "publishedAt": "2026-11-03T00:07:05+00:00"
     },
     {
-      "title": "Fake nuclear warnings issued after Ukrainian and Russian air alert apps hacked",
-      "url": "https://www.bbc.co.uk/news/articles/c51kdy1ew7zvo?at_medium=RSS&at_campaign=rss",
+      "title": "Legal challenge to Australia's social media ban to start in High Court",
+      "url": "https://www.bbc.co.uk/news/articles/ck79py02p1jlo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-02T14:35:01+00:00"
+      "publishedAt": "2026-11-02T23:37:31+00:00"
     },
     {
-      "title": "What we know about the alert app hack in Ukraine and Russia",
-      "url": "https://www.bbc.co.uk/news/videos/crq5n6204g20o?at_medium=RSS&at_campaign=rss",
+      "title": "Indonesia's toxic haze is giving its neighbours a political headache",
+      "url": "https://www.bbc.co.uk/news/articles/c3dxwzjn2gw8o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-02T14:24:25+00:00"
+      "publishedAt": "2026-11-02T23:02:01+00:00"
     },
     {
-      "title": "A Paralympian vs a former TV news anchor - and other US Senate races to watch",
-      "url": "https://www.bbc.co.uk/news/articles/cqy7ljkprvjko?at_medium=RSS&at_campaign=rss",
+      "title": "US midterms campaign 'shattering' spending records to be most expensive ever",
+      "url": "https://www.bbc.co.uk/news/articles/cqkgk64z7p58o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-02T13:49:19+00:00"
+      "publishedAt": "2026-11-02T20:54:44+00:00"
     },
     {
-      "title": "Ryanair says it may freeze workers' pay and raise airfares",
-      "url": "https://www.bbc.co.uk/news/articles/cr0qkve1x224o?at_medium=RSS&at_campaign=rss",
+      "title": "Man guilty of stealing cash from farm owned by South African president",
+      "url": "https://www.bbc.co.uk/news/articles/c9vgrvpk4l6eo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-02T12:22:10+00:00"
+      "publishedAt": "2026-11-02T20:08:51+00:00"
     },
     {
-      "title": "Uganda begins withdrawing troops from Somalia after 20 years",
-      "url": "https://www.bbc.co.uk/news/articles/c8zxlqxwed4do?at_medium=RSS&at_campaign=rss",
+      "title": "What Florida jet audio and flight data tells us about its final moments",
+      "url": "https://www.bbc.co.uk/news/videos/c52e9lgxjz82o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-02T12:05:34+00:00"
+      "publishedAt": "2026-11-02T19:49:22+00:00"
     }
   ]
 }
