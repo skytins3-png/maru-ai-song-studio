@@ -1,137 +1,137 @@
 {
-  "generatedAt": "2026-11-04T00:38:38+00:00",
+  "generatedAt": "2026-11-04T12:13:06+00:00",
   "timezone": "Asia/Seoul",
   "weather": {
     "Daejeon": {
       "city": "Daejeon",
       "temperatureC": 10.2,
-      "windKmh": 4.3,
-      "weatherCode": 2,
-      "observedLocal": "2026-11-04T09:30",
+      "windKmh": 7.2,
+      "weatherCode": 0,
+      "observedLocal": "2026-11-04T21:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Seoul": {
       "city": "Seoul",
-      "temperatureC": 9.5,
-      "windKmh": 5.4,
-      "weatherCode": 2,
-      "observedLocal": "2026-11-04T09:30",
+      "temperatureC": 10.5,
+      "windKmh": 4.0,
+      "weatherCode": 1,
+      "observedLocal": "2026-11-04T21:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Busan": {
       "city": "Busan",
       "temperatureC": 15.1,
-      "windKmh": 6.2,
+      "windKmh": 5.5,
       "weatherCode": 1,
-      "observedLocal": "2026-11-04T09:30",
+      "observedLocal": "2026-11-04T21:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Incheon": {
       "city": "Incheon",
-      "temperatureC": 10.3,
-      "windKmh": 10.8,
-      "weatherCode": 2,
-      "observedLocal": "2026-11-04T09:30",
+      "temperatureC": 9.2,
+      "windKmh": 9.7,
+      "weatherCode": 1,
+      "observedLocal": "2026-11-04T21:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Daegu": {
       "city": "Daegu",
-      "temperatureC": 10.5,
-      "windKmh": 1.5,
-      "weatherCode": 2,
-      "observedLocal": "2026-11-04T09:30",
+      "temperatureC": 12.7,
+      "windKmh": 3.9,
+      "weatherCode": 1,
+      "observedLocal": "2026-11-04T21:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     }
   },
   "news": [
     {
-      "title": "Graduates are managing AI - but are they learning much else?",
-      "url": "https://www.bbc.co.uk/news/articles/c820vz6wyp65o?at_medium=RSS&at_campaign=rss",
+      "title": "Everything you need to know from the US midterm elections",
+      "url": "https://www.bbc.co.uk/news/articles/cmr4y92rgd9po?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
-      "category": "Technology",
-      "publishedAt": "2026-11-04T00:04:35+00:00"
+      "category": "World",
+      "publishedAt": "2026-11-04T12:01:07+00:00"
     },
     {
       "title": "ANC under pressure to reverse South Africa decline",
       "url": "https://www.bbc.co.uk/news/articles/cr4g1x6l77xyo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-04T00:03:19+00:00"
+      "publishedAt": "2026-11-04T11:47:44+00:00"
     },
     {
-      "title": "'I'm not a quitter': Kim Kardashian on retaking the bar exam",
-      "url": "https://www.bbc.co.uk/news/videos/cmy4x59kdknwo?at_medium=RSS&at_campaign=rss",
+      "title": "Rwanda's army team removed from Africa league after US sanctions, NBA says",
+      "url": "https://www.bbc.co.uk/news/articles/c699zdx9knmpo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-03T23:58:36+00:00"
+      "publishedAt": "2026-11-04T11:46:09+00:00"
     },
     {
-      "title": "Spanish transport minister resigns days after deadly train crash",
-      "url": "https://www.bbc.co.uk/news/articles/c6wydqd4yxdyo?at_medium=RSS&at_campaign=rss",
+      "title": "US contractor gave Ethiopia secrets to help kill Tigray fighters",
+      "url": "https://www.bbc.co.uk/news/articles/c6y8lz73vmv7o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-03T22:45:59+00:00"
+      "publishedAt": "2026-11-04T10:35:03+00:00"
     },
     {
-      "title": "NTSB says crucial plane parts found three miles from Florida crash site",
-      "url": "https://www.bbc.co.uk/news/articles/c9e8lk5dpj7no?at_medium=RSS&at_campaign=rss",
+      "title": "Iran's chief negotiator says Americans voted 'no to war'",
+      "url": "https://www.bbc.co.uk/news/articles/c6d934npl9y8o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-03T21:53:38+00:00"
+      "publishedAt": "2026-11-04T10:11:39+00:00"
     },
     {
-      "title": "Seven flights across Europe targeted by suspected bomb threats",
-      "url": "https://www.bbc.co.uk/news/articles/c6x2wd4v04eeo?at_medium=RSS&at_campaign=rss",
+      "title": "How America voted in maps and charts",
+      "url": "https://www.bbc.co.uk/news/articles/cm4g1j0n92qdo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-03T20:42:47+00:00"
+      "publishedAt": "2026-11-04T09:53:18+00:00"
     },
     {
-      "title": "Tech Life",
-      "url": "https://www.bbc.co.uk/sounds/play/w3ct8jyt?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "Technology",
-      "publishedAt": "2026-11-03T20:30:00+00:00"
-    },
-    {
-      "title": "Irish Olympian Ciara Mageean was a 'talented and inspirational human being'",
-      "url": "https://www.bbc.co.uk/news/articles/cw62ye1030njo?at_medium=RSS&at_campaign=rss",
+      "title": "Delhi air quality worsens ahead of Diwali as firework restrictions enter force",
+      "url": "https://www.bbc.co.uk/news/articles/c699z8792n7ro?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-03T17:07:28+00:00"
+      "publishedAt": "2026-11-04T07:39:38+00:00"
     },
     {
-      "title": "Death toll rises in Ukraine after Russia attacks aid centre, hospice and hospital",
-      "url": "https://www.bbc.co.uk/news/articles/c65ynez5y599o?at_medium=RSS&at_campaign=rss",
+      "title": "South Carolina elects Democratic senator for first time in almost three decades",
+      "url": "https://www.bbc.co.uk/news/articles/cjy56z440nl9o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-03T16:57:41+00:00"
+      "publishedAt": "2026-11-04T07:32:02+00:00"
     },
     {
-      "title": "Binance says fake job interviews used as part of $6.3bn crypto hack",
-      "url": "https://www.bbc.co.uk/news/articles/ck5ynwz9gy67o?at_medium=RSS&at_campaign=rss",
+      "title": "Florida Republicans fend off Democrats as state elects first black governor",
+      "url": "https://www.bbc.co.uk/news/articles/c9146d88pl32o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-03T16:19:29+00:00"
+      "publishedAt": "2026-11-04T07:12:21+00:00"
     },
     {
-      "title": "Mining giant joins fight to stop killer toad march across Australia",
-      "url": "https://www.bbc.co.uk/news/articles/c3dxw8p99ervo?at_medium=RSS&at_campaign=rss",
+      "title": "Anthony Zurcher: Democrats push deep into Trump heartland on historic night",
+      "url": "https://www.bbc.co.uk/news/articles/cwz0v5lv30lyo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-03T15:05:01+00:00"
+      "publishedAt": "2026-11-04T06:53:56+00:00"
     },
     {
-      "title": "Libya's top religious authority rules against wearing Nike clothes",
-      "url": "https://www.bbc.co.uk/news/articles/c5djv0p0re2no?at_medium=RSS&at_campaign=rss",
+      "title": "James Talarico becomes first Democrat to win Texas Senate seat since 1988",
+      "url": "https://www.bbc.co.uk/news/articles/c6n8dnn09jg7o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-03T14:56:46+00:00"
+      "publishedAt": "2026-11-04T05:39:36+00:00"
+    },
+    {
+      "title": "Weapon or wine bottle? China disputes reports of artillery shell in Papua New Guinea",
+      "url": "https://www.bbc.co.uk/news/articles/cm0qkxzv3j99o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-04T03:46:10+00:00"
     }
   ]
 }
