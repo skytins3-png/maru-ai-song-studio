@@ -1,137 +1,137 @@
 {
-  "generatedAt": "2026-11-04T12:13:06+00:00",
+  "generatedAt": "2026-11-04T19:50:12+00:00",
   "timezone": "Asia/Seoul",
   "weather": {
     "Daejeon": {
       "city": "Daejeon",
-      "temperatureC": 10.2,
-      "windKmh": 7.2,
-      "weatherCode": 0,
-      "observedLocal": "2026-11-04T21:00",
+      "temperatureC": 9.4,
+      "windKmh": 6.5,
+      "weatherCode": 61,
+      "observedLocal": "2026-11-05T04:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Seoul": {
       "city": "Seoul",
-      "temperatureC": 10.5,
-      "windKmh": 4.0,
-      "weatherCode": 1,
-      "observedLocal": "2026-11-04T21:00",
+      "temperatureC": 9.6,
+      "windKmh": 4.4,
+      "weatherCode": 2,
+      "observedLocal": "2026-11-05T04:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Busan": {
       "city": "Busan",
-      "temperatureC": 15.1,
-      "windKmh": 5.5,
-      "weatherCode": 1,
-      "observedLocal": "2026-11-04T21:00",
+      "temperatureC": 13.9,
+      "windKmh": 6.0,
+      "weatherCode": 63,
+      "observedLocal": "2026-11-05T04:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Incheon": {
       "city": "Incheon",
-      "temperatureC": 9.2,
-      "windKmh": 9.7,
-      "weatherCode": 1,
-      "observedLocal": "2026-11-04T21:00",
+      "temperatureC": 8.7,
+      "windKmh": 6.8,
+      "weatherCode": 2,
+      "observedLocal": "2026-11-05T04:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Daegu": {
       "city": "Daegu",
-      "temperatureC": 12.7,
-      "windKmh": 3.9,
-      "weatherCode": 1,
-      "observedLocal": "2026-11-04T21:00",
+      "temperatureC": 11.2,
+      "windKmh": 4.2,
+      "weatherCode": 55,
+      "observedLocal": "2026-11-05T04:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     }
   },
   "news": [
     {
-      "title": "Everything you need to know from the US midterm elections",
-      "url": "https://www.bbc.co.uk/news/articles/cmr4y92rgd9po?at_medium=RSS&at_campaign=rss",
+      "title": "US midterm results a 'victory' for Canadians hopeful of tariff relief",
+      "url": "https://www.bbc.co.uk/news/articles/cqev3mw3e0kdo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-04T12:01:07+00:00"
+      "publishedAt": "2026-11-04T18:01:31+00:00"
     },
     {
-      "title": "ANC under pressure to reverse South Africa decline",
-      "url": "https://www.bbc.co.uk/news/articles/cr4g1x6l77xyo?at_medium=RSS&at_campaign=rss",
+      "title": "Ukraine says bodycam video shows deadly Russian double-tap bombing",
+      "url": "https://www.bbc.co.uk/news/articles/c98rz6penv86o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-04T11:47:44+00:00"
-    },
-    {
-      "title": "Rwanda's army team removed from Africa league after US sanctions, NBA says",
-      "url": "https://www.bbc.co.uk/news/articles/c699zdx9knmpo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-04T11:46:09+00:00"
-    },
-    {
-      "title": "US contractor gave Ethiopia secrets to help kill Tigray fighters",
-      "url": "https://www.bbc.co.uk/news/articles/c6y8lz73vmv7o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-04T10:35:03+00:00"
+      "publishedAt": "2026-11-04T17:45:58+00:00"
     },
     {
       "title": "Iran's chief negotiator says Americans voted 'no to war'",
       "url": "https://www.bbc.co.uk/news/articles/c6d934npl9y8o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-04T10:11:39+00:00"
+      "publishedAt": "2026-11-04T16:59:15+00:00"
     },
     {
-      "title": "How America voted in maps and charts",
-      "url": "https://www.bbc.co.uk/news/articles/cm4g1j0n92qdo?at_medium=RSS&at_campaign=rss",
+      "title": "'Most difficult days of my life' for keeper Owono",
+      "url": "https://www.bbc.co.uk/sport/football/articles/c6zxjz40l280o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-04T09:53:18+00:00"
+      "publishedAt": "2026-11-04T16:40:38+00:00"
     },
     {
-      "title": "Delhi air quality worsens ahead of Diwali as firework restrictions enter force",
-      "url": "https://www.bbc.co.uk/news/articles/c699z8792n7ro?at_medium=RSS&at_campaign=rss",
+      "title": "The young politicians with African roots making history in the US midterms",
+      "url": "https://www.bbc.co.uk/news/articles/cmrly6j6lpydo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-04T07:39:38+00:00"
+      "publishedAt": "2026-11-04T16:34:32+00:00"
     },
     {
-      "title": "South Carolina elects Democratic senator for first time in almost three decades",
-      "url": "https://www.bbc.co.uk/news/articles/cjy56z440nl9o?at_medium=RSS&at_campaign=rss",
+      "title": "French blood storage impacted by freezer hacks as theories swirl about culprits",
+      "url": "https://www.bbc.co.uk/news/articles/c8vgxyvz6y9ro?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-04T07:32:02+00:00"
+      "publishedAt": "2026-11-04T16:26:15+00:00"
     },
     {
-      "title": "Florida Republicans fend off Democrats as state elects first black governor",
-      "url": "https://www.bbc.co.uk/news/articles/c9146d88pl32o?at_medium=RSS&at_campaign=rss",
+      "title": "Israel's president begins consultations with parties after election deadlock",
+      "url": "https://www.bbc.co.uk/news/articles/c6z98z5z91ppo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-04T07:12:21+00:00"
+      "publishedAt": "2026-11-04T16:18:21+00:00"
     },
     {
-      "title": "Anthony Zurcher: Democrats push deep into Trump heartland on historic night",
-      "url": "https://www.bbc.co.uk/news/articles/cwz0v5lv30lyo?at_medium=RSS&at_campaign=rss",
+      "title": "Elon Musk's millions fail to deliver Texas for the Republicans in fierce midterms",
+      "url": "https://www.bbc.co.uk/news/articles/cv8ez3p3ge5ko?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-04T06:53:56+00:00"
+      "category": "Technology",
+      "publishedAt": "2026-11-04T15:51:37+00:00"
     },
     {
-      "title": "James Talarico becomes first Democrat to win Texas Senate seat since 1988",
-      "url": "https://www.bbc.co.uk/news/articles/c6n8dnn09jg7o?at_medium=RSS&at_campaign=rss",
+      "title": "Secret police files released in Hungary, 37 years after fall of communism",
+      "url": "https://www.bbc.co.uk/news/articles/c977p01kgmmko?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-04T05:39:36+00:00"
+      "publishedAt": "2026-11-04T15:28:18+00:00"
     },
     {
-      "title": "Weapon or wine bottle? China disputes reports of artillery shell in Papua New Guinea",
-      "url": "https://www.bbc.co.uk/news/articles/cm0qkxzv3j99o?at_medium=RSS&at_campaign=rss",
+      "title": "Everything you need to know from the US midterm elections",
+      "url": "https://www.bbc.co.uk/news/articles/cmr4y92rgd9po?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-04T03:46:10+00:00"
+      "publishedAt": "2026-11-04T14:05:42+00:00"
+    },
+    {
+      "title": "'This is a disaster': Angry Republicans blame Trump for midterms defeat",
+      "url": "https://www.bbc.co.uk/news/articles/c6x29rr8djy3o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-04T13:33:30+00:00"
+    },
+    {
+      "title": "Nadal set to join Real Madrid board of directors",
+      "url": "https://www.bbc.co.uk/sport/articles/cmy56zekeneqo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-04T13:21:01+00:00"
     }
   ]
 }
