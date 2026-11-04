@@ -1,60 +1,102 @@
 {
-  "generatedAt": "2026-11-03T19:30:51+00:00",
+  "generatedAt": "2026-11-04T00:38:38+00:00",
   "timezone": "Asia/Seoul",
   "weather": {
     "Daejeon": {
       "city": "Daejeon",
-      "temperatureC": 7.1,
-      "windKmh": 4.9,
-      "weatherCode": 0,
-      "observedLocal": "2026-11-04T04:30",
+      "temperatureC": 10.2,
+      "windKmh": 4.3,
+      "weatherCode": 2,
+      "observedLocal": "2026-11-04T09:30",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Seoul": {
       "city": "Seoul",
-      "temperatureC": 7.1,
-      "windKmh": 4.9,
-      "weatherCode": 1,
-      "observedLocal": "2026-11-04T04:30",
+      "temperatureC": 9.5,
+      "windKmh": 5.4,
+      "weatherCode": 2,
+      "observedLocal": "2026-11-04T09:30",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Busan": {
       "city": "Busan",
-      "temperatureC": 11.1,
-      "windKmh": 6.3,
+      "temperatureC": 15.1,
+      "windKmh": 6.2,
       "weatherCode": 1,
-      "observedLocal": "2026-11-04T04:30",
+      "observedLocal": "2026-11-04T09:30",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Incheon": {
       "city": "Incheon",
-      "temperatureC": 7.4,
-      "windKmh": 10.1,
-      "weatherCode": 3,
-      "observedLocal": "2026-11-04T04:30",
+      "temperatureC": 10.3,
+      "windKmh": 10.8,
+      "weatherCode": 2,
+      "observedLocal": "2026-11-04T09:30",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Daegu": {
       "city": "Daegu",
-      "temperatureC": 8.8,
-      "windKmh": 2.7,
-      "weatherCode": 0,
-      "observedLocal": "2026-11-04T04:30",
+      "temperatureC": 10.5,
+      "windKmh": 1.5,
+      "weatherCode": 2,
+      "observedLocal": "2026-11-04T09:30",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     }
   },
   "news": [
     {
+      "title": "Graduates are managing AI - but are they learning much else?",
+      "url": "https://www.bbc.co.uk/news/articles/c820vz6wyp65o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "Technology",
+      "publishedAt": "2026-11-04T00:04:35+00:00"
+    },
+    {
+      "title": "ANC under pressure to reverse South Africa decline",
+      "url": "https://www.bbc.co.uk/news/articles/cr4g1x6l77xyo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-04T00:03:19+00:00"
+    },
+    {
+      "title": "'I'm not a quitter': Kim Kardashian on retaking the bar exam",
+      "url": "https://www.bbc.co.uk/news/videos/cmy4x59kdknwo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-03T23:58:36+00:00"
+    },
+    {
+      "title": "Spanish transport minister resigns days after deadly train crash",
+      "url": "https://www.bbc.co.uk/news/articles/c6wydqd4yxdyo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-03T22:45:59+00:00"
+    },
+    {
+      "title": "NTSB says crucial plane parts found three miles from Florida crash site",
+      "url": "https://www.bbc.co.uk/news/articles/c9e8lk5dpj7no?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-03T21:53:38+00:00"
+    },
+    {
       "title": "Seven flights across Europe targeted by suspected bomb threats",
       "url": "https://www.bbc.co.uk/news/articles/c6x2wd4v04eeo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-03T17:56:03+00:00"
+      "publishedAt": "2026-11-03T20:42:47+00:00"
+    },
+    {
+      "title": "Tech Life",
+      "url": "https://www.bbc.co.uk/sounds/play/w3ct8jyt?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "Technology",
+      "publishedAt": "2026-11-03T20:30:00+00:00"
     },
     {
       "title": "Irish Olympian Ciara Mageean was a 'talented and inspirational human being'",
@@ -90,48 +132,6 @@
       "source": "BBC News",
       "category": "World",
       "publishedAt": "2026-11-03T14:56:46+00:00"
-    },
-    {
-      "title": "Europe on alert after supermarket freezers hit by cyber-attacks in 10 countries",
-      "url": "https://www.bbc.co.uk/news/articles/cwy8lm1m59mvo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-03T13:55:47+00:00"
-    },
-    {
-      "title": "Jet may have broken apart before Florida crash, officials say, as family named among victims",
-      "url": "https://www.bbc.co.uk/news/articles/cm9wz01dx8xro?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-03T13:44:44+00:00"
-    },
-    {
-      "title": "Trump to remove Rwanda and South Africa from US trade deal",
-      "url": "https://www.bbc.co.uk/news/articles/c9j346xg0mkvo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-03T13:28:30+00:00"
-    },
-    {
-      "title": "Russian bombing kills 31 people at Ukraine aid centre, Kyiv says",
-      "url": "https://www.bbc.co.uk/news/articles/cjy56dndlyz0o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-03T13:26:19+00:00"
-    },
-    {
-      "title": "UK meat industry hit by cyber-attack which targeted European supermarket freezers",
-      "url": "https://www.bbc.co.uk/news/articles/ckq6ndq8l6v0o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "Technology",
-      "publishedAt": "2026-11-03T13:07:00+00:00"
-    },
-    {
-      "title": "US urges Venezuela to release remaining political prisoners",
-      "url": "https://www.bbc.co.uk/news/articles/cxg5jln586pno?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-03T12:09:20+00:00"
     }
   ]
 }
