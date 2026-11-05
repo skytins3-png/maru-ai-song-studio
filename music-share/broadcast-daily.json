@@ -1,137 +1,137 @@
 {
-  "generatedAt": "2026-11-05T12:25:52+00:00",
+  "generatedAt": "2026-11-05T22:02:21+00:00",
   "timezone": "Asia/Seoul",
   "weather": {
     "Daejeon": {
       "city": "Daejeon",
-      "temperatureC": 9.2,
-      "windKmh": 8.2,
+      "temperatureC": 5.8,
+      "windKmh": 10.0,
       "weatherCode": 0,
-      "observedLocal": "2026-11-05T21:15",
+      "observedLocal": "2026-11-06T07:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Seoul": {
       "city": "Seoul",
-      "temperatureC": 13.2,
-      "windKmh": 6.8,
-      "weatherCode": 1,
-      "observedLocal": "2026-11-05T21:15",
+      "temperatureC": 3.7,
+      "windKmh": 10.0,
+      "weatherCode": 0,
+      "observedLocal": "2026-11-06T07:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Busan": {
       "city": "Busan",
-      "temperatureC": 13.2,
-      "windKmh": 10.0,
+      "temperatureC": 10.8,
+      "windKmh": 7.1,
       "weatherCode": 0,
-      "observedLocal": "2026-11-05T21:15",
+      "observedLocal": "2026-11-06T07:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Incheon": {
       "city": "Incheon",
-      "temperatureC": 14.4,
-      "windKmh": 20.4,
+      "temperatureC": 4.5,
+      "windKmh": 24.3,
       "weatherCode": 0,
-      "observedLocal": "2026-11-05T21:15",
+      "observedLocal": "2026-11-06T07:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Daegu": {
       "city": "Daegu",
-      "temperatureC": 11.4,
-      "windKmh": 6.6,
+      "temperatureC": 9.7,
+      "windKmh": 10.3,
       "weatherCode": 0,
-      "observedLocal": "2026-11-05T21:15",
+      "observedLocal": "2026-11-06T07:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     }
   },
   "news": [
     {
-      "title": "Ronaldo retires from Portugal duty",
-      "url": "https://www.bbc.co.uk/sport/football/articles/cme8rxx2e1w9o?at_medium=RSS&at_campaign=rss",
+      "title": "Major tech stocks plunge as US midterms add to fears of AI slowdown",
+      "url": "https://www.bbc.co.uk/news/articles/cmn04705rd8jo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-05T11:56:02+00:00"
+      "publishedAt": "2026-11-05T21:56:00+00:00"
     },
     {
-      "title": "Was an Italian chef really fired over refusal to put pineapple on pizza?",
-      "url": "https://www.bbc.co.uk/news/videos/cmvg9yy8wpweo?at_medium=RSS&at_campaign=rss",
+      "title": "California governor commutes sentences for state's 548 death row inmates",
+      "url": "https://www.bbc.co.uk/news/articles/cqrkyyd2j8mvo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-05T10:33:21+00:00"
+      "publishedAt": "2026-11-05T21:25:48+00:00"
     },
     {
-      "title": "France gears up for strikes and protests as unions promise national mobilisation",
+      "title": "Who could be behind hoax bomb threats to European air travel?",
+      "url": "https://www.bbc.co.uk/news/articles/cx8dzzjg3g9zo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-05T19:58:40+00:00"
+    },
+    {
+      "title": "Eight killed in series of shootings in western Turkey",
+      "url": "https://www.bbc.co.uk/news/articles/cvj6jj21pd2ko?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-05T19:32:54+00:00"
+    },
+    {
+      "title": "Melania Trump calls for lasting Ukraine truce as she hosts Russian and Ukrainian officials",
+      "url": "https://www.bbc.co.uk/news/articles/c9p8g085mz07o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-05T19:08:08+00:00"
+    },
+    {
+      "title": "French protests see numbers surge as unions join strikes over high cost of living",
       "url": "https://www.bbc.co.uk/news/articles/ckx2qzv835pgo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-05T10:26:03+00:00"
+      "publishedAt": "2026-11-05T17:59:53+00:00"
     },
     {
-      "title": "India's costliest film retells a beloved Hindu epic - but divides critics",
-      "url": "https://www.bbc.co.uk/news/articles/cm93zv62v1n7o?at_medium=RSS&at_campaign=rss",
+      "title": "Paraguay President Santiago Peña resigns after bank collapse",
+      "url": "https://www.bbc.co.uk/news/articles/c6p9g39vln3yo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-05T09:04:42+00:00"
+      "publishedAt": "2026-11-05T17:40:40+00:00"
     },
     {
-      "title": "Joshua Wong, face of Hong Kong's pro-democracy protests, jailed for 10 years",
-      "url": "https://www.bbc.co.uk/news/articles/cwp9g3rlp8jlo?at_medium=RSS&at_campaign=rss",
+      "title": "Hoax bomb threats target European airlines and airports for second time in a week",
+      "url": "https://www.bbc.co.uk/news/articles/cmpqg08nz3pqo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-05T08:07:22+00:00"
+      "publishedAt": "2026-11-05T17:39:48+00:00"
     },
     {
-      "title": "Vance walks Trump tightrope with scathing election critique blaming Iran war",
-      "url": "https://www.bbc.co.uk/news/articles/crz98zqkz7z0o?at_medium=RSS&at_campaign=rss",
+      "title": "Russell Brand is being investigated over two new rape complaints, police say",
+      "url": "https://www.bbc.co.uk/news/articles/c6vgx8q09gg4o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-05T03:47:56+00:00"
+      "publishedAt": "2026-11-05T15:44:49+00:00"
     },
     {
-      "title": "Pope Leo hosts Bob Dylan at official residence in Rome",
-      "url": "https://www.bbc.co.uk/news/articles/cm0e035n13ylo?at_medium=RSS&at_campaign=rss",
+      "title": "A bitter end for Ronaldo - the icon who transformed Portugal",
+      "url": "https://www.bbc.co.uk/sport/football/articles/ckn9rwr2zzpvo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-05T02:09:23+00:00"
+      "publishedAt": "2026-11-05T14:29:40+00:00"
     },
     {
-      "title": "Why a US-funded vaccine trial on babies was cancelled in Guinea-Bissau",
-      "url": "https://www.bbc.co.uk/news/articles/cm0rlxq08ejko?at_medium=RSS&at_campaign=rss",
+      "title": "Watch: How rapist Brand was never far from controversy",
+      "url": "https://www.bbc.co.uk/news/videos/c9dr8713zjgyo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-05T00:30:37+00:00"
+      "publishedAt": "2026-11-05T14:28:21+00:00"
     },
     {
-      "title": "Mother and daughter die after suspected grizzly bear attack in Canada",
-      "url": "https://www.bbc.co.uk/news/articles/cqvgry8k5d01o?at_medium=RSS&at_campaign=rss",
+      "title": "The Pitt and ER are similar enough for lawsuit to proceed, judge rules",
+      "url": "https://www.bbc.co.uk/news/articles/cq4g1r42jx00o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-04T23:50:40+00:00"
-    },
-    {
-      "title": "Typhoons batter East Asia as El Niño makes Pacific 'burn with fever'",
-      "url": "https://www.bbc.co.uk/news/articles/cw33kgj7nkemo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-04T23:12:47+00:00"
-    },
-    {
-      "title": "Ukraine says bodycam video shows deadly Russian double-tap bombing",
-      "url": "https://www.bbc.co.uk/news/articles/c98rz6penv86o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-04T22:48:43+00:00"
-    },
-    {
-      "title": "Elon Musk's millions failed to deliver Republican wins in fierce midterms",
-      "url": "https://www.bbc.co.uk/news/articles/cv8ez3p3ge5ko?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "Technology",
-      "publishedAt": "2026-11-04T21:41:15+00:00"
+      "publishedAt": "2026-11-05T11:21:35+00:00"
     }
   ]
 }
