@@ -1,54 +1,124 @@
 {
-  "generatedAt": "2026-11-05T00:55:44+00:00",
+  "generatedAt": "2026-11-05T12:25:52+00:00",
   "timezone": "Asia/Seoul",
   "weather": {
     "Daejeon": {
       "city": "Daejeon",
-      "temperatureC": 11.4,
-      "windKmh": 6.9,
-      "weatherCode": 55,
-      "observedLocal": "2026-11-05T09:45",
+      "temperatureC": 9.2,
+      "windKmh": 8.2,
+      "weatherCode": 0,
+      "observedLocal": "2026-11-05T21:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Seoul": {
       "city": "Seoul",
-      "temperatureC": 10.7,
-      "windKmh": 2.5,
-      "weatherCode": 2,
-      "observedLocal": "2026-11-05T09:45",
+      "temperatureC": 13.2,
+      "windKmh": 6.8,
+      "weatherCode": 1,
+      "observedLocal": "2026-11-05T21:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Busan": {
       "city": "Busan",
-      "temperatureC": 14.8,
-      "windKmh": 13.3,
-      "weatherCode": 63,
-      "observedLocal": "2026-11-05T09:45",
+      "temperatureC": 13.2,
+      "windKmh": 10.0,
+      "weatherCode": 0,
+      "observedLocal": "2026-11-05T21:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Incheon": {
       "city": "Incheon",
-      "temperatureC": 10.3,
-      "windKmh": 6.6,
-      "weatherCode": 2,
-      "observedLocal": "2026-11-05T09:45",
+      "temperatureC": 14.4,
+      "windKmh": 20.4,
+      "weatherCode": 0,
+      "observedLocal": "2026-11-05T21:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Daegu": {
       "city": "Daegu",
-      "temperatureC": 12.5,
-      "windKmh": 2.8,
-      "weatherCode": 55,
-      "observedLocal": "2026-11-05T09:45",
+      "temperatureC": 11.4,
+      "windKmh": 6.6,
+      "weatherCode": 0,
+      "observedLocal": "2026-11-05T21:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     }
   },
   "news": [
+    {
+      "title": "Ronaldo retires from Portugal duty",
+      "url": "https://www.bbc.co.uk/sport/football/articles/cme8rxx2e1w9o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-05T11:56:02+00:00"
+    },
+    {
+      "title": "Was an Italian chef really fired over refusal to put pineapple on pizza?",
+      "url": "https://www.bbc.co.uk/news/videos/cmvg9yy8wpweo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-05T10:33:21+00:00"
+    },
+    {
+      "title": "France gears up for strikes and protests as unions promise national mobilisation",
+      "url": "https://www.bbc.co.uk/news/articles/ckx2qzv835pgo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-05T10:26:03+00:00"
+    },
+    {
+      "title": "India's costliest film retells a beloved Hindu epic - but divides critics",
+      "url": "https://www.bbc.co.uk/news/articles/cm93zv62v1n7o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-05T09:04:42+00:00"
+    },
+    {
+      "title": "Joshua Wong, face of Hong Kong's pro-democracy protests, jailed for 10 years",
+      "url": "https://www.bbc.co.uk/news/articles/cwp9g3rlp8jlo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-05T08:07:22+00:00"
+    },
+    {
+      "title": "Vance walks Trump tightrope with scathing election critique blaming Iran war",
+      "url": "https://www.bbc.co.uk/news/articles/crz98zqkz7z0o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-05T03:47:56+00:00"
+    },
+    {
+      "title": "Pope Leo hosts Bob Dylan at official residence in Rome",
+      "url": "https://www.bbc.co.uk/news/articles/cm0e035n13ylo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-05T02:09:23+00:00"
+    },
+    {
+      "title": "Why a US-funded vaccine trial on babies was cancelled in Guinea-Bissau",
+      "url": "https://www.bbc.co.uk/news/articles/cm0rlxq08ejko?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-05T00:30:37+00:00"
+    },
+    {
+      "title": "Mother and daughter die after suspected grizzly bear attack in Canada",
+      "url": "https://www.bbc.co.uk/news/articles/cqvgry8k5d01o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-04T23:50:40+00:00"
+    },
+    {
+      "title": "Typhoons batter East Asia as El Niño makes Pacific 'burn with fever'",
+      "url": "https://www.bbc.co.uk/news/articles/cw33kgj7nkemo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-04T23:12:47+00:00"
+    },
     {
       "title": "Ukraine says bodycam video shows deadly Russian double-tap bombing",
       "url": "https://www.bbc.co.uk/news/articles/c98rz6penv86o?at_medium=RSS&at_campaign=rss",
@@ -62,76 +132,6 @@
       "source": "BBC News",
       "category": "Technology",
       "publishedAt": "2026-11-04T21:41:15+00:00"
-    },
-    {
-      "title": "US midterm results a 'victory' for Canadians hopeful of tariff relief",
-      "url": "https://www.bbc.co.uk/news/articles/cqev3mw3e0kdo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-04T18:01:31+00:00"
-    },
-    {
-      "title": "Iran's chief negotiator says Americans voted 'no to war'",
-      "url": "https://www.bbc.co.uk/news/articles/c6d934npl9y8o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-04T16:59:15+00:00"
-    },
-    {
-      "title": "'Most difficult days of my life' for keeper Owono",
-      "url": "https://www.bbc.co.uk/sport/football/articles/c6zxjz40l280o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-04T16:40:38+00:00"
-    },
-    {
-      "title": "The young politicians with African roots making history in the US midterms",
-      "url": "https://www.bbc.co.uk/news/articles/cmrly6j6lpydo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-04T16:34:32+00:00"
-    },
-    {
-      "title": "French blood storage impacted by freezer hacks as theories swirl about culprits",
-      "url": "https://www.bbc.co.uk/news/articles/c8vgxyvz6y9ro?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-04T16:26:15+00:00"
-    },
-    {
-      "title": "Israel's president begins consultations with parties after election deadlock",
-      "url": "https://www.bbc.co.uk/news/articles/c6z98z5z91ppo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-04T16:18:21+00:00"
-    },
-    {
-      "title": "Secret police files released in Hungary, 37 years after fall of communism",
-      "url": "https://www.bbc.co.uk/news/articles/c977p01kgmmko?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-04T15:28:18+00:00"
-    },
-    {
-      "title": "Everything you need to know from the US midterm elections",
-      "url": "https://www.bbc.co.uk/news/articles/cmr4y92rgd9po?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-04T14:05:42+00:00"
-    },
-    {
-      "title": "'This is a disaster': Angry Republicans blame Trump for midterms defeat",
-      "url": "https://www.bbc.co.uk/news/articles/c6x29rr8djy3o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-04T13:33:30+00:00"
-    },
-    {
-      "title": "Nadal set to join Real Madrid board of directors",
-      "url": "https://www.bbc.co.uk/sport/articles/cmy56zekeneqo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-04T13:21:01+00:00"
     }
   ]
 }
