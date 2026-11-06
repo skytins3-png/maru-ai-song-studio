@@ -1,60 +1,88 @@
 {
-  "generatedAt": "2026-11-06T15:57:19+00:00",
+  "generatedAt": "2026-11-06T21:32:11+00:00",
   "timezone": "Asia/Seoul",
   "weather": {
     "Daejeon": {
       "city": "Daejeon",
-      "temperatureC": 3.1,
-      "windKmh": 4.3,
-      "weatherCode": 1,
-      "observedLocal": "2026-11-07T00:45",
+      "temperatureC": -0.6,
+      "windKmh": 5.4,
+      "weatherCode": 0,
+      "observedLocal": "2026-11-07T06:30",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Seoul": {
       "city": "Seoul",
-      "temperatureC": 2.9,
-      "windKmh": 7.4,
+      "temperatureC": -0.2,
+      "windKmh": 5.9,
       "weatherCode": 0,
-      "observedLocal": "2026-11-07T00:45",
+      "observedLocal": "2026-11-07T06:30",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Busan": {
       "city": "Busan",
-      "temperatureC": 5.6,
-      "windKmh": 14.3,
+      "temperatureC": 4.5,
+      "windKmh": 14.6,
       "weatherCode": 0,
-      "observedLocal": "2026-11-07T00:45",
+      "observedLocal": "2026-11-07T06:30",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Incheon": {
       "city": "Incheon",
-      "temperatureC": 3.3,
-      "windKmh": 21.0,
+      "temperatureC": 0.3,
+      "windKmh": 16.7,
       "weatherCode": 0,
-      "observedLocal": "2026-11-07T00:45",
+      "observedLocal": "2026-11-07T06:30",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Daegu": {
       "city": "Daegu",
-      "temperatureC": 4.4,
-      "windKmh": 7.8,
+      "temperatureC": 2.7,
+      "windKmh": 6.9,
       "weatherCode": 0,
-      "observedLocal": "2026-11-07T00:45",
+      "observedLocal": "2026-11-07T06:30",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     }
   },
   "news": [
     {
-      "title": "Could the US midterms put a pin in the AI bubble?",
+      "title": "AI stocks climb after trillions wiped from market values",
+      "url": "https://www.bbc.co.uk/news/articles/c35ynnpzdq51o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-06T21:06:25+00:00"
+    },
+    {
+      "title": "Why the US midterms sparked an AI stock selloff",
       "url": "https://www.bbc.co.uk/news/articles/crlykkzwwpydo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "Technology",
-      "publishedAt": "2026-11-06T15:39:30+00:00"
+      "publishedAt": "2026-11-06T18:32:16+00:00"
+    },
+    {
+      "title": "Nigerian court rules opposition candidate cannot stand in elections",
+      "url": "https://www.bbc.co.uk/news/articles/cw8rzzx46jd5o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-06T17:35:55+00:00"
+    },
+    {
+      "title": "Dozens of Democrats eyeing 2028 presidential run, says former Obama aide",
+      "url": "https://www.bbc.co.uk/news/articles/cx8dzzy8n713o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-06T16:51:01+00:00"
+    },
+    {
+      "title": "Four midterms takeaways for 2028 White House race",
+      "url": "https://www.bbc.co.uk/news/articles/cq1m41n3v7mmo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-06T16:12:22+00:00"
     },
     {
       "title": "Two dead after bus crashes in France, officials say",
@@ -64,18 +92,18 @@
       "publishedAt": "2026-11-06T15:33:52+00:00"
     },
     {
+      "title": "Judge blocks construction of Trump's massive arch after federal agency approval",
+      "url": "https://www.bbc.co.uk/news/articles/cq99zd93ryvko?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-06T15:30:42+00:00"
+    },
+    {
       "title": "New wave of bomb threats hit European airlines",
       "url": "https://www.bbc.co.uk/news/articles/cq62yy064vjpo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
       "publishedAt": "2026-11-06T15:25:35+00:00"
-    },
-    {
-      "title": "AI stocks climb after trillions wiped from market values",
-      "url": "https://www.bbc.co.uk/news/articles/c35ynnpzdq51o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-06T15:04:46+00:00"
     },
     {
       "title": "Watch: Is it the end of the road for Tesla's Cybertruck?",
@@ -104,34 +132,6 @@
       "source": "BBC News",
       "category": "Technology",
       "publishedAt": "2026-11-06T13:25:50+00:00"
-    },
-    {
-      "title": "Homes and temples glow across India as Diwali celebrations begin",
-      "url": "https://www.bbc.co.uk/news/articles/cm70pdwz122ro?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-06T10:21:30+00:00"
-    },
-    {
-      "title": "What to know about the presidential wiretapping scandal rocking Indonesia",
-      "url": "https://www.bbc.co.uk/news/articles/cwkg55155mrro?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-06T10:10:38+00:00"
-    },
-    {
-      "title": "Elon Musk appears to signal the end of the road for Cybertruck",
-      "url": "https://www.bbc.co.uk/news/articles/cq1j33w7d232o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-06T09:57:04+00:00"
-    },
-    {
-      "title": "Trump signs order to preserve Oval Office as national monument",
-      "url": "https://www.bbc.co.uk/news/articles/cmy0eeg101djo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-06T09:19:57+00:00"
     }
   ]
 }
