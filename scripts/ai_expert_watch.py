@@ -55,6 +55,8 @@ def safe_title(data: bytes) -> str:
     page = PageTitle()
     page.feed(data.decode("utf-8", errors="replace"))
     result = " ".join(" ".join(page.parts).split())
+    result = re.sub(r"<[^>]{1,100}>", " ", result)
+    result = " ".join(result.split())
     result = re.sub(r"[\x00-\x1f\x7f]", "", result)
     return result[:120]
 
