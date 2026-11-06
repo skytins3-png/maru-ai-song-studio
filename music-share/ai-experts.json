@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 1,
+  "description": "MARU ten specialist roles; deterministic prototype, not ten running independent AI models.",
+  "agents": [
+    {
+      "id": "broadcast-director",
+      "name": "아환",
+      "specialty": "방송 편성 총괄",
+      "mission": "방송 시간표와 사연/음악 편성 검수",
+      "status": "design_only",
+      "autonomous": false,
+      "permissions": [
+        "read_approved_reference_metadata"
+      ],
+      "broadcastApprovalRequired": true
+    },
+    {
+      "id": "conversation",
+      "name": "윤솔",
+      "specialty": "진행 대화·청취자 경험",
+      "mission": "자연스러운 대화와 개인정보 최소화",
+      "status": "design_only",
+      "autonomous": false,
+      "permissions": [
+        "read_approved_reference_metadata"
+      ],
+      "broadcastApprovalRequired": true
+    },
+    {
+      "id": "audio-engineer",
+      "name": "하람",
+      "specialty": "음향·송출 기술",
+      "mission": "FFmpeg 오디오 품질 및 BIGO 실청취 검증 설계",
+      "status": "design_only",
+      "autonomous": false,
+      "permissions": [
+        "read_approved_reference_metadata"
+      ],
+      "broadcastApprovalRequired": true
+    },
+    {
+      "id": "composer",
+      "name": "라온",
+      "specialty": "화성학·독창적 작곡",
+      "mission": "허가된 음악이론으로 자작곡 기획",
+      "status": "design_only",
+      "autonomous": false,
+      "permissions": [
+        "read_approved_reference_metadata"
+      ],
+      "broadcastApprovalRequired": true
+    },
+    {
+      "id": "arranger",
+      "name": "서율",
+      "specialty": "편곡·전통악기",
+      "mission": "한중서양 전통악기 편곡 및 저작물 중복 방지",
+      "status": "design_only",
+      "autonomous": false,
+      "permissions": [
+        "read_approved_reference_metadata"
+      ],
+      "broadcastApprovalRequired": true
+    },
+    {
+      "id": "lyricist",
+      "name": "채린",
+      "specialty": "한국어·중국어·영어 작사",
+      "mission": "원어민 표현과 안전한 가사 교정",
+      "status": "design_only",
+      "autonomous": false,
+      "permissions": [
+        "read_approved_reference_metadata"
+      ],
+      "broadcastApprovalRequired": true
+    },
+    {
+      "id": "rights-officer",
+      "name": "민결",
+      "specialty": "저작권·라이선스",
+      "mission": "학습·녹음·배포·상업 방송 권리 확인",
+      "status": "design_only",
+      "autonomous": false,
+      "permissions": [
+        "read_approved_reference_metadata"
+      ],
+      "broadcastApprovalRequired": true
+    },
+    {
+      "id": "security-defender",
+      "name": "도윤",
+      "specialty": "보안·악성코드 방어",
+      "mission": "업로드 격리와 악성 파일 탐지·침해 예방",
+      "status": "design_only",
+      "autonomous": false,
+      "permissions": [
+        "read_approved_reference_metadata"
+      ],
+      "broadcastApprovalRequired": true
+    },
+    {
+      "id": "incident-responder",
+      "name": "태경",
+      "specialty": "사고 대응·복구",
+      "mission": "감염 의심 파일 차단·로그 검토·복구 절차",
+      "status": "design_only",
+      "autonomous": false,
+      "permissions": [
+        "read_approved_reference_metadata"
+      ],
+      "broadcastApprovalRequired": true
+    },
+    {
+      "id": "research-qa",
+      "name": "지안",
+      "specialty": "공개 자료 조사·검증",
+      "mission": "정보 출처·날짜·재현 가능한 테스트 확인",
+      "status": "design_only",
+      "autonomous": false,
+      "permissions": [
+        "read_approved_reference_metadata"
+      ],
+      "broadcastApprovalRequired": true
+    }
+  ],
+  "sources": [
+    {
+      "id": "omt",
+      "title": "Open Music Theory",
+      "url": "https://viva.pressbooks.pub/openmusictheory/front-matter/introduction/",
+      "publisher": "Open Music Theory authors",
+      "license": "CC BY-SA 4.0 (except otherwise noted)",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "usage": "reference_metadata_only",
+      "subject": "music"
+    },
+    {
+      "id": "owasp",
+      "title": "OWASP Cheat Sheet Series",
+      "url": "https://owasp.org/projects/cheat-sheet-series",
+      "publisher": "OWASP Foundation",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "usage": "reference_metadata_only",
+      "subject": "security"
+    },
+    {
+      "id": "ffmpeg",
+      "title": "FFmpeg License and Legal Considerations",
+      "url": "https://www.ffmpeg.org/legal.html",
+      "publisher": "FFmpeg",
+      "license": "reference-only; software licensing varies by build",
+      "licenseUrl": "https://www.ffmpeg.org/legal.html",
+      "usage": "reference_metadata_only",
+      "subject": "audio"
+    }
+  ],
+  "policies": {
+    "internetAccess": "exact_https_allowlist_only",
+    "autoTraining": false,
+    "autoExecutableUpdates": false,
+    "autoPublishing": false,
+    "malwareScanning": "separate sandbox ClamAV and ffprobe human-reviewed pipeline",
+    "approval": "operator_only",
+    "copyright": "source attribution and specific work rights must be reviewed",
+    "rawContent": "never committed",
+    "promptInjection": "remote page text is untrusted data",
+    "broadcast": "manual on-air approval; requires two-device BIGO listener test"
+  }
+}
