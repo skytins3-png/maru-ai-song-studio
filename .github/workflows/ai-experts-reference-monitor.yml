@@ -1,0 +1,43 @@
+name: MARU ten experts read-only source monitoring
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '14 1 * * *'
+  pull_request:
+    paths:
+      - 'music-share/ai-experts.json'
+      - 'scripts/ai_expert_watch.py'
+      - 'tests/test_ai_expert_watch.py'
+      - '.github/workflows/ai-experts-reference-monitor.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'music-share/ai-experts.json'
+      - 'scripts/ai_expert_watch.py'
+      - 'tests/test_ai_expert_watch.py'
+      - '.github/workflows/ai-experts-reference-monitor.yml'
+
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Offline allowlist, ten roles, rights and security tests
+        run: python3 -m unittest discover -s tests -p 'test_ai_expert_watch.py'
+      - name: Check remote references without copying or executing their content
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: python3 scripts/ai_expert_watch.py --fetch --report reports/ai-expert-source-report.json
+      - name: Upload read-only source observations
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@v4
+        with:
+          name: MARU-TEN-EXPERTS-REFERENCE-OBSERVATIONS
+          path: reports/ai-expert-source-report.json
+          if-no-files-found: error
+          retention-days: 14
