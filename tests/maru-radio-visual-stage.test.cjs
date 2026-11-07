@@ -90,3 +90,29 @@ test("show runner changes visual state only with local audio lifecycle", () => {
   assert.match(js,/talk\(H.after\(track,sequence,flow\),ticket,"conversation"\)/);
   assert.match(js,/talk\(H.guestTalk\(track,sequence,flow\),ticket,"conversation"\)/);
 });
+
+
+test("real uploaded Ahwan photo replaces cartoon, with consent and private persistence",()=>{
+ const html=source("radio-show.html"), js=source("radio-stage.js"), css=source("radio-stage.css");
+ const storage=source("radio-stage-photo-store.js");
+ const photos=require("../vocal-studio/radio-stage-photo-store.js");
+ assert.match(html,/id="stageAhwanPhoto"/);
+ assert.match(html,/id="stageKeepLocal"/);
+ assert.match(html,/radio-stage-photo-store\.js/);
+ assert.match(js,/const media=assets\.get\(person\.id\)/);
+ assert.match(js,/visual-portrait-photo/);
+ assert.match(js,/visual-portrait-placeholder/);
+ assert.match(js,/PortraitDB\.save\(person\.id,file\)/);
+ assert.match(js,/restoreLocalPortrait\("ahwan"\)/);
+ assert.match(js,/if\(!rights\.checked\)/);
+ assert.match(js,/mode!=="talk"&&primary/);
+ assert.doesNotMatch(js,/className = klass|className="face"|className="hair"/);
+ assert.match(css,/\.visual-portrait-photo/);
+ assert.match(css,/\.visual-portrait-placeholder/);
+ assert.doesNotMatch(storage,/fetch\s*\(|WebSocket|XMLHttpRequest|localStorage/);
+ assert.equal(photos.valid("ahwan",{size:1024,type:"image/jpeg"}),true);
+ assert.equal(photos.valid("ahwan",{size:1024,type:"image/webp"}),true);
+ assert.equal(photos.valid("ahwan",{size:1024,type:"image/svg+xml"}),false);
+ assert.equal(photos.valid("ahwan",{size:22*1024*1024,type:"image/png"}),false);
+ assert.equal(photos.valid("../bad",{size:1024,type:"image/png"}),false);
+});
