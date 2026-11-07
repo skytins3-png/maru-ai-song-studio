@@ -1,6 +1,7 @@
 "use strict";
 (function() {
   const C = window.MaruCharacters;
+  const S = window.MaruSunoVoiceLibrary;
   const $ = id => document.getElementById(id);
   if (!C || !$("visualCanvas")) return;
 
@@ -14,6 +15,24 @@
   let currentMedia = "";
 
   function note(text) { feedback.textContent = text; }
+
+  function profileOf(key) {
+    const original=C.CHARACTERS.find(c=>c.id===key||c.name===key);
+    if(original)return original;
+    const singer=S?.singer(key)||S?.SINGERS.find(c=>c.name===key);
+    if(!singer)return C.find("아환");
+    // A recognisable labelled *placeholder*, not a generated singer face or
+    // a promise of an approved voice. Same ID always gets the same color.
+    const serial=[...singer.id].reduce((sum,ch)=>sum+ch.charCodeAt(0),0);
+    return {
+      id:singer.id,name:singer.name,role:"singer",specialty:"AI 가수 후보 · 고유번호 "+singer.id,
+      style:"가상 무대 대기",voice:"Suno 녹음 원곡만 사용",
+      personality:"보컬/얼굴 개별 검증 전",
+      coat:"hsl("+((serial*13)%360)+" 38% 43%)",hair:"#292935",skin:"#e3bb9d",
+      accent:"hsl("+((serial*13+45)%360)+" 77% 72%)"
+    };
+  }
+
   function personCard(person, active, side) {
     const box = document.createElement("div");
     box.className = "visual-person" + (active ? " is-speaking" : "");
@@ -97,6 +116,7 @@
       mode === "stage" ? "가수 무대 · 미리보기" : "MARU RADIO SHOW");
     subtitle.textContent = mode === "stage" && !primary ?
       "연주곡 · 노래하는 가수를 표시하지 않습니다" :
+      mode === "stage" ? (primary?primary.name+" · Suno 원곡 무대":"연주 무대") :
       mode === "talk" ? persons.map(p=>p.name).join(" · ") + " | 가상 초대석 미리듣기" :
       mode === "bridge" ? "곡 소개 · 인사 · 다음 방송 안내" :
       "가상 캐릭터 콘셉트 · 동영상은 직접 등록해야 합니다";
@@ -107,19 +127,24 @@
     mode = value;
     if (value !== "talk") sceneCast = null;
     if (value === "talk" && !sceneCast) sceneCast=C.castForConversation([{speaker:who||"윤솔"}]);
-    primary = who === null ? null : C.find(who || "아환");
+    primary = who === null ? null : profileOf(who || "아환");
     activeSpeaker = who || "아환";
     trackLabel = String(label || "").slice(0,100);
     render();
   }
   for (const c of C.CHARACTERS) {
-    const opt = document.createElement("option");
-    opt.value = c.id;
-    opt.textContent = c.name + " · " + c.specialty;
+    const opt=document.createElement("option");
+    opt.value=c.id;opt.textContent=c.name+" · "+c.specialty;
+    personSelect.append(opt);
+  }
+  for(const candidate of S.SINGERS){
+    const opt=document.createElement("option");
+    opt.value=candidate.id;
+    opt.textContent=candidate.id+" · "+candidate.name+" · Suno 가수 후보";
     personSelect.append(opt);
   }
   personSelect.onchange = () => {
-    const c = C.find(personSelect.value);
+    const c = profileOf(personSelect.value);
     note(c.name + " | " + c.style + " | " + c.personality + " | " + c.voice);
     setMode(c.role === "host" ? "bridge" : c.role === "guest" ? "talk" : "stage", c.name);
   };
@@ -148,7 +173,7 @@
       note("MP4/WebM 200MB 이하 또는 JPG/PNG/WebP 20MB 이하 파일만 등록할 수 있습니다.");
       return;
     }
-    const person = C.find(personSelect.value);
+    const person = profileOf(personSelect.value);
     const old = assets.get(person.id);
     if (old) URL.revokeObjectURL(old.url);
     const url = URL.createObjectURL(file);
@@ -165,7 +190,7 @@
     assets.delete(id);
     removeCurrentMedia();
     render();
-    note(C.find(id).name + "의 화면 연결만 해제했습니다. 원본은 삭제하지 않았습니다.");
+    note(profileOf(id).name + "의 화면 연결만 해제했습니다. 원본은 삭제하지 않았습니다.");
   };
   window.addEventListener("pagehide",() => {
     removeCurrentMedia();
@@ -202,8 +227,12 @@
       for(const card of cast.children) card.classList.remove("is-speaking");
     },
     song(track) {
-      const singer=C.singerFor(track.category,track.title);
-      setMode("stage",singer?singer.name:null,track.title);
+      // User-selected Suno vocalist wins over language/genre *guessing*.
+      const assigned=S.singer(track.singerId);
+      const guessed=assigned?null:C.singerFor(track.category,track.title);
+      const singer=assigned?profileOf(assigned.id):guessed;
+      if(!singer) setMode("stage",null,track.title);
+      else setMode("stage",singer.id,track.title);
     },
     idle() {setMode("idle","아환","MARU RADIO SHOW");},
     state() {
