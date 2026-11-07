@@ -1,5 +1,5 @@
 "use strict";(function(){
-const E=window.MaruShow,$=id=>document.getElementById(id),audio=$("player"),visual=window.MaruVisualStage;
+const E=window.MaruShow,H=window.MaruHumanRadio,$=id=>document.getElementById(id),audio=$("player"),visual=window.MaruVisualStage;
 const tracks=[],history=[],comments=[];
 let epoch=0,running=false,busy=false,genre=0,index=0,timer=0,deadline=0,activeUrl=null,stopTalking=null,stopSong=null;
 function status(s){$("status").textContent=s;}
@@ -60,7 +60,7 @@ function speak(line,ticket,kind="conversation"){return new Promise(resolve=>{
  }
  let done=false,alarm;
  const utterance=new SpeechSynthesisUtterance(E.clean(line.text,260));
- utterance.lang=line.lang;utterance.rate=0.98;
+ utterance.lang=line.lang;utterance.rate=line.speaker==="아환"?0.96:line.speaker==="윤솔"?0.99:1.01;
  const host=E.HOSTS.indexOf(line.speaker),voices=synth.getVoices().filter(v=>v.lang?.toLowerCase().startsWith(line.lang.slice(0,2).toLowerCase()));
  if(voices.length)utterance.voice=voices[Math.max(0,host)%voices.length];
  utterance.pitch=0.93+(Math.max(0,host)%5)*0.05;
@@ -70,7 +70,16 @@ function speak(line,ticket,kind="conversation"){return new Promise(resolve=>{
  alarm=setTimeout(()=>{synth.cancel();finish(true);},Math.max(17000,utterance.text.length*360));
  try{synth.speak(utterance);}catch{finish(true);}
  });}
-async function talk(lines,ticket,kind="conversation"){for(const line of lines)if(!(await speak(line,ticket,kind)))return false;return running&&ticket===epoch;}
+async function talk(lines,ticket,kind="conversation"){
+ for(const line of lines){
+  if(!(await speak(line,ticket,kind)))return false;
+  // Purposeful brief conversational beats, not overlapping synthetic speech.
+  const beat=Math.min(600,Math.max(0,Number(line.pauseMs)||240));
+  if(beat)await new Promise(resolve=>setTimeout(resolve,beat));
+  if(!running||ticket!==epoch)return false;
+ }
+ return running&&ticket===epoch;
+}
 function play(track,ticket){return new Promise(resolve=>{
  if(!running||ticket!==epoch){resolve(false);return;}
  releaseAudio();activeUrl=URL.createObjectURL(track.file);audio.src=activeUrl;audio.volume=1;
@@ -90,11 +99,13 @@ async function show(ticket){
   const selected=E.choose(tracks,history,Date.now(),genre);
   if(!selected){shutdown("20분 내 같은 노래 반복 없이 재생 가능한 곡이 없어 종료했습니다.");return;}
   genre=selected.index;const track=selected.track;
-  if(!(await talk(E.before(track,++index),ticket,"intro")))return;
+  const sequence=++index,flow=$("talkFlow").value;
+  if(!(await talk(H.intro(track,sequence,flow),ticket,"intro")))return;
   if(!running||ticket!==epoch)return;
   history.push({id:track.id,at:Date.now()});if(history.length>500)history.shift();
   if(!(await play(track,ticket)))return;
-  if(!(await talk(E.after(track),ticket,"conversation")))return;
+  if(!(await talk(H.after(track,sequence,flow),ticket,"conversation")))return;
+  if(!(await talk(H.guestTalk(track,sequence,flow),ticket,"conversation")))return;
   while(comments.length&&running&&ticket===epoch)if(!(await talk([comments.shift()],ticket)))return;
  }
 }
