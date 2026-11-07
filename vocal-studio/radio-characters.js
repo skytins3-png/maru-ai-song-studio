@@ -21,8 +21,9 @@
   const BY_ID = new Map(CHARACTERS.map(c => [c.id, c]));
   const MODES = Object.freeze(["stage","talk","bridge","idle"]);
   function find(value) { return BY_NAME.get(value) || BY_ID.get(value) || CHARACTERS[0]; }
-  function singerFor(category) {
+  function singerFor(category, songTitle = "") {
     // An instrumental track must not be falsely portrayed as live singing.
+    if (category === "KR" && /트로트|지루박|뽕짝|trot/i.test(String(songTitle))) return find("청호");
     return category === "KR" ? find("강태준") :
       category === "CN" ? find("린아") :
       category === "WEST" ? find("서아") : null;

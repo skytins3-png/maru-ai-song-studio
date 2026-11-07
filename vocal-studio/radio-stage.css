@@ -43,7 +43,7 @@
 .portrait .hair{position:absolute;top:10%;left:22%;width:56%;height:53%;background:var(--hair);border-radius:47% 49% 32% 32%}
 .portrait .face{position:absolute;top:23%;left:29%;width:42%;height:37%;border-radius:45% 45% 50% 50%;background:var(--skin);
   box-shadow:inset -7px -7px 11px #5b2f3618}
-.portrait .face:before{content:"";position:absolute;top:42%;left:18%;width:15%;height:5%;border-radius:100%;background:#49313d;box-shadow:200% 0 0 #49313d}
+.portrait .face:before{content:"";position:absolute;top:42%;left:18%;width:15%;height:5%;border-radius:100%;background:#49313d;box-shadow:24px 0 0 #49313d}
 .portrait .face:after{content:"";position:absolute;top:74%;left:41%;height:3%;width:20%;border-radius:100%;background:#874d56}
 .portrait .lapel{position:absolute;bottom:34%;left:35%;width:30%;height:15%;background:#fff9ed;clip-path:polygon(0 0,50% 100%,100% 0)}
 .portrait .shine{position:absolute;inset:0;box-shadow:inset 0 0 22px var(--accent);border-radius:inherit;pointer-events:none}

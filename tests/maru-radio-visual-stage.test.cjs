@@ -31,6 +31,8 @@ test("cue routing keeps songs on stage and voices in interview or bridge", () =>
   assert.equal(C.modeForCue("outro"),"bridge");
   assert.equal(C.modeForCue("invalid"),"idle");
   assert.equal(C.singerFor("KR").name,"강태준");
+  assert.equal(C.singerFor("KR","달빛 트로트").name,"청호");
+  assert.equal(C.singerFor("KR","지루박의 밤").name,"청호");
   assert.equal(C.singerFor("CN").name,"린아");
   assert.equal(C.singerFor("WEST").name,"서아");
   assert.equal(C.singerFor("INSTR"),null); // avoid fake vocalist on instrumental
