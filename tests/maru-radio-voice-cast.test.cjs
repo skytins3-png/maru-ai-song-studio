@@ -70,7 +70,7 @@ test("recorded Suno clips replace TTS; no silent voice imitation or audio upload
  assert.match(script,/S\.autoMatch\(file\.name\)/);
  assert.match(script,/visual\?\.beginConversation\(lines\)/);
  assert.match(stage,/profileOf\(assigned\.id\)/);
- assert.match(stage,/const chosen = primary \? assets\.get\(primary\.id\) : null/);
+ assert.match(stage,/const chosen = mode!=="talk"&&primary \? assets\.get\(primary\.id\) : null/);
  assert.match(stage,/movie\.muted = true/);
  assert.match(recorded,/Library\.cueKey\(line\?\.speaker,line\?\.text\)/);
  assert.match(recorded,/if\(!entry\)/);
