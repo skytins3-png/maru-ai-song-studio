@@ -86,6 +86,7 @@ test("show runner changes visual state only with local audio lifecycle", () => {
   assert.match(js,/visual\?\.song\(track\)/);
   assert.match(js,/visual\?\.speech\(line,kind\)/);
   assert.match(js,/visual\?\.idle\(\)/);
-  assert.match(js,/talk\(E.before\(track,\+\+index\),ticket,"intro"\)/);
-  assert.match(js,/talk\(E.after\(track\),ticket,"conversation"\)/);
+  assert.match(js,/talk\(H.intro\(track,sequence,flow\),ticket,"intro"\)/);
+  assert.match(js,/talk\(H.after\(track,sequence,flow\),ticket,"conversation"\)/);
+  assert.match(js,/talk\(H.guestTalk\(track,sequence,flow\),ticket,"conversation"\)/);
 });
