@@ -139,6 +139,19 @@ $("importStudio").onclick=async()=>{
  }catch(err){status("로컬 보관함 연동 실패: "+err.message);}
  finally{button.disabled=false;}
 };
+$("demoTalk").onclick=()=>{
+ if(busy||running){status("현재 방송 또는 파일 처리가 끝난 뒤 초대석 시연을 시작하세요.");return;}
+ const script=[
+  {speaker:"아환",lang:"ko-KR",text:"안녕하세요, 아환입니다. 지금부터 가상의 초대석 대화를 잠깐 들어보겠습니다.",pauseMs:420},
+  ...H.guestTalk({category:"KR"},2,"talk"),
+  {speaker:"윤솔",lang:"ko-KR",text:"이런 느낌으로 노래 사이에 자연스럽게 대화를 이어갑니다. 이제 음악으로 돌아갈까요?",pauseMs:280}
+ ];
+ running=true;const ticket=++epoch;
+ status("가상 초대석 시연 중 · 로컬 TTS · 노래/실시간 댓글 없음");
+ void talk(script,ticket,"conversation").then(ok=>{
+  if(ok&&ticket===epoch)shutdown("가상 초대석 시연 종료 · 원본 음원은 재생하지 않았습니다.");
+ }).catch(error=>{if(ticket===epoch)shutdown("초대석 시연 오류: "+error.message);});
+};
 $("start").onclick=start;
 $("stop").onclick=()=>shutdown("미리듣기 중지 (BIGO 방송 자체는 제어하지 않습니다)");
 $("next").onclick=()=>{
