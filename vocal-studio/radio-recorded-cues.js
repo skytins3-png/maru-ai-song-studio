@@ -7,12 +7,7 @@
   let active=null,preview=null,playing=false;
   const status=msg=>{$("sunoVoiceStatus").textContent=msg;};
   function stop() {
-    if(active) {
-      const playback=active;active=null;
-      playback.audio.pause();
-      playback.audio.removeAttribute("src");
-      playback.resolve(false);
-    }
+    if(active)active.cancel();
     if(preview){preview.pause();preview.removeAttribute("src");preview=null;}
     playing=false;
   }
