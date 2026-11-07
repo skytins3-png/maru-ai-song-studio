@@ -82,7 +82,7 @@ async function talk(lines,ticket,kind="conversation"){
  if(kind==="conversation"&&lines.length)visual?.beginConversation(lines);
  for(const line of lines){
   if(!(await speak(line,ticket,kind)))return false;
-  // Purposeful brief conversational beats, not overlapping synthetic speech.
+  // Short beats between prerecorded speech or silent captions.
   const beat=Math.min(600,Math.max(0,Number(line.pauseMs)||240));
   if(beat)await new Promise(resolve=>setTimeout(resolve,beat));
   if(!running||ticket!==epoch)return false;
@@ -128,7 +128,7 @@ function start(){
  deadline=minutes>0?Date.now()+minutes*60000:0;
  running=true;const ticket=++epoch;
  clearInterval(timer);timer=setInterval(()=>{if(running&&deadline&&Date.now()>=deadline)shutdown("로컬 미리듣기 예약 시간 도달 · BIGO 방송은 별도 종료 필요");},1000);
- status("라디오 진행 시작: 가상 진행자 대화 → 원본 노래 (로컬 미리듣기)");
+ status("방송 미리듣기: 승인된 녹음 멘트 또는 자막 → Suno 원곡 · TTS 없음");
  void show(ticket).catch(e=>shutdown("라디오 진행 오류: "+e.message));
 }
 $("files").onchange=e=>{void add(e.target.files).catch(err=>status("파일 추가 실패: "+err.message));};
@@ -156,7 +156,7 @@ $("demoTalk").onclick=()=>{
   {speaker:"윤솔",lang:"ko-KR",text:"이런 느낌으로 노래 사이에 자연스럽게 대화를 이어갑니다. 이제 음악으로 돌아갈까요?",pauseMs:280}
  ];
  running=true;const ticket=++epoch;
- status("가상 초대석 시연 중 · 로컬 TTS · 노래/실시간 댓글 없음");
+ status("가상 초대석 시연 중 · 등록된 승인 멘트만 음성 재생, 나머지는 자막 · TTS 없음");
  void talk(script,ticket,"conversation").then(ok=>{
   if(ok&&ticket===epoch)shutdown("가상 초대석 시연 종료 · 원본 음원은 재생하지 않았습니다.");
  }).catch(error=>{if(ticket===epoch)shutdown("초대석 시연 오류: "+error.message);});
