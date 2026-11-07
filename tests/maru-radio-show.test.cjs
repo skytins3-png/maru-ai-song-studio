@@ -118,3 +118,17 @@ test("browser radio show connects source-approved natural hosting without remote
  assert.doesNotMatch(hostCode,/fetch\s*\(|WebSocket|XMLHttpRequest|speechSynthesis|Math\.random/);
  assert.doesNotMatch(js,/fetch\s*\(|WebSocket|XMLHttpRequest/);
 });
+
+test("natural host still welcomes Chinese and English song audiences in their language",()=>{
+ const cn={title:"云南的清晨",category:"CN"};
+ const west={title:"Moonlight Street",category:"WEST"};
+ const kr={title:"가을바다",category:"KR"};
+ assert.ok(host.intro(cn,1).some(x=>x.lang==="zh-CN"));
+ assert.ok(host.intro(cn,3).some(x=>x.lang==="zh-CN"));
+ assert.ok(host.intro(cn,3,"music").some(x=>x.lang==="zh-CN"));
+ assert.ok(host.intro(west,1).some(x=>x.lang==="en-US"));
+ assert.ok(host.intro(west,3).some(x=>x.lang==="en-US"));
+ assert.ok(host.intro(west,3,"music").some(x=>x.lang==="en-US"));
+ assert.ok(host.intro(kr,3).every(x=>x.lang==="ko-KR"));
+ assert.ok(host.intro(cn,3).every(x=>x.text.length<=240));
+});
