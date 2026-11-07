@@ -108,6 +108,9 @@ test("browser radio show connects source-approved natural hosting without remote
  const hostCode=fs.readFileSync(path.join(__dirname,"../vocal-studio/radio-human-host.js"),"utf8");
  assert.match(html,/radio-human-host\.js/);
  assert.match(html,/id="talkFlow"/);
+ assert.match(html,/id="demoTalk"/);
+ assert.match(js,/H\.guestTalk\(\{category:"KR"\},2,"talk"\)/);
+ assert.match(js,/if\(ok&&ticket===epoch\)shutdown/);
  assert.match(html,/3곡마다 초대석/);
  assert.match(js,/H\.intro\(track,sequence,flow\)/);
  assert.match(js,/H\.guestTalk\(track,sequence,flow\)/);
