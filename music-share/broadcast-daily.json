@@ -1,60 +1,81 @@
 {
-  "generatedAt": "2026-11-07T06:04:06+00:00",
+  "generatedAt": "2026-11-07T14:55:33+00:00",
   "timezone": "Asia/Seoul",
   "weather": {
     "Daejeon": {
       "city": "Daejeon",
-      "temperatureC": 9.1,
-      "windKmh": 14.2,
-      "weatherCode": 0,
-      "observedLocal": "2026-11-07T15:00",
+      "temperatureC": 2.0,
+      "windKmh": 5.5,
+      "weatherCode": 1,
+      "observedLocal": "2026-11-07T23:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Seoul": {
       "city": "Seoul",
-      "temperatureC": 7.3,
-      "windKmh": 8.0,
-      "weatherCode": 0,
-      "observedLocal": "2026-11-07T15:00",
+      "temperatureC": 3.0,
+      "windKmh": 3.5,
+      "weatherCode": 1,
+      "observedLocal": "2026-11-07T23:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Busan": {
       "city": "Busan",
-      "temperatureC": 12.7,
-      "windKmh": 8.4,
-      "weatherCode": 0,
-      "observedLocal": "2026-11-07T15:00",
+      "temperatureC": 6.1,
+      "windKmh": 4.6,
+      "weatherCode": 1,
+      "observedLocal": "2026-11-07T23:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Incheon": {
       "city": "Incheon",
-      "temperatureC": 7.0,
-      "windKmh": 17.6,
-      "weatherCode": 0,
-      "observedLocal": "2026-11-07T15:00",
+      "temperatureC": 2.7,
+      "windKmh": 10.8,
+      "weatherCode": 1,
+      "observedLocal": "2026-11-07T23:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Daegu": {
       "city": "Daegu",
-      "temperatureC": 10.8,
-      "windKmh": 10.0,
-      "weatherCode": 0,
-      "observedLocal": "2026-11-07T15:00",
+      "temperatureC": 4.5,
+      "windKmh": 4.6,
+      "weatherCode": 1,
+      "observedLocal": "2026-11-07T23:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     }
   },
   "news": [
     {
-      "title": "Paraguay's President Santiago Peña impeached and arrested",
+      "title": "Russian strikes wound nine and damage Ukraine's power network ahead of talks",
+      "url": "https://www.bbc.co.uk/news/articles/cm4g1nq8158po?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-07T12:49:36+00:00"
+    },
+    {
+      "title": "Four things we learned this week about 2028 White House race",
+      "url": "https://www.bbc.co.uk/news/articles/cq1m41n3v7mmo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-07T12:23:28+00:00"
+    },
+    {
+      "title": "Paraguay's president impeached and under house arrest after bank collapse",
       "url": "https://www.bbc.co.uk/news/articles/c68jzzvjgdy9o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-07T03:25:00+00:00"
+      "publishedAt": "2026-11-07T07:20:00+00:00"
+    },
+    {
+      "title": "Pope in 'pretty good health' as he starts Latin America tour",
+      "url": "https://www.bbc.co.uk/news/articles/c60e0001ve9wo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-07T06:59:48+00:00"
     },
     {
       "title": "This man refused life-saving treatment because of his religion - days later the rules changed",
@@ -111,27 +132,6 @@
       "source": "BBC News",
       "category": "World",
       "publishedAt": "2026-11-06T17:44:02+00:00"
-    },
-    {
-      "title": "Nigerian court rules opposition candidate cannot stand in elections",
-      "url": "https://www.bbc.co.uk/news/articles/cw8rzzx46jd5o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-06T17:35:55+00:00"
-    },
-    {
-      "title": "Dozens of Democrats eyeing 2028 presidential run, says former Obama aide",
-      "url": "https://www.bbc.co.uk/news/articles/cx8dzzy8n713o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-06T16:51:01+00:00"
-    },
-    {
-      "title": "Four midterms takeaways for 2028 White House race",
-      "url": "https://www.bbc.co.uk/news/articles/cq1m41n3v7mmo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-06T16:12:22+00:00"
     }
   ]
 }
