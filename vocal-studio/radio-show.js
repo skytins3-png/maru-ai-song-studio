@@ -1,5 +1,5 @@
 "use strict";(function(){
-const E=window.MaruShow,$=id=>document.getElementById(id),audio=$("player");
+const E=window.MaruShow,$=id=>document.getElementById(id),audio=$("player"),visual=window.MaruVisualStage;
 const tracks=[],history=[],comments=[];
 let epoch=0,running=false,busy=false,genre=0,index=0,timer=0,deadline=0,activeUrl=null,stopTalking=null,stopSong=null;
 function status(s){$("status").textContent=s;}
@@ -46,10 +46,11 @@ function shutdown(reason){
  running=false;epoch++;if(stopTalking){stopTalking();stopTalking=null;}
  if(stopSong){stopSong();stopSong=null;}
  globalThis.speechSynthesis?.cancel();clearInterval(timer);timer=0;releaseAudio();
- $("now").textContent="재생 대기";$("speaker").textContent="진행자 대기";status(reason);
+ $("now").textContent="재생 대기";$("speaker").textContent="진행자 대기";visual?.idle();status(reason);
 }
-function speak(line,ticket){return new Promise(resolve=>{
+function speak(line,ticket,kind="conversation"){return new Promise(resolve=>{
  if(!running||ticket!==epoch){resolve(false);return;}
+ visual?.speech(line,kind);
  $("speaker").textContent=line.speaker+" · "+line.lang;
  $("dialogue").textContent=E.clean(line.text,260);
  const synth=window.speechSynthesis;
@@ -69,10 +70,11 @@ function speak(line,ticket){return new Promise(resolve=>{
  alarm=setTimeout(()=>{synth.cancel();finish(true);},Math.max(17000,utterance.text.length*360));
  try{synth.speak(utterance);}catch{finish(true);}
  });}
-async function talk(lines,ticket){for(const line of lines)if(!(await speak(line,ticket)))return false;return running&&ticket===epoch;}
+async function talk(lines,ticket,kind="conversation"){for(const line of lines)if(!(await speak(line,ticket,kind)))return false;return running&&ticket===epoch;}
 function play(track,ticket){return new Promise(resolve=>{
  if(!running||ticket!==epoch){resolve(false);return;}
  releaseAudio();activeUrl=URL.createObjectURL(track.file);audio.src=activeUrl;audio.volume=1;
+ visual?.song(track);
  $("now").textContent="🎵 "+track.title+" · "+E.NAMES[track.category];
  $("speaker").textContent="Suno 자작곡";$("dialogue").textContent="원본 오디오를 재인코딩하지 않고 그대로 재생합니다.";
  let settled=false;
@@ -88,11 +90,11 @@ async function show(ticket){
   const selected=E.choose(tracks,history,Date.now(),genre);
   if(!selected){shutdown("20분 내 같은 노래 반복 없이 재생 가능한 곡이 없어 종료했습니다.");return;}
   genre=selected.index;const track=selected.track;
-  if(!(await talk(E.before(track,++index),ticket)))return;
+  if(!(await talk(E.before(track,++index),ticket,"intro")))return;
   if(!running||ticket!==epoch)return;
   history.push({id:track.id,at:Date.now()});if(history.length>500)history.shift();
   if(!(await play(track,ticket)))return;
-  if(!(await talk(E.after(track),ticket)))return;
+  if(!(await talk(E.after(track),ticket,"conversation")))return;
   while(comments.length&&running&&ticket===epoch)if(!(await talk([comments.shift()],ticket)))return;
  }
 }

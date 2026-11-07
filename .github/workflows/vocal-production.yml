@@ -9,6 +9,7 @@ on:
       - 'tests/vocal-pairing-review.test.cjs'
       - 'tests/vocal-persona-evidence.test.cjs'
       - 'tests/maru-radio-show.test.cjs'
+      - 'tests/maru-radio-visual-stage.test.cjs'
       - '.github/workflows/vocal-production.yml'
   push:
     branches: [main]
@@ -20,6 +21,7 @@ on:
       - 'tests/vocal-pairing-review.test.cjs'
       - 'tests/vocal-persona-evidence.test.cjs'
       - 'tests/maru-radio-show.test.cjs'
+      - 'tests/maru-radio-visual-stage.test.cjs'
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -31,7 +33,7 @@ jobs:
         with:
           node-version: '22'
       - name: Validate 30 vocalist dossiers, two-track plans and honest approval status
-        run: node --test tests/vocal-audition.test.cjs tests/vocal-production-plans.test.cjs tests/vocal-catalog-review.test.cjs tests/vocal-pairing-review.test.cjs tests/vocal-persona-evidence.test.cjs tests/maru-radio-show.test.cjs
+        run: node --test tests/vocal-audition.test.cjs tests/vocal-production-plans.test.cjs tests/vocal-catalog-review.test.cjs tests/vocal-pairing-review.test.cjs tests/vocal-persona-evidence.test.cjs tests/maru-radio-show.test.cjs tests/maru-radio-visual-stage.test.cjs
       - name: Static JavaScript syntax
         run: |
           node --check vocal-studio/app.js
@@ -47,3 +49,5 @@ jobs:
           node --check vocal-studio/radio-show-engine.js
           node --check vocal-studio/radio-show-bridge.js
           node --check vocal-studio/radio-show.js
+          node --check vocal-studio/radio-characters.js
+          node --check vocal-studio/radio-stage.js
