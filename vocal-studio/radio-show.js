@@ -1,5 +1,5 @@
 "use strict";(function(){
-const E=window.MaruShow,$=id=>document.getElementById(id),audio=$("player"),visual=window.MaruVisualStage;
+const E=window.MaruShow,H=window.MaruHumanRadio,$=id=>document.getElementById(id),audio=$("player"),visual=window.MaruVisualStage;
 const tracks=[],history=[],comments=[];
 let epoch=0,running=false,busy=false,genre=0,index=0,timer=0,deadline=0,activeUrl=null,stopTalking=null,stopSong=null;
 function status(s){$("status").textContent=s;}
@@ -60,7 +60,7 @@ function speak(line,ticket,kind="conversation"){return new Promise(resolve=>{
  }
  let done=false,alarm;
  const utterance=new SpeechSynthesisUtterance(E.clean(line.text,260));
- utterance.lang=line.lang;utterance.rate=0.98;
+ utterance.lang=line.lang;utterance.rate=line.speaker==="아환"?0.96:line.speaker==="윤솔"?0.99:1.01;
  const host=E.HOSTS.indexOf(line.speaker),voices=synth.getVoices().filter(v=>v.lang?.toLowerCase().startsWith(line.lang.slice(0,2).toLowerCase()));
  if(voices.length)utterance.voice=voices[Math.max(0,host)%voices.length];
  utterance.pitch=0.93+(Math.max(0,host)%5)*0.05;
@@ -70,7 +70,16 @@ function speak(line,ticket,kind="conversation"){return new Promise(resolve=>{
  alarm=setTimeout(()=>{synth.cancel();finish(true);},Math.max(17000,utterance.text.length*360));
  try{synth.speak(utterance);}catch{finish(true);}
  });}
-async function talk(lines,ticket,kind="conversation"){for(const line of lines)if(!(await speak(line,ticket,kind)))return false;return running&&ticket===epoch;}
+async function talk(lines,ticket,kind="conversation"){
+ for(const line of lines){
+  if(!(await speak(line,ticket,kind)))return false;
+  // Purposeful brief conversational beats, not overlapping synthetic speech.
+  const beat=Math.min(600,Math.max(0,Number(line.pauseMs)||240));
+  if(beat)await new Promise(resolve=>setTimeout(resolve,beat));
+  if(!running||ticket!==epoch)return false;
+ }
+ return running&&ticket===epoch;
+}
 function play(track,ticket){return new Promise(resolve=>{
  if(!running||ticket!==epoch){resolve(false);return;}
  releaseAudio();activeUrl=URL.createObjectURL(track.file);audio.src=activeUrl;audio.volume=1;
@@ -90,11 +99,13 @@ async function show(ticket){
   const selected=E.choose(tracks,history,Date.now(),genre);
   if(!selected){shutdown("20분 내 같은 노래 반복 없이 재생 가능한 곡이 없어 종료했습니다.");return;}
   genre=selected.index;const track=selected.track;
-  if(!(await talk(E.before(track,++index),ticket,"intro")))return;
+  const sequence=++index,flow=$("talkFlow").value;
+  if(!(await talk(H.intro(track,sequence,flow),ticket,"intro")))return;
   if(!running||ticket!==epoch)return;
   history.push({id:track.id,at:Date.now()});if(history.length>500)history.shift();
   if(!(await play(track,ticket)))return;
-  if(!(await talk(E.after(track),ticket,"conversation")))return;
+  if(!(await talk(H.after(track,sequence,flow),ticket,"conversation")))return;
+  if(!(await talk(H.guestTalk(track,sequence,flow),ticket,"conversation")))return;
   while(comments.length&&running&&ticket===epoch)if(!(await talk([comments.shift()],ticket)))return;
  }
 }
@@ -127,6 +138,19 @@ $("importStudio").onclick=async()=>{
    (imported.failures.length?"일부 저장소 접근 불가: "+imported.failures.join(" / "):"이 기기에서만 복사해 읽음."));
  }catch(err){status("로컬 보관함 연동 실패: "+err.message);}
  finally{button.disabled=false;}
+};
+$("demoTalk").onclick=()=>{
+ if(busy||running){status("현재 방송 또는 파일 처리가 끝난 뒤 초대석 시연을 시작하세요.");return;}
+ const script=[
+  {speaker:"아환",lang:"ko-KR",text:"안녕하세요, 아환입니다. 지금부터 가상의 초대석 대화를 잠깐 들어보겠습니다.",pauseMs:420},
+  ...H.guestTalk({category:"KR"},2,"talk"),
+  {speaker:"윤솔",lang:"ko-KR",text:"이런 느낌으로 노래 사이에 자연스럽게 대화를 이어갑니다. 이제 음악으로 돌아갈까요?",pauseMs:280}
+ ];
+ running=true;const ticket=++epoch;
+ status("가상 초대석 시연 중 · 로컬 TTS · 노래/실시간 댓글 없음");
+ void talk(script,ticket,"conversation").then(ok=>{
+  if(ok&&ticket===epoch)shutdown("가상 초대석 시연 종료 · 원본 음원은 재생하지 않았습니다.");
+ }).catch(error=>{if(ticket===epoch)shutdown("초대석 시연 오류: "+error.message);});
 };
 $("start").onclick=start;
 $("stop").onclick=()=>shutdown("미리듣기 중지 (BIGO 방송 자체는 제어하지 않습니다)");
