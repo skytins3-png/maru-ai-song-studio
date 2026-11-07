@@ -32,6 +32,14 @@
     const candidate = find(speaker);
     return candidate.id === "ahwan" ? find("윤솔") : candidate;
   }
+  function castForConversation(lines) {
+    // A conversation keeps the same seats as speakers take turns; changing
+    // the entire guest image with every sentence looks like a glitch.
+    const speech=Array.isArray(lines)?lines:[];
+    const invited=speech.map(l=>l&&l.speaker).find(n=>BY_NAME.has(n)&&n!=="아환"&&n!=="윤솔");
+    return invited?[find("윤솔"),find("아환"),find(invited)]:
+      [find("윤솔"),find("아환")];
+  }
   function modeForCue(kind) {
     if (kind === "song") return "stage";
     if (kind === "conversation" || kind === "story") return "talk";
@@ -50,5 +58,5 @@
         (!mime || ["image/jpeg","image/png","image/webp"].includes(mime))) return "image";
     return "";
   }
-  return { CHARACTERS, MODES, find, singerFor, guestFor, modeForCue, mediaType };
+  return { CHARACTERS, MODES, find, singerFor, guestFor, castForConversation, modeForCue, mediaType };
 });
