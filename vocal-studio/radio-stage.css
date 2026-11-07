@@ -25,10 +25,15 @@
 .visual-bottom span{font-size:12px;color:#e4dbee}
 .visual-cast{position:absolute;inset:10% 7% 19%;display:flex;gap:12px;justify-content:center;align-items:end;z-index:2}
 .visual-canvas[data-mode="idle"] .visual-cast {opacity:.65}
-.visual-canvas[data-mode="talk"] .visual-cast{inset:16% 4% 21%;align-items:end}
+.visual-canvas[data-mode="talk"] .visual-cast{inset:16% 3% 21%;align-items:end;gap:5px}
 .visual-person{flex:1;max-width:310px;min-width:0;text-align:center;filter:drop-shadow(0 9px 13px #0006)}
 .visual-person.is-speaking .portrait{transform:scale(1.035);filter:drop-shadow(0 0 16px #f7d8ff5d)}
 .visual-person.is-speaking .visual-name{color:#fff1ae}
+.visual-canvas[data-mode="talk"] .visual-person{min-width:0}
+.visual-canvas[data-mode="talk"] .visual-name{font-size:clamp(12px,2.5vw,15px)}
+.visual-canvas[data-mode="talk"] .visual-role{font-size:10px;line-height:1.25}
+.visual-canvas[data-mode="talk"] .visual-person[data-side="center"]{flex:1.1;transform:translateY(-8px)}
+.visual-canvas[data-mode="talk"] .visual-person.is-speaking .portrait{outline:3px solid #f9da92;outline-offset:-3px}
 .visual-person[data-side="left"]{align-self:end}
 .visual-person[data-side="right"]{align-self:end}
 .visual-name{margin:7px auto 0;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:850;text-shadow:0 2px 5px #000}
