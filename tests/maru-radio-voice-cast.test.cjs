@@ -56,20 +56,27 @@ test("three seats stay consistent across multi-person turns; do not invent live 
    ["윤솔","아환"]);
 });
 
-test("voice selector is explicit and video stays silent; never uploads speech clips",()=>{
- const html=source("radio-show.html"),script=source("radio-show.js"),stage=source("radio-stage.js");
- for(const id of ["voicePerson","voiceLocale","voiceChoice","voicePreview","voiceStatus"])
+test("recorded Suno clips replace TTS; no silent voice imitation or audio upload",()=>{
+ const html=source("radio-show.html"),script=source("radio-show.js");
+ const stage=source("radio-stage.js"),recorded=source("radio-recorded-cues.js");
+ for(const id of ["sunoVoiceSinger","sunoVoiceFile","sunoVoicePreview",
+   "sunoVoiceRights","cueSpeaker","cueText","cueFile","sunoVoiceStatus"])
   assert.ok(html.includes('id="'+id+'"'),id);
- assert.ok(html.includes("radio-voice-cast.js"));
- assert.match(script,/V\.pick\(installedVoices\(\),lang,speaker/);
- assert.match(script,/assignVoice\(utterance,line\.speaker,line\.lang\)/);
- assert.match(script,/if\(running\|\|busy\)/);
+ assert.ok(html.includes("radio-suno-voice-library.js"));
+ assert.ok(html.includes("radio-recorded-cues.js"));
+ assert.doesNotMatch(html,/id="voicePreview"|id="voiceChoice"/);
+ assert.match(script,/R\.playLine\(line\)/);
+ assert.match(script,/S\.singer\(track\.singerId\)/);
+ assert.match(script,/S\.autoMatch\(file\.name\)/);
  assert.match(script,/visual\?\.beginConversation\(lines\)/);
- assert.match(script,/visual\?\.endSpeech\(\)/);
- assert.match(stage,/sceneCast=C\.castForConversation\(lines\)/);
+ assert.match(stage,/profileOf\(assigned\.id\)/);
  assert.match(stage,/const chosen = primary \? assets\.get\(primary\.id\) : null/);
- assert.match(stage,/cast\.dataset\.identity !== identity/);
  assert.match(stage,/movie\.muted = true/);
+ assert.match(recorded,/Library\.cueKey\(line\?\.speaker,line\?\.text\)/);
+ assert.match(recorded,/if\(!entry\)/);
+ assert.match(recorded,/URL\.revokeObjectURL/);
+ assert.doesNotMatch(script,/speechSynthesis|SpeechSynthesisUtterance/);
+ assert.doesNotMatch(recorded,/speechSynthesis|SpeechSynthesisUtterance/);
  assert.doesNotMatch(script,/fetch\s*\(|WebSocket|XMLHttpRequest/);
- assert.doesNotMatch(source("radio-voice-cast.js"),/fetch\s*\(|WebSocket|XMLHttpRequest|localStorage/);
+ assert.doesNotMatch(recorded,/fetch\s*\(|WebSocket|XMLHttpRequest|localStorage/);
 });
