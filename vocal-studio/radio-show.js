@@ -1,8 +1,79 @@
 "use strict";(function(){
-const E=window.MaruShow,H=window.MaruHumanRadio,$=id=>document.getElementById(id),audio=$("player"),visual=window.MaruVisualStage;
+const E=window.MaruShow,H=window.MaruHumanRadio,V=window.MaruVoiceCast,$=id=>document.getElementById(id),audio=$("player"),visual=window.MaruVisualStage;
 const tracks=[],history=[],comments=[];
 let epoch=0,running=false,busy=false,genre=0,index=0,timer=0,deadline=0,activeUrl=null,stopTalking=null,stopSong=null;
 function status(s){$("status").textContent=s;}
+
+const assignedVoices=new Map();
+const prefKey=(speaker,lang)=>speaker+"|"+lang;
+function installedVoices(){
+ try{return globalThis.speechSynthesis?.getVoices()||[];}catch{return [];}
+}
+function assignVoice(utterance,speaker,lang){
+ const style=V.style(speaker),chosen=assignedVoices.get(prefKey(speaker,lang));
+ utterance.lang=lang;
+ utterance.rate=style.rate;utterance.pitch=style.pitch;
+ const candidate=V.pick(installedVoices(),lang,speaker,chosen||"");
+ if(candidate)utterance.voice=candidate;
+}
+function updateVoiceOptions(){
+ const speaker=$("voicePerson").value,lang=$("voiceLocale").value;
+ const chooser=$("voiceChoice"),options=V.candidates(installedVoices(),lang);
+ const wanted=assignedVoices.get(prefKey(speaker,lang))||"";
+ chooser.replaceChildren();
+ const first=document.createElement("option");first.value="";first.textContent="자동 배정";
+ chooser.append(first);
+ for(const voice of options){
+  const item=document.createElement("option");item.value=V.key(voice);
+  item.textContent=voice.name+" · "+voice.lang+(voice.localService===false?" · 온라인 가능":"");
+  chooser.append(item);
+ }
+ chooser.value=options.some(v=>V.key(v)===wanted)?wanted:"";
+ const style=V.style(speaker);
+ const reason=!options.length?"해당 언어 음성을 찾지 못했습니다. 기본 TTS로 동작할 수 있습니다.":
+   options.length===1?"선택 가능한 음성이 1개여서 여러 출연자가 같은 목소리로 들릴 수 있습니다.":
+   "사용 가능한 기기 음성 "+options.length+"개 · 이 화면에서만 설정합니다.";
+ $("voiceStatus").textContent=style.name+" · 속도 "+style.rate+
+   " · 높낮이 "+style.pitch+" · "+reason;
+}
+function enableVoiceChooser(){
+ const select=$("voicePerson");
+ for(const p of V.SETTINGS){
+  const item=document.createElement("option");item.value=p.name;item.textContent=p.name;
+  select.append(item);
+ }
+ select.value="아환";
+ select.onchange=updateVoiceOptions;
+ $("voiceLocale").onchange=updateVoiceOptions;
+ $("voiceChoice").onchange=()=>{
+  const key=prefKey(select.value,$("voiceLocale").value);
+  if($("voiceChoice").value)assignedVoices.set(key,$("voiceChoice").value);
+  else assignedVoices.delete(key);
+  updateVoiceOptions();
+ };
+ const synth=globalThis.speechSynthesis;
+ if(synth?.addEventListener)synth.addEventListener("voiceschanged",updateVoiceOptions);
+ $("voicePreview").onclick=()=>{
+  if(running||busy){status("방송 또는 파일 처리 중에는 목소리 시연이 중단됩니다.");return;}
+  if(!synth||!globalThis.SpeechSynthesisUtterance){
+   status("이 브라우저는 기기 음성합성을 지원하지 않습니다.");return;
+  }
+  const name=select.value,lang=$("voiceLocale").value;
+  const text=lang==="zh-CN"?"欢迎来到马鲁广播，接下来请欣赏音乐。":
+    lang==="en-US"?"Welcome to Maru Radio. Enjoy the next song.":V.style(name).example;
+  try{
+   synth.cancel();
+   const utterance=new SpeechSynthesisUtterance(text);
+   assignVoice(utterance,name,lang);
+   visual?.speech({speaker:name,text},"intro");
+   utterance.onend=()=>{visual?.endSpeech();status(name+" 목소리 미리듣기 완료");};
+   utterance.onerror=()=>{visual?.endSpeech();status("선택한 TTS 음성이 재생되지 않았습니다.");};
+   synth.speak(utterance);status(name+" · "+lang+" · 기기 음성 미리듣기 중");
+  }catch(error){visual?.endSpeech();status("기기 음성 시작 실패: "+error.message);}
+ };
+ updateVoiceOptions();
+}
+
 function safeButtonText(s){return E.clean(s,100);}
 function render(){
  $("count").textContent=tracks.length+"곡 · 로컬 원본 재생";
@@ -56,21 +127,19 @@ function speak(line,ticket,kind="conversation"){return new Promise(resolve=>{
  const synth=window.speechSynthesis;
  if(!synth||!window.SpeechSynthesisUtterance){
   status("이 브라우저는 TTS가 없어 문구만 표시합니다.");
-  setTimeout(()=>resolve(running&&ticket===epoch),1000);return;
+  setTimeout(()=>{visual?.endSpeech();resolve(running&&ticket===epoch);},1000);return;
  }
  let done=false,alarm;
  const utterance=new SpeechSynthesisUtterance(E.clean(line.text,260));
- utterance.lang=line.lang;utterance.rate=line.speaker==="아환"?0.96:line.speaker==="윤솔"?0.99:1.01;
- const host=E.HOSTS.indexOf(line.speaker),voices=synth.getVoices().filter(v=>v.lang?.toLowerCase().startsWith(line.lang.slice(0,2).toLowerCase()));
- if(voices.length)utterance.voice=voices[Math.max(0,host)%voices.length];
- utterance.pitch=0.93+(Math.max(0,host)%5)*0.05;
- const finish=good=>{if(done)return;done=true;clearTimeout(alarm);if(stopTalking===cancel)stopTalking=null;resolve(good&&running&&ticket===epoch);};
+ assignVoice(utterance,line.speaker,line.lang);
+ const finish=good=>{if(done)return;done=true;clearTimeout(alarm);visual?.endSpeech();if(stopTalking===cancel)stopTalking=null;resolve(good&&running&&ticket===epoch);};
  const cancel=()=>{synth.cancel();finish(false);};stopTalking=cancel;
  utterance.onend=()=>finish(true);utterance.onerror=()=>finish(true);
  alarm=setTimeout(()=>{synth.cancel();finish(true);},Math.max(17000,utterance.text.length*360));
  try{synth.speak(utterance);}catch{finish(true);}
  });}
 async function talk(lines,ticket,kind="conversation"){
+ if(kind==="conversation"&&lines.length)visual?.beginConversation(lines);
  for(const line of lines){
   if(!(await speak(line,ticket,kind)))return false;
   // Purposeful brief conversational beats, not overlapping synthetic speech.
@@ -170,5 +239,6 @@ $("send").onclick=()=>{
  if(line){comments.push(line);status("수동 메시지 답변 예약: 현재 노래 이후 대화합니다. BIGO 댓글을 자동 수집하지 않습니다.");}
 };
 window.addEventListener("pagehide",()=>shutdown("페이지가 닫혀 미리듣기 중지"));
+enableVoiceChooser();
 render();status("준비 완료: 오디오 파일은 이 기기에서만 사용합니다.");
 })();

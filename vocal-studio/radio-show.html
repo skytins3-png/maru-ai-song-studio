@@ -25,6 +25,18 @@ input[type=file],input[type=text]{max-width:100%;width:100%}button{background:#7
 <option value="talk">토크 중심 · 2곡마다 초대석</option>
 </select>
 <p class="small">가상의 진행자가 정해진 순서로 미리 작성된 대화를 주고받습니다. 실제 사람과 실시간 대화하거나 화면 속 캐릭터의 입이 음성에 맞춰 움직이는 기능은 아직 아닙니다. 실제 손님·사연·선물·청취자 반응을 지어내지 않습니다.</p>
+<details class="panel" style="background:#2b2341;margin:12px 0">
+<summary style="cursor:pointer;font-weight:800">🎙 출연자별 목소리 설정 (원할 때 펼치기)</summary>
+<p class="small">아환·윤솔·게스트의 말하기 속도와 높낮이는 기본으로 구분했습니다. 이 휴대폰에 설치된 한국어·중국어·영어 TTS 목소리를 출연자별로 선택할 수 있습니다. 실제 사람의 목소리를 복제하거나 가창 음원을 만드는 기능은 아닙니다.</p>
+<div class="row">
+<label for="voicePerson">출연자 <select id="voicePerson"></select></label>
+<label for="voiceLocale">언어 <select id="voiceLocale"><option value="ko-KR">한국어</option><option value="zh-CN">중국어</option><option value="en-US">영어</option></select></label>
+<label for="voiceChoice">기기 목소리 <select id="voiceChoice"><option value="">자동 배정</option></select></label>
+<button id="voicePreview" type="button">▶ 목소리 미리듣기</button>
+</div>
+<p class="small" id="voiceStatus" role="status">기기 음성 목록을 확인합니다.</p>
+<p class="small">선택은 이 브라우저 화면에서만 유지됩니다. 설치된 음성이 한 개뿐이면 출연자들이 비슷하게 들릴 수 있습니다. 일부 기기 TTS는 음성을 온라인 처리할 수 있으니 개인적인 이야기는 입력하지 마세요.</p>
+</details>
 <label for="minutes">로컬 미리듣기 자동 종료</label> <select id="minutes"><option value="0">예약 없음</option><option value="30">30분</option><option value="60">1시간</option><option value="120">2시간</option></select>
 <div class="row" style="margin-top:14px"><button id="start">▶ 라디오 시작</button><button id="next">⏭ 다음 곡</button><button id="stop">■ 전체 중지</button></div>
 <p><button id="demoTalk" type="button">🛋 아환·윤솔 초대석 대화 시연 (음원 없이 듣기)</button></p>
@@ -57,4 +69,4 @@ input[type=file],input[type=text]{max-width:100%;width:100%}button{background:#7
 <section class="panel"><h2>④ 청취자 대화 시험</h2><p class="small">형이 직접 입력한 내용에 준비된 짧은 답변을 다음 곡 사이에 들려줍니다. BIGO 댓글을 자동 감지하거나 전송하지 않습니다.</p><input id="comment" type="text" maxlength="150" placeholder="예: 안녕하세요, 谢谢, 노래 좋아요" aria-label="시험할 청취자 메시지"><p><button id="send">답변 대기열에 추가</button></p></section>
 <section class="panel"><h2>⑤ 앞으로 연결할 기능</h2><p>✅ 진행자 순환 대화·한국어/중국어 안내·원곡 연속재생<br>✅ 장르 순환·20분 중복 방지·다음곡·로컬 종료 예약<br>✅ 수동 댓글 상황별 답변<br>✅ 같은 브라우저의 MARU STUDIO 로컬 음원 가져오기(명시적 동의)<br>✅ 무대·초대석·진행자 화면 전환 및 캐릭터별 로컬 영상/사진 미리보기<br>❌ BIGO 오디오LIVE 믹서의 실제 송출 확인<br>❌ 실시간 댓글 자동 수집 및 자동 답변 송출<br>❌ 실제 실시간 가창 영상 생성·입술 동기화·전문 AI 보컬 30명 제작 완료</p></section>
 </main><p id="status" role="status">초기화 중</p><footer>MARU STUDIO × MARU RADIO · 오디오 로컬 미리듣기</footer>
-<script src="./radio-show-engine.js?v=2"></script><script src="./radio-show-bridge.js?v=1"></script><script src="./radio-characters.js?v=1"></script><script src="./radio-stage.js?v=1"></script><script src="./radio-human-host.js?v=2"></script><script src="./radio-show.js?v=4"></script></body></html>
+<script src="./radio-show-engine.js?v=2"></script><script src="./radio-show-bridge.js?v=1"></script><script src="./radio-characters.js?v=1"></script><script src="./radio-stage.js?v=1"></script><script src="./radio-human-host.js?v=2"></script><script src="./radio-voice-cast.js?v=1"></script><script src="./radio-show.js?v=5"></script></body></html>
