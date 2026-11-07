@@ -167,7 +167,7 @@
       const name = line && line.speaker || "아환";
       setMode(mode === "idle" ? "talk" : mode, name,
         String(line && line.text || "").slice(0,70)); },
-    song(track) { const singer = C.singerFor(track.category);
+    song(track) { const singer = C.singerFor(track.category,track.title);
       setMode("stage", singer ? singer.name : null, track.title); },
     idle() {setMode("idle","아환","MARU RADIO SHOW");},
     state() {return {mode,person:primary && primary.id,assets:assets.size};}
