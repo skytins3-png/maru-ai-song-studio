@@ -81,19 +81,30 @@
       .replace(/\s+/g," ").trim().slice(0,max);
   }
   function title(track){return clean(track&&track.title||"제목 없는 곡",80)||"제목 없는 곡";}
-  function line(speaker,text,pauseMs=300){
-    return {speaker,lang:"ko-KR",text:clean(text,240),pauseMs};
+  function line(speaker,text,pauseMs=300,lang="ko-KR"){
+    return {speaker,lang,text:clean(text,240),pauseMs};
   }
   function flow(value){return ["balanced","music","talk"].includes(value)?value:"balanced";}
   function ordinal(number){return Math.max(1,Math.floor(Number(number)||1));}
   function intro(track,number,setting="balanced"){
     const mode=flow(setting),n=ordinal(number),t=title(track);
-    if(n===1)return [
-      line("아환","안녕하세요. MARU RADIO의 아환입니다. 음악 한 곡씩 천천히 만나볼까요?",430),
-      line("윤솔","저도 함께할게요. 오늘 첫 곡부터 들어보고 이야기 나눠요.",400),
-      line("아환","첫 곡은 "+t+"입니다. 함께 들어보시죠.",250)
-    ];
+    if(n===1){
+      const first=[
+        line("아환","안녕하세요. MARU RADIO의 아환입니다. 음악 한 곡씩 천천히 만나볼까요?",430),
+        line("윤솔","저도 함께할게요. 오늘 첫 곡부터 들어보고 이야기 나눠요.",400),
+        line("아환","첫 곡은 "+t+"입니다. 함께 들어보시죠.",250)
+      ];
+      if(track&&track.category==="CN")first.push(line("윤솔","接下来，请欣赏我们的原创歌曲。",260,"zh-CN"));
+      if(track&&track.category==="WEST")first.push(line("강태준","And here is our first original song.",260,"en-US"));
+      return first;
+    }
     const turn=intros[(n-2)%intros.length](t);
+    if(track&&track.category==="CN"&&n%3===0)return [
+      line("윤솔","接下来，请欣赏《"+t+"》。",280,"zh-CN")
+    ];
+    if(track&&track.category==="WEST"&&n%3===0)return [
+      line("강태준","Coming up next: "+t+".",280,"en-US")
+    ];
     if(mode==="talk"&&n%4===0)return [
       line("아환","다음 곡은 어떨까요?"),
       line("윤솔","제목부터 들어볼게요. "+t+"입니다.")
