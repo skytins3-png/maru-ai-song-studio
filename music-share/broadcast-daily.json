@@ -1,54 +1,96 @@
 {
-  "generatedAt": "2026-11-06T21:32:11+00:00",
+  "generatedAt": "2026-11-07T06:04:06+00:00",
   "timezone": "Asia/Seoul",
   "weather": {
     "Daejeon": {
       "city": "Daejeon",
-      "temperatureC": -0.6,
-      "windKmh": 5.4,
+      "temperatureC": 9.1,
+      "windKmh": 14.2,
       "weatherCode": 0,
-      "observedLocal": "2026-11-07T06:30",
+      "observedLocal": "2026-11-07T15:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Seoul": {
       "city": "Seoul",
-      "temperatureC": -0.2,
-      "windKmh": 5.9,
+      "temperatureC": 7.3,
+      "windKmh": 8.0,
       "weatherCode": 0,
-      "observedLocal": "2026-11-07T06:30",
+      "observedLocal": "2026-11-07T15:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Busan": {
       "city": "Busan",
-      "temperatureC": 4.5,
-      "windKmh": 14.6,
+      "temperatureC": 12.7,
+      "windKmh": 8.4,
       "weatherCode": 0,
-      "observedLocal": "2026-11-07T06:30",
+      "observedLocal": "2026-11-07T15:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Incheon": {
       "city": "Incheon",
-      "temperatureC": 0.3,
-      "windKmh": 16.7,
+      "temperatureC": 7.0,
+      "windKmh": 17.6,
       "weatherCode": 0,
-      "observedLocal": "2026-11-07T06:30",
+      "observedLocal": "2026-11-07T15:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Daegu": {
       "city": "Daegu",
-      "temperatureC": 2.7,
-      "windKmh": 6.9,
+      "temperatureC": 10.8,
+      "windKmh": 10.0,
       "weatherCode": 0,
-      "observedLocal": "2026-11-07T06:30",
+      "observedLocal": "2026-11-07T15:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     }
   },
   "news": [
+    {
+      "title": "Paraguay's President Santiago Peña impeached and arrested",
+      "url": "https://www.bbc.co.uk/news/articles/c68jzzvjgdy9o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-07T03:25:00+00:00"
+    },
+    {
+      "title": "This man refused life-saving treatment because of his religion - days later the rules changed",
+      "url": "https://www.bbc.co.uk/news/articles/cx5ynly549njo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-07T01:27:47+00:00"
+    },
+    {
+      "title": "The young Somali woman changing how the world sees Mogadishu",
+      "url": "https://www.bbc.co.uk/news/articles/cq0k0lg48705o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-07T01:19:49+00:00"
+    },
+    {
+      "title": "Cornell faculty pass no-confidence vote over leadership's handling of Jane Doe allegations",
+      "url": "https://www.bbc.co.uk/news/articles/c933xxl8yv0go?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-06T23:46:08+00:00"
+    },
+    {
+      "title": "With Stephen Miller pick, Trump readies for a battle",
+      "url": "https://www.bbc.co.uk/news/articles/crp3gg2z171go?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-06T23:24:15+00:00"
+    },
+    {
+      "title": "Elon Musk appears to signal the end of the road for Cybertruck",
+      "url": "https://www.bbc.co.uk/news/articles/cq1j33w7d232o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-06T21:49:50+00:00"
+    },
     {
       "title": "AI stocks climb after trillions wiped from market values",
       "url": "https://www.bbc.co.uk/news/articles/c35ynnpzdq51o?at_medium=RSS&at_campaign=rss",
@@ -62,6 +104,13 @@
       "source": "BBC News",
       "category": "Technology",
       "publishedAt": "2026-11-06T18:32:16+00:00"
+    },
+    {
+      "title": "Spain's rail authorities face European fraud probe after Urda rail disaster",
+      "url": "https://www.bbc.co.uk/news/articles/c6x2wwnz5445o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-06T17:44:02+00:00"
     },
     {
       "title": "Nigerian court rules opposition candidate cannot stand in elections",
@@ -83,55 +132,6 @@
       "source": "BBC News",
       "category": "World",
       "publishedAt": "2026-11-06T16:12:22+00:00"
-    },
-    {
-      "title": "Two dead after bus crashes in France, officials say",
-      "url": "https://www.bbc.co.uk/news/articles/cmly00l4p3lwo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-06T15:33:52+00:00"
-    },
-    {
-      "title": "Judge blocks construction of Trump's massive arch after federal agency approval",
-      "url": "https://www.bbc.co.uk/news/articles/cq99zd93ryvko?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-06T15:30:42+00:00"
-    },
-    {
-      "title": "New wave of bomb threats hit European airlines",
-      "url": "https://www.bbc.co.uk/news/articles/cq62yy064vjpo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-06T15:25:35+00:00"
-    },
-    {
-      "title": "Watch: Is it the end of the road for Tesla's Cybertruck?",
-      "url": "https://www.bbc.co.uk/news/videos/cv8ezz9ll7nyo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-06T15:02:03+00:00"
-    },
-    {
-      "title": "Tanzanian opposition leader found guilty of inciting unrest but acquitted of treason",
-      "url": "https://www.bbc.co.uk/news/articles/ckp8g4pm0y4lo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-06T14:57:08+00:00"
-    },
-    {
-      "title": "Kenyan doomsday cult leader given life sentence for murdering 191 people",
-      "url": "https://www.bbc.co.uk/news/articles/cm5yne5984l0o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-06T14:46:03+00:00"
-    },
-    {
-      "title": "Global stocks plunge as fears over US AI slowdown spread to Asia and Europe",
-      "url": "https://www.bbc.co.uk/news/articles/cmn04705rd8jo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "Technology",
-      "publishedAt": "2026-11-06T13:25:50+00:00"
     }
   ]
 }
