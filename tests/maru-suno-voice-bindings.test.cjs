@@ -51,6 +51,10 @@ test("Suno vocal source is playback reference only, no model cloning or backgrou
  assert.match(js,/Library\.cueKey\(line\?\.speaker,line\?\.text\)/);
  assert.match(show,/singerId:match\?\.id\|\|""/);
  assert.match(show,/singerSelect\.onchange/);
+ const stage=source("radio-stage.js");
+ assert.match(stage,/if\(!assigned\) setMode\("stage",null,track\.title\)/);
+ assert.match(stage,/가수 미지정 · 원곡을 부른 가수/);
+ assert.doesNotMatch(stage,/const guessed=assigned\?null/);
  assert.doesNotMatch(show,/speechSynthesis|SpeechSynthesisUtterance/);
  assert.doesNotMatch(js,/speechSynthesis|SpeechSynthesisUtterance/);
  assert.doesNotMatch(js,/fetch\s*\(|WebSocket|XMLHttpRequest|localStorage/);
