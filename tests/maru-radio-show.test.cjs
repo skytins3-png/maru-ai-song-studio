@@ -53,3 +53,65 @@ test("read-only consent-gated studio audio bridge works without remote uploads",
  assert.match(js,/bridgeConsent/);assert.match(js,/MaruRadioBridge.loadAll/);
  assert.doesNotMatch(js,/fetch\s*\(|WebSocket|XMLHttpRequest/);
 });
+
+const host=require("../vocal-studio/radio-human-host.js");
+test("scripted DJ intro varies over twelve songs without robotic three-voice template",()=>{
+ const track={title:"소금강의 저녁",category:"KR"};
+ const first=host.intro(track,1);
+ assert.equal(first.length,3);
+ assert.equal(first[0].speaker,"아환");
+ assert.equal(first[1].speaker,"윤솔");
+ const lines=Array.from({length:12},(_,i)=>host.intro(track,i+2)[0].text);
+ assert.equal(new Set(lines).size,12);
+ for(const part of lines)assert.match(part,/소금강의 저녁/);
+ for(const i of [2,3,6,10,20])assert.equal(host.intro(track,i,"music").length,1);
+});
+test("realistic radio pacing has occasional silence and scheduled guest exchange",()=>{
+ const sample={title:"달의 길",category:"KR"};
+ assert.deepEqual(host.after(sample,2),[]);
+ assert.equal(host.after(sample,3).length,1);
+ assert.deepEqual(host.guestTalk(sample,2),[]);
+ assert.equal(host.guestTalk(sample,3).length,4);
+ assert.deepEqual(host.guestTalk(sample,3,"music"),[]);
+ assert.equal(host.guestTalk(sample,2,"talk").length,4);
+ assert.deepEqual(host.guestTalk(sample,3,"talk"),[]);
+ assert.equal(host.flow("arbitrary"),"balanced");
+ for(const mode of ["balanced","music","talk"]){
+  for(let number=1;number<=35;number++){
+   const all=[...host.intro(sample,number,mode),...host.after(sample,number,mode),
+     ...host.guestTalk(sample,number,mode)];
+   for(const item of all){
+    assert.ok(item.text.length>0&&item.text.length<=240);
+    assert.ok(e.HOSTS.includes(item.speaker));
+    assert.ok(item.pauseMs>=0&&item.pauseMs<=600);
+    assert.equal(item.lang,"ko-KR");
+   }
+  }
+ }
+});
+test("guest dialogue alternates follow-up responses grounded in topic, without fake real guests",()=>{
+ for(const category of ["KR","CN","WEST","INSTR"]){
+  const conversation=host.guestTalk({title:"track",category},3);
+  assert.ok(conversation.length>=3);
+  assert.ok(conversation.some(turn=>turn.text.includes("?")));
+  assert.ok(new Set(conversation.map(turn=>turn.speaker)).size>=2);
+ }
+ const joined=host.guestTalk({title:"foo",category:"WEST"},3).map(x=>x.text).join(" ");
+ assert.match(joined,/곡 소개/);
+ assert.doesNotMatch(joined,/실시간 댓글|오늘의 날씨는|청취자.*사연을 보내|실제 방문한/);
+ const malicious=host.intro({title:"<script>alert(1)</script>",category:"KR"},4);
+ assert.doesNotMatch(malicious.map(x=>x.text).join(" "),/[<>]/);
+});
+test("browser radio show connects source-approved natural hosting without remote LLM or ad-lib claims",()=>{
+ const html=fs.readFileSync(path.join(__dirname,"../vocal-studio/radio-show.html"),"utf8");
+ const js=fs.readFileSync(path.join(__dirname,"../vocal-studio/radio-show.js"),"utf8");
+ const hostCode=fs.readFileSync(path.join(__dirname,"../vocal-studio/radio-human-host.js"),"utf8");
+ assert.match(html,/radio-human-host\.js/);
+ assert.match(html,/id="talkFlow"/);
+ assert.match(html,/3곡마다 초대석/);
+ assert.match(js,/H\.intro\(track,sequence,flow\)/);
+ assert.match(js,/H\.guestTalk\(track,sequence,flow\)/);
+ assert.match(js,/line\.pauseMs/);
+ assert.doesNotMatch(hostCode,/fetch\s*\(|WebSocket|XMLHttpRequest|speechSynthesis|Math\.random/);
+ assert.doesNotMatch(js,/fetch\s*\(|WebSocket|XMLHttpRequest/);
+});
