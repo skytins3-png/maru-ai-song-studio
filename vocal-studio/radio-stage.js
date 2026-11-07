@@ -10,6 +10,7 @@
   const fileInput = $("stageFile"), rights = $("stageRights"), feedback = $("stageFeedback");
   const assets = new Map();
   let mode = "idle", primary = C.find("아환"), activeSpeaker = "아환", trackLabel = "";
+  let sceneCast = null;
   let currentMedia = "";
 
   function note(text) { feedback.textContent = text; }
@@ -47,7 +48,8 @@
     currentMedia = "";
   }
   function showMedia() {
-    const chosen = assets.get(primary.id);
+    // Instrumental songs intentionally have no fictional singer persona.
+    const chosen = primary ? assets.get(primary.id) : null;
     if (!chosen) {
       if (currentMedia) removeCurrentMedia();
       return;
@@ -73,23 +75,29 @@
     modeLabel.textContent = mode === "stage" ? "🎤 노래 무대" :
       mode === "talk" ? "🛋 초대석 토크" :
       mode === "bridge" ? "🎙 아환 진행" : "📻 방송 준비";
-    cast.replaceChildren();
-    if (mode === "talk") {
-      const guest = C.guestFor(activeSpeaker);
-      cast.append(
-        personCard(C.find("아환"), activeSpeaker === "아환", "left"),
-        personCard(guest, activeSpeaker !== "아환", "right")
-      );
-    } else if (mode === "stage" && primary) {
-      cast.append(personCard(primary, false, "center"));
-    } else {
-      cast.append(personCard(C.find("아환"), true, "center"));
+    const persons = mode === "talk" ? (sceneCast || C.castForConversation([{speaker:activeSpeaker}])) :
+      mode === "stage" ? (primary?[primary]:[]) : [primary || C.find("아환")];
+    const identity = mode + ":" + persons.map(x => x.id).join("|");
+    // Keep cast cards mounted while another guest answers; only highlight moves.
+    if (cast.dataset.identity !== identity) {
+      cast.replaceChildren();
+      for (let i=0;i<persons.length;i++) {
+        const person=persons[i];
+        const side=persons.length===3 ? (i===0?"left":i===1?"center":"right") :
+          persons.length===2 ? (i===0?"left":"center") : "center";
+        cast.append(personCard(person,person.name===activeSpeaker,side));
+      }
+      cast.dataset.identity = identity;
+    }
+    for (const card of cast.children) {
+      const label = card.querySelector(".visual-name");
+      card.classList.toggle("is-speaking",!!label && label.textContent === activeSpeaker);
     }
     title.textContent = trackLabel || (mode === "talk" ? "따뜻한 초대석 대화" :
       mode === "stage" ? "가수 무대 · 미리보기" : "MARU RADIO SHOW");
     subtitle.textContent = mode === "stage" && !primary ?
       "연주곡 · 노래하는 가수를 표시하지 않습니다" :
-      mode === "talk" ? "아환 · " + C.guestFor(activeSpeaker).name + " | 승인된 멘트 미리듣기" :
+      mode === "talk" ? persons.map(p=>p.name).join(" · ") + " | 가상 초대석 미리듣기" :
       mode === "bridge" ? "곡 소개 · 인사 · 다음 방송 안내" :
       "가상 캐릭터 콘셉트 · 동영상은 직접 등록해야 합니다";
     showMedia();
@@ -97,8 +105,10 @@
   function setMode(value, who, label) {
     if (!C.MODES.includes(value)) return;
     mode = value;
+    if (value !== "talk") sceneCast = null;
+    if (value === "talk" && !sceneCast) sceneCast=C.castForConversation([{speaker:who||"윤솔"}]);
     primary = who === null ? null : C.find(who || "아환");
-    activeSpeaker = value === "talk" ? (who || "윤솔") : "아환";
+    activeSpeaker = who || "아환";
     trackLabel = String(label || "").slice(0,100);
     render();
   }
@@ -163,14 +173,43 @@
     assets.clear();
   });
   window.MaruVisualStage = {
-    speech(line, kind) { const mode = C.modeForCue(kind);
-      const name = line && line.speaker || "아환";
-      setMode(mode === "idle" ? "talk" : mode, name,
-        String(line && line.text || "").slice(0,70)); },
-    song(track) { const singer = C.singerFor(track.category,track.title);
-      setMode("stage", singer ? singer.name : null, track.title); },
+    beginConversation(lines) {
+      sceneCast=C.castForConversation(lines);
+      // Stay in the same layout from the first question to the final answer.
+      mode="talk";
+      const invited=sceneCast.length===3?sceneCast[2]:null;
+      primary=(invited&&assets.has(invited.id))?invited:C.find("아환");
+      activeSpeaker="아환";
+      trackLabel="초대석 · 음악 이야기";
+      render();
+    },
+    speech(line, kind) {
+      const nextMode=C.modeForCue(kind),name=line&&line.speaker||"아환";
+      if(nextMode==="talk") {
+        if(!sceneCast) sceneCast=C.castForConversation([line]);
+        mode="talk";
+        const invited=sceneCast.length===3?sceneCast[2]:null;
+        primary=(invited&&assets.has(invited.id))?invited:C.find("아환");
+        activeSpeaker=name;
+        trackLabel="초대석 · 음악 이야기";
+        render();
+      } else {
+        setMode(nextMode==="idle"?"bridge":nextMode,name,
+          kind==="intro"?"곡 소개 · "+name:"방송 진행 · "+name);
+      }
+    },
+    endSpeech() {
+      for(const card of cast.children) card.classList.remove("is-speaking");
+    },
+    song(track) {
+      const singer=C.singerFor(track.category,track.title);
+      setMode("stage",singer?singer.name:null,track.title);
+    },
     idle() {setMode("idle","아환","MARU RADIO SHOW");},
-    state() {return {mode,person:primary && primary.id,assets:assets.size};}
+    state() {
+      return {mode,person:primary&&primary.id,assets:assets.size,
+        cast:sceneCast?sceneCast.map(p=>p.name):[],activeSpeaker};
+    }
   };
   personSelect.value = "ahwan";
   setMode("idle","아환","MARU RADIO SHOW");
