@@ -2,6 +2,7 @@
 (function() {
   const C = window.MaruCharacters;
   const S = window.MaruSunoVoiceLibrary;
+  const PortraitDB=window.MaruLocalPortraits;
   const $ = id => document.getElementById(id);
   if (!C || !$("visualCanvas")) return;
 
@@ -40,13 +41,22 @@
     box.dataset.side = side;
     const portrait = document.createElement("div");
     portrait.className = "portrait";
-    for (const [key, color] of [["--coat",person.coat],["--hair",person.hair],
-                                ["--skin",person.skin],["--accent",person.accent]])
-      portrait.style.setProperty(key, color);
-    for (const klass of ["hair","neck","face","coat","lapel","shine"]) {
-      const part = document.createElement("span");
-      part.className = klass;
-      portrait.append(part);
+    const media=assets.get(person.id);
+    if(media && media.type==="image"){
+      const photo=document.createElement("img");
+      photo.className="visual-portrait-photo";
+      photo.src=media.url;
+      photo.alt=person.name+" · 사용자가 등록한 방송 사진";
+      portrait.append(photo);
+    }else{
+      const empty=document.createElement("div");
+      empty.className="visual-portrait-placeholder";
+      const branding=document.createElement("strong");
+      branding.textContent="MARU RADIO";
+      const message=document.createElement("span");
+      message.textContent=person.name+" · 방송용 사진 미등록";
+      empty.append(branding,message);
+      portrait.append(empty);
     }
     const name = document.createElement("strong");
     name.className = "visual-name";
@@ -67,8 +77,9 @@
     currentMedia = "";
   }
   function showMedia() {
-    // Instrumental songs intentionally have no fictional singer persona.
-    const chosen = primary ? assets.get(primary.id) : null;
+    // Interview displays photos in their fixed 3 seats, not an image hiding guests.
+    // Instrumental songs have no fabricated singer persona.
+    const chosen = mode!=="talk"&&primary ? assets.get(primary.id) : null;
     if (!chosen) {
       if (currentMedia) removeCurrentMedia();
       return;
@@ -132,6 +143,26 @@
     trackLabel = String(label || "").slice(0,100);
     render();
   }
+  async function restoreLocalPortrait(id){
+    if(!PortraitDB||assets.has(id))return;
+    try{
+      const blob=await PortraitDB.load(id);
+      if(!blob||assets.has(id)||!PortraitDB.valid(id,blob))return;
+      assets.set(id,{url:URL.createObjectURL(blob),type:"image"});
+      cast.dataset.identity="";
+      render();
+      note(profileOf(id).name+"의 저장된 공식 사진을 이 기기에서 불러왔습니다.");
+    }catch{/* Private mode or disabled storage: manual upload still works. */}
+  }
+  $("stageAhwanPhoto").onclick=()=>{
+    personSelect.value="ahwan";
+    if(!rights.checked){
+      note("아환 공식 사진을 사용하려면 먼저 아래 사진·초상권 확인 칸에 체크해 주세요.");
+      rights.focus();
+      return;
+    }
+    fileInput.click();
+  };
   for (const c of C.CHARACTERS) {
     const opt=document.createElement("option");
     opt.value=c.id;opt.textContent=c.name+" · "+c.specialty;
@@ -145,8 +176,9 @@
   }
   personSelect.onchange = () => {
     const c = profileOf(personSelect.value);
-    note(c.name + " | " + c.style + " | " + c.personality + " | " + c.voice);
+    note(c.name + " | 사진 또는 영상을 등록하면 실제 화면으로 보여줍니다.");
     setMode(c.role === "host" ? "bridge" : c.role === "guest" ? "talk" : "stage", c.name);
+    void restoreLocalPortrait(c.id);
   };
   $("stageRatio").onchange = () => {
     canvas.dataset.ratio = $("stageRatio").value === "square" ? "square" : "portrait";
@@ -178,7 +210,13 @@
     if (old) URL.revokeObjectURL(old.url);
     const url = URL.createObjectURL(file);
     assets.set(person.id, {url,type:kind});
+    cast.dataset.identity="";
     currentMedia = ""; // replaced URL for currently displayed character
+    if(kind==="image"&&$("stageKeepLocal")?.checked&&PortraitDB){
+      void PortraitDB.save(person.id,file).then(()=>
+        note(person.name+"의 사진을 이 브라우저에만 보관했습니다. 실제 촬영 영상과 다릅니다.")
+      ).catch(()=>note("사진은 표시되지만 브라우저 저장에 실패했습니다. 다음 방문 시 다시 등록해야 합니다."));
+    }
     setMode(person.role === "host" ? "bridge" :
       person.role === "guest" ? "talk" : "stage", person.name);
     note(person.name + "의 " + (kind === "video" ? "영상" : "사진") +
@@ -188,6 +226,8 @@
     const id = personSelect.value, previous = assets.get(id);
     if (previous) URL.revokeObjectURL(previous.url);
     assets.delete(id);
+    cast.dataset.identity="";
+    if(PortraitDB)void PortraitDB.remove(id).catch(()=>{});
     removeCurrentMedia();
     render();
     note(profileOf(id).name + "의 화면 연결만 해제했습니다. 원본은 삭제하지 않았습니다.");
@@ -243,5 +283,6 @@
   };
   personSelect.value = "ahwan";
   setMode("idle","아환","MARU RADIO SHOW");
-  note("8명 가상 캐릭터의 기본 화면 준비 완료 · 실제 공연 영상은 직접 등록하세요.");
+  note("임시 도형 얼굴 제거 · 아환의 공식 사진을 직접 적용해 주세요.");
+  void restoreLocalPortrait("ahwan");
 })();

@@ -60,3 +60,23 @@
 .visual-note{font-size:12px;color:#cfc3db;margin:0;text-align:center;max-width:650px}
 .visual-controls button{flex:0 0 auto}
 @media(prefers-reduced-motion:reduce){.visual-beams{animation:none}.portrait{transition:none}}
+
+
+/* No cartoon or invented face: show uploaded real portrait or an honest empty photo slot. */
+.portrait{border-radius:24px 24px 14px 14px;
+ background:linear-gradient(165deg,#3f2c55 0%,#211d36 53%,#111727 100%);
+ border:1px solid #b6a2ce72;display:flex;align-items:center;justify-content:center;
+ box-shadow:inset 0 0 0 5px #ffffff09,0 8px 28px #0005}
+.visual-portrait-photo{position:absolute;inset:0;width:100%;height:100%;
+ object-fit:cover;object-position:center 25%;border-radius:inherit}
+.visual-portrait-placeholder{position:relative;display:flex;flex-direction:column;gap:12px;
+ align-items:center;justify-content:center;padding:18px;color:#d4cae5;text-align:center}
+.visual-portrait-placeholder strong{font-size:clamp(13px,3vw,21px);letter-spacing:.16em;color:#e6d6a3}
+.visual-portrait-placeholder span{font-size:clamp(10px,2.5vw,13px);line-height:1.6}
+.visual-person.is-speaking .portrait{outline:3px solid #f9da92;outline-offset:-3px}
+.visual-canvas[data-mode="talk"] .visual-cast:after{content:"";position:absolute;left:7%;right:7%;bottom:-6%;
+ height:8%;border-radius:60% 60% 5px 5px;background:linear-gradient(100deg,#4e344a,#a07c65,#4e344a);
+ box-shadow:0 9px 30px #0d0b1d99;z-index:4;pointer-events:none}
+.visual-canvas[data-mode="talk"]{background:linear-gradient(125deg,#261a32 4%,#6e5365 52%,#191323 100%)}
+.visual-canvas[data-mode="talk"] .visual-cast{inset:17% 3% 21%}
+.visual-canvas.has-media[data-mode="talk"] .visual-cast{display:flex}

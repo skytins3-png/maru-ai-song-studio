@@ -55,6 +55,7 @@ jobs:
           node --check vocal-studio/radio-show.js
           node --check vocal-studio/radio-characters.js
           node --check vocal-studio/radio-stage.js
+          node --check vocal-studio/radio-stage-photo-store.js
           node --check vocal-studio/radio-voice-cast.js
           node --check vocal-studio/radio-suno-voice-library.js
           node --check vocal-studio/radio-recorded-cues.js

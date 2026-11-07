@@ -9,7 +9,7 @@ input[type=file],input[type=text]{max-width:100%;width:100%}button{background:#7
 .small{font-size:13px;color:#d3c6de}#speaker{font-weight:800;color:#ffdfaa}#dialogue{min-height:95px;font-size:clamp(18px,4.4vw,27px);line-height:1.6;white-space:pre-wrap}
 #now{font-size:19px;font-weight:800;margin:14px 0}audio{width:100%}#songs{max-height:220px;overflow-y:auto;padding-left:26px}#songs li{padding:5px;border-bottom:1px solid #45365e;word-break:break-word}#songs select{padding:5px}
 #status{position:sticky;bottom:0;background:#1c1530;border-top:1px solid #745a9a;padding:14px;margin:0;font-size:13px}footer{text-align:center;color:#bdb0cc;padding:20px}
-</style><link rel="stylesheet" href="./radio-stage.css?v=1"></head><body><header><div><a href="./">← MARU STUDIO</a><h1>📻 MARU RADIO SHOW</h1><p>Suno 원곡의 가수별 실제 보컬을 재생하고, 아환·윤솔은 사전 녹음 멘트가 있을 때만 소리로 진행하는 방송 미리듣기</p></div></header>
+</style><link rel="stylesheet" href="./radio-stage.css?v=2"></head><body><header><div><a href="./">← MARU STUDIO</a><h1>📻 MARU RADIO SHOW</h1><p>Suno 원곡의 가수별 실제 보컬을 재생하고, 아환·윤솔은 사전 녹음 멘트가 있을 때만 소리로 진행하는 방송 미리듣기</p></div></header>
 <main><section class="panel warn"><strong>지금은 로컬 음악방송 미리듣기입니다.</strong><p>가상의 출연진이 사전 녹음한 승인 음성이 있을 때만 대화하고, 노래는 기존 Suno 자작곡 MP3/WAV 원본을 그대로 틀어줍니다. <strong>이것만으로 BIGO LIVE 청취자에게 음악과 말소리가 송출되는 것은 아닙니다.</strong> BIGO 마이크 믹서 및 방송 시작·종료는 아직 별도 작업이며, 휴대폰 백그라운드/화면 잠금 시 소리가 멈출 수 있습니다.</p></section>
 <section class="panel"><h2>① Suno 자작곡 불러오기</h2><p class="small">한국·중국·서양·연주곡 4장르 자동 순환. 파일명으로 1차 분류하므로 실제 언어와 다른 곡은 수동으로 고칠 수 있습니다. 오디오 원본을 변환하거나 외부 서버로 전송하지 않습니다.</p><input id="files" type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.flac" multiple aria-label="Suno 자작곡 파일 추가"><div class="panel" style="margin:14px 0;background:#2c2142;border-color:#8664b0"><h3>🔗 MARU STUDIO → RADIO 곡 가져오기</h3>
 <p class="small">형이 같은 Chrome 브라우저에서 MARU STUDIO 보컬 후보 화면이나 전문 오디션에 직접 저장한 샘플 음원을 <b>재업로드 없이</b> 이 화면에 가져옵니다. 후보는 아직 정식 가수가 아니며, 등록된 노래만 미리듣기로 재생합니다.</p>
@@ -46,7 +46,7 @@ input[type=file],input[type=text]{max-width:100%;width:100%}button{background:#7
 <p class="small">한 번 누르면 가상 진행자의 대본 자막과 등록된 승인 음성 클립을 시연합니다. 음성 클립이 없다면 소리는 나지 않습니다. 실제 손님이 말하거나 실시간 반응하는 방송이 아니며, 시연 중에는 전체 중지로 멈출 수 있습니다.</p>
 <p class="small">재생: 한국→중국→서양→연주 순환(없는 장르는 건너뜀), 20분 안에 같은 파일 재생 금지. 전체 곡이 최근 재생한 곡이면 자동 중지.</p></section>
 <section class="panel"><h2>③ 영상 무대 · 초대석 · 진행자 방송 화면</h2>
-<p class="small">가상의 출연자 8명이 등장하는 <strong>로컬 영상 리허설</strong>입니다. 실제 공연 영상이 없으면 캐릭터 일러스트로 표시합니다. 직접 허가받은 MP4/WebM 또는 사진을 캐릭터별로 등록하면 노래·토크·멘트에 맞춰 화면이 바뀝니다. 자동 입 모양 동기화나 실제 인물 음성 복제는 구현되지 않았습니다.</p>
+<p class="small">가상의 출연자 8명이 등장하는 <strong>로컬 영상 리허설</strong>입니다. 실제 공연 영상이나 사진이 없으면 인물 얼굴을 임의로 그리지 않고, 사진 미등록 화면을 표시합니다. 직접 허가받은 MP4/WebM 또는 사진을 캐릭터별로 등록하면 노래·토크·멘트에 맞춰 화면이 바뀝니다. 자동 입 모양 동기화나 실제 인물 음성 복제는 구현되지 않았습니다.</p>
 <div class="visual-board">
  <div id="visualCanvas" class="visual-canvas" data-ratio="portrait" data-mode="idle" aria-label="MARU 방송 가상 무대">
   <div class="visual-beams" aria-hidden="true"></div>
@@ -60,11 +60,13 @@ input[type=file],input[type=text]{max-width:100%;width:100%}button{background:#7
   <button type="button" data-stage-preview="stage">🎤 무대 보기</button>
   <button type="button" data-stage-preview="talk">🛋 초대석 보기</button>
   <button type="button" data-stage-preview="bridge">🎙 진행자 보기</button>
+  <button type="button" id="stageAhwanPhoto">📷 아환 공식 사진 적용</button>
   <label for="stageRatio">화면 <select id="stageRatio"><option value="portrait">세로 9:16</option><option value="square">정사각 1:1</option></select></label>
  </div>
  <div class="visual-controls"><label for="stagePerson">캐릭터 <select id="stagePerson"></select></label></div>
- <p class="visual-note">캐릭터별 옷·성격·역할을 고정했습니다. 사람처럼 제스처하며 노래하는 실제 동영상은 사용자 권한이 확인된 영상 파일을 등록해야 나타납니다.</p>
+ <p class="visual-note">아환 공식 사진은 📷 버튼으로 적용하세요. 다른 출연자의 사진도 캐릭터를 선택해 등록할 수 있습니다. 사진은 정지 화면이며 실제로 말하거나 노래하는 영상은 아닙니다.</p>
  <label class="small"><input id="stageRights" type="checkbox"> 영상·사진 및 등장 인물의 초상·공연·방송 사용권을 확인했습니다.</label>
+ <label class="small"><input id="stageKeepLocal" type="checkbox"> 사진을 이 브라우저에만 저장하여 다음에도 그대로 사용 (선택)</label>
  <div class="visual-controls"><input id="stageFile" type="file" accept="video/mp4,video/webm,image/jpeg,image/png,image/webp" aria-label="선택한 캐릭터 영상 또는 사진 등록"><button id="stageRemove" type="button">영상 연결 해제</button></div>
  <p id="stageFeedback" class="visual-note" role="status">캐릭터 미리보기 준비 중</p>
 </div>
@@ -72,4 +74,4 @@ input[type=file],input[type=text]{max-width:100%;width:100%}button{background:#7
 <section class="panel"><h2>④ 청취자 대화 시험</h2><p class="small">형이 직접 입력한 내용에 준비된 짧은 답변을 다음 곡 사이에 들려줍니다. BIGO 댓글을 자동 감지하거나 전송하지 않습니다.</p><input id="comment" type="text" maxlength="150" placeholder="예: 안녕하세요, 谢谢, 노래 좋아요" aria-label="시험할 청취자 메시지"><p><button id="send">답변 대기열에 추가</button></p></section>
 <section class="panel"><h2>⑤ 앞으로 연결할 기능</h2><p>✅ 녹음된 멘트만 재생·한국어/중국어 안내 자막·원곡 연속재생<br>✅ 장르 순환·20분 중복 방지·다음곡·로컬 종료 예약<br>✅ 수동 댓글 상황별 답변<br>✅ 같은 브라우저의 MARU STUDIO 로컬 음원 가져오기(명시적 동의)<br>✅ 무대·초대석·진행자 화면 전환 및 캐릭터별 로컬 영상/사진 미리보기<br>❌ BIGO 오디오LIVE 믹서의 실제 송출 확인<br>❌ 실시간 댓글 자동 수집 및 자동 답변 송출<br>❌ 실제 실시간 가창 영상 생성·입술 동기화·전문 AI 보컬 30명 제작 완료</p></section>
 </main><p id="status" role="status">초기화 중</p><footer>MARU STUDIO × MARU RADIO · 오디오 로컬 미리듣기</footer>
-<script src="./radio-show-engine.js?v=2"></script><script src="./radio-show-bridge.js?v=1"></script><script src="./radio-characters.js?v=1"></script><script src="./radio-suno-voice-library.js?v=1"></script><script src="./radio-stage.js?v=2"></script><script src="./radio-human-host.js?v=2"></script><script src="./radio-recorded-cues.js?v=1"></script><script src="./radio-show.js?v=6"></script></body></html>
+<script src="./radio-show-engine.js?v=2"></script><script src="./radio-show-bridge.js?v=1"></script><script src="./radio-characters.js?v=1"></script><script src="./radio-suno-voice-library.js?v=1"></script><script src="./radio-stage-photo-store.js?v=1"></script><script src="./radio-stage.js?v=3"></script><script src="./radio-human-host.js?v=2"></script><script src="./radio-recorded-cues.js?v=1"></script><script src="./radio-show.js?v=6"></script></body></html>
