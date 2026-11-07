@@ -12,7 +12,7 @@
   const assets = new Map();
   let mode = "idle", primary = C.find("아환"), activeSpeaker = "아환", trackLabel = "";
   let sceneCast = null;
-  let currentMedia = "";
+  let currentMedia = "", unassignedStageMessage = "가수 미지정";
 
   function note(text) { feedback.textContent = text; }
 
@@ -115,7 +115,7 @@
     title.textContent = trackLabel || (mode === "talk" ? "따뜻한 초대석 대화" :
       mode === "stage" ? "가수 무대 · 미리보기" : "MARU RADIO SHOW");
     subtitle.textContent = mode === "stage" && !primary ?
-      "연주곡 · 노래하는 가수를 표시하지 않습니다" :
+      unassignedStageMessage :
       mode === "stage" ? (primary?primary.name+" · Suno 원곡 무대":"연주 무대") :
       mode === "talk" ? persons.map(p=>p.name).join(" · ") + " | 가상 초대석 미리듣기" :
       mode === "bridge" ? "곡 소개 · 인사 · 다음 방송 안내" :
@@ -229,10 +229,11 @@
     song(track) {
       // User-selected Suno vocalist wins over language/genre *guessing*.
       const assigned=S.singer(track.singerId);
-      const guessed=assigned?null:C.singerFor(track.category,track.title);
-      const singer=assigned?profileOf(assigned.id):guessed;
-      if(!singer) setMode("stage",null,track.title);
-      else setMode("stage",singer.id,track.title);
+      unassignedStageMessage=track.category==="INSTR" ?
+        "연주곡 · 보컬 가수를 표시하지 않습니다" :
+        "가수 미지정 · 원곡을 부른 가수의 ID를 선택해야 합니다";
+      if(!assigned) setMode("stage",null,track.title);
+      else setMode("stage",profileOf(assigned.id).id,track.title);
     },
     idle() {setMode("idle","아환","MARU RADIO SHOW");},
     state() {
