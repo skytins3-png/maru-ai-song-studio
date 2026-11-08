@@ -1,60 +1,74 @@
 {
-  "generatedAt": "2026-11-07T23:40:44+00:00",
+  "generatedAt": "2026-11-08T06:08:17+00:00",
   "timezone": "Asia/Seoul",
   "weather": {
     "Daejeon": {
       "city": "Daejeon",
-      "temperatureC": 2.2,
-      "windKmh": 5.4,
-      "weatherCode": 1,
-      "observedLocal": "2026-11-08T08:30",
+      "temperatureC": 11.2,
+      "windKmh": 5.1,
+      "weatherCode": 2,
+      "observedLocal": "2026-11-08T15:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Seoul": {
       "city": "Seoul",
-      "temperatureC": 3.4,
-      "windKmh": 2.9,
-      "weatherCode": 1,
-      "observedLocal": "2026-11-08T08:30",
+      "temperatureC": 5.7,
+      "windKmh": 5.0,
+      "weatherCode": 51,
+      "observedLocal": "2026-11-08T15:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Busan": {
       "city": "Busan",
-      "temperatureC": 9.0,
-      "windKmh": 5.9,
-      "weatherCode": 1,
-      "observedLocal": "2026-11-08T08:30",
+      "temperatureC": 14.9,
+      "windKmh": 8.4,
+      "weatherCode": 2,
+      "observedLocal": "2026-11-08T15:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Incheon": {
       "city": "Incheon",
-      "temperatureC": 3.0,
-      "windKmh": 9.0,
-      "weatherCode": 2,
-      "observedLocal": "2026-11-08T08:30",
+      "temperatureC": 4.8,
+      "windKmh": 14.7,
+      "weatherCode": 53,
+      "observedLocal": "2026-11-08T15:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Daegu": {
       "city": "Daegu",
-      "temperatureC": 4.7,
-      "windKmh": 1.8,
+      "temperatureC": 14.0,
+      "windKmh": 5.8,
       "weatherCode": 1,
-      "observedLocal": "2026-11-08T08:30",
+      "observedLocal": "2026-11-08T15:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     }
   },
   "news": [
     {
+      "title": "Houthis say at least 33 killed in Saudi air strike",
+      "url": "https://www.bbc.co.uk/news/articles/c65yn1v99ypmo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-08T04:03:12+00:00"
+    },
+    {
       "title": "What we know so far after Krakow gun attack",
       "url": "https://www.bbc.co.uk/news/articles/cmd7q15drwgeo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-07T22:58:49+00:00"
+      "publishedAt": "2026-11-08T01:47:41+00:00"
+    },
+    {
+      "title": "Can the Zelda remake capture the magic of the original?",
+      "url": "https://www.bbc.co.uk/news/articles/cm8xznl0n1q4o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "Technology",
+      "publishedAt": "2026-11-08T00:37:45+00:00"
     },
     {
       "title": "Israel's president tasks opposition leader Eisenkot with forming government",
@@ -83,13 +97,6 @@
       "source": "BBC News",
       "category": "World",
       "publishedAt": "2026-11-07T17:58:41+00:00"
-    },
-    {
-      "title": "Houthis say at least 25 killed in Saudi air strike",
-      "url": "https://www.bbc.co.uk/news/articles/c65yn1v99ypmo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-07T17:09:24+00:00"
     },
     {
       "title": "Italian foreign minister says hackers leaked his personal data",
@@ -125,13 +132,6 @@
       "source": "BBC News",
       "category": "World",
       "publishedAt": "2026-11-07T12:23:28+00:00"
-    },
-    {
-      "title": "Texas mayor instructs police to limit co-operation with ICE",
-      "url": "https://www.bbc.co.uk/news/articles/c8dx33d22zkro?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-07T08:15:55+00:00"
     }
   ]
 }
