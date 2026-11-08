@@ -1,54 +1,75 @@
 {
-  "generatedAt": "2026-11-08T06:08:17+00:00",
+  "generatedAt": "2026-11-08T15:16:49+00:00",
   "timezone": "Asia/Seoul",
   "weather": {
     "Daejeon": {
       "city": "Daejeon",
-      "temperatureC": 11.2,
-      "windKmh": 5.1,
-      "weatherCode": 2,
-      "observedLocal": "2026-11-08T15:00",
+      "temperatureC": 5.4,
+      "windKmh": 5.5,
+      "weatherCode": 1,
+      "observedLocal": "2026-11-09T00:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Seoul": {
       "city": "Seoul",
-      "temperatureC": 5.7,
-      "windKmh": 5.0,
-      "weatherCode": 51,
-      "observedLocal": "2026-11-08T15:00",
+      "temperatureC": 4.9,
+      "windKmh": 2.8,
+      "weatherCode": 1,
+      "observedLocal": "2026-11-09T00:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Busan": {
       "city": "Busan",
-      "temperatureC": 14.9,
-      "windKmh": 8.4,
-      "weatherCode": 2,
-      "observedLocal": "2026-11-08T15:00",
+      "temperatureC": 12.5,
+      "windKmh": 7.6,
+      "weatherCode": 3,
+      "observedLocal": "2026-11-09T00:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Incheon": {
       "city": "Incheon",
-      "temperatureC": 4.8,
-      "windKmh": 14.7,
-      "weatherCode": 53,
-      "observedLocal": "2026-11-08T15:00",
+      "temperatureC": 4.5,
+      "windKmh": 8.4,
+      "weatherCode": 2,
+      "observedLocal": "2026-11-09T00:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Daegu": {
       "city": "Daegu",
-      "temperatureC": 14.0,
-      "windKmh": 5.8,
-      "weatherCode": 1,
-      "observedLocal": "2026-11-08T15:00",
+      "temperatureC": 9.0,
+      "windKmh": 3.4,
+      "weatherCode": 2,
+      "observedLocal": "2026-11-09T00:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     }
   },
   "news": [
+    {
+      "title": "What we know so far after Krakow gun attack",
+      "url": "https://www.bbc.co.uk/news/articles/cmd7q15drwgeo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-08T14:32:52+00:00"
+    },
+    {
+      "title": "Government 'looking seriously' at banning under-16s from Vinted and eBay",
+      "url": "https://www.bbc.co.uk/news/articles/cmzxjvpqrjxro?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "Technology",
+      "publishedAt": "2026-11-08T11:25:32+00:00"
+    },
+    {
+      "title": "How the deadly shooting in Krakow unfolded",
+      "url": "https://www.bbc.co.uk/news/videos/cq74p2zpwyjmo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-08T09:29:24+00:00"
+    },
     {
       "title": "Houthis say at least 33 killed in Saudi air strike",
       "url": "https://www.bbc.co.uk/news/articles/c65yn1v99ypmo?at_medium=RSS&at_campaign=rss",
@@ -57,11 +78,18 @@
       "publishedAt": "2026-11-08T04:03:12+00:00"
     },
     {
-      "title": "What we know so far after Krakow gun attack",
-      "url": "https://www.bbc.co.uk/news/articles/cmd7q15drwgeo?at_medium=RSS&at_campaign=rss",
+      "title": "The Trump coalition is shattered - what will Republicans do now?",
+      "url": "https://www.bbc.co.uk/news/articles/cm3r5gnxqz3jo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-08T01:47:41+00:00"
+      "publishedAt": "2026-11-08T00:52:39+00:00"
+    },
+    {
+      "title": "Germans wrestle with what to do with Hitler's destroyed Eagle's Nest retreat",
+      "url": "https://www.bbc.co.uk/news/articles/cm74pk1g51nko?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-08T00:48:59+00:00"
     },
     {
       "title": "Can the Zelda remake capture the magic of the original?",
@@ -76,6 +104,13 @@
       "source": "BBC News",
       "category": "World",
       "publishedAt": "2026-11-07T22:19:59+00:00"
+    },
+    {
+      "title": "'Flat', 'tired', 'cynical': Unusually gloomy Kiwis deliver New Zealand's tightest election in years",
+      "url": "https://www.bbc.co.uk/news/articles/cxr5yyg2nj9eo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-07T21:36:16+00:00"
     },
     {
       "title": "Paraguay's former president charged after bank collapse",
@@ -97,41 +132,6 @@
       "source": "BBC News",
       "category": "World",
       "publishedAt": "2026-11-07T17:58:41+00:00"
-    },
-    {
-      "title": "Italian foreign minister says hackers leaked his personal data",
-      "url": "https://www.bbc.co.uk/news/articles/cr20wvge32j3o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-07T16:50:06+00:00"
-    },
-    {
-      "title": "No clear winner after tight New Zealand general election",
-      "url": "https://www.bbc.co.uk/news/articles/c3ewev11g1e0o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-07T15:56:28+00:00"
-    },
-    {
-      "title": "UK cannot 'cherry pick' EU single market deal, Barnier tells BBC",
-      "url": "https://www.bbc.co.uk/news/articles/c9kgjj206nzpo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-07T15:19:35+00:00"
-    },
-    {
-      "title": "Russian strikes wound nine and damage Ukraine's power network ahead of talks",
-      "url": "https://www.bbc.co.uk/news/articles/cm4g1nq8158po?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-07T12:49:36+00:00"
-    },
-    {
-      "title": "Four things we learned this week about 2028 White House race",
-      "url": "https://www.bbc.co.uk/news/articles/cq1m41n3v7mmo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-07T12:23:28+00:00"
     }
   ]
 }
