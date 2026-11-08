@@ -1,67 +1,95 @@
 {
-  "generatedAt": "2026-11-08T15:16:49+00:00",
+  "generatedAt": "2026-11-08T20:30:48+00:00",
   "timezone": "Asia/Seoul",
   "weather": {
     "Daejeon": {
       "city": "Daejeon",
-      "temperatureC": 5.4,
-      "windKmh": 5.5,
-      "weatherCode": 1,
-      "observedLocal": "2026-11-09T00:15",
+      "temperatureC": 5.3,
+      "windKmh": 7.3,
+      "weatherCode": 3,
+      "observedLocal": "2026-11-09T05:30",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Seoul": {
       "city": "Seoul",
-      "temperatureC": 4.9,
-      "windKmh": 2.8,
+      "temperatureC": 4.5,
+      "windKmh": 4.0,
       "weatherCode": 1,
-      "observedLocal": "2026-11-09T00:15",
+      "observedLocal": "2026-11-09T05:30",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Busan": {
       "city": "Busan",
-      "temperatureC": 12.5,
+      "temperatureC": 11.8,
       "windKmh": 7.6,
-      "weatherCode": 3,
-      "observedLocal": "2026-11-09T00:15",
+      "weatherCode": 2,
+      "observedLocal": "2026-11-09T05:30",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Incheon": {
       "city": "Incheon",
-      "temperatureC": 4.5,
-      "windKmh": 8.4,
-      "weatherCode": 2,
-      "observedLocal": "2026-11-09T00:15",
+      "temperatureC": 4.1,
+      "windKmh": 13.6,
+      "weatherCode": 1,
+      "observedLocal": "2026-11-09T05:30",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Daegu": {
       "city": "Daegu",
-      "temperatureC": 9.0,
-      "windKmh": 3.4,
+      "temperatureC": 8.5,
+      "windKmh": 4.0,
       "weatherCode": 2,
-      "observedLocal": "2026-11-09T00:15",
+      "observedLocal": "2026-11-09T05:30",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     }
   },
   "news": [
     {
-      "title": "What we know so far after Krakow gun attack",
-      "url": "https://www.bbc.co.uk/news/articles/cmd7q15drwgeo?at_medium=RSS&at_campaign=rss",
+      "title": "Seven dead and more than 100 injured after trains collide in Egypt",
+      "url": "https://www.bbc.co.uk/news/articles/cwvgr20mmmevo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-08T14:32:52+00:00"
+      "publishedAt": "2026-11-08T19:58:02+00:00"
+    },
+    {
+      "title": "Surgeon having lunch near Krakow shooting undoubtedly saved officer's life, colleague says",
+      "url": "https://www.bbc.co.uk/news/articles/c5x2vw4e1gx1o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-08T18:22:53+00:00"
+    },
+    {
+      "title": "Footage shows derailed carriages after fatal train crash in Egypt",
+      "url": "https://www.bbc.co.uk/news/videos/cw78p2km7d94o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-08T16:05:57+00:00"
     },
     {
       "title": "Government 'looking seriously' at banning under-16s from Vinted and eBay",
       "url": "https://www.bbc.co.uk/news/articles/cmzxjvpqrjxro?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "Technology",
-      "publishedAt": "2026-11-08T11:25:32+00:00"
+      "publishedAt": "2026-11-08T15:37:25+00:00"
+    },
+    {
+      "title": "Homes and temples glow across India to mark Diwali",
+      "url": "https://www.bbc.co.uk/news/articles/cm70pdwz122ro?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-08T14:42:09+00:00"
+    },
+    {
+      "title": "Iran executes three men for 'armed unrest' after January protests",
+      "url": "https://www.bbc.co.uk/news/articles/ckly0ex633ydo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-08T13:37:50+00:00"
     },
     {
       "title": "How the deadly shooting in Krakow unfolded",
@@ -99,39 +127,11 @@
       "publishedAt": "2026-11-08T00:37:45+00:00"
     },
     {
-      "title": "Israel's president tasks opposition leader Eisenkot with forming government",
-      "url": "https://www.bbc.co.uk/news/articles/cmy8367lj5xlo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-07T22:19:59+00:00"
-    },
-    {
       "title": "'Flat', 'tired', 'cynical': Unusually gloomy Kiwis deliver New Zealand's tightest election in years",
       "url": "https://www.bbc.co.uk/news/articles/cxr5yyg2nj9eo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
       "publishedAt": "2026-11-07T21:36:16+00:00"
-    },
-    {
-      "title": "Paraguay's former president charged after bank collapse",
-      "url": "https://www.bbc.co.uk/news/articles/c68jzzvjgdy9o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-07T19:17:22+00:00"
-    },
-    {
-      "title": "US offers $20m reward for information about Iran's nuclear programme",
-      "url": "https://www.bbc.co.uk/news/articles/c6d091ev3p0jo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-07T18:14:38+00:00"
-    },
-    {
-      "title": "Gaza wedding festival sees 250 couples married at the same time",
-      "url": "https://www.bbc.co.uk/news/videos/ckr5ygm78j76o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-07T17:58:41+00:00"
     }
   ]
 }
