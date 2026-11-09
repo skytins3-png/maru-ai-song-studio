@@ -1,67 +1,109 @@
 {
-  "generatedAt": "2026-11-08T20:30:48+00:00",
+  "generatedAt": "2026-11-09T06:42:07+00:00",
   "timezone": "Asia/Seoul",
   "weather": {
     "Daejeon": {
       "city": "Daejeon",
-      "temperatureC": 5.3,
-      "windKmh": 7.3,
-      "weatherCode": 3,
-      "observedLocal": "2026-11-09T05:30",
+      "temperatureC": 8.6,
+      "windKmh": 1.3,
+      "weatherCode": 1,
+      "observedLocal": "2026-11-09T15:30",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Seoul": {
       "city": "Seoul",
-      "temperatureC": 4.5,
-      "windKmh": 4.0,
+      "temperatureC": 12.2,
+      "windKmh": 5.2,
       "weatherCode": 1,
-      "observedLocal": "2026-11-09T05:30",
+      "observedLocal": "2026-11-09T15:30",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Busan": {
       "city": "Busan",
-      "temperatureC": 11.8,
-      "windKmh": 7.6,
-      "weatherCode": 2,
-      "observedLocal": "2026-11-09T05:30",
+      "temperatureC": 10.3,
+      "windKmh": 9.7,
+      "weatherCode": 55,
+      "observedLocal": "2026-11-09T15:30",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Incheon": {
       "city": "Incheon",
-      "temperatureC": 4.1,
-      "windKmh": 13.6,
+      "temperatureC": 10.8,
+      "windKmh": 14.6,
       "weatherCode": 1,
-      "observedLocal": "2026-11-09T05:30",
+      "observedLocal": "2026-11-09T15:30",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Daegu": {
       "city": "Daegu",
       "temperatureC": 8.5,
-      "windKmh": 4.0,
-      "weatherCode": 2,
-      "observedLocal": "2026-11-09T05:30",
+      "windKmh": 6.6,
+      "weatherCode": 51,
+      "observedLocal": "2026-11-09T15:30",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     }
   },
   "news": [
     {
-      "title": "Seven dead and more than 100 injured after trains collide in Egypt",
-      "url": "https://www.bbc.co.uk/news/articles/cwvgr20mmmevo?at_medium=RSS&at_campaign=rss",
+      "title": "Jensen Huang: Silicon Valley superstar engulfed by personal scandal",
+      "url": "https://www.bbc.co.uk/news/articles/ckgel338xql3o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-08T19:58:02+00:00"
+      "publishedAt": "2026-11-09T06:01:52+00:00"
+    },
+    {
+      "title": "Inside the French drug gangs recruiting children to kill",
+      "url": "https://www.bbc.co.uk/news/articles/cq62y01r2313o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-09T06:00:26+00:00"
+    },
+    {
+      "title": "Pope delivers veiled rebuke of Milei's austerity measures",
+      "url": "https://www.bbc.co.uk/news/articles/ckj0l082jqzvo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-09T05:30:37+00:00"
+    },
+    {
+      "title": "Cruise ship pianist rescued from sea after nine hours in Pacific Ocean",
+      "url": "https://www.bbc.co.uk/news/articles/ck1wvrrgln13o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-09T02:50:13+00:00"
     },
     {
       "title": "Surgeon having lunch near Krakow shooting undoubtedly saved officer's life, colleague says",
       "url": "https://www.bbc.co.uk/news/articles/c5x2vw4e1gx1o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-08T18:22:53+00:00"
+      "publishedAt": "2026-11-08T23:34:18+00:00"
+    },
+    {
+      "title": "'I treat all these people like they are victims', says doctor who treated Krakow shooting suspect",
+      "url": "https://www.bbc.co.uk/news/videos/c63elgqqz5y0o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-08T22:05:12+00:00"
+    },
+    {
+      "title": "Aramco Tower hit in heart of Saudi capital as Houthis launch fresh strikes",
+      "url": "https://www.bbc.co.uk/news/articles/c6ly3mjx958eo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-08T21:37:36+00:00"
+    },
+    {
+      "title": "Seven dead and more than 100 injured after trains collide in Egypt",
+      "url": "https://www.bbc.co.uk/news/articles/cwvgr20mmmevo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-08T19:58:02+00:00"
     },
     {
       "title": "Footage shows derailed carriages after fatal train crash in Egypt",
@@ -90,48 +132,6 @@
       "source": "BBC News",
       "category": "World",
       "publishedAt": "2026-11-08T13:37:50+00:00"
-    },
-    {
-      "title": "How the deadly shooting in Krakow unfolded",
-      "url": "https://www.bbc.co.uk/news/videos/cq74p2zpwyjmo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-08T09:29:24+00:00"
-    },
-    {
-      "title": "Houthis say at least 33 killed in Saudi air strike",
-      "url": "https://www.bbc.co.uk/news/articles/c65yn1v99ypmo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-08T04:03:12+00:00"
-    },
-    {
-      "title": "The Trump coalition is shattered - what will Republicans do now?",
-      "url": "https://www.bbc.co.uk/news/articles/cm3r5gnxqz3jo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-08T00:52:39+00:00"
-    },
-    {
-      "title": "Germans wrestle with what to do with Hitler's destroyed Eagle's Nest retreat",
-      "url": "https://www.bbc.co.uk/news/articles/cm74pk1g51nko?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-08T00:48:59+00:00"
-    },
-    {
-      "title": "Can the Zelda remake capture the magic of the original?",
-      "url": "https://www.bbc.co.uk/news/articles/cm8xznl0n1q4o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "Technology",
-      "publishedAt": "2026-11-08T00:37:45+00:00"
-    },
-    {
-      "title": "'Flat', 'tired', 'cynical': Unusually gloomy Kiwis deliver New Zealand's tightest election in years",
-      "url": "https://www.bbc.co.uk/news/articles/cxr5yyg2nj9eo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-07T21:36:16+00:00"
     }
   ]
 }
