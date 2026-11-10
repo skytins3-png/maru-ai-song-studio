@@ -1,137 +1,137 @@
 {
-  "generatedAt": "2026-11-09T18:51:11+00:00",
+  "generatedAt": "2026-11-10T02:45:27+00:00",
   "timezone": "Asia/Seoul",
   "weather": {
     "Daejeon": {
       "city": "Daejeon",
-      "temperatureC": 2.0,
-      "windKmh": 4.8,
+      "temperatureC": 9.2,
+      "windKmh": 4.6,
       "weatherCode": 0,
-      "observedLocal": "2026-11-10T03:45",
+      "observedLocal": "2026-11-10T11:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Seoul": {
       "city": "Seoul",
-      "temperatureC": 2.6,
-      "windKmh": 3.6,
+      "temperatureC": 8.2,
+      "windKmh": 5.1,
       "weatherCode": 0,
-      "observedLocal": "2026-11-10T03:45",
+      "observedLocal": "2026-11-10T11:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Busan": {
       "city": "Busan",
-      "temperatureC": 10.6,
-      "windKmh": 9.1,
+      "temperatureC": 15.9,
+      "windKmh": 5.3,
       "weatherCode": 1,
-      "observedLocal": "2026-11-10T03:45",
+      "observedLocal": "2026-11-10T11:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Incheon": {
       "city": "Incheon",
-      "temperatureC": 2.0,
-      "windKmh": 10.8,
+      "temperatureC": 8.5,
+      "windKmh": 8.0,
       "weatherCode": 0,
-      "observedLocal": "2026-11-10T03:45",
+      "observedLocal": "2026-11-10T11:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Daegu": {
       "city": "Daegu",
-      "temperatureC": 7.1,
-      "windKmh": 7.2,
-      "weatherCode": 1,
-      "observedLocal": "2026-11-10T03:45",
+      "temperatureC": 12.6,
+      "windKmh": 7.8,
+      "weatherCode": 0,
+      "observedLocal": "2026-11-10T11:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     }
   },
   "news": [
     {
+      "title": "Qantas to outsource 850 local jobs with most roles moving to India",
+      "url": "https://www.bbc.co.uk/news/articles/cry838v4qzvyo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-10T01:55:22+00:00"
+    },
+    {
+      "title": "Trump says FBI investigating Nvidia boss's affair with alleged Chinese spy",
+      "url": "https://www.bbc.co.uk/news/articles/cqg7x7dpvym8o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-10T01:44:53+00:00"
+    },
+    {
       "title": "Republican congressman to force impeachment vote on Defence Secretary Hegseth",
       "url": "https://www.bbc.co.uk/news/articles/cwr5y58jjp8ro?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-09T18:19:19+00:00"
+      "publishedAt": "2026-11-10T01:38:49+00:00"
     },
     {
-      "title": "Nvidia shares tumble over investigation into Huang's affair with alleged Chinese spy",
-      "url": "https://www.bbc.co.uk/news/articles/c6zxjx01vyleo?at_medium=RSS&at_campaign=rss",
+      "title": "Epstein associate who still runs model agency 'put me in danger' says abuse survivor",
+      "url": "https://www.bbc.co.uk/news/articles/cm86z6w59gggo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-09T18:11:11+00:00"
+      "publishedAt": "2026-11-10T00:14:03+00:00"
     },
     {
-      "title": "Russia's leading independent newspaper closes after eviction",
-      "url": "https://www.bbc.co.uk/news/videos/cvrlylj9r11go?at_medium=RSS&at_campaign=rss",
+      "title": "Ukraine peace talks resume with 'some flexibility' by warring sides, US officials say",
+      "url": "https://www.bbc.co.uk/news/articles/cqpvgvrpjvv8o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-09T18:08:07+00:00"
+      "publishedAt": "2026-11-10T00:09:49+00:00"
     },
     {
-      "title": "Turkey steel factory blast kills at least 16 people",
-      "url": "https://www.bbc.co.uk/news/articles/cq2d6d5z9y5jo?at_medium=RSS&at_campaign=rss",
+      "title": "The superpower battle over energy – and what it means for your bills",
+      "url": "https://www.bbc.co.uk/news/articles/cw62y2z53pg1o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-09T18:04:01+00:00"
-    },
-    {
-      "title": "Trump questions midterm elections integrity after previously accepting results",
-      "url": "https://www.bbc.co.uk/news/articles/ck79p9350zp9o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-09T17:47:29+00:00"
-    },
-    {
-      "title": "Nine Zimbabweans caught allegedly trying to leave South Africa to fight in Ukraine",
-      "url": "https://www.bbc.co.uk/news/articles/cm93z3lp5lnpo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-09T17:06:18+00:00"
-    },
-    {
-      "title": "Watch: Rare insight into France's drug gangs recruiting children to commit violence",
-      "url": "https://www.bbc.co.uk/news/videos/cwe9l98l5n2po?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-09T16:59:46+00:00"
-    },
-    {
-      "title": "France accuses Iran of supermarket fridge hacking",
-      "url": "https://www.bbc.co.uk/news/articles/cmg474vk6dyqo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-09T16:55:07+00:00"
-    },
-    {
-      "title": "At least 39 die after Europe-bound migrant boat sinks off Senegal",
-      "url": "https://www.bbc.co.uk/news/articles/cv2d6dpge65go?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-09T16:33:55+00:00"
+      "publishedAt": "2026-11-10T00:08:28+00:00"
     },
     {
       "title": "What we know so far about Jensen Huang's affair with suspected Chinese spy",
       "url": "https://www.bbc.co.uk/news/articles/ckgel338xql3o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-09T15:46:20+00:00"
+      "publishedAt": "2026-11-09T23:51:22+00:00"
     },
     {
-      "title": "Who is the suspected Chinese spy at centre of the Nvidia investigation?",
-      "url": "https://www.bbc.co.uk/news/videos/c80404zyr53wo?at_medium=RSS&at_campaign=rss",
+      "title": "Judge denies motion to dismiss Lindsay Clancy's murder case",
+      "url": "https://www.bbc.co.uk/news/articles/ck1l3le7q29vo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-09T14:50:35+00:00"
+      "publishedAt": "2026-11-09T23:28:53+00:00"
     },
     {
-      "title": "Thirteen migrants die after boat sinks off Crete",
-      "url": "https://www.bbc.co.uk/news/articles/c65ynyxrjdyeo?at_medium=RSS&at_campaign=rss",
+      "title": "Dana White declines Trump’s offer to be White House press secretary",
+      "url": "https://www.bbc.co.uk/news/videos/cwm2328pyy1jo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-09T13:50:01+00:00"
+      "publishedAt": "2026-11-09T22:46:27+00:00"
+    },
+    {
+      "title": "Zoe Kleinman: Nvidia CEO's affair will cause ripples across US and beyond",
+      "url": "https://www.bbc.co.uk/news/articles/cj3vqv3nee72o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-09T21:52:28+00:00"
+    },
+    {
+      "title": "Trial date of alleged Charlie Kirk killer set for June 2028",
+      "url": "https://www.bbc.co.uk/news/articles/cq0mem8d2p3xo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-09T21:48:38+00:00"
+    },
+    {
+      "title": "Turkey steel factory blast kills at least 17 people",
+      "url": "https://www.bbc.co.uk/news/articles/cq2d6d5z9y5jo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-09T20:42:04+00:00"
     }
   ]
 }
