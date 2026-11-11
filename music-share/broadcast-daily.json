@@ -1,60 +1,109 @@
 {
-  "generatedAt": "2026-11-11T16:13:17+00:00",
+  "generatedAt": "2026-11-11T22:45:21+00:00",
   "timezone": "Asia/Seoul",
   "weather": {
     "Daejeon": {
       "city": "Daejeon",
-      "temperatureC": 6.9,
-      "windKmh": 5.4,
-      "weatherCode": 0,
-      "observedLocal": "2026-11-12T01:00",
+      "temperatureC": 2.8,
+      "windKmh": 0.8,
+      "weatherCode": 3,
+      "observedLocal": "2026-11-12T07:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Seoul": {
       "city": "Seoul",
-      "temperatureC": 7.6,
-      "windKmh": 2.5,
-      "weatherCode": 0,
-      "observedLocal": "2026-11-12T01:00",
+      "temperatureC": 5.9,
+      "windKmh": 4.0,
+      "weatherCode": 3,
+      "observedLocal": "2026-11-12T07:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Busan": {
       "city": "Busan",
-      "temperatureC": 10.0,
-      "windKmh": 5.1,
-      "weatherCode": 0,
-      "observedLocal": "2026-11-12T01:00",
+      "temperatureC": 9.6,
+      "windKmh": 5.6,
+      "weatherCode": 3,
+      "observedLocal": "2026-11-12T07:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Incheon": {
       "city": "Incheon",
-      "temperatureC": 7.6,
-      "windKmh": 8.6,
-      "weatherCode": 0,
-      "observedLocal": "2026-11-12T01:00",
+      "temperatureC": 6.9,
+      "windKmh": 12.6,
+      "weatherCode": 3,
+      "observedLocal": "2026-11-12T07:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Daegu": {
       "city": "Daegu",
-      "temperatureC": 8.9,
-      "windKmh": 5.9,
-      "weatherCode": 0,
-      "observedLocal": "2026-11-12T01:00",
+      "temperatureC": 7.0,
+      "windKmh": 4.2,
+      "weatherCode": 3,
+      "observedLocal": "2026-11-12T07:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     }
   },
   "news": [
     {
+      "title": "Clashes erupt in Barcelona after thousands join Spain general strike",
+      "url": "https://www.bbc.co.uk/news/articles/cwvg25nypmrvo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-11T22:07:37+00:00"
+    },
+    {
+      "title": "African writing award probe finds 'no evidence' winning story was AI generated",
+      "url": "https://www.bbc.co.uk/news/articles/cmglr260z7eko?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-11T20:00:54+00:00"
+    },
+    {
+      "title": "Schools in Italy, Scotland and Northern Ireland hit by threats in suspected bomb hoax",
+      "url": "https://www.bbc.co.uk/news/articles/cwz0k79pr8z2o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-11T18:38:45+00:00"
+    },
+    {
+      "title": "Missing 11-month-old baby found buried alive in a crate in South Carolina",
+      "url": "https://www.bbc.co.uk/news/articles/c8e391xzg6z2o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-11T18:10:57+00:00"
+    },
+    {
       "title": "Russia-Ukraine talks turn to post-war security but end without breakthrough",
       "url": "https://www.bbc.co.uk/news/articles/ck792we7zrz4o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-11T15:05:11+00:00"
+      "publishedAt": "2026-11-11T18:04:58+00:00"
+    },
+    {
+      "title": "Three Iran-backed suspects plotted attacks including RAF Fairford incident, US says",
+      "url": "https://www.bbc.co.uk/news/articles/c3rryrryk59zo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-11T16:59:34+00:00"
+    },
+    {
+      "title": "US Treasury Secretary Scott Bessent relocated after alleged Iranian threats",
+      "url": "https://www.bbc.co.uk/news/articles/cqr7gr0010r2o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-11T16:45:11+00:00"
+    },
+    {
+      "title": "Indonesia's vice president resigns amid signs ruling alliance is fraying",
+      "url": "https://www.bbc.co.uk/news/articles/cmvgxgz87qqro?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-11T16:38:07+00:00"
     },
     {
       "title": "Kidnapper, 74, escapes from house arrest in Argentina by abseiling from balcony",
@@ -62,20 +111,6 @@
       "source": "BBC News",
       "category": "World",
       "publishedAt": "2026-11-11T14:56:11+00:00"
-    },
-    {
-      "title": "Three Iran-backed suspects plotted attacks including RAF Fairford incident, US says",
-      "url": "https://www.bbc.co.uk/news/articles/c3rryrryk59zo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-11T14:51:26+00:00"
-    },
-    {
-      "title": "Spain sees widespread disruption in first general strike for 14 years",
-      "url": "https://www.bbc.co.uk/news/articles/cwvg25nypmrvo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-11T14:06:27+00:00"
     },
     {
       "title": "Egyptian journalist's retrial adjourned as UN warns of 'assaults on press freedom'",
@@ -97,41 +132,6 @@
       "source": "BBC News",
       "category": "World",
       "publishedAt": "2026-11-11T12:53:11+00:00"
-    },
-    {
-      "title": "Six thousand Italian schools hit by threats in suspected bomb hoax",
-      "url": "https://www.bbc.co.uk/news/articles/cwz0k79pr8z2o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-11T12:30:29+00:00"
-    },
-    {
-      "title": "Haitian PM praises El Salvador after joint strike on alleged home of gang leader",
-      "url": "https://www.bbc.co.uk/news/articles/cmvg2xdwnwezo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-11T12:14:12+00:00"
-    },
-    {
-      "title": "US House blocks bid to impeach Defence Secretary Pete Hegseth",
-      "url": "https://www.bbc.co.uk/news/articles/cxly4y5jzl0qo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-11T11:47:22+00:00"
-    },
-    {
-      "title": "Transport workers in Chile block highways in protest over surging fuel prices",
-      "url": "https://www.bbc.co.uk/news/articles/c6e3d895zne7o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-11T11:34:50+00:00"
-    },
-    {
-      "title": "New Indian mega library rocked by scandal over 'AI-generated books'",
-      "url": "https://www.bbc.co.uk/news/articles/c54gne3plvrxo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "Technology",
-      "publishedAt": "2026-11-11T11:33:24+00:00"
     }
   ]
 }
