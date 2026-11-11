@@ -1,137 +1,137 @@
 {
-  "generatedAt": "2026-11-11T06:31:31+00:00",
+  "generatedAt": "2026-11-11T16:13:17+00:00",
   "timezone": "Asia/Seoul",
   "weather": {
     "Daejeon": {
       "city": "Daejeon",
-      "temperatureC": 15.4,
-      "windKmh": 9.4,
+      "temperatureC": 6.9,
+      "windKmh": 5.4,
       "weatherCode": 0,
-      "observedLocal": "2026-11-11T15:30",
+      "observedLocal": "2026-11-12T01:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Seoul": {
       "city": "Seoul",
-      "temperatureC": 14.2,
-      "windKmh": 6.2,
+      "temperatureC": 7.6,
+      "windKmh": 2.5,
       "weatherCode": 0,
-      "observedLocal": "2026-11-11T15:30",
+      "observedLocal": "2026-11-12T01:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Busan": {
       "city": "Busan",
-      "temperatureC": 16.7,
-      "windKmh": 7.0,
+      "temperatureC": 10.0,
+      "windKmh": 5.1,
       "weatherCode": 0,
-      "observedLocal": "2026-11-11T15:30",
+      "observedLocal": "2026-11-12T01:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Incheon": {
       "city": "Incheon",
-      "temperatureC": 14.0,
-      "windKmh": 12.8,
+      "temperatureC": 7.6,
+      "windKmh": 8.6,
       "weatherCode": 0,
-      "observedLocal": "2026-11-11T15:30",
+      "observedLocal": "2026-11-12T01:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Daegu": {
       "city": "Daegu",
-      "temperatureC": 16.1,
-      "windKmh": 5.6,
+      "temperatureC": 8.9,
+      "windKmh": 5.9,
       "weatherCode": 0,
-      "observedLocal": "2026-11-11T15:30",
+      "observedLocal": "2026-11-12T01:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     }
   },
   "news": [
     {
-      "title": "Kennedys sue to block Trump's arch, arguing it would cast shadow on JFK's grave",
-      "url": "https://www.bbc.co.uk/news/articles/cw8dvpmzp2p4o?at_medium=RSS&at_campaign=rss",
+      "title": "Russia-Ukraine talks turn to post-war security but end without breakthrough",
+      "url": "https://www.bbc.co.uk/news/articles/ck792we7zrz4o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-11T03:44:06+00:00"
+      "publishedAt": "2026-11-11T15:05:11+00:00"
     },
     {
-      "title": "US House blocks bid to impeach Defence Secretary Pete Hegseth, for now",
-      "url": "https://www.bbc.co.uk/news/articles/cxly4y5jzl0qo?at_medium=RSS&at_campaign=rss",
+      "title": "Kidnapper, 74, escapes from house arrest in Argentina by abseiling from balcony",
+      "url": "https://www.bbc.co.uk/news/articles/c933gn6710lyo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-11T03:26:42+00:00"
-    },
-    {
-      "title": "Headquarters of Haitian gang destroyed, El Salvador's president says",
-      "url": "https://www.bbc.co.uk/news/articles/cmvg2xdwnwezo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-11T02:47:59+00:00"
-    },
-    {
-      "title": "Meghan's father Thomas Markle back in federal custody after allegedly removing ankle monitor",
-      "url": "https://www.bbc.co.uk/news/articles/c9j3433zy4vro?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-11T02:41:16+00:00"
+      "publishedAt": "2026-11-11T14:56:11+00:00"
     },
     {
       "title": "Three Iran-backed suspects plotted attacks including RAF Fairford incident, US says",
       "url": "https://www.bbc.co.uk/news/articles/c3rryrryk59zo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-11T01:01:20+00:00"
+      "publishedAt": "2026-11-11T14:51:26+00:00"
     },
     {
-      "title": "'They will kill you too': Sonia Gandhi's turbulent journey in Indian politics",
-      "url": "https://www.bbc.co.uk/news/articles/c687z7g4xr97o?at_medium=RSS&at_campaign=rss",
+      "title": "Spain sees widespread disruption in first general strike for 14 years",
+      "url": "https://www.bbc.co.uk/news/articles/cwvg25nypmrvo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-11T00:26:02+00:00"
+      "publishedAt": "2026-11-11T14:06:27+00:00"
     },
     {
-      "title": "Real Madrid's Vinícius Jr sends surprise message to boy who lost his legs in Sudan's war",
-      "url": "https://www.bbc.co.uk/news/articles/cqm26mmpp2p1o?at_medium=RSS&at_campaign=rss",
+      "title": "Egyptian journalist's retrial adjourned as UN warns of 'assaults on press freedom'",
+      "url": "https://www.bbc.co.uk/news/articles/cmkg5jr59835o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-11T00:19:42+00:00"
+      "publishedAt": "2026-11-11T13:25:47+00:00"
     },
     {
-      "title": "Robot vessels take on the dangerous work of mine hunting",
-      "url": "https://www.bbc.co.uk/news/articles/cj5yn24llxd6o?at_medium=RSS&at_campaign=rss",
+      "title": "Four grizzly bears killed in Canada after fatal attack on mother and daughter",
+      "url": "https://www.bbc.co.uk/news/articles/cwg5r8zrm11mo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-11T13:24:29+00:00"
+    },
+    {
+      "title": "Kenya discharges last Ebola patient in major milestone towards virus-free status",
+      "url": "https://www.bbc.co.uk/news/articles/cwe9kzv0g0v7o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-11T12:53:11+00:00"
+    },
+    {
+      "title": "Six thousand Italian schools hit by threats in suspected bomb hoax",
+      "url": "https://www.bbc.co.uk/news/articles/cwz0k79pr8z2o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-11T12:30:29+00:00"
+    },
+    {
+      "title": "Haitian PM praises El Salvador after joint strike on alleged home of gang leader",
+      "url": "https://www.bbc.co.uk/news/articles/cmvg2xdwnwezo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-11T12:14:12+00:00"
+    },
+    {
+      "title": "US House blocks bid to impeach Defence Secretary Pete Hegseth",
+      "url": "https://www.bbc.co.uk/news/articles/cxly4y5jzl0qo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-11T11:47:22+00:00"
+    },
+    {
+      "title": "Transport workers in Chile block highways in protest over surging fuel prices",
+      "url": "https://www.bbc.co.uk/news/articles/c6e3d895zne7o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-11T11:34:50+00:00"
+    },
+    {
+      "title": "New Indian mega library rocked by scandal over 'AI-generated books'",
+      "url": "https://www.bbc.co.uk/news/articles/c54gne3plvrxo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "Technology",
-      "publishedAt": "2026-11-11T00:19:13+00:00"
-    },
-    {
-      "title": "'It can kill us': Kenyans fear impact of El Niño with floods predicted",
-      "url": "https://www.bbc.co.uk/news/articles/c8wy9y37z30vo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-11T00:18:07+00:00"
-    },
-    {
-      "title": "Nvidia hires major US law firm to investigate alleged Chinese spy affair",
-      "url": "https://www.bbc.co.uk/news/articles/ck1wvwwl3x0go?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-10T22:52:15+00:00"
-    },
-    {
-      "title": "What we know so far about Jensen Huang's affair with suspected Chinese spy",
-      "url": "https://www.bbc.co.uk/news/articles/ckgel338xql3o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "Technology",
-      "publishedAt": "2026-11-10T21:22:36+00:00"
-    },
-    {
-      "title": "First day of Ukraine peace talks constructive, Zelensky says",
-      "url": "https://www.bbc.co.uk/news/articles/cqpvgvrpjvv8o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-10T21:21:55+00:00"
+      "publishedAt": "2026-11-11T11:33:24+00:00"
     }
   ]
 }
