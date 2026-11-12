@@ -1,137 +1,137 @@
 {
-  "generatedAt": "2026-11-12T07:16:50+00:00",
+  "generatedAt": "2026-11-12T16:50:48+00:00",
   "timezone": "Asia/Seoul",
   "weather": {
     "Daejeon": {
       "city": "Daejeon",
-      "temperatureC": 14.7,
-      "windKmh": 10.1,
-      "weatherCode": 1,
-      "observedLocal": "2026-11-12T16:15",
+      "temperatureC": 7.1,
+      "windKmh": 5.8,
+      "weatherCode": 2,
+      "observedLocal": "2026-11-13T01:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Seoul": {
       "city": "Seoul",
-      "temperatureC": 14.8,
-      "windKmh": 6.3,
-      "weatherCode": 1,
-      "observedLocal": "2026-11-12T16:15",
+      "temperatureC": 8.5,
+      "windKmh": 2.6,
+      "weatherCode": 2,
+      "observedLocal": "2026-11-13T01:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Busan": {
       "city": "Busan",
-      "temperatureC": 17.1,
-      "windKmh": 9.0,
-      "weatherCode": 0,
-      "observedLocal": "2026-11-12T16:15",
+      "temperatureC": 9.2,
+      "windKmh": 6.6,
+      "weatherCode": 1,
+      "observedLocal": "2026-11-13T01:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Incheon": {
       "city": "Incheon",
-      "temperatureC": 14.9,
-      "windKmh": 13.9,
+      "temperatureC": 9.0,
+      "windKmh": 8.4,
       "weatherCode": 1,
-      "observedLocal": "2026-11-12T16:15",
+      "observedLocal": "2026-11-13T01:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Daegu": {
       "city": "Daegu",
-      "temperatureC": 16.0,
-      "windKmh": 5.0,
+      "temperatureC": 8.9,
+      "windKmh": 5.7,
       "weatherCode": 1,
-      "observedLocal": "2026-11-12T16:15",
+      "observedLocal": "2026-11-13T01:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     }
   },
   "news": [
     {
-      "title": "Israeli strike on hospital kills at least five Palestinians, Gaza civil defence agency says",
-      "url": "https://www.bbc.co.uk/news/articles/ckzd9p7e4eqeo?at_medium=RSS&at_campaign=rss",
+      "title": "How AI visionary Jensen Huang was undone by his own bad decisions",
+      "url": "https://www.bbc.co.uk/news/articles/cq5y13819gpjo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-12T06:12:05+00:00"
+      "category": "Technology",
+      "publishedAt": "2026-11-12T16:43:36+00:00"
     },
     {
-      "title": "Ukraine's power supply close to critical as Russian strikes bring darkness and cold",
-      "url": "https://www.bbc.co.uk/news/articles/cr1ewpd95d21o?at_medium=RSS&at_campaign=rss",
+      "title": "Ukraine says military Starlink disrupted again as US envoys meet Putin in Moscow",
+      "url": "https://www.bbc.co.uk/news/articles/cwrkgmymk55zo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-12T05:59:18+00:00"
+      "publishedAt": "2026-11-12T16:31:12+00:00"
     },
     {
-      "title": "New York building collapse kills at least two, officials say",
-      "url": "https://www.bbc.co.uk/news/articles/c8zx964glvwxo?at_medium=RSS&at_campaign=rss",
+      "title": "The rise and fall of Jensen Huang - how the tech superstar became mired in scandal",
+      "url": "https://www.bbc.co.uk/news/articles/cmze750zg0jeo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-12T05:12:56+00:00"
+      "category": "Technology",
+      "publishedAt": "2026-11-12T16:02:10+00:00"
     },
     {
-      "title": "What we know as pressure builds on embattled Nvidia CEO Jensen Huang",
+      "title": "What we know as Nvidia CEO Jensen Huang resigns over affair allegations",
       "url": "https://www.bbc.co.uk/news/articles/ckgel338xql3o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "Technology",
-      "publishedAt": "2026-11-12T04:18:33+00:00"
+      "publishedAt": "2026-11-12T15:26:39+00:00"
     },
     {
-      "title": "Famed ship SS United States sunk off coast of Florida",
-      "url": "https://www.bbc.co.uk/news/articles/c3x298n87rn2o?at_medium=RSS&at_campaign=rss",
+      "title": "Millions of Ebola dollars missing with staff unpaid while virus spreads, charity says",
+      "url": "https://www.bbc.co.uk/news/articles/cx98757ymm6zo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-12T04:03:13+00:00"
+      "publishedAt": "2026-11-12T15:18:20+00:00"
     },
     {
-      "title": "Democrat Scott Colom seals historic win in Mississippi Senate race",
+      "title": "Who is Nvidia's interim CEO Colette Kress - and who could take over permanently?",
+      "url": "https://www.bbc.co.uk/news/articles/cqgm37dv20e8o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-12T15:10:32+00:00"
+    },
+    {
+      "title": "Israeli strike on Gaza hospital kills six Palestinians, health ministry says",
+      "url": "https://www.bbc.co.uk/news/articles/ckzd9p7e4eqeo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-12T14:27:30+00:00"
+    },
+    {
+      "title": "Before Scott Colom, these two men were the last black US senators in Mississippi",
+      "url": "https://www.bbc.co.uk/news/articles/cmde1y19g19do?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-12T14:12:55+00:00"
+    },
+    {
+      "title": "'We've got to run': Inside ruined Ukraine power plant under constant drone threat",
+      "url": "https://www.bbc.co.uk/news/videos/cm93rp3gxn6qo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-12T13:02:46+00:00"
+    },
+    {
+      "title": "Democrat Scott Colom makes history as Mississippi's first black senator since 19th Century",
       "url": "https://www.bbc.co.uk/news/articles/cw7vppyr80eeo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-12T04:00:30+00:00"
+      "publishedAt": "2026-11-12T12:56:55+00:00"
     },
     {
-      "title": "Australian teen missing in bush for six days rescued alive",
-      "url": "https://www.bbc.co.uk/news/articles/ckvg25zmppglo?at_medium=RSS&at_campaign=rss",
+      "title": "Suspected bomb hoax threats force fresh evacuations of Italian schools",
+      "url": "https://www.bbc.co.uk/news/articles/cr894w453e90o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-12T02:40:18+00:00"
+      "publishedAt": "2026-11-12T12:39:39+00:00"
     },
     {
-      "title": "Nigeria's president launches re-election manifesto but can he regain voters' trust?",
-      "url": "https://www.bbc.co.uk/news/articles/ck5ynyw527wdo?at_medium=RSS&at_campaign=rss",
+      "title": "British woman missing from cruise ship in Atlantic",
+      "url": "https://www.bbc.co.uk/news/articles/cmy0enrkwkklo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-12T00:36:11+00:00"
-    },
-    {
-      "title": "Clashes erupt in Barcelona after thousands join Spain general strike",
-      "url": "https://www.bbc.co.uk/news/articles/cwvg25nypmrvo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-11T22:07:37+00:00"
-    },
-    {
-      "title": "African writing award probe finds 'no evidence' winning story was AI generated",
-      "url": "https://www.bbc.co.uk/news/articles/cmglr260z7eko?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-11T20:00:54+00:00"
-    },
-    {
-      "title": "Schools in Italy, Scotland and Northern Ireland hit by threats in suspected bomb hoax",
-      "url": "https://www.bbc.co.uk/news/articles/cwz0k79pr8z2o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-11T18:38:45+00:00"
-    },
-    {
-      "title": "Missing 11-month-old baby rescued after being buried alive in a crate in South Carolina",
-      "url": "https://www.bbc.co.uk/news/articles/c8e391xzg6z2o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-11T18:10:57+00:00"
+      "publishedAt": "2026-11-12T10:13:35+00:00"
     }
   ]
 }
