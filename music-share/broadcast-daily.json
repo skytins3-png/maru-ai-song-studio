@@ -1,91 +1,91 @@
 {
-  "generatedAt": "2026-11-13T12:16:56+00:00",
+  "generatedAt": "2026-11-13T19:52:55+00:00",
   "timezone": "Asia/Seoul",
   "weather": {},
   "news": [
     {
-      "title": "What we know about the global Microsoft outage",
+      "title": "Democratic Senate leader Schumer set to face leadership challenge",
+      "url": "https://www.bbc.co.uk/news/articles/cmy4930jq749o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-13T19:03:10+00:00"
+    },
+    {
+      "title": "Why is Microsoft's outage lasting so long and will emails be lost?",
       "url": "https://www.bbc.co.uk/news/articles/cwvg238zrnm5o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-13T12:09:57+00:00"
+      "publishedAt": "2026-11-13T18:36:57+00:00"
+    },
+    {
+      "title": "The Peruvian city that has embraced Pope Leo as one of its own",
+      "url": "https://www.bbc.co.uk/news/articles/cwg7l8n7dx5mo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-13T18:34:45+00:00"
+    },
+    {
+      "title": "Microsoft outage 'stark reminder' of how much we rely on tech",
+      "url": "https://www.bbc.co.uk/news/articles/cxzd9171m51qo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "Technology",
+      "publishedAt": "2026-11-13T17:38:19+00:00"
     },
     {
       "title": "Courts, spies and MPs: How the Microsoft outage has been felt around the world",
       "url": "https://www.bbc.co.uk/news/articles/cqp9d58eldlro?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "Technology",
-      "publishedAt": "2026-11-13T12:06:18+00:00"
+      "publishedAt": "2026-11-13T17:34:58+00:00"
     },
     {
-      "title": "What we know so far about the Microsoft outage",
-      "url": "https://www.bbc.co.uk/news/videos/cqzjr903n01po?at_medium=RSS&at_campaign=rss",
+      "title": "Rosenberg: Uncompromising Putin ups demands for peace with Ukraine",
+      "url": "https://www.bbc.co.uk/news/articles/cq39glwprknjo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
-      "category": "Technology",
-      "publishedAt": "2026-11-13T11:43:27+00:00"
+      "category": "World",
+      "publishedAt": "2026-11-13T16:40:31+00:00"
     },
     {
-      "title": "GPs, police and pharmacies among UK services affected by Microsoft outage",
+      "title": "German spies handed new powers to tackle 'hybrid threats' from abroad",
+      "url": "https://www.bbc.co.uk/news/articles/c6jre3z03w4go?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-13T15:42:52+00:00"
+    },
+    {
+      "title": "Nvidia scandal fallout widens as Trump's treasury secretary blames cabinet colleague",
+      "url": "https://www.bbc.co.uk/news/articles/cqvg2d1eg7zro?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-13T15:40:08+00:00"
+    },
+    {
+      "title": "At least 24 killed after bus collides with truck in north-east India",
+      "url": "https://www.bbc.co.uk/news/articles/c6r7g5lp1zrxo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-13T15:16:50+00:00"
+    },
+    {
+      "title": "Watch: Divers explore US ship sunk off Florida coast to create new reef",
+      "url": "https://www.bbc.co.uk/news/videos/ckqx5ryx905qo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-13T15:09:40+00:00"
+    },
+    {
+      "title": "NHS, schools and police forces hit by Microsoft outage",
       "url": "https://www.bbc.co.uk/news/articles/c6vg2ljjpj32o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "Technology",
-      "publishedAt": "2026-11-13T11:09:16+00:00"
+      "publishedAt": "2026-11-13T13:41:25+00:00"
     },
     {
-      "title": "Heat pumps: How much heat does your home really need?",
-      "url": "https://www.bbc.co.uk/news/articles/cqy43zk3kk04o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "Technology",
-      "publishedAt": "2026-11-13T09:29:25+00:00"
-    },
-    {
-      "title": "Australian cricket's sandpapergate is back - and it cuts deep in a 'nation of good sports'",
-      "url": "https://www.bbc.co.uk/news/articles/c6702z750zvyo?at_medium=RSS&at_campaign=rss",
+      "title": "Aide to fugitive Ukrainian ex-PM wounded in latest Moscow car bombing",
+      "url": "https://www.bbc.co.uk/news/articles/c5gm3gnwl42eo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-13T08:20:28+00:00"
-    },
-    {
-      "title": "Watch: How Microsoft services went down around the world",
-      "url": "https://www.bbc.co.uk/news/videos/cwm2591k27e2o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-13T07:18:17+00:00"
-    },
-    {
-      "title": "African Miss Universe beauty queens in limbo as US visa restrictions bite",
-      "url": "https://www.bbc.co.uk/news/articles/cklyw3neqg2wo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-13T07:01:43+00:00"
-    },
-    {
-      "title": "Ex-Nvidia CEO Jensen Huang summoned to testify before Congress about affair with alleged Chinese spy",
-      "url": "https://www.bbc.co.uk/news/articles/cmq5vd1wdgz6o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-13T03:57:01+00:00"
-    },
-    {
-      "title": "Australian footballers will not be charged after hotel incident, police say",
-      "url": "https://www.bbc.co.uk/news/articles/ckregjwr7njqo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-13T03:02:54+00:00"
-    },
-    {
-      "title": "North Korean hackers used fake video calls in $400m crypto hack, says FBI",
-      "url": "https://www.bbc.co.uk/news/articles/cqdj1ellpd70o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-13T02:48:29+00:00"
-    },
-    {
-      "title": "Global Microsoft outage affecting tens of thousands of users",
-      "url": "https://www.bbc.co.uk/news/articles/c5gm3g9ldz8xo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "Technology",
-      "publishedAt": "2026-11-13T02:38:02+00:00"
+      "publishedAt": "2026-11-13T13:11:23+00:00"
     }
   ]
 }
