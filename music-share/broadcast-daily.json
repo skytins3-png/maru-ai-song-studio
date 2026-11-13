@@ -1,137 +1,91 @@
 {
-  "generatedAt": "2026-11-13T01:08:14+00:00",
+  "generatedAt": "2026-11-13T12:16:56+00:00",
   "timezone": "Asia/Seoul",
-  "weather": {
-    "Daejeon": {
-      "city": "Daejeon",
-      "temperatureC": 8.0,
-      "windKmh": 3.6,
-      "weatherCode": 3,
-      "observedLocal": "2026-11-13T10:00",
-      "source": "Open-Meteo",
-      "sourceUrl": "https://open-meteo.com/"
-    },
-    "Seoul": {
-      "city": "Seoul",
-      "temperatureC": 8.3,
-      "windKmh": 4.7,
-      "weatherCode": 3,
-      "observedLocal": "2026-11-13T10:00",
-      "source": "Open-Meteo",
-      "sourceUrl": "https://open-meteo.com/"
-    },
-    "Busan": {
-      "city": "Busan",
-      "temperatureC": 13.8,
-      "windKmh": 5.6,
-      "weatherCode": 1,
-      "observedLocal": "2026-11-13T10:00",
-      "source": "Open-Meteo",
-      "sourceUrl": "https://open-meteo.com/"
-    },
-    "Incheon": {
-      "city": "Incheon",
-      "temperatureC": 8.9,
-      "windKmh": 9.0,
-      "weatherCode": 3,
-      "observedLocal": "2026-11-13T10:00",
-      "source": "Open-Meteo",
-      "sourceUrl": "https://open-meteo.com/"
-    },
-    "Daegu": {
-      "city": "Daegu",
-      "temperatureC": 12.3,
-      "windKmh": 3.7,
-      "weatherCode": 1,
-      "observedLocal": "2026-11-13T10:00",
-      "source": "Open-Meteo",
-      "sourceUrl": "https://open-meteo.com/"
-    }
-  },
+  "weather": {},
   "news": [
     {
-      "title": "Neither war nor peace in Tigray - is Ethiopia's latest conflict really over?",
-      "url": "https://www.bbc.co.uk/news/articles/cm3egjgvp794o?at_medium=RSS&at_campaign=rss",
+      "title": "What we know about the global Microsoft outage",
+      "url": "https://www.bbc.co.uk/news/articles/cwvg238zrnm5o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-13T00:20:24+00:00"
+      "publishedAt": "2026-11-13T12:09:57+00:00"
     },
     {
-      "title": "The rise of 'housefishing' - when does using AI go from enhancing to misleading?",
-      "url": "https://www.bbc.co.uk/news/articles/cm62y0wrnz9zo?at_medium=RSS&at_campaign=rss",
+      "title": "Courts, spies and MPs: How the Microsoft outage has been felt around the world",
+      "url": "https://www.bbc.co.uk/news/articles/cqp9d58eldlro?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "Technology",
-      "publishedAt": "2026-11-13T00:13:35+00:00"
+      "publishedAt": "2026-11-13T12:06:18+00:00"
     },
     {
-      "title": "Scandal-hit Nvidia CEO Jensen Huang quits, plunging AI chipmaking giant into turmoil",
+      "title": "What we know so far about the Microsoft outage",
+      "url": "https://www.bbc.co.uk/news/videos/cqzjr903n01po?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "Technology",
+      "publishedAt": "2026-11-13T11:43:27+00:00"
+    },
+    {
+      "title": "GPs, police and pharmacies among UK services affected by Microsoft outage",
+      "url": "https://www.bbc.co.uk/news/articles/c6vg2ljjpj32o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "Technology",
+      "publishedAt": "2026-11-13T11:09:16+00:00"
+    },
+    {
+      "title": "Heat pumps: How much heat does your home really need?",
+      "url": "https://www.bbc.co.uk/news/articles/cqy43zk3kk04o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "Technology",
+      "publishedAt": "2026-11-13T09:29:25+00:00"
+    },
+    {
+      "title": "Australian cricket's sandpapergate is back - and it cuts deep in a 'nation of good sports'",
+      "url": "https://www.bbc.co.uk/news/articles/c6702z750zvyo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-13T08:20:28+00:00"
+    },
+    {
+      "title": "Watch: How Microsoft services went down around the world",
+      "url": "https://www.bbc.co.uk/news/videos/cwm2591k27e2o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-13T07:18:17+00:00"
+    },
+    {
+      "title": "African Miss Universe beauty queens in limbo as US visa restrictions bite",
+      "url": "https://www.bbc.co.uk/news/articles/cklyw3neqg2wo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-13T07:01:43+00:00"
+    },
+    {
+      "title": "Ex-Nvidia CEO Jensen Huang summoned to testify before Congress about affair with alleged Chinese spy",
       "url": "https://www.bbc.co.uk/news/articles/cmq5vd1wdgz6o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-12T23:34:05+00:00"
+      "publishedAt": "2026-11-13T03:57:01+00:00"
     },
     {
-      "title": "Search for British woman missing from Tui cruise in Atlantic called off",
-      "url": "https://www.bbc.co.uk/news/articles/cmy0enrkwkklo?at_medium=RSS&at_campaign=rss",
+      "title": "Australian footballers will not be charged after hotel incident, police say",
+      "url": "https://www.bbc.co.uk/news/articles/ckregjwr7njqo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-12T21:27:21+00:00"
+      "publishedAt": "2026-11-13T03:02:54+00:00"
     },
     {
-      "title": "US envoys meet Zelensky in Dublin after talks with Putin in Moscow",
-      "url": "https://www.bbc.co.uk/news/articles/cwrkgmymk55zo?at_medium=RSS&at_campaign=rss",
+      "title": "North Korean hackers used fake video calls in $400m crypto hack, says FBI",
+      "url": "https://www.bbc.co.uk/news/articles/cqdj1ellpd70o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-12T21:00:42+00:00"
+      "publishedAt": "2026-11-13T02:48:29+00:00"
     },
     {
-      "title": "Russian warship hit by Ukrainian drone in Gulf of Finland",
-      "url": "https://www.bbc.co.uk/news/articles/cmn0d33zz34zo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-12T20:09:16+00:00"
-    },
-    {
-      "title": "Jensen Huang has resigned, what's next for Nvidia?",
-      "url": "https://www.bbc.co.uk/news/videos/cmdx1r99kp9wo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-12T19:33:37+00:00"
-    },
-    {
-      "title": "Suspected bomb hoax threats force fresh evacuations of Italian schools",
-      "url": "https://www.bbc.co.uk/news/articles/cr894w453e90o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-12T19:23:02+00:00"
-    },
-    {
-      "title": "Hegseth awards medal to war memorial guard who reprimanded him and group",
-      "url": "https://www.bbc.co.uk/news/articles/cmvg2r3dq7xno?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-12T18:47:35+00:00"
-    },
-    {
-      "title": "The rise and fall of Jensen Huang - how the tech superstar became mired in scandal",
-      "url": "https://www.bbc.co.uk/news/articles/cmze750zg0jeo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-12T17:11:48+00:00"
-    },
-    {
-      "title": "Israeli strike on Gaza hospital kills six Palestinians, health ministry says",
-      "url": "https://www.bbc.co.uk/news/articles/ckzd9p7e4eqeo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-12T16:54:12+00:00"
-    },
-    {
-      "title": "How AI visionary Jensen Huang was undone by his own bad decisions",
-      "url": "https://www.bbc.co.uk/news/articles/cq5y13819gpjo?at_medium=RSS&at_campaign=rss",
+      "title": "Global Microsoft outage affecting tens of thousands of users",
+      "url": "https://www.bbc.co.uk/news/articles/c5gm3g9ldz8xo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "Technology",
-      "publishedAt": "2026-11-12T16:43:36+00:00"
+      "publishedAt": "2026-11-13T02:38:02+00:00"
     }
   ]
 }
