@@ -1,137 +1,137 @@
 {
-  "generatedAt": "2026-11-12T16:50:48+00:00",
+  "generatedAt": "2026-11-13T01:08:14+00:00",
   "timezone": "Asia/Seoul",
   "weather": {
     "Daejeon": {
       "city": "Daejeon",
-      "temperatureC": 7.1,
-      "windKmh": 5.8,
-      "weatherCode": 2,
-      "observedLocal": "2026-11-13T01:45",
+      "temperatureC": 8.0,
+      "windKmh": 3.6,
+      "weatherCode": 3,
+      "observedLocal": "2026-11-13T10:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Seoul": {
       "city": "Seoul",
-      "temperatureC": 8.5,
-      "windKmh": 2.6,
-      "weatherCode": 2,
-      "observedLocal": "2026-11-13T01:45",
+      "temperatureC": 8.3,
+      "windKmh": 4.7,
+      "weatherCode": 3,
+      "observedLocal": "2026-11-13T10:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Busan": {
       "city": "Busan",
-      "temperatureC": 9.2,
-      "windKmh": 6.6,
+      "temperatureC": 13.8,
+      "windKmh": 5.6,
       "weatherCode": 1,
-      "observedLocal": "2026-11-13T01:45",
+      "observedLocal": "2026-11-13T10:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Incheon": {
       "city": "Incheon",
-      "temperatureC": 9.0,
-      "windKmh": 8.4,
-      "weatherCode": 1,
-      "observedLocal": "2026-11-13T01:45",
+      "temperatureC": 8.9,
+      "windKmh": 9.0,
+      "weatherCode": 3,
+      "observedLocal": "2026-11-13T10:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Daegu": {
       "city": "Daegu",
-      "temperatureC": 8.9,
-      "windKmh": 5.7,
+      "temperatureC": 12.3,
+      "windKmh": 3.7,
       "weatherCode": 1,
-      "observedLocal": "2026-11-13T01:45",
+      "observedLocal": "2026-11-13T10:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     }
   },
   "news": [
     {
-      "title": "How AI visionary Jensen Huang was undone by his own bad decisions",
-      "url": "https://www.bbc.co.uk/news/articles/cq5y13819gpjo?at_medium=RSS&at_campaign=rss",
+      "title": "Neither war nor peace in Tigray - is Ethiopia's latest conflict really over?",
+      "url": "https://www.bbc.co.uk/news/articles/cm3egjgvp794o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
-      "category": "Technology",
-      "publishedAt": "2026-11-12T16:43:36+00:00"
+      "category": "World",
+      "publishedAt": "2026-11-13T00:20:24+00:00"
     },
     {
-      "title": "Ukraine says military Starlink disrupted again as US envoys meet Putin in Moscow",
+      "title": "The rise of 'housefishing' - when does using AI go from enhancing to misleading?",
+      "url": "https://www.bbc.co.uk/news/articles/cm62y0wrnz9zo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "Technology",
+      "publishedAt": "2026-11-13T00:13:35+00:00"
+    },
+    {
+      "title": "Scandal-hit Nvidia CEO Jensen Huang quits, plunging AI chipmaking giant into turmoil",
+      "url": "https://www.bbc.co.uk/news/articles/cmq5vd1wdgz6o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-12T23:34:05+00:00"
+    },
+    {
+      "title": "Search for British woman missing from Tui cruise in Atlantic called off",
+      "url": "https://www.bbc.co.uk/news/articles/cmy0enrkwkklo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-12T21:27:21+00:00"
+    },
+    {
+      "title": "US envoys meet Zelensky in Dublin after talks with Putin in Moscow",
       "url": "https://www.bbc.co.uk/news/articles/cwrkgmymk55zo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-12T16:31:12+00:00"
+      "publishedAt": "2026-11-12T21:00:42+00:00"
     },
     {
-      "title": "The rise and fall of Jensen Huang - how the tech superstar became mired in scandal",
-      "url": "https://www.bbc.co.uk/news/articles/cmze750zg0jeo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "Technology",
-      "publishedAt": "2026-11-12T16:02:10+00:00"
-    },
-    {
-      "title": "What we know as Nvidia CEO Jensen Huang resigns over affair allegations",
-      "url": "https://www.bbc.co.uk/news/articles/ckgel338xql3o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "Technology",
-      "publishedAt": "2026-11-12T15:26:39+00:00"
-    },
-    {
-      "title": "Millions of Ebola dollars missing with staff unpaid while virus spreads, charity says",
-      "url": "https://www.bbc.co.uk/news/articles/cx98757ymm6zo?at_medium=RSS&at_campaign=rss",
+      "title": "Russian warship hit by Ukrainian drone in Gulf of Finland",
+      "url": "https://www.bbc.co.uk/news/articles/cmn0d33zz34zo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-12T15:18:20+00:00"
+      "publishedAt": "2026-11-12T20:09:16+00:00"
     },
     {
-      "title": "Who is Nvidia's interim CEO Colette Kress - and who could take over permanently?",
-      "url": "https://www.bbc.co.uk/news/articles/cqgm37dv20e8o?at_medium=RSS&at_campaign=rss",
+      "title": "Jensen Huang has resigned, what's next for Nvidia?",
+      "url": "https://www.bbc.co.uk/news/videos/cmdx1r99kp9wo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-12T15:10:32+00:00"
-    },
-    {
-      "title": "Israeli strike on Gaza hospital kills six Palestinians, health ministry says",
-      "url": "https://www.bbc.co.uk/news/articles/ckzd9p7e4eqeo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-12T14:27:30+00:00"
-    },
-    {
-      "title": "Before Scott Colom, these two men were the last black US senators in Mississippi",
-      "url": "https://www.bbc.co.uk/news/articles/cmde1y19g19do?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-12T14:12:55+00:00"
-    },
-    {
-      "title": "'We've got to run': Inside ruined Ukraine power plant under constant drone threat",
-      "url": "https://www.bbc.co.uk/news/videos/cm93rp3gxn6qo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-12T13:02:46+00:00"
-    },
-    {
-      "title": "Democrat Scott Colom makes history as Mississippi's first black senator since 19th Century",
-      "url": "https://www.bbc.co.uk/news/articles/cw7vppyr80eeo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-12T12:56:55+00:00"
+      "publishedAt": "2026-11-12T19:33:37+00:00"
     },
     {
       "title": "Suspected bomb hoax threats force fresh evacuations of Italian schools",
       "url": "https://www.bbc.co.uk/news/articles/cr894w453e90o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-12T12:39:39+00:00"
+      "publishedAt": "2026-11-12T19:23:02+00:00"
     },
     {
-      "title": "British woman missing from cruise ship in Atlantic",
-      "url": "https://www.bbc.co.uk/news/articles/cmy0enrkwkklo?at_medium=RSS&at_campaign=rss",
+      "title": "Hegseth awards medal to war memorial guard who reprimanded him and group",
+      "url": "https://www.bbc.co.uk/news/articles/cmvg2r3dq7xno?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-12T10:13:35+00:00"
+      "publishedAt": "2026-11-12T18:47:35+00:00"
+    },
+    {
+      "title": "The rise and fall of Jensen Huang - how the tech superstar became mired in scandal",
+      "url": "https://www.bbc.co.uk/news/articles/cmze750zg0jeo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-12T17:11:48+00:00"
+    },
+    {
+      "title": "Israeli strike on Gaza hospital kills six Palestinians, health ministry says",
+      "url": "https://www.bbc.co.uk/news/articles/ckzd9p7e4eqeo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-12T16:54:12+00:00"
+    },
+    {
+      "title": "How AI visionary Jensen Huang was undone by his own bad decisions",
+      "url": "https://www.bbc.co.uk/news/articles/cq5y13819gpjo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "Technology",
+      "publishedAt": "2026-11-12T16:43:36+00:00"
     }
   ]
 }
