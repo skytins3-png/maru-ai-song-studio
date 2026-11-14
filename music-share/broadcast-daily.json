@@ -1,8 +1,124 @@
 {
-  "generatedAt": "2026-11-13T19:52:55+00:00",
+  "generatedAt": "2026-11-14T00:54:47+00:00",
   "timezone": "Asia/Seoul",
-  "weather": {},
+  "weather": {
+    "Daejeon": {
+      "city": "Daejeon",
+      "temperatureC": 10.9,
+      "windKmh": 8.6,
+      "weatherCode": 61,
+      "observedLocal": "2026-11-14T09:45",
+      "source": "Open-Meteo",
+      "sourceUrl": "https://open-meteo.com/"
+    },
+    "Seoul": {
+      "city": "Seoul",
+      "temperatureC": 9.3,
+      "windKmh": 4.0,
+      "weatherCode": 55,
+      "observedLocal": "2026-11-14T09:45",
+      "source": "Open-Meteo",
+      "sourceUrl": "https://open-meteo.com/"
+    },
+    "Busan": {
+      "city": "Busan",
+      "temperatureC": 14.8,
+      "windKmh": 2.8,
+      "weatherCode": 55,
+      "observedLocal": "2026-11-14T09:45",
+      "source": "Open-Meteo",
+      "sourceUrl": "https://open-meteo.com/"
+    },
+    "Incheon": {
+      "city": "Incheon",
+      "temperatureC": 9.5,
+      "windKmh": 10.1,
+      "weatherCode": 55,
+      "observedLocal": "2026-11-14T09:45",
+      "source": "Open-Meteo",
+      "sourceUrl": "https://open-meteo.com/"
+    },
+    "Daegu": {
+      "city": "Daegu",
+      "temperatureC": 11.4,
+      "windKmh": 3.9,
+      "weatherCode": 55,
+      "observedLocal": "2026-11-14T09:45",
+      "source": "Open-Meteo",
+      "sourceUrl": "https://open-meteo.com/"
+    }
+  },
   "news": [
+    {
+      "title": "Even Grand Theft Auto's original creators haven't been able to play GTA 6",
+      "url": "https://www.bbc.co.uk/news/articles/c6jd7k5ryl1mo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "Technology",
+      "publishedAt": "2026-11-14T00:37:01+00:00"
+    },
+    {
+      "title": "Jojo the gorilla has spent his life alone. Can he finally find a companion?",
+      "url": "https://www.bbc.co.uk/news/articles/cwm2mn272nqlo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-14T00:03:56+00:00"
+    },
+    {
+      "title": "Arrested generals and a threatened VP: President's son fuels Ugandan succession fever",
+      "url": "https://www.bbc.co.uk/news/articles/cmlydy0xw45wo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-14T00:03:52+00:00"
+    },
+    {
+      "title": "Setback for SpaceX Starship rocket's double-catch test",
+      "url": "https://www.bbc.co.uk/news/articles/ckregdgnl0xpo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-14T00:01:01+00:00"
+    },
+    {
+      "title": "'Miracle on Mississippi' - All passengers rescued after New Orleans cruise ship collision",
+      "url": "https://www.bbc.co.uk/news/articles/cw20xmy0m5yyo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-13T23:40:45+00:00"
+    },
+    {
+      "title": "How the Jensen Huang scandal created a headache for business-friendly Singapore",
+      "url": "https://www.bbc.co.uk/news/articles/ck1exevgql4qo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-13T23:00:31+00:00"
+    },
+    {
+      "title": "Microsoft outage 'stark reminder' of how much we rely on tech",
+      "url": "https://www.bbc.co.uk/news/articles/cxzd9171m51qo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "Technology",
+      "publishedAt": "2026-11-13T21:15:41+00:00"
+    },
+    {
+      "title": "Watch: Cruise ship seen sinking after collision with cargo ship in New Orleans",
+      "url": "https://www.bbc.co.uk/news/videos/ck4gn4y77m40o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-13T21:15:24+00:00"
+    },
+    {
+      "title": "Microsoft 'deeply sorry' for global outage after almost 24 hours of disruption",
+      "url": "https://www.bbc.co.uk/news/articles/c6rrg51rkz09o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-13T21:14:22+00:00"
+    },
+    {
+      "title": "Nvidia scandal fallout widens as Trump's treasury secretary blames cabinet colleague",
+      "url": "https://www.bbc.co.uk/news/articles/cqvg2d1eg7zro?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-13T19:53:57+00:00"
+    },
     {
       "title": "Democratic Senate leader Schumer set to face leadership challenge",
       "url": "https://www.bbc.co.uk/news/articles/cmy4930jq749o?at_medium=RSS&at_campaign=rss",
@@ -16,76 +132,6 @@
       "source": "BBC News",
       "category": "World",
       "publishedAt": "2026-11-13T18:36:57+00:00"
-    },
-    {
-      "title": "The Peruvian city that has embraced Pope Leo as one of its own",
-      "url": "https://www.bbc.co.uk/news/articles/cwg7l8n7dx5mo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-13T18:34:45+00:00"
-    },
-    {
-      "title": "Microsoft outage 'stark reminder' of how much we rely on tech",
-      "url": "https://www.bbc.co.uk/news/articles/cxzd9171m51qo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "Technology",
-      "publishedAt": "2026-11-13T17:38:19+00:00"
-    },
-    {
-      "title": "Courts, spies and MPs: How the Microsoft outage has been felt around the world",
-      "url": "https://www.bbc.co.uk/news/articles/cqp9d58eldlro?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "Technology",
-      "publishedAt": "2026-11-13T17:34:58+00:00"
-    },
-    {
-      "title": "Rosenberg: Uncompromising Putin ups demands for peace with Ukraine",
-      "url": "https://www.bbc.co.uk/news/articles/cq39glwprknjo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-13T16:40:31+00:00"
-    },
-    {
-      "title": "German spies handed new powers to tackle 'hybrid threats' from abroad",
-      "url": "https://www.bbc.co.uk/news/articles/c6jre3z03w4go?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-13T15:42:52+00:00"
-    },
-    {
-      "title": "Nvidia scandal fallout widens as Trump's treasury secretary blames cabinet colleague",
-      "url": "https://www.bbc.co.uk/news/articles/cqvg2d1eg7zro?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-13T15:40:08+00:00"
-    },
-    {
-      "title": "At least 24 killed after bus collides with truck in north-east India",
-      "url": "https://www.bbc.co.uk/news/articles/c6r7g5lp1zrxo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-13T15:16:50+00:00"
-    },
-    {
-      "title": "Watch: Divers explore US ship sunk off Florida coast to create new reef",
-      "url": "https://www.bbc.co.uk/news/videos/ckqx5ryx905qo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-13T15:09:40+00:00"
-    },
-    {
-      "title": "NHS, schools and police forces hit by Microsoft outage",
-      "url": "https://www.bbc.co.uk/news/articles/c6vg2ljjpj32o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "Technology",
-      "publishedAt": "2026-11-13T13:41:25+00:00"
-    },
-    {
-      "title": "Aide to fugitive Ukrainian ex-PM wounded in latest Moscow car bombing",
-      "url": "https://www.bbc.co.uk/news/articles/c5gm3gnwl42eo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-13T13:11:23+00:00"
     }
   ]
 }
