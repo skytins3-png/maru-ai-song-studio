@@ -1,54 +1,82 @@
 {
-  "generatedAt": "2026-11-14T23:57:09+00:00",
+  "generatedAt": "2026-11-15T06:39:47+00:00",
   "timezone": "Asia/Seoul",
   "weather": {
     "Daejeon": {
       "city": "Daejeon",
-      "temperatureC": 10.9,
-      "windKmh": 7.6,
-      "weatherCode": 2,
-      "observedLocal": "2026-11-15T08:45",
+      "temperatureC": 17.1,
+      "windKmh": 13.2,
+      "weatherCode": 0,
+      "observedLocal": "2026-11-15T15:30",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Seoul": {
       "city": "Seoul",
-      "temperatureC": 9.2,
-      "windKmh": 2.6,
-      "weatherCode": 1,
-      "observedLocal": "2026-11-15T08:45",
+      "temperatureC": 15.0,
+      "windKmh": 6.8,
+      "weatherCode": 0,
+      "observedLocal": "2026-11-15T15:30",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Busan": {
       "city": "Busan",
-      "temperatureC": 13.8,
-      "windKmh": 7.6,
+      "temperatureC": 19.3,
+      "windKmh": 3.3,
       "weatherCode": 2,
-      "observedLocal": "2026-11-15T08:45",
+      "observedLocal": "2026-11-15T15:30",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Incheon": {
       "city": "Incheon",
-      "temperatureC": 9.0,
-      "windKmh": 13.0,
+      "temperatureC": 13.9,
+      "windKmh": 14.3,
       "weatherCode": 0,
-      "observedLocal": "2026-11-15T08:45",
+      "observedLocal": "2026-11-15T15:30",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Daegu": {
       "city": "Daegu",
-      "temperatureC": 11.6,
-      "windKmh": 5.2,
-      "weatherCode": 2,
-      "observedLocal": "2026-11-15T08:45",
+      "temperatureC": 18.2,
+      "windKmh": 7.2,
+      "weatherCode": 0,
+      "observedLocal": "2026-11-15T15:30",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     }
   },
   "news": [
+    {
+      "title": "Judge temporarily blocks Trump from closing Washington DC golf course for renovation",
+      "url": "https://www.bbc.co.uk/news/articles/c6j9mn7l14y0o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-15T03:21:04+00:00"
+    },
+    {
+      "title": "Pope Leo speaks of community 'suffering' on visit to remote Andes town",
+      "url": "https://www.bbc.co.uk/news/articles/cr4gnz0lv2vlo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-15T02:49:45+00:00"
+    },
+    {
+      "title": "My mother told me I would die if I sought treatment for Ebola - I am proof you can survive",
+      "url": "https://www.bbc.co.uk/news/articles/cmvg2e2q28w1o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-15T00:06:55+00:00"
+    },
+    {
+      "title": "Judo champion shakes up French presidential race with surprise candidacy",
+      "url": "https://www.bbc.co.uk/news/articles/c6dj1e8wyykmo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-15T00:06:51+00:00"
+    },
     {
       "title": "How telecoms upgrade work sparked US flight chaos",
       "url": "https://www.bbc.co.uk/news/articles/cqx2wyvyr3zzo?at_medium=RSS&at_campaign=rss",
@@ -69,13 +97,6 @@
       "source": "BBC News",
       "category": "World",
       "publishedAt": "2026-11-14T22:09:40+00:00"
-    },
-    {
-      "title": "'Miracle on Mississippi' - All passengers rescued after New Orleans cruise ship collision",
-      "url": "https://www.bbc.co.uk/news/articles/cw20xmy0m5yyo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-14T20:23:06+00:00"
     },
     {
       "title": "Watch: Cruise ship overturns after collision with tanker in New Orleans",
@@ -111,27 +132,6 @@
       "source": "BBC News",
       "category": "World",
       "publishedAt": "2026-11-14T18:00:10+00:00"
-    },
-    {
-      "title": "Trump, Putin and Xi plan historic joint meeting in China next week, White House says",
-      "url": "https://www.bbc.co.uk/news/articles/ckz74jzpy18do?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-14T15:53:55+00:00"
-    },
-    {
-      "title": "Nigeria cautions against travel via Ethiopia's main airport due to altitude",
-      "url": "https://www.bbc.co.uk/news/articles/cmz6qjpdy2wqo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-14T15:42:54+00:00"
-    },
-    {
-      "title": "Hungarian authorities uncover $20m during probe of Orbán-era minister",
-      "url": "https://www.bbc.co.uk/news/articles/ckjwj03w4w0qo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-14T10:42:20+00:00"
     }
   ]
 }
