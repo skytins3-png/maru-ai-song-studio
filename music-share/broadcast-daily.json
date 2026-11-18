@@ -1,137 +1,137 @@
 {
-  "generatedAt": "2026-11-18T07:35:10+00:00",
+  "generatedAt": "2026-11-18T17:18:00+00:00",
   "timezone": "Asia/Seoul",
   "weather": {
     "Daejeon": {
       "city": "Daejeon",
-      "temperatureC": 9.5,
-      "windKmh": 14.9,
-      "weatherCode": 1,
-      "observedLocal": "2026-11-18T16:30",
+      "temperatureC": 2.7,
+      "windKmh": 14.5,
+      "weatherCode": 2,
+      "observedLocal": "2026-11-19T02:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Seoul": {
       "city": "Seoul",
-      "temperatureC": 7.3,
-      "windKmh": 8.0,
-      "weatherCode": 2,
-      "observedLocal": "2026-11-18T16:30",
+      "temperatureC": -0.3,
+      "windKmh": 7.7,
+      "weatherCode": 0,
+      "observedLocal": "2026-11-19T02:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Busan": {
       "city": "Busan",
-      "temperatureC": 12.1,
-      "windKmh": 13.3,
-      "weatherCode": 0,
-      "observedLocal": "2026-11-18T16:30",
+      "temperatureC": 6.6,
+      "windKmh": 12.3,
+      "weatherCode": 1,
+      "observedLocal": "2026-11-19T02:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Incheon": {
       "city": "Incheon",
-      "temperatureC": 7.4,
-      "windKmh": 18.1,
-      "weatherCode": 2,
-      "observedLocal": "2026-11-18T16:30",
+      "temperatureC": 0.8,
+      "windKmh": 19.3,
+      "weatherCode": 0,
+      "observedLocal": "2026-11-19T02:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Daegu": {
       "city": "Daegu",
-      "temperatureC": 10.9,
-      "windKmh": 10.4,
-      "weatherCode": 0,
-      "observedLocal": "2026-11-18T16:30",
+      "temperatureC": 3.9,
+      "windKmh": 13.3,
+      "weatherCode": 2,
+      "observedLocal": "2026-11-19T02:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     }
   },
   "news": [
     {
-      "title": "How important are Nvidia and Jensen Huang to the US economy?",
-      "url": "https://www.bbc.co.uk/news/articles/c68798vdprwpo?at_medium=RSS&at_campaign=rss",
+      "title": "Democrats nominate Hakeem Jeffries to be US Speaker of the House",
+      "url": "https://www.bbc.co.uk/news/articles/cmy49873dn95o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-18T17:09:02+00:00"
+    },
+    {
+      "title": "Inside the old gas pipeline where Ukraine is fighting an underground war with Russia",
+      "url": "https://www.bbc.co.uk/news/videos/c8p3vw4q6nzzo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-18T17:00:40+00:00"
+    },
+    {
+      "title": "'The drones don't fly here' - BBC reports from Ukraine's new front line",
+      "url": "https://www.bbc.co.uk/news/articles/c32l507ev4v4o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-18T17:00:04+00:00"
+    },
+    {
+      "title": "William and Kate reflect on 'enduring' UK-India ties with Modi",
+      "url": "https://www.bbc.co.uk/news/articles/cq62ped2ypy4o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-18T16:44:23+00:00"
+    },
+    {
+      "title": "Julio Iglesias facing court investigation over alleged sexual offences",
+      "url": "https://www.bbc.co.uk/news/articles/c6x284pnn4e2o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-18T16:33:16+00:00"
+    },
+    {
+      "title": "Trump shakes hands with Putin and Xi ahead of historic talks in China",
+      "url": "https://www.bbc.co.uk/news/articles/ck9d75x5wwwwo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-18T16:10:44+00:00"
+    },
+    {
+      "title": "Fiona the hippo undergoing care after swallowing a hat at Cincinnati Zoo",
+      "url": "https://www.bbc.co.uk/news/articles/cm2d93z0e9gjo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-18T16:05:26+00:00"
+    },
+    {
+      "title": "Parents jailed for torture and death of four-year-old girl found along French motorway in 1987",
+      "url": "https://www.bbc.co.uk/news/articles/c6lyw490z14jo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-18T15:39:57+00:00"
+    },
+    {
+      "title": "Grand Theft Auto 6 is a masterpiece, say critics",
+      "url": "https://www.bbc.co.uk/news/articles/cw8r75xm8v4po?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-18T14:57:56+00:00"
+    },
+    {
+      "title": "The seven Anthropic founders who are about to become multi-billionaires",
+      "url": "https://www.bbc.co.uk/news/articles/cmd7159vlr85o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-18T13:55:14+00:00"
+    },
+    {
+      "title": "Hacks, AI or just overdue updates - why have there been so many outages?",
+      "url": "https://www.bbc.co.uk/news/articles/c6z0kly2lll7o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "Technology",
-      "publishedAt": "2026-11-18T06:04:21+00:00"
+      "publishedAt": "2026-11-18T13:16:53+00:00"
     },
     {
-      "title": "Security flaw found in Java, world's third-largest programming language",
-      "url": "https://www.bbc.co.uk/news/articles/cke89jevqm1vo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "Technology",
-      "publishedAt": "2026-11-18T05:33:13+00:00"
-    },
-    {
-      "title": "Watch: Marco Rubio says recent tech outages are 'completely unrelated' to one another",
-      "url": "https://www.bbc.co.uk/news/videos/cx1l0vm87yl9o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "Technology",
-      "publishedAt": "2026-11-18T05:10:02+00:00"
-    },
-    {
-      "title": "Waymo pulls driverless taxis from all US freeways",
-      "url": "https://www.bbc.co.uk/news/articles/cmy86pp336qlo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "Technology",
-      "publishedAt": "2026-11-18T03:07:22+00:00"
-    },
-    {
-      "title": "Nvidia says it won't reinstate Huang as it reports soaring sales",
-      "url": "https://www.bbc.co.uk/news/articles/cm2kl50vkwkdo?at_medium=RSS&at_campaign=rss",
+      "title": "Kuwait says it repelled first Iranian attack in two months after US strikes island",
+      "url": "https://www.bbc.co.uk/news/articles/cw4gn9jeqjq7o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-18T01:18:18+00:00"
-    },
-    {
-      "title": "Europe plans to catch the next computer chip wave",
-      "url": "https://www.bbc.co.uk/news/articles/cqglwjd450k0o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "Technology",
-      "publishedAt": "2026-11-18T00:00:24+00:00"
-    },
-    {
-      "title": "As Trump and Xi meet, China's AI dreams face an unexpected hurdle: the Nvidia spy scandal",
-      "url": "https://www.bbc.co.uk/news/articles/c5vg23g92rj4o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-17T23:02:12+00:00"
-    },
-    {
-      "title": "American soldier arrested by UK police on suspicion of spying taken into US military custody",
-      "url": "https://www.bbc.co.uk/news/articles/c6x284ez38vdo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-17T22:46:30+00:00"
-    },
-    {
-      "title": "Philippines police ask prosecutors to charge Thomas Markle over child sex abuse material",
-      "url": "https://www.bbc.co.uk/news/articles/ckg5ry8m49ggo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-17T22:44:15+00:00"
-    },
-    {
-      "title": "Putin's Crimean Bridge partly collapses as Zelensky hails 'unprecedented' attack by Ukraine",
-      "url": "https://www.bbc.co.uk/news/articles/cw772jk4rvmxo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-17T21:24:35+00:00"
-    },
-    {
-      "title": "Russian military plane crashes, killing all 19 on board",
-      "url": "https://www.bbc.co.uk/news/articles/cw8085rykkmgo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-17T21:06:11+00:00"
-    },
-    {
-      "title": "US loses measles elimination status after 26 years amid record case numbers",
-      "url": "https://www.bbc.co.uk/news/articles/c977p71jx0xxo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-17T21:04:00+00:00"
+      "publishedAt": "2026-11-18T13:04:48+00:00"
     }
   ]
 }
