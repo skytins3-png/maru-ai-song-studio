@@ -1,60 +1,123 @@
 {
-  "generatedAt": "2026-11-19T01:53:31+00:00",
+  "generatedAt": "2026-11-19T13:17:22+00:00",
   "timezone": "Asia/Seoul",
   "weather": {
     "Daejeon": {
       "city": "Daejeon",
-      "temperatureC": 2.1,
-      "windKmh": 2.3,
-      "weatherCode": 1,
-      "observedLocal": "2026-11-19T10:45",
+      "temperatureC": 0.5,
+      "windKmh": 11.5,
+      "weatherCode": 53,
+      "observedLocal": "2026-11-19T22:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Seoul": {
       "city": "Seoul",
-      "temperatureC": 2.3,
-      "windKmh": 10.2,
+      "temperatureC": -0.3,
+      "windKmh": 9.2,
       "weatherCode": 0,
-      "observedLocal": "2026-11-19T10:45",
+      "observedLocal": "2026-11-19T22:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Busan": {
       "city": "Busan",
-      "temperatureC": 6.0,
-      "windKmh": 9.4,
+      "temperatureC": 3.6,
+      "windKmh": 7.1,
       "weatherCode": 1,
-      "observedLocal": "2026-11-19T10:45",
+      "observedLocal": "2026-11-19T22:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Incheon": {
       "city": "Incheon",
-      "temperatureC": 3.0,
-      "windKmh": 23.0,
+      "temperatureC": 0.4,
+      "windKmh": 26.0,
       "weatherCode": 1,
-      "observedLocal": "2026-11-19T10:45",
+      "observedLocal": "2026-11-19T22:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Daegu": {
       "city": "Daegu",
-      "temperatureC": 4.0,
-      "windKmh": 8.6,
+      "temperatureC": 1.8,
+      "windKmh": 4.2,
       "weatherCode": 1,
-      "observedLocal": "2026-11-19T10:45",
+      "observedLocal": "2026-11-19T22:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     }
   },
   "news": [
     {
-      "title": "Crimean Bridge attacked again, Russian official says",
+      "title": "Putin vows 'far more painful' response to Ukraine's strikes on Crimean Bridge",
       "url": "https://www.bbc.co.uk/news/articles/cm879dqn3e1jo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-19T01:05:03+00:00"
+      "publishedAt": "2026-11-19T13:07:35+00:00"
+    },
+    {
+      "title": "US consortium wins huge Kenya mining deal, beating Chinese rivals",
+      "url": "https://www.bbc.co.uk/news/articles/cm9q84gp0gr3o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-19T12:56:30+00:00"
+    },
+    {
+      "title": "UK joins in GTA 6 frenzy as game becomes available worldwide",
+      "url": "https://www.bbc.co.uk/news/articles/c6z74ep2n17zo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "Technology",
+      "publishedAt": "2026-11-19T12:26:39+00:00"
+    },
+    {
+      "title": "Israeli military completes ground operation in Gaza beyond Yellow Line",
+      "url": "https://www.bbc.co.uk/news/articles/cw8r7510degno?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-19T11:07:37+00:00"
+    },
+    {
+      "title": "Anthropic raises $81bn in record-breaking stock market debut",
+      "url": "https://www.bbc.co.uk/news/articles/c6742m39xgzxo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-19T10:48:04+00:00"
+    },
+    {
+      "title": "'It's a dream come true' – South African DJ celebrates featuring in GTA 6",
+      "url": "https://www.bbc.co.uk/news/articles/crx20q3qy0vxo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-19T10:32:10+00:00"
+    },
+    {
+      "title": "Survivors of Uganda's deadly landslide seek justice at the UN",
+      "url": "https://www.bbc.co.uk/news/articles/c920xgxp5785o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-19T09:21:54+00:00"
+    },
+    {
+      "title": "Dozens missing after boat carrying 100 migrants sinks off Senegal's coast",
+      "url": "https://www.bbc.co.uk/news/articles/c58j484089ewo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-19T09:02:52+00:00"
+    },
+    {
+      "title": "This is a remarkable diplomatic moment for China's Xi - but it comes with pitfalls",
+      "url": "https://www.bbc.co.uk/news/articles/cr9d75we51j1o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-19T04:42:52+00:00"
+    },
+    {
+      "title": "Elon Musk says record $446m spending on US midterms was 'pretty foolish'",
+      "url": "https://www.bbc.co.uk/news/articles/cm9q8j2z3gg8o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-19T02:59:06+00:00"
     },
     {
       "title": "Van Gogh painting sells for record $190.4m after row over its Nazi history",
@@ -69,69 +132,6 @@
       "source": "BBC News",
       "category": "World",
       "publishedAt": "2026-11-19T00:38:52+00:00"
-    },
-    {
-      "title": "Why has Waymo pulled all its driverless cars from US freeways?",
-      "url": "https://www.bbc.co.uk/news/videos/cmx2ryw97x4go?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-18T23:47:46+00:00"
-    },
-    {
-      "title": "Claude-maker Anthropic poised for more than $1.4tn stock market debut",
-      "url": "https://www.bbc.co.uk/news/articles/c6742m39xgzxo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-18T23:44:27+00:00"
-    },
-    {
-      "title": "The seven Anthropic founders who are about to become multi-billionaires",
-      "url": "https://www.bbc.co.uk/news/articles/cmd7159vlr85o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "Technology",
-      "publishedAt": "2026-11-18T23:42:07+00:00"
-    },
-    {
-      "title": "Russian arrested for spying on US defence company Palantir over Ukraine support",
-      "url": "https://www.bbc.co.uk/news/articles/cq20xg80ly47o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-18T23:28:03+00:00"
-    },
-    {
-      "title": "Myanmar faces historic genocide verdict at UN court over Rohingya massacres",
-      "url": "https://www.bbc.co.uk/news/articles/c5m2l90ez144o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-18T23:04:06+00:00"
-    },
-    {
-      "title": "Israeli military launches rare ground operation in Gaza beyond Yellow Line",
-      "url": "https://www.bbc.co.uk/news/articles/cw8r7510degno?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-18T22:34:56+00:00"
-    },
-    {
-      "title": "Catherine visits Mumbai maternity hospital on the last day of royal trip",
-      "url": "https://www.bbc.co.uk/news/videos/c9gkljpgdn1lo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-18T22:32:47+00:00"
-    },
-    {
-      "title": "Can Anthropic's record-breaking IPO stop the AI bubble bursting?",
-      "url": "https://www.bbc.co.uk/news/articles/cj4gnpzll020o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-18T21:28:08+00:00"
-    },
-    {
-      "title": "Democrats nominate Hakeem Jeffries to be US Speaker of the House",
-      "url": "https://www.bbc.co.uk/news/articles/cmy49873dn95o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-18T21:13:06+00:00"
     }
   ]
 }
