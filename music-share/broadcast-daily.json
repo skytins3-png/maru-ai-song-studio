@@ -1,137 +1,137 @@
 {
-  "generatedAt": "2026-11-19T13:17:22+00:00",
+  "generatedAt": "2026-11-19T23:04:40+00:00",
   "timezone": "Asia/Seoul",
   "weather": {
     "Daejeon": {
       "city": "Daejeon",
-      "temperatureC": 0.5,
-      "windKmh": 11.5,
-      "weatherCode": 53,
-      "observedLocal": "2026-11-19T22:15",
+      "temperatureC": -2.2,
+      "windKmh": 1.8,
+      "weatherCode": 1,
+      "observedLocal": "2026-11-20T08:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Seoul": {
       "city": "Seoul",
-      "temperatureC": -0.3,
-      "windKmh": 9.2,
+      "temperatureC": -3.2,
+      "windKmh": 6.5,
       "weatherCode": 0,
-      "observedLocal": "2026-11-19T22:15",
+      "observedLocal": "2026-11-20T08:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Busan": {
       "city": "Busan",
-      "temperatureC": 3.6,
-      "windKmh": 7.1,
+      "temperatureC": 0.8,
+      "windKmh": 8.8,
       "weatherCode": 1,
-      "observedLocal": "2026-11-19T22:15",
+      "observedLocal": "2026-11-20T08:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Incheon": {
       "city": "Incheon",
-      "temperatureC": 0.4,
-      "windKmh": 26.0,
-      "weatherCode": 1,
-      "observedLocal": "2026-11-19T22:15",
+      "temperatureC": -1.6,
+      "windKmh": 20.8,
+      "weatherCode": 0,
+      "observedLocal": "2026-11-20T08:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Daegu": {
       "city": "Daegu",
-      "temperatureC": 1.8,
-      "windKmh": 4.2,
+      "temperatureC": -0.8,
+      "windKmh": 8.4,
       "weatherCode": 1,
-      "observedLocal": "2026-11-19T22:15",
+      "observedLocal": "2026-11-20T08:00",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     }
   },
   "news": [
     {
-      "title": "Putin vows 'far more painful' response to Ukraine's strikes on Crimean Bridge",
-      "url": "https://www.bbc.co.uk/news/articles/cm879dqn3e1jo?at_medium=RSS&at_campaign=rss",
+      "title": "Judge finds Thomas Markle mentally fit to stand trial on child abuse charges",
+      "url": "https://www.bbc.co.uk/news/articles/crgj35ldz2zxo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-19T13:07:35+00:00"
+      "publishedAt": "2026-11-19T22:48:22+00:00"
     },
     {
-      "title": "US consortium wins huge Kenya mining deal, beating Chinese rivals",
-      "url": "https://www.bbc.co.uk/news/articles/cm9q84gp0gr3o?at_medium=RSS&at_campaign=rss",
+      "title": "Fiona the hippo dies after swallowing a hat at Cincinnati Zoo",
+      "url": "https://www.bbc.co.uk/news/articles/cwz0k3172xzko?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-19T12:56:30+00:00"
+      "publishedAt": "2026-11-19T22:09:04+00:00"
     },
     {
-      "title": "UK joins in GTA 6 frenzy as game becomes available worldwide",
-      "url": "https://www.bbc.co.uk/news/articles/c6z74ep2n17zo?at_medium=RSS&at_campaign=rss",
+      "title": "Anthropic becomes one of world's most valuable public companies in stock market debut",
+      "url": "https://www.bbc.co.uk/news/articles/c3x29ggenz12o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
-      "category": "Technology",
-      "publishedAt": "2026-11-19T12:26:39+00:00"
+      "category": "World",
+      "publishedAt": "2026-11-19T21:38:42+00:00"
+    },
+    {
+      "title": "Europe ready for talks with Russia on ending war in Ukraine, leaders say",
+      "url": "https://www.bbc.co.uk/news/articles/ckzd9nln5e6go?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-19T21:21:43+00:00"
+    },
+    {
+      "title": "Myanmar committed genocide against Rohingya minority, top UN court rules",
+      "url": "https://www.bbc.co.uk/news/articles/c804wzp20ddvo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-19T20:07:02+00:00"
+    },
+    {
+      "title": "Trump, Putin and Xi release 'peace declaration' after historic meeting",
+      "url": "https://www.bbc.co.uk/news/articles/c623j4ln97x7o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-19T17:38:22+00:00"
+    },
+    {
+      "title": "Rohingya genocide: What was said in court and what happens now?",
+      "url": "https://www.bbc.co.uk/news/videos/c60qj10j0ld5o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-19T17:35:05+00:00"
+    },
+    {
+      "title": "Susan Smith denied parole again 32 years after drowning her two sons",
+      "url": "https://www.bbc.co.uk/news/articles/ckdd1y09eqjmo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-19T17:23:34+00:00"
+    },
+    {
+      "title": "BBC correspondents discuss what Trump, Xi and Putin got out of historic talks",
+      "url": "https://www.bbc.co.uk/news/videos/c63rgnq05pdwo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-19T17:23:29+00:00"
     },
     {
       "title": "Israeli military completes ground operation in Gaza beyond Yellow Line",
       "url": "https://www.bbc.co.uk/news/articles/cw8r7510degno?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-19T11:07:37+00:00"
+      "publishedAt": "2026-11-19T17:03:23+00:00"
+    },
+    {
+      "title": "Dutch watchdog tells people not to buy AI smart glasses",
+      "url": "https://www.bbc.co.uk/news/articles/ckq6eyrzrzy5o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "Technology",
+      "publishedAt": "2026-11-19T16:33:17+00:00"
     },
     {
       "title": "Anthropic raises $81bn in record-breaking stock market debut",
       "url": "https://www.bbc.co.uk/news/articles/c6742m39xgzxo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-19T10:48:04+00:00"
-    },
-    {
-      "title": "'It's a dream come true' – South African DJ celebrates featuring in GTA 6",
-      "url": "https://www.bbc.co.uk/news/articles/crx20q3qy0vxo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-19T10:32:10+00:00"
-    },
-    {
-      "title": "Survivors of Uganda's deadly landslide seek justice at the UN",
-      "url": "https://www.bbc.co.uk/news/articles/c920xgxp5785o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-19T09:21:54+00:00"
-    },
-    {
-      "title": "Dozens missing after boat carrying 100 migrants sinks off Senegal's coast",
-      "url": "https://www.bbc.co.uk/news/articles/c58j484089ewo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-19T09:02:52+00:00"
-    },
-    {
-      "title": "This is a remarkable diplomatic moment for China's Xi - but it comes with pitfalls",
-      "url": "https://www.bbc.co.uk/news/articles/cr9d75we51j1o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-19T04:42:52+00:00"
-    },
-    {
-      "title": "Elon Musk says record $446m spending on US midterms was 'pretty foolish'",
-      "url": "https://www.bbc.co.uk/news/articles/cm9q8j2z3gg8o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-19T02:59:06+00:00"
-    },
-    {
-      "title": "Van Gogh painting sells for record $190.4m after row over its Nazi history",
-      "url": "https://www.bbc.co.uk/news/articles/c5dj1dkwzvzwo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-19T00:49:19+00:00"
-    },
-    {
-      "title": "India's religious make-up - what a new Pew study says about Hindus and Muslims",
-      "url": "https://www.bbc.co.uk/news/articles/cqd01epyrz1do?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-19T00:38:52+00:00"
+      "category": "Technology",
+      "publishedAt": "2026-11-19T15:58:58+00:00"
     }
   ]
 }
