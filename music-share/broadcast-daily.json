@@ -1,137 +1,137 @@
 {
-  "generatedAt": "2026-11-19T23:04:40+00:00",
+  "generatedAt": "2026-11-20T07:22:11+00:00",
   "timezone": "Asia/Seoul",
   "weather": {
     "Daejeon": {
       "city": "Daejeon",
-      "temperatureC": -2.2,
-      "windKmh": 1.8,
+      "temperatureC": 2.9,
+      "windKmh": 16.1,
       "weatherCode": 1,
-      "observedLocal": "2026-11-20T08:00",
+      "observedLocal": "2026-11-20T16:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Seoul": {
       "city": "Seoul",
-      "temperatureC": -3.2,
-      "windKmh": 6.5,
+      "temperatureC": 1.1,
+      "windKmh": 11.1,
       "weatherCode": 0,
-      "observedLocal": "2026-11-20T08:00",
+      "observedLocal": "2026-11-20T16:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Busan": {
       "city": "Busan",
-      "temperatureC": 0.8,
-      "windKmh": 8.8,
-      "weatherCode": 1,
-      "observedLocal": "2026-11-20T08:00",
+      "temperatureC": 5.8,
+      "windKmh": 14.8,
+      "weatherCode": 0,
+      "observedLocal": "2026-11-20T16:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Incheon": {
       "city": "Incheon",
-      "temperatureC": -1.6,
-      "windKmh": 20.8,
+      "temperatureC": 1.8,
+      "windKmh": 25.6,
       "weatherCode": 0,
-      "observedLocal": "2026-11-20T08:00",
+      "observedLocal": "2026-11-20T16:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Daegu": {
       "city": "Daegu",
-      "temperatureC": -0.8,
-      "windKmh": 8.4,
+      "temperatureC": 3.8,
+      "windKmh": 12.4,
       "weatherCode": 1,
-      "observedLocal": "2026-11-20T08:00",
+      "observedLocal": "2026-11-20T16:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     }
   },
   "news": [
     {
-      "title": "Judge finds Thomas Markle mentally fit to stand trial on child abuse charges",
-      "url": "https://www.bbc.co.uk/news/articles/crgj35ldz2zxo?at_medium=RSS&at_campaign=rss",
+      "title": "UK and EU to agree youth mobility scheme, BBC understands",
+      "url": "https://www.bbc.co.uk/news/articles/c623j4kpg94go?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-19T22:48:22+00:00"
+      "publishedAt": "2026-11-20T07:14:46+00:00"
     },
     {
-      "title": "Fiona the hippo dies after swallowing a hat at Cincinnati Zoo",
-      "url": "https://www.bbc.co.uk/news/articles/cwz0k3172xzko?at_medium=RSS&at_campaign=rss",
+      "title": "More climate money for Africa? Europe says use what's already pledged",
+      "url": "https://www.bbc.co.uk/news/articles/c6074k5jjrzko?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-19T22:09:04+00:00"
+      "publishedAt": "2026-11-20T05:03:43+00:00"
     },
     {
-      "title": "Anthropic becomes one of world's most valuable public companies in stock market debut",
-      "url": "https://www.bbc.co.uk/news/articles/c3x29ggenz12o?at_medium=RSS&at_campaign=rss",
+      "title": "China issues Mount Fuji warning as family of missing climber offers reward",
+      "url": "https://www.bbc.co.uk/news/articles/c61wr088jnzzo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-19T21:38:42+00:00"
+      "publishedAt": "2026-11-20T04:13:22+00:00"
+    },
+    {
+      "title": "GTA 6 breaks records as estimated sales top $2.3bn",
+      "url": "https://www.bbc.co.uk/news/articles/c9zr5nyv5dj2o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "Technology",
+      "publishedAt": "2026-11-20T02:54:40+00:00"
     },
     {
       "title": "Europe ready for talks with Russia on ending war in Ukraine, leaders say",
       "url": "https://www.bbc.co.uk/news/articles/ckzd9nln5e6go?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-19T21:21:43+00:00"
+      "publishedAt": "2026-11-20T00:50:24+00:00"
     },
     {
-      "title": "Myanmar committed genocide against Rohingya minority, top UN court rules",
-      "url": "https://www.bbc.co.uk/news/articles/c804wzp20ddvo?at_medium=RSS&at_campaign=rss",
+      "title": "Why Canada is embracing AI data centres while the US pushes back",
+      "url": "https://www.bbc.co.uk/news/articles/cmx2q223z1jlo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-19T20:07:02+00:00"
+      "publishedAt": "2026-11-20T00:13:24+00:00"
     },
     {
-      "title": "Trump, Putin and Xi release 'peace declaration' after historic meeting",
-      "url": "https://www.bbc.co.uk/news/articles/c623j4ln97x7o?at_medium=RSS&at_campaign=rss",
+      "title": "'I tell my son it's just fireworks': Life inside Yemeni city besieged by Houthis",
+      "url": "https://www.bbc.co.uk/news/articles/cx7v2d8q879eo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-19T17:38:22+00:00"
+      "publishedAt": "2026-11-20T00:13:21+00:00"
     },
     {
-      "title": "Rohingya genocide: What was said in court and what happens now?",
-      "url": "https://www.bbc.co.uk/news/videos/c60qj10j0ld5o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-19T17:35:05+00:00"
-    },
-    {
-      "title": "Susan Smith denied parole again 32 years after drowning her two sons",
-      "url": "https://www.bbc.co.uk/news/articles/ckdd1y09eqjmo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-19T17:23:34+00:00"
-    },
-    {
-      "title": "BBC correspondents discuss what Trump, Xi and Putin got out of historic talks",
-      "url": "https://www.bbc.co.uk/news/videos/c63rgnq05pdwo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-19T17:23:29+00:00"
-    },
-    {
-      "title": "Israeli military completes ground operation in Gaza beyond Yellow Line",
-      "url": "https://www.bbc.co.uk/news/articles/cw8r7510degno?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-19T17:03:23+00:00"
-    },
-    {
-      "title": "Dutch watchdog tells people not to buy AI smart glasses",
-      "url": "https://www.bbc.co.uk/news/articles/ckq6eyrzrzy5o?at_medium=RSS&at_campaign=rss",
+      "title": "Tens of thousands of UK fridges secured from hackers in secret nationwide operation",
+      "url": "https://www.bbc.co.uk/news/articles/c6eq49zyx7p4o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "Technology",
-      "publishedAt": "2026-11-19T16:33:17+00:00"
+      "publishedAt": "2026-11-20T00:02:07+00:00"
     },
     {
-      "title": "Anthropic raises $81bn in record-breaking stock market debut",
-      "url": "https://www.bbc.co.uk/news/articles/c6742m39xgzxo?at_medium=RSS&at_campaign=rss",
+      "title": "How did Anthropic's stock market debut unfold?",
+      "url": "https://www.bbc.co.uk/news/videos/cwg7l01vg081o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
-      "category": "Technology",
-      "publishedAt": "2026-11-19T15:58:58+00:00"
+      "category": "World",
+      "publishedAt": "2026-11-19T23:52:25+00:00"
+    },
+    {
+      "title": "Trump posthumously pardons US baseball legend Pete Rose",
+      "url": "https://www.bbc.co.uk/news/articles/cx1l0pm7l9jmo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-19T23:51:50+00:00"
+    },
+    {
+      "title": "Fiona the hippo dies after swallowing a hat at Cincinnati Zoo",
+      "url": "https://www.bbc.co.uk/news/articles/cwz0k3172xzko?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-19T23:40:29+00:00"
+    },
+    {
+      "title": "Anthropic becomes one of world's most valuable public companies in stock market debut",
+      "url": "https://www.bbc.co.uk/news/articles/c3x29ggenz12o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-19T23:33:51+00:00"
     }
   ]
 }
