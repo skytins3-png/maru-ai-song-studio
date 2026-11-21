@@ -1,60 +1,88 @@
 {
-  "generatedAt": "2026-11-21T12:42:53+00:00",
+  "generatedAt": "2026-11-21T21:40:49+00:00",
   "timezone": "Asia/Seoul",
   "weather": {
     "Daejeon": {
       "city": "Daejeon",
-      "temperatureC": -0.7,
-      "windKmh": 5.4,
-      "weatherCode": 2,
-      "observedLocal": "2026-11-21T21:30",
+      "temperatureC": -3.5,
+      "windKmh": 3.2,
+      "weatherCode": 1,
+      "observedLocal": "2026-11-22T06:30",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Seoul": {
       "city": "Seoul",
-      "temperatureC": -2.4,
-      "windKmh": 7.1,
+      "temperatureC": -4.2,
+      "windKmh": 1.5,
       "weatherCode": 0,
-      "observedLocal": "2026-11-21T21:30",
+      "observedLocal": "2026-11-22T06:30",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Busan": {
       "city": "Busan",
-      "temperatureC": 2.7,
-      "windKmh": 9.4,
+      "temperatureC": -0.9,
+      "windKmh": 9.1,
       "weatherCode": 0,
-      "observedLocal": "2026-11-21T21:30",
+      "observedLocal": "2026-11-22T06:30",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Incheon": {
       "city": "Incheon",
-      "temperatureC": -1.5,
-      "windKmh": 19.5,
+      "temperatureC": -4.6,
+      "windKmh": 7.7,
       "weatherCode": 0,
-      "observedLocal": "2026-11-21T21:30",
+      "observedLocal": "2026-11-22T06:30",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Daegu": {
       "city": "Daegu",
-      "temperatureC": 0.8,
-      "windKmh": 6.2,
+      "temperatureC": -2.5,
+      "windKmh": 6.9,
       "weatherCode": 0,
-      "observedLocal": "2026-11-21T21:30",
+      "observedLocal": "2026-11-22T06:30",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     }
   },
   "news": [
     {
+      "title": "Mexican drug lord on FBI's 10 most wanted list arrested in shoot-out",
+      "url": "https://www.bbc.co.uk/news/articles/ckz749ey0r75o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-21T21:05:29+00:00"
+    },
+    {
+      "title": "Fight over fossil fuels leaves COP31 climate talks in deadlock",
+      "url": "https://www.bbc.co.uk/news/articles/c6ly5w40eg07o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-21T19:33:49+00:00"
+    },
+    {
+      "title": "Russia-bound ship attacked in Gulf of Finland",
+      "url": "https://www.bbc.co.uk/news/articles/cj752ddve27ko?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-21T19:20:22+00:00"
+    },
+    {
+      "title": "FBI reportedly investigating apparent hack of its criminal database",
+      "url": "https://www.bbc.co.uk/news/articles/cvze7de86pk3o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-21T16:35:15+00:00"
+    },
+    {
       "title": "Zelensky says Crimean Bridge strikes 'fair response' as he meets UK's Streeting",
       "url": "https://www.bbc.co.uk/news/articles/c6wy0qj7w5zqo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-21T12:20:55+00:00"
+      "publishedAt": "2026-11-21T13:17:38+00:00"
     },
     {
       "title": "Denmark accuses Russia of plotting to assassinate US-Ukrainian rapper",
@@ -64,25 +92,11 @@
       "publishedAt": "2026-11-21T10:26:36+00:00"
     },
     {
-      "title": "Fight over fossil fuels leaves COP31 climate talks in deadlock",
-      "url": "https://www.bbc.co.uk/news/articles/c6ly5w40eg07o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-21T09:52:11+00:00"
-    },
-    {
       "title": "Deal with EU not dependent on tuition fees agreement, Miliband says",
       "url": "https://www.bbc.co.uk/news/articles/cm9w9p4geke8o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
       "publishedAt": "2026-11-21T09:40:55+00:00"
-    },
-    {
-      "title": "FBI reportedly investigating apparent hack of its criminal database",
-      "url": "https://www.bbc.co.uk/news/articles/cvze7de86pk3o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-21T09:34:20+00:00"
     },
     {
       "title": "Zelensky says Putin is a 'killer' after Trump calls Russian leader a friend",
@@ -118,20 +132,6 @@
       "source": "BBC News",
       "category": "Technology",
       "publishedAt": "2026-11-21T01:00:00+00:00"
-    },
-    {
-      "title": "ANC fights to keep control of South Africa's key cities after election setback",
-      "url": "https://www.bbc.co.uk/news/articles/cqpv94d10rwpo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-21T00:34:51+00:00"
-    },
-    {
-      "title": "Can AI really help spot Black Friday deals? We put it to the test",
-      "url": "https://www.bbc.co.uk/news/articles/cw8dv4jmnle2o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "Technology",
-      "publishedAt": "2026-11-21T00:06:11+00:00"
     }
   ]
 }
