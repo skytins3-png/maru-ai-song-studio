@@ -1,101 +1,137 @@
 {
-  "generatedAt": "2026-11-20T16:59:29+00:00",
+  "generatedAt": "2026-11-21T01:33:45+00:00",
   "timezone": "Asia/Seoul",
   "weather": {
+    "Daejeon": {
+      "city": "Daejeon",
+      "temperatureC": 0.6,
+      "windKmh": 9.7,
+      "weatherCode": 0,
+      "observedLocal": "2026-11-21T10:30",
+      "source": "Open-Meteo",
+      "sourceUrl": "https://open-meteo.com/"
+    },
+    "Seoul": {
+      "city": "Seoul",
+      "temperatureC": -1.3,
+      "windKmh": 8.4,
+      "weatherCode": 0,
+      "observedLocal": "2026-11-21T10:30",
+      "source": "Open-Meteo",
+      "sourceUrl": "https://open-meteo.com/"
+    },
+    "Busan": {
+      "city": "Busan",
+      "temperatureC": 4.5,
+      "windKmh": 9.3,
+      "weatherCode": 1,
+      "observedLocal": "2026-11-21T10:30",
+      "source": "Open-Meteo",
+      "sourceUrl": "https://open-meteo.com/"
+    },
+    "Incheon": {
+      "city": "Incheon",
+      "temperatureC": -1.1,
+      "windKmh": 20.3,
+      "weatherCode": 0,
+      "observedLocal": "2026-11-21T10:30",
+      "source": "Open-Meteo",
+      "sourceUrl": "https://open-meteo.com/"
+    },
     "Daegu": {
       "city": "Daegu",
-      "temperatureC": -0.2,
-      "windKmh": 3.5,
+      "temperatureC": 2.2,
+      "windKmh": 6.4,
       "weatherCode": 0,
-      "observedLocal": "2026-11-21T02:00",
+      "observedLocal": "2026-11-21T10:30",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     }
   },
   "news": [
     {
-      "title": "Russian missile hits Poland as Ukraine's allies hold military exercise, says Tusk",
-      "url": "https://www.bbc.co.uk/news/articles/cqx2x9dklxnro?at_medium=RSS&at_campaign=rss",
+      "title": "They were fined $811m for conning detained migrants, but the scams didn't stop",
+      "url": "https://www.bbc.co.uk/news/articles/cqgm0zlkgrm2o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-20T16:54:29+00:00"
+      "publishedAt": "2026-11-21T01:02:39+00:00"
     },
     {
-      "title": "Cost of living protests sweep across Europe",
-      "url": "https://www.bbc.co.uk/news/videos/c6dx12ppeqn4o?at_medium=RSS&at_campaign=rss",
+      "title": "Tech Now",
+      "url": "https://www.bbc.co.uk/iplayer/episode/m0034tjc?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "Technology",
+      "publishedAt": "2026-11-21T01:00:00+00:00"
+    },
+    {
+      "title": "ANC fights to keep control of South Africa's key cities after election setback",
+      "url": "https://www.bbc.co.uk/news/articles/cqpv94d10rwpo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-20T16:45:34+00:00"
+      "publishedAt": "2026-11-21T00:34:51+00:00"
     },
     {
-      "title": "Anthropic shares fall a day after blockbuster opening",
-      "url": "https://www.bbc.co.uk/news/articles/c6808ym10vzgo?at_medium=RSS&at_campaign=rss",
+      "title": "Can AI really help spot Black Friday deals? We put it to the test",
+      "url": "https://www.bbc.co.uk/news/articles/cw8dv4jmnle2o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "Technology",
+      "publishedAt": "2026-11-21T00:06:11+00:00"
+    },
+    {
+      "title": "Mamdani announces plan to close New York's Rikers Island jail by 2032",
+      "url": "https://www.bbc.co.uk/news/articles/cmjeqv89egylo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-20T16:27:47+00:00"
+      "publishedAt": "2026-11-21T00:01:39+00:00"
     },
     {
-      "title": "Nearly 600 women killed in South Africa within three months",
-      "url": "https://www.bbc.co.uk/news/articles/c69vwyjp0339o?at_medium=RSS&at_campaign=rss",
+      "title": "A new Nepal, an old neighbour - Balendra Shah's India test",
+      "url": "https://www.bbc.co.uk/news/articles/c6jre8xd83qgo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-20T15:55:16+00:00"
+      "publishedAt": "2026-11-20T23:28:17+00:00"
     },
     {
-      "title": "Catherine Zeta-Jones' daughter says parents warned her about 'nepo baby' label",
-      "url": "https://www.bbc.co.uk/news/articles/cmgj35zvjyp9o?at_medium=RSS&at_campaign=rss",
+      "title": "Dead pets were meant to be cremated - then their bodies appeared on a livestream",
+      "url": "https://www.bbc.co.uk/news/articles/cmn502ek17yvo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-20T15:55:02+00:00"
+      "publishedAt": "2026-11-20T23:20:33+00:00"
     },
     {
-      "title": "What we know about the latest Russian missile strikes on Ukraine",
-      "url": "https://www.bbc.co.uk/news/videos/c65y19wy3xl8o?at_medium=RSS&at_campaign=rss",
+      "title": "US declassifies more UFO footage filmed in the Middle East",
+      "url": "https://www.bbc.co.uk/news/videos/cqdr1x8mypnko?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-20T15:14:01+00:00"
+      "publishedAt": "2026-11-20T23:15:20+00:00"
     },
     {
-      "title": "White House removes cyber-security chief after series of tech outages",
-      "url": "https://www.bbc.co.uk/news/articles/cwz0k3nn5p5mo?at_medium=RSS&at_campaign=rss",
+      "title": "In a year of AI solving maths problems, Anthropic may have just solved the biggest",
+      "url": "https://www.bbc.co.uk/news/articles/c6pqr2g7w059o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-20T13:28:32+00:00"
+      "publishedAt": "2026-11-20T23:08:57+00:00"
     },
     {
-      "title": "GTA 6 drives spike in download demand, as estimated sales top $2.3bn",
+      "title": "GTA 6 sales hit $3.8bn in a single day - the biggest entertainment launch in history",
       "url": "https://www.bbc.co.uk/news/articles/c9zr5nyv5dj2o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "Technology",
-      "publishedAt": "2026-11-20T13:08:30+00:00"
+      "publishedAt": "2026-11-20T22:53:24+00:00"
     },
     {
-      "title": "Russia targets Kyiv crossings days after Ukraine hits Crimean Bridge",
-      "url": "https://www.bbc.co.uk/news/articles/c6x29gn4pdn9o?at_medium=RSS&at_campaign=rss",
+      "title": "Tech stock sell-off drags markets down as Anthropic shares slide",
+      "url": "https://www.bbc.co.uk/news/articles/c6808ym10vzgo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-20T13:01:16+00:00"
+      "publishedAt": "2026-11-20T22:42:47+00:00"
     },
     {
-      "title": "Texas death-row inmate screams as execution takes more than one hour",
-      "url": "https://www.bbc.co.uk/news/articles/ck20vl1dd8qzo?at_medium=RSS&at_campaign=rss",
+      "title": "French police officers sentenced for beating of music producer Michel Zecler",
+      "url": "https://www.bbc.co.uk/news/articles/ck9d7e9wvvweo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-20T12:42:37+00:00"
-    },
-    {
-      "title": "South Korea catches 111 students with new measures against exam cheating",
-      "url": "https://www.bbc.co.uk/news/articles/cm3vgw1xevvwo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-20T10:16:19+00:00"
-    },
-    {
-      "title": "Should AI be judging our credit worthiness?",
-      "url": "https://www.bbc.co.uk/news/articles/c6d94pzk9vleo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "Technology",
-      "publishedAt": "2026-11-20T07:32:19+00:00"
+      "publishedAt": "2026-11-20T22:37:09+00:00"
     }
   ]
 }
