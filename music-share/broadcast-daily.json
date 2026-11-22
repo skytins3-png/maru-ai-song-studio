@@ -1,67 +1,88 @@
 {
-  "generatedAt": "2026-11-22T06:56:00+00:00",
+  "generatedAt": "2026-11-22T16:19:34+00:00",
   "timezone": "Asia/Seoul",
   "weather": {
     "Daejeon": {
       "city": "Daejeon",
-      "temperatureC": 6.1,
-      "windKmh": 7.1,
+      "temperatureC": -0.4,
+      "windKmh": 4.0,
       "weatherCode": 0,
-      "observedLocal": "2026-11-22T15:45",
+      "observedLocal": "2026-11-23T01:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Seoul": {
       "city": "Seoul",
-      "temperatureC": 4.4,
-      "windKmh": 4.8,
-      "weatherCode": 0,
-      "observedLocal": "2026-11-22T15:45",
+      "temperatureC": 2.0,
+      "windKmh": 5.0,
+      "weatherCode": 1,
+      "observedLocal": "2026-11-23T01:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Busan": {
       "city": "Busan",
-      "temperatureC": 7.6,
-      "windKmh": 7.0,
+      "temperatureC": 3.8,
+      "windKmh": 5.5,
       "weatherCode": 0,
-      "observedLocal": "2026-11-22T15:45",
+      "observedLocal": "2026-11-23T01:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Incheon": {
       "city": "Incheon",
-      "temperatureC": 4.2,
-      "windKmh": 3.3,
-      "weatherCode": 0,
-      "observedLocal": "2026-11-22T15:45",
+      "temperatureC": 2.1,
+      "windKmh": 15.1,
+      "weatherCode": 1,
+      "observedLocal": "2026-11-23T01:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Daegu": {
       "city": "Daegu",
-      "temperatureC": 6.5,
-      "windKmh": 7.3,
+      "temperatureC": 1.1,
+      "windKmh": 5.4,
       "weatherCode": 0,
-      "observedLocal": "2026-11-22T15:45",
+      "observedLocal": "2026-11-23T01:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     }
   },
   "news": [
     {
-      "title": "New draft deal aims to avert collapse of talks at climate summit",
-      "url": "https://www.bbc.co.uk/news/articles/cq7827z2841zo?at_medium=RSS&at_campaign=rss",
+      "title": "Explosion on Russian ship at Libya port likely caused by drone attack, officials say",
+      "url": "https://www.bbc.co.uk/news/articles/cr894gjz0j0yo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-22T06:54:06+00:00"
+      "publishedAt": "2026-11-22T16:05:25+00:00"
     },
     {
-      "title": "Dozens missing after fire at Indonesian factory",
+      "title": "Three killed and dozens missing after fire at Indonesian factory",
       "url": "https://www.bbc.co.uk/news/articles/cw8dvg5pgm0eo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-22T06:05:00+00:00"
+      "publishedAt": "2026-11-22T14:05:20+00:00"
+    },
+    {
+      "title": "Russia-bound ship still on fire after attack in Gulf of Finland",
+      "url": "https://www.bbc.co.uk/news/articles/cj752ddve27ko?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-22T11:25:14+00:00"
+    },
+    {
+      "title": "South Korea education minister resigns over exam cheating scandal",
+      "url": "https://www.bbc.co.uk/news/articles/cw3dgk29d37no?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-22T09:20:45+00:00"
+    },
+    {
+      "title": "Italian jeweller and businessman Paolo Bulgari dies aged 89",
+      "url": "https://www.bbc.co.uk/news/articles/c8e39qk5vrpdo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-22T07:12:41+00:00"
     },
     {
       "title": "Mexican drug lord on FBI's 10 most wanted list arrested in shoot-out",
@@ -99,13 +120,6 @@
       "publishedAt": "2026-11-21T22:01:19+00:00"
     },
     {
-      "title": "Russia-bound ship attacked in Gulf of Finland",
-      "url": "https://www.bbc.co.uk/news/articles/cj752ddve27ko?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-21T19:20:22+00:00"
-    },
-    {
       "title": "Zelensky says Crimean Bridge strikes 'fair response' as he meets UK's Streeting",
       "url": "https://www.bbc.co.uk/news/articles/c6wy0qj7w5zqo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
@@ -118,20 +132,6 @@
       "source": "BBC News",
       "category": "World",
       "publishedAt": "2026-11-21T10:26:36+00:00"
-    },
-    {
-      "title": "Deal with EU not dependent on tuition fees agreement, Miliband says",
-      "url": "https://www.bbc.co.uk/news/articles/cm9w9p4geke8o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-21T09:40:55+00:00"
-    },
-    {
-      "title": "Zelensky says Putin is a 'killer' after Trump calls Russian leader a friend",
-      "url": "https://www.bbc.co.uk/news/articles/cxnv4zvmdy0jo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-21T08:10:25+00:00"
     }
   ]
 }
