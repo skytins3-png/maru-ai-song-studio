@@ -1,67 +1,102 @@
 {
-  "generatedAt": "2026-11-21T21:40:49+00:00",
+  "generatedAt": "2026-11-22T06:56:00+00:00",
   "timezone": "Asia/Seoul",
   "weather": {
     "Daejeon": {
       "city": "Daejeon",
-      "temperatureC": -3.5,
-      "windKmh": 3.2,
-      "weatherCode": 1,
-      "observedLocal": "2026-11-22T06:30",
+      "temperatureC": 6.1,
+      "windKmh": 7.1,
+      "weatherCode": 0,
+      "observedLocal": "2026-11-22T15:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Seoul": {
       "city": "Seoul",
-      "temperatureC": -4.2,
-      "windKmh": 1.5,
+      "temperatureC": 4.4,
+      "windKmh": 4.8,
       "weatherCode": 0,
-      "observedLocal": "2026-11-22T06:30",
+      "observedLocal": "2026-11-22T15:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Busan": {
       "city": "Busan",
-      "temperatureC": -0.9,
-      "windKmh": 9.1,
+      "temperatureC": 7.6,
+      "windKmh": 7.0,
       "weatherCode": 0,
-      "observedLocal": "2026-11-22T06:30",
+      "observedLocal": "2026-11-22T15:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Incheon": {
       "city": "Incheon",
-      "temperatureC": -4.6,
-      "windKmh": 7.7,
+      "temperatureC": 4.2,
+      "windKmh": 3.3,
       "weatherCode": 0,
-      "observedLocal": "2026-11-22T06:30",
+      "observedLocal": "2026-11-22T15:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Daegu": {
       "city": "Daegu",
-      "temperatureC": -2.5,
-      "windKmh": 6.9,
+      "temperatureC": 6.5,
+      "windKmh": 7.3,
       "weatherCode": 0,
-      "observedLocal": "2026-11-22T06:30",
+      "observedLocal": "2026-11-22T15:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     }
   },
   "news": [
     {
+      "title": "New draft deal aims to avert collapse of talks at climate summit",
+      "url": "https://www.bbc.co.uk/news/articles/cq7827z2841zo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-22T06:54:06+00:00"
+    },
+    {
+      "title": "Dozens missing after fire at Indonesian factory",
+      "url": "https://www.bbc.co.uk/news/articles/cw8dvg5pgm0eo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-22T06:05:00+00:00"
+    },
+    {
       "title": "Mexican drug lord on FBI's 10 most wanted list arrested in shoot-out",
       "url": "https://www.bbc.co.uk/news/articles/ckz749ey0r75o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-21T21:05:29+00:00"
+      "publishedAt": "2026-11-22T01:25:03+00:00"
     },
     {
-      "title": "Fight over fossil fuels leaves COP31 climate talks in deadlock",
-      "url": "https://www.bbc.co.uk/news/articles/c6ly5w40eg07o?at_medium=RSS&at_campaign=rss",
+      "title": "FBI reportedly investigating apparent hack of its criminal database",
+      "url": "https://www.bbc.co.uk/news/articles/cvze7de86pk3o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-21T19:33:49+00:00"
+      "publishedAt": "2026-11-22T00:10:44+00:00"
+    },
+    {
+      "title": "Nigerian youth have shown their power in the past - why aren't they shaping this election?",
+      "url": "https://www.bbc.co.uk/news/articles/ck4g174n020eo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-22T00:10:37+00:00"
+    },
+    {
+      "title": "How a teen gamer and his mother helped rescue a missing girl",
+      "url": "https://www.bbc.co.uk/news/articles/cmq8lyv8lkjwo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-22T00:09:58+00:00"
+    },
+    {
+      "title": "Lock of former US President George Washington's hair sells for $4,000",
+      "url": "https://www.bbc.co.uk/news/articles/cwe9k23dpz0do?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-21T22:01:19+00:00"
     },
     {
       "title": "Russia-bound ship attacked in Gulf of Finland",
@@ -69,13 +104,6 @@
       "source": "BBC News",
       "category": "World",
       "publishedAt": "2026-11-21T19:20:22+00:00"
-    },
-    {
-      "title": "FBI reportedly investigating apparent hack of its criminal database",
-      "url": "https://www.bbc.co.uk/news/articles/cvze7de86pk3o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-21T16:35:15+00:00"
     },
     {
       "title": "Zelensky says Crimean Bridge strikes 'fair response' as he meets UK's Streeting",
@@ -104,34 +132,6 @@
       "source": "BBC News",
       "category": "World",
       "publishedAt": "2026-11-21T08:10:25+00:00"
-    },
-    {
-      "title": "Trafalgar Square Christmas tree felled in Norway",
-      "url": "https://www.bbc.co.uk/news/articles/cx8dv4327dnpo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-21T08:10:03+00:00"
-    },
-    {
-      "title": "Man convicted of starting Palisades fire in Los Angeles",
-      "url": "https://www.bbc.co.uk/news/articles/c64gn0gy8rj3o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-21T04:34:00+00:00"
-    },
-    {
-      "title": "They were fined $811m for conning detained migrants, but the scams didn't stop",
-      "url": "https://www.bbc.co.uk/news/articles/cqgm0zlkgrm2o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-21T01:02:39+00:00"
-    },
-    {
-      "title": "Tech Now",
-      "url": "https://www.bbc.co.uk/iplayer/episode/m0034tjc?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "Technology",
-      "publishedAt": "2026-11-21T01:00:00+00:00"
     }
   ]
 }
