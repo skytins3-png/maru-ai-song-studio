@@ -113,6 +113,15 @@ try{
       assert((await iconResponse.body()).byteLength>100);
     }
   });
+  await check("Wait for published agency mobile page, not only committed source",async()=>{
+    let live=false;
+    for(let attempt=0;attempt<18;attempt++){
+      const resp=await home.request.get(base+"mobile-hub/agency.html?live="+Date.now()+"-"+attempt,{timeout:15000});
+      if(resp.ok()&&(await resp.text()).includes("MARU 에이전시 · 업무별 보고서")){live=true;break}
+      await new Promise(resolve=>setTimeout(resolve,8000));
+    }
+    assert.equal(live,true,"Agency mobile page not yet deployed");
+  });
   const agency=await ctx.newPage();
   await check("Agency case dashboard opens and displays 11 actual server reports",async()=>{
     const response=await agency.goto(base+"mobile-hub/agency.html",{waitUntil:"domcontentloaded",timeout:60000});
