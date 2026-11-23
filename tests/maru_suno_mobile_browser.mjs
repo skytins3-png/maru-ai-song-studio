@@ -53,7 +53,7 @@ try{
      };q.onerror=()=>reject(q.error)
    }));
    assert.equal(r.length,1);assert.equal(r[0].size,wav.length);
-   assert.equal(r[0].singerId,"M01");assert.equal(r[0].id.length,64);
+   assert.equal(r[0].singerId,"M7-01");assert.equal(r[0].id.length,64);
  });
  await yes("Exact reimport avoids duplication, original song preserved",async()=>{
    await page.locator("#files").setInputFiles({name:"강태준 합법 자작곡 시험.wav",mimeType:"audio/wav",buffer:wav});
@@ -62,19 +62,20 @@ try{
    assert.match(await page.locator("#librarySummary").innerText(),/1곡/);
  });
  await yes("Manual singer mapping saved after reload",async()=>{
-   await page.locator("#songs .song select").first().selectOption("F01");
+   await page.locator("#songs .song select").first().selectOption("F3-01");
    await page.reload({waitUntil:"domcontentloaded"});
    await page.waitForFunction(()=>document.querySelector("#songs .song select")!==null,null,{timeout:15000});
-   assert.equal(await page.locator("#songs .song select").first().inputValue(),"F01");
+   assert.equal(await page.locator("#songs .song select").first().inputValue(),"F3-01");
  });
  await yes("Actual vocal sample stored but not misreported as an AI speaking model",async()=>{
-   await page.locator("#voiceSinger").selectOption("F01");
+   await page.locator("#confirmRights").check();
+   await page.locator("#voiceSinger").selectOption("F3-01");
    await page.locator("#vocalFile").setInputFiles({name:"보컬 추출 예제.wav",mimeType:"audio/wav",buffer:wav});
    await page.locator("#saveVocal").click();
    await page.waitForFunction(()=>document.getElementById("vocalStatus")?.textContent.includes("실제 저장됨"));
    const result=await page.evaluate(()=>new Promise((resolve,reject)=>{
      const req=indexedDB.open("maru-suno-mobile-v1");req.onsuccess=()=>{
-       const a=req.result.transaction("vocals","readonly").objectStore("vocals").get("F01");
+       const a=req.result.transaction("vocals","readonly").objectStore("vocals").get("F3-01");
        a.onsuccess=()=>resolve({exists:!!a.result,voiceModelCreated:a.result?.voiceModelCreated,bytes:a.result?.blob?.size});
        a.onerror=()=>reject(a.error);
      };req.onerror=()=>reject(req.error)
@@ -98,7 +99,7 @@ try{
    await radio.locator("#importStudio").click();
    await radio.waitForFunction(()=>document.getElementById("count").textContent.includes("1곡"),null,{timeout:28000});
    const singers=await radio.locator("#songs li select").last().inputValue();
-   assert.equal(singers,"F01");
+   assert.equal(singers,"F3-01");
  });
  await yes("RADIO imports matching real recorded cue from persistent mobile store",async()=>{
    await radio.locator("#mobileCueConsent").check();
