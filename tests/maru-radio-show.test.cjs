@@ -36,7 +36,8 @@ test("browser preview never uploads original audio or claims BIGO streaming",()=
 
 test("read-only consent-gated studio audio bridge works without remote uploads",async()=>{
  const bridge=require("../vocal-studio/radio-show-bridge.js");
- assert.equal(bridge.STORES.length,2);
+ assert.equal(bridge.STORES.length,3);
+ assert.ok(bridge.STORES.some(s=>s.db==="maru-suno-mobile-v1"&&s.store==="songs"));
  const valid={name:"Original.mp3",blob:new Blob([Buffer.alloc(4096)])};
  assert.equal(bridge.valid(valid),true);
  assert.equal(bridge.valid({...valid,name:"evil.exe"}),false);
@@ -46,7 +47,7 @@ test("read-only consent-gated studio audio bridge works without remote uploads",
  try{
   const result=await bridge.loadAll();
   assert.deepEqual(result.songs,[]);
-  assert.equal(result.failures.length,2);
+  assert.equal(result.failures.length,3);
  } finally{global.indexedDB=hadIdb;}
  const html=fs.readFileSync(path.join(__dirname,"../vocal-studio/radio-show.html"),"utf8");
  const js=fs.readFileSync(path.join(__dirname,"../vocal-studio/radio-show.js"),"utf8");
