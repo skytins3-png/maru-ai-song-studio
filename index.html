@@ -15,7 +15,12 @@
     var mobile=/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent||'');
     // V0.22.97: PC에서는 PWA 설치 여부와 관계없이 MARU 본 화면을 바로 엽니다.
     // 설치 버튼은 선택 기능으로 남기고, 설치 프롬프트가 없어도 PC 사용을 막지 않습니다.
-    document.documentElement.classList.add((installed||!mobile)?'maru-installed':'maru-browser');
+    // A MARU ONE user has explicitly enabled same-origin integration in this browser.
+    // Do not block the integrated mobile workflow behind the old standalone-only gate.
+    // The gate remains unchanged for unpaired mobile users.
+    var maruOnePaired=false;
+    try{maruOnePaired=localStorage.getItem('maru-one-sync-v1:paired')==='1';}catch(e){}
+    document.documentElement.classList.add((installed||!mobile||maruOnePaired)?'maru-installed':'maru-browser');
     if(!mobile) document.documentElement.classList.add('maru-desktop-browser-ok-2297');
   })();
   </script>
