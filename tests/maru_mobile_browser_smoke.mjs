@@ -47,6 +47,15 @@ try{
     assert.equal(data[0].to,"studio");
     assert.equal(data[0].body,"원본 보존 연동 테스트 가사");
   });
+  await check("Wait for deployed STUDIO mobile-overlay fix (not just GitHub commit)",async()=>{
+    let found=false;
+    for(let attempt=0;attempt<14;attempt++){
+      const probe=await home.request.get(base+"?maru_deploy_probe="+Date.now()+"-"+attempt,{headers:{"Cache-Control":"no-cache"},timeout:15000});
+      if(probe.ok()&&(await probe.text()).includes("var maruOnePaired=false")){found=true;break}
+      await new Promise(done=>setTimeout(done,9000));
+    }
+    assert.equal(found,true,"Latest MARU STUDIO fix was NOT yet deployed");
+  });
   const studio=await ctx.newPage();
   await check("STUDIO receives real message in same Android browser context",async()=>{
     const response=await studio.goto(base,{waitUntil:"domcontentloaded",timeout:60000});
