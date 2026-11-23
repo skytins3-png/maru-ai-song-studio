@@ -52,6 +52,7 @@ try{
     const response=await studio.goto(base,{waitUntil:"domcontentloaded",timeout:60000});
     assert.equal(response.status(),200);
     await studio.locator("#maru-one-bridge-toggle").waitFor({timeout:40000});
+    assert.equal(await studio.evaluate(()=>document.documentElement.classList.contains("maru-browser")),false,"Integrated mobile screen is still blocked by install gate");
     await studio.locator("#maru-one-bridge-toggle").click({timeout:30000});
     await studio.locator("#maru-one-bridge-panel").waitFor({state:"visible"});
     assert.match(await studio.locator("#maru-one-bridge-panel").innerText(),/MARU 모바일 통합 실험곡/);
