@@ -28,8 +28,9 @@ try{
      const h=await page.request.get(base+"mobile-suno.html?audit="+Date.now()+"-"+i,{timeout:14000});
      const s=await page.request.get(base+"mobile-suno.js?audit="+Date.now()+"-"+i,{timeout:14000});
      const bridge=await page.request.get(base+"radio-show-bridge.js?audit="+Date.now()+"-"+i,{timeout:14000});
-     if(h.ok()&&s.ok()&&bridge.ok()&&(await h.text()).includes("MARU SUNO 모바일 보관함")&&
-       (await s.text()).includes("maru-suno-mobile-v1")&&(await bridge.text()).includes('store:"songs",source:"maru-suno-mobile-persistent"')){
+     const core=await page.request.get(base+"mobile-suno-core.js?audit="+Date.now()+"-"+i,{timeout:14000});
+     if(h.ok()&&s.ok()&&bridge.ok()&&core.ok()&&(await h.text()).includes("MARU SUNO 모바일 보관함")&&
+       (await s.text()).includes("maru-suno-mobile-v1")&&(await core.text()).includes('["M7-01","강태준"]')&&(await bridge.text()).includes('store:"songs",source:"maru-suno-mobile-persistent"')){
        available=true;break;
      }
      await new Promise(r=>setTimeout(r,8000));
