@@ -1,6 +1,8 @@
 name: MARU Suno mobile real song import and voice cue Chrome test
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '35 20 * * *' # Daily 05:35 in Asia/Seoul; independent of ChatGPT
   push:
     branches: [main]
     paths:
