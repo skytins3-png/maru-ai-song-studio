@@ -1,0 +1,41 @@
+name: MARU Suno mobile real song import and voice cue Chrome test
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'vocal-studio/mobile-suno.html'
+      - 'vocal-studio/mobile-suno.js'
+      - 'vocal-studio/mobile-suno-core.js'
+      - 'vocal-studio/radio-show.html'
+      - 'vocal-studio/radio-show.js'
+      - 'vocal-studio/radio-show-bridge.js'
+      - 'vocal-studio/radio-recorded-cues.js'
+      - 'tests/maru_suno_mobile_browser.mjs'
+      - '.github/workflows/maru-suno-mobile-browser.yml'
+
+permissions:
+  contents: read
+jobs:
+  actual-mobile-chrome:
+    runs-on: ubuntu-latest
+    timeout-minutes: 11
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Use actual Chrome engine
+        run: |
+          if command -v google-chrome; then
+            echo "CHROME_BIN=$(command -v google-chrome)" >> "$GITHUB_ENV"
+          elif command -v chromium; then
+            echo "CHROME_BIN=$(command -v chromium)" >> "$GITHUB_ENV"
+          else
+            echo "No Chromium; cannot claim a real browser pass"
+            exit 1
+          fi
+      - name: Install browser test driver only
+        run: npm install --no-save --ignore-scripts --no-audit --no-fund playwright-core@1.55.0
+      - name: Verify real live HTTPS media store and RADIO voice linkage
+        run: node tests/maru_suno_mobile_browser.mjs
