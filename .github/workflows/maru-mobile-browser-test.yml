@@ -11,6 +11,8 @@ on:
       - 'mobile-hub/index.html'
       - 'mobile-hub/agents.js'
       - 'mobile-hub/agents.html'
+      - 'mobile-hub/agency.html'
+      - 'mobile-hub/agency.js'
 permissions:
   contents: read
 jobs:
