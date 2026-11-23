@@ -49,7 +49,7 @@ test("Suno vocal source is playback reference only, no model cloning or backgrou
  assert.match(js,/URL\.createObjectURL/);
  assert.match(js,/URL\.revokeObjectURL/);
  assert.match(js,/Library\.cueKey\(line\?\.speaker,line\?\.text\)/);
- assert.match(show,/singerId:match\?\.id\|\|""/);
+ assert.match(show,/singerId:known\?assigned:\(match\?\.id\|\|""\)/);
  assert.match(show,/singerSelect\.onchange/);
  const stage=source("radio-stage.js");
  assert.match(stage,/if\(!assigned\) setMode\("stage",null,track\.title\)/);
