@@ -1,0 +1,198 @@
+{
+  "schemaVersion": 1,
+  "checkedAt": "2026-11-23T21:16:44.655Z",
+  "runId": "45268001672",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45268001672",
+  "evidence": "static file checks and Node syntax checks from current GitHub Actions runner",
+  "independentAIAgentsRunning": "not_verified",
+  "appInstalledOnUserPhone": "not_verified",
+  "bigoLiveAudioVerified": "not_verified",
+  "browserEndToEndTest": "not_run",
+  "liveSiteCheck": {
+    "status": "reachable",
+    "url": "https://skytins3-png.github.io/maru-ai-song-studio/mobile-hub/",
+    "httpStatus": 200
+  },
+  "labelsExplanation": "check_passed means a deterministic automated check passed; it does not mean an AI agent is alive.",
+  "roles": [
+    {
+      "id": "MARU",
+      "name": "MARU",
+      "mission": "통합 메뉴·모바일 대시보드 무결성 검증",
+      "kind": "deterministic_automation",
+      "autonomousAI": false,
+      "status": "check_passed",
+      "checks": [
+        {
+          "check": "필수 모바일 파일 7개 존재",
+          "passed": true
+        },
+        {
+          "check": "홈 화면 메뉴·연동 스크립트 확인",
+          "passed": true
+        },
+        {
+          "check": "임무 대시보드 상태 표시 자리 존재",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "id": "LEO",
+      "name": "LEO",
+      "mission": "연동 JavaScript 문법 자동 검사",
+      "kind": "deterministic_automation",
+      "autonomousAI": false,
+      "status": "check_passed",
+      "checks": [
+        {
+          "check": "mobile-hub/hub-sync.js 문법",
+          "passed": true
+        },
+        {
+          "check": "mobile-hub/maru-sync.js 문법",
+          "passed": true
+        },
+        {
+          "check": "mobile-hub/agents.js 문법",
+          "passed": true
+        },
+        {
+          "check": "기존 MUSIC SHARE 스크립트 존재",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "id": "TOTO",
+      "name": "TOTO",
+      "mission": "연동함 전달·확인 경로 정적 점검",
+      "kind": "deterministic_automation",
+      "autonomousAI": false,
+      "status": "check_passed",
+      "checks": [
+        {
+          "check": "모바일 보내기·받기 코드 존재",
+          "passed": true
+        },
+        {
+          "check": "스튜디오 수신 처리 코드 존재",
+          "passed": true
+        },
+        {
+          "check": "연동 대상 5페이지에 모두 로더 존재",
+          "passed": true
+        },
+        {
+          "check": "권한 동의 후에만 외부 페이지 연동 표시",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "id": "MIMI",
+      "name": "MIMI",
+      "mission": "방송·음원·신청곡 화면 구성 점검",
+      "kind": "deterministic_automation",
+      "autonomousAI": false,
+      "status": "check_passed",
+      "checks": [
+        {
+          "check": "RADIO 재생기/파일 선택 UI",
+          "passed": true
+        },
+        {
+          "check": "모바일 선택 음원 Android 공유 경로",
+          "passed": true
+        },
+        {
+          "check": "방송 자동 송출을 주장하지 않는 제한 안내",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "id": "HAPPY",
+      "name": "HAPPY",
+      "mission": "사연·신청곡 공개 동의 장치 점검",
+      "kind": "deterministic_automation",
+      "autonomousAI": false,
+      "status": "check_passed",
+      "checks": [
+        {
+          "check": "사연 공개 동의 요소",
+          "passed": true
+        },
+        {
+          "check": "신청곡 공개 동의 요소",
+          "passed": true
+        },
+        {
+          "check": "연동에서 공개 게시 전 사용자 승인",
+          "passed": true
+        },
+        {
+          "check": "사연·신청곡 페이지에 연동 진입",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "id": "TORI",
+      "name": "TORI",
+      "mission": "최소 권한·기본 보안 장치 정적 점검",
+      "kind": "deterministic_automation",
+      "autonomousAI": false,
+      "status": "check_passed",
+      "checks": [
+        {
+          "check": "MUSIC SHARE 보안 정책",
+          "passed": true
+        },
+        {
+          "check": "웹 메모가 브라우저 로컬 저장소 사용",
+          "passed": true
+        },
+        {
+          "check": "원격 자동 게시 없음",
+          "passed": true
+        },
+        {
+          "check": "수신 입력은 확인 후에만 적용",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "id": "NURI",
+      "name": "NURI",
+      "mission": "갤럭시 홈 화면 설치(PWA) 준비 점검",
+      "kind": "deterministic_automation",
+      "autonomousAI": false,
+      "status": "check_passed",
+      "checks": [
+        {
+          "check": "PWA display 및 scope",
+          "passed": true
+        },
+        {
+          "check": "192px PNG 아이콘 실재 확인",
+          "passed": true
+        },
+        {
+          "check": "512px PNG 아이콘 실재 확인",
+          "passed": true
+        },
+        {
+          "check": "manifest PNG 아이콘 링크",
+          "passed": true
+        },
+        {
+          "check": "서비스워커 홈 등록 코드",
+          "passed": true
+        }
+      ]
+    }
+  ],
+  "passed": true
+}
