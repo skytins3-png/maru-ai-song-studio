@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "checkedAt": "2026-11-23T21:21:35.082Z",
-  "runId": "45268819235",
-  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45268819235",
+  "checkedAt": "2026-11-23T21:22:51.520Z",
+  "runId": "45269035796",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45269035796",
   "evidence": "static file checks and Node syntax checks from current GitHub Actions runner",
   "independentAIAgentsRunning": "not_verified",
   "appInstalledOnUserPhone": "not_verified",
@@ -69,7 +69,7 @@
       "mission": "연동함 전달·확인 경로 정적 점검",
       "kind": "deterministic_automation",
       "autonomousAI": false,
-      "status": "check_failed",
+      "status": "check_passed",
       "checks": [
         {
           "check": "모바일 보내기·받기 코드 존재",
@@ -85,7 +85,7 @@
         },
         {
           "check": "권한 동의 후에만 외부 페이지 연동 표시",
-          "passed": false
+          "passed": true
         }
       ]
     },
@@ -194,5 +194,5 @@
       ]
     }
   ],
-  "passed": false
+  "passed": true
 }
