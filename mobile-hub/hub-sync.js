@@ -30,6 +30,7 @@ function updateMessage(mId,action){
    var list=[];try{list=JSON.parse(localStorage.getItem("maru-one-v1:tasks")||"[]");if(!Array.isArray(list))list=[]}catch(e){}
    list.unshift({agent:"MARU",text:(m.title?m.title+"\n":"")+m.body,created:new Date().toLocaleString("ko-KR")});
    try{localStorage.setItem("maru-one-v1:tasks",JSON.stringify(list.slice(0,500)))}catch(e){tell("작업 저장 실패");return}
+   window.dispatchEvent(new Event("maru-one-tasks-updated"));
  }
  m.status="reviewed";write(all);
  tell(action==="memo"?"기존 방송 메모에 추가했습니다. 방송 화면에서 확인하세요.":action==="task"?"AI 작업 기록에 추가했습니다. AI 총괄 화면을 다시 열어 확인하세요.":"확인 완료로 표시했습니다.");
