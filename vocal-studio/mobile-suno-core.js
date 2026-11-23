@@ -5,12 +5,22 @@
  if(root)root.MaruMobileSunoCore=api;
 })(typeof globalThis==="object"?globalThis:this,function(){
  "use strict";
- const NAMES_M=["강태준","민도윤","윤시후","한도겸","차이준","서건우","백유찬","강서율","류하준","남지후","오태린","임선우","정하온","유도현","문이안","신재온","권도하","장유건","홍시안","송태오"];
- const NAMES_F=["서하린","윤채린","한세아","차나린","백소윤","류서빈","남예린","오하늬","임다온","정유라"];
- const SINGERS=Object.freeze([
-   ...NAMES_M.map((name,i)=>Object.freeze({id:"M"+String(i+1).padStart(2,"0"),name,group:"남성 20명"})),
-   ...NAMES_F.map((name,i)=>Object.freeze({id:"F"+String(i+1).padStart(2,"0"),name,group:"여성 10명"}))
- ]);
+ // Same 30 canonical artist IDs as vocal-studio/artists.json.
+ // Do not introduce a second incompatible artist roster.
+ const CANONICAL=[
+ ["F3-01","한나래"],["F3-02","서하린"],["F3-03","윤소담"],
+ ["M7-01","강태준"],["M7-02","문도윤"],["M7-03","차승호"],
+ ["M7-04","백지한"],["M7-05","오현준"],["M7-06","서재민"],["M7-07","노태성"],
+ ["FS-01","유가은"],["FS-02","정하늬"],["FS-03","임새봄"],["FS-04","송서아"],
+ ["FS-05","도나연"],["FS-06","배하영"],["FS-07","신아린"],["FS-08","조보민"],
+ ["FS-09","권시은"],["FS-10","남다솔"],
+ ["MS-01","류강민"],["MS-02","고하준"],["MS-03","주도현"],["MS-04","진태호"],
+ ["MS-05","한재원"],["MS-06","박세찬"],["MS-07","서지환"],["MS-08","문시후"],
+ ["MS-09","김태오"],["MS-10","성민우"]
+ ];
+ const SINGERS=Object.freeze(CANONICAL.map(([id,name])=>Object.freeze({
+   id,name,group:id.startsWith("F")?"여성":"남성"
+ })));
  const HOSTS=Object.freeze(["雲上居者","윤솔","민혁","하린","청호","서아","린아"]);
  const FORMATS=/\.(mp3|wav|m4a|aac|ogg|flac)$/i;
  const REF_FORMATS=/\.(mp3|wav|m4a|aac|ogg|flac|webm)$/i;
