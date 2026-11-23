@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#152039">
+<link rel="manifest" href="./manifest.webmanifest">
+<title>MARU 에이전시 · 업무별 보고서</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif;color:#142943;background:#f0f4fa}*{box-sizing:border-box}body{margin:0;padding-bottom:40px}header{padding:24px 18px 30px;background:linear-gradient(125deg,#172d53,#364e8b);color:white;border-radius:0 0 22px 22px}header h1{margin:12px 0 7px;font-size:23px}header p{font-size:13px;color:#dbe7ff;line-height:1.65;margin:0}header a{color:white}.wrap{max-width:720px;margin:auto;padding:14px}.panel{background:#fff;border:1px solid #dfe6f2;border-radius:16px;padding:17px;margin:11px 0;box-shadow:0 6px 16px #1c335012}.panel h2{font-size:18px;margin:0 0 12px}p,li{font-size:13px;line-height:1.7;color:#475c75}.muted{font-size:12px;color:#718197}label{font-size:13px;font-weight:750;display:block;margin:11px 0 3px}.field{width:100%;background:#f9fbfe;padding:12px;border:1px solid #ced9e8;border-radius:10px;font:inherit;min-height:45px}.field:focus{outline:2px solid #92afff}.buttons{display:flex;gap:9px;flex-wrap:wrap;margin-top:13px}button,.action{background:#2352ae;color:white;font:700 13px system-ui;border:0;border-radius:10px;padding:12px 15px;cursor:pointer;text-decoration:none;display:inline-block}button.secondary,.action.secondary{background:#e9f0ff;color:#234a96}.case{border-top:1px solid #e8eef6;padding:12px 0;overflow-wrap:anywhere}.case:first-child{border:0}.case strong{font-size:14px}.case a{color:#2451a8;font-size:12px}.status{font-size:12px;font-weight:800;margin:6px 0}.good{color:#18734e}.warn{color:#975b18}.danger{color:#a03443}.notice{padding:11px 13px;border-left:3px solid #bb8a2f;border-radius:9px;background:#fff8e8;font-size:12px;line-height:1.65;color:#66522d}.result{background:#f0f5ff;border-radius:11px;padding:13px;white-space:pre-wrap;overflow-wrap:anywhere;color:#1f3a64;font-size:13px;line-height:1.65}#localList .case button{padding:7px 9px;margin-left:8px;font-size:11px}a:focus-visible,button:focus-visible{outline:3px solid #97b8fa}@media(min-width:650px){.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}}
+</style></head><body>
+<header><a href="./">‹ MARU ONE 홈으로</a><h1>MARU 에이전시 · 실무 보고서</h1><p>전문가 10개 역할 + 에이전시 담당 1개. 각 업무마다 실제 검사 결과를 기록하고, 형의 정산 내역은 휴대폰 안에서만 관리합니다.</p></header>
+<main class="wrap">
+<section class="panel">
+<h2>자동 업무 보고서 현황</h2>
+<div id="remoteSummary" role="status" class="result">서버의 실제 작업 기록을 확인하고 있습니다.</div>
+<div class="buttons"><button id="refresh" type="button">보고서 새로고침</button><a class="action secondary" href="https://github.com/skytins3-png/maru-ai-song-studio/actions/workflows/maru-agency-case-reports.yml" target="_blank" rel="noopener noreferrer">작업 실행 기록</a></div>
+<p class="muted">정적 검사 통과와 AI 모델이 직접 작성한 보고서는 별도로 표시합니다. 실제 BIGO 로그인, 선물 수령, 송출, 수수료 지급은 이 보고서로 증명되지 않습니다.</p>
+<div id="remoteCases"></div>
+</section>
+<section class="panel">
+<h2>에이전시 정산 검토 · 휴대폰 전용</h2>
+<p>같은 통화로 입력한 비용과 최종 받은 금액의 차이를 계산해 정산 건별 보고서를 만들어. 실제 플랫폼 수수료·계약 수익과는 별도로 계산해.</p>
+<div class="notice">실제 계정번호·신분증·계약서·비밀번호는 입력하지 마. 이 자료는 서버로 전송하지 않지만 브라우저 데이터 삭제 시 지워질 수 있으므로 백업을 권장해.</div>
+<form id="caseForm">
+<label for="caseName">정산 건 이름</label><input class="field" id="caseName" maxlength="70" required placeholder="예: 11월 선물 정산 1차">
+<label for="caseCurrency">비교 통화</label><select class="field" id="caseCurrency"><option value="CNY">중국 위안(CNY)</option><option value="KRW">한국 원(KRW)</option><option value="USD">미국 달러(USD)</option></select>
+<div class="two">
+<div><label for="caseSpent">지출한 금액</label><input id="caseSpent" class="field" type="number" required min="0.01" max="1000000000" step="any" inputmode="decimal" placeholder="예: 11000"></div>
+<div><label for="caseReceived">최종 받은 금액</label><input id="caseReceived" class="field" type="number" required min="0" max="1000000000" step="any" inputmode="decimal" placeholder="예: 3500"></div>
+</div>
+<label for="caseNotes">증빙 메모 · 선택 (민감정보 제외)</label><textarea id="caseNotes" class="field" rows="3" maxlength="600" placeholder="실제 금액을 확인한 날짜, 계산 근거만 기록"></textarea>
+<div class="buttons"><button type="submit">계산 및 건별 보고서 저장</button><button class="secondary" type="button" id="exportCases">모든 건 백업</button></div>
+</form>
+<div id="calcResult" class="result" aria-live="polite">정산 내역을 입력하면 실측 수치만 계산해.</div>
+</section>
+<section class="panel">
+<h2>내 건별 기록</h2><div id="localList"><p>아직 입력한 정산 건이 없어.</p></div>
+</section>
+<section class="panel">
+<h2>독립 AI 모델 실행 조건</h2>
+<p>GitHub Actions 서버는 공개 자료 검사와 건별 보고서 저장을 자동 실행할 수 있어. 하지만 **독립 AI 분석**을 실제로 실행하려면 서버에 별도로 유효한 API 자격증명이 있어야 해.</p>
+<p>모델 인증이 없거나 호출에 실패하면 각 담당을 <b>AI 미연결 / 실행 실패</b>로 표시해. ChatGPT 로그인 권한만으로 GitHub 서버에 유료 모델 사용 권한이 생기지는 않아.</p>
+</section>
+</main>
+<script src="./agency.js?v=1" defer></script>
+</body></html>
