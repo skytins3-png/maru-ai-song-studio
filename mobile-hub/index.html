@@ -120,6 +120,7 @@ el("exportData").addEventListener("click",function(){var out={format:"MARU_ONE_B
 function elSecurity(n){return document.querySelector('[data-security="'+n+'"]')}
 el("importData").addEventListener("change",function(e){var f=e.target.files&&e.target.files[0];if(!f)return;if(f.size>1000000){toast("파일 크기는 1MB 이하만 허용합니다");return}f.text().then(function(s){var v=JSON.parse(s);if(!v||v.format!=="MARU_ONE_BACKUP_V1"||!Array.isArray(v.tasks)||typeof v.memo!=="string"||!Array.isArray(v.checks)){throw new Error("MARU ONE 백업 파일이 아닙니다")}if(!confirm("현재 MARU ONE 작업 기록과 메모를 복원 파일의 데이터로 교체할까요?"))return;tasks=v.tasks.filter(function(t){return t&&typeof t.agent==="string"&&typeof t.text==="string"}).slice(0,1000);el("broadcastMemo").value=v.memo.slice(0,200000);save("memo",el("broadcastMemo").value);save("tasks",tasks);[1,2,3,4,5].forEach(function(n){elSecurity(n).checked=!!v.checks[n-1];save("check"+n,elSecurity(n).checked)});renderTasks();toast("백업 복원 완료")}).catch(function(err){toast("복원 실패: "+err.message)});e.target.value=""});
 renderTasks();
+window.addEventListener("maru-one-tasks-updated",function(){tasks=safeLoad("tasks",[]);if(!Array.isArray(tasks))tasks=[];renderTasks()});
 if("serviceWorker" in navigator && location.protocol==="https:"){navigator.serviceWorker.register("./sw.js").catch(function(){})}
 })();
 </script>
