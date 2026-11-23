@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#152039">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="../icons/icon-192.png">
+<title>MARU AI 임무·실행 확인</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif;color:#17304a;background:#eef2f8}*{box-sizing:border-box}body{margin:0;padding-bottom:60px}header{background:#182e58;color:#fff;padding:26px 18px;border-radius:0 0 22px 22px}h1{font-size:23px;margin:8px 0}header p{font-size:13px;color:#d9e2f5;line-height:1.6;margin:5px 0}.wrap{max-width:760px;margin:auto;padding:16px}.card{border:1px solid #dce4f0;background:#fff;border-radius:15px;padding:16px;margin:12px 0;box-shadow:0 4px 15px #1535690d}h2{font-size:17px;margin:3px 0 11px}p{font-size:13px;line-height:1.65;color:#4b5d75}a{color:#2354b8}button,.button{display:inline-flex;align-items:center;justify-content:center;background:#2b50b2;color:white;border:0;border-radius:11px;font:700 14px system-ui;padding:12px;cursor:pointer;text-decoration:none}button.ghost,.button.ghost{background:#e8effc;color:#244d98}button:focus-visible,a:focus-visible{outline:3px solid #89a1dd}.row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.role{border-top:1px solid #e8edf5;padding:12px 0}.role:first-child{border-top:0}.role h3{font-size:15px;margin:0}.state{font-size:12px;font-weight:800}.state.good{color:#126245}.state.warn{color:#975315}.state.bad{color:#a22e42}.sub{font-size:12px;color:#6f7c90}.check{display:flex;align-items:flex-start;gap:7px;padding:3px 0;font-size:12px;color:#4e6179}.note{border-left:3px solid #c98d29;background:#fffaed;padding:10px 12px;border-radius:8px;font-size:12px;line-height:1.65}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.grid a{border:1px solid #dce5f2;background:#f8faff;border-radius:11px;padding:12px;font-size:13px;font-weight:700;text-decoration:none}.copy{font-size:12px;color:#8491a6;text-align:center;margin:23px 0}@media(max-width:440px){.grid{grid-template-columns:1fr}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header><a href="./" style="color:#fff;text-decoration:underline;font-size:13px">‹ MARU ONE 홈으로</a><h1>MARU AI · 임무 및 실제 실행 확인</h1><p>실제 GitHub 작업 결과와 설계 단계 AI를 분리합니다. 없는 실행 기록을 성공이라고 표시하지 않습니다.</p></header>
+<main class="wrap">
+<section class="card"><h2>현재 상태</h2><div id="overall" role="status">실제 검사 기록을 확인하고 있습니다.</div><p id="time" class="sub">검사 시각 확인 중</p><div class="row"><button id="refresh" type="button">상태 새로고침</button><a class="button ghost" href="https://github.com/skytins3-png/maru-ai-song-studio/actions" target="_blank" rel="noopener noreferrer">GitHub 실행 로그 열기</a></div><p id="auditSource" class="sub"></p><div class="note">여기서 '검사 통과'는 프로그램 파일 점검·문법 검사에 성공했다는 뜻입니다. 독립 AI 에이전트가 살아 움직이거나, 갤럭시에서 앱 설치·음악 방송이 성공했다는 뜻이 아닙니다.</div></section>
+<section class="card"><h2>옛 MARU 7개 역할 · 자동 점검 임무</h2><div id="roles"><p>작업 실행 기록을 불러오고 있습니다.</p></div></section>
+<section class="card"><h2>현재 활동 중인 별도 자동 작업</h2><p>GitHub Actions는 정해진 시간에 서버에서 작업할 수 있어요. 최근 실행 기록은 GitHub 페이지에서 확인합니다. 이 자동화는 사람처럼 판단하는 AI 에이전트가 아닙니다.</p><div class="grid"><a href="https://github.com/skytins3-png/maru-ai-song-studio/actions/workflows/ai-experts-reference-monitor.yml" target="_blank" rel="noopener noreferrer">전문가 10명 자료 모니터</a><a href="https://github.com/skytins3-png/maru-ai-song-studio/actions/workflows/radio-daily-update.yml" target="_blank" rel="noopener noreferrer">날씨·뉴스 라디오 갱신</a><a href="https://github.com/skytins3-png/maru-ai-code-maker/actions/workflows/wuxia-daily.yml" target="_blank" rel="noopener noreferrer">매일 무협 중국어 콘텐츠</a><a href="https://github.com/skytins3-png/maru-ai-song-studio/actions/workflows/maru-mobile-agent-checks.yml" target="_blank" rel="noopener noreferrer">MARU 7개 역할 점검 기록</a></div></section>
+<section class="card"><h2>MARU 전문가 10명 · 실제 상태</h2><p>기존 프로젝트가 기록한 역할 정의를 그대로 확인합니다. 실시간 AI 활동으로 오해하지 않도록 '설계 단계'를 명시합니다.</p><div id="specialists"><p>설정 파일을 확인하고 있습니다.</p></div></section>
+<section class="card"><h2>갤럭시 홈 화면에 추가</h2><p>삼성 갤럭시에서 이 화면을 Chrome으로 열고 우측 상단 <b>⋮ → 홈 화면에 추가</b> 또는 <b>앱 설치</b>를 누르면 아이콘으로 실행할 수 있습니다.</p><p>휴대폰의 홈 화면 조작과 Android 설치 승인 버튼은 형이 직접 눌러야 합니다. 내가 원격으로 아이콘 설치를 완료했다고 표시하지 않습니다.</p><div class="row"><button id="install" type="button" hidden>앱 설치</button><a class="button ghost" href="./">통합 조종실 열기</a></div><p id="installState" class="sub">브라우저의 설치 지원 여부를 확인 중입니다.</p></section>
+<p class="copy">MARU ONE · 실제 검사 기록 기반 · 원래 MARU RADIO 및 STUDIO 파일 보존</p>
+</main>
+<script src="./agents.js?v=1" defer></script>
+</body>
+</html>
