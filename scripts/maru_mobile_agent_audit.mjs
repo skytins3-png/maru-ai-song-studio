@@ -18,16 +18,16 @@ function audit(id,name,mission,tests) {
  let checks = tests.map(([label,passed])=>({check:label,passed:!!passed}));
  roles.push({id,name,mission,kind:"deterministic_automation",autonomousAI:false,status:checks.every(x=>x.passed)?"check_passed":"check_failed",checks});
 }
-const paths = ["mobile-hub/index.html","mobile-hub/hub-sync.js","mobile-hub/maru-sync.js","mobile-hub/agents.html","mobile-hub/manifest.webmanifest","mobile-hub/sw.js"];
+const paths = ["mobile-hub/index.html","mobile-hub/hub-sync.js","mobile-hub/maru-sync.js","mobile-hub/agents.html","mobile-hub/agents.js","mobile-hub/manifest.webmanifest","mobile-hub/sw.js"];
 const html = ["index.html","music-share/index.html","music-share/radio.html","music-share/stories.html","music-share/requests.html"];
-const js = ["mobile-hub/hub-sync.js","mobile-hub/maru-sync.js"];
+const js = ["mobile-hub/hub-sync.js","mobile-hub/maru-sync.js","mobile-hub/agents.js"];
 function syntaxCheck(p) { if(!exists(p)) return false; const r=spawnSync(process.execPath,["--check",resolve(root,p)],{encoding:"utf8",timeout:15000});return r.status===0; }
 function iconCheck(p,w,h){try{const b=readFileSync(resolve(root,p));return b.length>24&&b.toString("hex",0,8)==="89504e470d0a1a0a"&&b.readUInt32BE(16)===w&&b.readUInt32BE(20)===h;}catch{return false}}
 let manifest={};try{manifest=JSON.parse(txt("mobile-hub/manifest.webmanifest"))}catch{}
 audit("MARU","MARU","통합 메뉴·모바일 대시보드 무결성 검증",[
- ["필수 모바일 파일 6개 존재",paths.every(exists)],
+ ["필수 모바일 파일 7개 존재",paths.every(exists)],
  ["홈 화면 메뉴·연동 스크립트 확인",includes("mobile-hub/index.html",["MARU ONE","hub-sync.js","MARU RADIO"])],
- ["배포 페이지 안내 존재",includes("mobile-hub/agents.html",["검사 결과","실제 AI"])]
+ ["임무 대시보드 상태 표시 자리 존재",includes("mobile-hub/agents.html",["id=\"overall\"","id=\"roles\""])]
 ]);
 audit("LEO","LEO","연동 JavaScript 문법 자동 검사",[
  ...js.map(p=>[p+" 문법",syntaxCheck(p)]),
