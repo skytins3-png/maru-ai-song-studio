@@ -2,7 +2,8 @@
 "use strict";
 const STORES=[
  {db:"maru-studio-original-vocals-v1",store:"samples",source:"studio-sample"},
- {db:"maru-studio-vocal-auditions-local-v1",store:"takes",source:"audition-take"}
+ {db:"maru-studio-vocal-auditions-local-v1",store:"takes",source:"audition-take"},
+ {db:"maru-suno-mobile-v1",store:"songs",source:"maru-suno-mobile-persistent"}
 ];
 function valid(row){
  return !!(row&&row.blob instanceof Blob&&row.blob.size>=1000&&row.blob.size<=80*1024*1024&&
@@ -33,6 +34,7 @@ async function entries(source){
     origin:source.source,
     originId:String(row.id||"").slice(0,50),
     name:row.name,
+    singerId:typeof row.singerId==="string"?row.singerId:"",
     blob:row.blob
   }));
  }finally{db.close();}
