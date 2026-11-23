@@ -123,8 +123,18 @@ function boot(){
  // the original STUDIO installation overlay was initially rendered.
  // This is an opt-in UI gate bypass only; it never grants Android permissions.
  if(role==="studio"){
-   document.documentElement.classList.remove("maru-browser");
-   document.documentElement.classList.add("maru-installed");
+   var html=document.documentElement;
+   var keepPairedOpen=function(){
+     if(html.classList.contains("maru-browser"))html.classList.remove("maru-browser");
+     if(!html.classList.contains("maru-installed"))html.classList.add("maru-installed");
+   };
+   keepPairedOpen();
+   // Some older MARU scripts reapply maru-browser after page load.
+   // Watch only that one class and remove the overlay exclusively for paired users.
+   if(!html.dataset.maruOneUnlockWatch && typeof MutationObserver!=="undefined"){
+     html.dataset.maruOneUnlockWatch="1";
+     new MutationObserver(keepPairedOpen).observe(html,{attributes:true,attributeFilter:["class"]});
+   }
    var gate=document.getElementById("maruInstallGate");
    if(gate){gate.hidden=true;gate.style.display="none";gate.setAttribute("aria-hidden","true")}
  }
