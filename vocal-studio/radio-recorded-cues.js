@@ -66,8 +66,46 @@
     cueFiles.set(key,{url:URL.createObjectURL(file),speaker,text,name:file.name});
     status(speaker+"의 정확한 멘트 녹음 파일이 연결됐습니다. 등록된 문장과 같을 때만 들립니다.");
   };
+  async function loadMobileCues(){
+    // Called only after user checks consent in RADIO SHOW and clicks import.
+    const dbName="maru-suno-mobile-v1",storeName="cues";
+    if(!window.indexedDB)throw Error("이 브라우저에 IndexedDB가 없습니다.");
+    const db=await new Promise((resolve,reject)=>{
+      const r=indexedDB.open(dbName);
+      let missing=false;
+      r.onupgradeneeded=()=>{missing=true;try{r.transaction.abort()}catch(e){}};
+      r.onsuccess=()=>{
+        if(missing||!r.result.objectStoreNames.contains(storeName)){
+          r.result.close();resolve(null);
+        }else resolve(r.result);
+      };
+      r.onerror=()=>{if(missing)resolve(null);else reject(r.error||Error("등록된 멘트 저장소 열기 실패"))};
+      r.onblocked=()=>reject(Error("다른 모바일 보관함 화면에서 잠겼습니다."));
+    });
+    if(!db)return 0;
+    let data;
+    try{
+      data=await new Promise((resolve,reject)=>{
+        const tx=db.transaction(storeName,"readonly"),r=tx.objectStore(storeName).getAll();
+        r.onsuccess=()=>resolve(r.result||[]);
+        r.onerror=()=>reject(r.error||Error("저장된 멘트 읽기 실패"));
+      });
+    }finally{db.close()}
+    let count=0;
+    for(const row of data){
+      if(typeof row.speaker!=="string"||typeof row.text!=="string"||
+         !(row.blob instanceof Blob)||row.blob.size<1000||row.blob.size>20*1024*1024)continue;
+      const key=Library.cueKey(row.speaker,row.text);
+      const old=cueFiles.get(key);if(old)release(old);
+      cueFiles.set(key,{url:URL.createObjectURL(row.blob),speaker:row.speaker,
+         text:row.text,name:row.name||"휴대폰 저장 멘트"});
+      count++;
+    }
+    return count;
+  }
   function playLine(line){
-    const entry=cueFiles.get(Library.cueKey(line?.speaker,line?.text));
+    const entry=cueFiles.get(Library.cueKey(line?.speaker,line?.text))||
+      (line?.speaker==="아환"?cueFiles.get(Library.cueKey("雲上居者",line?.text)):null);
     let resolve;
     const promise=new Promise(r=>{resolve=r;});
     let settled=false;
@@ -99,7 +137,7 @@
     return handle;
   }
   window.MaruRecordedCues={
-    playLine,stop,cancelPreview,
+    playLine,stop,cancelPreview,loadMobileCues,
     singer(id){return stems.get(id)||null;},
     singerCount(){return stems.size;},
     cueCount(){return cueFiles.size;}
