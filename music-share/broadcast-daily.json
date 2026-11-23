@@ -1,91 +1,137 @@
 {
-  "generatedAt": "2026-11-23T00:55:39+00:00",
+  "generatedAt": "2026-11-23T14:45:27+00:00",
   "timezone": "Asia/Seoul",
-  "weather": {},
+  "weather": {
+    "Daejeon": {
+      "city": "Daejeon",
+      "temperatureC": 9.2,
+      "windKmh": 14.8,
+      "weatherCode": 2,
+      "observedLocal": "2026-11-23T23:45",
+      "source": "Open-Meteo",
+      "sourceUrl": "https://open-meteo.com/"
+    },
+    "Seoul": {
+      "city": "Seoul",
+      "temperatureC": 4.8,
+      "windKmh": 11.2,
+      "weatherCode": 0,
+      "observedLocal": "2026-11-23T23:45",
+      "source": "Open-Meteo",
+      "sourceUrl": "https://open-meteo.com/"
+    },
+    "Busan": {
+      "city": "Busan",
+      "temperatureC": 14.6,
+      "windKmh": 9.0,
+      "weatherCode": 51,
+      "observedLocal": "2026-11-23T23:45",
+      "source": "Open-Meteo",
+      "sourceUrl": "https://open-meteo.com/"
+    },
+    "Incheon": {
+      "city": "Incheon",
+      "temperatureC": 5.1,
+      "windKmh": 26.1,
+      "weatherCode": 0,
+      "observedLocal": "2026-11-23T23:45",
+      "source": "Open-Meteo",
+      "sourceUrl": "https://open-meteo.com/"
+    },
+    "Daegu": {
+      "city": "Daegu",
+      "temperatureC": 9.9,
+      "windKmh": 4.3,
+      "weatherCode": 51,
+      "observedLocal": "2026-11-23T23:45",
+      "source": "Open-Meteo",
+      "sourceUrl": "https://open-meteo.com/"
+    }
+  },
   "news": [
     {
-      "title": "COP31 fails to reach major climate deal as talks expose deep divisions",
-      "url": "https://www.bbc.co.uk/news/articles/cqwy06zrd26lo?at_medium=RSS&at_campaign=rss",
+      "title": "Presidential villa suffers water and power cuts, Nigerian leader says",
+      "url": "https://www.bbc.co.uk/news/articles/cv1j65xjjk65o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-23T00:50:35+00:00"
+      "publishedAt": "2026-11-23T14:26:33+00:00"
     },
     {
-      "title": "Italian jeweller and businessman Paolo Bulgari dies aged 89",
-      "url": "https://www.bbc.co.uk/news/articles/c8e39qk5vrpdo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-23T00:33:36+00:00"
-    },
-    {
-      "title": "San Francisco is enjoying an AI boom, but worries about a crash are growing",
-      "url": "https://www.bbc.co.uk/news/articles/cqe9k09j9jv4o?at_medium=RSS&at_campaign=rss",
+      "title": "GTA 6 hacker released on licence with warning 'don't let this happen again'",
+      "url": "https://www.bbc.co.uk/news/articles/cqpv9kr7pxmro?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "Technology",
-      "publishedAt": "2026-11-23T00:08:00+00:00"
+      "publishedAt": "2026-11-23T14:08:50+00:00"
     },
     {
-      "title": "'Danger seems greater all the time': Ukrainians search for missing after Russian strikes",
-      "url": "https://www.bbc.co.uk/news/videos/cre3dvd1k9y1o?at_medium=RSS&at_campaign=rss",
+      "title": "Flights and train services cancelled in Belgium due to strike",
+      "url": "https://www.bbc.co.uk/news/articles/cwdr155e2d05o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-22T22:37:43+00:00"
+      "publishedAt": "2026-11-23T13:34:02+00:00"
     },
     {
-      "title": "Miley Cyrus marries Maxx Morando in California ceremony",
-      "url": "https://www.bbc.co.uk/news/articles/cq8e0p87l89lo?at_medium=RSS&at_campaign=rss",
+      "title": "Mexican soldiers attacked in wake of drug lord's arrest",
+      "url": "https://www.bbc.co.uk/news/articles/c5rmgkv2lk73o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-22T21:22:40+00:00"
-    },
-    {
-      "title": "Explosion on Russian ship at Libya port caused by suspected drone attack, officials say",
-      "url": "https://www.bbc.co.uk/news/articles/cr894gjz0j0yo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-22T20:28:09+00:00"
+      "publishedAt": "2026-11-23T13:26:36+00:00"
     },
     {
       "title": "Democrats win largest House majority since 1992 after flipping North Carolina seat",
       "url": "https://www.bbc.co.uk/news/articles/c6vg29g7dlyno?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-22T20:26:24+00:00"
+      "publishedAt": "2026-11-23T13:02:05+00:00"
+    },
+    {
+      "title": "Israeli attacks have turned Gaza into 'toxic wasteland', Oxfam says",
+      "url": "https://www.bbc.co.uk/news/articles/c8r4gzzxvxl3o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-23T11:57:33+00:00"
+    },
+    {
+      "title": "Russian warship hit by Ukrainian drones in Libya, Zelensky says",
+      "url": "https://www.bbc.co.uk/news/articles/cr894gjz0j0yo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-23T11:40:01+00:00"
+    },
+    {
+      "title": "Ukraine shares video of strikes on Russian ships off Libya",
+      "url": "https://www.bbc.co.uk/news/videos/c6wy93q5wwqvo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-23T11:34:10+00:00"
+    },
+    {
+      "title": "Kenya and DR Congo agree to restore ties after tensions over conflict",
+      "url": "https://www.bbc.co.uk/news/articles/cmvg2qnn95vro?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-23T08:53:01+00:00"
+    },
+    {
+      "title": "Five takeaways from the failed climate talks COP31",
+      "url": "https://www.bbc.co.uk/news/articles/cm75237wlp3lo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-23T06:33:50+00:00"
     },
     {
       "title": "What's next after no deal at COP31 climate talks?",
       "url": "https://www.bbc.co.uk/news/videos/cr1ewge81q4qo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-22T18:57:24+00:00"
+      "publishedAt": "2026-11-23T05:34:39+00:00"
     },
     {
-      "title": "US Army to detonate tonnes of unstable explosives in Iowa despite court order",
-      "url": "https://www.bbc.co.uk/news/articles/cvglrx764gdxo?at_medium=RSS&at_campaign=rss",
+      "title": "Boy, 7, pulled alive from rubble hours after Russian strike on Ukraine, rescuers say",
+      "url": "https://www.bbc.co.uk/news/articles/cqdr15l32d3go?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-22T18:29:46+00:00"
-    },
-    {
-      "title": "Russia-bound ship towed away after it was attacked in Gulf of Finland",
-      "url": "https://www.bbc.co.uk/news/articles/cj752ddve27ko?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-22T17:18:26+00:00"
-    },
-    {
-      "title": "Three killed and dozens missing after fire at Indonesian factory",
-      "url": "https://www.bbc.co.uk/news/articles/cw8dvg5pgm0eo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-22T14:05:20+00:00"
-    },
-    {
-      "title": "South Korea education minister resigns over exam cheating scandal",
-      "url": "https://www.bbc.co.uk/news/articles/cw3dgk29d37no?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-22T09:20:45+00:00"
+      "publishedAt": "2026-11-23T05:33:17+00:00"
     }
   ]
 }
