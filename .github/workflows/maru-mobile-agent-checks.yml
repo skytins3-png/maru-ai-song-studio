@@ -55,13 +55,28 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add mobile-hub/agent-last-report.json
-          if git diff --staged --quiet; then
-            echo "Report unchanged"
-          else
+          cp mobile-hub/agent-last-report.json "$RUNNER_TEMP/maru-verified-report.json"
+          # An unrelated human commit can arrive while checks run.
+          # Retry from the newest main without force-pushing or changing user files.
+          for attempt in 1 2 3 4; do
+            git fetch origin main
+            git reset --hard origin/main
+            cp "$RUNNER_TEMP/maru-verified-report.json" mobile-hub/agent-last-report.json
+            git add mobile-hub/agent-last-report.json
+            if git diff --staged --quiet; then
+              echo "Report already current"
+              exit 0
+            fi
             git commit -m "Record verified MARU role inspections [skip ci]"
-            git push origin HEAD:main
-          fi
+            if git push origin HEAD:main; then
+              echo "Evidence report published"
+              exit 0
+            fi
+            echo "Another commit arrived; retrying safely ($attempt/4)"
+            sleep 2
+          done
+          echo "Could not safely publish report after four attempts"
+          exit 1
       - name: Fail if any actual audit check failed
         if: steps.inspections.outcome == 'failure'
         run: |
