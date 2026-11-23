@@ -1,0 +1,20 @@
+{
+  "id": "./",
+  "name": "MARU ONE 모바일 통합 조종실",
+  "short_name": "MARU ONE",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#eff3f9",
+  "theme_color": "#152039",
+  "lang": "ko",
+  "description": "PC 없이 MARU MUSIC, RADIO, AI, 통역을 연결하는 모바일 통합 조종실",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
