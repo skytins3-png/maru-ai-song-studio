@@ -37,7 +37,7 @@ audit("TOTO","TOTO","연동함 전달·확인 경로 정적 점검",[
  ["모바일 보내기·받기 코드 존재",includes("mobile-hub/hub-sync.js",["maru-one-sync-v1:messages","function add(","function updateMessage("])],
  ["스튜디오 수신 처리 코드 존재",includes("mobile-hub/maru-sync.js",["function applyMessage()","function mark(","maru-one-sync-v1:messages"])],
  ["연동 대상 5페이지에 모두 로더 존재",html.every(p=>includes(p,["maru-sync.js?v=1"]))],
- ["권한 동의 후에만 외부 페이지 연동 표시",includes("mobile-hub/maru-sync.js",["function paired()","if(paired())"])]
+ ["권한 동의 후에만 외부 페이지 연동 표시",includes("mobile-hub/maru-sync.js",["function paired()","if(!paired())return;"])]
 ]);
 audit("MIMI","MIMI","방송·음원·신청곡 화면 구성 점검",[
  ["RADIO 재생기/파일 선택 UI",includes("music-share/radio.html",['id="startRadio"','id="localFiles"'])],
