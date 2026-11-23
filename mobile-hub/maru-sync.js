@@ -117,7 +117,19 @@ function init(){
  button.addEventListener("click",function(){panel.hidden=!panel.hidden;if(!panel.hidden)refresh()});
  document.body.appendChild(button);document.body.appendChild(panel);refresh();
 }
-function boot(){if(paired()){init();refresh()}}
+function boot(){
+ if(!paired())return;
+ // Paired MARU ONE must stay operable on Android browser even when
+ // the original STUDIO installation overlay was initially rendered.
+ // This is an opt-in UI gate bypass only; it never grants Android permissions.
+ if(role==="studio"){
+   document.documentElement.classList.remove("maru-browser");
+   document.documentElement.classList.add("maru-installed");
+   var gate=document.getElementById("maruInstallGate");
+   if(gate){gate.hidden=true;gate.style.display="none";gate.setAttribute("aria-hidden","true")}
+ }
+ init();refresh();
+}
 window.addEventListener("storage",function(e){if(e.key===PAIR)boot();if(e.key===STORE)refresh()});
 try{channel=new BroadcastChannel("maru-one-sync-v1");channel.onmessage=function(){refresh()}}catch(e){}
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",boot,{once:true});else boot();
