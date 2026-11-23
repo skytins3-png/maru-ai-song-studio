@@ -51,7 +51,8 @@ try{
     let found=false;
     for(let attempt=0;attempt<14;attempt++){
       const probe=await home.request.get(base+"?maru_deploy_probe="+Date.now()+"-"+attempt,{headers:{"Cache-Control":"no-cache"},timeout:15000});
-      if(probe.ok()&&(await probe.text()).includes("var maruOnePaired=false")){found=true;break}
+      const bridge=await home.request.get(base+"mobile-hub/maru-sync.js?maru_deploy_probe="+Date.now()+"-"+attempt,{headers:{"Cache-Control":"no-cache"},timeout:15000});
+      if(probe.ok()&&bridge.ok()&&(await probe.text()).includes("var maruOnePaired=false")&&(await bridge.text()).includes('gate.setAttribute("aria-hidden","true")')){found=true;break}
       await new Promise(done=>setTimeout(done,9000));
     }
     assert.equal(found,true,"Latest MARU STUDIO fix was NOT yet deployed");
@@ -61,6 +62,8 @@ try{
     const response=await studio.goto(base,{waitUntil:"domcontentloaded",timeout:60000});
     assert.equal(response.status(),200);
     await studio.locator("#maru-one-bridge-toggle").waitFor({timeout:40000});
+    const gateState=await studio.evaluate(()=>({css:document.documentElement.className,paired:localStorage.getItem("maru-one-sync-v1:paired"),gateStyle:document.getElementById("maruInstallGate")?.style.display||""}));
+    console.log("STUDIO gate state:",JSON.stringify(gateState));
     assert.equal(await studio.evaluate(()=>document.documentElement.classList.contains("maru-browser")),false,"Integrated mobile screen is still blocked by install gate");
     await studio.locator("#maru-one-bridge-toggle").click({timeout:30000});
     await studio.locator("#maru-one-bridge-panel").waitFor({state:"visible"});
