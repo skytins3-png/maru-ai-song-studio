@@ -1,0 +1,38 @@
+name: MARU mobile actual Chrome two-way integration test
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tests/maru_mobile_browser_smoke.mjs'
+      - '.github/workflows/maru-mobile-browser-test.yml'
+      - 'mobile-hub/hub-sync.js'
+      - 'mobile-hub/maru-sync.js'
+      - 'mobile-hub/index.html'
+      - 'mobile-hub/agents.js'
+      - 'mobile-hub/agents.html'
+permissions:
+  contents: read
+jobs:
+  chrome-mobile-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Require Chromium available for actual browser test
+        run: |
+          if command -v google-chrome; then
+            echo "CHROME_BIN=$(command -v google-chrome)" >> "$GITHUB_ENV"
+          elif command -v chromium; then
+            echo "CHROME_BIN=$(command -v chromium)" >> "$GITHUB_ENV"
+          else
+            echo "No browser installed; cannot verify real interaction"
+            exit 1
+          fi
+      - name: Install browser automation driver
+        run: npm install --no-save --ignore-scripts --no-audit --no-fund playwright-core@1.55.0
+      - name: Exercise live HTTPS mobile MARU ONE and STUDIO two-way handoff
+        run: node tests/maru_mobile_browser_smoke.mjs
