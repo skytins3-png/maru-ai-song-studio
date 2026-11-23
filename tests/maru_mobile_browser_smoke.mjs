@@ -52,7 +52,7 @@ try{
     for(let attempt=0;attempt<14;attempt++){
       const probe=await home.request.get(base+"?maru_deploy_probe="+Date.now()+"-"+attempt,{headers:{"Cache-Control":"no-cache"},timeout:15000});
       const bridge=await home.request.get(base+"mobile-hub/maru-sync.js?maru_deploy_probe="+Date.now()+"-"+attempt,{headers:{"Cache-Control":"no-cache"},timeout:15000});
-      if(probe.ok()&&bridge.ok()&&(await probe.text()).includes("var maruOnePaired=false")&&(await bridge.text()).includes('gate.setAttribute("aria-hidden","true")')){found=true;break}
+      if(probe.ok()&&bridge.ok()&&(await probe.text()).includes("var maruOnePaired=false")&&(await bridge.text()).includes("maruOneUnlockWatch")){found=true;break}
       await new Promise(done=>setTimeout(done,9000));
     }
     assert.equal(found,true,"Latest MARU STUDIO fix was NOT yet deployed");
