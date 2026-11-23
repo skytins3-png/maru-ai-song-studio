@@ -1,0 +1,69 @@
+name: MARU 7 roles mobile checks (not autonomous AI)
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '20 20 * * *'
+  push:
+    branches: [main]
+    paths:
+      - 'mobile-hub/index.html'
+      - 'mobile-hub/agents.html'
+      - 'mobile-hub/agents.js'
+      - 'mobile-hub/hub-sync.js'
+      - 'mobile-hub/maru-sync.js'
+      - 'mobile-hub/manifest.webmanifest'
+      - 'scripts/maru_mobile_agent_audit.mjs'
+      - '.github/workflows/maru-mobile-agent-checks.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: maru-mobile-role-audit
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run seven real deterministic inspections and check published site
+        id: inspections
+        continue-on-error: true
+        run: node scripts/maru_mobile_agent_audit.mjs --live
+      - name: Upload actual machine-generated report, even on failed checks
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: MARU-seven-role-inspections
+          path: mobile-hub/agent-last-report.json
+          if-no-files-found: error
+          retention-days: 30
+      - name: Publish last report for read-only mobile dashboard
+        if: always() && github.ref == 'refs/heads/main'
+        shell: bash
+        run: |
+          if [ ! -f mobile-hub/agent-last-report.json ]; then
+            echo "No report was generated"
+            exit 1
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add mobile-hub/agent-last-report.json
+          if git diff --staged --quiet; then
+            echo "Report unchanged"
+          else
+            git commit -m "Record verified MARU role inspections [skip ci]"
+            git push origin HEAD:main
+          fi
+      - name: Fail if any actual audit check failed
+        if: steps.inspections.outcome == 'failure'
+        run: |
+          echo "At least one MARU role check failed; do not mark the app operational."
+          exit 1
