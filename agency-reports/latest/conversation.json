@@ -1,0 +1,32 @@
+{
+  "caseId": "conversation-20261123",
+  "agentId": "conversation",
+  "agentName": "윤솔",
+  "caseTitle": "사연·방송 대본 검토",
+  "mission": "승인된 공개 사연 수와 공개 여부 확인",
+  "checkedAt": "2026-11-23T21:35:17.657690+00:00",
+  "runId": "45271164797",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45271164797",
+  "automationType": "repository_evidence_audit",
+  "reportStatus": "checks_passed",
+  "checks": [
+    {
+      "check": "사연 접수 페이지",
+      "passed": true,
+      "evidence": "music-share/stories.html"
+    },
+    {
+      "check": "승인 사연 메타데이터 확인",
+      "passed": true,
+      "evidence": "0"
+    }
+  ],
+  "modelInference": {
+    "status": "not_configured",
+    "error": "MARU_OPENAI_API_KEY GitHub Actions secret 미설정",
+    "model": null
+  },
+  "realWorldAction": "none",
+  "approvedForBroadcast": false,
+  "note": "정적 보고서는 사실 검사입니다. 독립 모델 활동은 modelInference.status= model_report_generated일 때만 입증됩니다."
+}

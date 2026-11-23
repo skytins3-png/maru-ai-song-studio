@@ -1,0 +1,32 @@
+{
+  "caseId": "arranger-20261123",
+  "agentId": "arranger",
+  "agentName": "서율",
+  "caseTitle": "편곡·전통악기 근거",
+  "mission": "공개된 음원과 편곡 확인 자료의 존재 확인",
+  "checkedAt": "2026-11-23T21:35:17.657690+00:00",
+  "runId": "45271164797",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45271164797",
+  "automationType": "repository_evidence_audit",
+  "reportStatus": "blocked_missing_evidence",
+  "checks": [
+    {
+      "check": "공개 음원 목록 확인",
+      "passed": true,
+      "evidence": "공개 음원 수: 0"
+    },
+    {
+      "check": "검토 가능한 공개 음원 존재",
+      "passed": false,
+      "evidence": "공개 목록이 비면 새 곡 완성/저작권 통과를 주장할 수 없음"
+    }
+  ],
+  "modelInference": {
+    "status": "not_configured",
+    "error": "MARU_OPENAI_API_KEY GitHub Actions secret 미설정",
+    "model": null
+  },
+  "realWorldAction": "none",
+  "approvedForBroadcast": false,
+  "note": "정적 보고서는 사실 검사입니다. 독립 모델 활동은 modelInference.status= model_report_generated일 때만 입증됩니다."
+}

@@ -1,0 +1,37 @@
+{
+  "caseId": "agency-operations-20261123",
+  "agentId": "agency-operations",
+  "agentName": "MARU 에이전시 운영",
+  "caseTitle": "에이전시 접수·정산 확인",
+  "mission": "공개 접수/사연 상태와 정산 증빙 유무를 분리 확인",
+  "checkedAt": "2026-11-23T21:35:17.657690+00:00",
+  "runId": "45271164797",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45271164797",
+  "automationType": "repository_evidence_audit",
+  "reportStatus": "blocked_missing_evidence",
+  "checks": [
+    {
+      "check": "공개 접수 페이지 접근 준비",
+      "passed": true,
+      "evidence": "음악·사연 신청 화면만 확인"
+    },
+    {
+      "check": "공개 접수 내역 집계",
+      "passed": true,
+      "evidence": "공개 음원 0곡, 승인 사연 0건"
+    },
+    {
+      "check": "실제 에이전시 정산 증빙",
+      "passed": false,
+      "evidence": "지급 계약·수수료 명세·계좌 자료 연결 없음; 수익 주장 금지"
+    }
+  ],
+  "modelInference": {
+    "status": "not_configured",
+    "error": "MARU_OPENAI_API_KEY GitHub Actions secret 미설정",
+    "model": null
+  },
+  "realWorldAction": "none",
+  "approvedForBroadcast": false,
+  "note": "정적 보고서는 사실 검사입니다. 독립 모델 활동은 modelInference.status= model_report_generated일 때만 입증됩니다."
+}

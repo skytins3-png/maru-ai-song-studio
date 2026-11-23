@@ -1,0 +1,32 @@
+{
+  "caseId": "research-qa-20261123",
+  "agentId": "research-qa",
+  "agentName": "지안",
+  "caseTitle": "공개 자료 최신성 점검",
+  "mission": "뉴스·날씨 타임스탬프와 출처 수 확인",
+  "checkedAt": "2026-11-23T21:35:17.657690+00:00",
+  "runId": "45271164797",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45271164797",
+  "automationType": "repository_evidence_audit",
+  "reportStatus": "checks_passed",
+  "checks": [
+    {
+      "check": "뉴스·날씨 수집 시간 유효",
+      "passed": true,
+      "evidence": "생성 시각: 2026-11-23T14:45:27+00:00 (현재로부터 6.83시간)"
+    },
+    {
+      "check": "뉴스 항목 확인",
+      "passed": true,
+      "evidence": "공개 뉴스 개수: 12"
+    }
+  ],
+  "modelInference": {
+    "status": "not_configured",
+    "error": "MARU_OPENAI_API_KEY GitHub Actions secret 미설정",
+    "model": null
+  },
+  "realWorldAction": "none",
+  "approvedForBroadcast": false,
+  "note": "정적 보고서는 사실 검사입니다. 독립 모델 활동은 modelInference.status= model_report_generated일 때만 입증됩니다."
+}

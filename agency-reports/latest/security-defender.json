@@ -1,0 +1,32 @@
+{
+  "caseId": "security-defender-20261123",
+  "agentId": "security-defender",
+  "agentName": "도윤",
+  "caseTitle": "보안 허용 화면 점검",
+  "mission": "공개 사연과 요청 페이지 존재와 민감 정보 미수집 확인",
+  "checkedAt": "2026-11-23T21:35:17.657690+00:00",
+  "runId": "45271164797",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45271164797",
+  "automationType": "repository_evidence_audit",
+  "reportStatus": "checks_passed",
+  "checks": [
+    {
+      "check": "사연 폼 존재",
+      "passed": true,
+      "evidence": "music-share/stories.html"
+    },
+    {
+      "check": "신청곡 폼 존재",
+      "passed": true,
+      "evidence": "music-share/requests.html"
+    }
+  ],
+  "modelInference": {
+    "status": "not_configured",
+    "error": "MARU_OPENAI_API_KEY GitHub Actions secret 미설정",
+    "model": null
+  },
+  "realWorldAction": "none",
+  "approvedForBroadcast": false,
+  "note": "정적 보고서는 사실 검사입니다. 독립 모델 활동은 modelInference.status= model_report_generated일 때만 입증됩니다."
+}
