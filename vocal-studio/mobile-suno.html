@@ -1,0 +1,67 @@
+<!doctype html><html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#16223f"><title>MARU SUNO · 모바일 30명 음원 보관함</title>
+<link rel="manifest" href="../mobile-hub/manifest.webmanifest">
+<style>
+:root{font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif;background:#edf2f8;color:#12243d}*{box-sizing:border-box}body{margin:0 0 80px}header{background:linear-gradient(135deg,#182744,#3c4c87);color:white;padding:21px 17px 28px;border-radius:0 0 19px 19px}header h1{font-size:24px;margin:8px 0 6px}header p{font-size:13px;line-height:1.6;color:#dce6ff;margin:3px 0}header a{color:#fff}main{max-width:760px;margin:auto;padding:13px}section{border-radius:15px;border:1px solid #d9e3f0;background:#fff;padding:16px;margin:12px 0;box-shadow:0 5px 15px #1428400c}h2{font-size:19px;margin:0 0 9px}h3{font-size:15px;margin:12px 0 7px}p,li{font-size:13px;line-height:1.65;color:#52647a}button,a.btn{font:750 14px system-ui;border-radius:10px;border:0;background:#294db0;color:white;padding:11px 14px;cursor:pointer;min-height:44px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}button.secondary,a.btn.secondary{background:#e9effd;color:#254c9f}button:disabled{opacity:.52}input,select,textarea{font:inherit}input[type=file],input[type=text],select,textarea{display:block;width:100%;margin:6px 0 12px;border:1px solid #ced9e9;border-radius:11px;padding:11px;background:#f9fbfe;color:#1b2e4d}input[type=checkbox]{min-width:18px;min-height:18px}label{font-size:13px;font-weight:700;display:block;margin:9px 0 4px}label.check{display:flex;align-items:flex-start;gap:9px;font-weight:500;line-height:1.55}.row{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin:10px 0}.row>*{flex-shrink:0}.banner{background:#fff8ec;border-left:3px solid #bd832b;color:#634c24;padding:12px 13px;border-radius:9px;font-size:12px;line-height:1.65}.report{font-size:13px;line-height:1.7;background:#f0f5ff;border-radius:12px;padding:12px;color:#214165;white-space:pre-wrap;overflow-wrap:anywhere;max-height:220px;overflow:auto}.song{border-top:1px solid #e1e7f1;padding:12px 0}.song:first-child{border:0}.song .name{font-weight:800;font-size:14px;overflow-wrap:anywhere}.song .meta{font-size:12px;color:#63748b;margin:5px 0}.song select{width:100%}.song button{margin:3px 5px 3px 0}.chip{display:inline-block;background:#edf2fa;padding:5px 8px;border-radius:15px;font-size:11px;margin:3px;color:#3a536f}.small{font-size:12px;color:#61748b}audio{display:block;width:100%;margin:13px 0}.stat{font-weight:800;font-size:15px}.foot{font-size:12px;color:#69788a;text-align:center;padding:18px}.spin{opacity:.7}.controls{display:flex;flex-wrap:wrap;gap:7px}.controls button{font-size:12px;padding:9px}.mono{font-family:ui-monospace,monospace;font-size:11px;overflow-wrap:anywhere}@media(min-width:650px){.cols{display:grid;grid-template-columns:1fr 1fr;gap:12px}.cols>*{min-width:0}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style></head><body>
+<header><a href="../mobile-hub/">‹ MARU ONE 홈으로</a><h1>MARU SUNO 모바일 보관함</h1><p>갤럭시 파일 → 노래 등록 → 중복 확인 → 30명 가수 연결 → MARU RADIO 로컬 미리듣기</p><p>음원은 공개 GitHub가 아닌 이 휴대폰 Chrome 저장소에만 저장됩니다.</p></header>
+<main>
+<section>
+ <h2>① 휴대폰에 있는 Suno 노래 등록</h2>
+ <p>갤럭시 <b>내 파일 → 내장 저장공간 → FTF-Music / Download</b>에 보관한 MP3·WAV 등을 파일 선택기로 가져옵니다. Android 보안 때문에 아무 권한 없이 폴더 전체를 몰래 검색할 수는 없어요.</p>
+ <label for="files">여러 곡 한 번에 선택</label><input id="files" type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.flac" multiple>
+ <label for="folder">폴더 선택 (Chrome에서 지원하는 경우만)</label><input id="folder" type="file" accept="audio/*" webkitdirectory multiple>
+ <label for="importSinger">이번에 고른 곡의 가수</label><select id="importSinger"></select>
+ <label class="check"><input id="confirmRights" type="checkbox"> 내 음원이며 저장·재생 권한을 확인했어요. 공개 업로드는 하지 않습니다.</label>
+ <div class="row"><button id="importFiles">파일 추가·중복 검사</button><button id="storagePersist" class="secondary">브라우저 보관 유지 요청</button></div>
+ <div id="importStatus" class="report" role="status">먼저 휴대폰의 음원 파일을 선택해 주세요.</div>
+ <p class="small" id="quota">저장 공간 사용량 확인 중</p>
+</section>
+<section>
+ <h2>② Suno에 있는데 아직 휴대폰에 없는 곡</h2>
+ <div class="banner">이 화면은 Suno 로그인·음원 자동 추출을 가장하지 않습니다. Suno는 원곡 MP3 다운로드를 지원합니다. 다른 앱의 소리를 강제로 녹음하거나 다운로드 제한을 회피하지 않아요.</div>
+ <p>Suno 보관함에서 <b>곡 옆 ⋯ → Download → MP3</b>로 받으면 갤럭시 Download 폴더에 나타납니다. 돌아와서 위 파일 선택으로 등록하면 이미 있는 곡은 SHA-256으로 자동 제외합니다.</p>
+ <div class="row"><a class="btn" href="https://suno.com/library" target="_blank" rel="noopener noreferrer">Suno 보관함 열기</a><a class="btn secondary" href="https://help.suno.com/en/articles/2409921" target="_blank" rel="noopener noreferrer">공식 다운로드 안내</a></div>
+ <p>Premier 계정에서 보컬만 필요하면 곡 옆 <b>⋯ → Get Stems → Vocals</b>를 선택해 분리 파일을 받으세요. 보컬 Stem을 새로운 문장으로 말하게 하는 음성 모델로 자동 변환하지는 않습니다.</p>
+</section>
+<section>
+ <h2>③ 보관된 곡 · 30명 AI 가수 배정</h2>
+ <div id="librarySummary" class="stat" aria-live="polite">등록된 곡 확인 중</div>
+ <div class="row"><button id="reload" class="secondary">목록 새로고침</button><button id="exportManifest" class="secondary">곡 목록 JSON 받기</button><a class="btn secondary" href="./radio-show.html">MARU RADIO SHOW 열기</a></div>
+ <p class="small">목록 JSON은 파일명·가수·해시만 저장합니다. 실제 MP3 파일은 들어 있지 않아 별도로 보관해야 합니다.</p>
+ <div id="songs"></div><audio id="musicPlayer" controls preload="metadata"></audio>
+</section>
+<section>
+ <h2>④ 30명 가수 보컬 참조 파일</h2>
+ <p>같은 파일을 다른 가수에게 잘못 배정하지 않도록 각각 등록하고 직접 듣습니다. Suno 보컬 Stem은 <b>노래에서 분리한 목소리</b>이지 새로운 말을 만드는 AI 음성 모델이 아닙니다.</p>
+ <label for="voiceSinger">가수 지정</label><select id="voiceSinger"></select>
+ <label for="vocalFile">Suno에서 받은 보컬 Stem 파일</label><input type="file" id="vocalFile" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.flac">
+ <div class="row"><button id="saveVocal">보컬 참조 저장</button><button class="secondary" id="listenVocal">보컬 미리듣기</button></div>
+ <div id="vocalStatus" class="report" role="status">보컬 참조 저장 0명 · 음성 모델 0명</div><audio id="voicePlayer" controls preload="metadata"></audio>
+</section>
+<section>
+ <h2>⑤ 진행자·가수 실제 녹음 멘트 등록</h2>
+ <p>임의로 문장을 말하는 AI 목소리를 만들지 않고, 본인이 녹음·사용할 권한이 있는 **실제 발화 녹음 파일**을 문장과 화자에 연결합니다. 정확히 같은 문장일 때만 RADIO에서 재생하도록 만들었어요.</p>
+ <label for="cueSpeaker">화자</label><select id="cueSpeaker"></select>
+ <label for="cueText">실제 녹음된 문장 (최소 5자)</label><textarea id="cueText" rows="3" maxlength="240" placeholder="녹음에 담긴 말을 글자까지 맞춰 입력하세요"></textarea>
+ <label for="cueFile">이미 녹음한 멘트 파일</label><input type="file" id="cueFile" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.flac,.webm">
+ <div class="row"><button id="startCueRecording" class="secondary">마이크 녹음 시작</button><button id="stopCueRecording" class="secondary" disabled>녹음 종료</button></div>
+ <label class="check"><input type="checkbox" id="cueRights"> 실제 목소리의 녹음·방송 사용 허락을 확인했습니다.</label>
+ <div class="row"><button id="saveCue">선택한 멘트 저장</button><button id="listenCue" class="secondary">녹음 멘트 듣기</button></div>
+ <div class="report" id="cueStatus" role="status">마이크 사용은 버튼을 누르면 Android가 묻습니다. 자동 녹음은 하지 않습니다.</div>
+ <p class="small">새 대본을 즉석에서 같은 목소리로 합성하거나 실시간 사람처럼 토론하는 기술과는 별개입니다. 지금 저장하는 것은 승인된 음성 녹음 한 문장입니다.</p>
+</section>
+<section>
+ <h2>⑥ MARU RADIO로 곡 보내기</h2>
+ <p><b>미리듣기:</b> 동일한 Chrome 프로필에서 MARU RADIO SHOW를 열고 ‘STUDIO에 보관된 노래 가져오기’로 불러옵니다.</p>
+ <p><b>Android 설치 앱:</b> 아래 ‘선택곡 공유’는 실제 Android 공유 메뉴로 음원 파일을 넘깁니다. MARU RADIO가 보이면 선택하면 됩니다. BIGO 시청자에게 들리는지는 별도로 확인해야 해요.</p>
+ <div class="row"><button id="shareSelected">선택곡 RADIO 공유</button><a class="btn secondary" href="./radio-show.html">방송 미리듣기</a></div>
+ <div id="shareStatus" class="report">먼저 곡 목록에서 ‘공유 대상으로 선택’을 눌러주세요.</div>
+ <div class="banner">휴대폰 다운로드 폴더로 대량 파일을 마음대로 옮기거나 삭제하지 않습니다. Android 보안 정책상 직접 파일 이동에는 사용자의 파일 선택/공유 승인이 필요합니다. 기존 MARU 앱 데이터는 건드리지 않습니다.</div>
+</section>
+<div class="foot">MARU SUNO 모바일 보관함 · 브라우저 파일 가져오기와 로컬 데이터만 관리 · BIGO 실송출 미검증</div>
+</main>
+<script src="./mobile-suno-core.js?v=1"></script>
+<script src="./mobile-suno.js?v=1" defer></script>
+</body></html>
