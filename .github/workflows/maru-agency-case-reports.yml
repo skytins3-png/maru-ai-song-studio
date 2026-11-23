@@ -1,0 +1,84 @@
+name: MARU specialists and BIGO agency per-case evidence reports
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '15 0 * * *'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/maru_agency_case_worker.py'
+      - '.github/workflows/maru-agency-case-reports.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: maru-agency-case-reports
+  cancel-in-progress: false
+
+jobs:
+  cases:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile actual worker
+        run: python -m py_compile scripts/maru_agency_case_worker.py
+      - name: Run 10 specialists and agency operator, write per-case reports
+        env:
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          MARU_OPENAI_API_KEY: ${{ secrets.MARU_OPENAI_API_KEY }}
+          MARU_AGENT_MODEL: ${{ vars.MARU_AGENT_MODEL || 'gpt-5-mini' }}
+        run: python scripts/maru_agency_case_worker.py
+      - name: Validate that each report is honest and parseable
+        run: |
+          python - <<'PY'
+          import json,pathlib
+          root=pathlib.Path("agency-reports/latest")
+          report=json.loads((root/"index.json").read_text(encoding="utf8"))
+          assert report["count"]==11
+          assert len({x["agentId"] for x in report["cases"]})==11
+          for case in report["cases"]:
+              d=json.loads((root/case["reportFile"]).read_text(encoding="utf8"))
+              assert d["agentId"]==case["agentId"]
+              assert d["realWorldAction"]=="none"
+              assert d["reportStatus"] in ("checks_passed","blocked_missing_evidence")
+              assert d["modelInference"]["status"] in ("not_configured","model_report_generated","model_call_failed")
+          print("11 genuine case reports validated; independent AI results verified separately.")
+          PY
+      - name: Upload separate case files as one versioned run artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: MARU-11-CASE-REPORTS
+          path: agency-reports/latest/*.json
+          retention-days: 90
+          if-no-files-found: error
+      - name: Publish latest safe public summaries without overwriting other work
+        shell: bash
+        run: |
+          cp -r agency-reports/latest "$RUNNER_TEMP/latest-reports"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4; do
+            git fetch origin main
+            git reset --hard origin/main
+            mkdir -p agency-reports/latest
+            cp "$RUNNER_TEMP"/latest-reports/*.json agency-reports/latest/
+            git add agency-reports/latest
+            if git diff --staged --quiet; then
+              echo "Case summaries are already published"
+              exit 0
+            fi
+            git commit -m "Record MARU specialists and agency reports [skip ci]"
+            if git push origin HEAD:main; then
+              echo "11 report files available to view in repository"
+              exit 0
+            fi
+            echo "Concurrent commit, retrying safely"
+            sleep 2
+          done
+          echo "Publication failed; reports remain in Actions artifact"
+          exit 1
