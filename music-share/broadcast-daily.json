@@ -1,60 +1,77 @@
 {
-  "generatedAt": "2026-11-22T16:19:34+00:00",
+  "generatedAt": "2026-11-23T00:55:39+00:00",
   "timezone": "Asia/Seoul",
-  "weather": {
-    "Daejeon": {
-      "city": "Daejeon",
-      "temperatureC": -0.4,
-      "windKmh": 4.0,
-      "weatherCode": 0,
-      "observedLocal": "2026-11-23T01:15",
-      "source": "Open-Meteo",
-      "sourceUrl": "https://open-meteo.com/"
-    },
-    "Seoul": {
-      "city": "Seoul",
-      "temperatureC": 2.0,
-      "windKmh": 5.0,
-      "weatherCode": 1,
-      "observedLocal": "2026-11-23T01:15",
-      "source": "Open-Meteo",
-      "sourceUrl": "https://open-meteo.com/"
-    },
-    "Busan": {
-      "city": "Busan",
-      "temperatureC": 3.8,
-      "windKmh": 5.5,
-      "weatherCode": 0,
-      "observedLocal": "2026-11-23T01:15",
-      "source": "Open-Meteo",
-      "sourceUrl": "https://open-meteo.com/"
-    },
-    "Incheon": {
-      "city": "Incheon",
-      "temperatureC": 2.1,
-      "windKmh": 15.1,
-      "weatherCode": 1,
-      "observedLocal": "2026-11-23T01:15",
-      "source": "Open-Meteo",
-      "sourceUrl": "https://open-meteo.com/"
-    },
-    "Daegu": {
-      "city": "Daegu",
-      "temperatureC": 1.1,
-      "windKmh": 5.4,
-      "weatherCode": 0,
-      "observedLocal": "2026-11-23T01:15",
-      "source": "Open-Meteo",
-      "sourceUrl": "https://open-meteo.com/"
-    }
-  },
+  "weather": {},
   "news": [
     {
-      "title": "Explosion on Russian ship at Libya port likely caused by drone attack, officials say",
+      "title": "COP31 fails to reach major climate deal as talks expose deep divisions",
+      "url": "https://www.bbc.co.uk/news/articles/cqwy06zrd26lo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-23T00:50:35+00:00"
+    },
+    {
+      "title": "Italian jeweller and businessman Paolo Bulgari dies aged 89",
+      "url": "https://www.bbc.co.uk/news/articles/c8e39qk5vrpdo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-23T00:33:36+00:00"
+    },
+    {
+      "title": "San Francisco is enjoying an AI boom, but worries about a crash are growing",
+      "url": "https://www.bbc.co.uk/news/articles/cqe9k09j9jv4o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "Technology",
+      "publishedAt": "2026-11-23T00:08:00+00:00"
+    },
+    {
+      "title": "'Danger seems greater all the time': Ukrainians search for missing after Russian strikes",
+      "url": "https://www.bbc.co.uk/news/videos/cre3dvd1k9y1o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-22T22:37:43+00:00"
+    },
+    {
+      "title": "Miley Cyrus marries Maxx Morando in California ceremony",
+      "url": "https://www.bbc.co.uk/news/articles/cq8e0p87l89lo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-22T21:22:40+00:00"
+    },
+    {
+      "title": "Explosion on Russian ship at Libya port caused by suspected drone attack, officials say",
       "url": "https://www.bbc.co.uk/news/articles/cr894gjz0j0yo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-22T16:05:25+00:00"
+      "publishedAt": "2026-11-22T20:28:09+00:00"
+    },
+    {
+      "title": "Democrats win largest House majority since 1992 after flipping North Carolina seat",
+      "url": "https://www.bbc.co.uk/news/articles/c6vg29g7dlyno?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-22T20:26:24+00:00"
+    },
+    {
+      "title": "What's next after no deal at COP31 climate talks?",
+      "url": "https://www.bbc.co.uk/news/videos/cr1ewge81q4qo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-22T18:57:24+00:00"
+    },
+    {
+      "title": "US Army to detonate tonnes of unstable explosives in Iowa despite court order",
+      "url": "https://www.bbc.co.uk/news/articles/cvglrx764gdxo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-22T18:29:46+00:00"
+    },
+    {
+      "title": "Russia-bound ship towed away after it was attacked in Gulf of Finland",
+      "url": "https://www.bbc.co.uk/news/articles/cj752ddve27ko?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-22T17:18:26+00:00"
     },
     {
       "title": "Three killed and dozens missing after fire at Indonesian factory",
@@ -64,74 +81,11 @@
       "publishedAt": "2026-11-22T14:05:20+00:00"
     },
     {
-      "title": "Russia-bound ship still on fire after attack in Gulf of Finland",
-      "url": "https://www.bbc.co.uk/news/articles/cj752ddve27ko?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-22T11:25:14+00:00"
-    },
-    {
       "title": "South Korea education minister resigns over exam cheating scandal",
       "url": "https://www.bbc.co.uk/news/articles/cw3dgk29d37no?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
       "publishedAt": "2026-11-22T09:20:45+00:00"
-    },
-    {
-      "title": "Italian jeweller and businessman Paolo Bulgari dies aged 89",
-      "url": "https://www.bbc.co.uk/news/articles/c8e39qk5vrpdo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-22T07:12:41+00:00"
-    },
-    {
-      "title": "Mexican drug lord on FBI's 10 most wanted list arrested in shoot-out",
-      "url": "https://www.bbc.co.uk/news/articles/ckz749ey0r75o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-22T01:25:03+00:00"
-    },
-    {
-      "title": "FBI reportedly investigating apparent hack of its criminal database",
-      "url": "https://www.bbc.co.uk/news/articles/cvze7de86pk3o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-22T00:10:44+00:00"
-    },
-    {
-      "title": "Nigerian youth have shown their power in the past - why aren't they shaping this election?",
-      "url": "https://www.bbc.co.uk/news/articles/ck4g174n020eo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-22T00:10:37+00:00"
-    },
-    {
-      "title": "How a teen gamer and his mother helped rescue a missing girl",
-      "url": "https://www.bbc.co.uk/news/articles/cmq8lyv8lkjwo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-22T00:09:58+00:00"
-    },
-    {
-      "title": "Lock of former US President George Washington's hair sells for $4,000",
-      "url": "https://www.bbc.co.uk/news/articles/cwe9k23dpz0do?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-21T22:01:19+00:00"
-    },
-    {
-      "title": "Zelensky says Crimean Bridge strikes 'fair response' as he meets UK's Streeting",
-      "url": "https://www.bbc.co.uk/news/articles/c6wy0qj7w5zqo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-21T13:17:38+00:00"
-    },
-    {
-      "title": "Denmark accuses Russia of plotting to assassinate US-Ukrainian rapper",
-      "url": "https://www.bbc.co.uk/news/articles/cmde1lj4yjxno?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-21T10:26:36+00:00"
     }
   ]
 }
