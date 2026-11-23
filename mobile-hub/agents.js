@@ -17,6 +17,7 @@
     $("overall").textContent="검사 결과를 확인할 수 없습니다. 성공으로 표시하지 않습니다.";
     $("time").textContent="확인 실패: "+reason;
     $("auditSource").textContent="GitHub Actions 로그에서 실행 여부를 직접 확인하세요.";
+    $("siteStatus").textContent="웹사이트 실제 응답 상태는 확인하지 못했습니다.";
     $("roles").replaceChildren();
     rolesFallback.forEach(([name,task])=>{
       const d=el("div",undefined,"role");
@@ -39,6 +40,10 @@
       a.href=data.runUrl;a.target="_blank";a.rel="noopener noreferrer";
       $("auditSource").append(a);
     }else $("auditSource").textContent="로컬 수동 실행 보고서 · 서버 검증은 미확인";
+    const live=data.liveSiteCheck||{};
+    $("siteStatus").textContent=live.status==="reachable"&&live.httpStatus===200?
+      "웹사이트 마지막 접근 검사: HTTP 200 성공 ("+new Date(timestamp).toLocaleString("ko-KR",{timeZone:"Asia/Seoul"})+")":
+      "웹사이트 실제 접근은 미검증 또는 실패 · "+String(live.status||"자료 없음");
     $("roles").replaceChildren();
     data.roles.forEach(r=>{
       const d=el("div",undefined,"role");
@@ -75,6 +80,22 @@
       });
     }catch(e){$("specialists").textContent="전문가 설정 상태를 확인하지 못했습니다: "+e.message}
   }
+  async function loadChromeStatus(){
+    const out=$("browserStatus");
+    out.textContent="실제 Chrome 자동 시험의 최신 결과 조회 중";
+    try{
+      const endpoint="https://api.github.com/repos/skytins3-png/maru-ai-song-studio/actions/workflows/maru-mobile-browser-test.yml/runs?per_page=1";
+      const r=await fetch(endpoint,{cache:"no-store",headers:{"Accept":"application/vnd.github+json"}});
+      if(!r.ok)throw Error("GitHub API "+r.status);
+      const json=await r.json();
+      const run=(json.workflow_runs||[])[0];
+      if(!run)throw Error("실행 기록 없음");
+      out.replaceChildren();
+      const state=run.status==="completed"?(run.conclusion==="success"?"10개 동작 시험: 성공 기록":"마지막 Chrome 시험: "+String(run.conclusion||"결과 없음")):"시험 진행 중 또는 대기 중";
+      out.append(document.createTextNode(state+" · "+new Date(run.created_at).toLocaleString("ko-KR",{timeZone:"Asia/Seoul"})+" · "));
+      const a=el("a","시험 기록");a.href=run.html_url;a.target="_blank";a.rel="noopener noreferrer";out.append(a);
+    }catch(e){out.textContent="Chrome 실제 동작 시험 최신 상태 조회 불가: "+(e.message||e)}
+  }
   let installPrompt=null;
   window.addEventListener("beforeinstallprompt",event=>{
     event.preventDefault();installPrompt=event;
@@ -88,8 +109,9 @@
     $("installState").textContent=choice.outcome==="accepted"?"설치 요청을 수락했습니다. 홈 화면 아이콘 생성 여부는 휴대폰에서 확인하세요.":"설치 요청이 취소되었습니다.";
     installPrompt=null;$("install").hidden=true;
   });
-  $("refresh").addEventListener("click",()=>{loadReport();loadSpecialists()});
+  $("refresh").addEventListener("click",()=>{loadReport();loadSpecialists();loadChromeStatus()});
   $("installState").textContent=window.matchMedia&&window.matchMedia("(display-mode: standalone)").matches?"홈 화면 앱 모드로 실행 중입니다.":"Chrome 메뉴 ⋮에서 홈 화면에 추가 또는 앱 설치를 선택할 수 있습니다.";
   loadReport();
   loadSpecialists();
+  loadChromeStatus();
 })();
