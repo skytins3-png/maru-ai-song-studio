@@ -113,6 +113,33 @@ try{
       assert((await iconResponse.body()).byteLength>100);
     }
   });
+  const agency=await ctx.newPage();
+  await check("Agency case dashboard opens and displays 11 actual server reports",async()=>{
+    const response=await agency.goto(base+"mobile-hub/agency.html",{waitUntil:"domcontentloaded",timeout:60000});
+    assert.equal(response.status(),200);
+    await agency.waitForFunction(()=>{
+      const text=document.getElementById("remoteSummary")?.textContent||"";
+      return text.includes("건별 보고서 11건")||text.includes("실제 보고서를 읽을 수 없으므로");
+    },null,{timeout:22000});
+    const status=await agency.locator("#remoteSummary").innerText();
+    assert.match(status,/건별 보고서 11건/);
+    assert.equal(await agency.locator("#remoteCases .case").count(),11);
+    assert.match(status,/모델이 실제 생성한 보고서 0건/);
+  });
+  await check("Agency local settlement arithmetic creates a private per-case report",async()=>{
+    await agency.locator("#caseName").fill("자동 시험용 정산");
+    await agency.locator("#caseCurrency").selectOption("CNY");
+    await agency.locator("#caseSpent").fill("11000");
+    await agency.locator("#caseReceived").fill("3500");
+    await agency.locator("button[type=submit]").click();
+    const text=await agency.locator("#calcResult").innerText();
+    assert.match(text,/7,500/);
+    assert.match(text,/68.18%/);
+    const cases=await agency.evaluate(()=>JSON.parse(localStorage.getItem("maru-agency-local-cases-v1")));
+    assert.equal(cases.length,1);
+    assert.equal(cases[0].difference,7500);
+    assert.equal(cases[0].realPlatformFeeVerified,false);
+  });
   console.log("MARU LIVE BROWSER TEST SUCCESS: "+results.length+" checks");
 }finally{
   await browser.close();
