@@ -18,14 +18,14 @@ function render(){
   singerSelect.setAttribute("aria-label",t.title+" · Suno 가수 연결");
   const none=document.createElement("option");
   none.value="";none.textContent="가수 미지정";singerSelect.append(none);
-  for(const candidate of S.SINGERS){
+  for(const candidate of [...S.SINGERS,...(window.MaruMobileSunoCore?.SINGERS||[])]){
    const option=document.createElement("option");
    option.value=candidate.id;option.textContent=candidate.name+" · "+candidate.id;
    singerSelect.append(option);
   }
   singerSelect.value=t.singerId||"";
   singerSelect.onchange=()=>{t.singerId=singerSelect.value;status(t.title+" · "+
-    (S.singer(t.singerId)?.name||"가수 미지정")+" 으로 설정했습니다. 원곡 파일은 그대로 보존됩니다.");};
+    (S.singer(t.singerId)?.name||window.MaruMobileSunoCore?.SINGERS.find(a=>a.id===t.singerId)?.name||"가수 미지정")+" 으로 설정했습니다. 원곡 파일은 그대로 보존됩니다.");};
   li.append(name,select,singerSelect);list.append(li);
  }
 }
@@ -34,12 +34,12 @@ async function hash(file){
  const bytes=await file.arrayBuffer(),arr=new Uint8Array(await crypto.subtle.digest("SHA-256",bytes));
  return [...arr].map(x=>x.toString(16).padStart(2,"0")).join("");
 }
-async function add(files){
+async function add(files,metadata=[]){
  if(running||busy){status("재생·다른 가져오기가 끝나면 음악을 추가할 수 있습니다.");return {added:0,duplicate:0,skipped:0};}
  busy=true;
  let added=0,duplicate=0,skipped=0;
  try {
- for(const file of Array.from(files||[]).slice(0,Math.max(0,200-tracks.length))){
+ for(const [fileIndex,file] of Array.from(files||[]).slice(0,Math.max(0,200-tracks.length)).entries()){
   if(!/\.(mp3|wav|m4a|aac|ogg|flac)$/i.test(file.name)||file.size<1000||file.size>80*1024*1024){skipped++;continue;}
   try {
     const fingerprint=await hash(file);
@@ -47,7 +47,9 @@ async function add(files){
     const id=fingerprint;
     if(tracks.some(x=>x.id===id)){duplicate++;continue;}
     const match=S.autoMatch(file.name);
-    tracks.push({id,title:E.title(file.name),category:E.category(file.name),singerId:match?.id||"",file});added++;
+    const assigned=String(metadata[fileIndex]?.singerId||"");
+    const known=!!S.singer(assigned)||!!window.MaruMobileSunoCore?.SINGERS.some(s=>s.id===assigned);
+    tracks.push({id,title:E.title(file.name),category:E.category(file.name),singerId:known?assigned:(match?.id||""),file});added++;
     status("로컬 곡 확인 중: "+(added+duplicate+skipped)+"개");
   }catch{skipped++;}
  }
@@ -94,7 +96,7 @@ function play(track,ticket){return new Promise(resolve=>{
  releaseAudio();activeUrl=URL.createObjectURL(track.file);audio.src=activeUrl;audio.volume=1;
  visual?.song(track);
  $("now").textContent="🎵 "+track.title+" · "+E.NAMES[track.category];
- $("speaker").textContent=S.singer(track.singerId)?.name||"가수 미지정";$("dialogue").textContent="Suno 원곡의 기존 보컬을 그대로 재생합니다. 새 음성을 생성하지 않습니다.";
+ $("speaker").textContent=S.singer(track.singerId)?.name||window.MaruMobileSunoCore?.SINGERS.find(s=>s.id===track.singerId)?.name||"가수 미지정";$("dialogue").textContent="Suno 원곡의 기존 보컬을 그대로 재생합니다. 새 음성을 생성하지 않습니다.";
  let settled=false;
  const finish=ok=>{if(settled)return;settled=true;audio.removeEventListener("ended",ended);audio.removeEventListener("error",err);
  if(stopSong===cancel)stopSong=null;resolve(ok&&running&&ticket===epoch);};
@@ -142,11 +144,21 @@ $("importStudio").onclick=async()=>{
   const imported=await window.MaruRadioBridge.loadAll();
   const files=imported.songs.map(s=>new File([s.blob],s.name,{type:s.blob.type||"audio/mpeg"}));
   if(!files.length){status("STUDIO에 등록된 노래 파일이 없습니다. "+imported.failures.join(" / "));return;}
-  const result=await add(files);
+  const result=await add(files,imported.songs);
   status("MARU STUDIO 연결: "+result.added+"곡 추가 · "+result.duplicate+"곡 중복 건너뜀 · 전체 "+tracks.length+"곡. "+
    (imported.failures.length?"일부 저장소 접근 불가: "+imported.failures.join(" / "):"이 기기에서만 복사해 읽음."));
  }catch(err){status("로컬 보관함 연동 실패: "+err.message);}
  finally{button.disabled=false;}
+};
+$("importMobileCues").onclick=async()=>{
+ if(running||busy){status("라디오를 중지한 뒤 녹음 멘트를 연결하세요.");return;}
+ if(!$("mobileCueConsent").checked){status("이 휴대폰의 녹음 멘트 저장소를 읽는 데 동의해 주세요.");return;}
+ const b=$("importMobileCues");b.disabled=true;
+ try{
+  const n=await R.loadMobileCues();
+  status("MARU SUNO 모바일 저장소에서 실제 녹음 멘트 "+n+"개 불러왔습니다. 화자와 대본이 정확히 일치할 때만 재생됩니다.");
+ }catch(e){status("모바일 녹음 파일 연결 실패: "+e.message)}
+ finally{b.disabled=false}
 };
 $("demoTalk").onclick=()=>{
  if(busy||running){status("현재 방송 또는 파일 처리가 끝난 뒤 초대석 시연을 시작하세요.");return;}
