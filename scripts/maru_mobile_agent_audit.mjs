@@ -64,6 +64,22 @@ audit("NURI","NURI","갤럭시 홈 화면 설치(PWA) 준비 점검",[
  ["manifest PNG 아이콘 링크",iconEntries.some(i=>i.src==="../icons/icon-192.png")&&iconEntries.some(i=>i.src==="../icons/icon-512.png")],
  ["서비스워커 홈 등록 코드",includes("mobile-hub/index.html",['register("./sw.js")'])]
 ]);
+let site={status:"not_checked",url:"https://skytins3-png.github.io/maru-ai-song-studio/mobile-hub/"};
+if(process.argv.includes("--live")){
+  site.status="unverified";
+  for(let attempt=0;attempt<3;attempt++){
+    try{
+      const response=await fetch(site.url,{signal:AbortSignal.timeout(12000),headers:{"User-Agent":"MARU-Mobile-CI-Audit/1.0"}});
+      const text=await response.text();
+      site.httpStatus=response.status;
+      if(response.ok&&text.includes("<title>MARU ONE")&&text.includes("hub-sync.js")){
+        site.status="reachable";break;
+      }
+      site.failure="Unexpected page contents or status";
+    }catch(e){site.failure=String(e?.message||e).slice(0,140)}
+    if(attempt<2)await new Promise(r=>setTimeout(r,8000));
+  }
+}
 const report = {
  schemaVersion:1,
  checkedAt:new Date().toISOString(),
@@ -74,6 +90,7 @@ const report = {
  appInstalledOnUserPhone:"not_verified",
  bigoLiveAudioVerified:"not_verified",
  browserEndToEndTest:"not_run",
+ liveSiteCheck:site,
  labelsExplanation:"check_passed means a deterministic automated check passed; it does not mean an AI agent is alive.",
  roles
 };
