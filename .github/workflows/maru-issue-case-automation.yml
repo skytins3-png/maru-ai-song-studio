@@ -1,0 +1,87 @@
+name: MARU owner task intake and per-case model reports
+on:
+  issues:
+    types: [opened]
+permissions:
+  contents: write
+  issues: write
+concurrency:
+  group: maru-public-issue-${{ github.event.issue.number }}
+  cancel-in-progress: false
+jobs:
+  respond:
+    # Do not let third-party issues spend model credits or trigger backend jobs.
+    if: github.event.issue.user.login == github.repository_owner && github.event.issue.pull_request == null
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run owner permission and role routing tests
+        run: |
+          python -m unittest discover -s tests -p 'test_maru_issue_case_worker.py' -v
+          python -m unittest discover -s tests -p 'test_maru_18_role_runner.py' -v
+      - name: Run assigned roles on one public MARU task
+        env:
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          MARU_OPENAI_API_KEY: ${{ secrets.MARU_OPENAI_API_KEY || secrets.OPENAI_API_KEY }}
+          MARU_AGENT_MODEL: ${{ vars.MARU_AGENT_MODEL || 'gpt-5-mini' }}
+        run: python scripts/maru_issue_case_worker.py
+      - name: Check single-case evidence and AI statuses
+        env:
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          num=int(os.environ["ISSUE_NUMBER"])
+          obj=json.loads(Path(f"agent-tasks/issues/issue-{num}.json").read_text(encoding="utf8"))
+          assert obj["caseId"]==f"issue-{num}"
+          assert 1<=len(obj["reports"])<=3
+          assert obj["modelReports"]==sum(r["model"]["status"]=="model_report_generated" for r in obj["reports"])
+          assert obj["realWorldAction"]=="none"
+          print(f"Actual per-issue report generated for issue {num}; AI model count {obj['modelReports']}/{len(obj['reports'])}")
+          PY
+      - name: Retain run-specific individual task files
+        uses: actions/upload-artifact@v4
+        with:
+          name: MARU-ONE-CASE-AGENTS-REPORT
+          path: |
+            agent-tasks/issues/*.json
+            agent-tasks/case-summary.md
+          if-no-files-found: error
+          retention-days: 90
+      - name: Update dashboard report safely
+        env:
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp "agent-tasks/issues/issue-$ISSUE_NUMBER.json" "$RUNNER_TEMP/maru-case.json"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4; do
+            git fetch origin main
+            git reset --hard origin/main
+            mkdir -p agent-tasks/issues
+            cp "$RUNNER_TEMP/maru-case.json" "agent-tasks/issues/issue-$ISSUE_NUMBER.json"
+            git add "agent-tasks/issues/issue-$ISSUE_NUMBER.json"
+            if git diff --cached --quiet; then
+              echo "Case already published";exit 0
+            fi
+            git commit -m "MARU role-by-role report for issue $ISSUE_NUMBER [skip ci]"
+            if git push origin HEAD:main; then
+              echo "Issue evidence saved";exit 0
+            fi
+            sleep 2
+          done
+          echo "Cannot publish report; GitHub artifact contains the case"
+          exit 1
+      - name: Write actual status back to the task issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          gh issue comment "$ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY" --body-file agent-tasks/case-summary.md
