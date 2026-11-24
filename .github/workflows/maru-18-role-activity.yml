@@ -1,0 +1,91 @@
+name: MARU 18 real-role execution and case reports
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 23 * * *' # 08:30 Asia/Seoul, subject to GitHub scheduling delays
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/maru_18_role_runner.py'
+      - 'tests/test_maru_18_role_runner.py'
+      - '.github/workflows/maru-18-role-activity.yml'
+permissions:
+  contents: write
+concurrency:
+  group: maru-18-role-daily-run
+  cancel-in-progress: false
+
+jobs:
+  work:
+    name: Inspect evidence and independently invoke each configured AI role
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate role runner, output parsing and failed-auth behavior
+        run: |
+          python -m py_compile scripts/maru_18_role_runner.py
+          python -m unittest discover -s tests -p 'test_maru_18_role_runner.py' -v
+      - name: Run 7 original + 10 specialist + 1 agency roles
+        env:
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          MARU_OPENAI_API_KEY: ${{ secrets.MARU_OPENAI_API_KEY || secrets.OPENAI_API_KEY }}
+          MARU_AGENT_MODEL: ${{ vars.MARU_AGENT_MODEL || 'gpt-5-mini' }}
+        run: |
+          python scripts/maru_18_role_runner.py
+      - name: Verify 18 actual independent report files and honest AI status
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path('agent-runs/latest')
+          index=json.loads((root/'index.json').read_text(encoding='utf8'))
+          assert index['totalRoles']==18
+          assert len(index['roles'])==18
+          assert len({r['id'] for r in index['roles']})==18
+          counted=0
+          for r in index['roles']:
+              p=root/r['reportPath']
+              assert p.is_file(),r
+              body=json.loads(p.read_text(encoding='utf8'))
+              assert body['id']==r['id']
+              assert body['model']['status'] in ('not_configured','model_report_generated','model_call_failed')
+              assert body['realWorldExternalAction']=='none'
+              counted+=body['model']['status']=='model_report_generated'
+          assert counted==index['modelReports']
+          print(f"18 real reports; verified model-generated: {counted}/18")
+          PY
+      - name: Archive full 18 case files for run-specific history
+        uses: actions/upload-artifact@v4
+        with:
+          name: MARU-18-ROLE-ACTUAL-RUN-REPORTS
+          path: agent-runs/latest/*.json
+          if-no-files-found: error
+          retention-days: 90
+      - name: Update read-only mobile dashboard from actual run
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp -r agent-runs/latest "$RUNNER_TEMP/maru-18-output"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4; do
+            git fetch origin main
+            git reset --hard origin/main
+            mkdir -p agent-runs/latest
+            cp "$RUNNER_TEMP/maru-18-output/"*.json agent-runs/latest/
+            git add agent-runs/latest
+            if git diff --cached --quiet; then
+              echo "Reports already updated";exit 0
+            fi
+            git commit -m "Record actual MARU 18-role evidence and model statuses [skip ci]"
+            if git push origin HEAD:main; then
+              echo "All role reports published";exit 0
+            fi
+            sleep 2
+          done
+          echo "Cannot safely update latest reports; individual artifact still exists"
+          exit 1
