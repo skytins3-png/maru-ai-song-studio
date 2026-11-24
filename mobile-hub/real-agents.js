@@ -9,6 +9,7 @@ const n=(tag,txt,className)=>{const x=document.createElement(tag);if(txt!==undef
 function statusLabel(x){
  if(x==="model_report_generated")return["AI 실제 보고서 생성","ok"];
  if(x==="model_call_failed")return["AI 호출 실패","bad"];
+ if(x==="not_scheduled_quota")return["이번 실행은 모델 순환 대기","pending"];
  return["AI 미연결","pending"];
 }
 function roleLabel(role) {
