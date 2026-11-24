@@ -1,0 +1,31 @@
+name: MARU Copilot built-in-token inference eligibility probe
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/maru-copilot-token-probe.yml'
+permissions:
+  contents: read
+  copilot-requests: write
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install supported GitHub Copilot CLI
+        run: npm install -g @github/copilot
+      - name: One small model inference with built-in GITHUB_TOKEN (no new secret)
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          copilot -p '한국어로 정확히 다음 단어만 출력하십시오: MARU_실제_AI_연결확인' -s --no-ask-user > /tmp/maru-copilot-output.txt
+          cat /tmp/maru-copilot-output.txt
+          grep -F 'MARU_실제_AI_연결확인' /tmp/maru-copilot-output.txt
+          echo 'ACTUAL-COPILOT-INFERENCE-PASS'
