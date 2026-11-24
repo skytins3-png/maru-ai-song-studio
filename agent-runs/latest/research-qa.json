@@ -3,9 +3,9 @@
   "label": "지안",
   "specialty": "검증·리서치",
   "mission": "주어진 출처와 날짜를 보존하고 근거가 없는 주장을 지적",
-  "checkedAt": "2026-11-24T08:29:06.371597+00:00",
-  "runId": "45356487386",
-  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45356487386",
+  "checkedAt": "2026-11-24T08:29:27.068213+00:00",
+  "runId": "45356518009",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45356518009",
   "execution": "evidence_checks_performed",
   "checks": [
     {
@@ -27,12 +27,11 @@
   "sourceCheckPassed": 3,
   "sourceCheckCount": 3,
   "model": {
-    "status": "not_configured",
-    "model": null,
-    "reason": "Copilot 실행 토큰 또는 승인된 workflow 설정 없음"
+    "status": "not_scheduled_quota",
+    "model": "github-copilot-cli",
+    "reason": "이 실행의 모델 호출 상한 3건; 순환 일정에 따라 차례대로 실행"
   },
   "realWorldExternalAction": "none",
   "broadcastVerified": false,
-  "voiceModelReady": false,
-  "signoff": "AI 모델 실행 성공은 model.status=model_report_generated일 때만 표시"
+  "voiceModelReady": false
 }

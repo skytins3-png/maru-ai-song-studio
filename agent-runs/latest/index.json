@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-24T08:29:06.371597+00:00",
-  "runId": "45356487386",
-  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45356487386",
+  "generatedAt": "2026-11-24T08:29:27.068213+00:00",
+  "runId": "45356518009",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45356518009",
   "totalRoles": 18,
-  "modelReports": 0,
+  "modelReports": 3,
   "status": "partial_or_unconnected",
   "completedSourceChecks": 18,
-  "aiModelIndependentSessions": 0,
-  "inferenceProvider": "none",
-  "modelCallCap": null,
+  "aiModelIndependentSessions": 3,
+  "inferenceProvider": "github-copilot-cli",
+  "modelCallCap": 3,
   "note": "Real model calls are independently verified for model_report_generated only; Copilot roles rotate under a strict 3-call cap per run.",
   "roles": [
     {
@@ -17,7 +17,7 @@
       "name": "MARU",
       "mission": "음악·방송·전문가·에이전시의 연동 상태를 판별하고 한 가지 실제 후속 작업을 선정",
       "checkStatus": "evidence_checks_performed",
-      "modelStatus": "not_configured",
+      "modelStatus": "model_report_generated",
       "checks": 3,
       "total": 3,
       "reportPath": "maru.json"
@@ -27,7 +27,7 @@
       "name": "LEO",
       "mission": "현재 GitHub 자동 시험의 성공과 실제 휴대폰 작동을 구별하고 확인할 테스트를 제안",
       "checkStatus": "evidence_checks_performed",
-      "modelStatus": "not_configured",
+      "modelStatus": "model_report_generated",
       "checks": 3,
       "total": 3,
       "reportPath": "leo.json"
@@ -37,7 +37,7 @@
       "name": "TOTO",
       "mission": "음원·사연·신청곡 데이터 흐름 및 실행 권한의 연결 상태를 분석",
       "checkStatus": "evidence_checks_performed",
-      "modelStatus": "not_configured",
+      "modelStatus": "model_report_generated",
       "checks": 3,
       "total": 3,
       "reportPath": "toto.json"
@@ -47,7 +47,7 @@
       "name": "MIMI",
       "mission": "RADIO 음원 등록과 BIGO 실제 청취 송출 검증을 서로 구분해 분석",
       "checkStatus": "evidence_checks_performed",
-      "modelStatus": "not_configured",
+      "modelStatus": "not_scheduled_quota",
       "checks": 3,
       "total": 4,
       "reportPath": "mimi.json"
@@ -57,7 +57,7 @@
       "name": "HAPPY",
       "mission": "승인받은 사연·신청곡 현황과 개인정보·동의를 확인",
       "checkStatus": "evidence_checks_performed",
-      "modelStatus": "not_configured",
+      "modelStatus": "not_scheduled_quota",
       "checks": 3,
       "total": 3,
       "reportPath": "happy.json"
@@ -67,7 +67,7 @@
       "name": "TORI",
       "mission": "최소 권한·로그인·저작권 및 개인정보 공개 위험을 검토",
       "checkStatus": "evidence_checks_performed",
-      "modelStatus": "not_configured",
+      "modelStatus": "not_scheduled_quota",
       "checks": 3,
       "total": 3,
       "reportPath": "tori.json"
@@ -77,7 +77,7 @@
       "name": "NURI",
       "mission": "Android APK와 PWA 배포, 홈 설치, 구버전 원본과의 차이를 검토",
       "checkStatus": "evidence_checks_performed",
-      "modelStatus": "not_configured",
+      "modelStatus": "not_scheduled_quota",
       "checks": 3,
       "total": 4,
       "reportPath": "nuri.json"
@@ -87,7 +87,7 @@
       "name": "방송 편성 총괄",
       "mission": "자작곡 방송 편성과 공개 사연 순서를 검토",
       "checkStatus": "evidence_checks_performed",
-      "modelStatus": "not_configured",
+      "modelStatus": "not_scheduled_quota",
       "checks": 3,
       "total": 3,
       "reportPath": "broadcast-director.json"
@@ -97,7 +97,7 @@
       "name": "윤솔",
       "mission": "청취자 사연 대본을 원어민 자연어로 검토하되 허가 없는 개인 데이터를 쓰지 않음",
       "checkStatus": "evidence_checks_performed",
-      "modelStatus": "not_configured",
+      "modelStatus": "not_scheduled_quota",
       "checks": 3,
       "total": 3,
       "reportPath": "conversation.json"
@@ -107,7 +107,7 @@
       "name": "하람",
       "mission": "실청취 증거와 오디오 음질 검사 결과를 구분",
       "checkStatus": "evidence_checks_performed",
-      "modelStatus": "not_configured",
+      "modelStatus": "not_scheduled_quota",
       "checks": 3,
       "total": 4,
       "reportPath": "audio-engineer.json"
@@ -117,7 +117,7 @@
       "name": "라온",
       "mission": "자작곡 제작·진행 데이터가 실제로 있는지 확인",
       "checkStatus": "evidence_checks_performed",
-      "modelStatus": "not_configured",
+      "modelStatus": "not_scheduled_quota",
       "checks": 3,
       "total": 4,
       "reportPath": "composer.json"
@@ -127,7 +127,7 @@
       "name": "서율",
       "mission": "악기 편성과 공개 원곡 메타데이터 검토",
       "checkStatus": "evidence_checks_performed",
-      "modelStatus": "not_configured",
+      "modelStatus": "not_scheduled_quota",
       "checks": 3,
       "total": 3,
       "reportPath": "arranger.json"
@@ -137,7 +137,7 @@
       "name": "채린",
       "mission": "공개된 가사 및 제작 내역을 근거로 언어별 검토 계획 작성",
       "checkStatus": "evidence_checks_performed",
-      "modelStatus": "not_configured",
+      "modelStatus": "not_scheduled_quota",
       "checks": 3,
       "total": 3,
       "reportPath": "lyricist.json"
@@ -147,7 +147,7 @@
       "name": "민결",
       "mission": "Suno 보컬 재사용 승인 및 녹음된 목소리의 사용권 근거 점검",
       "checkStatus": "evidence_checks_performed",
-      "modelStatus": "not_configured",
+      "modelStatus": "not_scheduled_quota",
       "checks": 3,
       "total": 4,
       "reportPath": "rights-officer.json"
@@ -157,7 +157,7 @@
       "name": "도윤",
       "mission": "위험한 공개 업로드와 외부 앱 비밀정보 접근 여부 점검",
       "checkStatus": "evidence_checks_performed",
-      "modelStatus": "not_configured",
+      "modelStatus": "not_scheduled_quota",
       "checks": 3,
       "total": 3,
       "reportPath": "security-defender.json"
@@ -167,7 +167,7 @@
       "name": "태경",
       "mission": "실제 오류 로그가 있을 때만 장애 대응 기록 제시",
       "checkStatus": "evidence_checks_performed",
-      "modelStatus": "not_configured",
+      "modelStatus": "not_scheduled_quota",
       "checks": 3,
       "total": 4,
       "reportPath": "incident-responder.json"
@@ -177,7 +177,7 @@
       "name": "지안",
       "mission": "주어진 출처와 날짜를 보존하고 근거가 없는 주장을 지적",
       "checkStatus": "evidence_checks_performed",
-      "modelStatus": "not_configured",
+      "modelStatus": "not_scheduled_quota",
       "checks": 3,
       "total": 3,
       "reportPath": "research-qa.json"
@@ -187,7 +187,7 @@
       "name": "MARU 에이전시",
       "mission": "공개 음원·승인 사연과 실제 정산 증빙을 구분, 수익·수수료 미확인을 명시",
       "checkStatus": "evidence_checks_performed",
-      "modelStatus": "not_configured",
+      "modelStatus": "not_scheduled_quota",
       "checks": 3,
       "total": 4,
       "reportPath": "agency-operations.json"

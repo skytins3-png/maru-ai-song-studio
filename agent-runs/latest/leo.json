@@ -3,9 +3,9 @@
   "label": "LEO",
   "specialty": "코드·품질",
   "mission": "현재 GitHub 자동 시험의 성공과 실제 휴대폰 작동을 구별하고 확인할 테스트를 제안",
-  "checkedAt": "2026-11-24T08:29:06.371597+00:00",
-  "runId": "45356487386",
-  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45356487386",
+  "checkedAt": "2026-11-24T08:29:27.068213+00:00",
+  "runId": "45356518009",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45356518009",
   "execution": "evidence_checks_performed",
   "checks": [
     {
@@ -27,9 +27,10 @@
   "sourceCheckPassed": 3,
   "sourceCheckCount": 3,
   "model": {
-    "status": "not_configured",
-    "model": null,
-    "reason": "Copilot 실행 토큰 또는 승인된 workflow 설정 없음"
+    "status": "model_report_generated",
+    "model": "github-copilot-cli",
+    "provider": "github-copilot",
+    "report": "## 확인된 근거\n- 공개 소스 기준으로 확인했으며, Suno·BIGO 계정과 기기 파일시스템에는 접근하지 않았습니다.\n- 카탈로그 항목과 승인된 스토리는 각각 0건입니다. 제시된 점검은 두 테스트 파일의 **존재 여부**를 통과한 것이며, 테스트 실행 결과는 아닙니다.\n- 별도 기록에는 7개 역할 점검이 7/7 통과했고, 에이전시 사례 11건과 모델 보고 0건이 있습니다. 이는 실제 휴대폰 작동이나 서비스·정산 결과를 입증하지 않습니다.\n\n## 담당자 판단\nGitHub 자동 점검의 성공과 실제 Android 휴대폰에서의 동작은 구분해야 합니다. 현재 근거로는 자동 테스트 통과 여부도, 실제 기기 작동 여부도 확인할 수 없습니다.\n\n## 미해결 사항\n- 테스트 두 개의 실제 실행 결과와 검증 범위\n- Android 실기기의 앱 실행 및 핵심 흐름 동작\n- Suno 비공개 곡 접근, BIGO 실제 청취자 송출, 에이전시 정산 기록\n- 원본 MARU2025 소스 존재 여부\n\n## 다음 실제 작업\n1. 두 테스트를 실행해 결과·환경·실패 내역을 기록하고, 자동화가 검증하는 범위를 확인합니다.\n2. 승인된 Android 실기기에서 설치, 실행, 주요 화면·기능을 직접 확인하고 기기·OS·결과를 기록합니다.\n3. 계정 연동, 실제 송출, 정산 확인은 각각 권한과 적절한 테스트 절차를 확보한 뒤 별도 검증합니다.\n\n## 승인 필요 여부\n실기기 사용이나 Suno·BIGO 계정 접근, 실제 송출·정산 검증 전에 기기 및 계정 권한 승인이 필요합니다. 현재 제공된 근거만으로는 해당 승인이 확인되지 않습니다."
   },
   "realWorldExternalAction": "none",
   "broadcastVerified": false,
