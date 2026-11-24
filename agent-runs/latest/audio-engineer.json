@@ -1,0 +1,43 @@
+{
+  "id": "audio-engineer",
+  "label": "하람",
+  "specialty": "음향·송출",
+  "mission": "실청취 증거와 오디오 음질 검사 결과를 구분",
+  "checkedAt": "2026-11-24T08:00:52.895967+00:00",
+  "runId": "45352442935",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45352442935",
+  "execution": "evidence_checks_performed",
+  "checks": [
+    {
+      "test": "작업 근거 공개 소스 조회",
+      "passed": true,
+      "evidence": "Only current public source files; no Suno or BIGO account access, no device filesystem"
+    },
+    {
+      "test": "검토 대상 존재: vocal-studio/radio-show.html",
+      "passed": true,
+      "evidence": "vocal-studio/radio-show.html"
+    },
+    {
+      "test": "검토 대상 존재: tests/maru_suno_mobile_browser.mjs",
+      "passed": true,
+      "evidence": "tests/maru_suno_mobile_browser.mjs"
+    },
+    {
+      "test": "BIGO 시청자 실청취 증거",
+      "passed": false,
+      "evidence": "내부 오디오 재생이 외부 송출 성공은 아님"
+    }
+  ],
+  "sourceCheckPassed": 3,
+  "sourceCheckCount": 4,
+  "model": {
+    "status": "not_configured",
+    "model": null,
+    "reason": "MARU_OPENAI_API_KEY 또는 OPENAI_API_KEY가 GitHub Actions에 연결되지 않음"
+  },
+  "realWorldExternalAction": "none",
+  "broadcastVerified": false,
+  "voiceModelReady": false,
+  "signoff": "AI 모델 실행 성공은 model.status=model_report_generated일 때만 표시"
+}
