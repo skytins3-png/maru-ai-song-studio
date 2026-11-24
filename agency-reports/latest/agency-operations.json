@@ -4,9 +4,9 @@
   "agentName": "MARU 에이전시 운영",
   "caseTitle": "에이전시 접수·정산 확인",
   "mission": "공개 접수/사연 상태와 정산 증빙 유무를 분리 확인",
-  "checkedAt": "2026-11-24T08:23:10.610705+00:00",
-  "runId": "45355632651",
-  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45355632651",
+  "checkedAt": "2026-11-24T09:48:24.998176+00:00",
+  "runId": "45368655036",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45368655036",
   "automationType": "repository_evidence_audit",
   "reportStatus": "blocked_missing_evidence",
   "checks": [

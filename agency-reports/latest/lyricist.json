@@ -4,9 +4,9 @@
   "agentName": "채린",
   "caseTitle": "가사 작업 자료 점검",
   "mission": "검토 대상 원본 자료 없는 경우 작업 보류",
-  "checkedAt": "2026-11-24T08:23:10.610705+00:00",
-  "runId": "45355632651",
-  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45355632651",
+  "checkedAt": "2026-11-24T09:48:24.998176+00:00",
+  "runId": "45368655036",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45368655036",
   "automationType": "repository_evidence_audit",
   "reportStatus": "blocked_missing_evidence",
   "checks": [
