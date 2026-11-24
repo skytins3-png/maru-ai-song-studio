@@ -3,9 +3,9 @@
   "label": "라온",
   "specialty": "작곡",
   "mission": "자작곡 제작·진행 데이터가 실제로 있는지 확인",
-  "checkedAt": "2026-11-24T08:28:44.361659+00:00",
-  "runId": "45356439390",
-  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45356439390",
+  "checkedAt": "2026-11-24T08:29:06.371597+00:00",
+  "runId": "45356487386",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45356487386",
   "execution": "evidence_checks_performed",
   "checks": [
     {
