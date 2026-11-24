@@ -30,7 +30,7 @@ jobs:
       - name: Run 10 specialists and agency operator, write per-case reports
         env:
           GITHUB_RUN_ID: ${{ github.run_id }}
-          MARU_OPENAI_API_KEY: ${{ secrets.MARU_OPENAI_API_KEY }}
+          MARU_OPENAI_API_KEY: ${{ secrets.MARU_OPENAI_API_KEY || secrets.OPENAI_API_KEY || secrets.GPT_API_KEY || secrets.OPENAI_KEY }}
           MARU_AGENT_MODEL: ${{ vars.MARU_AGENT_MODEL || 'gpt-5-mini' }}
         run: python scripts/maru_agency_case_worker.py
       - name: Validate that each report is honest and parseable
