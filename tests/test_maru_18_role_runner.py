@@ -57,6 +57,37 @@ class TestRoleWorker(TestCase):
         self.assertNotIn("invalid",json.dumps(x))
         self.assertNotIn("provider test error",json.dumps(x))
 
+    def test_copilot_requires_real_subprocess_output_and_never_exposes_token(self):
+        korean=("확인된 근거: 저장소의 음악 파일 검증 완료.\\n"
+                "담당자 판단: 기기 음성 출력은 아직 미확인.\\n"
+                "미해결 사항: BIGO 청취자 송출 기록 없음.\\n"
+                "다음 실제 작업: 두 번째 기기로 송출을 청취 확인.\\n"
+                "승인 필요 여부: 방송 장치 점검에 사용자 승인 필요.")
+        fake=type("Result",(),{"returncode":0,"stdout":korean,"stderr":""})()
+        with mock.patch.dict(os.environ,{"MARU_OPENAI_API_KEY":"",
+                                     "OPENAI_API_KEY":"",
+                                     "MARU_COPILOT_ENABLED":"1",
+                                     "GITHUB_TOKEN":"test-secret-not-real"}):
+            with mock.patch("subprocess.run",return_value=fake) as runner:
+                result=W.build("mimi",W.evidence())
+        self.assertEqual(result["model"]["status"],"model_report_generated")
+        self.assertEqual(result["model"]["provider"],"github-copilot")
+        self.assertIn("다음 실제 작업",result["model"]["report"])
+        self.assertNotIn("test-secret-not-real",json.dumps(result))
+        cmd=runner.call_args.args[0]
+        self.assertEqual(cmd[0],"copilot")
+        self.assertIn("--no-ask-user",cmd)
+
+    def test_copilot_does_not_claim_success_on_empty_or_short_output(self):
+        short=type("Result",(),{"returncode":0,"stdout":"연결된 것 같아요","stderr":""})()
+        with mock.patch.dict(os.environ,{"MARU_OPENAI_API_KEY":"",
+                                     "OPENAI_API_KEY":"",
+                                     "MARU_COPILOT_ENABLED":"1",
+                                     "GITHUB_TOKEN":"test-secret"}):
+            with mock.patch("subprocess.run",return_value=short):
+                result=W.build("maru",W.evidence())
+        self.assertEqual(result["model"]["status"],"model_call_failed")
+
     def test_only_public_repository_snapshot(self):
         f=W.evidence()
         self.assertEqual(f["phoneLibraryTracks"],"not_accessible_from_server")
