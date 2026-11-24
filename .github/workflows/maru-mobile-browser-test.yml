@@ -13,6 +13,8 @@ on:
       - 'mobile-hub/agents.html'
       - 'mobile-hub/agency.html'
       - 'mobile-hub/agency.js'
+      - 'mobile-hub/real-agents.html'
+      - 'mobile-hub/real-agents.js'
 permissions:
   contents: read
 jobs:
