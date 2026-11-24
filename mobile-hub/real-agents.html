@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#162747">
+<link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./icon.svg">
+<title>MARU AI · 18개 역할 실무 현황</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Noto Sans KR",sans-serif;color:#142945;background:#f1f5fa}*{box-sizing:border-box}body{margin:0;padding-bottom:70px}
+header{padding:21px 18px 28px;border-radius:0 0 21px 21px;background:#172c56;color:white}header a{color:#e9f0ff;font-size:13px}h1{font-size:23px;margin:10px 0 5px}header p{color:#dce6f9;font-size:13px;line-height:1.7;margin:4px 0}
+main{max-width:760px;margin:auto;padding:14px}
+.card{background:#fff;border-radius:14px;border:1px solid #dce5f2;padding:15px;margin:10px 0}
+h2{font-size:18px;margin:4px 0 11px}h3{font-size:15px;margin:4px 0}p,li{font-size:13px;line-height:1.7;color:#52667e}
+small,.small{font-size:12px;color:#647893}
+button{min-height:43px;border-radius:10px;border:0;background:#2854ac;color:#fff;font:700 13px system-ui;padding:11px 15px;cursor:pointer}
+button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #8baaf2}
+.link{color:#224fa9;text-decoration:underline;font-weight:650}
+.row{display:flex;gap:8px;justify-content:space-between;flex-wrap:wrap;align-items:center}
+.metric{font-size:23px;font-weight:800;line-height:1.1}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.metrics>div{padding:11px;background:#eff4fc;border-radius:10px}
+.metrics small{display:block;margin-top:6px}
+.state{display:inline-block;font-size:12px;font-weight:800}
+.ok{color:#136745}.bad{color:#af3344}.pending{color:#97601d}
+#roles .role{border-top:1px solid #e4ebf6;padding:14px 0}#roles .role:first-child{border:0}
+details>summary{cursor:pointer;list-style-position:outside;font-size:13px;color:#2f537e;font-weight:700}
+details[open]{background:#f6f9ff;border-radius:10px;padding:9px}
+.report{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.7;font-size:13px;color:#273f60;padding:8px 0}
+.note{border-left:4px solid #b48238;background:#fff8eb;border-radius:8px;padding:11px;font-size:12px;line-height:1.7;color:#624c2d}
+label{font-size:13px;font-weight:650}
+@media(max-width:390px){.metrics{grid-template-columns:1fr 1fr}.metric{font-size:20px}}
+</style></head><body>
+<header><a href="./">‹ MARU ONE 통합 조종실</a><h1>18개 역할 · 실제 업무 현황</h1><p>기존 MARU 7명 + 방송 전문가 10명 + 에이전시 1명. 역할마다 실행·검사·AI 모델 호출 성공 여부와 보고서를 따로 보여줍니다.</p></header>
+<main>
+<section class="card"><h2>검증된 실행 상태</h2>
+<div id="summary" role="status">GitHub 서버가 실제로 저장한 보고서를 읽고 있습니다.</div>
+<div class="metrics">
+<div><div id="roleCount" class="metric">—</div><small>실제 보고 파일</small></div>
+<div><div id="aiCount" class="metric">—</div><small>모델 생성 보고</small></div>
+<div><div id="checksCount" class="metric">—</div><small>자료 검사 실행</small></div>
+</div>
+<p id="lastCheck" class="small">검사 시각 확인 중</p>
+<div class="row"><button type="button" id="refresh">실제 상태 새로고침</button><a class="link" id="runLink" target="_blank" rel="noopener noreferrer" href="https://github.com/skytins3-png/maru-ai-song-studio/actions/workflows/maru-18-role-activity.yml">GitHub 실행 기록</a></div>
+<p class="note">‘검사 실행’은 GitHub 저장소 자료를 검사했다는 뜻이야. ‘AI 모델 생성 보고’는 별도 모델 요청이 실제 성공한 경우만 집계해. 자동 검사와 BIGO 생방송, 가수 음성합성은 동일하지 않아.</p>
+</section>
+<section class="card">
+<div class="row"><h2>개별 보고서</h2><label for="filter">조회 그룹</label></div>
+<select id="filter" style="width:100%;padding:11px;border:1px solid #cedaea;border-radius:10px;background:white;color:#203752;font:inherit">
+<option value="all">전체 18명</option><option value="original">예전 MARU 7명</option><option value="expert">방송 전문가 10명</option><option value="agency">에이전시 1명</option>
+</select>
+<div id="roles"><p>서버 보고서를 조회 중이야.</p></div>
+</section>
+<section class="card">
+<h2>실제 AI 연결 조건</h2>
+<p>GitHub Actions에 비공개 인증키 <code>MARU_OPENAI_API_KEY</code> 또는 <code>OPENAI_API_KEY</code>가 등록되면, 각 역할별로 모델 요청을 실행하도록 구성했어. 연결되지 않았으면 모든 역할이 ‘AI 미연결’로 표시돼.</p>
+<p>인증키나 개인정보를 공개 GitHub 파일이나 이 대화에 붙여넣지 마. API 이용 요금은 ChatGPT 요금제와 별개일 수 있어.</p>
+</section>
+</main>
+<script src="./real-agents.js?v=1" defer></script></body></html>
