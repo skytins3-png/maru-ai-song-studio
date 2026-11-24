@@ -1,14 +1,16 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-24T08:23:07.229281+00:00",
-  "runId": "45355621768",
-  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45355621768",
+  "generatedAt": "2026-11-24T08:28:44.361659+00:00",
+  "runId": "45356439390",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45356439390",
   "totalRoles": 18,
   "modelReports": 0,
   "status": "partial_or_unconnected",
   "completedSourceChecks": 18,
   "aiModelIndependentSessions": 0,
-  "note": "Each model response is a separately executed inference request only when status=model_report_generated; no background human-like agents",
+  "inferenceProvider": "none",
+  "modelCallCap": null,
+  "note": "Real model calls are independently verified for model_report_generated only; Copilot roles rotate under a strict 3-call cap per run.",
   "roles": [
     {
       "id": "maru",
