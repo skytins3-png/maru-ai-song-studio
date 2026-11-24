@@ -1,0 +1,154 @@
+{
+  "caseId": "issue-61",
+  "issue": 61,
+  "title": "[MARU AI 실업무 시험] 에이전시·저작권·총괄 3명 개별 판단",
+  "createdAt": "2026-11-24T08:31:55.398791+00:00",
+  "source": "public owner issue",
+  "assignedRoles": [
+    "agency-operations",
+    "rights-officer",
+    "maru"
+  ],
+  "modelReports": 3,
+  "modelUnconnectedOrFailed": 0,
+  "status": "model_reports_generated",
+  "realWorldAction": "none",
+  "reports": [
+    {
+      "id": "agency-operations",
+      "label": "MARU 에이전시",
+      "specialty": "운영·정산",
+      "mission": "공개 음원·승인 사연과 실제 정산 증빙을 구분, 수익·수수료 미확인을 명시",
+      "checkedAt": "2026-11-24T08:31:24.204652+00:00",
+      "runId": "45356805019",
+      "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45356805019",
+      "execution": "evidence_checks_performed",
+      "checks": [
+        {
+          "test": "작업 근거 공개 소스 조회",
+          "passed": true,
+          "evidence": "Only current public source files; no Suno or BIGO account access, no device filesystem"
+        },
+        {
+          "test": "검토 대상 존재: mobile-hub/agency.html",
+          "passed": true,
+          "evidence": "mobile-hub/agency.html"
+        },
+        {
+          "test": "검토 대상 존재: music-share/requests.html",
+          "passed": true,
+          "evidence": "music-share/requests.html"
+        },
+        {
+          "test": "정산 근거 명세",
+          "passed": false,
+          "evidence": "실제 에이전시 지급 내역 없음"
+        }
+      ],
+      "sourceCheckPassed": 3,
+      "sourceCheckCount": 4,
+      "model": {
+        "status": "model_report_generated",
+        "model": "github-copilot-cli",
+        "provider": "github-copilot",
+        "report": "## 확인된 근거\n- 공개 카탈로그 음원 0건, 승인 사연 0건입니다. 따라서 공개 음원이나 승인 사연을 정산 대상이라고 확인할 근거가 없습니다.\n- `mobile-hub/agency.html` 및 `music-share/requests.html` 파일은 존재하지만, 파일 존재만으로 음원·사연 승인이나 지급 사실이 입증되지는 않습니다.\n- 실제 에이전시 지급 내역은 없고, 지급 기록도 연결되지 않았습니다. Suno 비공개 곡·휴대폰 라이브러리는 확인할 수 없으며, BIGO 실제 청취자 송출도 검증되지 않았습니다.\n- 기존 7개 역할 점검은 7/7 통과했지만, 이번 정산 근거 확인은 실패했습니다. 기존 에이전시 사례 11건의 모델 보고서 수는 0건입니다.\n\n## 담당자 판단\n현재 자료만으로 수익, 수수료, 지급액 또는 정산 완료 여부를 산출하거나 확정할 수 없습니다. 기존 점검 결과나 사례 수는 실제 지급 증빙이 아닙니다. Suno 원곡 저작권·보컬 사용권 확인과 BIGO 실송출 확인도 각각 별도 미해결 사안입니다.\n\n## 미해결 사항\n- 정산 대상별 승인 근거, 계약·권리 확인 자료, 실제 수익·수수료 산정 내역 및 지급 증빙\n- Suno 원곡 저작권 및 보컬 사용권\n- BIGO 실제 송출 및 청취 여부\n- 공개 자료에 나타나지 않는 비공개 음원이나 기기 내 자료의 존재 및 상태\n\n## 다음 실제 작업\n1. 정산 대상 음원·사연의 승인 기록과 권리 확인 자료를 확보합니다.\n2. 플랫폼별 수익 명세, 수수료 기준, 지급 내역을 대조해 증빙 기반으로 정산합니다.\n3. Suno 권리 자료와 BIGO 송출 기록을 각각 확인한 뒤 결과를 별도로 기록합니다.\n\n## 승인 필요 여부\n공개 근거만 분석하는 데 별도 승인은 필요하지 않습니다. 계정·비공개 자료 접근, 정산 처리, 유료 결제 또는 실제 송출은 수행하지 않았으며, 진행 전 권한과 담당자 승인이 필요합니다."
+      },
+      "realWorldExternalAction": "none",
+      "broadcastVerified": false,
+      "voiceModelReady": false,
+      "signoff": "AI 모델 실행 성공은 model.status=model_report_generated일 때만 표시",
+      "caseId": "issue-61-agency-operations",
+      "issueNumber": 61,
+      "issueTitle": "[MARU AI 실업무 시험] 에이전시·저작권·총괄 3명 개별 판단"
+    },
+    {
+      "id": "rights-officer",
+      "label": "민결",
+      "specialty": "저작권·권리",
+      "mission": "Suno 보컬 재사용 승인 및 녹음된 목소리의 사용권 근거 점검",
+      "checkedAt": "2026-11-24T08:31:24.204652+00:00",
+      "runId": "45356805019",
+      "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45356805019",
+      "execution": "evidence_checks_performed",
+      "checks": [
+        {
+          "test": "작업 근거 공개 소스 조회",
+          "passed": true,
+          "evidence": "Only current public source files; no Suno or BIGO account access, no device filesystem"
+        },
+        {
+          "test": "검토 대상 존재: vocal-studio/mobile-suno.html",
+          "passed": true,
+          "evidence": "vocal-studio/mobile-suno.html"
+        },
+        {
+          "test": "검토 대상 존재: music-share/stories.html",
+          "passed": true,
+          "evidence": "music-share/stories.html"
+        },
+        {
+          "test": "30명 가수 음성 복제 사용권 검증",
+          "passed": false,
+          "evidence": "계약·실존인물 음성 허가 미제공"
+        }
+      ],
+      "sourceCheckPassed": 3,
+      "sourceCheckCount": 4,
+      "model": {
+        "status": "model_report_generated",
+        "model": "github-copilot-cli",
+        "provider": "github-copilot",
+        "report": "## 확인된 근거\n- 공개 카탈로그 0건, 승인된 스토리 0건입니다. Suno 비공개 곡과 휴대전화 음원은 확인할 수 없습니다.\n- 30명 가수의 음성 복제 사용권 검증은 실패했습니다. 계약서와 실존 인물의 음성 허가가 제공되지 않았습니다.\n- BIGO 실청취자 송출은 미검증이며, 정산 자료도 연결되지 않았습니다. 기존 7개 역할 감사의 통과 결과는 개별 곡이나 보컬의 사용권을 입증하지 않습니다.\n\n## 담당자 판단\n현재 근거만으로 Suno 곡의 저작권이나 녹음된 목소리의 사용권을 확인할 수 없으며, 보컬 재사용을 승인할 수 없습니다. 곡에 대한 권리와 보컬 출연자·녹음 음성에 대한 허가는 별도로 확인해야 합니다. BIGO 송출 및 정산 여부도 권리 승인 근거로 간주할 수 없습니다.\n\n## 미해결 사항\n대상 곡과 보컬의 식별 정보, 곡의 제작·권리 자료, 적용 시점의 Suno 이용 조건, 보컬 출연자별 서면 동의와 허용 범위가 확인되지 않았습니다. 실제 송출 및 정산 내역도 없습니다.\n\n## 다음 실제 작업\n대상별로 곡·녹음 파일과 권리자를 식별하고, 제작 및 이용 조건을 확인할 자료를 확보하세요. 각 보컬에 대해 재사용·복제·편집·배포 범위가 명시된 동의를 확인한 뒤, BIGO 송출 기록과 정산 자료는 별도로 대조해야 합니다.\n\n## 승인 필요 여부\n**승인 필요—현재는 보류입니다.** 곡 권리와 보컬 사용 허가가 각각 확인되기 전에는 재사용 승인이나 권리 확보를 주장할 수 없습니다."
+      },
+      "realWorldExternalAction": "none",
+      "broadcastVerified": false,
+      "voiceModelReady": false,
+      "signoff": "AI 모델 실행 성공은 model.status=model_report_generated일 때만 표시",
+      "caseId": "issue-61-rights-officer",
+      "issueNumber": 61,
+      "issueTitle": "[MARU AI 실업무 시험] 에이전시·저작권·총괄 3명 개별 판단"
+    },
+    {
+      "id": "maru",
+      "label": "MARU",
+      "specialty": "통합 총괄",
+      "mission": "음악·방송·전문가·에이전시의 연동 상태를 판별하고 한 가지 실제 후속 작업을 선정",
+      "checkedAt": "2026-11-24T08:31:24.204652+00:00",
+      "runId": "45356805019",
+      "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45356805019",
+      "execution": "evidence_checks_performed",
+      "checks": [
+        {
+          "test": "작업 근거 공개 소스 조회",
+          "passed": true,
+          "evidence": "Only current public source files; no Suno or BIGO account access, no device filesystem"
+        },
+        {
+          "test": "검토 대상 존재: mobile-hub/index.html",
+          "passed": true,
+          "evidence": "mobile-hub/index.html"
+        },
+        {
+          "test": "검토 대상 존재: mobile-hub/legacy.html",
+          "passed": true,
+          "evidence": "mobile-hub/legacy.html"
+        }
+      ],
+      "sourceCheckPassed": 3,
+      "sourceCheckCount": 3,
+      "model": {
+        "status": "model_report_generated",
+        "model": "github-copilot-cli",
+        "provider": "github-copilot",
+        "report": "## 확인된 근거\n- 공개 카탈로그와 승인된 스토리는 각각 0건입니다.\n- 전문가·에이전시 자료에는 사례 11건, 모델 보고 0건이 기록되어 있습니다. 기존 7개 역할 점검은 7/7 통과했지만, 이는 08:03 UTC 점검 결과입니다.\n- 관련 파일은 존재하지만, 파일 존재만으로 음악·방송 기능이 실제 연동된 것은 확인되지 않습니다.\n- 휴대폰 보관곡과 비공개 Suno 곡은 확인할 수 없고, BIGO 실청취 송출은 검증되지 않았으며, 에이전시 정산 자료는 연결되지 않았습니다.\n\n## 담당자 판단\n음악 승인·공개, 방송 실송출, 전문가 분석, 에이전시 정산이 현재 자료만으로는 실제 완료 또는 연동됐다고 판단할 수 없습니다. 기존 점검 통과와 실제 운영 증거는 구분해야 합니다.\n\n## 미해결 사항\n곡의 권리·보컬 사용권, BIGO 송출 및 청취 여부, 정산 기록과 금액은 모두 확인되지 않았습니다. 원본 MARU 2025 자료도 찾지 못한 것으로 기록되어 있습니다.\n\n## 다음 실제 작업\n에이전시 담당자가 승인된 절차로 **개인정보를 제거한 정산 근거 자료를 준비해 검토 가능한 경로로 제공**하도록 요청합니다. 자료를 받기 전에는 정산 계산이나 완료 판단을 하지 않습니다.\n\n## 승인 필요 여부\n필요합니다. 정산 자료를 공유·검토하기 전에 자료 제공 권한과 개인정보 비식별 처리 절차에 대한 승인을 받아야 합니다."
+      },
+      "realWorldExternalAction": "none",
+      "broadcastVerified": false,
+      "voiceModelReady": false,
+      "signoff": "AI 모델 실행 성공은 model.status=model_report_generated일 때만 표시",
+      "caseId": "issue-61-maru",
+      "issueNumber": 61,
+      "issueTitle": "[MARU AI 실업무 시험] 에이전시·저작권·총괄 3명 개별 판단"
+    }
+  ]
+}
