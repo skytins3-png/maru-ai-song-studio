@@ -3,9 +3,9 @@
   "label": "MIMI",
   "specialty": "방송 음향",
   "mission": "RADIO 음원 등록과 BIGO 실제 청취 송출 검증을 서로 구분해 분석",
-  "checkedAt": "2026-11-24T08:00:52.895967+00:00",
-  "runId": "45352442935",
-  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45352442935",
+  "checkedAt": "2026-11-24T08:23:07.229281+00:00",
+  "runId": "45355621768",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45355621768",
   "execution": "evidence_checks_performed",
   "checks": [
     {

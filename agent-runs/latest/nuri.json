@@ -3,9 +3,9 @@
   "label": "NURI",
   "specialty": "모바일 배포·복구",
   "mission": "Android APK와 PWA 배포, 홈 설치, 구버전 원본과의 차이를 검토",
-  "checkedAt": "2026-11-24T08:00:52.895967+00:00",
-  "runId": "45352442935",
-  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45352442935",
+  "checkedAt": "2026-11-24T08:23:07.229281+00:00",
+  "runId": "45355621768",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45355621768",
   "execution": "evidence_checks_performed",
   "checks": [
     {
