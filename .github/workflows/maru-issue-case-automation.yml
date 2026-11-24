@@ -5,6 +5,7 @@ on:
 permissions:
   contents: write
   issues: write
+  copilot-requests: write
 concurrency:
   group: maru-public-issue-${{ github.event.issue.number }}
   cancel-in-progress: false
@@ -23,8 +24,13 @@ jobs:
         run: |
           python -m unittest discover -s tests -p 'test_maru_issue_case_worker.py' -v
           python -m unittest discover -s tests -p 'test_maru_18_role_runner.py' -v
+      - name: Install Copilot CLI for real owner-task role inference
+        run: npm install -g @github/copilot
       - name: Run assigned roles on one public MARU task
         env:
+          GITHUB_TOKEN: ${{ github.token }}
+          MARU_COPILOT_ENABLED: '1'
+          MARU_COPILOT_MAX_CALLS: '3'
           GITHUB_RUN_ID: ${{ github.run_id }}
           MARU_OPENAI_API_KEY: ${{ secrets.MARU_OPENAI_API_KEY || secrets.OPENAI_API_KEY || secrets.GPT_API_KEY || secrets.OPENAI_KEY }}
           MARU_AGENT_MODEL: ${{ vars.MARU_AGENT_MODEL || 'gpt-5-mini' }}
