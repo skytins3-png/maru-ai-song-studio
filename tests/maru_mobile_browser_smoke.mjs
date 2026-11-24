@@ -149,6 +149,42 @@ try{
     assert.equal(cases[0].difference,7500);
     assert.equal(cases[0].realPlatformFeeVerified,false);
   });
+
+  await check("MARU 18 real role dashboard shows all reports with transparent model connection",async()=>{
+    let live=false;
+    for(let attempt=0;attempt<15;attempt++){
+      const [html,js,index]=await Promise.all([
+        home.request.get(base+"mobile-hub/real-agents.html?t="+Date.now()+"-"+attempt,{timeout:15000}),
+        home.request.get(base+"mobile-hub/real-agents.js?t="+Date.now()+"-"+attempt,{timeout:15000}),
+        home.request.get(base+"agent-runs/latest/index.json?t="+Date.now()+"-"+attempt,{timeout:15000})
+      ]);
+      if(html.ok()&&js.ok()&&index.ok()&&
+         (await html.text()).includes("18개 역할 · 실제 업무 현황")&&
+         (await js.text()).includes("model_report_generated")&&
+         (await index.json()).totalRoles===18){live=true;break;}
+      await new Promise(resolve=>setTimeout(resolve,6000));
+    }
+    assert(live,"18-role actual page or source-run report has not deployed");
+    const tab=await ctx.newPage();
+    const resp=await tab.goto(base+"mobile-hub/real-agents.html",{waitUntil:"domcontentloaded",timeout:45000});
+    assert.equal(resp.status(),200);
+    await tab.waitForFunction(()=>document.getElementById("roleCount").textContent==="18",null,{timeout:20000});
+    assert.equal(await tab.locator("#roles .role").count(),18);
+    const aiCount=Number(await tab.locator("#aiCount").innerText());
+    assert(Number.isFinite(aiCount)&&aiCount>=0&&aiCount<=18);
+    const select=tab.locator("#filter");
+    await select.selectOption("original");
+    assert.equal(await tab.locator("#roles .role").count(),7);
+    await select.selectOption("expert");
+    assert.equal(await tab.locator("#roles .role").count(),10);
+    await select.selectOption("agency");
+    assert.equal(await tab.locator("#roles .role").count(),1);
+    await select.selectOption("all");
+    await tab.locator("#roles .role details").first().locator("summary").click();
+    await tab.waitForFunction(()=>document.querySelector("#roles .role .report")?.dataset.loaded==="1",null,{timeout:18000});
+    assert.match(await tab.locator("#roles .role .report").first().innerText(),/모델 실행:/);
+    await tab.close();
+  });
   console.log("MARU LIVE BROWSER TEST SUCCESS: "+results.length+" checks");
 }finally{
   await browser.close();
