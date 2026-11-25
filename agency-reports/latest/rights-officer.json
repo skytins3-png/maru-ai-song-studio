@@ -1,12 +1,12 @@
 {
-  "caseId": "rights-officer-20261124",
+  "caseId": "rights-officer-20261125",
   "agentId": "rights-officer",
   "agentName": "민결",
   "caseTitle": "저작권 검증 선행 점검",
   "mission": "공개 곡 목록의 권리 메타데이터 여부 확인",
-  "checkedAt": "2026-11-24T09:48:24.998176+00:00",
-  "runId": "45368655036",
-  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45368655036",
+  "checkedAt": "2026-11-25T08:25:02.145535+00:00",
+  "runId": "45576053646",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45576053646",
   "automationType": "repository_evidence_audit",
   "reportStatus": "blocked_missing_evidence",
   "checks": [

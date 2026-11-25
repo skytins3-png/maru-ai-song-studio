@@ -1,12 +1,12 @@
 {
-  "caseId": "composer-20261124",
+  "caseId": "composer-20261125",
   "agentId": "composer",
   "agentName": "라온",
   "caseTitle": "자작곡 공개 목록 점검",
   "mission": "공개 곡이 없는 경우 신규 완성곡을 꾸며내지 않음",
-  "checkedAt": "2026-11-24T09:48:24.998176+00:00",
-  "runId": "45368655036",
-  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45368655036",
+  "checkedAt": "2026-11-25T08:25:02.145535+00:00",
+  "runId": "45576053646",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45576053646",
   "automationType": "repository_evidence_audit",
   "reportStatus": "blocked_missing_evidence",
   "checks": [

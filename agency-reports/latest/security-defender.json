@@ -1,12 +1,12 @@
 {
-  "caseId": "security-defender-20261124",
+  "caseId": "security-defender-20261125",
   "agentId": "security-defender",
   "agentName": "도윤",
   "caseTitle": "보안 허용 화면 점검",
   "mission": "공개 사연과 요청 페이지 존재와 민감 정보 미수집 확인",
-  "checkedAt": "2026-11-24T09:48:24.998176+00:00",
-  "runId": "45368655036",
-  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45368655036",
+  "checkedAt": "2026-11-25T08:25:02.145535+00:00",
+  "runId": "45576053646",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45576053646",
   "automationType": "repository_evidence_audit",
   "reportStatus": "checks_passed",
   "checks": [

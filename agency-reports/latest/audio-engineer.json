@@ -1,12 +1,12 @@
 {
-  "caseId": "audio-engineer-20261124",
+  "caseId": "audio-engineer-20261125",
   "agentId": "audio-engineer",
   "agentName": "하람",
   "caseTitle": "실제 송출 근거 확인",
   "mission": "음원 재생 UI와 실제 BIGO 청취 증거를 분리 검토",
-  "checkedAt": "2026-11-24T09:48:24.998176+00:00",
-  "runId": "45368655036",
-  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45368655036",
+  "checkedAt": "2026-11-25T08:25:02.145535+00:00",
+  "runId": "45576053646",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45576053646",
   "automationType": "repository_evidence_audit",
   "reportStatus": "blocked_missing_evidence",
   "checks": [
