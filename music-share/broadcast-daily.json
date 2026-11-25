@@ -1,137 +1,137 @@
 {
-  "generatedAt": "2026-11-24T14:55:16+00:00",
+  "generatedAt": "2026-11-25T00:48:20+00:00",
   "timezone": "Asia/Seoul",
   "weather": {
     "Daejeon": {
       "city": "Daejeon",
-      "temperatureC": -2.8,
-      "windKmh": 4.0,
-      "weatherCode": 0,
-      "observedLocal": "2026-11-24T23:45",
+      "temperatureC": -0.4,
+      "windKmh": 3.1,
+      "weatherCode": 1,
+      "observedLocal": "2026-11-25T09:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Seoul": {
       "city": "Seoul",
-      "temperatureC": -2.7,
-      "windKmh": 3.9,
-      "weatherCode": 0,
-      "observedLocal": "2026-11-24T23:45",
+      "temperatureC": -1.5,
+      "windKmh": 4.1,
+      "weatherCode": 1,
+      "observedLocal": "2026-11-25T09:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Busan": {
       "city": "Busan",
-      "temperatureC": -0.7,
-      "windKmh": 14.3,
+      "temperatureC": 2.0,
+      "windKmh": 10.4,
       "weatherCode": 0,
-      "observedLocal": "2026-11-24T23:45",
+      "observedLocal": "2026-11-25T09:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Incheon": {
       "city": "Incheon",
-      "temperatureC": -1.1,
-      "windKmh": 14.7,
-      "weatherCode": 0,
-      "observedLocal": "2026-11-24T23:45",
+      "temperatureC": -1.4,
+      "windKmh": 11.8,
+      "weatherCode": 1,
+      "observedLocal": "2026-11-25T09:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Daegu": {
       "city": "Daegu",
-      "temperatureC": -1.8,
-      "windKmh": 8.3,
+      "temperatureC": 0.5,
+      "windKmh": 5.8,
       "weatherCode": 0,
-      "observedLocal": "2026-11-24T23:45",
+      "observedLocal": "2026-11-25T09:45",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     }
   },
   "news": [
     {
-      "title": "Russian governor detained in rare criminal case against regional leader",
-      "url": "https://www.bbc.co.uk/news/articles/cmwy868v3nneo?at_medium=RSS&at_campaign=rss",
+      "title": "Why tiny cars are taking off across Europe",
+      "url": "https://www.bbc.co.uk/news/articles/cmwy9jne0g7qo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-24T12:45:43+00:00"
+      "category": "Technology",
+      "publishedAt": "2026-11-25T00:34:05+00:00"
     },
     {
-      "title": "Israeli air strike kills Hamas internal security chief in Gaza",
-      "url": "https://www.bbc.co.uk/news/articles/c6rrg7ggq190o?at_medium=RSS&at_campaign=rss",
+      "title": "Huawei found guilty of stealing trade secrets but acquitted of racketeering",
+      "url": "https://www.bbc.co.uk/news/articles/cmy49ngydqzpo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-24T12:12:48+00:00"
+      "publishedAt": "2026-11-24T22:24:23+00:00"
     },
     {
-      "title": "Car bomb tears through Colombian city wounding more than 20",
-      "url": "https://www.bbc.co.uk/news/articles/cjqlq2n4np7do?at_medium=RSS&at_campaign=rss",
+      "title": "US attorney general dodges questions about Nvidia investigation",
+      "url": "https://www.bbc.co.uk/news/articles/crpdw1qx7jgxo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-24T11:45:52+00:00"
+      "publishedAt": "2026-11-24T21:19:42+00:00"
     },
     {
-      "title": "Pope Francis' diary reveals claims he saw the devil three times",
-      "url": "https://www.bbc.co.uk/news/articles/cm78270l4z7no?at_medium=RSS&at_campaign=rss",
+      "title": "Tech Life",
+      "url": "https://www.bbc.co.uk/sounds/play/w3ct8jyx?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-24T11:10:57+00:00"
-    },
-    {
-      "title": "Nato chief vows defence against space threat after Russian nuclear satellite reports",
-      "url": "https://www.bbc.co.uk/news/articles/c9x2er1ry2mzo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-24T10:58:51+00:00"
-    },
-    {
-      "title": "Trump faces backlash after saying he 'convinced' Nvidia to reinstate CEO Jensen Huang",
-      "url": "https://www.bbc.co.uk/news/articles/cq5y1k8ez407o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-24T10:53:37+00:00"
+      "category": "Technology",
+      "publishedAt": "2026-11-24T21:00:00+00:00"
     },
     {
       "title": "DR Congo says military aircraft missing as rebels claim to shoot down plane",
       "url": "https://www.bbc.co.uk/news/articles/cwy7r5z8gg65o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-24T10:48:27+00:00"
+      "publishedAt": "2026-11-24T19:27:23+00:00"
     },
     {
-      "title": "Helpful but awkward: My week with Meta's Muse ahead of its UK launch",
-      "url": "https://www.bbc.co.uk/news/articles/c9gkld2l38y6o?at_medium=RSS&at_campaign=rss",
+      "title": "Nigerian monarch, 92, suspended after sexual assault claims",
+      "url": "https://www.bbc.co.uk/news/articles/cmglrz462nn6o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-24T19:10:31+00:00"
+    },
+    {
+      "title": "Faisal Islam: Fears over the AI boom haven't gone away",
+      "url": "https://www.bbc.co.uk/news/articles/c6894evgpel5o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "Technology",
-      "publishedAt": "2026-11-24T09:33:00+00:00"
+      "publishedAt": "2026-11-24T18:21:43+00:00"
     },
     {
-      "title": "Watch: Moment troops raid home and capture Mexican drug lord",
-      "url": "https://www.bbc.co.uk/news/videos/cm62p9y3y04qo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-24T09:09:41+00:00"
-    },
-    {
-      "title": "What Jensen Huang's return teaches China's Xi about Trump",
-      "url": "https://www.bbc.co.uk/news/articles/c63rgpy50x98o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-24T07:26:27+00:00"
-    },
-    {
-      "title": "Bangladesh's ex-PM Sheikh Hasina says she plans to return on 16 December",
-      "url": "https://www.bbc.co.uk/news/articles/c60rk1yj07xeo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-24T06:23:01+00:00"
-    },
-    {
-      "title": "India's 'cockroach' party leader says he was stopped from flying to UK",
+      "title": "Indian government has 'lost the plot', says 'cockroach' leader barred from UK flight",
       "url": "https://www.bbc.co.uk/news/articles/cm5y1ezx2gqyo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-24T05:33:07+00:00"
+      "publishedAt": "2026-11-24T18:07:46+00:00"
+    },
+    {
+      "title": "Zimbabwean convicted in South Africa of trying to fight in Ukraine",
+      "url": "https://www.bbc.co.uk/news/articles/cmqj5qlj5yz9o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-24T17:04:00+00:00"
+    },
+    {
+      "title": "French ex-President Sarkozy and wife Carla Bruni to face trial",
+      "url": "https://www.bbc.co.uk/news/articles/c65y17pwv1z7o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-24T16:49:07+00:00"
+    },
+    {
+      "title": "Israeli air strike kills Hamas internal security chief in Gaza",
+      "url": "https://www.bbc.co.uk/news/articles/c6rrg7ggq190o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-24T15:35:53+00:00"
+    },
+    {
+      "title": "Land mine casualties soar in Syria, two years after war",
+      "url": "https://www.bbc.co.uk/news/articles/c893rl37ywdgo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-24T15:17:28+00:00"
     }
   ]
 }
