@@ -3,9 +3,9 @@
   "label": "MARU",
   "specialty": "통합 총괄",
   "mission": "음악·방송·전문가·에이전시의 연동 상태를 판별하고 한 가지 실제 후속 작업을 선정",
-  "checkedAt": "2026-11-24T08:29:27.068213+00:00",
-  "runId": "45356518009",
-  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45356518009",
+  "checkedAt": "2026-11-25T05:36:28.467732+00:00",
+  "runId": "45554713467",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45554713467",
   "execution": "evidence_checks_performed",
   "checks": [
     {
@@ -27,13 +27,11 @@
   "sourceCheckPassed": 3,
   "sourceCheckCount": 3,
   "model": {
-    "status": "model_report_generated",
+    "status": "not_scheduled_quota",
     "model": "github-copilot-cli",
-    "provider": "github-copilot",
-    "report": "## 확인된 근거\n- 공개 소스 기준으로 확인했으며 Suno/BIGO 계정, 기기 파일, 실제 정산 기록에는 접근하지 않았습니다.\n- 공개 음악 카탈로그와 승인된 스토리는 각각 0건입니다. 휴대폰 음악 보관함과 비공개 Suno 곡은 서버에서 확인할 수 없습니다.\n- BIGO 실제 청취자 송출은 검증되지 않았고, 에이전시 정산 기록은 연결되지 않았습니다.\n- 전문가·에이전시 자료에는 11개 사례가 있으나 모델 리포트는 0건입니다.\n- 기존 7개 역할 점검은 7/7 통과했지만 마지막 확인은 08:03이며, 이번 공개 검사에서 통과한 항목은 소스 조회와 두 HTML 파일의 존재 확인뿐입니다. 모바일 관련 테스트 파일 두 개도 존재합니다.\n\n## 담당자 판단\n음악·방송·전문가·에이전시의 실제 연동 상태가 모두 확인된 것은 아닙니다. 특히 카탈로그·승인 스토리·모델 리포트가 없고, 계정 및 정산 자료에도 접근하지 못해 운영 성과나 실제 송출·정산 여부를 판단할 근거가 부족합니다. 기존 역할 점검 결과만으로 현재 연동 상태가 정상이라고 볼 수 없습니다.\n\n## 미해결 사항\n- 음악 공개·승인 데이터와 휴대폰 보관함 및 비공개 Suno 곡의 상태\n- BIGO에서 실제 청취자에게 음성이 송출되는지 여부\n- 전문가 11개 사례의 모델 리포트 생성 상태\n- 에이전시의 실제 지급·정산 내역\n- MARU 2025 원본 소스 부재의 영향\n\n## 다음 실제 작업\n현재 확인된 테스트 파일 중 `tests/maru_mobile_browser_smoke.mjs`를 실행해 공개 소스의 모바일 브라우저 흐름을 점검하고 결과를 기록하세요. 이는 계정·실기기 상태를 확인하는 작업이 아니라, 현재 소스 기준의 자동화 점검입니다.\n\n## 승인 필요 여부\n공개 소스만 대상으로 자동화 테스트를 실행하는 데는 별도 승인이 필요하지 않습니다. Suno/BIGO 계정, 실제 정산 자료 또는 실기기 확인으로 범위를 넓히려면 해당 접근 권한과 담당자의 승인이 필요합니다."
+    "reason": "이 실행의 모델 호출 상한 3건; 순환 일정에 따라 차례대로 실행"
   },
   "realWorldExternalAction": "none",
   "broadcastVerified": false,
-  "voiceModelReady": false,
-  "signoff": "AI 모델 실행 성공은 model.status=model_report_generated일 때만 표시"
+  "voiceModelReady": false
 }

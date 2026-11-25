@@ -3,9 +3,9 @@
   "label": "TOTO",
   "specialty": "연동·자동화",
   "mission": "음원·사연·신청곡 데이터 흐름 및 실행 권한의 연결 상태를 분석",
-  "checkedAt": "2026-11-24T08:29:27.068213+00:00",
-  "runId": "45356518009",
-  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45356518009",
+  "checkedAt": "2026-11-25T05:36:28.467732+00:00",
+  "runId": "45554713467",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45554713467",
   "execution": "evidence_checks_performed",
   "checks": [
     {
@@ -27,13 +27,11 @@
   "sourceCheckPassed": 3,
   "sourceCheckCount": 3,
   "model": {
-    "status": "model_report_generated",
+    "status": "not_scheduled_quota",
     "model": "github-copilot-cli",
-    "provider": "github-copilot",
-    "report": "## 확인된 근거\n- 공개 소스 기준 음원 카탈로그 0건, 승인된 사연 0건입니다.\n- `mobile-hub/agency.html`과 `music-share/requests.html`이 존재합니다. 관련 모바일·사연·라디오 화면과 브라우저 테스트 파일도 목록에 있으나, 실제 실행 여부는 확인되지 않았습니다.\n- 기존 7개 역할 점검은 7/7 통과했고, 전문가 에이전시 기록은 11건입니다. 다만 모델 보고서는 0건입니다.\n- 서버에서 휴대폰 음원·Suno 비공개 곡에 접근할 수 없고, BIGO 실제 청취 송출은 미검증, 정산 기록은 미연결 상태입니다. MARU 2025 원본 소스도 찾지 못했습니다.\n\n## 담당자 판단\n현재 확인 가능한 것은 관련 화면·파일과 기존 점검 기록의 존재뿐입니다. 음원→신청곡·사연→승인→방송 송출·정산의 데이터 흐름이나 실행 권한이 실제로 연결되어 작동한다고 판단할 근거는 부족합니다. 7/7 통과도 이 개별 흐름의 동작이나 외부 연동 성공을 보증하지 않습니다.\n\n## 미해결 사항\n- 공개 카탈로그와 승인 사연이 없는 상태에서 신청곡·사연 처리 경로가 어떻게 동작하는지\n- 요청 접수부터 승인, 송출까지 데이터 전달과 권한 검증이 연결되어 있는지\n- BIGO 송출, Suno 음원 접근, 실제 정산 및 모바일 기기 동작 여부\n\n## 다음 실제 작업\n1. 공개 소스에서 신청곡·사연의 입력, 저장, 승인 및 송출 경로와 역할별 권한을 대조합니다.\n2. 테스트 파일을 검토하고 허가된 테스트 데이터로 브라우저 검사를 실행해 결과를 기록합니다.\n3. 외부 계정·기기·정산 연동은 접근 권한이 확보된 환경에서 별도로 검증하고, 각 결과를 공개 소스 점검과 구분해 남깁니다.\n\n## 승인 필요 여부\n소스와 테스트 파일의 비파괴적 검토에는 별도 승인이 필요하다는 근거가 없습니다. 다만 외부 계정 접근, BIGO 실제 송출, 정산 처리, 실기기 테스트는 필요한 권한과 담당자 승인을 확인한 뒤 진행해야 하며, 현재 성공 여부를 단정할 수 없습니다."
+    "reason": "이 실행의 모델 호출 상한 3건; 순환 일정에 따라 차례대로 실행"
   },
   "realWorldExternalAction": "none",
   "broadcastVerified": false,
-  "voiceModelReady": false,
-  "signoff": "AI 모델 실행 성공은 model.status=model_report_generated일 때만 표시"
+  "voiceModelReady": false
 }

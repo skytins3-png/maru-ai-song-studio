@@ -3,9 +3,9 @@
   "label": "TORI",
   "specialty": "보안 감사",
   "mission": "최소 권한·로그인·저작권 및 개인정보 공개 위험을 검토",
-  "checkedAt": "2026-11-24T08:29:27.068213+00:00",
-  "runId": "45356518009",
-  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45356518009",
+  "checkedAt": "2026-11-25T05:36:28.467732+00:00",
+  "runId": "45554713467",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45554713467",
   "execution": "evidence_checks_performed",
   "checks": [
     {
@@ -27,11 +27,13 @@
   "sourceCheckPassed": 3,
   "sourceCheckCount": 3,
   "model": {
-    "status": "not_scheduled_quota",
+    "status": "model_report_generated",
     "model": "github-copilot-cli",
-    "reason": "이 실행의 모델 호출 상한 3건; 순환 일정에 따라 차례대로 실행"
+    "provider": "github-copilot",
+    "report": "## 확인된 근거\n- 근거는 2026-11-25 05:36:28 UTC 기준 공개 소스 조회 결과뿐이며, Suno/BIGO 계정이나 기기 파일에는 접근하지 않았습니다.\n- 공개 카탈로그 0건, 승인된 스토리 0건입니다. `mobile-hub/agents.html`과 `music-share/stories.html`의 존재만 확인됐습니다.\n- 기존 7개 역할 점검은 7/7 통과했으나, 마지막 확인 시각은 2026-11-25 03:35 UTC입니다. 이번 자료만으로 개별 파일의 로그인·권한·공개 설정을 확인할 수는 없습니다.\n- Suno 비공개 곡, BIGO 실제 청취 송출, 정산 기록은 확인되지 않았습니다. 원본 MARU2025 소스도 찾지 못했습니다.\n\n## 담당자 판단\n- 비공개 곡이나 개인정보가 공개됐다는 증거는 없지만, 공개 여부를 검증할 자료도 부족합니다. 따라서 저작권·개인정보 공개 위험은 **미확인**으로 판단합니다.\n- 기존 역할 점검 결과는 참고 자료일 뿐, 현재 대상 파일의 최소 권한·로그인 보호를 보증하지 않습니다.\n\n## 미해결 사항\n- 대상 페이지의 로그인 요구 여부, 접근 권한 범위, 비공개 자료 노출 여부.\n- Suno 곡의 권리·공개 승인, BIGO 송출의 실제 작동 여부, 정산 내역.\n- 실제 기기에서의 동작 및 개인정보 노출 여부.\n\n## 다음 실제 작업\n- 대상 파일과 관련 배포 설정을 검토해 인증·권한 경계와 공개 응답에 포함되는 데이터를 확인합니다.\n- 곡별 권리·공개 승인 기록, BIGO 송출 증빙, 정산 자료는 각 담당자 권한으로 별도 확인하고, 필요한 경우 승인된 테스트 계정·기기에서 검증합니다.\n\n## 승인 필요 여부\n- **공개 배포·저작물 공개·개인정보 처리에는 담당자 승인 필요**합니다. 현재 근거만으로 공개나 정산 완료를 승인하거나 성공으로 판정할 수 없습니다."
   },
   "realWorldExternalAction": "none",
   "broadcastVerified": false,
-  "voiceModelReady": false
+  "voiceModelReady": false,
+  "signoff": "AI 모델 실행 성공은 model.status=model_report_generated일 때만 표시"
 }

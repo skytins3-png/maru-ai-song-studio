@@ -3,9 +3,9 @@
   "label": "도윤",
   "specialty": "보안·방어",
   "mission": "위험한 공개 업로드와 외부 앱 비밀정보 접근 여부 점검",
-  "checkedAt": "2026-11-24T08:29:27.068213+00:00",
-  "runId": "45356518009",
-  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45356518009",
+  "checkedAt": "2026-11-25T05:36:28.467732+00:00",
+  "runId": "45554713467",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45554713467",
   "execution": "evidence_checks_performed",
   "checks": [
     {

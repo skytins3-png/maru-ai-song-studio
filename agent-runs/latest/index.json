@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-24T08:29:27.068213+00:00",
-  "runId": "45356518009",
-  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45356518009",
+  "generatedAt": "2026-11-25T05:36:28.467732+00:00",
+  "runId": "45554713467",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45554713467",
   "totalRoles": 18,
   "modelReports": 3,
   "status": "partial_or_unconnected",
@@ -17,7 +17,7 @@
       "name": "MARU",
       "mission": "음악·방송·전문가·에이전시의 연동 상태를 판별하고 한 가지 실제 후속 작업을 선정",
       "checkStatus": "evidence_checks_performed",
-      "modelStatus": "model_report_generated",
+      "modelStatus": "not_scheduled_quota",
       "checks": 3,
       "total": 3,
       "reportPath": "maru.json"
@@ -27,7 +27,7 @@
       "name": "LEO",
       "mission": "현재 GitHub 자동 시험의 성공과 실제 휴대폰 작동을 구별하고 확인할 테스트를 제안",
       "checkStatus": "evidence_checks_performed",
-      "modelStatus": "model_report_generated",
+      "modelStatus": "not_scheduled_quota",
       "checks": 3,
       "total": 3,
       "reportPath": "leo.json"
@@ -37,7 +37,7 @@
       "name": "TOTO",
       "mission": "음원·사연·신청곡 데이터 흐름 및 실행 권한의 연결 상태를 분석",
       "checkStatus": "evidence_checks_performed",
-      "modelStatus": "model_report_generated",
+      "modelStatus": "not_scheduled_quota",
       "checks": 3,
       "total": 3,
       "reportPath": "toto.json"
@@ -47,7 +47,7 @@
       "name": "MIMI",
       "mission": "RADIO 음원 등록과 BIGO 실제 청취 송출 검증을 서로 구분해 분석",
       "checkStatus": "evidence_checks_performed",
-      "modelStatus": "not_scheduled_quota",
+      "modelStatus": "model_report_generated",
       "checks": 3,
       "total": 4,
       "reportPath": "mimi.json"
@@ -57,7 +57,7 @@
       "name": "HAPPY",
       "mission": "승인받은 사연·신청곡 현황과 개인정보·동의를 확인",
       "checkStatus": "evidence_checks_performed",
-      "modelStatus": "not_scheduled_quota",
+      "modelStatus": "model_report_generated",
       "checks": 3,
       "total": 3,
       "reportPath": "happy.json"
@@ -67,7 +67,7 @@
       "name": "TORI",
       "mission": "최소 권한·로그인·저작권 및 개인정보 공개 위험을 검토",
       "checkStatus": "evidence_checks_performed",
-      "modelStatus": "not_scheduled_quota",
+      "modelStatus": "model_report_generated",
       "checks": 3,
       "total": 3,
       "reportPath": "tori.json"
