@@ -1,137 +1,137 @@
 {
-  "generatedAt": "2026-11-25T14:28:29+00:00",
+  "generatedAt": "2026-11-26T00:25:43+00:00",
   "timezone": "Asia/Seoul",
   "weather": {
     "Daejeon": {
       "city": "Daejeon",
-      "temperatureC": 4.4,
-      "windKmh": 11.0,
+      "temperatureC": 7.1,
+      "windKmh": 6.9,
       "weatherCode": 1,
-      "observedLocal": "2026-11-25T23:15",
+      "observedLocal": "2026-11-26T09:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Seoul": {
       "city": "Seoul",
-      "temperatureC": 5.3,
-      "windKmh": 6.1,
-      "weatherCode": 1,
-      "observedLocal": "2026-11-25T23:15",
+      "temperatureC": 7.8,
+      "windKmh": 5.4,
+      "weatherCode": 2,
+      "observedLocal": "2026-11-26T09:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Busan": {
       "city": "Busan",
-      "temperatureC": 4.9,
-      "windKmh": 7.6,
-      "weatherCode": 0,
-      "observedLocal": "2026-11-25T23:15",
+      "temperatureC": 9.7,
+      "windKmh": 4.7,
+      "weatherCode": 1,
+      "observedLocal": "2026-11-26T09:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Incheon": {
       "city": "Incheon",
-      "temperatureC": 10.5,
-      "windKmh": 28.2,
-      "weatherCode": 1,
-      "observedLocal": "2026-11-25T23:15",
+      "temperatureC": 8.5,
+      "windKmh": 18.5,
+      "weatherCode": 2,
+      "observedLocal": "2026-11-26T09:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     },
     "Daegu": {
       "city": "Daegu",
-      "temperatureC": 4.0,
-      "windKmh": 2.7,
+      "temperatureC": 5.8,
+      "windKmh": 2.6,
       "weatherCode": 0,
-      "observedLocal": "2026-11-25T23:15",
+      "observedLocal": "2026-11-26T09:15",
       "source": "Open-Meteo",
       "sourceUrl": "https://open-meteo.com/"
     }
   },
   "news": [
     {
-      "title": "Kilmar Ábrego García arrives in Spain, ending Trump deportation battle",
-      "url": "https://www.bbc.co.uk/news/articles/c6808pyy5dl9o?at_medium=RSS&at_campaign=rss",
+      "title": "US Army says controlled blast of explosives in Iowa was 'huge success'",
+      "url": "https://www.bbc.co.uk/news/articles/cwg7l5ve251ko?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-25T12:42:11+00:00"
+      "publishedAt": "2026-11-26T00:23:05+00:00"
     },
     {
-      "title": "Veteran Nigerian Nollywood actor Pete Edochie dies aged 79",
-      "url": "https://www.bbc.co.uk/news/articles/cqwy0rr4rr4yo?at_medium=RSS&at_campaign=rss",
+      "title": "Thirty-one killed in massive fire as fuel tanker crashes on Cairo highway",
+      "url": "https://www.bbc.co.uk/news/articles/cqy7rn30v314o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-25T12:24:12+00:00"
+      "publishedAt": "2026-11-25T22:18:06+00:00"
     },
     {
-      "title": "Russia's own figures show it has lost nearly 500,000 people in Ukraine war",
-      "url": "https://www.bbc.co.uk/news/articles/cmx27g533zwyo?at_medium=RSS&at_campaign=rss",
+      "title": "North Korea expels Swiss diplomat in sanctions row",
+      "url": "https://www.bbc.co.uk/news/articles/cq0l34e4kkr5o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-25T12:21:49+00:00"
+      "publishedAt": "2026-11-25T21:51:17+00:00"
     },
     {
-      "title": "South Africa's Ramaphosa wins court battle over impeachment threat",
-      "url": "https://www.bbc.co.uk/news/articles/cq4gn6gj3z37o?at_medium=RSS&at_campaign=rss",
+      "title": "US stocks fall further as fears over AI intensify",
+      "url": "https://www.bbc.co.uk/news/articles/cq0md8g14zryo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-25T12:20:17+00:00"
+      "publishedAt": "2026-11-25T21:43:18+00:00"
     },
     {
-      "title": "Colombian police storm supermarket to free 20 held hostage for 17 hours",
-      "url": "https://www.bbc.co.uk/news/articles/ckp80mjr9emyo?at_medium=RSS&at_campaign=rss",
+      "title": "Israeli judges recommend dropping most serious charges against Netanyahu",
+      "url": "https://www.bbc.co.uk/news/articles/cxj05mv723r2o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-25T11:45:16+00:00"
-    },
-    {
-      "title": "Huawei found guilty of stealing US trade secrets but acquitted of racketeering",
-      "url": "https://www.bbc.co.uk/news/articles/cmy49ngydqzpo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-25T10:52:09+00:00"
-    },
-    {
-      "title": "EA adds AI-generated John Motson to FC 27 video game",
-      "url": "https://www.bbc.co.uk/news/articles/c65y10j841jpo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "Technology",
-      "publishedAt": "2026-11-25T10:11:34+00:00"
-    },
-    {
-      "title": "Zoe Kleinman: Nobody is irreplaceable - unless you're Jensen Huang",
-      "url": "https://www.bbc.co.uk/news/articles/c3rrgqj2zx5yo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "Technology",
-      "publishedAt": "2026-11-25T10:03:12+00:00"
-    },
-    {
-      "title": "Zimbabwe issues arrest warrant for Robert Mugabe's son over missed court date",
-      "url": "https://www.bbc.co.uk/news/articles/c6d917jn5gq7o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-25T07:26:54+00:00"
+      "publishedAt": "2026-11-25T19:47:39+00:00"
     },
     {
       "title": "Two children among six dead after plane crash off Mississippi coast",
       "url": "https://www.bbc.co.uk/news/articles/c6z74l1017zpo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-25T07:08:22+00:00"
+      "publishedAt": "2026-11-25T19:26:44+00:00"
     },
     {
-      "title": "Close-up images to be revealed of asteroid deliberately hit to test ability to protect Earth",
+      "title": "Colombian police storm supermarket to free 76 held hostage for 17 hours",
+      "url": "https://www.bbc.co.uk/news/articles/ckp80mjr9emyo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-25T18:41:33+00:00"
+    },
+    {
+      "title": "Images of asteroid targeted to test Earth's defences reveal stadium-sized crater",
       "url": "https://www.bbc.co.uk/news/articles/cw8dv112r5gmo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-25T06:00:36+00:00"
+      "publishedAt": "2026-11-25T17:30:16+00:00"
     },
     {
-      "title": "US attorney general dodges questions about Nvidia investigation",
-      "url": "https://www.bbc.co.uk/news/articles/crpdw1qx7jgxo?at_medium=RSS&at_campaign=rss",
+      "title": "US announces new tariffs on host of countries including China",
+      "url": "https://www.bbc.co.uk/news/articles/c893r9ke5p97o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
-      "publishedAt": "2026-11-25T03:44:07+00:00"
+      "publishedAt": "2026-11-25T16:21:34+00:00"
+    },
+    {
+      "title": "South Africa's Ramaphosa wins court battle over impeachment threat",
+      "url": "https://www.bbc.co.uk/news/articles/cq4gn6gj3z37o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-25T15:42:50+00:00"
+    },
+    {
+      "title": "Canadian astronaut welcomes baby girl from space station",
+      "url": "https://www.bbc.co.uk/news/articles/ckx283y8wwwgo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-25T15:41:39+00:00"
+    },
+    {
+      "title": "Five Russian military jets hit in airfield strike, says Ukraine",
+      "url": "https://www.bbc.co.uk/news/articles/ck9q8xp5r5pgo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-25T14:46:41+00:00"
     }
   ]
 }
