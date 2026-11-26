@@ -3,9 +3,9 @@
   "label": "MARU",
   "specialty": "통합 총괄",
   "mission": "음악·방송·전문가·에이전시의 연동 상태를 판별하고 한 가지 실제 후속 작업을 선정",
-  "checkedAt": "2026-11-25T05:36:28.467732+00:00",
-  "runId": "45554713467",
-  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45554713467",
+  "checkedAt": "2026-11-26T05:19:25.064549+00:00",
+  "runId": "45760809738",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45760809738",
   "execution": "evidence_checks_performed",
   "checks": [
     {

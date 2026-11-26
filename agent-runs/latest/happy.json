@@ -3,9 +3,9 @@
   "label": "HAPPY",
   "specialty": "청취자·사연",
   "mission": "승인받은 사연·신청곡 현황과 개인정보·동의를 확인",
-  "checkedAt": "2026-11-25T05:36:28.467732+00:00",
-  "runId": "45554713467",
-  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45554713467",
+  "checkedAt": "2026-11-26T05:19:25.064549+00:00",
+  "runId": "45760809738",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45760809738",
   "execution": "evidence_checks_performed",
   "checks": [
     {
@@ -27,13 +27,11 @@
   "sourceCheckPassed": 3,
   "sourceCheckCount": 3,
   "model": {
-    "status": "model_report_generated",
+    "status": "not_scheduled_quota",
     "model": "github-copilot-cli",
-    "provider": "github-copilot",
-    "report": "## 확인된 근거\n- 공개 카탈로그 0건, 승인된 사연 0건입니다.\n- `music-share/stories.html`, `music-share/requests.html` 파일은 존재하지만, 파일 존재만으로 사연·신청곡의 개별 상태나 내용을 확인할 수는 없습니다.\n- Suno 비공개 곡, BIGO 실제 청취 송출, 휴대폰 라이브러리에는 접근할 수 없으며, 개인정보·동의 자료도 제공되지 않았습니다.\n\n## 담당자 판단\n현재 근거만으로 승인된 사연이나 신청곡이 있다고 판단할 수 없습니다. 개인정보 처리 동의 및 공개·송출 승인 여부도 확인되지 않았으므로, 개별 사연을 처리하거나 신청곡을 공개·송출할 수 있는 상태라고 볼 수 없습니다.\n\n## 미해결 사항\n- 사연·신청곡의 실제 목록과 개별 승인 상태\n- 사연자의 개인정보 처리 및 공개 동의 범위\n- 신청곡의 권리·사용 가능 여부\n- 실제 Suno 곡 및 BIGO 송출 상태\n\n## 다음 실제 작업\n담당 권한과 승인된 자료 접근을 확인한 뒤, 사연·신청곡별 승인 기록과 개인정보·동의 범위를 대조해야 합니다. 확인 전에는 공개, 송출, 정산 또는 성공 여부를 보고하지 않습니다.\n\n## 승인 필요 여부\n개별 사연 처리·공개 또는 신청곡 송출에는 해당 항목의 승인과 필요한 동의 확인이 선행되어야 합니다. 현재 제공된 근거로는 승인 여부를 확인할 수 없습니다."
+    "reason": "이 실행의 모델 호출 상한 3건; 순환 일정에 따라 차례대로 실행"
   },
   "realWorldExternalAction": "none",
   "broadcastVerified": false,
-  "voiceModelReady": false,
-  "signoff": "AI 모델 실행 성공은 model.status=model_report_generated일 때만 표시"
+  "voiceModelReady": false
 }

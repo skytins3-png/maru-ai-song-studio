@@ -3,9 +3,9 @@
   "label": "태경",
   "specialty": "장애 대응",
   "mission": "실제 오류 로그가 있을 때만 장애 대응 기록 제시",
-  "checkedAt": "2026-11-25T05:36:28.467732+00:00",
-  "runId": "45554713467",
-  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45554713467",
+  "checkedAt": "2026-11-26T05:19:25.064549+00:00",
+  "runId": "45760809738",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45760809738",
   "execution": "evidence_checks_performed",
   "checks": [
     {
