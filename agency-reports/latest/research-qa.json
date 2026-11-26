@@ -1,19 +1,19 @@
 {
-  "caseId": "research-qa-20261125",
+  "caseId": "research-qa-20261126",
   "agentId": "research-qa",
   "agentName": "지안",
   "caseTitle": "공개 자료 최신성 점검",
   "mission": "뉴스·날씨 타임스탬프와 출처 수 확인",
-  "checkedAt": "2026-11-25T08:25:02.145535+00:00",
-  "runId": "45576053646",
-  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45576053646",
+  "checkedAt": "2026-11-26T08:09:08.585831+00:00",
+  "runId": "45780736700",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45780736700",
   "automationType": "repository_evidence_audit",
   "reportStatus": "checks_passed",
   "checks": [
     {
       "check": "뉴스·날씨 수집 시간 유효",
       "passed": true,
-      "evidence": "생성 시각: 2026-11-25T00:48:20+00:00 (현재로부터 7.61시간)"
+      "evidence": "생성 시각: 2026-11-26T00:25:43+00:00 (현재로부터 7.72시간)"
     },
     {
       "check": "뉴스 항목 확인",

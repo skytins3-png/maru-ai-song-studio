@@ -1,12 +1,12 @@
 {
-  "caseId": "incident-responder-20261125",
+  "caseId": "incident-responder-20261126",
   "agentId": "incident-responder",
   "agentName": "태경",
   "caseTitle": "복구·사고 대응 점검",
   "mission": "실제 사고 제보가 없으면 해결 완료를 선언하지 않음",
-  "checkedAt": "2026-11-25T08:25:02.145535+00:00",
-  "runId": "45576053646",
-  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45576053646",
+  "checkedAt": "2026-11-26T08:09:08.585831+00:00",
+  "runId": "45780736700",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45780736700",
   "automationType": "repository_evidence_audit",
   "reportStatus": "blocked_missing_evidence",
   "checks": [
