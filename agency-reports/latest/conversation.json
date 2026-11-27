@@ -1,12 +1,12 @@
 {
-  "caseId": "conversation-20261126",
+  "caseId": "conversation-20261127",
   "agentId": "conversation",
   "agentName": "윤솔",
   "caseTitle": "사연·방송 대본 검토",
   "mission": "승인된 공개 사연 수와 공개 여부 확인",
-  "checkedAt": "2026-11-26T08:09:08.585831+00:00",
-  "runId": "45780736700",
-  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45780736700",
+  "checkedAt": "2026-11-27T08:20:06.162769+00:00",
+  "runId": "45964836870",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45964836870",
   "automationType": "repository_evidence_audit",
   "reportStatus": "checks_passed",
   "checks": [

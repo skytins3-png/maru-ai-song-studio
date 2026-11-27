@@ -1,12 +1,12 @@
 {
-  "caseId": "broadcast-director-20261126",
+  "caseId": "broadcast-director-20261127",
   "agentId": "broadcast-director",
   "agentName": "아환",
   "caseTitle": "방송 편성 준비",
   "mission": "편성 검토 가능한 공개 방송 자료가 있는지 확인",
-  "checkedAt": "2026-11-26T08:09:08.585831+00:00",
-  "runId": "45780736700",
-  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45780736700",
+  "checkedAt": "2026-11-27T08:20:06.162769+00:00",
+  "runId": "45964836870",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45964836870",
   "automationType": "repository_evidence_audit",
   "reportStatus": "checks_passed",
   "checks": [
@@ -18,7 +18,7 @@
     {
       "check": "방송 자료 시각 확인",
       "passed": true,
-      "evidence": "2026-11-26T00:25:43+00:00"
+      "evidence": "2026-11-27T00:37:27+00:00"
     }
   ],
   "modelInference": {
