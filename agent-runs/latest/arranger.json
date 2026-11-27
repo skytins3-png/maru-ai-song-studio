@@ -3,9 +3,9 @@
   "label": "서율",
   "specialty": "편곡",
   "mission": "악기 편성과 공개 원곡 메타데이터 검토",
-  "checkedAt": "2026-11-26T05:19:25.064549+00:00",
-  "runId": "45760809738",
-  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45760809738",
+  "checkedAt": "2026-11-27T05:15:15.840735+00:00",
+  "runId": "45944658941",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45944658941",
   "execution": "evidence_checks_performed",
   "checks": [
     {
@@ -27,11 +27,13 @@
   "sourceCheckPassed": 3,
   "sourceCheckCount": 3,
   "model": {
-    "status": "not_scheduled_quota",
+    "status": "model_report_generated",
     "model": "github-copilot-cli",
-    "reason": "이 실행의 모델 호출 상한 3건; 순환 일정에 따라 차례대로 실행"
+    "provider": "github-copilot",
+    "report": "## 확인된 근거\n- 공개 카탈로그 항목은 0건, 승인된 스토리는 0건입니다. 원본 MARU 2025 자료는 발견되지 않았습니다.\n- 편곡 검토 대상인 `vocal-studio/mobile-suno.html`, `vocal-studio/radio-show.html` 파일은 존재하며, 두 파일 존재 확인은 통과했습니다.\n- 공개 소스만 확인했습니다. Suno 비공개 곡·휴대폰 라이브러리에는 접근할 수 없고, BIGO 실제 청취 송출은 검증되지 않았습니다. 정산 기록도 연결되지 않았습니다.\n- 기존 7개 역할 점검은 7/7 통과했고, 전문가 에이전시 기록은 11건이며 모델 보고서는 0건입니다.\n\n## 담당자 판단\n현재 자료만으로는 검토할 공개 원곡 메타데이터나 개별 곡의 악기 편성을 확인할 수 없습니다. 파일 존재 여부만으로 그 안의 편곡 내용, 저작권 상태, 실제 송출 또는 정산을 판단할 수 없습니다.\n\n## 미해결 사항\n- 공개 원곡 메타데이터와 승인 스토리의 실제 내용 및 출처\n- 검토 대상 곡의 악기 구성·편곡 적합성\n- Suno 비공개 곡 접근 여부, BIGO 실제 송출 여부, 실제 정산 내역\n- 원본 MARU 2025 자료의 위치 또는 대체 출처\n\n## 다음 실제 작업\n공개 원곡 메타데이터와 승인된 스토리의 출처·내용을 확보한 뒤 곡별 악기 편성을 검토해야 합니다. 비공개 곡, 송출, 정산 및 기기 동작은 해당 계정·기기·기록에 접근해 별도로 확인해야 합니다.\n\n## 승인 필요 여부\n자료 확보와 내부 검토에는 별도 승인 필요 여부를 판단할 근거가 없습니다. 곡 공개·송출·정산 처리나 권리 판단은 이 근거만으로 승인할 수 없습니다."
   },
   "realWorldExternalAction": "none",
   "broadcastVerified": false,
-  "voiceModelReady": false
+  "voiceModelReady": false,
+  "signoff": "AI 모델 실행 성공은 model.status=model_report_generated일 때만 표시"
 }

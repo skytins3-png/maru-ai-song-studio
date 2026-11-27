@@ -3,9 +3,9 @@
   "label": "LEO",
   "specialty": "코드·품질",
   "mission": "현재 GitHub 자동 시험의 성공과 실제 휴대폰 작동을 구별하고 확인할 테스트를 제안",
-  "checkedAt": "2026-11-26T05:19:25.064549+00:00",
-  "runId": "45760809738",
-  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45760809738",
+  "checkedAt": "2026-11-27T05:15:15.840735+00:00",
+  "runId": "45944658941",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45944658941",
   "execution": "evidence_checks_performed",
   "checks": [
     {

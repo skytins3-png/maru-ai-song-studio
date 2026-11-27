@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-26T05:19:25.064549+00:00",
-  "runId": "45760809738",
-  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45760809738",
+  "generatedAt": "2026-11-27T05:15:15.840735+00:00",
+  "runId": "45944658941",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45944658941",
   "totalRoles": 18,
   "modelReports": 3,
   "status": "partial_or_unconnected",
@@ -77,7 +77,7 @@
       "name": "NURI",
       "mission": "Android APK와 PWA 배포, 홈 설치, 구버전 원본과의 차이를 검토",
       "checkStatus": "evidence_checks_performed",
-      "modelStatus": "model_report_generated",
+      "modelStatus": "not_scheduled_quota",
       "checks": 3,
       "total": 4,
       "reportPath": "nuri.json"
@@ -87,7 +87,7 @@
       "name": "방송 편성 총괄",
       "mission": "자작곡 방송 편성과 공개 사연 순서를 검토",
       "checkStatus": "evidence_checks_performed",
-      "modelStatus": "model_report_generated",
+      "modelStatus": "not_scheduled_quota",
       "checks": 3,
       "total": 3,
       "reportPath": "broadcast-director.json"
@@ -97,7 +97,7 @@
       "name": "윤솔",
       "mission": "청취자 사연 대본을 원어민 자연어로 검토하되 허가 없는 개인 데이터를 쓰지 않음",
       "checkStatus": "evidence_checks_performed",
-      "modelStatus": "model_report_generated",
+      "modelStatus": "not_scheduled_quota",
       "checks": 3,
       "total": 3,
       "reportPath": "conversation.json"
@@ -107,7 +107,7 @@
       "name": "하람",
       "mission": "실청취 증거와 오디오 음질 검사 결과를 구분",
       "checkStatus": "evidence_checks_performed",
-      "modelStatus": "not_scheduled_quota",
+      "modelStatus": "model_report_generated",
       "checks": 3,
       "total": 4,
       "reportPath": "audio-engineer.json"
@@ -117,7 +117,7 @@
       "name": "라온",
       "mission": "자작곡 제작·진행 데이터가 실제로 있는지 확인",
       "checkStatus": "evidence_checks_performed",
-      "modelStatus": "not_scheduled_quota",
+      "modelStatus": "model_report_generated",
       "checks": 3,
       "total": 4,
       "reportPath": "composer.json"
@@ -127,7 +127,7 @@
       "name": "서율",
       "mission": "악기 편성과 공개 원곡 메타데이터 검토",
       "checkStatus": "evidence_checks_performed",
-      "modelStatus": "not_scheduled_quota",
+      "modelStatus": "model_report_generated",
       "checks": 3,
       "total": 3,
       "reportPath": "arranger.json"

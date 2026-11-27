@@ -3,9 +3,9 @@
   "label": "라온",
   "specialty": "작곡",
   "mission": "자작곡 제작·진행 데이터가 실제로 있는지 확인",
-  "checkedAt": "2026-11-26T05:19:25.064549+00:00",
-  "runId": "45760809738",
-  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45760809738",
+  "checkedAt": "2026-11-27T05:15:15.840735+00:00",
+  "runId": "45944658941",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45944658941",
   "execution": "evidence_checks_performed",
   "checks": [
     {
@@ -32,11 +32,13 @@
   "sourceCheckPassed": 3,
   "sourceCheckCount": 4,
   "model": {
-    "status": "not_scheduled_quota",
+    "status": "model_report_generated",
     "model": "github-copilot-cli",
-    "reason": "이 실행의 모델 호출 상한 3건; 순환 일정에 따라 차례대로 실행"
+    "provider": "github-copilot",
+    "report": "## 확인된 근거\n- 공개 카탈로그 항목은 0개이며, 승인된 스토리도 0개입니다.\n- 관련 모바일·Suno·라디오·요청 화면 파일과 브라우저 테스트 파일은 존재하지만, 파일 존재만으로 실제 곡 제작이나 진행 기록을 확인할 수는 없습니다.\n- 기존 7개 역할 감사는 7/7 통과했으나, 2026-11-27 02:57 UTC에 확인된 결과입니다. 전문가 에이전시 기록은 11건이지만 모델 보고서는 0건입니다.\n- Suno 비공개 곡 전체 다운로드 확인은 실패했습니다. 휴대폰 곡 목록은 서버에서 접근 불가, BIGO 실제 청취 송출은 미검증, 정산 기록은 미연결이며, MARU 2025 원본 소스는 찾지 못했습니다.\n\n## 담당자 판단\n현재 제공된 근거만으로는 실제 자작곡 제작·진행 데이터가 있다고 확인할 수 없습니다. 확인되는 것은 관련 화면·테스트 파일과 과거 감사 결과뿐이며, 이는 곡이나 제작 이력의 증거가 아닙니다.\n\n## 미해결 사항\nSuno 비공개 곡과 휴대폰 라이브러리, 실제 BIGO 송출, 정산 기록 및 MARU 2025 원본의 존재 여부와 내용은 확인되지 않았습니다. 저작권 상태도 판단할 근거가 없습니다.\n\n## 다음 실제 작업\n승인된 계정·기기 접근을 확보한 뒤 곡 목록, 제작 이력, 원본 파일 및 권리 정보를 대조하고, 실제 송출·정산 여부는 각각의 기록으로 확인해야 합니다. 확인된 결과를 공개 카탈로그나 승인된 스토리에 반영할 수 있습니다.\n\n## 승인 필요 여부\n필요합니다. 비공개 Suno 곡, 휴대폰 파일, BIGO 및 정산 기록을 확인하려면 해당 계정·기기·기록에 대한 적절한 접근 승인이 먼저 있어야 합니다."
   },
   "realWorldExternalAction": "none",
   "broadcastVerified": false,
-  "voiceModelReady": false
+  "voiceModelReady": false,
+  "signoff": "AI 모델 실행 성공은 model.status=model_report_generated일 때만 표시"
 }

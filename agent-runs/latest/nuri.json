@@ -3,9 +3,9 @@
   "label": "NURI",
   "specialty": "모바일 배포·복구",
   "mission": "Android APK와 PWA 배포, 홈 설치, 구버전 원본과의 차이를 검토",
-  "checkedAt": "2026-11-26T05:19:25.064549+00:00",
-  "runId": "45760809738",
-  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45760809738",
+  "checkedAt": "2026-11-27T05:15:15.840735+00:00",
+  "runId": "45944658941",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45944658941",
   "execution": "evidence_checks_performed",
   "checks": [
     {
@@ -32,13 +32,11 @@
   "sourceCheckPassed": 3,
   "sourceCheckCount": 4,
   "model": {
-    "status": "model_report_generated",
+    "status": "not_scheduled_quota",
     "model": "github-copilot-cli",
-    "provider": "github-copilot",
-    "report": "## 확인된 근거\n- 공개 소스 기준으로 `mobile-hub/index.html`, `mobile-hub/legacy.html`, `mobile-hub/agents.html`, `mobile-hub/agency.html` 및 모바일 관련 페이지·테스트 파일이 존재합니다.\n- 기존 7개 역할 감사는 7/7 통과로 기록되어 있습니다. 공개 카탈로그와 승인된 스토리는 각각 0건입니다.\n- Android 기기 파일시스템, Suno 계정·비공개 곡, BIGO 실제 청취 송출, 정산 기록은 확인할 수 없습니다.\n- MARU V5.13/V5.14 원본은 확보되지 않았습니다.\n\n## 담당자 판단\n- 파일 존재와 감사 통과만으로 APK 빌드·배포, PWA 홈 화면 설치, 실제 기기 동작이 완료됐다고 판단할 수 없습니다.\n- 2025년 원본이 없어 구버전과 현재 버전의 차이를 검증할 근거가 부족합니다. `legacy.html`의 존재도 원본과의 동등성이나 차이를 입증하지 않습니다.\n\n## 미해결 사항\n- APK 산출물·서명·배포 상태, PWA 설치 가능 조건 및 설치 후 동작 여부.\n- Android 실기기 호환성과 복구 절차.\n- V5.13/V5.14 원본 대비 변경점.\n- Suno 비공개 곡, BIGO 청취 송출, 실제 정산 여부.\n\n## 다음 실제 작업\n- APK 빌드·서명·배포 산출물과 PWA manifest·서비스워커·설치 동작을 확인합니다.\n- Android 실기기에서 설치·실행·복구를 검증합니다.\n- V5.13/V5.14 원본을 확보한 뒤 현재 소스와 비교합니다.\n- 계정·기기·정산 관련 확인은 해당 접근 권한과 적절한 증빙을 확보한 뒤 별도로 진행합니다.\n\n## 승인 필요 여부\n- 현재 근거만으로 배포나 구버전 대체를 승인할 수 없습니다. 실제 배포·대체 진행 전 담당자의 승인과 위 검증 결과가 필요합니다."
+    "reason": "이 실행의 모델 호출 상한 3건; 순환 일정에 따라 차례대로 실행"
   },
   "realWorldExternalAction": "none",
   "broadcastVerified": false,
-  "voiceModelReady": false,
-  "signoff": "AI 모델 실행 성공은 model.status=model_report_generated일 때만 표시"
+  "voiceModelReady": false
 }
