@@ -1,12 +1,12 @@
 {
-  "caseId": "lyricist-20261127",
+  "caseId": "lyricist-20261128",
   "agentId": "lyricist",
   "agentName": "채린",
   "caseTitle": "가사 작업 자료 점검",
   "mission": "검토 대상 원본 자료 없는 경우 작업 보류",
-  "checkedAt": "2026-11-27T08:20:06.162769+00:00",
-  "runId": "45964836870",
-  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45964836870",
+  "checkedAt": "2026-11-28T07:40:30.384532+00:00",
+  "runId": "46122279894",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/46122279894",
   "automationType": "repository_evidence_audit",
   "reportStatus": "blocked_missing_evidence",
   "checks": [
