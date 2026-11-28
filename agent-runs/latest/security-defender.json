@@ -3,9 +3,9 @@
   "label": "도윤",
   "specialty": "보안·방어",
   "mission": "위험한 공개 업로드와 외부 앱 비밀정보 접근 여부 점검",
-  "checkedAt": "2026-11-27T05:15:15.840735+00:00",
-  "runId": "45944658941",
-  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45944658941",
+  "checkedAt": "2026-11-28T04:53:24.329260+00:00",
+  "runId": "46109584146",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/46109584146",
   "execution": "evidence_checks_performed",
   "checks": [
     {
@@ -27,11 +27,13 @@
   "sourceCheckPassed": 3,
   "sourceCheckCount": 3,
   "model": {
-    "status": "not_scheduled_quota",
+    "status": "model_report_generated",
     "model": "github-copilot-cli",
-    "reason": "이 실행의 모델 호출 상한 3건; 순환 일정에 따라 차례대로 실행"
+    "provider": "github-copilot",
+    "report": "## 확인된 근거\n- 공개 소스 파일만 확인되었으며 Suno·BIGO 계정이나 기기 파일에는 접근하지 않았습니다.\n- 공개 카탈로그와 승인된 스토리는 각각 0건입니다.\n- `music-share/requests.html`, `music-share/stories.html` 및 관련 모바일·보컬 페이지와 테스트 파일이 존재합니다.\n- 기존 7개 역할 감사는 7/7 통과했으나, 마지막 확인 시각은 2026-11-28 02:47 UTC입니다.\n\n## 담당자 판단\n- 현재 근거만으로 위험한 공개 업로드가 실제 발생했는지, 외부 앱의 비밀정보에 접근할 수 있는지 판단할 수 없습니다. 파일 존재와 과거 감사 통과만으로 안전성이 입증되지는 않습니다.\n- Suno 비공개 곡 접근, BIGO 실제 청취 송출, 정산 기록 연결은 확인되지 않았습니다.\n\n## 미해결 사항\n- 공개 업로드의 권한·승인 절차와 실제 노출 범위.\n- 외부 앱 비밀정보 접근 여부 및 최신 코드 기준 보안 점검 결과.\n- 실제 계정·기기·송출·정산 상태.\n\n## 다음 실제 작업\n- 공개 업로드 흐름의 승인·공개 범위를 소스와 테스트로 점검하고, 외부 앱 비밀정보가 클라이언트나 공개 응답에 노출되지 않는지 확인합니다.\n- 실제 계정·기기·송출·정산 검증은 해당 접근 권한과 별도 증거를 확보한 뒤 진행합니다.\n\n## 승인 필요 여부\n- 현재 공개 소스만 대상으로 하는 점검에는 별도 계정 승인이 필요하지 않습니다.\n- 실제 공개 게시, 외부 앱 계정·기기 접근, 송출 또는 정산 확인에는 적절한 권한과 승인이 필요합니다."
   },
   "realWorldExternalAction": "none",
   "broadcastVerified": false,
-  "voiceModelReady": false
+  "voiceModelReady": false,
+  "signoff": "AI 모델 실행 성공은 model.status=model_report_generated일 때만 표시"
 }

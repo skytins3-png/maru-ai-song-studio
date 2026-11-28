@@ -3,9 +3,9 @@
   "label": "채린",
   "specialty": "작사",
   "mission": "공개된 가사 및 제작 내역을 근거로 언어별 검토 계획 작성",
-  "checkedAt": "2026-11-27T05:15:15.840735+00:00",
-  "runId": "45944658941",
-  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45944658941",
+  "checkedAt": "2026-11-28T04:53:24.329260+00:00",
+  "runId": "46109584146",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/46109584146",
   "execution": "evidence_checks_performed",
   "checks": [
     {
@@ -27,11 +27,13 @@
   "sourceCheckPassed": 3,
   "sourceCheckCount": 3,
   "model": {
-    "status": "not_scheduled_quota",
+    "status": "model_report_generated",
     "model": "github-copilot-cli",
-    "reason": "이 실행의 모델 호출 상한 3건; 순환 일정에 따라 차례대로 실행"
+    "provider": "github-copilot",
+    "report": "## 확인된 근거\n- 공개 카탈로그 0건, 승인된 스토리 0건으로 확인됩니다.\n- `music-share/requests.html` 및 `music-share/stories.html` 파일은 존재하지만, 제공된 근거에는 파일 내용이나 실제 가사가 없습니다.\n- 기존 7개 역할 점검은 7/7 통과했으나, 이것만으로 작사·언어별 검토가 완료됐다고 볼 수는 없습니다.\n- 비공개 Suno 곡, BIGO 실제 청취 송출, 정산 기록, Android 실기기 상태는 확인되지 않았습니다.\n\n## 담당자 판단\n현재 공개 가사와 제작 내역에 근거한 개별 가사 평가는 불가능합니다. 따라서 언어별 검토는 대상 자료가 확보된 뒤 진행해야 하며, 언어별 의미·자연스러움·운율·발음 적합성 및 제작 버전과의 일치 여부를 확인하는 계획 단계에 머뭅니다.\n\n## 미해결 사항\n- 검토 가능한 공개 가사와 제작 내역의 실제 내용 및 언어\n- 가사별 출처, 버전, 권리·사용 승인 상태\n- 파일에 기재된 요청이나 스토리의 승인 여부\n\n## 다음 실제 작업\n1. 공개 자료에서 검토 대상 가사와 제작 기록을 확보하고 언어·출처·버전별로 목록화합니다.\n2. 각 가사를 원문 의미, 자연스러운 표현, 운율·발음, 문화적 맥락 기준으로 검토하고 제작 기록과 대조합니다.\n3. 결과와 불확실한 표현을 분리해 기록하고, 승인 확인 전에는 게시·사용 판단을 보류합니다.\n\n## 승인 필요 여부\n검토 계획 작성에는 별도 승인이 필요하지 않습니다. 가사나 제작 기록의 사용·공개, 수정본 확정은 권리 및 담당자 승인을 확인해야 합니다."
   },
   "realWorldExternalAction": "none",
   "broadcastVerified": false,
-  "voiceModelReady": false
+  "voiceModelReady": false,
+  "signoff": "AI 모델 실행 성공은 model.status=model_report_generated일 때만 표시"
 }

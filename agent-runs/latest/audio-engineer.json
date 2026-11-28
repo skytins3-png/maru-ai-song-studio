@@ -3,9 +3,9 @@
   "label": "하람",
   "specialty": "음향·송출",
   "mission": "실청취 증거와 오디오 음질 검사 결과를 구분",
-  "checkedAt": "2026-11-27T05:15:15.840735+00:00",
-  "runId": "45944658941",
-  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/45944658941",
+  "checkedAt": "2026-11-28T04:53:24.329260+00:00",
+  "runId": "46109584146",
+  "runUrl": "https://github.com/skytins3-png/maru-ai-song-studio/actions/runs/46109584146",
   "execution": "evidence_checks_performed",
   "checks": [
     {
@@ -32,13 +32,11 @@
   "sourceCheckPassed": 3,
   "sourceCheckCount": 4,
   "model": {
-    "status": "model_report_generated",
+    "status": "not_scheduled_quota",
     "model": "github-copilot-cli",
-    "provider": "github-copilot",
-    "report": "## 확인된 근거\n- 공개 소스 기준으로 카탈로그와 승인된 스토리는 각각 0건입니다. 관련 화면·테스트 파일의 존재는 확인됐지만, 파일 존재만으로 기능 실행이나 실기기 테스트가 입증되지는 않습니다.\n- BIGO 시청자의 실청취 증거는 확인되지 않았습니다. 검사 근거도 내부 오디오 재생은 외부 송출 성공의 증거가 아니라고 명시합니다.\n- Suno 비공개 곡, 휴대폰 라이브러리, 실제 정산 기록에는 접근할 수 없었고, MARU 2025 원본 소스도 찾지 못했습니다.\n- 기존 7개 역할 점검은 7/7 통과로 기록돼 있으나, 이는 2026-11-27 02:57 UTC 기준의 기존 점검 결과입니다.\n\n## 담당자 판단\n실청취 여부와 음질 검사 결과는 별개의 증거입니다. 현재 BIGO 실청취는 미검증이며, 오디오 음질 측정 결과나 청취 평가 자료도 제공되지 않아 음질을 판정할 수 없습니다. 기존 점검 통과 기록만으로 이 두 항목을 확인 처리할 수 없습니다.\n\n## 미해결 사항\nBIGO 외부 청취자가 실제로 들었는지, 송출 음질이 적절했는지 확인되지 않았습니다. Suno 비공개 곡의 재생 여부, 실제 정산, Android 실기기 동작도 검증되지 않았습니다.\n\n## 다음 실제 작업\n승인된 환경에서 송출을 수행하고, 외부 청취자의 실청취 증거와 별도의 오디오 음질 검사 결과를 각각 수집해야 합니다. 필요한 경우 Suno 곡 접근, 정산 기록, Android 기기 테스트도 권한과 장비를 갖춘 담당자가 별도로 확인해야 합니다.\n\n## 승인 필요 여부\n실제 BIGO 송출·청취 확인, 비공개 곡 접근, 정산 기록 확인 및 실기기 테스트에는 해당 계정·장비 접근 권한과 필요한 운영 승인이 필요합니다. 현재 자료만으로는 승인이나 수행 여부를 확인할 수 없습니다."
+    "reason": "이 실행의 모델 호출 상한 3건; 순환 일정에 따라 차례대로 실행"
   },
   "realWorldExternalAction": "none",
   "broadcastVerified": false,
-  "voiceModelReady": false,
-  "signoff": "AI 모델 실행 성공은 model.status=model_report_generated일 때만 표시"
+  "voiceModelReady": false
 }
