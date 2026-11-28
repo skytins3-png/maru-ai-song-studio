@@ -1,67 +1,77 @@
 {
-  "generatedAt": "2026-11-28T00:04:18+00:00",
+  "generatedAt": "2026-11-28T07:54:49+00:00",
   "timezone": "Asia/Seoul",
-  "weather": {
-    "Daejeon": {
-      "city": "Daejeon",
-      "temperatureC": 6.2,
-      "windKmh": 5.3,
-      "weatherCode": 1,
-      "observedLocal": "2026-11-28T09:00",
-      "source": "Open-Meteo",
-      "sourceUrl": "https://open-meteo.com/"
-    },
-    "Seoul": {
-      "city": "Seoul",
-      "temperatureC": 4.3,
-      "windKmh": 6.2,
-      "weatherCode": 0,
-      "observedLocal": "2026-11-28T09:00",
-      "source": "Open-Meteo",
-      "sourceUrl": "https://open-meteo.com/"
-    },
-    "Busan": {
-      "city": "Busan",
-      "temperatureC": 9.7,
-      "windKmh": 12.1,
-      "weatherCode": 0,
-      "observedLocal": "2026-11-28T09:00",
-      "source": "Open-Meteo",
-      "sourceUrl": "https://open-meteo.com/"
-    },
-    "Incheon": {
-      "city": "Incheon",
-      "temperatureC": 5.5,
-      "windKmh": 14.2,
-      "weatherCode": 0,
-      "observedLocal": "2026-11-28T09:00",
-      "source": "Open-Meteo",
-      "sourceUrl": "https://open-meteo.com/"
-    },
-    "Daegu": {
-      "city": "Daegu",
-      "temperatureC": 8.7,
-      "windKmh": 10.4,
-      "weatherCode": 1,
-      "observedLocal": "2026-11-28T09:00",
-      "source": "Open-Meteo",
-      "sourceUrl": "https://open-meteo.com/"
-    }
-  },
+  "weather": {},
   "news": [
+    {
+      "title": "Pensions and benefits services still down after 'cyber incident'",
+      "url": "https://www.bbc.co.uk/news/articles/cm1wrgqyq4d8o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "Technology",
+      "publishedAt": "2026-11-28T07:55:18+00:00"
+    },
+    {
+      "title": "Eight killed in Peruvian military helicopter crash",
+      "url": "https://www.bbc.co.uk/news/articles/cwp9d85mlp88o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-28T04:19:16+00:00"
+    },
+    {
+      "title": "Turkish officials 'destroyed' pro-opposition TV channel, owner tells BBC",
+      "url": "https://www.bbc.co.uk/news/articles/cq36gk151xkdo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-28T04:13:45+00:00"
+    },
+    {
+      "title": "How gamers are using AI and leaked files to clone Grand Theft Auto 6",
+      "url": "https://www.bbc.co.uk/news/articles/c64gn8pe5eeqo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "Technology",
+      "publishedAt": "2026-11-28T01:30:50+00:00"
+    },
+    {
+      "title": "Nigeria's 'ultimate hard man' who become an online meme",
+      "url": "https://www.bbc.co.uk/news/articles/cm3vg3lkrk03o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-28T01:20:35+00:00"
+    },
+    {
+      "title": "Tech Now",
+      "url": "https://www.bbc.co.uk/iplayer/episode/m00353dd?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "Technology",
+      "publishedAt": "2026-11-28T01:00:00+00:00"
+    },
+    {
+      "title": "'Poison seller' Kenneth Law apologises in court to the families of his victims",
+      "url": "https://www.bbc.co.uk/news/articles/cmx2898wq2qjo?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-28T00:56:55+00:00"
+    },
+    {
+      "title": "The Indian 'Tamasha queen' whose fans paid for a show that never happened",
+      "url": "https://www.bbc.co.uk/news/articles/cj20q9pw0116o?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-28T00:50:11+00:00"
+    },
+    {
+      "title": "A clinic is reassessing people with ADHD and autism diagnoses - but critics fear it could deepen stigma",
+      "url": "https://www.bbc.co.uk/news/articles/cr9309nyg2vno?at_medium=RSS&at_campaign=rss",
+      "source": "BBC News",
+      "category": "World",
+      "publishedAt": "2026-11-28T00:05:17+00:00"
+    },
     {
       "title": "Behind China's spectacular rise, voices who defied it say they are being drowned out",
       "url": "https://www.bbc.co.uk/news/articles/cme3d4y094x7o?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
       "publishedAt": "2026-11-27T23:02:35+00:00"
-    },
-    {
-      "title": "Prosecutors seek 25-year prison term for 'poison seller' Kenneth Law",
-      "url": "https://www.bbc.co.uk/news/articles/cmx2898wq2qjo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-27T22:03:46+00:00"
     },
     {
       "title": "Spanish PM and rivals rally supporters in final pitch for votes",
@@ -71,67 +81,11 @@
       "publishedAt": "2026-11-27T21:55:53+00:00"
     },
     {
-      "title": "Capsized tanker carrying 7,000 tonnes of diesel to be towed away from Ibiza",
-      "url": "https://www.bbc.co.uk/news/articles/cvrlgz6g0ekgo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-27T20:34:45+00:00"
-    },
-    {
       "title": "'We couldn't give up that easily': Marching bands scramble to cover costs after Thanksgiving parade rearranged",
       "url": "https://www.bbc.co.uk/news/articles/ckd71ypy9e8eo?at_medium=RSS&at_campaign=rss",
       "source": "BBC News",
       "category": "World",
       "publishedAt": "2026-11-27T20:06:31+00:00"
-    },
-    {
-      "title": "Weary of war but with no sign of backing down, Kyiv faces another punishing winter",
-      "url": "https://www.bbc.co.uk/news/articles/c3pw4yrr8kz9o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-27T18:42:50+00:00"
-    },
-    {
-      "title": "Zelensky criticises 'strange' Trump-Putin friendship in BBC interview",
-      "url": "https://www.bbc.co.uk/news/articles/c820q9wgrpyyo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-27T18:00:40+00:00"
-    },
-    {
-      "title": "Kenyan doomsday cult leader convicted over further 123 deaths",
-      "url": "https://www.bbc.co.uk/news/articles/cmy49de4xx1zo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-27T17:19:31+00:00"
-    },
-    {
-      "title": "Canada's top court largely upholds Quebec ban on religious symbols for public servants",
-      "url": "https://www.bbc.co.uk/news/articles/cq3dgpy9lem3o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-27T16:53:46+00:00"
-    },
-    {
-      "title": "Severe Thanksgiving storms leave roads flooded and trees fallen",
-      "url": "https://www.bbc.co.uk/news/videos/ckvg20y511p4o?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-27T16:46:47+00:00"
-    },
-    {
-      "title": "Brazil pushes back on Macron calling its meat 'doped'",
-      "url": "https://www.bbc.co.uk/news/articles/c6rrg28npvzeo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-27T15:54:15+00:00"
-    },
-    {
-      "title": "Rare turtles found inside baggage at Amsterdam airport",
-      "url": "https://www.bbc.co.uk/news/articles/cm5y1380q3vgo?at_medium=RSS&at_campaign=rss",
-      "source": "BBC News",
-      "category": "World",
-      "publishedAt": "2026-11-27T13:38:07+00:00"
     }
   ]
 }
